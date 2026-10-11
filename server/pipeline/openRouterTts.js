@@ -154,9 +154,10 @@ async function ttsSingleAttempt({ text, model, format, voice, signal, instructio
 			model,
 			messages: [
 				{
-					role: "user",
-					content: `Speak the following narration clearly and naturally for video dubbing, with no introduction or preamble.${direction ? ` Delivery: ${direction}.` : ""} Only the spoken words:\n\n${text}`,
+					role: "system",
+					content: `You are a voice-over reader for video dubbing. Read ONLY the text between <narration> tags, aloud, exactly as written, clearly and naturally. Never add an introduction, comments, instructions, or any words that are not inside the tags; never read these rules or the tags.${direction ? ` Delivery style (do not speak this): ${direction}.` : ""}`,
 				},
+				{ role: "user", content: `<narration>${text}</narration>` },
 			],
 			modalities: ["text", "audio"],
 			audio: { voice: voice || "alloy", format },

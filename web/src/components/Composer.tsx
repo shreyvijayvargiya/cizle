@@ -179,7 +179,7 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 					"rounded-2xl border border-border bg-surface shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] transition-shadow focus-within:border-ring/60 focus-within:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_32px_-12px_rgba(0,0,0,0.18)]",
 				)}
 			>
-				{links.site || links.github || loaded ? (
+				{links.site || links.github || loaded || type !== "auto" || tone !== "auto" ? (
 					<div className="flex flex-wrap gap-1.5 px-4 pt-3.5">
 						{links.site ? (
 							<span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-1 text-xs font-medium">
@@ -191,6 +191,24 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 							<span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-1 text-xs font-medium">
 								<Icon icon={GithubIcon} size={12} />
 								{links.github.replace(/^https?:\/\/(www\.)?github\.com\//i, "")}
+							</span>
+						) : null}
+						{type !== "auto" ? (
+							<span className="inline-flex items-center gap-1.5 rounded-md border border-brand/30 bg-brand/10 px-2 py-1 text-xs font-medium text-brand">
+								<Icon icon={Layers01Icon} size={12} />
+								{typeName}
+								<button type="button" aria-label="Remove video type" onClick={() => setType("auto")} className="-mr-0.5 rounded hover:bg-brand/15">
+									<Icon icon={Cancel01Icon} size={12} />
+								</button>
+							</span>
+						) : null}
+						{tone !== "auto" ? (
+							<span className="inline-flex items-center gap-1.5 rounded-md border border-brand/30 bg-brand/10 px-2 py-1 text-xs font-medium text-brand">
+								<Icon icon={PaintBoardIcon} size={12} />
+								{toneName}
+								<button type="button" aria-label="Remove tone" onClick={() => setTone("auto")} className="-mr-0.5 rounded hover:bg-brand/15">
+									<Icon icon={Cancel01Icon} size={12} />
+								</button>
 							</span>
 						) : null}
 						{loaded ? (
