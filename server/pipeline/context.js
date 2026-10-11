@@ -171,6 +171,7 @@ export async function gatherProductContext({ input, deps, workDir, log }) {
 	const mainRepo = parseGithubRepo(mainUrl);
 	const context = {};
 	let home = null;
+	let isArticle = false;
 	let homeDiscover = { links: [], images: [], meta: {}, github: null, title: null, faqs: [] };
 
 	// 1. Homepage (or skip when the main URL is a repo) — scraper text + raw-HTML discovery in parallel.
@@ -182,25 +183,30 @@ export async function gatherProductContext({ input, deps, workDir, log }) {
 		if (raw) homeDiscover = discover(raw.text, raw.finalUrl);
 		home = scraped;
 		const meta = { ...(scraped?.data?.metadata || {}), ...homeDiscover.meta };
+		// A single article/blog post rather than a product homepage: the page itself is the subject.
+		const segs = new URL(mainUrl).pathname.split("/").filter(Boolean);
+		isArticle = meta["og:type"] === "article" || (BLOG_RE.test(new URL(mainUrl).pathname) && segs.length >= 2);
 		context.website = {
+			page_type: isArticle ? "article (blog post) — this page's own content is the subject" : "homepage / product site",
 			url: mainUrl,
 			title: homeDiscover.title || meta.title || null,
 			description: meta.description || meta["og:description"] || null,
 			theme_color: meta["theme-color"] || null,
-			content: String(scraped?.markdown || "").slice(0, 10_000),
+			content: String(scraped?.markdown || "").slice(0, isArticle ? 24_000 : 10_000),
 		};
 		note("website", mainUrl, Boolean(scraped?.markdown || raw), scraped ? null : "scrape failed");
 	}
 
 	const origin = mainRepo ? null : new URL(mainUrl).origin;
 	const githubRepo = parseGithubRepo(input.github_url || "") || mainRepo || homeDiscover.github;
-	const blogIndex =
-		input.blog_url ||
+	const blogIndex = isArticle
+		? null
+		: input.blog_url ||
 		(homeDiscover.links.find((l) => BLOG_RE.test(new URL(l.href).pathname) && new URL(l.href).pathname.split("/").filter(Boolean).length === 1)?.href ?? null);
-	const extraPages = [
+	const extraPages = (isArticle ? [] : [
 		...(input.extra_urls || []),
 		...homeDiscover.links.filter((l) => PAGE_RE.test(new URL(l.href).pathname)).map((l) => l.href),
-	]
+	])
 		.filter((u, i, a) => u && a.indexOf(u) === i && u !== mainUrl)
 		.slice(0, 3);
 
@@ -287,7 +293,7 @@ export async function gatherProductContext({ input, deps, workDir, log }) {
 	// 3. Visuals in parallel: screenshots of key pages + real product images.
 	const vertical = input.aspect === "9:16";
 	const targets = [];
-	if (!mainRepo) targets.push({ id: "site", url: mainUrl, label: "Homepage", maxCrops: 4 });
+	if (!mainRepo) targets.push({ id: "site", url: mainUrl, label: isArticle ? "Article" : "Homepage", maxCrops: isArticle ? 5 : 4 });
 	if (pages[0]) targets.push({ id: "page", url: pages[0].url, label: `Page ${new URL(pages[0].url).pathname}`, maxCrops: 2 });
 	if (blog?.[0]) targets.push({ id: "blog", url: blog[0].url, label: `Blog post: ${blog[0].title}`.slice(0, 120), maxCrops: 1 });
 	if (github) targets.push(...github.screenshotTargets.filter((t) => t.url !== mainUrl || mainRepo).map((t) => ({ ...t, id: `gh-${t.id}`, maxCrops: mainRepo ? 4 : 2 })));

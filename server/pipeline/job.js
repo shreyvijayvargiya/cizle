@@ -327,7 +327,7 @@ async function runJob(job, deps) {
 
 	// 3. Brief ----------------------------------------------------------------
 	await step("brief", 32);
-	const brief = await chatJson({ model: input.script_model, system: BRIEF_ANALYST_SYSTEM, user: buildBriefUserText(gathered.context), costs, stage: "brief", temperature: 0.3, maxTokens: 6000 });
+	const brief = await chatJson({ model: input.script_model, system: BRIEF_ANALYST_SYSTEM, user: buildBriefUserText(extraInstructions ? { ...gathered.context, user_request: extraInstructions } : gathered.context), costs, stage: "brief", temperature: 0.3, maxTokens: 6000 });
 	job.brief = brief;
 	job.title = brief?.product_name || job.title;
 	await save(job);
