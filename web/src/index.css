@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+	--background: #f4f4f5;
+	--surface: #ffffff;
+	--foreground: #0a0a0a;
+	--muted: #f4f4f5;
+	--muted-foreground: #71717a;
+	--border: #e4e4e7;
+	--input: #e4e4e7;
+	--primary: #0a0a0a;
+	--primary-foreground: #ffffff;
+	--accent: #f4f4f5;
+	--ring: #a1a1aa;
+	--brand: #f97316;
+	--success: #16a34a;
+	--warning: #d97706;
+	--danger: #dc2626;
+	--info: #2563eb;
+}
+
+.dark {
+	--background: #09090b;
+	--surface: #111113;
+	--foreground: #fafafa;
+	--muted: #1c1c1f;
+	--muted-foreground: #a1a1aa;
+	--border: #27272a;
+	--input: #27272a;
+	--primary: #fafafa;
+	--primary-foreground: #0a0a0a;
+	--accent: #1c1c1f;
+	--ring: #52525b;
+	--success: #22c55e;
+	--warning: #f59e0b;
+	--danger: #ef4444;
+	--info: #60a5fa;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-surface: var(--surface);
+	--color-foreground: var(--foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-accent: var(--accent);
+	--color-ring: var(--ring);
+	--color-brand: var(--brand);
+	--color-success: var(--success);
+	--color-warning: var(--warning);
+	--color-danger: var(--danger);
+	--color-info: var(--info);
+	--font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* {
+	border-color: var(--border);
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	font-feature-settings: "cv11", "ss01";
+}
+
+.prose-cizle {
+	font-size: 0.875rem;
+	line-height: 1.65;
+}
+.prose-cizle h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.75rem; }
+.prose-cizle h2 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+.prose-cizle h3 { font-size: 0.9rem; font-weight: 600; margin: 1rem 0 0.4rem; }
+.prose-cizle p { margin: 0.5rem 0; }
+.prose-cizle ul, .prose-cizle ol { margin: 0.5rem 0; padding-left: 1.25rem; }
+.prose-cizle ul { list-style: disc; }
+.prose-cizle ol { list-style: decimal; }
+.prose-cizle li { margin: 0.2rem 0; }
+.prose-cizle code { font-family: var(--font-mono); font-size: 0.8em; background: var(--muted); padding: 0.1rem 0.3rem; border-radius: 4px; }
+.prose-cizle strong { font-weight: 600; }

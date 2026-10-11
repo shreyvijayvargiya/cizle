@@ -1,0 +1,99 @@
+import { useMemo, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { PlusSignIcon, QuillWrite01Icon, Search01Icon } from "@hugeicons/core-free-icons";
+import { Page } from "@/components/AppShell";
+import { Icon } from "@/components/Icon";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/misc";
+import { usePrompts, type Prompt } from "@/lib/api";
+import { cn, timeAgo } from "@/lib/utils";
+
+const GROUPS: { kind: Prompt["kind"]; title: string; hint: string }[] = [
+	{ kind: "custom", title: "Your prompts", hint: "Saved in prompts/custom/*.md" },
+	{ kind: "type", title: "Video types", hint: "Structure for each kind of video · prompts/types" },
+	{ kind: "tone", title: "Tones", hint: "Energy, pacing and wording · prompts/tones" },
+];
+
+export function PromptsPage() {
+	const prompts = usePrompts();
+	const [q, setQ] = useState("");
+	const [kind, setKind] = useState<"" | Prompt["kind"]>("");
+	const list = useMemo(
+		() => (prompts.data || []).filter((p) => (!kind || p.kind === kind) && (!q || `${p.name} ${p.description} ${p.body}`.toLowerCase().includes(q.toLowerCase()))),
+		[prompts.data, q, kind],
+	);
+	return (
+		<Page
+			title="Prompts"
+			description="A library of markdown prompts. Every file shapes how cizle writes a video — edit them, add your own, commit them to git."
+			actions={
+				<Button asChild>
+					<Link to="/prompts/new">
+						<Icon icon={PlusSignIcon} size={15} /> New prompt
+					</Link>
+				</Button>
+			}
+			wide
+		>
+			<div className="mb-5 flex flex-wrap items-center gap-2">
+				<div className="relative w-full sm:w-72">
+					<Icon icon={Search01Icon} size={15} className="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-muted-foreground" />
+					<Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search prompts" className="pl-8" />
+				</div>
+				<div className="flex items-center gap-1 rounded-lg bg-muted p-1">
+					{[["", "All"], ["custom", "Yours"], ["type", "Types"], ["tone", "Tones"]].map(([k, label]) => (
+						<button key={k} type="button" onClick={() => setKind(k as typeof kind)} className={cn("h-7 rounded-md px-2.5 text-xs font-medium", kind === k ? "bg-surface shadow-sm" : "text-muted-foreground hover:text-foreground")}>
+							{label}
+						</button>
+					))}
+				</div>
+			</div>
+			{prompts.isLoading ? (
+				<div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+					{Array.from({ length: 6 }).map((_, i) => (
+						<Skeleton key={i} className="h-28" />
+					))}
+				</div>
+			) : (
+				<div className="space-y-8">
+					{GROUPS.map((g) => {
+						const items = list.filter((p) => p.kind === g.kind);
+						if (!items.length && (kind || q)) return null;
+						return (
+							<section key={g.kind}>
+								<div className="mb-2.5 flex items-baseline justify-between">
+									<h2 className="text-sm font-semibold">{g.title}</h2>
+									<span className="text-xs text-muted-foreground">{g.hint}</span>
+								</div>
+								{items.length ? (
+									<div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+										{items.map((p) => (
+											<Link key={p.id} to="/prompts/$id" params={{ id: p.id }} className="group flex flex-col rounded-xl border border-border bg-surface p-4 transition-colors hover:bg-accent/50">
+												<div className="flex items-start justify-between gap-2">
+													<p className="text-sm font-medium">{p.name}</p>
+													<Badge tone={p.built_in ? "outline" : "info"}>{p.built_in ? "Built-in" : "Custom"}</Badge>
+												</div>
+												<p className="mt-1 line-clamp-2 text-[13px] text-muted-foreground">{p.description || p.body.slice(0, 120)}</p>
+												<div className="mt-auto flex items-center gap-2 pt-3 text-[11px] text-muted-foreground">
+													<span className="font-mono">{p.kind}/{p.slug}.md</span>
+													{p.type && p.kind === "custom" ? <span>· {p.type}</span> : null}
+													<span className="ml-auto">{timeAgo(p.updated_at)}</span>
+												</div>
+											</Link>
+										))}
+									</div>
+								) : (
+									<Link to="/prompts/new" className="flex items-center gap-3 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground hover:bg-accent/50">
+										<Icon icon={QuillWrite01Icon} size={16} /> Write your first prompt — e.g. "Always open with our free plan, end with the install command."
+									</Link>
+								)}
+							</section>
+						);
+					})}
+				</div>
+			)}
+		</Page>
+	);
+}
