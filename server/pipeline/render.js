@@ -376,8 +376,24 @@ export function displayUrl(u) {
 	return String(u || "").replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
+/** True when text repeats a run of 6+ words from the user's instructions (prompt leaking into the script). */
+function makeEchoCheck(instructions) {
+	const words = (t) => String(t || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(Boolean);
+	const N = 6;
+	const grams = new Set();
+	const iw = words(instructions);
+	for (let i = 0; i + N <= iw.length; i++) grams.add(iw.slice(i, i + N).join(" "));
+	return (text) => {
+		if (!grams.size) return false;
+		const w = words(text);
+		for (let i = 0; i + N <= w.length; i++) if (grams.has(w.slice(i, i + N).join(" "))) return true;
+		return false;
+	};
+}
+
 /** Make the model's storyboard safe to render: valid ids, frames, files, durations, an outro. */
-export function sanitizeStoryboard(board, { frames, codeFiles, input, source }) {
+export function sanitizeStoryboard(board, { frames, codeFiles, input, source, instructions = "" }) {
+	const echoesInstructions = makeEchoCheck(instructions);
 	const frameIds = new Set(frames.map((f) => f.id));
 	const codePaths = new Set(codeFiles.map((f) => f.path));
 	const raw = Array.isArray(board?.scenes) ? board.scenes : [];
@@ -386,7 +402,8 @@ export function sanitizeStoryboard(board, { frames, codeFiles, input, source }) 
 	const frameUse = {};
 	for (const s of raw.slice(0, input.max_scenes)) {
 		const v = { ...(s?.visual || {}) };
-		const narration = String(s?.narration || "").replace(/\s+/g, " ").trim().slice(0, 600);
+		let narration = String(s?.narration || "").replace(/\s+/g, " ").trim().slice(0, 600);
+		if (narration && echoesInstructions(narration)) narration = ""; // never voice the user's prompt
 		let type = v.type;
 		if (type === "image") type = "screenshot"; // same validation; renderer drops chrome for image frames
 		if (type === "quote" && !String(v.text || "").trim()) type = "title";

@@ -112,7 +112,7 @@ export function buildShortDirectorSystem(laws) {
 Hard rules:
 1. Total duration = sum of scene duration_sec, must be <= CONSTRAINTS.max_duration_sec and within ±10% of CONSTRAINTS.target_duration_sec.
 2. Follow the VIDEO TYPE GUIDE's structure and rules exactly. Apply the TONE guide to wording, pacing and energy.
-3. Follow EXTRA INSTRUCTIONS from the user when they don't conflict with the rules below.
+3. Follow EXTRA INSTRUCTIONS from the user when they don't conflict with the rules below. They are private direction for YOU (angle, audience, style): never copy, quote, paraphrase or read them aloud in narration, on-screen text or captions. Narration is written only from the BRIEF.
 4. Scene 1 (1.5-3 s) delivers the concept's hook. Scenes are 2-6 s each.
 5. Ground every claim in the BRIEF. Never invent numbers, quotes, customers, features or competitor facts.
 6. Final scene is "outro" with the brief's CTA.
@@ -154,7 +154,7 @@ export function buildShortDirectorUserText({ concept, typeGuide, toneGuide, extr
 		`VIDEO TYPE GUIDE (${concept.type}):`,
 		typeGuide || "(no guide — use a clear hook → value → proof → CTA structure)",
 		toneGuide ? `\nTONE:\n${toneGuide}` : "",
-		extraInstructions ? `\nEXTRA INSTRUCTIONS (from the user):\n${extraInstructions}` : "",
+		extraInstructions ? `\nEXTRA INSTRUCTIONS (private direction from the user — NOT script text, never narrate or display them):\n<instructions>\n${extraInstructions}\n</instructions>` : "",
 		"\nCONCEPT:",
 		JSON.stringify(concept, null, 1),
 		"\nBRIEF:",

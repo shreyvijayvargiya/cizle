@@ -57,6 +57,8 @@ function normUrl(raw) {
 	}
 }
 
+const URL_IN_TEXT_RE = /\b(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s]*)?/gi;
+
 /** First URL found in free text — lets people just paste "https://acme.com make a FAQ video". */
 function urlFromText(text) {
 	const m = String(text || "").match(/\b((?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s]*)?)/i);
@@ -301,7 +303,10 @@ async function runJob(job, deps) {
 	if (!allowedTypes.length) throw new Error(`Unknown video type "${typeSlug}"`);
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
 	const laws = await getLaws();
-	const extraInstructions = [loaded?.kind === "custom" ? loaded.body : null, input.prompt?.trim() || null].filter(Boolean).join("\n\n");
+	// Direction for the director only: URLs are stripped (they are already in the brief) so the
+	// user's pasted link/phrasing is never mistaken for script text.
+	const stripUrls = (t) => String(t || "").replace(URL_IN_TEXT_RE, " ").replace(/[ \t]{2,}/g, " ").trim();
+	const extraInstructions = [loaded?.kind === "custom" ? loaded.body : null, stripUrls(input.prompt) || null].filter(Boolean).join("\n\n");
 	job.type_label = typeSlug === "auto" ? "Auto" : allowedTypes[0].name;
 
 	// 1. Context -------------------------------------------------------------
@@ -375,7 +380,7 @@ async function runJob(job, deps) {
 					temperature: 0.8,
 					maxTokens: 6000,
 				});
-				const sb = sanitizeStoryboard(board, { frames: usable, codeFiles, input: { max_scenes: 16 }, source: { ...gathered.source, url: brief?.cta?.url || gathered.source.url } });
+				const sb = sanitizeStoryboard(board, { frames: usable, codeFiles, input: { max_scenes: 16 }, source: { ...gathered.source, url: brief?.cta?.url || gathered.source.url }, instructions: extraInstructions });
 				if (!input.narration) for (const sc of sb.scenes) sc.narration = "";
 				fitPlannedDuration(sb, input.target_duration_sec);
 				sb.theme = board?.theme || v.concept.theme || {};
