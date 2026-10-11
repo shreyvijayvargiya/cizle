@@ -6,10 +6,9 @@
 
 A local video studio with a markdown prompt library. Runs on your machine, powered by [OpenRouter](https://openrouter.ai).
 
-<!-- DEMO: replace with your launch video / GIF -->
-<!-- <video src="docs/demo.mp4" autoplay loop muted playsinline width="720"></video> -->
+<a href="docs/demo.mp4"><img src="docs/demo.gif" alt="cizle demo — paste a link, get product videos" width="880" /></a>
 
-![cizle dashboard](docs/dashboard.png)
+**[▶ Watch the 50-second demo with sound](docs/demo.mp4)**
 
 </div>
 
@@ -52,6 +51,8 @@ Each run gives you **1–3 different videos** in **9:16, 1:1 or 16:9**, with:
 - the full script, every frame and screenshot
 
 Everything is saved in `data/videos/`.
+
+![cizle dashboard](docs/dashboard.png)
 
 <p align="center"><img src="docs/video.png" width="49%" alt="Video page" /> <img src="docs/prompts.png" width="49%" alt="Prompt library" /></p>
 
