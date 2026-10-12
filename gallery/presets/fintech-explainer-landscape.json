@@ -1,0 +1,13 @@
+{
+  "id": "fintech-explainer-landscape",
+  "title": "How the money moves",
+  "description": "An explainer of the flow of funds in one picture.",
+  "type": "glossary",
+  "tone": "polished",
+  "aspect": "16:9",
+  "animation": "split-compare",
+  "categories": [
+    "fintech"
+  ],
+  "prompt": "Explain the flow step by step, before and after using the product, using only facts from the site or docs."
+}

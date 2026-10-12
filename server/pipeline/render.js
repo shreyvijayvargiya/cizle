@@ -65,6 +65,7 @@ function uploader() {
 /* --------------------------------------------------------------- estimate */
 
 export function priceFor(model) {
+	if (String(model || "").endsWith(":free")) return [0, 0];
 	return PRICE_TABLE[model] || PRICE_TABLE["anthropic/claude-sonnet-4"];
 }
 

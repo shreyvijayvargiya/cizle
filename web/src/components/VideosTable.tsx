@@ -1,15 +1,18 @@
 import { useMemo, useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, type ColumnDef, type SortingState } from "@tanstack/react-table";
-import { ArrowDown01Icon, GithubIcon, Mic01Icon, MusicNote01Icon, Search01Icon, Video01Icon, VolumeOffIcon } from "@hugeicons/core-free-icons";
+import { ArrowDown01Icon, GithubIcon, Mic01Icon, MusicNote01Icon, Search01Icon, StopIcon, Video01Icon, VolumeOffIcon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/misc";
+import { OptionSelect } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { fileUrl, type VideoRow } from "@/lib/api";
+import { api, fileUrl, isActive, type VideoRow } from "@/lib/api";
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
 
 const STATUS_FILTERS = [
@@ -17,7 +20,37 @@ const STATUS_FILTERS = [
 	{ value: "success", label: "Ready" },
 	{ value: "running", label: "Rendering" },
 	{ value: "failed", label: "Failed" },
+	{ value: "cancelled", label: "Stopped" },
 ];
+
+/** Stop a running video straight from the list (the row click would otherwise open it). */
+export function StopRowButton({ id }: { id: string }) {
+	const qc = useQueryClient();
+	const stop = useMutation({
+		mutationFn: () => api.cancelVideo(id),
+		onSuccess: () => {
+			qc.invalidateQueries({ queryKey: ["videos"] });
+			qc.invalidateQueries({ queryKey: ["stats"] });
+			toast.info("Stopped. Calls and rendering were cancelled.");
+		},
+		onError: () => qc.invalidateQueries({ queryKey: ["videos"] }),
+	});
+	return (
+		<Button
+			variant="outline"
+			size="sm"
+			className="h-6 px-2 text-[11px]"
+			disabled={stop.isPending}
+			onClick={(e) => {
+				e.stopPropagation();
+				stop.mutate();
+			}}
+			aria-label="Stop video"
+		>
+			<Icon icon={StopIcon} size={11} className="fill-current" /> Stop
+		</Button>
+	);
+}
 
 export function VideosTable({ data, loading, compact, emptyAction }: { data: VideoRow[]; loading?: boolean; compact?: boolean; emptyAction?: React.ReactNode }) {
 	const navigate = useNavigate();
@@ -63,7 +96,13 @@ export function VideosTable({ data, loading, compact, emptyAction }: { data: Vid
 				},
 			},
 			{ id: "type", header: "Type", accessorKey: "type", cell: ({ getValue }) => <Badge tone="outline">{String(getValue() || "Auto")}</Badge> },
-			{ id: "status", header: "Status", accessorKey: "status", cell: ({ row: { original: v } }) => <StatusBadge status={v.status} step={v.step} progress={v.progress} /> },
+			{ id: "status", header: "Status", accessorKey: "status", cell: ({ row: { original: v } }) => (
+					<span className="inline-flex items-center gap-2">
+						<StatusBadge status={v.status} step={v.step} progress={v.progress} />
+						{isActive(v.status) ? <StopRowButton id={v.id} /> : null}
+					</span>
+				),
+			},
 			{
 				id: "format",
 				header: "Format",
@@ -116,14 +155,7 @@ export function VideosTable({ data, loading, compact, emptyAction }: { data: Vid
 						))}
 					</div>
 					{types.length > 1 ? (
-						<select value={type} onChange={(e) => setType(e.target.value)} className="h-9 rounded-lg border border-input bg-surface px-2.5 text-xs" aria-label="Filter by type">
-							<option value="">All types</option>
-							{types.map((t) => (
-								<option key={t} value={t}>
-									{t}
-								</option>
-							))}
-						</select>
+						<OptionSelect size="sm" aria-label="Filter by type" className="w-36" value={type} onValueChange={setType} emptyLabel="All types" options={types.map((t) => ({ value: t, label: t }))} />
 					) : null}
 					<span className="ml-auto text-xs text-muted-foreground">{filtered.length} videos</span>
 				</div>

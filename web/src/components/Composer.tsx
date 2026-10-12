@@ -10,20 +10,25 @@ import {
 	Cancel01Icon,
 	GithubIcon,
 	Layers01Icon,
-	Loading03Icon,
 	Mic01Icon,
+	Package01Icon,
 	MusicNote01Icon,
 	PaintBoardIcon,
 	QuillWrite01Icon,
 	SlidersHorizontalIcon,
+	StopIcon,
 	VolumeOffIcon,
 } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
+import { ModelToggle } from "@/components/ModelToggle";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
+import { isAborted, useAbort } from "@/lib/abort";
+import { Tip } from "@/components/ui/misc";
 import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 import { cn, hostOf } from "@/lib/utils";
+import { useWorkspace } from "@/lib/workspace";
 
 const URL_RE = /\b((?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/[^\s,]*)?)/gi;
 
@@ -61,11 +66,12 @@ function Pill({ icon, label, children }: { icon: Parameters<typeof Icon>[0]["ico
 	);
 }
 
-export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialPromptId?: string; autoFocus?: boolean; size?: "md" | "lg" }) {
+export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "lg" }: { initialPromptId?: string; initialPresetId?: string; autoFocus?: boolean; size?: "md" | "lg" }) {
 	const navigate = useNavigate();
 	const qc = useQueryClient();
 	const settings = useSettings();
 	const prompts = usePrompts();
+	const { slug, product, tier } = useWorkspace();
 	const [text, setText] = useState("");
 	const [type, setType] = useState("auto");
 	const [tone, setTone] = useState("auto");
@@ -101,6 +107,20 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [initialPromptId, prompts.data]);
 
+	// ?preset=<id> (Gallery → Remix) fills type, tone, aspect and direction; the product supplies the URL.
+	const gallery = useQuery({ queryKey: ["gallery", slug], queryFn: () => api.gallery(slug), enabled: Boolean(initialPresetId) });
+	const presetApplied = useRef<string | null>(null);
+	useEffect(() => {
+		const preset = gallery.data?.presets.find((x) => x.id === initialPresetId);
+		if (!preset || presetApplied.current === preset.id) return;
+		presetApplied.current = preset.id;
+		setType(preset.type);
+		setTone(preset.tone);
+		setAspect(preset.aspect);
+		setText((t) => t || preset.prompt);
+		setTimeout(() => taRef.current?.focus(), 0);
+	}, [gallery.data, initialPresetId]);
+
 	function applyPrompt(p: Prompt) {
 		if (p.kind === "type") setType(p.slug);
 		else if (p.kind === "tone") setTone(p.slug);
@@ -123,10 +143,15 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 	}, [text]);
 
 	const links = useMemo(() => extractLinks(text), [text]);
-	const mainUrl = links.site || links.github;
+	// With a product selected, no pasted link is needed: its website and first repo come from products/<slug>/.
+	const usingProduct = Boolean(product) && !links.site && !links.github;
+	const mainUrl = links.site || links.github || (usingProduct ? product!.url : null);
+	const productRepo = usingProduct && product!.repos[0] && !/github\.com/i.test(product!.url) ? `https://github.com/${product!.repos[0]}` : undefined;
 	const body: CreateVideo = {
 		url: mainUrl || undefined,
-		github_url: links.site && links.github ? links.github : undefined,
+		github_url: productRepo || (links.site && links.github ? links.github : undefined),
+		product: usingProduct ? slug : undefined,
+		model_tier: tier,
 		compare_urls: compare.split(/[\s,]+/).filter(Boolean),
 		prompt: text,
 		prompt_id: loaded?.id || null,
@@ -146,8 +171,9 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 		staleTime: 60_000,
 	});
 
+	const abort = useAbort();
 	const create = useMutation({
-		mutationFn: api.createVideo,
+		mutationFn: (b: CreateVideo) => api.createVideo(b, abort.next()),
 		onSuccess: (job) => {
 			qc.invalidateQueries({ queryKey: ["videos"] });
 			qc.invalidateQueries({ queryKey: ["stats"] });
@@ -155,13 +181,17 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 			navigate({ to: "/videos/$id", params: { id: job.id } });
 		},
 		onError: (e: ApiError) => {
+			if (isAborted(e)) {
+				toast.info("Stopped. Nothing was started.");
+				return;
+			}
 			toast.error(e.message, e.code === "MISSING_API_KEY" || e.code === "OPENROUTER_AUTH" ? { action: { label: "Open settings", onClick: () => navigate({ to: "/settings" }) } } : undefined);
 		},
 	});
 
 	const submit = () => {
 		if (!mainUrl) {
-			toast.error("Paste a SaaS URL or GitHub repo in the box first.");
+			toast.error("Paste a SaaS URL or GitHub repo in the box first, or add a product.");
 			taRef.current?.focus();
 			return;
 		}
@@ -179,8 +209,15 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 					"rounded-2xl border border-border bg-surface shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] transition-shadow focus-within:border-ring/60 focus-within:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_32px_-12px_rgba(0,0,0,0.18)]",
 				)}
 			>
-				{links.site || links.github || loaded || type !== "auto" || tone !== "auto" ? (
+				{links.site || links.github || usingProduct || loaded || type !== "auto" || tone !== "auto" ? (
 					<div className="flex flex-wrap gap-1.5 px-4 pt-3.5">
+						{usingProduct ? (
+							<span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-1 text-xs font-medium">
+								<Icon icon={Package01Icon} size={12} />
+								{product!.name}
+								{product!.repos.length ? <span className="text-muted-foreground">+ {product!.repos.length} repo{product!.repos.length === 1 ? "" : "s"}</span> : null}
+							</span>
+						) : null}
 						{links.site ? (
 							<span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-1 text-xs font-medium">
 								<img src={`https://www.google.com/s2/favicons?domain=${hostOf(links.site)}&sz=32`} alt="" className="size-3.5 rounded-sm" onError={(e) => (e.currentTarget.style.display = "none")} />
@@ -242,7 +279,7 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 							submit();
 						}
 					}}
-					placeholder="Paste your SaaS URL or GitHub repo, then describe the video you want…  (type / to load a prompt)"
+					placeholder={product ? `Describe the video you want for ${product.name}…  (type / to load a prompt)` : "Paste your SaaS URL or GitHub repo, then describe the video you want…  (type / to load a prompt)"}
 					className={cn("block w-full resize-none bg-transparent px-4 pt-3.5 pb-2 text-[15px] leading-relaxed outline-none placeholder:text-muted-foreground/80", size === "lg" ? "min-h-24" : "min-h-16")}
 				/>
 				{type === "comparison" ? (
@@ -361,12 +398,21 @@ export function Composer({ initialPromptId, autoFocus, size = "lg" }: { initialP
 						</MenuContent>
 					</Pill>
 					<div className="ml-auto flex items-center gap-2.5">
+						<ModelToggle id="composer-tier" className="mr-1" />
 						<span className="hidden text-xs text-muted-foreground tabular-nums sm:inline">
-							{estimate.data ? `≈ $${estimate.data.total_usd.toFixed(2)}` : mainUrl ? "" : "⌘↵ to generate"}
+							{tier === "free" && mainUrl ? "Free" : estimate.data ? `≈ $${estimate.data.total_usd.toFixed(2)}` : mainUrl ? "" : "⌘↵ to generate"}
 						</span>
-						<Button size="icon" className="size-9 rounded-xl" disabled={create.isPending} onClick={submit} aria-label="Generate video">
-							<Icon icon={create.isPending ? Loading03Icon : ArrowUp02Icon} size={18} className={create.isPending ? "animate-spin" : ""} />
-						</Button>
+						{create.isPending ? (
+							<Tip label="Stop">
+								<Button size="icon" variant="outline" className="size-9 rounded-xl" onClick={abort.stop} aria-label="Stop">
+									<Icon icon={StopIcon} size={16} className="fill-current" />
+								</Button>
+							</Tip>
+						) : (
+							<Button size="icon" className="size-9 rounded-xl" onClick={submit} aria-label="Generate video">
+								<Icon icon={ArrowUp02Icon} size={18} />
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>

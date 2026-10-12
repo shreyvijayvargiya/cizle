@@ -93,3 +93,14 @@ body {
 .prose-cizle li { margin: 0.2rem 0; }
 .prose-cizle code { font-family: var(--font-mono); font-size: 0.8em; background: var(--muted); padding: 0.1rem 0.3rem; border-radius: 4px; }
 .prose-cizle strong { font-weight: 600; }
+
+/* gallery previews: tiny looping motion samples, one per animation style */
+@keyframes cz-rise { 0% { transform: translateY(10px); opacity: 0 } 35%, 100% { transform: none; opacity: 1 } }
+@keyframes cz-zoom { from { transform: scale(1) } to { transform: scale(1.25) } }
+@keyframes cz-travel { 0%, 100% { transform: translate(-45%, 30%) } 50% { transform: translate(45%, -25%) } }
+@keyframes cz-flick { 0%, 100% { opacity: 1; transform: none } 35% { opacity: 0.3; transform: translateX(4px) } 55% { opacity: 1; transform: translateX(-4px) } }
+@keyframes cz-bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
+@keyframes cz-wipe { 0%, 100% { transform: translateX(-20%) } 50% { transform: translateX(20%) } }
+@media (prefers-reduced-motion: reduce) {
+	.cz-anim, .cz-anim * { animation: none !important; opacity: 1 !important }
+}

@@ -16,11 +16,14 @@ export const DEFAULTS = {
 	script_model: "anthropic/claude-sonnet-4",
 	vision_model: "google/gemini-2.5-flash",
 	tts_model: "openai/gpt-audio-mini",
+	free_script_model: "auto", // "auto" = best free text model OpenRouter currently lists
+	free_vision_model: "auto",
 	voice: "nova",
 	aspect: "9:16",
 	duration_sec: 30,
 	audio: "voice", // voice | music | silent
 	captions: true,
+	auto_sync: true, // re-check each product's repos and site at start and every 6 h while the app runs
 };
 
 const ENV_KEYS = { openrouter_api_key: "OPENROUTER_API_KEY", uploadthing_token: "UPLOADTHING_TOKEN" };

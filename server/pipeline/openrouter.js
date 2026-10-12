@@ -4,8 +4,9 @@
 
 import { normalizeOpenRouterUsage } from "./openRouterUsage.js";
 
-const CHAT_URL = "https://openrouter.ai/api/v1/chat/completions";
-const EMBEDDINGS_URL = "https://openrouter.ai/api/v1/embeddings";
+const BASE_URL = (process.env.OPENROUTER_BASE_URL?.trim() || "https://openrouter.ai/api/v1").replace(/\/+$/, "");
+const CHAT_URL = `${BASE_URL}/chat/completions`;
+const EMBEDDINGS_URL = `${BASE_URL}/embeddings`;
 
 const DEFAULT_CHAT_MODEL =
 	process.env.OPENROUTER_GEO_SYNTH_MODEL ||
@@ -32,6 +33,15 @@ function headers() {
 	return h;
 }
 
+export const isFreeModel = (model) => String(model || "").endsWith(":free");
+
+function failure(res, data) {
+	const message = data.error?.message || data.error || `OpenRouter HTTP ${res.status}`;
+	const err = new Error(res.status === 429 ? `${message} (rate limit reached — wait a minute or switch to a paid model)` : message);
+	if (res.status === 429) err.code = "RATE_LIMIT";
+	return err;
+}
+
 /**
  * @param {{ model?: string, messages: object[], temperature?: number, maxTokens?: number, jsonMode?: boolean, timeoutMs?: number }} opts
  */
@@ -50,7 +60,8 @@ export async function openRouterChat({
 		max_tokens: maxTokens,
 		usage: { include: true },
 	};
-	if (jsonMode) {
+	// Most free models reject response_format; the prompts already demand JSON and parseJson extracts it.
+	if (jsonMode && !isFreeModel(model)) {
 		body.response_format = { type: "json_object" };
 	}
 	const res = await fetch(CHAT_URL, {
@@ -60,11 +71,7 @@ export async function openRouterChat({
 		body: JSON.stringify(body),
 	});
 	const data = await res.json().catch(() => ({}));
-	if (!res.ok || data.error) {
-		throw new Error(
-			data.error?.message || data.error || `OpenRouter HTTP ${res.status}`,
-		);
-	}
+	if (!res.ok || data.error) throw failure(res, data);
 	const content = data.choices?.[0]?.message?.content;
 	if (!content) throw new Error("OpenRouter returned empty content");
 	return {
@@ -103,11 +110,7 @@ export async function openRouterChatRaw({
 		body: JSON.stringify(body),
 	});
 	const data = await res.json().catch(() => ({}));
-	if (!res.ok || data.error) {
-		throw new Error(
-			data.error?.message || data.error || `OpenRouter HTTP ${res.status}`,
-		);
-	}
+	if (!res.ok || data.error) throw failure(res, data);
 	const choice = data.choices?.[0];
 	const message = choice?.message;
 	if (!message) throw new Error("OpenRouter returned no message");

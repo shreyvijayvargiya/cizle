@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 
 export type Audio = "voice" | "music" | "silent";
 export type Aspect = "9:16" | "1:1" | "16:9";
-export type Status = "pending" | "running" | "success" | "partial" | "failed";
+export type Status = "pending" | "running" | "success" | "partial" | "failed" | "cancelled";
+export type Tier = "free" | "paid";
 
 export type Prompt = {
 	id: string;
@@ -37,6 +38,9 @@ export type VideoRow = {
 	video_url: string | null;
 	video_path: string | null;
 	cost_usd: number | null;
+	product: string | null;
+	model_tier: Tier;
+	idea_id: string | null;
 	created_at: string;
 };
 
@@ -114,8 +118,65 @@ export type Settings = {
 	duration_sec: number;
 	audio: Audio;
 	captions: boolean;
+	free_script_model: string;
+	free_vision_model: string;
+	auto_sync: boolean;
 	data_dir?: string;
 };
+
+export type ProductMeta = {
+	slug: string;
+	name: string;
+	url: string;
+	repos: string[];
+	category: string;
+	icp: string;
+	tagline: string;
+	last_synced: string | null;
+	created_at: string | null;
+	ideas_open: number;
+};
+
+export type IdeaStatus = "suggested" | "created" | "dismissed";
+export type Idea = {
+	id: string;
+	title: string;
+	status: IdeaStatus;
+	type: string;
+	tone: string;
+	aspect: Aspect;
+	why_now: string;
+	source: string;
+	prompt: string;
+	created_at: string;
+	video_id: string | null;
+};
+
+export type Product = Omit<ProductMeta, "ideas_open"> & {
+	body: string;
+	changes: string;
+	ideas: Idea[];
+	sources: { repos?: Record<string, { head: string | null; error?: string }>; site?: { urls: string[] } | null; last_synced?: string };
+};
+
+export type OnboardRun = {
+	id: string;
+	status: "running" | "success" | "failed" | "cancelled";
+	steps: { id: string; label: string; state: "pending" | "active" | "done" | "failed" }[];
+	slug: string | null;
+	ideas: Idea[];
+	error: string | null;
+	cost_usd: number;
+};
+
+export type SyncResult = { ok: boolean; busy?: boolean; message?: string; changed: boolean; summary: string[]; ideas_added: number; cost_usd: number; repo_errors: string[]; synced_at: string };
+
+export type ChatMessage = { role: "user" | "assistant"; content: string };
+export type AgentReply = { reply: string; proposals: Idea[]; synced: boolean; cost_usd: number; mode: "tools" | "plain" };
+
+export type Preset = { id: string; title: string; description: string; type: string; tone: string; aspect: Aspect; animation: string; categories: string[]; prompt: string };
+
+export type ModelsInfo = { fetched: boolean; paid: { script_model: string; vision_model: string }; free: { script_model: string; vision_model: string }; free_count: number; notes: string[] };
 
 export type Stats = { videos: number; jobs: number; rendering: number; prompts: number; custom_prompts: number; spend_usd: number };
 
@@ -132,6 +193,8 @@ export type CreateVideo = {
 	duration_sec: number;
 	variations: number;
 	voice?: string;
+	product?: string;
+	model_tier?: Tier;
 };
 
 export class ApiError extends Error {
@@ -143,11 +206,18 @@ export class ApiError extends Error {
 }
 
 async function req<T>(path: string, init?: RequestInit & { json?: unknown }): Promise<T> {
-	const res = await fetch(`/api${path}`, {
-		...init,
-		headers: init?.json !== undefined ? { "Content-Type": "application/json" } : undefined,
-		body: init?.json !== undefined ? JSON.stringify(init.json) : init?.body,
-	});
+	let res: Response;
+	try {
+		res = await fetch(`/api${path}`, {
+			...init,
+			headers: init?.json !== undefined ? { "Content-Type": "application/json" } : undefined,
+			body: init?.json !== undefined ? JSON.stringify(init.json) : init?.body,
+		});
+	} catch (e) {
+		// The Stop button aborts the request; surface that as a quiet, recognisable error.
+		if (e instanceof DOMException && e.name === "AbortError") throw new ApiError("Stopped", "ABORTED");
+		throw e;
+	}
 	const data = await res.json().catch(() => ({}));
 	if (!res.ok) throw new ApiError(data?.error || `Request failed (${res.status})`, data?.code);
 	return data as T;
@@ -156,18 +226,32 @@ async function req<T>(path: string, init?: RequestInit & { json?: unknown }): Pr
 export const api = {
 	settings: () => req<Settings>("/settings"),
 	saveSettings: (s: Partial<Settings>) => req<Settings>("/settings", { method: "PUT", json: s }),
-	testKey: (openrouter_api_key?: string) => req<{ ok: boolean; error?: string; label?: string | null }>("/settings/test", { method: "POST", json: { openrouter_api_key } }),
+	testKey: (openrouter_api_key?: string, signal?: AbortSignal) => req<{ ok: boolean; error?: string; label?: string | null }>("/settings/test", { method: "POST", json: { openrouter_api_key }, signal }),
 	prompts: () => req<{ prompts: Prompt[] }>("/prompts").then((r) => r.prompts),
 	prompt: (id: string) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`),
 	createPrompt: (p: Partial<Prompt>) => req<Prompt>("/prompts", { method: "POST", json: p }),
 	updatePrompt: (id: string, p: Partial<Prompt>) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`, { method: "PUT", json: p }),
 	deletePrompt: (id: string) => req<{ ok: true }>(`/prompts/${encodeURIComponent(id)}`, { method: "DELETE" }),
 	stats: () => req<Stats>("/stats"),
-	videos: () => req<{ videos: VideoRow[] }>("/videos").then((r) => r.videos),
+	videos: (product = "") => req<{ videos: VideoRow[] }>(`/videos${product ? `?product=${encodeURIComponent(product)}` : ""}`).then((r) => r.videos),
 	video: (id: string) => req<Job>(`/videos/${id}`),
-	createVideo: (body: CreateVideo) => req<Job>("/videos", { method: "POST", json: body }),
+	createVideo: (body: CreateVideo, signal?: AbortSignal) => req<Job>("/videos", { method: "POST", json: body, signal }),
+	cancelVideo: (id: string) => req<Job>(`/videos/${id}/cancel`, { method: "POST", json: {} }),
 	deleteVideo: (id: string) => req<{ ok: true }>(`/videos/${id}`, { method: "DELETE" }),
 	regenerate: (id: string) => req<Job>(`/videos/${id}/regenerate`, { method: "POST", json: {} }),
+	products: () => req<{ products: ProductMeta[] }>("/products").then((r) => r.products),
+	product: (slug: string) => req<Product>(`/products/${slug}`),
+	startOnboard: (body: { url: string; repos?: string; name?: string; model_tier?: Tier }, signal?: AbortSignal) => req<OnboardRun>("/products/onboard", { method: "POST", json: body, signal }),
+	cancelOnboard: (id: string) => req<OnboardRun>(`/products/onboard/${id}/cancel`, { method: "POST", json: {} }),
+	onboard: (id: string) => req<OnboardRun>(`/products/onboard/${id}`),
+	saveProduct: (slug: string, body: Partial<Pick<Product, "name" | "url" | "category" | "icp" | "tagline" | "body">> & { repos?: string }) => req<Product>(`/products/${slug}`, { method: "PUT", json: body }),
+	deleteProduct: (slug: string) => req<{ ok: true }>(`/products/${slug}`, { method: "DELETE" }),
+	sync: (slug: string, model_tier: Tier, signal?: AbortSignal) => req<SyncResult>(`/products/${slug}/sync`, { method: "POST", json: { model_tier }, signal }),
+	setIdeaStatus: (slug: string, id: string, status: IdeaStatus) => req<Idea>(`/products/${slug}/ideas/${id}`, { method: "PATCH", json: { status } }),
+	createFromIdea: (slug: string, id: string, body: { model_tier: Tier; aspect?: Aspect; audio?: Audio; duration_sec?: number }, signal?: AbortSignal) => req<Job>(`/products/${slug}/ideas/${id}/create`, { method: "POST", json: body, signal }),
+	agent: (slug: string, messages: ChatMessage[], model_tier: Tier, signal?: AbortSignal) => req<AgentReply>(`/products/${slug}/agent`, { method: "POST", json: { messages, model_tier }, signal }),
+	gallery: (product: string) => req<{ presets: Preset[]; mine: VideoRow[] }>(`/gallery?product=${encodeURIComponent(product)}`),
+	models: () => req<ModelsInfo>("/models"),
 	estimate: (body: CreateVideo) => req<{ total_usd: number; per_video_usd: number }>("/estimate", { method: "POST", json: body }),
 };
 
@@ -179,5 +263,7 @@ export const isActive = (s?: string) => s === "pending" || s === "running";
 export const useSettings = () => useQuery({ queryKey: ["settings"], queryFn: api.settings });
 export const usePrompts = () => useQuery({ queryKey: ["prompts"], queryFn: api.prompts });
 export const useStats = () => useQuery({ queryKey: ["stats"], queryFn: api.stats, refetchInterval: 5000 });
-export const useVideos = () =>
-	useQuery({ queryKey: ["videos"], queryFn: api.videos, refetchInterval: (q) => ((q.state.data || []).some((v) => isActive(v.status)) ? 2000 : 10000) });
+export const useProducts = () => useQuery({ queryKey: ["products"], queryFn: api.products });
+export const useProduct = (slug: string) => useQuery({ queryKey: ["product", slug], queryFn: () => api.product(slug), enabled: Boolean(slug) });
+export const useVideos = (product = "") =>
+	useQuery({ queryKey: ["videos", product], queryFn: () => api.videos(product), refetchInterval: (q) => ((q.state.data || []).some((v) => isActive(v.status)) ? 2000 : 10000) });

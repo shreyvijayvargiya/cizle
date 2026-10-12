@@ -13,12 +13,14 @@ import {
 	Globe02Icon,
 	Loading03Icon,
 	RepeatIcon,
+	StopIcon,
 	Tick02Icon,
 } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/menu";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
 import { api, fileUrl, isActive, type Job, type Variant } from "@/lib/api";
 import { PIPELINE, STEP_LABELS } from "@/lib/constants";
@@ -53,7 +55,7 @@ function Timeline({ job }: { job: Job }) {
 	);
 }
 
-function Player({ job, v }: { job: Job; v?: Variant }) {
+function Player({ job, v, onStop, stopping }: { job: Job; v?: Variant; onStop?: () => void; stopping?: boolean }) {
 	const src = v?.result ? v.result.video_url || fileUrl(job.id, v.result.video_path) : null;
 	const poster = v?.result ? fileUrl(job.id, v.result.thumbnail_path) : null;
 	return (
@@ -62,13 +64,24 @@ function Player({ job, v }: { job: Job; v?: Variant }) {
 				<video key={src} src={src} poster={poster || undefined} controls playsInline className="absolute inset-0 size-full object-contain" />
 			) : (
 				<div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center text-zinc-300">
-					{job.status === "failed" || v?.status === "failed" ? <Icon icon={AlertCircleIcon} size={24} className="text-red-400" /> : <Icon icon={Loading03Icon} size={24} className="animate-spin" />}
+					{job.status === "cancelled" ? (
+						<Icon icon={StopIcon} size={24} className="fill-current text-zinc-400" />
+					) : job.status === "failed" || v?.status === "failed" ? (
+						<Icon icon={AlertCircleIcon} size={24} className="text-red-400" />
+					) : (
+						<Icon icon={Loading03Icon} size={24} className="animate-spin" />
+					)}
 					<p className="text-sm font-medium text-white">{v?.concept.hook || job.title}</p>
-					<p className="text-xs">{job.status === "failed" ? "Generation failed" : STEP_LABELS[v?.step || job.step] || "Working…"}</p>
+					<p className="text-xs">{job.status === "cancelled" ? "Stopped" : job.status === "failed" ? "Generation failed" : STEP_LABELS[v?.step || job.step] || "Working…"}</p>
 					{isActive(job.status) ? (
 						<div className="h-1 w-36 overflow-hidden rounded-full bg-white/10">
 							<div className="h-full bg-white transition-all" style={{ width: `${Math.max(5, v?.progress || job.progress)}%` }} />
 						</div>
+					) : null}
+					{isActive(job.status) && onStop ? (
+						<Button variant="outline" size="sm" className="border-white/30 bg-transparent text-white hover:bg-white/10" onClick={onStop} disabled={stopping}>
+							<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
+						</Button>
 					) : null}
 				</div>
 			)}
@@ -107,6 +120,18 @@ export function VideoDetailPage() {
 			toast.success("Video deleted");
 			navigate({ to: "/videos" });
 		},
+	});
+	const [confirmDelete, setConfirmDelete] = useState(false);
+	const stop = useMutation({
+		mutationFn: () => api.cancelVideo(id),
+		onSuccess: (job) => {
+			qc.setQueryData(["video", id], job);
+			qc.invalidateQueries({ queryKey: ["videos"] });
+			qc.invalidateQueries({ queryKey: ["stats"] });
+			toast.info("Stopped. Calls and rendering were cancelled.");
+		},
+		// It finished or failed a moment before: just show how it ended.
+		onError: () => qc.invalidateQueries({ queryKey: ["video", id] }),
 	});
 	const regen = useMutation({
 		mutationFn: () => api.regenerate(id),
@@ -177,16 +202,16 @@ export function VideoDetailPage() {
 						</Button>
 					) : null}
 					{caption ? <CopyButton text={caption} label="Copy caption" /> : null}
-					<Button variant="outline" size="sm" onClick={() => regen.mutate()} disabled={regen.isPending || isActive(job.status)}>
-						<Icon icon={RepeatIcon} size={14} /> Regenerate
-					</Button>
-					<Button
-						variant="danger"
-						size="sm"
-						onClick={() => {
-							if (confirm("Delete this video and all its files?")) del.mutate();
-						}}
-					>
+					{isActive(job.status) ? (
+						<Button variant="outline" size="sm" onClick={() => stop.mutate()} disabled={stop.isPending}>
+							<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
+						</Button>
+					) : (
+						<Button variant="outline" size="sm" onClick={() => regen.mutate()} disabled={regen.isPending}>
+							<Icon icon={RepeatIcon} size={14} /> Regenerate
+						</Button>
+					)}
+					<Button variant="danger" size="sm" onClick={() => setConfirmDelete(true)} aria-label="Delete video">
 						<Icon icon={Delete02Icon} size={14} />
 					</Button>
 				</div>
@@ -224,7 +249,7 @@ export function VideoDetailPage() {
 
 			<div className="grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
 				<div>
-					<Player job={job} v={v} />
+					<Player job={job} v={v} onStop={() => stop.mutate()} stopping={stop.isPending} />
 					{v?.concept ? (
 						<div className="mt-3 rounded-xl border border-border p-3 text-xs">
 							<p className="text-muted-foreground">Angle</p>
@@ -367,6 +392,20 @@ export function VideoDetailPage() {
 					</TabsContent>
 				</Tabs>
 			</div>
+			<Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+				<DialogContent title="Delete video" className="top-[28%] max-w-md p-5">
+					<p className="text-sm font-medium">Delete this video?</p>
+					<p className="mt-1 text-sm text-muted-foreground">The MP4, captions, script and every frame are removed from data/videos.</p>
+					<div className="mt-4 flex justify-end gap-2">
+						<Button variant="outline" onClick={() => setConfirmDelete(false)}>
+							Cancel
+						</Button>
+						<Button variant="danger" onClick={() => del.mutate()} disabled={del.isPending}>
+							Delete
+						</Button>
+					</div>
+				</DialogContent>
+			</Dialog>
 		</div>
 	);
 }

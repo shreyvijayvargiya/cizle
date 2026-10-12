@@ -10,6 +10,7 @@ import fs from "fs";
 import fsp from "fs/promises";
 import path from "path";
 import { marked } from "marked";
+import { currentSignal } from "./cancel.js";
 import { cropImage, probeImageSize, toPreviewJpeg } from "./media.js";
 
 const SKIP_DIRS = new Set([".git", "node_modules", "dist", "build", ".next", "out", "vendor", "target", "__pycache__", ".venv", "venv", "coverage", ".turbo", ".cache"]);
@@ -31,7 +32,7 @@ export function parseGithubRepo(url) {
 
 function git(args, cwd) {
 	return new Promise((resolve, reject) => {
-		execFile("git", args, { cwd, timeout: MAX_CLONE_SECONDS * 1000, maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
+		execFile("git", args, { cwd, timeout: MAX_CLONE_SECONDS * 1000, maxBuffer: 10 * 1024 * 1024, signal: currentSignal() }, (err, stdout, stderr) => {
 			if (err) reject(new Error(`git ${args[0]} failed: ${String(stderr || err.message).slice(-1500)}`));
 			else resolve(String(stdout));
 		});

@@ -1,0 +1,15 @@
+{
+  "id": "features-countup-square",
+  "title": "Numbers that matter, count-up",
+  "description": "Stats count up on screen, each tied to a feature.",
+  "type": "features",
+  "tone": "polished",
+  "aspect": "1:1",
+  "animation": "count-up",
+  "categories": [
+    "analytics",
+    "fintech",
+    "marketing-seo"
+  ],
+  "prompt": "Lead each scene with a number stated on the site or in the repo, counting up on screen, then the feature behind it."
+}

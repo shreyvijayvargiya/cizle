@@ -4,3 +4,7 @@ data/
 .env
 .DS_Store
 *.log
+# each founder's product memory stays local; the example is committed
+products/*
+!products/example/
+!products/README.md

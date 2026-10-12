@@ -11,6 +11,7 @@ import fsp from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import { openRouterChat } from "./openrouter.js";
+import { isCancelError, runWithSignal, throwIfCancelled } from "./cancel.js";
 import { normalizeOpenRouterTtsVoice } from "./openRouterTts.js";
 import {
 	TTS_USD_PER_MIN,
@@ -35,10 +36,15 @@ import {
 } from "./directorPrompts.js";
 import { getLaws, getPrompt, listPrompts } from "../library.js";
 import { loadSettings } from "../settings.js";
+import { tierModels } from "../models.js";
+import { isFreeModel } from "./openrouter.js";
+import { readProductMemory } from "../products/store.js";
 import { VIDEOS_DIR } from "../paths.js";
 
 const MAX_SHORT_SEC = 59;
 const jobs = new Map();
+/** One AbortController per running job, so a job can be stopped from the dashboard. */
+const controllers = new Map();
 
 /* ------------------------------------------------------------------ input */
 
@@ -70,7 +76,11 @@ export function parseVideoInput(body = {}) {
 	const prompt = String(body.prompt || "").slice(0, 4000);
 	const url = normUrl(body.url) || urlFromText(prompt);
 	if (!url) return { error: "Add a SaaS URL or GitHub repo (in the URL field or the prompt)." };
-	const audioMode = ["voice", "music", "silent"].includes(body.audio) ? body.audio : s.audio;
+	const tier = body.model_tier === "free" ? "free" : "paid";
+	const models = tierModels(tier);
+	let audioMode = ["voice", "music", "silent"].includes(body.audio) ? body.audio : s.audio;
+	// There is no free text-to-speech model, so free runs fall back to music.
+	if (tier === "free" && audioMode === "voice") audioMode = "music";
 	const narration = audioMode === "voice";
 	return {
 		input: {
@@ -96,9 +106,12 @@ export function parseVideoInput(body = {}) {
 			voice: normalizeOpenRouterTtsVoice(body.voice || s.voice) || "nova",
 			captions: narration && (body.captions ?? s.captions) !== false,
 			language: String(body.language || "en").slice(0, 20),
-			script_model: s.script_model,
-			vision_model: s.vision_model,
-			tts_model: s.tts_model,
+			model_tier: tier,
+			script_model: models.script_model,
+			vision_model: models.vision_model,
+			tts_model: models.tts_model,
+			product: /^[a-z0-9-]{1,60}$/.test(String(body.product || "")) ? String(body.product) : null,
+			idea_id: body.idea_id ? String(body.idea_id).slice(0, 40) : null,
 			analyze_screenshots: true,
 			max_screenshots: 8,
 			max_images: 6,
@@ -150,7 +163,7 @@ export async function getJob(id) {
 }
 
 /** Table rows for the dashboard (one row per job). */
-export async function listJobs({ q = "", type = "", status = "" } = {}) {
+export async function listJobs({ q = "", type = "", status = "", product = "" } = {}) {
 	const dirs = await fsp.readdir(VIDEOS_DIR).catch(() => []);
 	const rows = [];
 	for (const d of dirs) {
@@ -175,12 +188,15 @@ export async function listJobs({ q = "", type = "", status = "" } = {}) {
 			video_url: first?.result?.video_url ?? null,
 			video_path: first?.result?.video_path ?? null,
 			cost_usd: j.cost?.total_usd ?? null,
+			product: j.input?.product || null,
+			model_tier: j.input?.model_tier || "paid",
+			idea_id: j.input?.idea_id || null,
 			created_at: j.created_at,
 		});
 	}
 	const needle = q.trim().toLowerCase();
 	return rows
-		.filter((r) => (!needle || `${r.title} ${r.url} ${r.type}`.toLowerCase().includes(needle)) && (!type || r.type_id === type) && (!status || r.status === status))
+		.filter((r) => (!needle || `${r.title} ${r.url} ${r.type}`.toLowerCase().includes(needle)) && (!type || r.type_id === type) && (!status || r.status === status) && (!product || r.product === product))
 		.sort((a, b) => String(b.created_at).localeCompare(String(a.created_at)));
 }
 
@@ -242,13 +258,41 @@ export async function createJob(input, deps) {
 		updated_at: new Date().toISOString(),
 	};
 	jobs.set(id, job);
+	const ac = new AbortController();
+	controllers.set(id, ac);
 	await save(job);
-	runJob(job, deps).catch(async (err) => {
-		console.error(`[cizle] job ${id} failed:`, err);
-		job.status = "failed";
-		job.error = err?.message || String(err);
-		await save(job);
-	});
+	runWithSignal(ac.signal, () => runJob(job, deps))
+		.catch(async (err) => {
+			if (ac.signal.aborted || isCancelError(err)) {
+				markCancelled(job);
+			} else {
+				console.error(`[cizle] job ${id} failed:`, err);
+				job.status = "failed";
+				job.error = err?.message || String(err);
+			}
+			await save(job);
+		})
+		.finally(() => controllers.delete(id));
+	return publicJob(job);
+}
+
+function markCancelled(job) {
+	job.status = "cancelled";
+	job.step = "cancelled";
+	job.error = null;
+	for (const v of job.variants || []) if (v.status !== "success") Object.assign(v, { status: "failed", error: "Cancelled" });
+	job.logs.push(`${new Date().toISOString()} cancelled`);
+}
+
+/** Stop a running job: aborts its model calls, downloads and ffmpeg processes. Returns the job, or null if it isn't running. */
+export async function cancelJob(id) {
+	const sid = safeId(id);
+	const job = jobs.get(sid);
+	const ac = controllers.get(sid);
+	if (!job || !ac || (job.status !== "pending" && job.status !== "running")) return null;
+	ac.abort();
+	markCancelled(job);
+	await save(job);
 	return publicJob(job);
 }
 
@@ -256,7 +300,7 @@ export async function createJob(input, deps) {
 
 async function chatJson({ model, system, user, costs, stage, variant, maxTokens = 5000, temperature = 0.6 }) {
 	let lastErr;
-	for (let attempt = 1; attempt <= 2; attempt++) {
+	for (let attempt = 1; attempt <= (isFreeModel(model) ? 3 : 2); attempt++) {
 		try {
 			const res = await openRouterChat({
 				model,
@@ -273,6 +317,7 @@ async function chatJson({ model, system, user, costs, stage, variant, maxTokens 
 			return parseJson(res.content);
 		} catch (e) {
 			lastErr = e;
+			if (isCancelError(e)) break;
 		}
 	}
 	throw lastErr;
@@ -287,6 +332,7 @@ async function runJob(job, deps) {
 		console.log(`[cizle ${job.id.slice(0, 8)}] ${msg}`);
 	};
 	const step = async (name, progress) => {
+		throwIfCancelled();
 		Object.assign(job, { step: name, progress, status: "running" });
 		log(`step: ${name}`);
 		await save(job);
@@ -313,6 +359,11 @@ async function runJob(job, deps) {
 	await step("context", 5);
 	const gathered = await gatherProductContext({ input, deps, workDir, log });
 	job.sources = gathered.sources;
+	if (input.product) {
+		// What cizle already knows about this product (editable in products/<slug>/product.md).
+		const memory = await readProductMemory(input.product);
+		if (memory) gathered.context.product_memory = memory.slice(0, 6_000);
+	}
 	await fsp.writeFile(path.join(workDir, "context.json"), JSON.stringify(gathered.context, null, 2));
 
 	// 2. Frames ---------------------------------------------------------------
@@ -454,6 +505,7 @@ async function runJob(job, deps) {
 		}),
 	);
 
+	throwIfCancelled();
 	const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
 	const byVariant = {};
 	for (const c of costs) if (c.variant) byVariant[c.variant] = round((byVariant[c.variant] || 0) + (c.usd || 0), 6);

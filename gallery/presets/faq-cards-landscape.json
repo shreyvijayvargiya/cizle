@@ -1,0 +1,15 @@
+{
+  "id": "faq-cards-landscape",
+  "title": "Buyer questions for the pricing page",
+  "description": "Four to five answers, landscape, calm pace.",
+  "type": "faq",
+  "tone": "polished",
+  "aspect": "16:9",
+  "animation": "card-stack",
+  "categories": [
+    "fintech",
+    "security",
+    "devtools"
+  ],
+  "prompt": "Answer the five questions buyers ask before they pay. Use the pricing page wording where it exists."
+}

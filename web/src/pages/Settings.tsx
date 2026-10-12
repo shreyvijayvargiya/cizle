@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { CheckmarkCircle02Icon, Folder01Icon, Key01Icon, Loading03Icon } from "@hugeicons/core-free-icons";
+import { CheckmarkCircle02Icon, Folder01Icon, Key01Icon, StopIcon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
 import { Skeleton, Switch } from "@/components/ui/misc";
+import { OptionSelect } from "@/components/ui/select";
+import { isAborted, useAbort } from "@/lib/abort";
 import { api, useSettings, type Settings } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 
@@ -23,8 +25,6 @@ function Row({ label, hint, children }: { label: string; hint?: string; children
 		</div>
 	);
 }
-
-const selectCls = "h-9 w-full rounded-lg border border-input bg-surface px-2.5 text-sm";
 
 export function SettingsPage() {
 	const settings = useSettings();
@@ -44,9 +44,11 @@ export function SettingsPage() {
 		},
 		onError: (e: Error) => toast.error(e.message),
 	});
+	const abort = useAbort();
 	const test = useMutation({
-		mutationFn: () => api.testKey(keyInput || undefined),
+		mutationFn: () => api.testKey(keyInput || undefined, abort.next()),
 		onSuccess: (r) => (r.ok ? toast.success("OpenRouter key works", { description: r.label || undefined }) : toast.error(r.error || "Key rejected")),
+		onError: (e: Error) => (isAborted(e) ? toast.info("Test stopped.") : toast.error(e.message)),
 	});
 
 	if (!settings.data)
@@ -75,9 +77,15 @@ export function SettingsPage() {
 							<div className="flex flex-col gap-2 sm:flex-row">
 								<Input type="password" value={keyInput} onChange={(e) => setKeyInput(e.target.value)} placeholder={s.openrouter_api_key || "sk-or-v1-…"} autoComplete="off" />
 								<div className="flex gap-2">
-									<Button variant="outline" onClick={() => test.mutate()} disabled={test.isPending || (!keyInput && !s.openrouter_api_key_set)}>
-										{test.isPending ? <Icon icon={Loading03Icon} size={14} className="animate-spin" /> : null} Test
-									</Button>
+									{test.isPending ? (
+										<Button variant="outline" onClick={abort.stop}>
+											<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
+										</Button>
+									) : (
+										<Button variant="outline" onClick={() => test.mutate()} disabled={!keyInput && !s.openrouter_api_key_set}>
+											Test
+										</Button>
+									)}
 									<Button
 										onClick={() => {
 											save.mutate({ openrouter_api_key: keyInput });
@@ -125,31 +133,13 @@ export function SettingsPage() {
 					</CardHeader>
 					<CardContent className="divide-y divide-border">
 						<Row label="Aspect ratio">
-							<select className={selectCls} value={form.aspect} onChange={(e) => set("aspect", e.target.value as Settings["aspect"])}>
-								{ASPECTS.map((a) => (
-									<option key={a.value} value={a.value}>
-										{a.label} — {a.hint}
-									</option>
-								))}
-							</select>
+							<OptionSelect value={form.aspect || "9:16"} onValueChange={(v) => set("aspect", v as Settings["aspect"])} options={ASPECTS.map((a) => ({ value: a.value, label: `${a.label} — ${a.hint}` }))} />
 						</Row>
 						<Row label="Audio">
-							<select className={selectCls} value={form.audio} onChange={(e) => set("audio", e.target.value as Settings["audio"])}>
-								{AUDIO.map((a) => (
-									<option key={a.value} value={a.value}>
-										{a.label}
-									</option>
-								))}
-							</select>
+							<OptionSelect value={form.audio || "voice"} onValueChange={(v) => set("audio", v as Settings["audio"])} options={AUDIO.map((a) => ({ value: a.value, label: a.label }))} />
 						</Row>
 						<Row label="Voice">
-							<select className={selectCls} value={form.voice} onChange={(e) => set("voice", e.target.value)}>
-								{VOICES.map((v) => (
-									<option key={v} value={v}>
-										{v}
-									</option>
-								))}
-							</select>
+							<OptionSelect value={form.voice || "nova"} onValueChange={(v) => set("voice", v)} options={VOICES.map((v) => ({ value: v, label: v }))} />
 						</Row>
 						<Row label="Length" hint="Seconds, 10–59">
 							<Input type="number" min={10} max={59} value={form.duration_sec ?? 30} onChange={(e) => set("duration_sec", Number(e.target.value))} />
@@ -166,6 +156,15 @@ export function SettingsPage() {
 						<Row label="Voice model" hint="Text-to-speech">
 							<Input value={form.tts_model || ""} onChange={(e) => set("tts_model", e.target.value)} />
 						</Row>
+						<Row label="Free script model" hint="Used when the Free switch is on. “auto” picks the best free model OpenRouter lists">
+							<Input value={form.free_script_model || ""} onChange={(e) => set("free_script_model", e.target.value)} placeholder="auto" />
+						</Row>
+						<Row label="Free vision model" hint="Reads screenshots in free mode">
+							<Input value={form.free_vision_model || ""} onChange={(e) => set("free_vision_model", e.target.value)} placeholder="auto" />
+						</Row>
+						<Row label="Keep products fresh" hint="Check repos and sites for changes when cizle starts and every 6 hours">
+							<Switch checked={form.auto_sync !== false} onCheckedChange={(v) => set("auto_sync", v)} />
+						</Row>
 						<div className="flex justify-end pt-4">
 							<Button
 								onClick={() =>
@@ -178,6 +177,9 @@ export function SettingsPage() {
 										script_model: form.script_model,
 										vision_model: form.vision_model,
 										tts_model: form.tts_model,
+										free_script_model: form.free_script_model,
+										free_vision_model: form.free_vision_model,
+										auto_sync: form.auto_sync,
 									})
 								}
 								disabled={save.isPending}

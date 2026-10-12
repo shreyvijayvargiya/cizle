@@ -1,0 +1,14 @@
+{
+  "id": "seo-results-square",
+  "title": "Marketing results walkthrough",
+  "description": "Rankings, traffic and the workflow behind them.",
+  "type": "features",
+  "tone": "playful",
+  "aspect": "1:1",
+  "animation": "count-up",
+  "categories": [
+    "marketing-seo",
+    "analytics"
+  ],
+  "prompt": "Walk through the workflow from keyword to published page, with one real number per scene."
+}

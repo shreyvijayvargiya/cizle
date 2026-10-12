@@ -12,6 +12,12 @@ import { VideoDetailPage } from "@/pages/VideoDetail";
 import { PromptsPage } from "@/pages/Prompts";
 import { PromptEditorPage } from "@/pages/PromptEditor";
 import { SettingsPage } from "@/pages/Settings";
+import { OnboardingPage } from "@/pages/Onboarding";
+import { ProductPage } from "@/pages/Product";
+import { AgentPage } from "@/pages/Agent";
+import { GalleryPage } from "@/pages/Gallery";
+import { WorkspaceProvider } from "@/lib/workspace";
+import { RouteError } from "@/components/RouteError";
 import "./index.css";
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } } });
@@ -24,8 +30,12 @@ const routeTree = rootRoute.addChildren([
 		getParentRoute: parent,
 		path: "/create",
 		component: CreatePage,
-		validateSearch: (s: Record<string, unknown>): { prompt?: string } => ({ prompt: typeof s.prompt === "string" ? s.prompt : undefined }),
+		validateSearch: (s: Record<string, unknown>): { prompt?: string; preset?: string } => ({ prompt: typeof s.prompt === "string" ? s.prompt : undefined, preset: typeof s.preset === "string" ? s.preset : undefined }),
 	}),
+	createRoute({ getParentRoute: parent, path: "/gallery", component: GalleryPage }),
+	createRoute({ getParentRoute: parent, path: "/agent", component: AgentPage }),
+	createRoute({ getParentRoute: parent, path: "/product", component: ProductPage }),
+	createRoute({ getParentRoute: parent, path: "/products/new", component: OnboardingPage }),
 	createRoute({ getParentRoute: parent, path: "/videos", component: VideosPage }),
 	createRoute({ getParentRoute: parent, path: "/videos/$id", component: VideoDetailPage }),
 	createRoute({ getParentRoute: parent, path: "/prompts", component: PromptsPage }),
@@ -34,7 +44,7 @@ const routeTree = rootRoute.addChildren([
 	createRoute({ getParentRoute: parent, path: "/settings", component: SettingsPage }),
 ]);
 
-const router = createRouter({ routeTree, defaultPreload: "intent" });
+const router = createRouter({ routeTree, defaultPreload: "intent", defaultErrorComponent: RouteError });
 
 declare module "@tanstack/react-router" {
 	interface Register {
@@ -51,7 +61,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
 		<ThemeProvider>
 			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
+				<WorkspaceProvider>
+					<RouterProvider router={router} />
+				</WorkspaceProvider>
 				<ThemedToaster />
 			</QueryClientProvider>
 		</ThemeProvider>
