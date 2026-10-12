@@ -8,6 +8,7 @@ import { ArrowLeft01Icon, Delete02Icon, FloppyDiskIcon, PlayCircleIcon } from "@
 import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { OptionSelect } from "@/components/ui/select";
 import { Input, Label, Textarea } from "@/components/ui/input";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
 import { api, usePrompts } from "@/lib/api";
@@ -112,14 +113,7 @@ export function PromptEditorPage() {
 				{isCustom ? (
 					<div className="space-y-1.5">
 						<Label htmlFor="type">Default video type</Label>
-						<select id="type" value={type} onChange={(e) => setType(e.target.value)} className="h-9 w-full rounded-lg border border-input bg-surface px-2.5 text-sm">
-							<option value="">Any type</option>
-							{types.map((t) => (
-								<option key={t.slug} value={t.slug}>
-									{t.name}
-								</option>
-							))}
-						</select>
+						<OptionSelect id="type" value={type} onValueChange={setType} emptyLabel="Any type" options={types.map((t) => ({ value: t.slug, label: t.name }))} />
 					</div>
 				) : null}
 				<div className="space-y-1.5 sm:col-span-2">

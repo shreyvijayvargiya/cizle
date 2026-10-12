@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/misc";
+import { OptionSelect } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { fileUrl, type VideoRow } from "@/lib/api";
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
@@ -116,14 +117,7 @@ export function VideosTable({ data, loading, compact, emptyAction }: { data: Vid
 						))}
 					</div>
 					{types.length > 1 ? (
-						<select value={type} onChange={(e) => setType(e.target.value)} className="h-9 rounded-lg border border-input bg-surface px-2.5 text-xs" aria-label="Filter by type">
-							<option value="">All types</option>
-							{types.map((t) => (
-								<option key={t} value={t}>
-									{t}
-								</option>
-							))}
-						</select>
+						<OptionSelect size="sm" aria-label="Filter by type" className="w-36" value={type} onValueChange={setType} emptyLabel="All types" options={types.map((t) => ({ value: t, label: t }))} />
 					) : null}
 					<span className="ml-auto text-xs text-muted-foreground">{filtered.length} videos</span>
 				</div>

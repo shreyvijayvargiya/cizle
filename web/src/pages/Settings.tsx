@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
 import { Skeleton, Switch } from "@/components/ui/misc";
+import { OptionSelect } from "@/components/ui/select";
 import { api, useSettings, type Settings } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 
@@ -23,8 +24,6 @@ function Row({ label, hint, children }: { label: string; hint?: string; children
 		</div>
 	);
 }
-
-const selectCls = "h-9 w-full rounded-lg border border-input bg-surface px-2.5 text-sm";
 
 export function SettingsPage() {
 	const settings = useSettings();
@@ -125,31 +124,13 @@ export function SettingsPage() {
 					</CardHeader>
 					<CardContent className="divide-y divide-border">
 						<Row label="Aspect ratio">
-							<select className={selectCls} value={form.aspect} onChange={(e) => set("aspect", e.target.value as Settings["aspect"])}>
-								{ASPECTS.map((a) => (
-									<option key={a.value} value={a.value}>
-										{a.label} — {a.hint}
-									</option>
-								))}
-							</select>
+							<OptionSelect value={form.aspect || "9:16"} onValueChange={(v) => set("aspect", v as Settings["aspect"])} options={ASPECTS.map((a) => ({ value: a.value, label: `${a.label} — ${a.hint}` }))} />
 						</Row>
 						<Row label="Audio">
-							<select className={selectCls} value={form.audio} onChange={(e) => set("audio", e.target.value as Settings["audio"])}>
-								{AUDIO.map((a) => (
-									<option key={a.value} value={a.value}>
-										{a.label}
-									</option>
-								))}
-							</select>
+							<OptionSelect value={form.audio || "voice"} onValueChange={(v) => set("audio", v as Settings["audio"])} options={AUDIO.map((a) => ({ value: a.value, label: a.label }))} />
 						</Row>
 						<Row label="Voice">
-							<select className={selectCls} value={form.voice} onChange={(e) => set("voice", e.target.value)}>
-								{VOICES.map((v) => (
-									<option key={v} value={v}>
-										{v}
-									</option>
-								))}
-							</select>
+							<OptionSelect value={form.voice || "nova"} onValueChange={(v) => set("voice", v)} options={VOICES.map((v) => ({ value: v, label: v }))} />
 						</Row>
 						<Row label="Length" hint="Seconds, 10–59">
 							<Input type="number" min={10} max={59} value={form.duration_sec ?? 30} onChange={(e) => set("duration_sec", Number(e.target.value))} />
