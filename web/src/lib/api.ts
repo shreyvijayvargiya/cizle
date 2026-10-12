@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export type Audio = "voice" | "music" | "silent";
 export type Aspect = "9:16" | "1:1" | "16:9";
-export type Status = "pending" | "running" | "success" | "partial" | "failed";
+export type Status = "pending" | "running" | "success" | "partial" | "failed" | "cancelled";
 export type Tier = "free" | "paid";
 
 export type Prompt = {
@@ -161,7 +161,7 @@ export type Product = Omit<ProductMeta, "ideas_open"> & {
 
 export type OnboardRun = {
 	id: string;
-	status: "running" | "success" | "failed";
+	status: "running" | "success" | "failed" | "cancelled";
 	steps: { id: string; label: string; state: "pending" | "active" | "done" | "failed" }[];
 	slug: string | null;
 	ideas: Idea[];
@@ -206,11 +206,18 @@ export class ApiError extends Error {
 }
 
 async function req<T>(path: string, init?: RequestInit & { json?: unknown }): Promise<T> {
-	const res = await fetch(`/api${path}`, {
-		...init,
-		headers: init?.json !== undefined ? { "Content-Type": "application/json" } : undefined,
-		body: init?.json !== undefined ? JSON.stringify(init.json) : init?.body,
-	});
+	let res: Response;
+	try {
+		res = await fetch(`/api${path}`, {
+			...init,
+			headers: init?.json !== undefined ? { "Content-Type": "application/json" } : undefined,
+			body: init?.json !== undefined ? JSON.stringify(init.json) : init?.body,
+		});
+	} catch (e) {
+		// The Stop button aborts the request; surface that as a quiet, recognisable error.
+		if (e instanceof DOMException && e.name === "AbortError") throw new ApiError("Stopped", "ABORTED");
+		throw e;
+	}
 	const data = await res.json().catch(() => ({}));
 	if (!res.ok) throw new ApiError(data?.error || `Request failed (${res.status})`, data?.code);
 	return data as T;
@@ -219,7 +226,7 @@ async function req<T>(path: string, init?: RequestInit & { json?: unknown }): Pr
 export const api = {
 	settings: () => req<Settings>("/settings"),
 	saveSettings: (s: Partial<Settings>) => req<Settings>("/settings", { method: "PUT", json: s }),
-	testKey: (openrouter_api_key?: string) => req<{ ok: boolean; error?: string; label?: string | null }>("/settings/test", { method: "POST", json: { openrouter_api_key } }),
+	testKey: (openrouter_api_key?: string, signal?: AbortSignal) => req<{ ok: boolean; error?: string; label?: string | null }>("/settings/test", { method: "POST", json: { openrouter_api_key }, signal }),
 	prompts: () => req<{ prompts: Prompt[] }>("/prompts").then((r) => r.prompts),
 	prompt: (id: string) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`),
 	createPrompt: (p: Partial<Prompt>) => req<Prompt>("/prompts", { method: "POST", json: p }),
@@ -228,19 +235,21 @@ export const api = {
 	stats: () => req<Stats>("/stats"),
 	videos: (product = "") => req<{ videos: VideoRow[] }>(`/videos${product ? `?product=${encodeURIComponent(product)}` : ""}`).then((r) => r.videos),
 	video: (id: string) => req<Job>(`/videos/${id}`),
-	createVideo: (body: CreateVideo) => req<Job>("/videos", { method: "POST", json: body }),
+	createVideo: (body: CreateVideo, signal?: AbortSignal) => req<Job>("/videos", { method: "POST", json: body, signal }),
+	cancelVideo: (id: string) => req<Job>(`/videos/${id}/cancel`, { method: "POST", json: {} }),
 	deleteVideo: (id: string) => req<{ ok: true }>(`/videos/${id}`, { method: "DELETE" }),
 	regenerate: (id: string) => req<Job>(`/videos/${id}/regenerate`, { method: "POST", json: {} }),
 	products: () => req<{ products: ProductMeta[] }>("/products").then((r) => r.products),
 	product: (slug: string) => req<Product>(`/products/${slug}`),
-	startOnboard: (body: { url: string; repos?: string; name?: string; model_tier?: Tier }) => req<OnboardRun>("/products/onboard", { method: "POST", json: body }),
+	startOnboard: (body: { url: string; repos?: string; name?: string; model_tier?: Tier }, signal?: AbortSignal) => req<OnboardRun>("/products/onboard", { method: "POST", json: body, signal }),
+	cancelOnboard: (id: string) => req<OnboardRun>(`/products/onboard/${id}/cancel`, { method: "POST", json: {} }),
 	onboard: (id: string) => req<OnboardRun>(`/products/onboard/${id}`),
 	saveProduct: (slug: string, body: Partial<Pick<Product, "name" | "url" | "category" | "icp" | "tagline" | "body">> & { repos?: string }) => req<Product>(`/products/${slug}`, { method: "PUT", json: body }),
 	deleteProduct: (slug: string) => req<{ ok: true }>(`/products/${slug}`, { method: "DELETE" }),
-	sync: (slug: string, model_tier: Tier) => req<SyncResult>(`/products/${slug}/sync`, { method: "POST", json: { model_tier } }),
+	sync: (slug: string, model_tier: Tier, signal?: AbortSignal) => req<SyncResult>(`/products/${slug}/sync`, { method: "POST", json: { model_tier }, signal }),
 	setIdeaStatus: (slug: string, id: string, status: IdeaStatus) => req<Idea>(`/products/${slug}/ideas/${id}`, { method: "PATCH", json: { status } }),
-	createFromIdea: (slug: string, id: string, body: { model_tier: Tier; aspect?: Aspect; audio?: Audio; duration_sec?: number }) => req<Job>(`/products/${slug}/ideas/${id}/create`, { method: "POST", json: body }),
-	agent: (slug: string, messages: ChatMessage[], model_tier: Tier) => req<AgentReply>(`/products/${slug}/agent`, { method: "POST", json: { messages, model_tier } }),
+	createFromIdea: (slug: string, id: string, body: { model_tier: Tier; aspect?: Aspect; audio?: Audio; duration_sec?: number }, signal?: AbortSignal) => req<Job>(`/products/${slug}/ideas/${id}/create`, { method: "POST", json: body, signal }),
+	agent: (slug: string, messages: ChatMessage[], model_tier: Tier, signal?: AbortSignal) => req<AgentReply>(`/products/${slug}/agent`, { method: "POST", json: { messages, model_tier }, signal }),
 	gallery: (product: string) => req<{ presets: Preset[]; mine: VideoRow[] }>(`/gallery?product=${encodeURIComponent(product)}`),
 	models: () => req<ModelsInfo>("/models"),
 	estimate: (body: CreateVideo) => req<{ total_usd: number; per_video_usd: number }>("/estimate", { method: "POST", json: body }),

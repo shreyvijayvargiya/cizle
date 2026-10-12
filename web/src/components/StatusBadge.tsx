@@ -8,6 +8,7 @@ export function StatusBadge({ status, step, progress }: { status: Status | strin
 	if (status === "success") return <Badge tone="success">Ready</Badge>;
 	if (status === "partial") return <Badge tone="warning">Partly ready</Badge>;
 	if (status === "failed") return <Badge tone="danger">Failed</Badge>;
+	if (status === "cancelled") return <Badge tone="outline">Stopped</Badge>;
 	return (
 		<span className="inline-flex items-center gap-2">
 			<Badge tone="info">

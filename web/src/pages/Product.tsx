@@ -4,7 +4,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { toast } from "sonner";
-import { Delete02Icon, FloppyDiskIcon, GithubIcon, Link01Icon, Loading03Icon, PlusSignIcon, RefreshIcon } from "@hugeicons/core-free-icons";
+import { Delete02Icon, FloppyDiskIcon, GithubIcon, Link01Icon, PlusSignIcon, RefreshIcon, StopIcon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
 import { IdeaCard } from "@/components/IdeaCard";
@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
 import { Dialog, DialogContent } from "@/components/ui/menu";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
+import { isAborted, useAbort } from "@/lib/abort";
 import { ApiError, api, useProduct } from "@/lib/api";
 import { timeAgo } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
@@ -49,15 +50,16 @@ export function ProductPage() {
 		},
 		onError: (e: ApiError) => toast.error(e.message),
 	});
+	const abort = useAbort();
 	const sync = useMutation({
-		mutationFn: () => api.sync(slug, tier),
+		mutationFn: () => api.sync(slug, tier, abort.next()),
 		onSuccess: (r) => {
 			refresh();
 			if (r.busy) toast.info(r.message || "A sync is already running.");
 			else if (r.repo_errors.length) toast.warning("Synced, but a repo could not be read", { description: r.repo_errors[0] });
 			else toast.success(r.ideas_added ? `${r.ideas_added} new video idea${r.ideas_added === 1 ? "" : "s"}` : r.changed ? "Synced. Nothing worth a video yet." : "Nothing new since the last sync.");
 		},
-		onError: (e: ApiError) => toast.error(e.message),
+		onError: (e: ApiError) => (isAborted(e) ? toast.info("Sync stopped. Nothing was changed.") : toast.error(e.message)),
 	});
 	const remove = useMutation({
 		mutationFn: () => api.deleteProduct(slug),
@@ -107,9 +109,15 @@ export function ProductPage() {
 			actions={
 				<>
 					<ModelToggle id="product-tier" />
-					<Button variant="outline" onClick={() => sync.mutate()} disabled={sync.isPending}>
-						<Icon icon={sync.isPending ? Loading03Icon : RefreshIcon} size={15} className={sync.isPending ? "animate-spin" : ""} /> Sync now
-					</Button>
+					{sync.isPending ? (
+						<Button variant="outline" onClick={abort.stop}>
+							<Icon icon={StopIcon} size={14} className="fill-current" /> Stop sync
+						</Button>
+					) : (
+						<Button variant="outline" onClick={() => sync.mutate()}>
+							<Icon icon={RefreshIcon} size={15} /> Sync now
+						</Button>
+					)}
 				</>
 			}
 		>

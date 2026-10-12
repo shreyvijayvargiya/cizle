@@ -6,13 +6,14 @@ import {
 	CheckmarkCircle02Icon,
 	Coins01Icon,
 	HelpCircleIcon,
+	GridViewIcon,
 	Key01Icon,
 	Layers01Icon,
 	Package01Icon,
-	Link01Icon,
+	AiMagicIcon,
 	Loading03Icon,
 	Presentation01Icon,
-	QuillWrite01Icon,
+	LightbulbIcon,
 	Rocket01Icon,
 	StarsIcon,
 	Video01Icon,
@@ -20,9 +21,11 @@ import {
 import { Composer } from "@/components/Composer";
 import { IdeaCard } from "@/components/IdeaCard";
 import { Icon } from "@/components/Icon";
-import { VideosTable } from "@/components/VideosTable";
+import { StatusBadge } from "@/components/StatusBadge";
+import { StopRowButton, VideosTable } from "@/components/VideosTable";
+import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { useProduct, usePrompts, useSettings, useStats, useVideos } from "@/lib/api";
+import { isActive, useProduct, usePrompts, useSettings, useStats, useVideos } from "@/lib/api";
 import { useWorkspace } from "@/lib/workspace";
 import { cn, usd } from "@/lib/utils";
 
@@ -72,7 +75,7 @@ function Stat({ label, value, icon, spin }: { label: string; value: React.ReactN
 export function DashboardPage() {
 	const settings = useSettings();
 	const stats = useStats();
-	const { slug, product, productsLoaded } = useWorkspace();
+	const { slug, product, products, productsLoaded } = useWorkspace();
 	const videos = useVideos(slug);
 	const detail = useProduct(slug);
 	const prompts = usePrompts();
@@ -81,6 +84,8 @@ export function DashboardPage() {
 	const types = (prompts.data || []).filter((p) => p.kind === "type");
 	const s = stats.data;
 	const open = (detail.data?.ideas || []).filter((i) => i.status === "suggested").slice(0, 3);
+	const ideasWaiting = slug ? (product?.ideas_open ?? 0) : products.reduce((n, p) => n + p.ideas_open, 0);
+	const running = (useVideos("").data || []).filter((v) => isActive(v.status));
 
 	return (
 		<div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
@@ -102,20 +107,20 @@ export function DashboardPage() {
 			) : null}
 			<div className="grid gap-3 sm:grid-cols-3">
 				<Step n={1} icon={Key01Icon} title="Add your OpenRouter key" done={keyReady} to="/settings">
-					{keyReady ? "Key connected. Scripts, screenshots and voice-overs run through OpenRouter." : "Paste it once in Settings. It stays on this machine in data/settings.json."}
+					{keyReady ? "Key connected. Flip the Free switch to use free models instead of paid ones." : "Paste it once in Settings. It stays on this machine in data/settings.json."}
 				</Step>
-				<Step n={2} icon={Link01Icon} title="Paste a URL or GitHub repo">
-					cizle reads the site, llms.txt, blog, FAQ and repo, then grabs real screenshots and product images.
+				<Step n={2} icon={Package01Icon} title="Add your product" done={Boolean(product)} to={product ? "/product" : "/products/new"}>
+					{product ? `${product.name} is remembered in products/${product.slug}/. Sync checks its repos and site for new commits and pages.` : "Paste your website and GitHub repos once. cizle saves what it learns as markdown and suggests videos."}
 				</Step>
-				<Step n={3} icon={Layers01Icon} title="Pick a type and generate">
-					Showcase, features, FAQ, comparison, glossary or launch. Load a prompt with / to steer it.
+				<Step n={3} icon={Layers01Icon} title="Create from an idea or a format">
+					Press Create on a suggestion, remix a format from the Gallery, ask the agent, or describe a video below. Stop any run from its button.
 				</Step>
 			</div>
 
 			<div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
 				<Stat label="Videos" value={s ? s.videos : "—"} icon={Video01Icon} />
 				<Stat label="Rendering now" value={s ? s.rendering : "—"} icon={Loading03Icon} spin={Boolean(s?.rendering)} />
-				<Stat label="Prompts" value={s ? s.prompts : "—"} icon={QuillWrite01Icon} />
+				<Stat label="Ideas waiting" value={productsLoaded ? ideasWaiting : "—"} icon={LightbulbIcon} />
 				<Stat label="Total spend" value={s ? usd(s.spend_usd, 2) : "—"} icon={Coins01Icon} />
 			</div>
 
@@ -124,6 +129,18 @@ export function DashboardPage() {
 				<p className="mx-auto mt-2 max-w-lg text-center text-sm text-muted-foreground">Paste a link, describe the video, hit enter. Under a minute of video, made from your real product.</p>
 				<div className="mx-auto mt-6 max-w-3xl">
 					<Composer autoFocus />
+				</div>
+				<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-2">
+					<Button variant="outline" size="sm" asChild>
+						<Link to="/gallery">
+							<Icon icon={GridViewIcon} size={14} /> Browse the gallery
+						</Link>
+					</Button>
+					<Button variant="outline" size="sm" asChild>
+						<Link to="/agent">
+							<Icon icon={AiMagicIcon} size={14} /> Ask the agent what to make
+						</Link>
+					</Button>
 				</div>
 				{types.length ? (
 					<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-1.5">
@@ -141,6 +158,24 @@ export function DashboardPage() {
 					</div>
 				) : null}
 			</section>
+
+			{running.length ? (
+				<section className="mt-10">
+					<h2 className="mb-3 text-base font-semibold tracking-tight">Running now</h2>
+					<div className="space-y-2">
+						{running.map((v) => (
+							<div key={v.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-3">
+								<Link to="/videos/$id" params={{ id: v.id }} className="min-w-0 flex-1 truncate text-sm font-medium hover:underline">
+									{v.title}
+								</Link>
+								<StatusBadge status={v.status} step={v.step} />
+								<Progress value={Math.max(4, v.progress)} className="w-28" aria-label={`${v.title} progress`} />
+								<StopRowButton id={v.id} />
+							</div>
+						))}
+					</div>
+				</section>
+			) : null}
 
 			{open.length ? (
 				<section className="mt-12">

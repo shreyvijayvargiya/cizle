@@ -17,6 +17,7 @@ If the user has added their product to cizle, use it: videos then read the saved
 - New product: `POST /api/products/onboard` with `{"url":"…","repos":"owner/repo, owner/other"}`, then poll `GET /api/products/onboard/<id>` until `status` is `success`.
 - When creating a video for a product, add `"product":"<slug>"` to `POST /api/videos`; `url` may then be the product's site.
 - Add `"model_tier":"free"` to use free OpenRouter models (no voice-over: audio falls back to music).
+- To stop a running video: `POST /api/videos/<id>/cancel`. To stop an onboarding run: `POST /api/products/onboard/<id>/cancel`. Do this if the user says to stop.
 
 ## Steps
 

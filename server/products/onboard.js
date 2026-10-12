@@ -14,6 +14,7 @@ import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import { load } from "cheerio";
 import { gatherProductContext } from "../pipeline/context.js";
+import { isCancelError, runWithSignal, throwIfCancelled } from "../pipeline/cancel.js";
 import { buildBriefUserText } from "../pipeline/directorPrompts.js";
 import { DATA_DIR } from "../paths.js";
 import { productJson, untrusted, UNTRUSTED_NOTE } from "./llm.js";
@@ -22,6 +23,7 @@ import { addIdeas, cleanIdea, createProduct, normalizeRepo, normalizeRepos, prod
 
 export const CATEGORIES = ["devtools", "analytics", "crm", "ai-agents", "project-management", "fintech", "marketing-seo", "security", "other"];
 const runs = new Map();
+const controllers = new Map();
 
 const STEPS = [
 	{ id: "read", label: "Reading your site, blog and repos" },
@@ -92,6 +94,17 @@ export function getOnboard(id) {
 	return runs.get(id) || null;
 }
 
+/** Stop a running onboarding: aborts the page, repo and model requests. Nothing is saved. */
+export function cancelOnboard(id) {
+	const run = runs.get(id);
+	const ac = controllers.get(id);
+	if (!run || !ac || run.status !== "running") return null;
+	ac.abort();
+	run.status = "cancelled";
+	run.error = null;
+	return run;
+}
+
 export function startOnboard(raw, deps) {
 	const url = normUrl(raw.url);
 	if (!url) throw Object.assign(new Error("Add your product's website or GitHub repo."), { status: 400 });
@@ -111,12 +124,21 @@ export function startOnboard(raw, deps) {
 	runs.set(run.id, run);
 	// Keep only the last few runs in memory.
 	for (const k of [...runs.keys()].slice(0, Math.max(0, runs.size - 10))) runs.delete(k);
-	execute(run, { url, repos, name: String(raw.name || "").trim(), tier: raw.model_tier === "free" ? "free" : "paid" }, deps).catch((e) => {
-		run.status = "failed";
-		run.error = e?.message || String(e);
-		const active = run.steps.find((s) => s.state === "active");
-		if (active) active.state = "failed";
-	});
+	const ac = new AbortController();
+	controllers.set(run.id, ac);
+	runWithSignal(ac.signal, () => execute(run, { url, repos, name: String(raw.name || "").trim(), tier: raw.model_tier === "free" ? "free" : "paid" }, deps))
+		.catch((e) => {
+			if (ac.signal.aborted || isCancelError(e)) {
+				run.status = "cancelled";
+				run.error = null;
+			} else {
+				run.status = "failed";
+				run.error = e?.message || String(e);
+			}
+			const active = run.steps.find((s) => s.state === "active");
+			if (active) active.state = "failed";
+		})
+		.finally(() => controllers.delete(run.id));
 	return run;
 }
 
@@ -126,6 +148,14 @@ async function execute(run, { url, repos, name, tier }, deps) {
 	};
 	const workDir = path.join(DATA_DIR, "onboarding", run.id);
 	await fsp.mkdir(workDir, { recursive: true });
+	try {
+		await executeIn(run, { url, repos, name, tier }, deps, workDir, mark);
+	} finally {
+		await fsp.rm(workDir, { recursive: true, force: true }).catch(() => {});
+	}
+}
+
+async function executeIn(run, { url, repos, name, tier }, deps, workDir, mark) {
 	const log = () => {};
 
 	// 1. read ------------------------------------------------------------------
@@ -144,6 +174,7 @@ async function execute(run, { url, repos, name, tier }, deps) {
 	// The baseline snapshot runs alongside, so the first sync reports only what ships after today.
 	const baselineP = takeSnapshot({ url, repos, baseline: true }).catch(() => null);
 	const [gathered, extra] = await Promise.all([gatherProductContext({ input, deps, workDir, log }), Promise.all(repos.slice(1).map((r) => repoLite(r).catch(() => null)))]);
+	throwIfCancelled(); // gathering swallows per-source errors, so check once it returns
 	const context = { ...gathered.context };
 	const more = extra.filter(Boolean);
 	if (more.length) context.other_repos = more;
@@ -165,6 +196,7 @@ async function execute(run, { url, repos, name, tier }, deps) {
 	mark("write", "done");
 
 	// 3. save ------------------------------------------------------------------
+	throwIfCancelled();
 	mark("save", "active");
 	const product = await createProduct({
 		name: name || String(data.name || gathered.source.name || "").slice(0, 60),
@@ -188,7 +220,6 @@ async function execute(run, { url, repos, name, tier }, deps) {
 	run.ideas = await addIdeas(product.slug, ideas);
 	const snap = await baselineP;
 	await writeSources(product.slug, { ...(snap?.state || {}), last_synced: new Date().toISOString() });
-	await fsp.rm(workDir, { recursive: true, force: true }).catch(() => {});
 	run.slug = product.slug;
 	mark("save", "done");
 	run.status = "success";

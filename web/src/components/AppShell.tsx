@@ -122,7 +122,7 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 									<span
 										className={cn(
 											"size-1.5 shrink-0 rounded-full",
-											v.status === "success" ? "bg-success" : v.status === "failed" ? "bg-danger" : v.status === "partial" ? "bg-warning" : "animate-pulse bg-info",
+											v.status === "success" ? "bg-success" : v.status === "failed" ? "bg-danger" : v.status === "partial" ? "bg-warning" : v.status === "cancelled" ? "bg-muted-foreground/50" : "animate-pulse bg-info",
 										)}
 									/>
 									<span className="truncate">{v.title}</span>

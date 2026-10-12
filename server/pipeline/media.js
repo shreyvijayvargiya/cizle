@@ -5,6 +5,7 @@
 import { execFile } from "child_process";
 import fsp from "fs/promises";
 import path from "path";
+import { currentSignal } from "./cancel.js";
 
 export const FPS = 30;
 
@@ -13,7 +14,7 @@ let resolvedFfmpeg = null;
 /** Run a binary; resolves stdout, rejects with stderr tail. Returns stderr too for -i probing. */
 function run(bin, args, label, timeout = 600_000, cwd) {
 	return new Promise((resolve, reject) => {
-		execFile(bin, args, { timeout, maxBuffer: 50 * 1024 * 1024, cwd }, (err, stdout, stderr) => {
+		execFile(bin, args, { timeout, maxBuffer: 50 * 1024 * 1024, cwd, signal: currentSignal() }, (err, stdout, stderr) => {
 			if (err) {
 				const se = stderr ? String(stderr).slice(-3000) : "";
 				const e = new Error(`${label}: ${err.message}${se ? `\n${se}` : ""}`);

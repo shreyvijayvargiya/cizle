@@ -1,9 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { Loading03Icon, RefreshIcon } from "@hugeicons/core-free-icons";
+import { RefreshIcon, StopIcon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { Button } from "@/components/ui/button";
+import { isAborted, useAbort } from "@/lib/abort";
 import { ApiError, api } from "@/lib/api";
 import { timeAgo } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
@@ -12,8 +13,9 @@ import { useWorkspace } from "@/lib/workspace";
 export function SyncBadge() {
 	const qc = useQueryClient();
 	const { product, tier } = useWorkspace();
+	const abort = useAbort();
 	const sync = useMutation({
-		mutationFn: () => api.sync(product!.slug, tier),
+		mutationFn: () => api.sync(product!.slug, tier, abort.next()),
 		onSuccess: (r) => {
 			qc.invalidateQueries({ queryKey: ["products"] });
 			qc.invalidateQueries({ queryKey: ["product", product?.slug] });
@@ -22,7 +24,7 @@ export function SyncBadge() {
 			else if (r.ideas_added) toast.success(`${r.ideas_added} new video idea${r.ideas_added === 1 ? "" : "s"}`, { description: r.summary[0] });
 			else toast.success(r.changed ? "Synced. Nothing worth a video yet." : "Nothing new since the last sync.");
 		},
-		onError: (e: ApiError) => toast.error(e.message),
+		onError: (e: ApiError) => (isAborted(e) ? toast.info("Sync stopped. Nothing was changed.") : toast.error(e.message)),
 	});
 	if (!product) return null;
 	return (
@@ -34,9 +36,15 @@ export function SyncBadge() {
 						{product.ideas_open ? `${product.ideas_open} idea${product.ideas_open === 1 ? "" : "s"} waiting` : "No new ideas"}
 					</Link>
 				</div>
-				<Button variant="outline" size="sm" onClick={() => sync.mutate()} disabled={sync.isPending} aria-label="Sync now">
-					<Icon icon={sync.isPending ? Loading03Icon : RefreshIcon} size={13} className={sync.isPending ? "animate-spin" : ""} /> Sync
-				</Button>
+				{sync.isPending ? (
+					<Button variant="outline" size="sm" onClick={abort.stop} aria-label="Stop sync">
+						<Icon icon={StopIcon} size={12} className="fill-current" /> Stop
+					</Button>
+				) : (
+					<Button variant="outline" size="sm" onClick={() => sync.mutate()} aria-label="Sync now">
+						<Icon icon={RefreshIcon} size={13} /> Sync
+					</Button>
+				)}
 			</div>
 		</div>
 	);

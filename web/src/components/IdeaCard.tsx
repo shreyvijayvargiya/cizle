@@ -1,12 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { ArrowUp02Icon, Cancel01Icon, Loading03Icon, RefreshIcon } from "@hugeicons/core-free-icons";
+import { ArrowUp02Icon, Cancel01Icon, RefreshIcon, StopIcon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { ModelToggle } from "@/components/ModelToggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tip } from "@/components/ui/misc";
+import { isAborted, useAbort } from "@/lib/abort";
 import { ApiError, api, usePrompts, type Idea } from "@/lib/api";
 import { useWorkspace } from "@/lib/workspace";
 import { cn, usd } from "@/lib/utils";
@@ -30,8 +31,9 @@ export function IdeaCard({ idea, slug, showToggle, className }: { idea: Idea; sl
 		qc.invalidateQueries({ queryKey: ["product", slug] });
 		qc.invalidateQueries({ queryKey: ["products"] });
 	};
+	const abort = useAbort();
 	const create = useMutation({
-		mutationFn: () => api.createFromIdea(slug, idea.id, { model_tier: tier }),
+		mutationFn: () => api.createFromIdea(slug, idea.id, { model_tier: tier }, abort.next()),
 		onSuccess: (job) => {
 			refresh();
 			qc.invalidateQueries({ queryKey: ["videos"] });
@@ -39,7 +41,14 @@ export function IdeaCard({ idea, slug, showToggle, className }: { idea: Idea; sl
 			toast.success("Video started", { description: idea.title });
 			navigate({ to: "/videos/$id", params: { id: job.id } });
 		},
-		onError: (e: ApiError) => toast.error(e.message, e.code === "MISSING_API_KEY" || e.code === "OPENROUTER_AUTH" ? { action: { label: "Open settings", onClick: () => navigate({ to: "/settings" }) } } : undefined),
+		onError: (e: ApiError) => {
+			if (isAborted(e)) {
+				toast.info("Stopped. Nothing was started.");
+				refresh();
+				return;
+			}
+			toast.error(e.message, e.code === "MISSING_API_KEY" || e.code === "OPENROUTER_AUTH" ? { action: { label: "Open settings", onClick: () => navigate({ to: "/settings" }) } } : undefined);
+		},
 	});
 	const setStatus = useMutation({ mutationFn: (status: "suggested" | "dismissed") => api.setIdeaStatus(slug, idea.id, status), onSuccess: refresh });
 
@@ -76,9 +85,15 @@ export function IdeaCard({ idea, slug, showToggle, className }: { idea: Idea; sl
 					<>
 						{showToggle ? <ModelToggle id={`tier-${idea.id}`} /> : null}
 						<span className="ml-auto text-xs text-muted-foreground tabular-nums">{tier === "free" ? "Free" : estimate.data ? `≈ ${usd(estimate.data.total_usd, 2)}` : ""}</span>
-						<Button size="sm" onClick={() => create.mutate()} disabled={create.isPending}>
-							<Icon icon={create.isPending ? Loading03Icon : ArrowUp02Icon} size={14} className={create.isPending ? "animate-spin" : ""} /> Create
-						</Button>
+						{create.isPending ? (
+							<Button size="sm" variant="outline" onClick={abort.stop}>
+								<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
+							</Button>
+						) : (
+							<Button size="sm" onClick={() => create.mutate()}>
+								<Icon icon={ArrowUp02Icon} size={14} /> Create
+							</Button>
+						)}
 					</>
 				) : null}
 				{idea.status === "created" && idea.video_id ? (

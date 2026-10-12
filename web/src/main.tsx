@@ -17,6 +17,7 @@ import { ProductPage } from "@/pages/Product";
 import { AgentPage } from "@/pages/Agent";
 import { GalleryPage } from "@/pages/Gallery";
 import { WorkspaceProvider } from "@/lib/workspace";
+import { RouteError } from "@/components/RouteError";
 import "./index.css";
 
 const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } } });
@@ -43,7 +44,7 @@ const routeTree = rootRoute.addChildren([
 	createRoute({ getParentRoute: parent, path: "/settings", component: SettingsPage }),
 ]);
 
-const router = createRouter({ routeTree, defaultPreload: "intent" });
+const router = createRouter({ routeTree, defaultPreload: "intent", defaultErrorComponent: RouteError });
 
 declare module "@tanstack/react-router" {
 	interface Register {

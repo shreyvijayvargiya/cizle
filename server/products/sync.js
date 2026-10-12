@@ -14,6 +14,7 @@ import fsp from "fs/promises";
 import path from "path";
 import { load } from "cheerio";
 import { DATA_DIR } from "../paths.js";
+import { currentSignal, throwIfCancelled } from "../pipeline/cancel.js";
 import { listPrompts } from "../library.js";
 import { productJson, untrusted, UNTRUSTED_NOTE } from "./llm.js";
 import { addIdeas, cleanIdea, getProduct, prependChange, readSources, repoUrl, saveProduct, writeSources } from "./store.js";
@@ -29,7 +30,7 @@ const token = () => process.env.GITHUB_TOKEN?.trim() || "";
 
 function git(args, cwd) {
 	return new Promise((resolve, reject) => {
-		execFile("git", args, { cwd, timeout: 90_000, maxBuffer: 20 * 1024 * 1024, env: { ...process.env, GIT_TERMINAL_PROMPT: "0" } }, (err, stdout, stderr) => {
+		execFile("git", args, { cwd, timeout: 90_000, maxBuffer: 20 * 1024 * 1024, env: { ...process.env, GIT_TERMINAL_PROMPT: "0" }, signal: currentSignal() }, (err, stdout, stderr) => {
 			if (err) {
 				const msg = String(stderr || err.message).replace(/x-access-token:[^@\s]+@/g, "").slice(-400);
 				reject(new Error(`git ${args[0]} failed: ${msg}`));
@@ -251,6 +252,7 @@ export async function syncProduct(slug, { tier = "paid", baseline = false } = {}
 		if (!product) throw Object.assign(new Error("Product not found"), { status: 404 });
 		const prev = await readSources(slug);
 		const { state, delta, empty } = await takeSnapshot({ url: product.url, repos: product.repos, prev, baseline });
+		throwIfCancelled(); // stopped during the fetch: leave sources.json, changes.md and ideas.md untouched
 		const now = new Date().toISOString();
 		let added = [];
 		let summary = [];

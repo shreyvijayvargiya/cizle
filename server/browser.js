@@ -5,6 +5,7 @@
  *   renderHtml(htmlList, { width, height }) → PNG frames from HTML templates
  * Chrome comes from `puppeteer` (downloaded on npm install) or CHROME_PATH.
  */
+import { CancelledError, currentSignal, throwIfCancelled } from "./pipeline/cancel.js";
 import puppeteer from "puppeteer";
 
 const MAX_PAGES = Number(process.env.CIZLE_MAX_PAGES) || 3;
@@ -48,11 +49,20 @@ async function getBrowser() {
 async function withPage(fn) {
 	if (active >= MAX_PAGES) await new Promise((r) => waiting.push(r));
 	active++;
+	const signal = currentSignal();
 	let page;
+	// Stop pressed: close the page so whatever it is doing (navigation, screenshot) fails right away.
+	const onAbort = () => page?.close().catch(() => {});
+	signal?.addEventListener("abort", onAbort, { once: true });
 	try {
+		throwIfCancelled();
 		page = await (await getBrowser()).newPage();
+		if (signal?.aborted) throw new CancelledError();
 		return await fn(page);
+	} catch (e) {
+		throw signal?.aborted ? new CancelledError() : e;
 	} finally {
+		signal?.removeEventListener("abort", onAbort);
 		await page?.close().catch(() => {});
 		active--;
 		waiting.shift()?.();
@@ -86,6 +96,7 @@ async function openPage(page, url, device) {
 }
 
 export async function captureSections(url, { device = "desktop", count = 4 } = {}) {
+	throwIfCancelled();
 	return withPage(async (page) => {
 		await openPage(page, url, device);
 		const vh = (VIEWPORTS[device] || VIEWPORTS.desktop).height;
@@ -104,6 +115,7 @@ export async function captureSections(url, { device = "desktop", count = 4 } = {
 }
 
 export async function capture(url, { device = "desktop", fullPage = true } = {}) {
+	throwIfCancelled();
 	return withPage(async (page) => {
 		await openPage(page, url, device);
 		return Buffer.from(await page.screenshot({ type: "png", fullPage }));
@@ -111,6 +123,7 @@ export async function capture(url, { device = "desktop", fullPage = true } = {})
 }
 
 export async function renderHtml(htmlList, { width, height }) {
+	throwIfCancelled();
 	return withPage(async (page) => {
 		await page.setViewport({ width, height, deviceScaleFactor: 1 });
 		const out = [];
@@ -126,6 +139,7 @@ export async function renderHtml(htmlList, { width, height }) {
 
 /** Rendered page HTML — used by the scraper for JavaScript-heavy sites. */
 export async function renderedHtml(url) {
+	throwIfCancelled();
 	return withPage(async (page) => {
 		await openPage(page, url, "desktop");
 		return page.content();

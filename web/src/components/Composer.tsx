@@ -10,19 +10,21 @@ import {
 	Cancel01Icon,
 	GithubIcon,
 	Layers01Icon,
-	Loading03Icon,
 	Mic01Icon,
 	Package01Icon,
 	MusicNote01Icon,
 	PaintBoardIcon,
 	QuillWrite01Icon,
 	SlidersHorizontalIcon,
+	StopIcon,
 	VolumeOffIcon,
 } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { ModelToggle } from "@/components/ModelToggle";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
+import { isAborted, useAbort } from "@/lib/abort";
+import { Tip } from "@/components/ui/misc";
 import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 import { cn, hostOf } from "@/lib/utils";
@@ -169,8 +171,9 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 		staleTime: 60_000,
 	});
 
+	const abort = useAbort();
 	const create = useMutation({
-		mutationFn: api.createVideo,
+		mutationFn: (b: CreateVideo) => api.createVideo(b, abort.next()),
 		onSuccess: (job) => {
 			qc.invalidateQueries({ queryKey: ["videos"] });
 			qc.invalidateQueries({ queryKey: ["stats"] });
@@ -178,6 +181,10 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 			navigate({ to: "/videos/$id", params: { id: job.id } });
 		},
 		onError: (e: ApiError) => {
+			if (isAborted(e)) {
+				toast.info("Stopped. Nothing was started.");
+				return;
+			}
 			toast.error(e.message, e.code === "MISSING_API_KEY" || e.code === "OPENROUTER_AUTH" ? { action: { label: "Open settings", onClick: () => navigate({ to: "/settings" }) } } : undefined);
 		},
 	});
@@ -395,9 +402,17 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 						<span className="hidden text-xs text-muted-foreground tabular-nums sm:inline">
 							{tier === "free" && mainUrl ? "Free" : estimate.data ? `≈ $${estimate.data.total_usd.toFixed(2)}` : mainUrl ? "" : "⌘↵ to generate"}
 						</span>
-						<Button size="icon" className="size-9 rounded-xl" disabled={create.isPending} onClick={submit} aria-label="Generate video">
-							<Icon icon={create.isPending ? Loading03Icon : ArrowUp02Icon} size={18} className={create.isPending ? "animate-spin" : ""} />
-						</Button>
+						{create.isPending ? (
+							<Tip label="Stop">
+								<Button size="icon" variant="outline" className="size-9 rounded-xl" onClick={abort.stop} aria-label="Stop">
+									<Icon icon={StopIcon} size={16} className="fill-current" />
+								</Button>
+							</Tip>
+						) : (
+							<Button size="icon" className="size-9 rounded-xl" onClick={submit} aria-label="Generate video">
+								<Icon icon={ArrowUp02Icon} size={18} />
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { CheckmarkCircle02Icon, Folder01Icon, Key01Icon, Loading03Icon } from "@hugeicons/core-free-icons";
+import { CheckmarkCircle02Icon, Folder01Icon, Key01Icon, StopIcon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input, Label } from "@/components/ui/input";
 import { Skeleton, Switch } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
+import { isAborted, useAbort } from "@/lib/abort";
 import { api, useSettings, type Settings } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 
@@ -43,9 +44,11 @@ export function SettingsPage() {
 		},
 		onError: (e: Error) => toast.error(e.message),
 	});
+	const abort = useAbort();
 	const test = useMutation({
-		mutationFn: () => api.testKey(keyInput || undefined),
+		mutationFn: () => api.testKey(keyInput || undefined, abort.next()),
 		onSuccess: (r) => (r.ok ? toast.success("OpenRouter key works", { description: r.label || undefined }) : toast.error(r.error || "Key rejected")),
+		onError: (e: Error) => (isAborted(e) ? toast.info("Test stopped.") : toast.error(e.message)),
 	});
 
 	if (!settings.data)
@@ -74,9 +77,15 @@ export function SettingsPage() {
 							<div className="flex flex-col gap-2 sm:flex-row">
 								<Input type="password" value={keyInput} onChange={(e) => setKeyInput(e.target.value)} placeholder={s.openrouter_api_key || "sk-or-v1-…"} autoComplete="off" />
 								<div className="flex gap-2">
-									<Button variant="outline" onClick={() => test.mutate()} disabled={test.isPending || (!keyInput && !s.openrouter_api_key_set)}>
-										{test.isPending ? <Icon icon={Loading03Icon} size={14} className="animate-spin" /> : null} Test
-									</Button>
+									{test.isPending ? (
+										<Button variant="outline" onClick={abort.stop}>
+											<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
+										</Button>
+									) : (
+										<Button variant="outline" onClick={() => test.mutate()} disabled={!keyInput && !s.openrouter_api_key_set}>
+											Test
+										</Button>
+									)}
 									<Button
 										onClick={() => {
 											save.mutate({ openrouter_api_key: keyInput });

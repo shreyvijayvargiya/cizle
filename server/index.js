@@ -18,10 +18,11 @@ try {
 
 const { loadSettings, saveSettings, publicSettings, testOpenRouterKey } = await import("./settings.js");
 const { listPrompts, getPrompt, savePrompt, deletePrompt } = await import("./library.js");
-const { createJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, stats } = await import("./pipeline/job.js");
+const { runWithSignal } = await import("./pipeline/cancel.js");
+const { cancelJob, createJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, stats } = await import("./pipeline/job.js");
 const { warmModels, modelsSummary } = await import("./models.js");
 const store = await import("./products/store.js");
-const { startOnboard, getOnboard } = await import("./products/onboard.js");
+const { startOnboard, getOnboard, cancelOnboard } = await import("./products/onboard.js");
 const { syncProduct, ideaVocab } = await import("./products/sync.js");
 const { runAgent } = await import("./agent/agent.js");
 const browser = await import("./browser.js");
@@ -34,8 +35,8 @@ const app = new Hono();
 const api = new Hono();
 
 api.onError((err, c) => {
-	console.error("[cizle] API error:", err);
-	return c.json({ error: err?.message || String(err), code: err?.code }, err?.code === "OPENROUTER_AUTH" ? 401 : err?.code === "RATE_LIMIT" ? 429 : err?.code === "MISSING_API_KEY" ? 400 : 500);
+	if (err?.code !== "CANCELLED") console.error("[cizle] API error:", err); // a stopped request is not an error worth logging
+	return c.json({ error: err?.message || String(err), code: err?.code }, err?.code === "OPENROUTER_AUTH" ? 401 : err?.code === "RATE_LIMIT" ? 429 : err?.code === "CANCELLED" ? 499 : err?.code === "MISSING_API_KEY" ? 400 : 500);
 });
 
 api.get("/health", (c) => c.json({ ok: true }));
@@ -82,7 +83,14 @@ api.post("/videos", async (c) => {
 	await warmModels();
 	const parsed = parseVideoInput(await c.req.json().catch(() => ({})));
 	if (parsed.error) return c.json({ error: parsed.error }, 400);
-	return c.json(await createJob(parsed.input, deps), 202);
+	const job = await createJob(parsed.input, deps);
+	// The client pressed Stop while the job was being set up: don't leave it running.
+	if (c.req.raw.signal.aborted) await cancelJob(job.id);
+	return c.json(job, 202);
+});
+api.post("/videos/:id/cancel", async (c) => {
+	const job = await cancelJob(c.req.param("id"));
+	return job ? c.json(job) : c.json({ error: "That video is not running" }, 409);
 });
 api.get("/videos/:id", async (c) => {
 	const job = await getJob(c.req.param("id"));
@@ -105,7 +113,12 @@ api.post("/products/onboard", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
 	await warmModels();
 	const run = startOnboard(body, deps);
+	if (c.req.raw.signal.aborted) cancelOnboard(run.id); // the client pressed Stop while it was starting
 	return c.json(run, 202);
+});
+api.post("/products/onboard/:id/cancel", (c) => {
+	const run = cancelOnboard(c.req.param("id"));
+	return run ? c.json(run) : c.json({ error: "That run is not active" }, 409);
 });
 api.get("/products/onboard/:id", (c) => {
 	const run = getOnboard(c.req.param("id"));
@@ -128,7 +141,7 @@ api.delete("/products/:slug", async (c) => ((await store.deleteProduct(c.req.par
 api.post("/products/:slug/sync", async (c) => {
 	const b = await c.req.json().catch(() => ({}));
 	await warmModels();
-	return c.json(await syncProduct(c.req.param("slug"), { tier: b.model_tier === "free" ? "free" : "paid" }));
+	return c.json(await runWithSignal(c.req.raw.signal, () => syncProduct(c.req.param("slug"), { tier: b.model_tier === "free" ? "free" : "paid" })));
 });
 api.get("/products/:slug/ideas", async (c) => c.json({ ideas: await store.readIdeas(c.req.param("slug")) }));
 api.patch("/products/:slug/ideas/:id", async (c) => {
@@ -160,13 +173,17 @@ api.post("/products/:slug/ideas/:id/create", async (c) => {
 	});
 	if (parsed.error) return c.json({ error: parsed.error }, 400);
 	const job = await createJob(parsed.input, deps);
+	if (c.req.raw.signal.aborted) {
+		await cancelJob(job.id);
+		return c.json(job, 202);
+	}
 	await store.updateIdea(slug, idea.id, { status: "created", video_id: job.id });
 	return c.json(job, 202);
 });
 api.post("/products/:slug/agent", async (c) => {
 	const b = await c.req.json().catch(() => ({}));
 	await warmModels();
-	return c.json(await runAgent({ slug: c.req.param("slug"), messages: b.messages, tier: b.model_tier === "free" ? "free" : "paid" }));
+	return c.json(await runWithSignal(c.req.raw.signal, () => runAgent({ slug: c.req.param("slug"), messages: b.messages, tier: b.model_tier === "free" ? "free" : "paid" })));
 });
 
 /* gallery: committed presets plus the active product's own videos */

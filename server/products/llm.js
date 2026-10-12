@@ -1,6 +1,7 @@
 /** One JSON-returning model call for the product features (onboarding, sync, agent fallback). */
 import { openRouterChat, isFreeModel } from "../pipeline/openrouter.js";
 import { parseJson } from "../pipeline/render.js";
+import { isCancelError } from "../pipeline/cancel.js";
 import { tierModels } from "../models.js";
 
 export async function productJson({ tier = "paid", system, user, maxTokens = 4000, temperature = 0.4 }) {
@@ -22,7 +23,7 @@ export async function productJson({ tier = "paid", system, user, maxTokens = 400
 			return { data: parseJson(res.content), usd: res.usage?.cost || 0, model: res.model };
 		} catch (e) {
 			lastErr = e;
-			if (e.code === "RATE_LIMIT" || e.code === "OPENROUTER_AUTH") break;
+			if (e.code === "RATE_LIMIT" || e.code === "OPENROUTER_AUTH" || isCancelError(e)) break;
 		}
 	}
 	throw lastErr;

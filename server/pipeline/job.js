@@ -11,6 +11,7 @@ import fsp from "fs/promises";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import { openRouterChat } from "./openrouter.js";
+import { isCancelError, runWithSignal, throwIfCancelled } from "./cancel.js";
 import { normalizeOpenRouterTtsVoice } from "./openRouterTts.js";
 import {
 	TTS_USD_PER_MIN,
@@ -42,6 +43,8 @@ import { VIDEOS_DIR } from "../paths.js";
 
 const MAX_SHORT_SEC = 59;
 const jobs = new Map();
+/** One AbortController per running job, so a job can be stopped from the dashboard. */
+const controllers = new Map();
 
 /* ------------------------------------------------------------------ input */
 
@@ -255,13 +258,41 @@ export async function createJob(input, deps) {
 		updated_at: new Date().toISOString(),
 	};
 	jobs.set(id, job);
+	const ac = new AbortController();
+	controllers.set(id, ac);
 	await save(job);
-	runJob(job, deps).catch(async (err) => {
-		console.error(`[cizle] job ${id} failed:`, err);
-		job.status = "failed";
-		job.error = err?.message || String(err);
-		await save(job);
-	});
+	runWithSignal(ac.signal, () => runJob(job, deps))
+		.catch(async (err) => {
+			if (ac.signal.aborted || isCancelError(err)) {
+				markCancelled(job);
+			} else {
+				console.error(`[cizle] job ${id} failed:`, err);
+				job.status = "failed";
+				job.error = err?.message || String(err);
+			}
+			await save(job);
+		})
+		.finally(() => controllers.delete(id));
+	return publicJob(job);
+}
+
+function markCancelled(job) {
+	job.status = "cancelled";
+	job.step = "cancelled";
+	job.error = null;
+	for (const v of job.variants || []) if (v.status !== "success") Object.assign(v, { status: "failed", error: "Cancelled" });
+	job.logs.push(`${new Date().toISOString()} cancelled`);
+}
+
+/** Stop a running job: aborts its model calls, downloads and ffmpeg processes. Returns the job, or null if it isn't running. */
+export async function cancelJob(id) {
+	const sid = safeId(id);
+	const job = jobs.get(sid);
+	const ac = controllers.get(sid);
+	if (!job || !ac || (job.status !== "pending" && job.status !== "running")) return null;
+	ac.abort();
+	markCancelled(job);
+	await save(job);
 	return publicJob(job);
 }
 
@@ -286,6 +317,7 @@ async function chatJson({ model, system, user, costs, stage, variant, maxTokens 
 			return parseJson(res.content);
 		} catch (e) {
 			lastErr = e;
+			if (isCancelError(e)) break;
 		}
 	}
 	throw lastErr;
@@ -300,6 +332,7 @@ async function runJob(job, deps) {
 		console.log(`[cizle ${job.id.slice(0, 8)}] ${msg}`);
 	};
 	const step = async (name, progress) => {
+		throwIfCancelled();
 		Object.assign(job, { step: name, progress, status: "running" });
 		log(`step: ${name}`);
 		await save(job);
@@ -472,6 +505,7 @@ async function runJob(job, deps) {
 		}),
 	);
 
+	throwIfCancelled();
 	const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
 	const byVariant = {};
 	for (const c of costs) if (c.variant) byVariant[c.variant] = round((byVariant[c.variant] || 0) + (c.usd || 0), 6);

@@ -4,13 +4,14 @@ import { Link } from "@tanstack/react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { toast } from "sonner";
-import { AiMagicIcon, ArrowUp02Icon, Loading03Icon, PlusSignIcon } from "@hugeicons/core-free-icons";
+import { AiMagicIcon, ArrowUp02Icon, Loading03Icon, PlusSignIcon, StopIcon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
 import { IdeaCard } from "@/components/IdeaCard";
 import { ModelToggle } from "@/components/ModelToggle";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/input";
+import { isAborted, useAbort } from "@/lib/abort";
 import { ApiError, api, type ChatMessage, type Idea } from "@/lib/api";
 import { useWorkspace } from "@/lib/workspace";
 import { cn } from "@/lib/utils";
@@ -27,11 +28,17 @@ export function AgentPage() {
 	const endRef = useRef<HTMLDivElement>(null);
 
 	// A new product starts a new conversation.
-	useEffect(() => setTurns([]), [slug]);
-	useEffect(() => endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" }), [turns]);
+	useEffect(() => {
+		setTurns([]);
+	}, [slug]);
+	useEffect(() => {
+		endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+	}, [turns]);
 
+	const abort = useAbort();
+	const lastAsked = useRef("");
 	const send = useMutation({
-		mutationFn: (history: Turn[]) => api.agent(slug, history.map(({ role, content }) => ({ role, content })), tier),
+		mutationFn: (history: Turn[]) => api.agent(slug, history.map(({ role, content }) => ({ role, content })), tier, abort.next()),
 		onSuccess: (r) => {
 			setTurns((t) => [...t, { role: "assistant", content: r.reply, proposals: r.proposals }]);
 			qc.invalidateQueries({ queryKey: ["product", slug] });
@@ -39,6 +46,10 @@ export function AgentPage() {
 		},
 		onError: (e: ApiError) => {
 			setTurns((t) => t.slice(0, -1));
+			if (isAborted(e)) {
+				setText(lastAsked.current); // put the question back so it can be edited or sent again
+				return;
+			}
 			toast.error(e.message);
 		},
 	});
@@ -46,6 +57,7 @@ export function AgentPage() {
 	const ask = (q: string) => {
 		const content = q.trim();
 		if (!content || send.isPending) return;
+		lastAsked.current = content;
 		const next: Turn[] = [...turns, { role: "user", content }];
 		setTurns(next);
 		setText("");
@@ -112,7 +124,7 @@ export function AgentPage() {
 					))}
 					{send.isPending ? (
 						<div className="flex items-center gap-2 text-sm text-muted-foreground">
-							<Icon icon={Loading03Icon} size={15} className="animate-spin" /> Reading your notes…
+							<Icon icon={Loading03Icon} size={15} className="animate-spin" /> Reading your notes… press Stop to cancel
 						</div>
 					) : null}
 					<div ref={endRef} />
@@ -133,9 +145,15 @@ export function AgentPage() {
 							className="min-h-11 resize-none"
 							aria-label="Message the agent"
 						/>
-						<Button size="icon" className="size-10 rounded-xl" onClick={() => ask(text)} disabled={!text.trim() || send.isPending} aria-label="Send">
-							<Icon icon={ArrowUp02Icon} size={18} />
-						</Button>
+						{send.isPending ? (
+							<Button size="icon" variant="outline" className="size-10 rounded-xl" onClick={abort.stop} aria-label="Stop">
+								<Icon icon={StopIcon} size={16} className="fill-current" />
+							</Button>
+						) : (
+							<Button size="icon" className="size-10 rounded-xl" onClick={() => ask(text)} disabled={!text.trim()} aria-label="Send">
+								<Icon icon={ArrowUp02Icon} size={18} />
+							</Button>
+						)}
 					</div>
 					<div className="mt-2 flex items-center justify-between">
 						<ModelToggle id="agent-tier" />

@@ -6,6 +6,7 @@
  * back to two well-known ids. Paid models are whatever the user set in Settings.
  */
 import { loadSettings } from "./settings.js";
+import { detached } from "./pipeline/cancel.js";
 
 const BASE_URL = (process.env.OPENROUTER_BASE_URL?.trim() || "https://openrouter.ai/api/v1").replace(/\/+$/, "");
 const TTL_MS = 60 * 60_000;
@@ -37,7 +38,7 @@ function normalize(m) {
 /** Fetch (at most hourly) the OpenRouter model list. Never throws. */
 export async function warmModels({ force = false } = {}) {
 	if (!force && cache.models.length && Date.now() - cache.at < TTL_MS) return cache.models;
-	inflight ??= (async () => {
+	inflight ??= detached(async () => {
 		try {
 			const res = await fetch(`${BASE_URL}/models`, { signal: AbortSignal.timeout(10_000) });
 			if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -49,7 +50,7 @@ export async function warmModels({ force = false } = {}) {
 			inflight = null;
 		}
 		return cache.models;
-	})();
+	});
 	return inflight;
 }
 
