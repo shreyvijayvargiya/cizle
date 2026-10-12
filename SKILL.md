@@ -7,6 +7,17 @@ description: Make short product videos (showcase, features, FAQ, comparison, glo
 
 cizle is a local video studio. Its API runs on `http://localhost:3737/api` (start it with `npm run dev` or `npm start` in the cizle folder).
 
+## Products (optional but better)
+
+If the user has added their product to cizle, use it: videos then read the saved product notes.
+
+- `curl -s localhost:3737/api/products` lists products (`slug`, `name`, `url`, `repos`, `ideas_open`).
+- `POST /api/products/<slug>/sync` (body `{"model_tier":"free"|"paid"}`) finds new commits, releases and pages and adds video ideas.
+- `GET /api/products/<slug>/ideas` lists ideas. To make one: `POST /api/products/<slug>/ideas/<id>/create` with `{"model_tier":"free"|"paid"}`. Only do this when the user asked for that video.
+- New product: `POST /api/products/onboard` with `{"url":"…","repos":"owner/repo, owner/other"}`, then poll `GET /api/products/onboard/<id>` until `status` is `success`.
+- When creating a video for a product, add `"product":"<slug>"` to `POST /api/videos`; `url` may then be the product's site.
+- Add `"model_tier":"free"` to use free OpenRouter models (no voice-over: audio falls back to music).
+
 ## Steps
 
 1. **Check it's running:** `curl -s localhost:3737/api/health` should return `{"ok":true}`. If not, ask the user to start cizle.

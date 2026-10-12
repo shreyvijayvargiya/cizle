@@ -3,10 +3,13 @@ import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
 	Cancel01Icon,
 	ComputerIcon,
+	AiMagicIcon,
 	DashboardSquare01Icon,
 	GithubIcon,
+	GridViewIcon,
 	Menu01Icon,
 	Moon02Icon,
+	Package01Icon,
 	PlusSignIcon,
 	QuillWrite01Icon,
 	Search01Icon,
@@ -19,24 +22,31 @@ import {
 import { Tooltip } from "radix-ui";
 import { Icon } from "@/components/Icon";
 import { CommandMenu } from "@/components/CommandMenu";
+import { ProductSwitcher } from "@/components/ProductSwitcher";
+import { SyncBadge } from "@/components/SyncBadge";
 import { Button } from "@/components/ui/button";
 import { Menu, MenuContent, MenuRadioGroup, MenuRadioItem, MenuTrigger } from "@/components/ui/menu";
 import { useSettings, useVideos } from "@/lib/api";
 import { REPO_URL } from "@/lib/constants";
 import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
+import { useWorkspace } from "@/lib/workspace";
 
 const NAV = [
 	{ to: "/", label: "Dashboard", icon: DashboardSquare01Icon, exact: true },
 	{ to: "/create", label: "Create video", icon: PlusSignIcon },
 	{ to: "/videos", label: "Videos", icon: Video01Icon },
+	{ to: "/gallery", label: "Gallery", icon: GridViewIcon },
+	{ to: "/agent", label: "Agent", icon: AiMagicIcon },
+	{ to: "/product", label: "Product", icon: Package01Icon },
 	{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
 	{ to: "/settings", label: "Settings", icon: Settings01Icon },
 ] as const;
 
 function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobileOpen: boolean; onClose: () => void }) {
 	const pathname = useRouterState({ select: (s) => s.location.pathname });
-	const videos = useVideos();
+	const { slug } = useWorkspace();
+	const videos = useVideos(slug);
 	const recent = (videos.data || []).slice(0, 6);
 	const slim = collapsed && !mobileOpen;
 	return (
@@ -70,9 +80,12 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 						</Button>
 					) : null}
 				</div>
+				<div className="px-2 pb-2">
+					<ProductSwitcher slim={slim} onNavigate={onClose} />
+				</div>
 				<nav className="flex flex-col gap-0.5 px-2">
 					{NAV.map((item) => {
-						const active = "exact" in item && item.exact ? pathname === item.to : pathname.startsWith(item.to);
+						const active = "exact" in item && item.exact ? pathname === item.to : pathname === item.to || pathname.startsWith(`${item.to}/`);
 						return (
 							<Link
 								key={item.to}
@@ -121,6 +134,7 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 					</div>
 				)}
 				{slim ? <div className="flex-1" /> : null}
+				{slim ? null : <SyncBadge />}
 				<div className={cn("border-t border-border p-3 text-[11px] text-muted-foreground", slim && "hidden")}>Runs on this machine · MIT</div>
 			</aside>
 		</>

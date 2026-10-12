@@ -147,6 +147,15 @@ export function SettingsPage() {
 						<Row label="Voice model" hint="Text-to-speech">
 							<Input value={form.tts_model || ""} onChange={(e) => set("tts_model", e.target.value)} />
 						</Row>
+						<Row label="Free script model" hint="Used when the Free switch is on. “auto” picks the best free model OpenRouter lists">
+							<Input value={form.free_script_model || ""} onChange={(e) => set("free_script_model", e.target.value)} placeholder="auto" />
+						</Row>
+						<Row label="Free vision model" hint="Reads screenshots in free mode">
+							<Input value={form.free_vision_model || ""} onChange={(e) => set("free_vision_model", e.target.value)} placeholder="auto" />
+						</Row>
+						<Row label="Keep products fresh" hint="Check repos and sites for changes when cizle starts and every 6 hours">
+							<Switch checked={form.auto_sync !== false} onCheckedChange={(v) => set("auto_sync", v)} />
+						</Row>
 						<div className="flex justify-end pt-4">
 							<Button
 								onClick={() =>
@@ -159,6 +168,9 @@ export function SettingsPage() {
 										script_model: form.script_model,
 										vision_model: form.vision_model,
 										tts_model: form.tts_model,
+										free_script_model: form.free_script_model,
+										free_vision_model: form.free_vision_model,
+										auto_sync: form.auto_sync,
 									})
 								}
 								disabled={save.isPending}

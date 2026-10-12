@@ -7,3 +7,4 @@ data/
 # each founder's product memory stays local; the example is committed
 products/*
 !products/example/
+!products/README.md

@@ -8,6 +8,7 @@ import {
 	HelpCircleIcon,
 	Key01Icon,
 	Layers01Icon,
+	Package01Icon,
 	Link01Icon,
 	Loading03Icon,
 	Presentation01Icon,
@@ -17,10 +18,12 @@ import {
 	Video01Icon,
 } from "@hugeicons/core-free-icons";
 import { Composer } from "@/components/Composer";
+import { IdeaCard } from "@/components/IdeaCard";
 import { Icon } from "@/components/Icon";
 import { VideosTable } from "@/components/VideosTable";
 import { Button } from "@/components/ui/button";
-import { usePrompts, useSettings, useStats, useVideos } from "@/lib/api";
+import { useProduct, usePrompts, useSettings, useStats, useVideos } from "@/lib/api";
+import { useWorkspace } from "@/lib/workspace";
 import { cn, usd } from "@/lib/utils";
 
 const TYPE_ICONS: Record<string, Parameters<typeof Icon>[0]["icon"]> = {
@@ -69,15 +72,34 @@ function Stat({ label, value, icon, spin }: { label: string; value: React.ReactN
 export function DashboardPage() {
 	const settings = useSettings();
 	const stats = useStats();
-	const videos = useVideos();
+	const { slug, product, productsLoaded } = useWorkspace();
+	const videos = useVideos(slug);
+	const detail = useProduct(slug);
 	const prompts = usePrompts();
 	const navigate = useNavigate();
 	const keyReady = Boolean(settings.data?.openrouter_api_key_set);
 	const types = (prompts.data || []).filter((p) => p.kind === "type");
 	const s = stats.data;
+	const open = (detail.data?.ideas || []).filter((i) => i.status === "suggested").slice(0, 3);
 
 	return (
 		<div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
+			{productsLoaded && !product ? (
+				<div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-brand/30 bg-brand/10 p-4">
+					<div className="flex items-start gap-3">
+						<span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand/20 text-brand">
+							<Icon icon={Package01Icon} size={16} />
+						</span>
+						<div>
+							<p className="text-sm font-medium">Add your product once, get videos on the go</p>
+							<p className="text-[13px] text-muted-foreground">cizle reads your site and repos, remembers them as markdown, and suggests the first videos to make.</p>
+						</div>
+					</div>
+					<Button asChild>
+						<Link to="/products/new">Add product</Link>
+					</Button>
+				</div>
+			) : null}
 			<div className="grid gap-3 sm:grid-cols-3">
 				<Step n={1} icon={Key01Icon} title="Add your OpenRouter key" done={keyReady} to="/settings">
 					{keyReady ? "Key connected. Scripts, screenshots and voice-overs run through OpenRouter." : "Paste it once in Settings. It stays on this machine in data/settings.json."}
@@ -120,11 +142,32 @@ export function DashboardPage() {
 				) : null}
 			</section>
 
+			{open.length ? (
+				<section className="mt-12">
+					<div className="mb-3 flex items-end justify-between">
+						<div>
+							<h2 className="text-base font-semibold tracking-tight">Suggested for {product?.name}</h2>
+							<p className="text-xs text-muted-foreground">From your notes and what shipped recently. Nothing renders until you press Create.</p>
+						</div>
+						<Button variant="outline" size="sm" asChild>
+							<Link to="/product">
+								All ideas <Icon icon={ArrowRight01Icon} size={14} />
+							</Link>
+						</Button>
+					</div>
+					<div className="grid gap-3 md:grid-cols-3">
+						{open.map((i) => (
+							<IdeaCard key={i.id} idea={i} slug={slug} showToggle />
+						))}
+					</div>
+				</section>
+			) : null}
+
 			<section className="mt-12">
 				<div className="mb-3 flex items-end justify-between">
 					<div>
 						<h2 className="text-base font-semibold tracking-tight">Latest videos</h2>
-						<p className="text-xs text-muted-foreground">Stored on this machine in data/videos.</p>
+						<p className="text-xs text-muted-foreground">{product ? `For ${product.name}. ` : ""}Stored on this machine in data/videos.</p>
 					</div>
 					<Button variant="outline" size="sm" asChild>
 						<Link to="/videos">

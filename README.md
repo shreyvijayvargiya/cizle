@@ -74,6 +74,26 @@ your link ─┬─ homepage, llms.txt, blog posts, FAQ markup, pricing/docs pag
           1–3 storyboards in parallel  →  frames  →  voice-over  →  FFmpeg  →  MP4
 ```
 
+## Product memory, sync and the agent
+
+Add your product once and cizle remembers it, as markdown in `products/<slug>/` on your machine:
+
+```
+products/<slug>/
+├── product.md     positioning, features, pricing, tone (edit it, every video reads it)
+├── changes.md     what shipped since each sync, newest first
+├── ideas.md       suggested videos: suggested → created / dismissed
+└── sources.json   sync state (last commit per repo, page hashes)
+```
+
+- **Add a product:** sidebar → product menu → *Add product*. Give it a website and any number of GitHub repos. cizle reads them, writes `product.md`, and suggests three first videos.
+- **Switch products** from the sidebar dropdown. Videos, the composer, the gallery and the agent are scoped to the active product.
+- **Sync** (button in the sidebar, on start, and every 6 hours while the app runs) finds what shipped: new commits and releases from your repos, new and changed pages on your site. It uses plain `git` and public feeds, so **no GitHub API and no token for public repos**. For private repos put `GITHUB_TOKEN` in `.env`. With nothing new, no model is called.
+- **Ideas** appear on the dashboard and the Product page, each citing its source (`github:pr:41`, `site:/pricing`). Nothing renders until you press **Create**.
+- **Agent** (sidebar → Agent): chat about what to make next. It reads your notes, changes and past videos, and can only *propose* videos. It has no way to start a render, so a hostile web page or commit message can't spend your credit.
+- **Gallery** (sidebar → Gallery): 16 formats across types, landscape/portrait/square and motion styles. *Remix for my product* fills the composer with the format and your product.
+- **Free or paid:** the *Free model* switch next to every generate button runs the stage on a free OpenRouter model (listed live from OpenRouter, so it never goes stale). Free models are rate limited and a little less reliable, and there is no free voice-over, so free runs use music or silence.
+
 ## The prompt library
 
 All creative direction is plain markdown, so you can read it, edit it and send PRs for it.
@@ -131,7 +151,8 @@ curl -X POST localhost:3737/api/videos -H 'content-type: application/json' -d '{
   "aspect": "9:16",
   "audio": "voice",
   "duration_sec": 30,
-  "variations": 2
+  "variations": 2,
+  "model_tier": "free"
 }'
 # → { "id": "…", "status": "pending" }   then poll GET /api/videos/:id
 ```
@@ -144,6 +165,14 @@ curl -X POST localhost:3737/api/videos -H 'content-type: application/json' -d '{
 | `GET` | `/api/prompts` · `POST/PUT/DELETE /api/prompts/:id` | prompt library |
 | `GET/PUT` | `/api/settings` · `POST /api/settings/test` | keys and defaults |
 | `POST` | `/api/estimate` | cost before you run |
+| `GET` | `/api/products` · `/api/products/:slug` | products and their memory |
+| `POST` | `/api/products/onboard` · `GET /api/products/onboard/:id` | add a product (background run, poll for progress) |
+| `PUT/DELETE` | `/api/products/:slug` | edit notes, name, site, repos · delete |
+| `POST` | `/api/products/:slug/sync` | look for new commits, releases and pages |
+| `GET/PATCH` | `/api/products/:slug/ideas[/:id]` | video ideas · dismiss / restore |
+| `POST` | `/api/products/:slug/ideas/:id/create` | turn an idea into a video |
+| `POST` | `/api/products/:slug/agent` | chat with the agent |
+| `GET` | `/api/gallery` · `/api/models` | format presets · free and paid models |
 
 ## Configuration
 
@@ -152,6 +181,8 @@ Settings live in `data/settings.json` (git-ignored). Environment variables also 
 | Variable | |
 |---|---|
 | `OPENROUTER_API_KEY` | required (or paste it in Settings) |
+| `GITHUB_TOKEN` | optional: only for **private** repos (public repos are read with plain git, no token) |
+| `CIZLE_PRODUCTS_DIR` | optional: where product memory lives (default `./products`) |
 | `UPLOADTHING_TOKEN` | optional: also upload finished videos to [UploadThing](https://uploadthing.com) |
 | `CHROME_PATH` | optional: use your own Chrome instead of the downloaded one |
 | `CIZLE_DATA_DIR` | optional: where videos and settings are stored (default `./data`) |
@@ -163,7 +194,7 @@ To run it as a single server: `npm run build && npm start`, then open http://loc
 
 ## Use it from Claude Code
 
-`SKILL.md` lets coding agents drive cizle. Ask "make a FAQ video for this project with cizle" while the dev server is running.
+`SKILL.md` lets coding agents drive cizle. Ask "make a FAQ video for this project with cizle" or "what should I make a video about this week?" while the dev server is running.
 
 ## Credits
 
