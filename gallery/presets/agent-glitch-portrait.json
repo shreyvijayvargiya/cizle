@@ -1,0 +1,15 @@
+{
+  "id": "agent-glitch-portrait",
+  "title": "AI agent teaser, glitch cuts",
+  "description": "Fast cuts for an AI product, with a clear outcome.",
+  "type": "launch",
+  "tone": "cinematic",
+  "aspect": "9:16",
+  "animation": "glitch-cut",
+  "categories": [
+    "ai-agents",
+    "devtools",
+    "security"
+  ],
+  "prompt": "Fast glitch cuts between the problem, the agent at work and the outcome. Say what it does in the first two seconds."
+}

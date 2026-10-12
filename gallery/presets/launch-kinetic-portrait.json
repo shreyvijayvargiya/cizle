@@ -1,0 +1,15 @@
+{
+  "id": "launch-kinetic-portrait",
+  "title": "Launch teaser, kinetic type",
+  "description": "Big words land on the beat. A 15-second announcement for Reels and Shorts.",
+  "type": "launch",
+  "tone": "cinematic",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "devtools",
+    "ai-agents",
+    "marketing-seo"
+  ],
+  "prompt": "Kinetic typography: one huge line per scene, each word landing on the beat. Fifteen seconds, one claim, one call to action."
+}

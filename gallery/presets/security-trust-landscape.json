@@ -1,0 +1,14 @@
+{
+  "id": "security-trust-landscape",
+  "title": "Trust and compliance overview",
+  "description": "Calm explainer of what is protected and how.",
+  "type": "showcase",
+  "tone": "polished",
+  "aspect": "16:9",
+  "animation": "ui-zoom",
+  "categories": [
+    "security",
+    "fintech"
+  ],
+  "prompt": "Explain what is protected, how, and what the buyer can verify. Use only claims on the security or trust pages."
+}

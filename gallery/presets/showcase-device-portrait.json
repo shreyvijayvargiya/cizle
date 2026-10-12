@@ -1,0 +1,15 @@
+{
+  "id": "showcase-device-portrait",
+  "title": "App-store style showcase",
+  "description": "Bold captions over device frames, like an app listing.",
+  "type": "showcase",
+  "tone": "app-store",
+  "aspect": "9:16",
+  "animation": "device-mockup",
+  "categories": [
+    "crm",
+    "fintech",
+    "project-management"
+  ],
+  "prompt": "App-store style: a short bold caption on top, the real screen in a device frame below, one benefit per scene."
+}

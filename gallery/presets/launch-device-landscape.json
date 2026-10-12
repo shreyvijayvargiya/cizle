@@ -1,0 +1,15 @@
+{
+  "id": "launch-device-landscape",
+  "title": "Launch video in a device frame",
+  "description": "The product inside a laptop frame, with a clear call to action.",
+  "type": "launch",
+  "tone": "app-store",
+  "aspect": "16:9",
+  "animation": "device-mockup",
+  "categories": [
+    "analytics",
+    "project-management",
+    "ai-agents"
+  ],
+  "prompt": "Place the real screens inside a laptop and phone frame. Open with the outcome, close with the call to action."
+}

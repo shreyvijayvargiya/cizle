@@ -1,0 +1,15 @@
+{
+  "id": "glossary-kinetic-square",
+  "title": "Terms explained, kinetic type",
+  "description": "Teaches three terms from your space in 30 seconds.",
+  "type": "glossary",
+  "tone": "playful",
+  "aspect": "1:1",
+  "animation": "kinetic-type",
+  "categories": [
+    "security",
+    "devtools",
+    "fintech"
+  ],
+  "prompt": "Teach three terms from this product's space. Each scene: the term in big type, a one-line plain definition, one example from the product."
+}

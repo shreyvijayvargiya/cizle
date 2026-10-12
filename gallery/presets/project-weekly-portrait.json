@@ -1,0 +1,15 @@
+{
+  "id": "project-weekly-portrait",
+  "title": "What's new this week",
+  "description": "A 20-second changelog video for your latest release.",
+  "type": "launch",
+  "tone": "playful",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "project-management",
+    "crm",
+    "devtools"
+  ],
+  "prompt": "A changelog in cards: one new thing per card, newest first, ending with how to try it."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "features-cursor-portrait",
+  "title": "Feature walkthrough, cursor path",
+  "description": "A cursor moves through one feature step by step.",
+  "type": "features",
+  "tone": "polished",
+  "aspect": "9:16",
+  "animation": "cursor-walkthrough",
+  "categories": [
+    "crm",
+    "project-management",
+    "analytics"
+  ],
+  "prompt": "Follow an animated cursor through one feature: each scene is one click or drag. Name the result on screen before the action."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "comparison-split-square",
+  "title": "Side by side comparison",
+  "description": "Two columns, one row per question. Honest and quick.",
+  "type": "comparison",
+  "tone": "deadpan",
+  "aspect": "1:1",
+  "animation": "split-compare",
+  "categories": [
+    "crm",
+    "marketing-seo",
+    "analytics"
+  ],
+  "prompt": "Split screen, us on the left and the alternative on the right. One row per criterion, only facts stated on both sites."
+}

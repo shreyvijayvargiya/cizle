@@ -1,0 +1,15 @@
+{
+  "id": "faq-cards-portrait",
+  "title": "Buyer questions, card stack",
+  "description": "The questions buyers ask, answered one card at a time.",
+  "type": "faq",
+  "tone": "playful",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "fintech",
+    "security",
+    "crm"
+  ],
+  "prompt": "Each scene is a card with one real buyer question and a two-line answer taken from the FAQ or docs."
+}
