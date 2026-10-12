@@ -12,6 +12,10 @@ Runs on your machine. No database, no accounts. Powered by [OpenRouter](https://
 
 **[▶ Watch the 50-second demo with sound](docs/demo.mp4)**
 
+**[▶ Watch the 5-minute walkthrough of every feature](docs/overview.mp4)** · [captions (.srt)](docs/overview.srt)
+
+<a href="docs/overview.mp4"><img src="docs/overview-poster.jpg" alt="cizle walkthrough: product memory, sync, agent, gallery, free models and Stop" width="560" /></a>
+
 </div>
 
 ---
