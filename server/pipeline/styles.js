@@ -316,8 +316,14 @@ export function styledFrame({ style, size, theme, visual, scene, image, code }) 
 			break;
 		}
 		case "code": {
-			const lines = (code?.lines || []).slice(0, 14).map((l, n) => `${String((code?.startLine || 1) + n).padStart(3, " ")}  ${esc(String(l).slice(0, 50))}`).join("\n");
-			body = (visual.caption ? el("lbl", esc(visual.caption), 0) : "") + el("code card", lines || esc(visual.file || ""), 1);
+			const raw = (code?.lines || []).slice(0, 14).map((l) => String(l).slice(0, 50));
+			// Short snippets get bigger type: fit the longest line (plus its line number) into the card.
+			const longest = Math.max(12, ...raw.map((l) => l.length + 5));
+			// Usable width: the stage minus its side padding, 94% of that, minus the card padding and border.
+			const usable = (size.width - 160 * k) * 0.94 - 96 * k;
+			const px = Math.round(Math.max(26 * k, Math.min(62 * k, usable / (longest * 0.64))));
+			const lines = raw.map((l, n) => `${String((code?.startLine || 1) + n).padStart(3, " ")}  ${esc(l)}`).join("\n");
+			body = (visual.caption ? el("lbl", esc(visual.caption), 0) : "") + el("code card", lines || esc(visual.file || ""), 1, `font-size:${px}px`);
 			break;
 		}
 		case "screenshot":

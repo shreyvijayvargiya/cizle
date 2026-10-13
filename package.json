@@ -13,6 +13,7 @@
 		"typecheck": "tsc --noEmit -p web",
 		"mcp": "node server/mcp/stdio.js",
 		"mcp:install": "node server/mcp/install.js",
+		"mcp:doctor": "node server/mcp/doctor.js",
 		"render": "node server/cli/render.js",
 		"guide": "node server/cli/guide.js"
 	},

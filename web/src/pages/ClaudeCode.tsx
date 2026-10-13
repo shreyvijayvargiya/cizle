@@ -137,6 +137,27 @@ export function ClaudeCodePage() {
 				)}
 			</Section>
 
+			<Section title="Not working?" hint="If Claude says it has no cizle tools, or offers to clone the repo instead.">
+				<div className="grid gap-3 lg:grid-cols-2">
+					<CopyBox label="Run in the cizle folder: checks everything and prints what to fix" text="npm run mcp:doctor" />
+					<CopyBox label="Then, in your terminal, in your project" text="claude mcp list   # cizle should be connected" />
+				</div>
+				<ul className="mt-3 grid gap-x-8 gap-y-2 text-[13px] text-muted-foreground sm:grid-cols-2">
+					<li>
+						<span className="font-medium text-foreground">Use the terminal app.</span> Claude Code on the web cannot see a server on your computer. Run <span className="font-mono">claude</span> locally and type <span className="font-mono">/mcp</span>.
+					</li>
+					<li>
+						<span className="font-medium text-foreground">Restart the session</span> after adding the server. Sessions already open do not pick it up.
+					</li>
+					<li>
+						<span className="font-medium text-foreground">No <span className="font-mono">claude</span> command?</span> <span className="font-mono">curl -fsSL https://claude.ai/install.sh | bash</span>, then open a new terminal.
+					</li>
+					<li>
+						<span className="font-medium text-foreground">Pending approval?</span> Approve the project's <span className="font-mono">.mcp.json</span> in Claude Code, or add cizle at user scope.
+					</li>
+				</ul>
+			</Section>
+
 			<Section title="Good to know">
 				<ul className="grid gap-x-8 gap-y-2 text-[13px] text-muted-foreground sm:grid-cols-2">
 					<li>

@@ -366,6 +366,7 @@ Then, in Claude Code, in any project (for example your SaaS repo):
 
 What happens: Claude reads cizle's guide and the **Code walkthrough** (or **Sketch Explainer**) prompt, fetches the post and reads your code, calls `save_product` once so cizle remembers the product, writes about eight scenes, and calls `create_video`. A minute or two later the video is in the dashboard (**Videos**, badge "Claude Code"), at `data/videos/<id>/variants/v1/video.mp4`, with the storyboard saved next to it.
 
+- **Check it.** `npm run mcp:doctor` tests the whole chain and prints what to fix.
 - **Slash commands.** Every video type is a prompt: `/mcp__cizle__make-code-walkthrough <url>`, `/mcp__cizle__make-pitch-teaser`, `/mcp__cizle__make-whats-new` and so on (type `/mcp__cizle` to see all 21), plus `/mcp__cizle__make-video <what you want>`.
 - **Tools** Claude can call: `guide`, `list_prompts`, `read_prompt`, `list_products`, `read_product`, `save_product`, `create_video`, `get_video`, `list_videos`, `reskin_video`, `cancel_video`.
 - **Re-skin for free.** The storyboard is stored, so **Re-skin** on the video page (or `reskin_video`) renders the same video again in clay, glass, isometric, hand-drawn or ASCII, or in another aspect ratio. No model is involved.
@@ -373,6 +374,14 @@ What happens: Claude reads cizle's guide and the **Code walkthrough** (or **Sket
 - **Your model.** Claude Code uses whichever model you picked (choose Opus for the best storyboards). A 40-second storyboard is a few thousand output tokens.
 - **Where it renders.** In the MCP process on your machine, so Chrome and FFmpeg are needed, as for the dashboard. A video takes one to three minutes. The dashboard reads the same `data/` folder; to see videos while Claude works, run `npm run dev` (set `CIZLE_DASHBOARD_URL=http://localhost:5173` so links point at the dev server).
 - **Add it by hand:** `claude mcp add --scope user cizle -- node /absolute/path/to/cizle/server/mcp/stdio.js`. Opening this repository in Claude Code also offers the project-scoped `.mcp.json`.
+
+**If Claude says the cizle tools are not available** (it will say there is no cizle connector, or offer to clone the repo), run `npm run mcp:doctor` in the cizle folder. It checks Node, the packages, Chrome and FFmpeg, starts the server the way Claude Code does, lists the tools, and tells you whether `claude` has cizle registered. The usual causes:
+
+- **You are not in the terminal app.** Claude Code on the web and other cloud sessions cannot see a server on your computer. Run `claude` in a terminal on your machine, in your project, and type `/mcp` to see `cizle` and its tools.
+- **The session started before you added the server.** Quit it and start `claude` again.
+- **`claude: command not found`.** Install Claude Code (`curl -fsSL https://claude.ai/install.sh | bash`), open a new terminal, and check `claude --version`.
+- **Not registered or not connecting.** `claude mcp list` should show `cizle` as connected. Re-add it with the command the doctor prints (it uses the exact `node` that passed the checks). If you pass `-e KEY=value`, put the server name first: `claude mcp add --scope user cizle -e KEY=value -- node /path/to/stdio.js`.
+- **`Pending approval`** next to a project-scoped `cizle` means Claude Code is waiting for you to approve the repo's `.mcp.json`: run `claude` in that folder and approve it, or use the user-scoped command.
 
 Not using Claude Code? The renderer is also a command, `npm run render -- storyboard.json --style clay`, and an endpoint, `POST /api/videos/from-storyboard`. `npm run guide` prints the storyboard format. Any agent that can write JSON can use them.
 
