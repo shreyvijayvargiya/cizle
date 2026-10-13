@@ -23,7 +23,7 @@ Runs on your machine. No database, no accounts. Powered by [OpenRouter](https://
 ## Contents
 
 - [Why](#why) · [Quick start](#quick-start) · [What you can do](#what-you-can-do)
-- [Product memory](#product-memory) · [Sync](#sync-what-shipped) · [Review before create](#review-before-create) · [Gallery](#gallery-and-remix)
+- [Product memory](#product-memory) · [Sync](#sync-what-shipped) · [Review before create](#review-before-create) · [Animated styles](#animated-styles) · [Gallery](#gallery-and-remix)
 - [Free or paid models](#free-or-paid-models) · [Stop anything](#stop-anything)
 - [Video types and formats](#video-types-and-formats) · [The prompt library](#the-prompt-library)
 - [How it works](#how-it-works) · [Cost](#cost) · [Use it from Claude Code](#use-it-from-claude-code)
@@ -68,7 +68,8 @@ To run it as a single server: `npm run build && npm start`, then open http://loc
 | **Describe your own video** | Composer with type, tone, aspect ratio, audio, length and 1–3 variations. Type `/` to load a saved prompt. |
 | **Review before create** | Press the arrow and an AI step checks for duplicates, asks the few questions that matter (audience, format, free or paid) and writes the final prompt. You approve, then it runs. |
 | **Blog to sketch video** | Paste an article link; the Sketch Explainer type renders a hand-drawn explainer video and returns a prompt pack for video models: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
-| **Remix from the gallery** | 16 formats across 8 SaaS categories, landscape, portrait and square, with different motion styles. |
+| **Animated styles** | Hand-drawn, clay, glass, isometric and ASCII looks with real entrance animations, set by the tone or picked in the composer. |
+| **Remix from the gallery** | 16 formats across 8 SaaS categories, landscape, portrait and square, each in an animated style. |
 | **Use free models** | A switch next to every generate button. Free OpenRouter models, $0, rate limited. |
 | **Stop anything** | Every button that starts work turns into **Stop** while it runs. |
 | **Edit everything** | Notes, prompts, ideas and settings are plain files you can open in any editor. |
@@ -126,11 +127,36 @@ Each review round and approval is appended to `data/chats/<id>.jsonl` (not shown
 
 [`prompts/types/sketch-explainer.md`](prompts/types/sketch-explainer.md) has `engine: article`. Pick it, or paste an article link and let the review suggest it. The job reads the page, writes a storyboard, and renders it with the normal pipeline: paper background, hand-drawn boxes and arrows, narration, captions and music, as an MP4 on the usual video page. The **Prompt pack** tab holds the rest: hook, narration, storyboard, one video-generation prompt per scene (to feed a generative video model), transitions, subtitles, sound design, assembly steps and source facts. Every fact comes with a quote from the article; quotes that are not in the source are flagged. Copy the pack or download it as `.md`. If the video fails to render you still get the pack. Add your own article types the same way: a markdown file with `engine: article`.
 
+## Animated styles
+
+Every video is drawn in one of six looks, and everything in it moves: items pop, slide or type in one after another, and the backdrop keeps drifting.
+
+| Style | Look | Motion | Default for |
+|---|---|---|---|
+| **Clean** | Real UI, soft gradients | Camera pushes and pans | the Polished tone |
+| **Hand-drawn** | Paper, wobbly ink, hand lettering | Boxes pop in, arrows and underlines are drawn | the Sketch Explainer type |
+| **Clay** | Soft pastel blobs, puffy cards | Squash-and-stretch pops, drifting blobs | the Playful tone |
+| **Glass** | Frosted cards over colour orbs | Blur-to-focus fades, drifting glow | the Cinematic tone |
+| **Isometric** | Extruded slabs, floating cubes, grid floor | Cards slide in along the 30-degree axis, cubes bob | the App Store tone |
+| **ASCII** | Phosphor terminal, double-line boxes, falling characters | Lines typed character by character, blinking cursor | the Deadpan tone |
+
+Pick one with the **Style** button in the composer (or in the review card). **From tone** (the default) uses the style written in the tone file, so changing the tone changes the look. Styles apply to every scene type, including screenshots (shown inside a styled device frame). The browser captures the CSS animations frame by frame, so rendering a styled video adds roughly 30 to 90 seconds. If a scene fails to capture it falls back to a still with a camera move.
+
+A tone or type sets its default style in its front matter:
+
+```markdown
+---
+name: Playful
+kind: tone
+style: clay
+---
+```
+
 ## Gallery and remix
 
-Sidebar → **Gallery**. Sixteen formats across the types, aspect ratios (landscape, portrait, square) and motion styles (kinetic type, UI zoom, cursor walkthrough, split compare, device mockup, count-up, card stack, glitch cut), filterable by category. **Remix for my product** opens the composer with that format's type, tone, aspect ratio and direction, and your product's website and repos filled in. Your own finished videos for the active product appear below.
+Sidebar → **Gallery**. Sixteen formats across the types, aspect ratios (landscape, portrait, square) and the six animated styles, filterable by category and style. When you add a product, cizle also suggests the prompts that fit its category (on the onboarding screen, the product page and the dashboard), one for each style. **Remix for my product** opens the composer with that format's type, tone, aspect ratio and direction, and your product's website and repos filled in. Your own finished videos for the active product appear below.
 
-The previews are small animated samples of each motion style. Presets are plain JSON in [`gallery/presets/`](gallery/presets), so adding one is a pull request.
+The preview on each card is a small looping sample of its style (and the same previews appear on the Prompts page cards). Presets are plain JSON in [`gallery/presets/`](gallery/presets), so adding one is a pull request.
 
 ![Gallery](docs/gallery.png)
 
@@ -196,11 +222,11 @@ prompts/
 ├── review.md          the review step's persona and rules
 ├── types/             one file per video type: structure, pacing, rules
 │   └── showcase.md  features.md  faq.md  comparison.md  glossary.md  launch.md
-├── tones/             polished, playful, cinematic, app-store, deadpan
+├── tones/             polished, playful, cinematic, app-store, deadpan (each can set a default `style:`)
 └── custom/            prompts you create in the dashboard (Prompts → New prompt)
 ```
 
-- **Add a video type:** drop a new `prompts/types/<name>.md` file. It shows up in the dropdown straight away.
+- **Add a video type:** drop a new `prompts/types/<name>.md` file. It shows up in the dropdown straight away. Each built-in type has an "In each style" section describing how it should look in clay, glass, isometric, hand-drawn and ASCII.
 - **Use a prompt:** type `/` in the composer, or click **Load prompt**.
 
 A prompt file looks like this:
@@ -340,12 +366,13 @@ cizle/
 │   ├── settings.js models.js library.js scrape.js browser.js
 │   ├── products/            store, onboard, sync, llm helpers
 │   ├── review/              the review step in front of create, and its chat log
-│   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js
+│   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js,
+│                            styles.js (the five animated styles), pack.js (article → pack)
 ├── web/src/
 │   ├── pages/               Dashboard, Create, Videos, VideoDetail, Gallery, Product,
 │   │                        Onboarding, Prompts, PromptEditor, Settings
 │   └── components/          AppShell, Composer, IdeaCard, ProductSwitcher, SyncBadge, ModelToggle,
-│                            RouteError, ui/ (shadcn-style: Button, Select, Menu, Dialog, Tabs, Switch…)
+│                            PromptPreview, SuggestedPrompts, ReviewCard, RouteError, ui/ (shadcn-style: Button, Select, Menu, Dialog, Tabs, Switch…)
 ├── data/                    videos and settings (git-ignored)
 └── docs/                    screenshots and the demo video
 ```

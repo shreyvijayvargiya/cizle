@@ -98,7 +98,7 @@ export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 	if (!url) checks.push({ level: "warn", text: "No link found. Paste a SaaS URL, a GitHub repo or an article link, or pick a product." });
 
 	const facts = {
-		draft: { text: str(draft.prompt, 2000), url, type: draft.type || "auto", tone: draft.tone || "auto", aspect: draft.aspect, audio: draft.audio, duration_sec: draft.duration_sec, variations: draft.variations, model_tier: draft.model_tier || tier, loaded_prompt: loaded ? { id: loaded.id, name: loaded.name } : null, product: draft.product || null },
+		draft: { text: str(draft.prompt, 2000), url, type: draft.type || "auto", tone: draft.tone || "auto", style: draft.style || "auto", aspect: draft.aspect, audio: draft.audio, duration_sec: draft.duration_sec, variations: draft.variations, model_tier: draft.model_tier || tier, loaded_prompt: loaded ? { id: loaded.id, name: loaded.name } : null, product: draft.product || null },
 		existing_videos_for_this_link: existing,
 		page: page ? { title: page.title, is_article: ARTICLE_RE.test(url) } : null,
 		library_types: types.map((t) => ({ id: t.slug, name: t.name, about: t.description, engine: t.engine })),

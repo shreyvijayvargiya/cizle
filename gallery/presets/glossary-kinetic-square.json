@@ -1,9 +1,10 @@
 {
   "id": "glossary-kinetic-square",
-  "title": "Terms explained, kinetic type",
-  "description": "Teaches three terms from your space in 30 seconds.",
+  "title": "Clay glossary: terms that bounce in",
+  "description": "Three terms, each a big rounded word with a friendly definition.",
   "type": "glossary",
   "tone": "playful",
+  "style": "clay",
   "aspect": "1:1",
   "animation": "kinetic-type",
   "categories": [
@@ -11,5 +12,5 @@
     "devtools",
     "fintech"
   ],
-  "prompt": "Teach three terms from this product's space. Each scene: the term in big type, a one-line plain definition, one example from the product."
+  "prompt": "Each term rolls in as large rounded lettering, then its definition rises underneath on a soft card, then a one-line example. Number them 1/3, 2/3, 3/3. Keep definitions under 16 words and the tone encouraging, never smug."
 }

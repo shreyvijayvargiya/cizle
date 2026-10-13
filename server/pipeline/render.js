@@ -16,6 +16,7 @@ import { normalizeOpenRouterUsage } from "./openRouterUsage.js";
 import { ttsSynthesizeToBuffer, pcm16ToWavBuffer } from "./openRouterTts.js";
 import { SCREENSHOT_ANALYST_SYSTEM, WORDS_PER_SECOND, buildScreenshotAnalystUserText } from "./analystPrompts.js";
 import { ASPECTS, buildFrameHtml, normalizeTheme } from "./frames.js";
+import { isStyled } from "./styles.js";
 import { readCodeSnippet } from "./source.js";
 import {
 	concatAudio,
@@ -27,6 +28,7 @@ import {
 	mixAudio,
 	muxFinal,
 	probeDurationSec,
+	renderAnimatedClip,
 	renderSceneClip,
 	silence,
 } from "./media.js";
@@ -226,7 +228,30 @@ export async function renderStoryboardVideo({ storyboard, frames, notes, repoDir
 	}
 	// Concurrent captures in one headless browser can hang a background tab, so frame
 	// rendering is serialized across parallel renders (it takes seconds; FFmpeg stays parallel).
+	// Styled videos (sketch, clay, glass, isometric, ascii) are captured as animation frames; if that fails for a
+	// scene it falls back to a still with a camera move.
+	const animated = isStyled(theme.style) && typeof deps.renderSequence === "function";
+	const fps = Number(process.env.CIZLE_ANIM_FPS) || 15;
 	const pngs = await withRenderLock(async () => {
+		if (animated) {
+			const stills = [];
+			for (let i = 0; i < storyboard.scenes.length; i++) {
+				const scene = storyboard.scenes[i];
+				const dir = path.join(framesDir, `${scene.id}-anim`);
+				await fsp.rm(dir, { recursive: true, force: true });
+				await fsp.mkdir(dir, { recursive: true });
+				try {
+					const seq = await deps.renderSequence(built[i].html, size, { fps, durationSec: scene.duration, dir });
+					scene.anim = { dir, fps: seq.fps, seconds: seq.seconds };
+					stills.push(seq.still);
+				} catch (e) {
+					if (e?.code === "CANCELLED") throw e;
+					log(`animated capture failed for ${scene.id} (${String(e.message).slice(0, 120)}); using a still`);
+					stills.push((await deps.renderHtml([built[i].html], size))[0]);
+				}
+			}
+			return stills;
+		}
 		try {
 			return await deps.renderHtml(built.map((b) => b.html), size);
 		} catch (e) {
@@ -249,6 +274,11 @@ export async function renderStoryboardVideo({ storyboard, frames, notes, repoDir
 	await fsp.mkdir(clipsDir, { recursive: true });
 	await mapLimit(storyboard.scenes, Math.max(1, Math.min(3, os.cpus().length - 1)), async (scene) => {
 		scene.clip_file = path.join(clipsDir, `${scene.id}.mp4`);
+		if (scene.anim) {
+			await renderAnimatedClip({ dir: scene.anim.dir, fps: scene.anim.fps, output: scene.clip_file, durationSec: scene.duration, captureSec: scene.anim.seconds, width: size.width, height: size.height });
+			await fsp.rm(scene.anim.dir, { recursive: true, force: true }).catch(() => {});
+			return;
+		}
 		await renderSceneClip({
 			input: scene.frame_file,
 			output: scene.clip_file,

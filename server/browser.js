@@ -137,6 +137,33 @@ export async function renderHtml(htmlList, { width, height }) {
 	});
 }
 
+/**
+ * Animated frame capture for the styled renderer. The page's CSS animations are paused and seeked frame by
+ * frame (no wall-clock timing), so the capture is exact. Writes dir/0000.jpg…; returns a PNG still taken
+ * once the entrance animation has settled.
+ */
+export async function renderSequence(html, { width, height }, { fps = 15, durationSec, dir, maxSec = 8 }) {
+	throwIfCancelled();
+	return withPage(async (page) => {
+		await page.setViewport({ width, height, deviceScaleFactor: 1 });
+		await page.setContent(html, { waitUntil: "networkidle0", timeout: 20_000 }).catch(() => page.setContent(html, { waitUntil: "load", timeout: 20_000 }));
+		await page.evaluate(() => Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 3000))])).catch(() => {});
+		await page.bringToFront().catch(() => {});
+		const seconds = Math.min(Number(durationSec) || 3, maxSec);
+		const frames = Math.max(2, Math.round(seconds * fps));
+		const seek = (ms) => page.evaluate((t) => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t; }), ms);
+		const clip = { x: 0, y: 0, width, height };
+		for (let i = 0; i < frames; i++) {
+			throwIfCancelled();
+			await seek((i * 1000) / fps);
+			await page.screenshot({ type: "jpeg", quality: 88, clip, path: `${dir}/${String(i).padStart(4, "0")}.jpg` });
+		}
+		await seek(Math.min(1800, seconds * 700));
+		const still = Buffer.from(await page.screenshot({ type: "png", clip }));
+		return { frames, fps, seconds, still };
+	});
+}
+
 /** Rendered page HTML — used by the scraper for JavaScript-heavy sites. */
 export async function renderedHtml(url) {
 	throwIfCancelled();

@@ -34,3 +34,15 @@ export const AUDIO = [
 ] as const;
 
 export const VOICES = ["nova", "alloy", "echo", "fable", "onyx", "shimmer"];
+
+export const STYLES = [
+	{ value: "auto", label: "From tone", hint: "The tone or type picks the look" },
+	{ value: "default", label: "Clean", hint: "Real UI, soft gradients" },
+	{ value: "sketch", label: "Hand-drawn", hint: "Whiteboard ink on paper" },
+	{ value: "clay", label: "Clay", hint: "Soft, squishy, playful" },
+	{ value: "glass", label: "Glass", hint: "Frosted cards over a glow" },
+	{ value: "isometric", label: "Isometric", hint: "Extruded blocks and cubes" },
+	{ value: "ascii", label: "ASCII", hint: "Animated terminal" },
+] as const;
+
+export const STYLE_LABEL: Record<string, string> = Object.fromEntries(STYLES.map((s) => [s.value, s.label]));

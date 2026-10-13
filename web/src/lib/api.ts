@@ -4,6 +4,7 @@ export type Audio = "voice" | "music" | "silent";
 export type Aspect = "9:16" | "1:1" | "16:9";
 export type Status = "pending" | "running" | "success" | "partial" | "failed" | "cancelled";
 export type Tier = "free" | "paid";
+export type StyleId = "default" | "sketch" | "clay" | "glass" | "isometric" | "ascii";
 
 export type Prompt = {
 	id: string;
@@ -17,6 +18,7 @@ export type Prompt = {
 	needs: string[];
 	engine: "render" | "article";
 	content_types: string[];
+	style: StyleId | null;
 	built_in: boolean;
 	body: string;
 	updated_at: string | null;
@@ -210,7 +212,7 @@ export type Review = {
 	review_cost_usd: number;
 };
 
-export type Preset = { id: string; title: string; description: string; type: string; tone: string; aspect: Aspect; animation: string; categories: string[]; prompt: string };
+export type Preset = { id: string; title: string; description: string; type: string; tone: string; style: StyleId; aspect: Aspect; animation: string; categories: string[]; prompt: string };
 
 export type ModelsInfo = { fetched: boolean; paid: { script_model: string; vision_model: string }; free: { script_model: string; vision_model: string }; free_count: number; notes: string[] };
 
@@ -224,6 +226,8 @@ export type CreateVideo = {
 	prompt_id?: string | null;
 	type: string;
 	tone: string;
+	/** "auto" = the tone's or type's own style. */
+	style?: StyleId | "auto";
 	aspect: Aspect;
 	audio: Audio;
 	duration_sec: number;

@@ -14,6 +14,7 @@ import {
 	Package01Icon,
 	MusicNote01Icon,
 	PaintBoardIcon,
+	PaintBrush01Icon,
 	QuillWrite01Icon,
 	SlidersHorizontalIcon,
 	StopIcon,
@@ -26,8 +27,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { isAborted, useAbort } from "@/lib/abort";
 import { Tip } from "@/components/ui/misc";
-import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt, type Review } from "@/lib/api";
-import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
+import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt, type Review, type StyleId } from "@/lib/api";
+import { ASPECTS, AUDIO, STYLES, STYLE_LABEL, VOICES } from "@/lib/constants";
 import { cn, hostOf } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
@@ -76,6 +77,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	const [text, setText] = useState("");
 	const [type, setType] = useState("auto");
 	const [tone, setTone] = useState("auto");
+	const [style, setStyle] = useState<StyleId | "auto">("auto");
 	const [aspect, setAspect] = useState<Aspect>("9:16");
 	const [audio, setAudio] = useState<Audio>("voice");
 	const [duration, setDuration] = useState(30);
@@ -120,6 +122,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 		presetApplied.current = preset.id;
 		setType(preset.type);
 		setTone(preset.tone);
+		setStyle(preset.style || "auto");
 		setAspect(preset.aspect);
 		setText((t) => t || preset.prompt);
 		setTimeout(() => taRef.current?.focus(), 0);
@@ -161,6 +164,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 		prompt_id: loaded?.id || null,
 		type,
 		tone,
+		style,
 		aspect,
 		audio,
 		duration_sec: duration,
@@ -234,6 +238,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 			...body,
 			type: choice.type,
 			tone: choice.tone,
+			style: (answers.style as StyleId | "auto" | undefined) ?? style,
 			aspect: choice.aspect,
 			audio: choice.audio,
 			duration_sec: choice.duration_sec,
@@ -254,14 +259,14 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	return (
 		<div className="w-full">
 			{review ? (
-				<ReviewCard review={review} answers={answers} setAnswer={setAnswer} library={prompts.data || []} loadedPromptId={loaded?.id || null} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
+				<ReviewCard review={review} answers={answers} setAnswer={setAnswer} library={prompts.data || []} loadedPromptId={loaded?.id || null} style={style} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
 			) : null}
 			<div
 				className={cn(
 					"rounded-2xl border border-border bg-surface shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] transition-shadow focus-within:border-ring/60 focus-within:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_32px_-12px_rgba(0,0,0,0.18)]",
 				)}
 			>
-				{links.site || links.github || usingProduct || loaded || type !== "auto" || tone !== "auto" ? (
+				{links.site || links.github || usingProduct || loaded || type !== "auto" || tone !== "auto" || style !== "auto" ? (
 					<div className="flex flex-wrap gap-1.5 px-4 pt-3.5">
 						{usingProduct ? (
 							<span className="inline-flex items-center gap-1.5 rounded-md bg-muted px-2 py-1 text-xs font-medium">
@@ -296,6 +301,15 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 								<Icon icon={PaintBoardIcon} size={12} />
 								{toneName}
 								<button type="button" aria-label="Remove tone" onClick={() => setTone("auto")} className="-mr-0.5 rounded hover:bg-brand/15">
+									<Icon icon={Cancel01Icon} size={12} />
+								</button>
+							</span>
+						) : null}
+						{style !== "auto" ? (
+							<span className="inline-flex items-center gap-1.5 rounded-md border border-brand/30 bg-brand/10 px-2 py-1 text-xs font-medium text-brand">
+								<Icon icon={PaintBrush01Icon} size={12} />
+								{STYLE_LABEL[style]}
+								<button type="button" aria-label="Remove style" onClick={() => setStyle("auto")} className="-mr-0.5 rounded hover:bg-brand/15">
 									<Icon icon={Cancel01Icon} size={12} />
 								</button>
 							</span>
@@ -385,6 +399,21 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 										<span className="min-w-0">
 											<span className="block">{t.name}</span>
 											<span className="block truncate text-[11px] text-muted-foreground">{t.description}</span>
+										</span>
+									</MenuRadioItem>
+								))}
+							</MenuRadioGroup>
+						</MenuContent>
+					</Pill>
+					<Pill icon={PaintBrush01Icon} label={STYLE_LABEL[style]}>
+						<MenuContent className="w-60">
+							<MenuLabel>Animated style</MenuLabel>
+							<MenuRadioGroup value={style} onValueChange={(v) => setStyle(v as StyleId | "auto")}>
+								{STYLES.map((s) => (
+									<MenuRadioItem key={s.value} value={s.value}>
+										<span className="min-w-0">
+											<span className="block">{s.label}</span>
+											<span className="block truncate text-[11px] text-muted-foreground">{s.hint}</span>
 										</span>
 									</MenuRadioItem>
 								))}

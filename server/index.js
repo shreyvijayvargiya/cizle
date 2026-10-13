@@ -31,7 +31,7 @@ const { scrape } = await import("./scrape.js");
 
 loadSettings();
 warmModels();
-const deps = { scrape, captureSections: browser.captureSections, capture: browser.capture, renderHtml: browser.renderHtml };
+const deps = { scrape, captureSections: browser.captureSections, capture: browser.capture, renderHtml: browser.renderHtml, renderSequence: browser.renderSequence };
 const app = new Hono();
 const api = new Hono();
 

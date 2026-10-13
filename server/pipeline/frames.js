@@ -3,6 +3,8 @@
  * full-resolution HTML page that is rendered to PNG by Puppeteer, then animated by FFmpeg.
  */
 
+import { isStyled, normalizeStyle, styledFrame } from "./styles.js";
+
 export const ASPECTS = {
 	"16:9": { width: 1920, height: 1080 },
 	"9:16": { width: 1080, height: 1920 },
@@ -29,6 +31,7 @@ function safeColor(c, fallback) {
 export function normalizeTheme(theme = {}) {
 	const mode = theme.mode === "light" ? "light" : "dark";
 	return {
+		style: normalizeStyle(theme.style),
 		mode,
 		background: safeColor(theme.background, mode === "light" ? "#f7f7fb" : "#0b0d17"),
 		accent: safeColor(theme.accent, "#7c5cff"),
@@ -329,6 +332,7 @@ ${heading}
 export function buildFrameHtml({ scene, size, theme, image, code }) {
 	const visual = scene.visual || {};
 	const center = { x: 0.5, y: 0.5 };
+	if (isStyled(theme.style)) return { html: styledFrame({ style: theme.style, size, theme, visual, scene, image, code }), focus: center };
 	switch (visual.type) {
 		case "screenshot":
 		case "image":

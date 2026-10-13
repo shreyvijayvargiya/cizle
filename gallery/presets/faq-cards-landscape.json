@@ -1,9 +1,10 @@
 {
   "id": "faq-cards-landscape",
-  "title": "Buyer questions for the pricing page",
-  "description": "Four to five answers, landscape, calm pace.",
+  "title": "Frosted FAQ cards",
+  "description": "The three questions buyers ask first, answered on glass cards over a slow glow.",
   "type": "faq",
   "tone": "polished",
+  "style": "glass",
   "aspect": "16:9",
   "animation": "card-stack",
   "categories": [
@@ -11,5 +12,5 @@
     "security",
     "devtools"
   ],
-  "prompt": "Answer the five questions buyers ask before they pay. Use the pricing page wording where it exists."
+  "prompt": "Three questions in order: pricing or free plan, how it works, security or data. Each is a frosted question card followed 0.4 s later by an answer card that carries the accent gradient. Answers start with yes, no or the number. Keep one short line per card and let the background orbs drift."
 }

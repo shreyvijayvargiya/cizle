@@ -4,10 +4,11 @@ import { AiMagicIcon, AlertCircleIcon, ArrowLeft01Icon, ArrowRight01Icon, Cancel
 import { Icon } from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import type { Prompt, Review, ReviewQuestion } from "@/lib/api";
+import { STYLES, STYLE_LABEL } from "@/lib/constants";
 import { cn, usd } from "@/lib/utils";
 
 /** Answers keyed by question field. Radio questions hold one string, checkbox questions an array. `prompt_id` is a custom library prompt. */
-export type ReviewAnswers = Partial<Record<ReviewQuestion["field"] | "type" | "tone", string | string[]>> & { prompt_id?: string };
+export type ReviewAnswers = Partial<Record<ReviewQuestion["field"] | "type" | "tone" | "style", string | string[]>> & { prompt_id?: string };
 export type AnswerKey = keyof ReviewAnswers;
 
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
@@ -65,6 +66,7 @@ export function ReviewCard({
 	setAnswer,
 	library,
 	loadedPromptId,
+	style,
 	prompt,
 	setPrompt,
 	onApprove,
@@ -76,6 +78,8 @@ export function ReviewCard({
 	setAnswer: (key: AnswerKey, v: string | string[]) => void;
 	library: Prompt[];
 	loadedPromptId: string | null;
+	/** The composer's style choice ("auto" = from the tone or type). */
+	style: string;
 	prompt: string;
 	setPrompt: (v: string) => void;
 	onApprove: () => void;
@@ -88,6 +92,7 @@ export function ReviewCard({
 	const customs = library.filter((p) => p.kind === "custom");
 	const choice = effectiveChoice(review, answers);
 	const promptId = answers.prompt_id !== undefined ? answers.prompt_id : loadedPromptId || "";
+	const styleValue = one(answers.style) ?? style;
 
 	// Step 0 is the prompt step (video flow only); questions follow; the last step is the summary.
 	const steps = useMemo(() => (saving ? ["summary"] : ["prompt", ...review.questions.map((q) => q.field), "summary"]), [saving, review.questions]);
@@ -143,6 +148,11 @@ export function ReviewCard({
 								<Choice key={t.slug} kind="radio" name="rv-tone" checked={choice.tone === t.slug} onChange={() => setAnswer("tone", t.slug)} label={t.name} hint={t.description} />
 							))}
 						</Section>
+						<Section title="Animated style">
+							{STYLES.map((s) => (
+								<Choice key={s.value} kind="radio" name="rv-style" checked={styleValue === s.value} onChange={() => setAnswer("style", s.value)} label={s.label} hint={s.hint} />
+							))}
+						</Section>
 						{customs.length ? (
 							<Section title="Your prompts">
 								<Choice kind="radio" name="rv-custom" checked={!promptId} onChange={() => setAnswer("prompt_id", "")} label="None" />
@@ -185,7 +195,7 @@ export function ReviewCard({
 								<dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
 									<dt className="text-muted-foreground">Prompt</dt>
 									<dd>
-										{typeName} · {toneName}
+										{typeName} · {toneName} · {STYLE_LABEL[styleValue] || styleValue}
 										{promptId ? ` · ${customs.find((c) => c.id === promptId)?.name || promptId}` : ""}
 									</dd>
 									<dt className="text-muted-foreground">Format</dt>

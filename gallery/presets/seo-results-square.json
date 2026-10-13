@@ -1,14 +1,15 @@
 {
   "id": "seo-results-square",
-  "title": "Marketing results walkthrough",
-  "description": "Rankings, traffic and the workflow behind them.",
+  "title": "SEO results, sketched",
+  "description": "Hand-drawn charts that grow, finishing on the headline result.",
   "type": "features",
   "tone": "playful",
+  "style": "sketch",
   "aspect": "1:1",
   "animation": "count-up",
   "categories": [
     "marketing-seo",
     "analytics"
   ],
-  "prompt": "Walk through the workflow from keyword to published page, with one real number per scene."
+  "prompt": "Draw an axis, then a line that climbs, with three short labels for what drove it. End on the headline number, circled. Only numbers the sources state. Casual, confident wording."
 }

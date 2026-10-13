@@ -1,9 +1,10 @@
 {
   "id": "features-countup-square",
-  "title": "Numbers that matter, count-up",
-  "description": "Stats count up on screen, each tied to a feature.",
+  "title": "Feature blocks that stack up",
+  "description": "Features as isometric blocks, finishing on a real number that counts up.",
   "type": "features",
   "tone": "polished",
+  "style": "isometric",
   "aspect": "1:1",
   "animation": "count-up",
   "categories": [
@@ -11,5 +12,5 @@
     "fintech",
     "marketing-seo"
   ],
-  "prompt": "Lead each scene with a number stated on the site or in the repo, counting up on screen, then the feature behind it."
+  "prompt": "Stack one block per feature, each sliding in along the diagonal and clicking into place, with the feature name on the top face and the benefit beneath. Finish with one real number from the product (users, integrations, speed) counting up. Same length for every block."
 }

@@ -135,6 +135,11 @@ VISUALS — exactly one per scene:
 - "outro": { "title": <= 5 words, "cta": <= 9 words, "url": display url without protocol }
 "on_screen_text": <= 6 words, required on screenshot/image scenes, "" otherwise.
 
+VISUAL STYLE (CONSTRAINTS.visual_style):
+- "default": the plain product look. Anything else (sketch, clay, glass, isometric, ascii) is a fully animated render style: every scene type is redrawn in that style with entrance animations and moving backdrops.
+- In a styled video, write for the style: short punchy lines (the layouts have large type), no emoji, no long sentences on screen. ascii: <= 5 words per line, plain letters, terminal voice. sketch: conversational, like explaining at a whiteboard.
+- Prefer title, bullets, stats, faq, glossary, comparison and quote scenes; use at most 2 screenshot scenes (they appear inside a styled device frame). Give each scene one idea so the entrance animation has room to land.
+
 ${laws ? `CREATIVE LAWS (apply to every scene):\n${laws}\n` : ""}
 Return ONLY JSON:
 {

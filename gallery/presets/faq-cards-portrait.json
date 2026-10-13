@@ -1,9 +1,10 @@
 {
   "id": "faq-cards-portrait",
-  "title": "Buyer questions, card stack",
-  "description": "The questions buyers ask, answered one card at a time.",
+  "title": "Playful FAQ bubbles",
+  "description": "Q and A as soft clay bubbles that pop in one after the other.",
   "type": "faq",
   "tone": "playful",
+  "style": "clay",
   "aspect": "9:16",
   "animation": "card-stack",
   "categories": [
@@ -11,5 +12,5 @@
     "security",
     "crm"
   ],
-  "prompt": "Each scene is a card with one real buyer question and a two-line answer taken from the FAQ or docs."
+  "prompt": "Four questions at most. Each question is a puffy bubble that pops in with a little squash; the answer bubble follows and bounces slightly. Warm, first-person-plural wording, answers under 15 words. End on the friendliest next step."
 }

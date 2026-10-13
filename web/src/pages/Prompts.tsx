@@ -7,8 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/misc";
+import { PromptThumb } from "@/components/PromptPreview";
 import { usePrompts, type Prompt } from "@/lib/api";
+import { STYLE_LABEL } from "@/lib/constants";
 import { cn, timeAgo } from "@/lib/utils";
+
+/** Motion sample for a built-in video type (used when the prompt has no render style of its own). */
+const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup" };
 
 const GROUPS: { kind: Prompt["kind"]; title: string; hint: string }[] = [
 	{ kind: "custom", title: "Your prompts", hint: "Saved in prompts/custom/*.md" },
@@ -71,6 +76,7 @@ export function PromptsPage() {
 									<div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
 										{items.map((p) => (
 											<Link key={p.id} to="/prompts/$id" params={{ id: p.id }} className="group flex flex-col rounded-xl border border-border bg-surface p-4 transition-colors hover:bg-accent/50">
+												{p.kind !== "custom" ? <PromptThumb style={p.style} motion={TYPE_MOTION[p.slug]} className="mb-3 h-24" /> : null}
 												<div className="flex items-start justify-between gap-2">
 													<p className="text-sm font-medium">{p.name}</p>
 													<Badge tone={p.built_in ? "outline" : "info"}>{p.built_in ? "Built-in" : "Custom"}</Badge>
@@ -79,6 +85,7 @@ export function PromptsPage() {
 												<div className="mt-auto flex items-center gap-2 pt-3 text-[11px] text-muted-foreground">
 													<span className="font-mono">{p.kind}/{p.slug}.md</span>
 													{p.type && p.kind === "custom" ? <span>· {p.type}</span> : null}
+													{p.style ? <Badge tone="info">{STYLE_LABEL[p.style]}</Badge> : null}
 													<span className="ml-auto">{timeAgo(p.updated_at)}</span>
 												</div>
 											</Link>

@@ -18,6 +18,7 @@ import {
 	Video01Icon,
 } from "@hugeicons/core-free-icons";
 import { Composer } from "@/components/Composer";
+import { SuggestedPrompts } from "@/components/SuggestedPrompts";
 import { IdeaCard } from "@/components/IdeaCard";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -136,6 +137,7 @@ export function DashboardPage() {
 						</Link>
 					</Button>
 				</div>
+				{product ? <SuggestedPrompts slug={slug} title={`Prompts for ${product.name}`} className="mx-auto mt-8 max-w-5xl" /> : null}
 				{types.length ? (
 					<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-1.5">
 						{types.map((t) => (

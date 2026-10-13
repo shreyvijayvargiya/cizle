@@ -43,6 +43,8 @@ function toEntry(kind, slug, raw, stat) {
 		// "render" = screenshots of a product; "article" = reads one article, writes a prompt pack and a sketch-style video.
 		engine: data.engine === "article" ? "article" : "render",
 		content_types: Array.isArray(data.content_types) ? data.content_types.map(String) : [],
+		// Render style this prompt defaults to: sketch, clay, glass, isometric or ascii.
+		style: ["sketch", "clay", "glass", "isometric", "ascii"].includes(data.style) ? data.style : null,
 		built_in: kind !== "custom",
 		body: content.trim(),
 		updated_at: stat?.mtime?.toISOString?.() || null,

@@ -9,6 +9,7 @@ import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
 import { IdeaCard } from "@/components/IdeaCard";
 import { ModelToggle } from "@/components/ModelToggle";
+import { SuggestedPrompts } from "@/components/SuggestedPrompts";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input, Label, Textarea } from "@/components/ui/input";
@@ -145,6 +146,7 @@ export function ProductPage() {
 				</TabsList>
 
 				<TabsContent value="ideas" className="mt-4 space-y-6">
+					<SuggestedPrompts slug={slug} />
 					{open.length ? (
 						<div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
 							{open.map((i) => (

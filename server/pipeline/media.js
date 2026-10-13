@@ -181,6 +181,30 @@ export async function renderSceneClip({ input, output, durationSec, width, heigh
 	);
 }
 
+/**
+ * A scene clip from captured animation frames (dir/0000.jpg…). Each captured frame is shown for two output frames
+ * (animating "on twos", crisp rather than blended); if the scene is longer than the capture, the last frame is held.
+ */
+export async function renderAnimatedClip({ dir, fps, output, durationSec, captureSec, width, height }) {
+	const hold = Math.max(0, durationSec - captureSec);
+	const fade = Math.min(0.12, durationSec / 10).toFixed(2); // short: the styled backdrops are bright, a long dip to black looks dingy
+	const fadeOutStart = Math.max(0, durationSec - Number(fade)).toFixed(2);
+	const vf = [
+		`scale=${width}:${height}`,
+		`fps=${FPS}`,
+		hold > 0.01 ? `tpad=stop_mode=clone:stop_duration=${hold.toFixed(3)}` : null,
+		`fade=t=in:st=0:d=${fade}`,
+		`fade=t=out:st=${fadeOutStart}:d=${fade}`,
+		"format=yuv420p",
+	]
+		.filter(Boolean)
+		.join(",");
+	await ffmpeg(
+		["-framerate", String(fps), "-i", `${dir}/%04d.jpg`, "-vf", vf, "-t", durationSec.toFixed(3), "-r", String(FPS), "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-an", output],
+		"ffmpeg animated clip",
+	);
+}
+
 export async function concatClips(clips, output, workDir) {
 	const listFile = path.join(workDir, "concat.txt");
 	await fsp.writeFile(listFile, clips.map((c) => `file '${c.replace(/'/g, "'\\''")}'`).join("\n"));

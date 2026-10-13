@@ -101,6 +101,16 @@ body {
 @keyframes cz-flick { 0%, 100% { opacity: 1; transform: none } 35% { opacity: 0.3; transform: translateX(4px) } 55% { opacity: 1; transform: translateX(-4px) } }
 @keyframes cz-bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
 @keyframes cz-wipe { 0%, 100% { transform: translateX(-20%) } 50% { transform: translateX(20%) } }
+/* style previews: hand-drawn, clay, glass, isometric, ascii */
+@keyframes cz-draw { 0% { stroke-dashoffset: 1 } 45%, 100% { stroke-dashoffset: 0 } }
+@keyframes cz-clay { 0% { transform: translateY(26px) scale(.7, .45); opacity: 0 } 30% { transform: translateY(-6px) scale(.95, 1.1); opacity: 1 } 45% { transform: scale(1.06, .94) } 60%, 88% { transform: none; opacity: 1 } 100% { transform: none; opacity: 0 } }
+@keyframes cz-orb { from { transform: translate(0, 0) scale(1) } to { transform: translate(26px, -22px) scale(1.25) } }
+@keyframes cz-glass { 0% { transform: translateY(14px); opacity: 0; filter: blur(6px) } 25%, 85% { transform: none; opacity: 1; filter: none } 100% { opacity: 0 } }
+@keyframes cz-iso { 0% { transform: translate(-22px, 22px); opacity: 0 } 25%, 85% { transform: none; opacity: 1 } 100% { opacity: 0 } }
+@keyframes cz-cube { from { margin-top: 0 } to { margin-top: -10px } }
+@keyframes cz-type { 0% { clip-path: inset(0 100% 0 0) } 40%, 90% { clip-path: inset(0 0 0 0) } 100% { clip-path: inset(0 100% 0 0) } }
+@keyframes cz-blink { 50% { opacity: 0 } }
+@keyframes cz-wob { from { transform: rotate(-3deg) } to { transform: rotate(3deg) translateY(-3px) } }
 @media (prefers-reduced-motion: reduce) {
-	.cz-anim, .cz-anim * { animation: none !important; opacity: 1 !important }
+	.cz-anim, .cz-anim * { animation: none !important; opacity: 1 !important; clip-path: none !important; stroke-dashoffset: 0 !important }
 }

@@ -26,6 +26,7 @@ import {
 } from "./render.js";
 import { ensureFfmpeg } from "./media.js";
 import { estimatePackCost, packToStoryboard, runPackJob } from "./pack.js";
+import { STYLE_IDS, normalizeStyle } from "./styles.js";
 import { gatherProductContext } from "./context.js";
 import {
 	BRIEF_ANALYST_SYSTEM,
@@ -95,6 +96,7 @@ export function parseVideoInput(body = {}) {
 			prompt_id: body.prompt_id ? String(body.prompt_id) : null,
 			type: String(body.type || "auto"),
 			tone: String(body.tone || "auto"),
+			style: body.style === "auto" || STYLE_IDS.includes(body.style) ? body.style : "auto",
 			variations: Math.round(clamp(body.variations, 1, 3, 1)),
 			target_duration_sec: Math.round(clamp(body.duration_sec, 10, MAX_SHORT_SEC, s.duration_sec)),
 			max_total_sec: MAX_SHORT_SEC,
@@ -365,7 +367,7 @@ async function renderOne({ job, v, gathered, notes, input, workDir, deps, costs,
 			music: out.musicInfo ? { source: out.musicInfo.source, title: out.musicInfo.title, attribution: out.musicInfo.attribution } : null,
 			thumbnail_path: rel(v.storyboard.scenes[0]?.frame_file),
 			captions_path: rel(out.files?.captions_srt),
-			scenes: v.storyboard.scenes.map(({ narration_file, frame_file, clip_file, ...sc }) => ({ ...sc, frame_path: rel(frame_file) })),
+			scenes: v.storyboard.scenes.map(({ narration_file, frame_file, clip_file, anim, ...sc }) => ({ ...sc, frame_path: rel(frame_file) })),
 		};
 		Object.assign(v, { status: "success", step: "done", progress: 100 });
 	} catch (e) {
@@ -403,6 +405,9 @@ async function runJob(job, deps) {
 	if (!allowedTypes.length) throw new Error(`Unknown video type "${typeSlug}"`);
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
 	const laws = await getLaws();
+	// Render style: the founder's choice, else the type's own style (Sketch Explainer), else the tone's, else the plain look.
+	const styleFor = (typeSlug) => normalizeStyle(input.style && input.style !== "auto" ? input.style : types.find((t) => t.slug === typeSlug)?.style || tone?.style || "default");
+	job.style = styleFor(typeSlug === "auto" ? null : typeSlug);
 	// Direction for the director only: URLs are stripped (they are already in the brief) so the
 	// user's pasted link/phrasing is never mistaken for script text.
 	const stripUrls = (t) => String(t || "").replace(URL_IN_TEXT_RE, " ").replace(/[ \t]{2,}/g, " ").trim();
@@ -421,7 +426,7 @@ async function runJob(job, deps) {
 		if (outro.type === "outro") outro.cta = "Read the full post";
 		if (!input.narration) for (const sc of sb.scenes) sc.narration = "";
 		fitPlannedDuration(sb, input.target_duration_sec);
-		sb.theme = packToStoryboard(pack, source).theme;
+		sb.theme = { ...packToStoryboard(pack, source).theme, style: styleFor(allowedTypes[0].slug) };
 		const v = {
 			id: "v1",
 			concept: { type: allowedTypes[0].slug, title: pack.title, angle: pack.key_takeaway, hook: pack.hook, audience: pack.audience, pace: "calm", theme: { accent: sb.theme.accent } },
@@ -516,7 +521,7 @@ async function runJob(job, deps) {
 						brief,
 						frames: usable,
 						codeFiles,
-						constraints: { target_duration_sec: input.target_duration_sec, max_duration_sec: MAX_SHORT_SEC - 2, aspect: input.aspect, narration: input.narration, language: input.language },
+						constraints: { target_duration_sec: input.target_duration_sec, max_duration_sec: MAX_SHORT_SEC - 2, aspect: input.aspect, narration: input.narration, language: input.language, visual_style: styleFor(v.concept.type) },
 					}),
 					costs,
 					stage: "script",
@@ -527,7 +532,7 @@ async function runJob(job, deps) {
 				const sb = sanitizeStoryboard(board, { frames: usable, codeFiles, input: { max_scenes: 16 }, source: { ...gathered.source, url: brief?.cta?.url || gathered.source.url }, instructions: extraInstructions });
 				if (!input.narration) for (const sc of sb.scenes) sc.narration = "";
 				fitPlannedDuration(sb, input.target_duration_sec);
-				sb.theme = board?.theme || v.concept.theme || {};
+				sb.theme = { ...(board?.theme || v.concept.theme || {}), style: styleFor(v.concept.type) };
 				sb.music = { ...(sb.music || {}), mood: sb.music?.mood || v.concept.music_mood };
 				v.storyboard = sb;
 				v.caption = String(board?.caption || "").slice(0, 300);

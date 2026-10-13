@@ -7,6 +7,7 @@ import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
 import { IdeaCard } from "@/components/IdeaCard";
 import { ModelToggle } from "@/components/ModelToggle";
+import { SuggestedPrompts } from "@/components/SuggestedPrompts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input, Label } from "@/components/ui/input";
@@ -114,7 +115,7 @@ export function OnboardingPage() {
 					<CardHeader className="flex-row items-start justify-between gap-3">
 						<div className="space-y-1.5">
 							<CardTitle>{data.status === "success" ? "Your product is saved" : "Reading your product"}</CardTitle>
-							<CardDescription>{data.status === "success" ? "cizle now remembers it. Pick a first video below, nothing renders until you press Create." : "This takes about a minute."}</CardDescription>
+							<CardDescription>{data.status === "success" ? "cizle now remembers it. Pick a first video or a prompt below, nothing renders until you approve it." : "This takes about a minute."}</CardDescription>
 						</div>
 						{data.status === "running" ? (
 							<Button variant="outline" size="sm" onClick={() => stop.mutate()} disabled={stop.isPending}>
@@ -158,6 +159,7 @@ export function OnboardingPage() {
 							<IdeaCard key={i.id} idea={i} slug={data.slug!} showToggle />
 						))}
 					</div>
+					<SuggestedPrompts slug={data.slug} className="mt-10" />
 				</section>
 			) : null}
 		</Page>
