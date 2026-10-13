@@ -196,7 +196,7 @@ export function ReviewCard({
 									<dt className="text-muted-foreground">Prompt</dt>
 									<dd>
 										{typeName} · {toneName} · {STYLE_LABEL[styleValue] || styleValue}
-										{promptId ? ` · ${customs.find((c) => c.id === promptId)?.name || promptId}` : ""}
+										{promptId ? ` · ${library.find((c) => c.id === promptId)?.name || promptId}` : ""}
 									</dd>
 									<dt className="text-muted-foreground">Format</dt>
 									<dd>

@@ -131,7 +131,11 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	function applyPrompt(p: Prompt) {
 		if (p.kind === "type") setType(p.slug);
 		else if (p.kind === "tone") setTone(p.slug);
-		else {
+		else if (p.kind === "film") {
+			// An Opus film style steers the render toward its closest cizle look and gives the director its one-line direction.
+			setLoaded(p);
+			setStyle((p.style || "default") as StyleId);
+		} else {
 			setLoaded(p);
 			if (p.type) setType(p.type);
 		}
@@ -504,19 +508,19 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 						<Command.Input autoFocus placeholder="Search the prompt library…" className="h-12 w-full border-b border-border bg-transparent px-4 text-sm outline-none placeholder:text-muted-foreground" />
 						<Command.List className="max-h-96 overflow-y-auto p-1.5">
 							<Command.Empty className="px-4 py-6 text-center text-sm text-muted-foreground">No prompts match.</Command.Empty>
-							{(["custom", "type", "tone"] as const).map((kind) => {
+							{(["custom", "type", "tone", "film"] as const).map((kind) => {
 								const list = (prompts.data || []).filter((p) => p.kind === kind);
 								if (!list.length) return null;
 								return (
 									<Command.Group
 										key={kind}
-										heading={kind === "custom" ? "Your prompts" : kind === "type" ? "Video types" : "Tones"}
+										heading={kind === "custom" ? "Your prompts" : kind === "type" ? "Video types" : kind === "film" ? "Opus film styles" : "Tones"}
 										className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground"
 									>
 										{list.map((p) => (
 											<Command.Item
 												key={p.id}
-												value={`${p.name} ${p.description} ${p.kind}`}
+												value={`${p.name} ${p.description} ${p.kind} ${p.category || ""} ${(p.uses || []).join(" ")}`}
 												onSelect={() => applyPrompt(p)}
 												className="flex cursor-default flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 outline-none data-[selected=true]:bg-accent"
 											>

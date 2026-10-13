@@ -574,12 +574,14 @@ async function runJob(job, deps) {
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
 	const laws = await getLaws();
 	// Render style: the founder's choice, else the type's own style (Sketch Explainer), else the tone's, else the plain look.
-	const styleFor = (typeSlug) => normalizeStyle(input.style && input.style !== "auto" ? input.style : types.find((t) => t.slug === typeSlug)?.style || tone?.style || "default");
+	const styleFor = (typeSlug) => normalizeStyle(input.style && input.style !== "auto" ? input.style : (loaded?.kind === "film" ? loaded.style : null) || types.find((t) => t.slug === typeSlug)?.style || tone?.style || "default");
 	job.style = styleFor(typeSlug === "auto" ? null : typeSlug);
 	// Direction for the director only: URLs are stripped (they are already in the brief) so the
 	// user's pasted link/phrasing is never mistaken for script text.
 	const stripUrls = (t) => String(t || "").replace(URL_IN_TEXT_RE, " ").replace(/[ \t]{2,}/g, " ").trim();
-	const extraInstructions = [loaded?.kind === "custom" ? loaded.body : null, stripUrls(input.prompt) || null].filter(Boolean).join("\n\n");
+	// A film style is long art direction for code-built films; a cizle render takes only its one-line essence.
+	const loadedDirection = loaded?.kind === "custom" ? loaded.body : loaded?.kind === "film" ? `Visual direction, adapted from the "${loaded.name}" film style: ${loaded.description} Keep on-screen text short.` : null;
+	const extraInstructions = [loadedDirection, stripUrls(input.prompt) || null].filter(Boolean).join("\n\n");
 	job.type_label = typeSlug === "auto" ? "Auto" : allowedTypes[0].name;
 
 	if (allowedTypes[0]?.engine === "article" && typeSlug !== "auto") {

@@ -70,10 +70,10 @@ export async function createCizleServer() {
 
 	server.registerTool(
 		"list_prompts",
-		{ title: "List the prompt library", description: "Video types, tones and the user's own prompts, with the render style and founder kinds each suits.", inputSchema: { kind: z.enum(["type", "tone", "custom"]).optional() } },
+		{ title: "List the prompt library", description: "Video types, tones, Opus film styles and the user's own prompts, with the render style and founder kinds each suits.", inputSchema: { kind: z.enum(["type", "tone", "film", "custom"]).optional() } },
 		guarded(async ({ kind }) => {
 			const all = await library.listPrompts();
-			return text(all.filter((p) => !kind || p.kind === kind).map(({ id, kind: k, name, description, style, founders, needs, aspect, duration }) => ({ id, kind: k, name, description, style, founders, needs, aspect, duration })));
+			return text(all.filter((p) => !kind || p.kind === kind).map(({ id, kind: k, name, description, style, founders, needs, aspect, duration, category, uses }) => ({ id, kind: k, name, description, style, founders, needs, aspect, duration, category, uses })));
 		}),
 	);
 
@@ -82,7 +82,7 @@ export async function createCizleServer() {
 		{ title: "Read a prompt", description: "The full markdown of a video type, tone or custom prompt (for example type:sketch-explainer). Follow its structure and rules when you write the storyboard.", inputSchema: { id: z.string() } },
 		guarded(async ({ id }) => {
 			const p = await library.getPrompt(id);
-			return p ? text(`# ${p.name} (${p.id})\n${p.style ? `Default style: ${p.style}\n` : ""}\n${p.body}`) : fail(`No prompt "${id}". Call list_prompts for the ids.`);
+			return p ? text(`# ${p.name} (${p.id})\n${p.style ? `${p.kind === "film" ? "Closest cizle look" : "Default style"}: ${p.style}\n` : ""}${p.kind === "film" ? `Source: ${p.source} (${p.license}, ${p.author})\n` : ""}\n${p.body}`) : fail(`No prompt "${id}". Call list_prompts for the ids.`);
 		}),
 	);
 

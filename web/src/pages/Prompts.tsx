@@ -19,6 +19,7 @@ const GROUPS: { kind: Prompt["kind"]; title: string; hint: string }[] = [
 	{ kind: "custom", title: "Your prompts", hint: "Saved in prompts/custom/*.md" },
 	{ kind: "type", title: "Video types", hint: "Structure for each kind of video · prompts/types" },
 	{ kind: "tone", title: "Tones", hint: "Energy, pacing and wording · prompts/tones" },
+	{ kind: "film", title: "Opus film styles", hint: "43 looks from lemo-opuscar (MIT, LemoLab) · prompts/films" },
 ];
 
 export function PromptsPage() {
@@ -26,8 +27,9 @@ export function PromptsPage() {
 	const [q, setQ] = useState("");
 	const [kind, setKind] = useState<"" | Prompt["kind"]>("");
 	const [founder, setFounder] = useState("");
+	const [allFilms, setAllFilms] = useState(false);
 	const list = useMemo(
-		() => (prompts.data || []).filter((p) => (!kind || p.kind === kind) && (!founder || p.founders?.includes(founder)) && (!q || `${p.name} ${p.description} ${p.body}`.toLowerCase().includes(q.toLowerCase()))),
+		() => (prompts.data || []).filter((p) => (!kind || p.kind === kind) && (!founder || p.founders?.includes(founder)) && (!q || `${p.name} ${p.description} ${p.body} ${p.category || ""} ${(p.uses || []).join(" ")}`.toLowerCase().includes(q.toLowerCase()))),
 		[prompts.data, q, kind, founder],
 	);
 	return (
@@ -49,7 +51,7 @@ export function PromptsPage() {
 					<Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search prompts" className="pl-8" />
 				</div>
 				<div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-					{[["", "All"], ["custom", "Yours"], ["type", "Types"], ["tone", "Tones"]].map(([k, label]) => (
+					{[["", "All"], ["custom", "Yours"], ["type", "Types"], ["tone", "Tones"], ["film", "Films"]].map(([k, label]) => (
 						<button key={k} type="button" onClick={() => setKind(k as typeof kind)} className={cn("h-7 rounded-md px-2.5 text-xs font-medium", kind === k ? "bg-surface shadow-sm" : "text-muted-foreground hover:text-foreground")}>
 							{label}
 						</button>
@@ -72,8 +74,10 @@ export function PromptsPage() {
 			) : (
 				<div className="space-y-8">
 					{GROUPS.map((g) => {
-						const items = list.filter((p) => p.kind === g.kind);
-						if (!items.length && (kind || q)) return null;
+						const all = list.filter((p) => p.kind === g.kind);
+						if (!all.length && (kind || q)) return null;
+						// The film library is long: show a taste first, all of it on request or when searching.
+						const items = g.kind === "film" && !allFilms && !q && !kind ? all.slice(0, 9) : all;
 						return (
 							<section key={g.kind}>
 								<div className="mb-2.5 flex items-baseline justify-between">
@@ -87,18 +91,23 @@ export function PromptsPage() {
 												{p.kind !== "custom" ? <PromptThumb style={p.style} motion={TYPE_MOTION[p.slug]} className="mb-3 h-24" /> : null}
 												<div className="flex items-start justify-between gap-2">
 													<p className="text-sm font-medium">{p.name}</p>
-													<Badge tone={p.built_in ? "outline" : "info"}>{p.built_in ? "Built-in" : "Custom"}</Badge>
+													<Badge tone={p.built_in ? "outline" : "info"}>{p.kind === "film" ? p.category || "Film" : p.built_in ? "Built-in" : "Custom"}</Badge>
 												</div>
 												<p className="mt-1 line-clamp-2 text-[13px] text-muted-foreground">{p.description || p.body.slice(0, 120)}</p>
 												<div className="mt-auto flex items-center gap-2 pt-3 text-[11px] text-muted-foreground">
-													<span className="font-mono">{p.kind}/{p.slug}.md</span>
+													<span className="font-mono">{p.kind === "film" ? "films" : p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : "custom"}/{p.slug}.md</span>
 													{p.type && p.kind === "custom" ? <span>· {p.type}</span> : null}
-													{p.style ? <Badge tone="info">{STYLE_LABEL[p.style]}</Badge> : null}
+													{p.style ? <Badge tone="info">{p.kind === "film" ? `cizle: ${STYLE_LABEL[p.style]}` : STYLE_LABEL[p.style]}</Badge> : null}
 													{p.kind === "type" && p.founders?.length ? <span className="truncate">· {p.founders.map((f) => FOUNDER_LABEL[f] || f).join(", ")}</span> : null}
-													<span className="ml-auto">{timeAgo(p.updated_at)}</span>
+													{p.kind === "film" ? <span className="ml-auto">{p.license} · {p.author}</span> : <span className="ml-auto">{timeAgo(p.updated_at)}</span>}
 												</div>
 											</Link>
 										))}
+										{items.length < all.length ? (
+											<button type="button" onClick={() => setAllFilms(true)} className="flex min-h-24 items-center justify-center rounded-xl border border-dashed border-border text-sm text-muted-foreground hover:bg-accent/50 hover:text-foreground">
+												Show all {all.length} film styles
+											</button>
+										) : null}
 									</div>
 								) : (
 									<Link to="/prompts/new" className="flex items-center gap-3 rounded-xl border border-dashed border-border p-4 text-sm text-muted-foreground hover:bg-accent/50">

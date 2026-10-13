@@ -8,7 +8,7 @@ export type StyleId = "default" | "sketch" | "clay" | "glass" | "isometric" | "a
 
 export type Prompt = {
 	id: string;
-	kind: "type" | "tone" | "custom";
+	kind: "type" | "tone" | "film" | "custom";
 	slug: string;
 	name: string;
 	description: string;
@@ -18,6 +18,12 @@ export type Prompt = {
 	needs: string[];
 	engine: "render" | "article";
 	content_types: string[];
+	/** Opus film styles: their group, what they suit and where they came from. */
+	category: string | null;
+	uses: string[];
+	source: string | null;
+	author: string | null;
+	license: string | null;
 	/** Founder kinds this prompt suits (see FOUNDERS in constants). */
 	founders: string[];
 	style: StyleId | null;

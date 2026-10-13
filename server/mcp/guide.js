@@ -36,6 +36,7 @@ const STYLES = `
 export async function buildGuide(library) {
 	const types = library.filter((p) => p.kind === "type");
 	const tones = library.filter((p) => p.kind === "tone");
+	const films = library.filter((p) => p.kind === "film");
 	const laws = await getLaws();
 	return `# Making a video with cizle
 
@@ -80,6 +81,10 @@ Write for the style: styled videos use large type, so keep lines short. \`ascii\
 
 ## Video types
 ${types.map((t) => `- \`${t.id}\`: **${t.name}**. ${t.description}${t.founders?.length ? ` _(for ${t.founders.join(", ")})_` : ""}${t.needs?.length ? ` Needs: ${t.needs.join(", ")}.` : ""}`).join("\n")}
+
+## Opus film styles (art direction)
+Imported from the open-source lemo-opuscar library (MIT, LemoLab). Each is a long style prompt for a film built entirely in code: a look, a palette, motion and sound. Read one with \`read_prompt\` (for example \`film:watercolor\`) when the user names a look. In a cizle storyboard use its palette, mood and wording; the render uses the closest cizle look (the \`style\` listed), so the result is inspired by the film style, not a copy of it. For a full film in that exact style (30-60 minutes of work), the user can install the \`lemo-opuscar\` skill in Claude Code instead.
+${films.map((t) => `- \`${t.id}\`: ${t.name} (${t.category}${t.style ? `; cizle look: ${t.style}` : ""})`).join("\n")}
 
 ## Tones (they set a default style)
 ${tones.map((t) => `- \`${t.id}\`: ${t.name}${t.style ? ` (style: ${t.style})` : ""}. ${t.description}`).join("\n")}

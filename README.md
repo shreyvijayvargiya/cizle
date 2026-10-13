@@ -239,11 +239,14 @@ prompts/
 ├── types/             one file per video type: structure, pacing, rules
 │   └── showcase.md  features.md  faq.md  comparison.md  glossary.md  launch.md
 ├── tones/             polished, playful, cinematic, app-store, deadpan (each can set a default `style:`)
+├── films/             43 Opus film styles from lemo-opuscar (MIT, LemoLab), imported unchanged
+│                      (Watercolor Brush, Risograph Print, Whiteboard Explainer, ASCII / CRT Terminal ...)
 └── custom/            prompts you create in the dashboard (Prompts → New prompt)
 ```
 
 - **Add a video type:** drop a new `prompts/types/<name>.md` file. It shows up in the dropdown straight away. Each built-in type has an "In each style" section describing how it should look in clay, glass, isometric, hand-drawn and ASCII.
 - **Use a prompt:** type `/` in the composer, or click **Load prompt**.
+- **Opus film styles:** the 43 looks in [`prompts/films/`](prompts/films) come from the open-source [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) library by LemoLab (MIT). Loading one in the composer picks its closest cizle look and passes its one-line direction to the director; the full text is art direction for films built entirely in code (install the upstream skill for those). See [`prompts/films/README.md`](prompts/films/README.md).
 
 A prompt file looks like this:
 
@@ -451,6 +454,7 @@ Scripts: `npm run dev` (API + dashboard with hot reload), `npm run build`, `npm 
 
 ## Credits
 
+- The 43 Opus film styles in `prompts/films/` are imported unchanged from [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) by LemoLab (MIT; the licence is kept in `prompts/films/LICENSE`).
 - Creative laws and tones adapted from [brag](https://github.com/latent-spaces/brag) (MIT), the skill that turns a project into a launch video.
 - Music: royalty-free CC0/CC-BY tracks from [Openverse](https://openverse.org), with attribution saved per video, or generated offline.
 
