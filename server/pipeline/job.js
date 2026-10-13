@@ -25,6 +25,7 @@ import {
 	verifyOpenRouterKey,
 } from "./render.js";
 import { ensureFfmpeg } from "./media.js";
+import { estimatePackCost, runPackJob } from "./pack.js";
 import { gatherProductContext } from "./context.js";
 import {
 	BRIEF_ANALYST_SYSTEM,
@@ -125,7 +126,8 @@ export function parseVideoInput(body = {}) {
 
 /* --------------------------------------------------------------- estimate */
 
-export function estimateCost(input) {
+export function estimateCost(input, { pack = false } = {}) {
+	if (pack) return estimatePackCost(input);
 	const [vIn, vOut] = priceFor(input.vision_model);
 	const [sIn, sOut] = priceFor(input.script_model);
 	const frames = input.max_screenshots + input.max_images;
@@ -191,6 +193,7 @@ export async function listJobs({ q = "", type = "", status = "", product = "" } 
 			product: j.input?.product || null,
 			model_tier: j.input?.model_tier || "paid",
 			idea_id: j.input?.idea_id || null,
+			kind: j.kind || "video",
 			created_at: j.created_at,
 		});
 	}
@@ -345,7 +348,8 @@ async function runJob(job, deps) {
 	const tones = library.filter((p) => p.kind === "tone");
 	const loaded = input.prompt_id ? await getPrompt(input.prompt_id) : null;
 	const typeSlug = input.type !== "auto" ? input.type : loaded?.type || "auto";
-	const allowedTypes = typeSlug === "auto" ? types : types.filter((t) => t.slug === typeSlug);
+	// "auto" only chooses among types that render a video; prompt-pack types run when picked explicitly.
+	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine !== "prompt-pack") : types.filter((t) => t.slug === typeSlug);
 	if (!allowedTypes.length) throw new Error(`Unknown video type "${typeSlug}"`);
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
 	const laws = await getLaws();
@@ -354,6 +358,18 @@ async function runJob(job, deps) {
 	const stripUrls = (t) => String(t || "").replace(URL_IN_TEXT_RE, " ").replace(/[ \t]{2,}/g, " ").trim();
 	const extraInstructions = [loaded?.kind === "custom" ? loaded.body : null, stripUrls(input.prompt) || null].filter(Boolean).join("\n\n");
 	job.type_label = typeSlug === "auto" ? "Auto" : allowedTypes[0].name;
+
+	if (allowedTypes[0]?.engine === "prompt-pack" && typeSlug !== "auto") {
+		job.kind = "prompt-pack";
+		await runPackJob({ job, input, typeEntry: allowedTypes[0], tone, laws, extraInstructions, deps, workDir, costs, chatJson, step, log });
+		throwIfCancelled();
+		const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
+		job.cost = { currency: "USD", total_usd: round(spent), by_stage: groupCost(costs), by_variant: {} };
+		Object.assign(job, { status: "success", step: "done", progress: 100 });
+		log(`done: prompt pack, $${spent.toFixed(4)}`);
+		await save(job);
+		return;
+	}
 
 	// 1. Context -------------------------------------------------------------
 	await step("context", 5);

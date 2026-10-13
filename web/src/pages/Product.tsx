@@ -153,11 +153,7 @@ export function ProductPage() {
 						</div>
 					) : (
 						<p className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
-							No open ideas. Press Sync now to look for new commits and pages, or ask the{" "}
-							<Link to="/agent" className="underline">
-								agent
-							</Link>
-							.
+							No open ideas. Press Sync now to look for new commits and pages.
 						</p>
 					)}
 					{rest.length ? (

@@ -3,7 +3,6 @@ import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
 	Cancel01Icon,
 	ComputerIcon,
-	AiMagicIcon,
 	DashboardSquare01Icon,
 	GithubIcon,
 	GridViewIcon,
@@ -37,7 +36,6 @@ const NAV = [
 	{ to: "/create", label: "Create video", icon: PlusSignIcon },
 	{ to: "/videos", label: "Videos", icon: Video01Icon },
 	{ to: "/gallery", label: "Gallery", icon: GridViewIcon },
-	{ to: "/agent", label: "Agent", icon: AiMagicIcon },
 	{ to: "/product", label: "Product", icon: Package01Icon },
 	{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
 	{ to: "/settings", label: "Settings", icon: Settings01Icon },

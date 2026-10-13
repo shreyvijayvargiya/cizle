@@ -10,7 +10,6 @@ import {
 	Key01Icon,
 	Layers01Icon,
 	Package01Icon,
-	AiMagicIcon,
 	Loading03Icon,
 	Presentation01Icon,
 	LightbulbIcon,
@@ -113,7 +112,7 @@ export function DashboardPage() {
 					{product ? `${product.name} is remembered in products/${product.slug}/. Sync checks its repos and site for new commits and pages.` : "Paste your website and GitHub repos once. cizle saves what it learns as markdown and suggests videos."}
 				</Step>
 				<Step n={3} icon={Layers01Icon} title="Create from an idea or a format">
-					Press Create on a suggestion, remix a format from the Gallery, ask the agent, or describe a video below. Stop any run from its button.
+					Press Create on a suggestion, remix a format from the Gallery, or describe a video below. Stop any run from its button.
 				</Step>
 			</div>
 
@@ -134,11 +133,6 @@ export function DashboardPage() {
 					<Button variant="outline" size="sm" asChild>
 						<Link to="/gallery">
 							<Icon icon={GridViewIcon} size={14} /> Browse the gallery
-						</Link>
-					</Button>
-					<Button variant="outline" size="sm" asChild>
-						<Link to="/agent">
-							<Icon icon={AiMagicIcon} size={14} /> Ask the agent what to make
 						</Link>
 					</Button>
 				</div>

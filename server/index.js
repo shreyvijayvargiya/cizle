@@ -24,7 +24,8 @@ const { warmModels, modelsSummary } = await import("./models.js");
 const store = await import("./products/store.js");
 const { startOnboard, getOnboard, cancelOnboard } = await import("./products/onboard.js");
 const { syncProduct, ideaVocab } = await import("./products/sync.js");
-const { runAgent } = await import("./agent/agent.js");
+const { reviewDraft } = await import("./review/index.js");
+const { logChat } = await import("./review/chatlog.js");
 const browser = await import("./browser.js");
 const { scrape } = await import("./scrape.js");
 
@@ -61,7 +62,9 @@ api.get("/prompts/:id", async (c) => {
 api.post("/prompts", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
 	if (!String(body.name || "").trim() || !String(body.body || "").trim()) return c.json({ error: "Name and prompt text are required" }, 400);
-	return c.json(await savePrompt({ ...body, id: null }), 201);
+	const saved = await savePrompt({ ...body, id: null });
+	if (body.review_id) await logChat(String(body.review_id), { event: "approved", action: "save_prompt", prompt_id: saved?.id });
+	return c.json(saved, 201);
 });
 api.put("/prompts/:id", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
@@ -79,11 +82,19 @@ api.post("/estimate", async (c) => {
 	return parsed.error ? c.json({ error: parsed.error }, 400) : c.json(estimateCost(parsed.input));
 });
 api.get("/videos", async (c) => c.json({ videos: await listJobs({ q: c.req.query("q") || "", type: c.req.query("type") || "", status: c.req.query("status") || "", product: c.req.query("product") || "" }) }));
+/* review: the AI step in front of "create". It asks questions and writes the final prompt; it creates nothing. */
+api.post("/review", async (c) => {
+	await warmModels();
+	const b = await c.req.json().catch(() => ({}));
+	return c.json(await runWithSignal(c.req.raw.signal, () => reviewDraft({ draft: b.draft || {}, tier: b.draft?.model_tier === "free" ? "free" : "paid", deps })));
+});
 api.post("/videos", async (c) => {
 	await warmModels();
-	const parsed = parseVideoInput(await c.req.json().catch(() => ({})));
+	const body = await c.req.json().catch(() => ({}));
+	const parsed = parseVideoInput(body);
 	if (parsed.error) return c.json({ error: parsed.error }, 400);
 	const job = await createJob(parsed.input, deps);
+	if (body.review_id) await logChat(String(body.review_id), { event: "approved", action: "create_video", job_id: job.id });
 	// The client pressed Stop while the job was being set up: don't leave it running.
 	if (c.req.raw.signal.aborted) await cancelJob(job.id);
 	return c.json(job, 202);
@@ -179,11 +190,6 @@ api.post("/products/:slug/ideas/:id/create", async (c) => {
 	}
 	await store.updateIdea(slug, idea.id, { status: "created", video_id: job.id });
 	return c.json(job, 202);
-});
-api.post("/products/:slug/agent", async (c) => {
-	const b = await c.req.json().catch(() => ({}));
-	await warmModels();
-	return c.json(await runWithSignal(c.req.raw.signal, () => runAgent({ slug: c.req.param("slug"), messages: b.messages, tier: b.model_tier === "free" ? "free" : "paid" })));
 });
 
 /* gallery: committed presets plus the active product's own videos */

@@ -40,6 +40,9 @@ function toEntry(kind, slug, raw, stat) {
 		aspect: data.aspect ? String(data.aspect) : null,
 		duration: data.duration ? Number(data.duration) : null,
 		needs: Array.isArray(data.needs) ? data.needs.map(String) : [],
+		// "render" = the screenshot + FFmpeg pipeline; "prompt-pack" = a markdown pack for a generative video model.
+		engine: data.engine === "prompt-pack" ? "prompt-pack" : "render",
+		content_types: Array.isArray(data.content_types) ? data.content_types.map(String) : [],
 		built_in: kind !== "custom",
 		body: content.trim(),
 		updated_at: stat?.mtime?.toISOString?.() || null,

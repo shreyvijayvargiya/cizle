@@ -15,6 +15,8 @@ export type Prompt = {
 	aspect: string | null;
 	duration: number | null;
 	needs: string[];
+	engine: "render" | "prompt-pack";
+	content_types: string[];
 	built_in: boolean;
 	body: string;
 	updated_at: string | null;
@@ -41,6 +43,7 @@ export type VideoRow = {
 	product: string | null;
 	model_tier: Tier;
 	idea_id: string | null;
+	kind: "video" | "prompt-pack";
 	created_at: string;
 };
 
@@ -70,9 +73,28 @@ export type Variant = {
 	};
 };
 
+export type Pack = {
+	title: string;
+	audience: string;
+	key_takeaway: string;
+	hook: string;
+	narration: string[];
+	storyboard: { scene: number; duration_sec: number; subject: string; action: string; camera: string; lighting: string; transition: string; narration: string }[];
+	video_prompts: { scene: number; prompt: string }[];
+	subtitles: { scene: number; text: string }[];
+	sound_design: string[];
+	assembly: string[];
+	source_facts: { claim: string; passage: string; found_in_source: boolean }[];
+	markdown: string;
+	source_url: string;
+	type_name: string;
+};
+
 export type Job = {
 	id: string;
 	title: string;
+	kind?: "video" | "prompt-pack";
+	pack?: Pack;
 	status: Status;
 	step: string;
 	progress: number;
@@ -171,8 +193,23 @@ export type OnboardRun = {
 
 export type SyncResult = { ok: boolean; busy?: boolean; message?: string; changed: boolean; summary: string[]; ideas_added: number; cost_usd: number; repo_errors: string[]; synced_at: string };
 
-export type ChatMessage = { role: "user" | "assistant"; content: string };
-export type AgentReply = { reply: string; proposals: Idea[]; synced: boolean; cost_usd: number; mode: "tools" | "plain" };
+export type ReviewQuestion = { field: "audience" | "key_takeaway" | "type" | "tone" | "aspect" | "audio" | "duration_sec" | "model_tier" | "variations"; text: string; options: { value: string; label: string }[] };
+export type Review = {
+	id: string;
+	intent: "create_video" | "save_prompt" | "unclear";
+	can_approve: boolean;
+	summary: string;
+	suggestion: { type: string; tone: string; aspect: Aspect; audio: Audio; duration_sec: number };
+	questions: ReviewQuestion[];
+	final_prompt: string;
+	save_prompt: { name: string; description: string; body: string; type: string } | null;
+	checks: { level: "info" | "warn"; text: string }[];
+	existing: { id: string; title: string; type: string; status: Status; aspect: Aspect; created_at: string }[];
+	notes: string[];
+	engine: "render" | "prompt-pack";
+	cost: null | { total_usd: number; free: boolean };
+	review_cost_usd: number;
+};
 
 export type Preset = { id: string; title: string; description: string; type: string; tone: string; aspect: Aspect; animation: string; categories: string[]; prompt: string };
 
@@ -195,6 +232,7 @@ export type CreateVideo = {
 	voice?: string;
 	product?: string;
 	model_tier?: Tier;
+	review_id?: string;
 };
 
 export class ApiError extends Error {
@@ -229,7 +267,7 @@ export const api = {
 	testKey: (openrouter_api_key?: string, signal?: AbortSignal) => req<{ ok: boolean; error?: string; label?: string | null }>("/settings/test", { method: "POST", json: { openrouter_api_key }, signal }),
 	prompts: () => req<{ prompts: Prompt[] }>("/prompts").then((r) => r.prompts),
 	prompt: (id: string) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`),
-	createPrompt: (p: Partial<Prompt>) => req<Prompt>("/prompts", { method: "POST", json: p }),
+	createPrompt: (p: Partial<Prompt> & { review_id?: string }) => req<Prompt>("/prompts", { method: "POST", json: p }),
 	updatePrompt: (id: string, p: Partial<Prompt>) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`, { method: "PUT", json: p }),
 	deletePrompt: (id: string) => req<{ ok: true }>(`/prompts/${encodeURIComponent(id)}`, { method: "DELETE" }),
 	stats: () => req<Stats>("/stats"),
@@ -249,7 +287,7 @@ export const api = {
 	sync: (slug: string, model_tier: Tier, signal?: AbortSignal) => req<SyncResult>(`/products/${slug}/sync`, { method: "POST", json: { model_tier }, signal }),
 	setIdeaStatus: (slug: string, id: string, status: IdeaStatus) => req<Idea>(`/products/${slug}/ideas/${id}`, { method: "PATCH", json: { status } }),
 	createFromIdea: (slug: string, id: string, body: { model_tier: Tier; aspect?: Aspect; audio?: Audio; duration_sec?: number }, signal?: AbortSignal) => req<Job>(`/products/${slug}/ideas/${id}/create`, { method: "POST", json: body, signal }),
-	agent: (slug: string, messages: ChatMessage[], model_tier: Tier, signal?: AbortSignal) => req<AgentReply>(`/products/${slug}/agent`, { method: "POST", json: { messages, model_tier }, signal }),
+	review: (draft: CreateVideo, signal?: AbortSignal) => req<Review>("/review", { method: "POST", json: { draft }, signal }),
 	gallery: (product: string) => req<{ presets: Preset[]; mine: VideoRow[] }>(`/gallery?product=${encodeURIComponent(product)}`),
 	models: () => req<ModelsInfo>("/models"),
 	estimate: (body: CreateVideo) => req<{ total_usd: number; per_video_usd: number }>("/estimate", { method: "POST", json: body }),

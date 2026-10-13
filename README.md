@@ -23,7 +23,7 @@ Runs on your machine. No database, no accounts. Powered by [OpenRouter](https://
 ## Contents
 
 - [Why](#why) · [Quick start](#quick-start) · [What you can do](#what-you-can-do)
-- [Product memory](#product-memory) · [Sync](#sync-what-shipped) · [The agent](#the-agent) · [Gallery](#gallery-and-remix)
+- [Product memory](#product-memory) · [Sync](#sync-what-shipped) · [Review before create](#review-before-create) · [Gallery](#gallery-and-remix)
 - [Free or paid models](#free-or-paid-models) · [Stop anything](#stop-anything)
 - [Video types and formats](#video-types-and-formats) · [The prompt library](#the-prompt-library)
 - [How it works](#how-it-works) · [Cost](#cost) · [Use it from Claude Code](#use-it-from-claude-code)
@@ -62,11 +62,12 @@ To run it as a single server: `npm run build && npm start`, then open http://loc
 | | |
 |---|---|
 | **Add a product** | Website plus any number of GitHub repos. cizle writes `products/<slug>/product.md` and suggests three first videos. |
-| **Switch products** | Sidebar dropdown. Videos, composer, gallery and agent follow the active product. |
+| **Switch products** | Sidebar dropdown. Videos, composer and gallery follow the active product. |
 | **Sync** | Finds new commits, releases and pages since last time, turns them into plain-language changes and video ideas. |
 | **Create from an idea** | Every idea cites its source (`github:pr:41`, `site:/pricing`). Press **Create**. Nothing renders before that. |
 | **Describe your own video** | Composer with type, tone, aspect ratio, audio, length and 1–3 variations. Type `/` to load a saved prompt. |
-| **Ask the agent** | Chat about what to make next. It reads your notes, changes and past videos, and proposes videos. |
+| **Review before create** | Press the arrow and an AI step checks for duplicates, asks the few questions that matter (audience, format, free or paid) and writes the final prompt. You approve, then it runs. |
+| **Blog to prompt pack** | Paste an article link; the Sketch Explainer type returns a prompt pack for a video model: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
 | **Remix from the gallery** | 16 formats across 8 SaaS categories, landscape, portrait and square, with different motion styles. |
 | **Use free models** | A switch next to every generate button. Free OpenRouter models, $0, rate limited. |
 | **Stop anything** | Every button that starts work turns into **Stop** while it runs. |
@@ -105,16 +106,24 @@ Press **Sync** in the sidebar (or on the Product page). cizle also checks when i
 
 Merged PRs, releases and new pages are what count. Dependency bumps, CI changes, merge noise and bot commits are dropped before the model sees anything. If nothing changed, **no model is called**. Otherwise one call writes `changes.md`, adds new features to `product.md`, and adds up to four ideas to `ideas.md`, each naming its source.
 
-## The agent
+## Review before create
 
-Sidebar → **Agent**. Ask "what should I make this week?" and it reads your product notes, recent changes, queued ideas and past videos before answering, then proposes up to three videos as cards with a **Create** button.
+The composer does not create anything on its own. Press the arrow and a card appears **above the input**:
 
-- It can read your notes, run a sync, and **propose** videos. It has **no way to start a render**. Only your click spends money.
-- Text from websites and repositories is treated as data, not instructions, so a hostile page or commit message cannot make it create videos.
-- If a free model cannot call tools, it falls back to answering from your notes in one shot.
-- Its persona and rules live in [`prompts/agent.md`](prompts/agent.md). Edit them.
+- **Checks**: no link found, a video for this link already exists (with a link to it), free models cannot do voice-over.
+- **Questions** (up to three, one click each): who the video is for, the key takeaway, format, length, free or paid. The model asks only what changes the result.
+- **Final prompt**: a short direction the review wrote from your text. Edit it.
+- **Cost**, then **Approve**. Only Approve calls `POST /api/videos`. Cancel and nothing happens.
 
-![Agent](docs/agent.png)
+It works with free models: the server gathers every fact itself (existing videos, a peek at the page, the prompt library) and the model answers in plain JSON, with no tool calling. The review step has no way to create a video or write a file, so a hostile web page cannot spend your credit.
+
+Say "add this as a prompt …" and the card previews the markdown file instead; **Save prompt** writes it to `prompts/custom/` and links to it.
+
+Each review round and approval is appended to `data/chats/<id>.jsonl` (not shown in the dashboard yet). The review's persona and rules live in [`prompts/review.md`](prompts/review.md). Edit them.
+
+### Sketch Explainer (blog to prompt pack)
+
+[`prompts/types/sketch-explainer.md`](prompts/types/sketch-explainer.md) has `engine: prompt-pack`. Pick it, or paste an article link and let the review suggest it. The job reads the page and writes a pack instead of rendering: hook, narration, storyboard, one video-generation prompt per scene, transitions, subtitles, sound design, assembly steps and source facts. Every fact comes with a quote from the article; quotes that are not in the source are flagged. Copy it or download it as `.md` from the video page. Add your own prompt-pack types the same way: a markdown file with `engine: prompt-pack`.
 
 ## Gallery and remix
 
@@ -126,11 +135,11 @@ The previews are small animated samples of each motion style. Presets are plain 
 
 ## Free or paid models
 
-The **Free model** switch sits next to every generate button (composer, ideas, agent, onboarding, sync). It is remembered between visits, and a brand-new install starts on free.
+The **Free model** switch sits next to every generate button (composer, ideas, onboarding, sync). It is remembered between visits, and a brand-new install starts on free.
 
 | | Free | Paid |
 |---|---|---|
-| Script, brief, agent | best free text model OpenRouter lists | your **Script model** |
+| Script, brief, review | best free text model OpenRouter lists | your **Script model** |
 | Screenshot reading | best free vision model | your **Vision model** |
 | Voice-over | not available: runs use music or silence | your **Voice model** |
 | Cost shown | $0 | estimate before you run |
@@ -149,7 +158,7 @@ Every button that starts work shows **Stop** while it runs, in the same place as
 | Running video (detail page, list, dashboard **Running now**) | Cancels the job: model calls, downloads, git and FFmpeg processes are aborted and open browser pages closed. The video is marked **Stopped**. |
 | Add product | Cancels the read. **Nothing is saved.** |
 | Sync | Cancels the fetch and the model call. `changes.md`, `ideas.md` and `sources.json` are left untouched. |
-| Agent | Cancels the request and puts your question back in the box. |
+| Review | Cancels the request. Nothing is created. |
 | Settings → Test key | Cancels the check. |
 
 Cancellation is built in: work that can be stopped runs inside a cancellable scope, and every network request, child process and browser page inside it listens for the stop. A model call that was already running may still be billed by your provider for tokens it generated before it stopped.
@@ -183,7 +192,7 @@ All creative direction is plain markdown, so you can read it, edit it and send P
 ```
 prompts/
 ├── laws.md            rules every video follows (hook in 2 s, readable, grounded, no "supercharge")
-├── agent.md           the agent's persona and rules
+├── review.md          the review step's persona and rules
 ├── types/             one file per video type: structure, pacing, rules
 │   └── showcase.md  features.md  faq.md  comparison.md  glossary.md  launch.md
 ├── tones/             polished, playful, cinematic, app-store, deadpan
@@ -221,7 +230,7 @@ type: launch
                           │
         sync ─────────────┤   new commits · releases · new and changed pages
                           ▼
-              changes.md  +  ideas.md  ──►  idea cards / agent proposals
+              changes.md  +  ideas.md  ──►  idea cards
                                                    │  you press Create
                                                    ▼
   vision model scores every frame  →  evidence-backed brief (+ your product notes)
@@ -251,7 +260,7 @@ These are rough estimates: a 30 s narrated video costs about **$0.10–0.20**, a
 [`SKILL.md`](SKILL.md) lets coding agents drive cizle while the dev server is running. Try:
 
 - "Make a FAQ video for this project with cizle."
-- "What should I make a video about this week?" (the agent syncs, reads the ideas, and asks before creating anything)
+- "What should I make a video about this week?" (it syncs, reads the ideas, and asks before creating anything)
 - "Add https://mysaas.com and my repos to cizle."
 
 ## API
@@ -289,14 +298,14 @@ curl -X POST localhost:3737/api/videos -H 'content-type: application/json' -d '{
 | `POST` | `/api/products/:slug/sync` | look for new commits, releases and pages |
 | `GET` `PATCH` | `/api/products/:slug/ideas[/:id]` | video ideas · dismiss or restore |
 | `POST` | `/api/products/:slug/ideas/:id/create` | turn an idea into a video |
-| `POST` | `/api/products/:slug/agent` | chat with the agent |
 | `GET` | `/api/gallery` | format presets plus the product's own videos |
 | `GET` | `/api/models` | free and paid models in use, and the free list |
 | `GET` `PUT` | `/api/settings` · `POST /api/settings/test` | keys and defaults |
 | `GET` `POST` | `/api/prompts` · `/api/prompts/:id` | prompt library |
+| `POST` | `/api/review` | review a draft: checks, questions, final prompt, cost (creates nothing) |
 | `POST` | `/api/estimate` | cost before you run |
 
-Closing a request that is still running (sync, agent) stops the work behind it.
+Closing a request that is still running (sync, review) stops the work behind it.
 
 ## Configuration
 
@@ -322,17 +331,17 @@ Copy `.env.example` to `.env` to set them in a file.
 ```
 cizle/
 ├── SKILL.md                 lets coding agents drive cizle
-├── prompts/                 laws, video types, tones, custom prompts, agent persona (markdown)
+├── prompts/                 laws, video types, tones, custom prompts, review persona (markdown)
 ├── gallery/presets/*.json   gallery formats (type, tone, aspect, motion style, direction)
 ├── products/                your product memory (git-ignored) + example/
 ├── server/
 │   ├── index.js             Hono API (+ serves the dashboard in production)
 │   ├── settings.js models.js library.js scrape.js browser.js
 │   ├── products/            store, onboard, sync, llm helpers
-│   ├── agent/               the agent and its read-only tools
+│   ├── review/              the review step in front of create, and its chat log
 │   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js
 ├── web/src/
-│   ├── pages/               Dashboard, Create, Videos, VideoDetail, Gallery, Agent, Product,
+│   ├── pages/               Dashboard, Create, Videos, VideoDetail, Gallery, Product,
 │   │                        Onboarding, Prompts, PromptEditor, Settings
 │   └── components/          AppShell, Composer, IdeaCard, ProductSwitcher, SyncBadge, ModelToggle,
 │                            RouteError, ui/ (shadcn-style: Button, Select, Menu, Dialog, Tabs, Switch…)
@@ -347,12 +356,12 @@ Scripts: `npm run dev` (API + dashboard with hot reload), `npm run build`, `npm 
 > cizle has no login. It is built to run on your own machine; **do not expose it to the internet as-is.**
 
 - Keys stay in `data/settings.json` or your environment. Nothing leaves your computer except the model, website and GitHub requests you trigger.
-- Everything scraped from websites and repositories is passed to models inside an "untrusted data" wrapper, and the agent cannot start renders, so prompt injection from a web page cannot spend your credit.
+- Everything scraped from websites and repositories is passed to models inside an "untrusted data" wrapper, and the review step cannot start renders, so prompt injection from a web page cannot spend your credit.
 - Auto-sync is the one thing that can use a model without a click, and only when it found a change. Turn it off in Settings.
 
 ## Contributing
 
-- **Prompts:** add or improve files in `prompts/types`, `prompts/tones`, `prompts/agent.md`.
+- **Prompts:** add or improve files in `prompts/types`, `prompts/tones`, `prompts/review.md`.
 - **Gallery formats:** add a JSON file to `gallery/presets/`:
 
   ```json

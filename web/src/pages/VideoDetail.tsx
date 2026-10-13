@@ -22,7 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/menu";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
-import { api, fileUrl, isActive, type Job, type Variant } from "@/lib/api";
+import { api, fileUrl, isActive, type Job, type Pack, type Variant } from "@/lib/api";
 import { PIPELINE, STEP_LABELS } from "@/lib/constants";
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
 
@@ -107,6 +107,147 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 	);
 }
 
+function PackSection({ title, children, copy }: { title: string; children: React.ReactNode; copy?: string }) {
+	return (
+		<section className="rounded-xl border border-border p-4">
+			<div className="mb-2 flex items-center justify-between gap-2">
+				<h2 className="text-sm font-semibold">{title}</h2>
+				{copy ? <CopyButton text={copy} label="Copy" /> : null}
+			</div>
+			<div className="text-sm leading-relaxed">{children}</div>
+		</section>
+	);
+}
+
+const bullets = (a: string[]) => (
+	<ul className="list-disc space-y-1 pl-5">
+		{a.map((x, i) => (
+			<li key={i}>{x}</li>
+		))}
+	</ul>
+);
+
+/** A prompt-pack job (for example Sketch Explainer): the markdown pack a video model or agent renders. */
+function PackView({ job, pack, onStop, stopping, onDelete, onRegen }: { job: Job; pack?: Pack; onStop: () => void; stopping: boolean; onDelete: () => void; onRegen: () => void }) {
+	const download = () => {
+		if (!pack) return;
+		const a = document.createElement("a");
+		a.href = URL.createObjectURL(new Blob([pack.markdown], { type: "text/markdown" }));
+		a.download = `${(pack.title || "prompt-pack").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.md`;
+		a.click();
+		URL.revokeObjectURL(a.href);
+	};
+	return (
+		<div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6">
+			<Link to="/videos" className="mb-4 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
+				<Icon icon={ArrowLeft01Icon} size={13} /> Videos
+			</Link>
+			<div className="mb-5 flex flex-wrap items-start justify-between gap-3">
+				<div className="min-w-0">
+					<div className="flex flex-wrap items-center gap-2">
+						<h1 className="truncate text-xl font-semibold tracking-tight">{pack?.title || job.title}</h1>
+						<StatusBadge status={job.status} step={job.step} progress={job.progress} />
+					</div>
+					<p className="mt-1.5 text-xs text-muted-foreground">
+						{job.type_label} · <a href={job.input.url} target="_blank" rel="noreferrer" className="hover:text-foreground">{hostOf(job.input.url)}</a> · {job.cost ? usd(job.cost.total_usd) : `est. ${usd(job.estimate.total_usd)}`}
+					</p>
+				</div>
+				<div className="flex flex-wrap gap-1.5">
+					{pack ? <CopyButton text={pack.markdown} label="Copy markdown" /> : null}
+					{pack ? (
+						<Button size="sm" onClick={download}>
+							<Icon icon={Download04Icon} size={14} /> Download .md
+						</Button>
+					) : null}
+					{isActive(job.status) ? (
+						<Button variant="outline" size="sm" onClick={onStop} disabled={stopping}>
+							<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
+						</Button>
+					) : (
+						<Button variant="outline" size="sm" onClick={onRegen}>
+							<Icon icon={RepeatIcon} size={14} /> Regenerate
+						</Button>
+					)}
+					<Button variant="danger" size="sm" onClick={onDelete} aria-label="Delete">
+						<Icon icon={Delete02Icon} size={14} />
+					</Button>
+				</div>
+			</div>
+			{job.error ? (
+				<div className="mb-5 flex gap-2 rounded-xl border border-danger/25 bg-danger/5 p-3 text-sm text-danger">
+					<Icon icon={AlertCircleIcon} size={16} className="mt-0.5" />
+					<p className="font-medium break-words">{job.error}</p>
+				</div>
+			) : null}
+			{!pack ? (
+				<div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-border p-10 text-sm text-muted-foreground">
+					{isActive(job.status) ? <Icon icon={Loading03Icon} size={22} className="animate-spin" /> : null}
+					<p>{isActive(job.status) ? `${STEP_LABELS[job.step] || "Working"}…` : job.status === "cancelled" ? "Stopped" : "No pack was produced."}</p>
+				</div>
+			) : (
+			<div className="space-y-3">
+				<PackSection title="Hook" copy={pack.hook}>
+					{pack.hook}
+				</PackSection>
+				<PackSection title="Narration script" copy={pack.narration.join("\n")}>
+					{bullets(pack.narration)}
+				</PackSection>
+				<PackSection title="Storyboard">
+					<div className="grid gap-2 sm:grid-cols-2">
+						{pack.storyboard.map((sc) => (
+							<div key={sc.scene} className="rounded-lg bg-muted/50 p-3 text-xs">
+								<p className="mb-1 text-[13px] font-medium">
+									Scene {sc.scene} <span className="font-normal text-muted-foreground">· {sc.duration_sec}s</span>
+								</p>
+								<p><span className="text-muted-foreground">Subject:</span> {sc.subject}</p>
+								<p><span className="text-muted-foreground">Action:</span> {sc.action}</p>
+								<p><span className="text-muted-foreground">Camera:</span> {sc.camera}</p>
+								<p><span className="text-muted-foreground">Lighting:</span> {sc.lighting}</p>
+								<p><span className="text-muted-foreground">Transition:</span> {sc.transition}</p>
+							</div>
+						))}
+					</div>
+				</PackSection>
+				<PackSection title="Video-generation prompts" copy={pack.video_prompts.map((v) => `Scene ${v.scene}\n${v.prompt}`).join("\n\n")}>
+					<div className="space-y-2">
+						{pack.video_prompts.map((v) => (
+							<div key={v.scene}>
+								<p className="mb-1 text-xs font-medium text-muted-foreground">Scene {v.scene}</p>
+								<pre className="rounded-lg bg-muted p-2.5 text-xs leading-relaxed whitespace-pre-wrap">{v.prompt}</pre>
+							</div>
+						))}
+					</div>
+				</PackSection>
+				<PackSection title="Subtitles" copy={pack.subtitles.map((x) => x.text).join("\n")}>
+					{bullets(pack.subtitles.map((x) => `Scene ${x.scene}: ${x.text}`))}
+				</PackSection>
+				<PackSection title="Sound design">{bullets(pack.sound_design)}</PackSection>
+				<PackSection title="Final assembly">
+					<ol className="list-decimal space-y-1 pl-5">
+						{pack.assembly.map((x, i) => (
+							<li key={i}>{x}</li>
+						))}
+					</ol>
+				</PackSection>
+				<PackSection title="Source facts">
+					<ul className="space-y-2">
+						{pack.source_facts.map((f, i) => (
+							<li key={i}>
+								<p>{f.claim}</p>
+								<p className="mt-0.5 border-l-2 border-border pl-2 text-xs text-muted-foreground">
+									{f.passage}
+									{f.found_in_source ? "" : " (quote not found in the source, check before use)"}
+								</p>
+							</li>
+						))}
+					</ul>
+				</PackSection>
+			</div>
+			)}
+		</div>
+	);
+}
+
 export function VideoDetailPage() {
 	const { id } = useParams({ strict: false }) as { id: string };
 	const navigate = useNavigate();
@@ -160,7 +301,30 @@ export function VideoDetailPage() {
 			</div>
 		);
 
+	const deleteDialog = (
+		<Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+				<DialogContent title="Delete video" className="top-[28%] max-w-md p-5">
+					<p className="text-sm font-medium">Delete this video?</p>
+					<p className="mt-1 text-sm text-muted-foreground">Its files are removed from data/videos.</p>
+					<div className="mt-4 flex justify-end gap-2">
+						<Button variant="outline" onClick={() => setConfirmDelete(false)}>
+							Cancel
+						</Button>
+						<Button variant="danger" onClick={() => del.mutate()} disabled={del.isPending}>
+							Delete
+						</Button>
+					</div>
+				</DialogContent>
+			</Dialog>
+	);
 	const job = q.data;
+	if (job.kind === "prompt-pack")
+		return (
+			<>
+				<PackView job={job} pack={job.pack} onStop={() => stop.mutate()} stopping={stop.isPending} onDelete={() => setConfirmDelete(true)} onRegen={() => regen.mutate()} />
+				{deleteDialog}
+			</>
+		);
 	const v = job.variants.find((x) => x.id === variantId) || job.variants.find((x) => x.result) || job.variants[0];
 	const videoSrc = v?.result ? v.result.video_url || fileUrl(job.id, v.result.video_path, true) : null;
 	const caption = v?.result?.caption || v?.caption || "";
@@ -392,20 +556,7 @@ export function VideoDetailPage() {
 					</TabsContent>
 				</Tabs>
 			</div>
-			<Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
-				<DialogContent title="Delete video" className="top-[28%] max-w-md p-5">
-					<p className="text-sm font-medium">Delete this video?</p>
-					<p className="mt-1 text-sm text-muted-foreground">The MP4, captions, script and every frame are removed from data/videos.</p>
-					<div className="mt-4 flex justify-end gap-2">
-						<Button variant="outline" onClick={() => setConfirmDelete(false)}>
-							Cancel
-						</Button>
-						<Button variant="danger" onClick={() => del.mutate()} disabled={del.isPending}>
-							Delete
-						</Button>
-					</div>
-				</DialogContent>
-			</Dialog>
+			{deleteDialog}
 		</div>
 	);
 }

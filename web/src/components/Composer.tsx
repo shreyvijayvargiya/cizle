@@ -21,11 +21,12 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { ModelToggle } from "@/components/ModelToggle";
+import { ReviewCard, effectiveChoice, type ReviewAnswers } from "@/components/ReviewCard";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { isAborted, useAbort } from "@/lib/abort";
 import { Tip } from "@/components/ui/misc";
-import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt } from "@/lib/api";
+import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt, type Review, type ReviewQuestion } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 import { cn, hostOf } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
@@ -83,6 +84,9 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	const [compare, setCompare] = useState("");
 	const [loaded, setLoaded] = useState<Prompt | null>(null);
 	const [pickerOpen, setPickerOpen] = useState(false);
+	const [review, setReview] = useState<Review | null>(null);
+	const [answers, setAnswers] = useState<ReviewAnswers>({});
+	const [finalPrompt, setFinalPrompt] = useState("");
 	const taRef = useRef<HTMLTextAreaElement>(null);
 	const seeded = useRef(false);
 
@@ -172,31 +176,73 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	});
 
 	const abort = useAbort();
+	const onError = (e: ApiError) => {
+		if (isAborted(e)) {
+			toast.info("Stopped. Nothing was started.");
+			return;
+		}
+		toast.error(e.message, e.code === "MISSING_API_KEY" || e.code === "OPENROUTER_AUTH" ? { action: { label: "Open settings", onClick: () => navigate({ to: "/settings" }) } } : undefined);
+	};
 	const create = useMutation({
 		mutationFn: (b: CreateVideo) => api.createVideo(b, abort.next()),
 		onSuccess: (job) => {
 			qc.invalidateQueries({ queryKey: ["videos"] });
 			qc.invalidateQueries({ queryKey: ["stats"] });
-			toast.success("Video started", { description: "The agent is reading your product now." });
+			toast.success(job.kind === "prompt-pack" ? "Writing the prompt pack" : "Video started", { description: "Reading your link now." });
 			navigate({ to: "/videos/$id", params: { id: job.id } });
 		},
-		onError: (e: ApiError) => {
-			if (isAborted(e)) {
-				toast.info("Stopped. Nothing was started.");
-				return;
-			}
-			toast.error(e.message, e.code === "MISSING_API_KEY" || e.code === "OPENROUTER_AUTH" ? { action: { label: "Open settings", onClick: () => navigate({ to: "/settings" }) } } : undefined);
+		onError,
+	});
+	// The review asks its questions first; it creates nothing. Only Approve below calls the create API.
+	const reviewing = useMutation({
+		mutationFn: (b: CreateVideo) => api.review(b, abort.next()),
+		onSuccess: (r) => {
+			setReview(r);
+			setAnswers({});
+			setFinalPrompt(r.final_prompt);
 		},
+		onError,
+	});
+	const savePrompt = useMutation({
+		mutationFn: (r: Review) => api.createPrompt({ name: r.save_prompt!.name, description: r.save_prompt!.description, body: r.save_prompt!.body, type: r.save_prompt!.type || null, review_id: r.id }),
+		onSuccess: (p) => {
+			qc.invalidateQueries({ queryKey: ["prompts"] });
+			setReview(null);
+			setText("");
+			toast.success(`Saved “${p.name}” to your library`, { action: { label: "Open", onClick: () => navigate({ to: "/prompts/$id", params: { id: p.id } }) } });
+		},
+		onError,
 	});
 
 	const submit = () => {
-		if (!mainUrl) {
-			toast.error("Paste a SaaS URL or GitHub repo in the box first, or add a product.");
+		if (!text.trim() && !mainUrl) {
+			toast.error("Paste a link or describe what you want first.");
 			taRef.current?.focus();
 			return;
 		}
-		create.mutate(body);
+		reviewing.mutate(body);
 	};
+
+	const approve = () => {
+		if (!review) return;
+		if (review.intent === "save_prompt") return savePrompt.mutate(review);
+		const choice = effectiveChoice(review, answers);
+		const extra = [answers.audience?.trim() && `Audience: ${answers.audience.trim()}`, answers.key_takeaway?.trim() && `Key takeaway: ${answers.key_takeaway.trim()}`].filter(Boolean);
+		create.mutate({
+			...body,
+			type: choice.type,
+			tone: choice.tone,
+			aspect: choice.aspect,
+			audio: choice.audio,
+			duration_sec: choice.duration_sec,
+			variations: answers.variations ? Number(answers.variations) : variations,
+			model_tier: (answers.model_tier as "free" | "paid" | undefined) ?? tier,
+			prompt: [finalPrompt.trim(), ...extra].join("\n"),
+			review_id: review.id,
+		});
+	};
+	const setAnswer = (field: ReviewQuestion["field"], v: string) => setAnswers((a) => ({ ...a, [field]: v }));
+	const busy = create.isPending || reviewing.isPending || savePrompt.isPending;
 
 	const typeName = type === "auto" ? "Any type" : types.find((t) => t.slug === type)?.name || type;
 	const toneName = tone === "auto" ? "Best tone" : tones.find((t) => t.slug === tone)?.name || tone;
@@ -209,6 +255,9 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 					"rounded-2xl border border-border bg-surface shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] transition-shadow focus-within:border-ring/60 focus-within:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_32px_-12px_rgba(0,0,0,0.18)]",
 				)}
 			>
+				{review ? (
+					<ReviewCard review={review} answers={answers} setAnswer={setAnswer} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
+				) : null}
 				{links.site || links.github || usingProduct || loaded || type !== "auto" || tone !== "auto" ? (
 					<div className="flex flex-wrap gap-1.5 px-4 pt-3.5">
 						{usingProduct ? (
@@ -400,16 +449,16 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 					<div className="ml-auto flex items-center gap-2.5">
 						<ModelToggle id="composer-tier" className="mr-1" />
 						<span className="hidden text-xs text-muted-foreground tabular-nums sm:inline">
-							{tier === "free" && mainUrl ? "Free" : estimate.data ? `≈ $${estimate.data.total_usd.toFixed(2)}` : mainUrl ? "" : "⌘↵ to generate"}
+							{tier === "free" && mainUrl ? "Free" : estimate.data ? `≈ $${estimate.data.total_usd.toFixed(2)}` : mainUrl ? "" : "⌘↵ to review"}
 						</span>
-						{create.isPending ? (
+						{busy ? (
 							<Tip label="Stop">
 								<Button size="icon" variant="outline" className="size-9 rounded-xl" onClick={abort.stop} aria-label="Stop">
 									<Icon icon={StopIcon} size={16} className="fill-current" />
 								</Button>
 							</Tip>
 						) : (
-							<Button size="icon" className="size-9 rounded-xl" onClick={submit} aria-label="Generate video">
+							<Button size="icon" className="size-9 rounded-xl" onClick={submit} aria-label="Review and create">
 								<Icon icon={ArrowUp02Icon} size={18} />
 							</Button>
 						)}

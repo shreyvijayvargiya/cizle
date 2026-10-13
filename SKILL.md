@@ -30,7 +30,7 @@ If the user has added their product to cizle, use it: videos then read the saved
      "url": "<website or github repo>",
      "github_url": "<optional repo when url is a website>",
      "compare_urls": ["<competitor urls, only for type comparison>"],
-     "type": "showcase|features|faq|comparison|glossary|launch|auto",
+     "type": "showcase|features|faq|comparison|glossary|launch|sketch-explainer|auto",
      "tone": "polished|playful|cinematic|app-store|deadpan|auto",
      "prompt": "<extra direction from the user>",
      "aspect": "9:16|1:1|16:9",
@@ -40,6 +40,8 @@ If the user has added their product to cizle, use it: videos then read the saved
    }'
    ```
 5. **Poll** `GET /api/videos/<id>` every ~10 s until `status` is `success`, `partial` or `failed`. Report `error` if it failed.
+   For a blog post or tutorial, use `"type": "sketch-explainer"` with the article link as `url`. It does not render a video: the finished job has `kind: "prompt-pack"` and `pack` (hook, narration, storyboard, `video_prompts`, subtitles, `source_facts`, and the whole thing as `pack.markdown`). Hand `pack.markdown` to a video model or the user. Ask the user for the audience and takeaway first and put them in `prompt`.
+   To get cizle's own questions and a drafted prompt before creating, `POST /api/review` with `{"draft": {<same fields>}}`. It creates nothing; it returns `questions`, `final_prompt`, `checks` (duplicates) and `cost`. Show them to the user, then send the approved values to `POST /api/videos`.
 6. **Deliver:** each `variants[].result.video_path` is relative to `data/videos/<id>/` (or use `video_url` when UploadThing is on). Share the path, the duration, and `result.caption` (ready-to-post copy). The dashboard page is `http://localhost:5173/videos/<id>`.
 
 Keep videos under 60 seconds. Never invent product claims in `prompt`; cizle grounds the script in what it reads from the product.
