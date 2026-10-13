@@ -12,6 +12,7 @@ import {
 	GithubIcon,
 	Globe02Icon,
 	Loading03Icon,
+	PaintBrush01Icon,
 	RepeatIcon,
 	StopIcon,
 	Tick02Icon,
@@ -20,17 +21,17 @@ import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/menu";
+import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
-import { api, fileUrl, isActive, type Job, type Pack, type Variant } from "@/lib/api";
-import { ARTICLE_PIPELINE, PIPELINE as PRODUCT_PIPELINE, STEP_LABELS } from "@/lib/constants";
+import { api, fileUrl, isActive, type Aspect, type Job, type Pack, type StyleId, type Variant } from "@/lib/api";
+import { ARTICLE_PIPELINE, PIPELINE as PRODUCT_PIPELINE, STEP_LABELS, STORYBOARD_PIPELINE, STYLES } from "@/lib/constants";
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
 
 const SOURCE_LABELS: Record<string, string> = { website: "Website", llms_txt: "llms.txt", blog: "Blog", github: "GitHub", page: "Page", faq: "FAQ", competitor: "Competitor" };
 const ASPECT_CLASS: Record<string, string> = { "9:16": "aspect-[9/16] max-h-[70vh]", "1:1": "aspect-square", "16:9": "aspect-video" };
 
 function Timeline({ job }: { job: Job }) {
-	const PIPELINE = job.engine === "article" ? ARTICLE_PIPELINE : PRODUCT_PIPELINE;
+	const PIPELINE = job.engine === "article" ? ARTICLE_PIPELINE : job.engine === "storyboard" ? STORYBOARD_PIPELINE : PRODUCT_PIPELINE;
 	const rank = (step: string) => Math.max(0, PIPELINE.findIndex((s) => s === step || (s === "render" && ["narration", "frames_render", "render_clips", "audio_mix", "mux"].includes(step))));
 	const idx = job.step === "done" ? PIPELINE.length : rank(job.step);
 	const failed = job.status === "failed";
@@ -237,6 +238,16 @@ export function VideoDetailPage() {
 		onError: (e: Error) => toast.error(e.message),
 	});
 
+	const reskin = useMutation({
+		mutationFn: (b: { style?: StyleId; aspect?: Aspect }) => api.reskin(id, b),
+		onSuccess: (job) => {
+			qc.invalidateQueries({ queryKey: ["videos"] });
+			toast.success("Rendering the same storyboard again", { description: "No model involved, so it is free." });
+			navigate({ to: "/videos/$id", params: { id: job.id } });
+		},
+		onError: (e: Error) => toast.error(e.message),
+	});
+
 	if (q.isLoading)
 		return (
 			<div className="mx-auto max-w-6xl space-y-4 p-6">
@@ -287,14 +298,17 @@ export function VideoDetailPage() {
 						<StatusBadge status={job.status} step={job.step} progress={job.progress} />
 					</div>
 					<div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-						<a href={job.input.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
-							<Icon icon={/github\.com/.test(job.input.url) ? GithubIcon : Globe02Icon} size={12} /> {hostOf(job.input.url)}
-						</a>
+						{job.input.url ? (
+							<a href={job.input.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
+								<Icon icon={/github\.com/.test(job.input.url) ? GithubIcon : Globe02Icon} size={12} /> {hostOf(job.input.url)}
+							</a>
+						) : null}
 						{job.input.github_url ? (
 							<a href={job.input.github_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
 								<Icon icon={GithubIcon} size={12} /> {job.input.github_url.replace(/^https?:\/\/github\.com\//, "")}
 							</a>
 						) : null}
+						{job.origin ? <Badge tone="info">Made with Claude Code</Badge> : null}
 						<span>{job.type_label || job.input.type}</span>
 						<span>
 							{job.input.aspect} · {job.input.audio === "voice" ? "voice-over" : job.input.audio === "music" ? "music only" : "silent"}
@@ -324,15 +338,50 @@ export function VideoDetailPage() {
 						</Button>
 					) : (
 						<Button variant="outline" size="sm" onClick={() => regen.mutate()} disabled={regen.isPending}>
-							<Icon icon={RepeatIcon} size={14} /> Regenerate
+							<Icon icon={RepeatIcon} size={14} /> {job.can_reskin ? "Render again" : "Regenerate"}
 						</Button>
 					)}
+					{job.can_reskin && !isActive(job.status) ? (
+						<Menu>
+							<MenuTrigger asChild>
+								<Button variant="outline" size="sm" disabled={reskin.isPending}>
+									<Icon icon={PaintBrush01Icon} size={14} /> Re-skin
+								</Button>
+							</MenuTrigger>
+							<MenuContent className="w-56">
+								<MenuLabel>Same storyboard, another style (free)</MenuLabel>
+								<MenuRadioGroup value="" onValueChange={(v) => reskin.mutate({ style: v as StyleId })}>
+									{STYLES.filter((s) => s.value !== "auto").map((s) => (
+										<MenuRadioItem key={s.value} value={s.value}>
+											{s.label}
+										</MenuRadioItem>
+									))}
+								</MenuRadioGroup>
+								<MenuSeparator />
+								<MenuLabel>Aspect ratio</MenuLabel>
+								<MenuRadioGroup value="" onValueChange={(v) => reskin.mutate({ aspect: v as Aspect })}>
+									{(["9:16", "1:1", "16:9"] as const).map((a) => (
+										<MenuRadioItem key={a} value={a}>
+											{a}
+										</MenuRadioItem>
+									))}
+								</MenuRadioGroup>
+							</MenuContent>
+						</Menu>
+					) : null}
 					<Button variant="danger" size="sm" onClick={() => setConfirmDelete(true)} aria-label="Delete video">
 						<Icon icon={Delete02Icon} size={14} />
 					</Button>
 				</div>
 			</div>
 
+			{job.notes?.length ? (
+				<div className="mb-5 rounded-xl border border-border bg-muted/40 p-3 text-sm text-muted-foreground">
+					{job.notes.map((n, i) => (
+						<p key={i}>{n}</p>
+					))}
+				</div>
+			) : null}
 			{job.error ? (
 				<div className="mb-5 flex gap-2 rounded-xl border border-danger/25 bg-danger/5 p-3 text-sm text-danger">
 					<Icon icon={AlertCircleIcon} size={16} className="mt-0.5" />
@@ -403,7 +452,7 @@ export function VideoDetailPage() {
 										))}
 									</ul>
 								) : (
-									<p className="text-sm text-muted-foreground">Gathering…</p>
+									<p className="text-sm text-muted-foreground">{job.engine === "storyboard" ? "Read by Claude Code before it wrote the storyboard." : "Gathering…"}</p>
 								)}
 							</div>
 						</div>

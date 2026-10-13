@@ -85,10 +85,13 @@ export function VideosTable({ data, loading, compact, emptyAction }: { data: Vid
 								{thumb ? <img src={thumb} alt="" className="size-full object-cover" loading="lazy" /> : <Icon icon={Video01Icon} size={14} className="text-muted-foreground" />}
 							</div>
 							<div className="min-w-0">
-								<p className="truncate font-medium">{v.title}</p>
+								<p className="flex items-center gap-1.5 truncate font-medium">
+									<span className="truncate">{v.title}</span>
+									{v.origin ? <Badge tone="info">Claude Code</Badge> : null}
+								</p>
 								<p className="flex items-center gap-1 truncate text-xs text-muted-foreground">
 									{v.github_url || /github\.com/.test(v.url) ? <Icon icon={GithubIcon} size={11} /> : null}
-									{hostOf(v.url)}
+									{v.url ? hostOf(v.url) : "Made with Claude Code"}
 								</p>
 							</div>
 						</div>

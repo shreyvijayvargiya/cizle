@@ -10,10 +10,15 @@
 		"dev": "concurrently -k -n api,web -c cyan,magenta \"node --watch-path=server server/index.js\" \"vite --config web/vite.config.ts\"",
 		"build": "vite build --config web/vite.config.ts",
 		"start": "node server/index.js",
-		"typecheck": "tsc --noEmit -p web"
+		"typecheck": "tsc --noEmit -p web",
+		"mcp": "node server/mcp/stdio.js",
+		"mcp:install": "node server/mcp/install.js",
+		"render": "node server/cli/render.js",
+		"guide": "node server/cli/guide.js"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.5",
+		"@modelcontextprotocol/sdk": "^1.32.1",
 		"cheerio": "^1.1.2",
 		"ffmpeg-static": "^5.2.0",
 		"gray-matter": "^4.0.3",
@@ -22,7 +27,8 @@
 		"puppeteer": "^24.17.0",
 		"turndown": "^7.2.1",
 		"uploadthing": "^7.7.4",
-		"uuid": "^11.1.0"
+		"uuid": "^11.1.0",
+		"zod": "^4.6.7"
 	},
 	"devDependencies": {
 		"@hugeicons/core-free-icons": "^4.3.5",

@@ -218,7 +218,7 @@ export function AppShell({ children }: { children?: ReactNode }) {
 						<div className="ml-auto flex items-center gap-1">
 							{settings.data && !settings.data.openrouter_api_key_set ? (
 								<Link to="/settings" className="mr-1 hidden rounded-md border border-warning/30 bg-warning/10 px-2 py-1 text-xs font-medium text-warning lg:inline-block">
-									Add your OpenRouter key
+									OpenRouter key (not needed for Claude Code)
 								</Link>
 							) : null}
 							<ThemeMenu />

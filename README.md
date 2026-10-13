@@ -26,7 +26,7 @@ Runs on your machine. No database, no accounts. Powered by [OpenRouter](https://
 - [Product memory](#product-memory) · [Sync](#sync-what-shipped) · [Review before create](#review-before-create) · [Animated styles](#animated-styles) · [Gallery](#gallery-and-remix)
 - [Free or paid models](#free-or-paid-models) · [Stop anything](#stop-anything)
 - [Video types and formats](#video-types-and-formats) · [The prompt library](#the-prompt-library)
-- [How it works](#how-it-works) · [Cost](#cost) · [Use it from Claude Code](#use-it-from-claude-code)
+- [How it works](#how-it-works) · [Cost](#cost) · [Use it from Claude Code, no key](#use-it-from-claude-code-no-api-key)
 - [API](#api) · [Configuration](#configuration) · [Project layout](#project-layout) · [Security](#security)
 - [Contributing](#contributing) · [Credits](#credits) · [License](#license)
 
@@ -66,6 +66,7 @@ To run it as a single server: `npm run build && npm start`, then open http://loc
 | **Sync** | Finds new commits, releases and pages since last time, turns them into plain-language changes and video ideas. |
 | **Create from an idea** | Every idea cites its source (`github:pr:41`, `site:/pricing`). Press **Create**. Nothing renders before that. |
 | **Describe your own video** | Composer with type, tone, aspect ratio, audio, length and 1–3 variations. Type `/` to load a saved prompt. |
+| **Claude Code, no key** | Add the MCP server and Claude writes the storyboard from your blog or code on your own subscription; cizle renders it into your dashboard. No OpenRouter key. |
 | **Review before create** | Press the arrow and an AI step checks for duplicates, asks the few questions that matter (audience, format, free or paid) and writes the final prompt. You approve, then it runs. |
 | **Blog to sketch video** | Paste an article link; the Sketch Explainer type renders a hand-drawn explainer video and returns a prompt pack for video models: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
 | **Animated styles** | Hand-drawn, clay, glass, isometric and ASCII looks with real entrance animations, set by the tone or picked in the composer. |
@@ -297,13 +298,32 @@ You pay OpenRouter for model usage; cizle itself is free. Free models cost nothi
 
 These are rough estimates: a 30 s narrated video costs about **$0.10–0.20**, and silent videos cost less. The dashboard shows an estimate before you generate and the actual cost after. Auto-sync only calls a model when something changed. You can change any model in Settings.
 
-## Use it from Claude Code
+## Use it from Claude Code (no API key)
 
-[`SKILL.md`](SKILL.md) lets coding agents drive cizle while the dev server is running. Try:
+Claude Code can make the videos itself, on your Claude subscription, with no OpenRouter key and no dashboard server running. Claude reads your blog post or code and writes the storyboard; cizle only renders it (animated frames, captions, music, FFmpeg) and files the MP4 in your dashboard.
 
-- "Make a FAQ video for this project with cizle."
-- "What should I make a video about this week?" (it syncs, reads the ideas, and asks before creating anything)
-- "Add https://mysaas.com and my repos to cizle."
+```bash
+npm install
+npm run mcp:install     # adds cizle to Claude Code for every project (or: see below)
+```
+
+Then, in Claude Code, in any project (for example your SaaS repo):
+
+> Use cizle to make a 40-second sketch explainer of the latest blog post on ihatereading.in. Explain the code using the main concept.
+
+What happens: Claude reads cizle's guide and the **Code walkthrough** (or **Sketch Explainer**) prompt, fetches the post and reads your code, calls `save_product` once so cizle remembers the product, writes about eight scenes, and calls `create_video`. A minute or two later the video is in the dashboard (**Videos**, badge "Claude Code"), at `data/videos/<id>/variants/v1/video.mp4`, with the storyboard saved next to it.
+
+- **Slash commands.** Every video type is a prompt: `/mcp__cizle__make-code-walkthrough <url>`, `/mcp__cizle__make-pitch-teaser`, `/mcp__cizle__make-whats-new` and so on (type `/mcp__cizle` to see all 21), plus `/mcp__cizle__make-video <what you want>`.
+- **Tools** Claude can call: `guide`, `list_prompts`, `read_prompt`, `list_products`, `read_product`, `save_product`, `create_video`, `get_video`, `list_videos`, `reskin_video`, `cancel_video`.
+- **Re-skin for free.** The storyboard is stored, so **Re-skin** on the video page (or `reskin_video`) renders the same video again in clay, glass, isometric, hand-drawn or ASCII, or in another aspect ratio. No model is involved.
+- **Voice.** Without a text-to-speech key you get captions on screen and music (Openverse, or generated offline). Add an OpenRouter key and `audio: "voice"` also works.
+- **Your model.** Claude Code uses whichever model you picked (choose Opus for the best storyboards). A 40-second storyboard is a few thousand output tokens.
+- **Where it renders.** In the MCP process on your machine, so Chrome and FFmpeg are needed, as for the dashboard. A video takes one to three minutes. The dashboard reads the same `data/` folder; to see videos while Claude works, run `npm run dev` (set `CIZLE_DASHBOARD_URL=http://localhost:5173` so links point at the dev server).
+- **Add it by hand:** `claude mcp add --scope user cizle -- node /absolute/path/to/cizle/server/mcp/stdio.js`. Opening this repository in Claude Code also offers the project-scoped `.mcp.json`.
+
+Not using Claude Code? The renderer is also a command, `npm run render -- storyboard.json --style clay`, and an endpoint, `POST /api/videos/from-storyboard`. `npm run guide` prints the storyboard format. Any agent that can write JSON can use them.
+
+The older [`SKILL.md`](SKILL.md) is for agents that drive the dashboard server and OpenRouter pipeline (it reads the site, writes the script and renders), as before.
 
 ## API
 
@@ -344,6 +364,8 @@ curl -X POST localhost:3737/api/videos -H 'content-type: application/json' -d '{
 | `GET` | `/api/models` | free and paid models in use, and the free list |
 | `GET` `PUT` | `/api/settings` · `POST /api/settings/test` | keys and defaults |
 | `GET` `POST` | `/api/prompts` · `/api/prompts/:id` | prompt library |
+| `POST` | `/api/videos/from-storyboard` | render a storyboard someone else wrote (no model, no key) |
+| `POST` | `/api/videos/:id/reskin` | render a stored storyboard again in another style or aspect |
 | `POST` | `/api/review` | review a draft: checks, questions, final prompt, cost (creates nothing) |
 | `POST` | `/api/estimate` | cost before you run |
 
@@ -381,6 +403,9 @@ cizle/
 │   ├── settings.js models.js library.js scrape.js browser.js
 │   ├── products/            store, onboard, sync, llm helpers
 │   ├── review/              the review step in front of create, and its chat log
+│   ├── mcp/                 the MCP server for Claude Code (stdio.js, server.js, guide.js, install.js)
+│   ├── cli/                 npm run render / npm run guide
+│   ├── local.js             shared boot for the CLI and the MCP server
 │   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js,
 │                            styles.js (the five animated styles), pack.js (article → pack)
 ├── web/src/

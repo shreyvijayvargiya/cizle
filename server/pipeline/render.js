@@ -223,7 +223,7 @@ export async function renderStoryboardVideo({ storyboard, frames, notes, repoDir
 			};
 			v.url ||= displayUrl(f.url);
 		}
-		const code = v.type === "code" ? readCodeSnippet(repoDir, v.file, v.start_line, v.end_line) : null;
+		const code = v.type === "code" ? (typeof v.code === "string" && v.code ? { startLine: v.start_line || 1, lines: v.code.split("\n") } : readCodeSnippet(repoDir, v.file, v.start_line, v.end_line)) : null;
 		built.push(buildFrameHtml({ scene, size, theme, image, code }));
 	}
 	// Concurrent captures in one headless browser can hang a background tab, so frame
@@ -445,7 +445,14 @@ export function sanitizeStoryboard(board, { frames, codeFiles, input, source, in
 			type = "title";
 			v.title = s.on_screen_text || v.title || source.name || source.title || "";
 		}
-		if (type === "code" && !codePaths.has(v.file)) type = "bullets";
+		const inlineCode = type === "code" && typeof v.code === "string" && v.code.trim();
+		if (type === "code" && !codePaths.has(v.file) && !inlineCode) type = "bullets";
+		if (inlineCode) {
+			// Code supplied with the scene (for example by Claude Code reading the user's checkout).
+			v.code = v.code.replace(/\t/g, "  ").split("\n").slice(0, 14).map((l) => l.slice(0, 110)).join("\n");
+			v.start_line = Math.max(1, Number.parseInt(v.start_line, 10) || 1);
+			v.file = String(v.file || "").slice(0, 80);
+		}
 		if (type === "bullets" && !(Array.isArray(v.items) && v.items.length)) type = "title";
 		if (type === "stats" && !(Array.isArray(v.items) && v.items.length)) type = "title";
 		// steps, plans, timeline: keep only well-formed items; otherwise fall back to a simpler scene

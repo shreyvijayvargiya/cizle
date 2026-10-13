@@ -25,7 +25,7 @@ import {
 	verifyOpenRouterKey,
 } from "./render.js";
 import { ensureFfmpeg } from "./media.js";
-import { estimatePackCost, packToStoryboard, runPackJob } from "./pack.js";
+import { cleanPack, estimatePackCost, packMarkdown, packToStoryboard, runPackJob } from "./pack.js";
 import { STYLE_IDS, normalizeStyle } from "./styles.js";
 import { gatherProductContext } from "./context.js";
 import {
@@ -159,12 +159,21 @@ async function save(job) {
 
 const publicJob = ({ logs = [], ...rest }) => ({ ...rest, logs: logs.slice(-80) });
 
+const STALE_MS = 15 * 60_000;
+/** A job read from disk that says "running" but has not been touched for a long time was interrupted (its process stopped). */
+function settleStale(j) {
+	if ((j?.status === "pending" || j?.status === "running") && !jobs.has(j.id) && Date.now() - Date.parse(j.updated_at || j.created_at || 0) > STALE_MS) {
+		return { ...j, status: "failed", step: "interrupted", error: "Interrupted: the process that was rendering this video stopped." };
+	}
+	return j;
+}
+
 export async function getJob(id) {
 	const sid = safeId(id);
 	if (!sid) return null;
 	if (jobs.has(sid)) return publicJob(jobs.get(sid));
 	try {
-		return publicJob(JSON.parse(await fsp.readFile(path.join(jobDir(sid), "manifest.json"), "utf8")));
+		return publicJob(settleStale(JSON.parse(await fsp.readFile(path.join(jobDir(sid), "manifest.json"), "utf8"))));
 	} catch {
 		return null;
 	}
@@ -175,7 +184,7 @@ export async function listJobs({ q = "", type = "", status = "", product = "" } 
 	const dirs = await fsp.readdir(VIDEOS_DIR).catch(() => []);
 	const rows = [];
 	for (const d of dirs) {
-		const j = jobs.get(d) || (await fsp.readFile(path.join(VIDEOS_DIR, d, "manifest.json"), "utf8").then(JSON.parse).catch(() => null));
+		const j = jobs.get(d) || settleStale(await fsp.readFile(path.join(VIDEOS_DIR, d, "manifest.json"), "utf8").then(JSON.parse).catch(() => null));
 		if (!j?.id) continue;
 		const first = (j.variants || []).find((v) => v.result) || j.variants?.[0];
 		rows.push({
@@ -199,6 +208,7 @@ export async function listJobs({ q = "", type = "", status = "", product = "" } 
 			product: j.input?.product || null,
 			model_tier: j.input?.model_tier || "paid",
 			idea_id: j.input?.idea_id || null,
+			origin: j.origin?.kind || null,
 			created_at: j.created_at,
 		});
 	}
@@ -284,6 +294,163 @@ export async function createJob(input, deps) {
 	return publicJob(job);
 }
 
+/* ------------------------------------------- storyboard jobs (Claude Code, CLI) */
+
+const badInput = (message) => Object.assign(new Error(message), { code: "BAD_INPUT" });
+
+/**
+ * Render a storyboard that someone else wrote (Claude Code over MCP, the CLI, any agent). No model is called and
+ * no key is needed: this is only validation, the style renderer, FFmpeg and local music.
+ *
+ * body: { storyboard: { title, logline?, caption?, cta?, music?, theme?, scenes[], pack? }, type?, style?, aspect?, audio?,
+ *         duration_sec?, product?, source_url?, request? }
+ */
+export async function createStoryboardJob(body = {}, deps, { origin = { kind: "claude-code" } } = {}) {
+	const board = body.storyboard;
+	if (!board || !Array.isArray(board.scenes) || !board.scenes.length) throw badInput("storyboard.scenes must be a non-empty array.");
+	await ensureFfmpeg();
+	const hasKey = Boolean(process.env.OPENROUTER_API_KEY?.trim());
+	const sourceUrl = normUrl(body.source_url);
+	const notes = [];
+	let audio = ["voice", "music", "silent"].includes(body.audio) ? body.audio : "music";
+	if (audio === "voice" && !hasKey) {
+		audio = "music";
+		notes.push("Voice-over needs a text-to-speech key (OpenRouter). Rendered with captions and music instead.");
+	}
+	const sceneTotal = board.scenes.reduce((a, s) => a + (Number(s?.duration_sec) || 4), 0);
+	const parsed = parseVideoInput({
+		url: sourceUrl || "https://cizle.local/",
+		prompt: body.request,
+		type: body.type,
+		style: body.style,
+		aspect: body.aspect,
+		audio,
+		duration_sec: body.duration_sec || sceneTotal,
+		product: body.product,
+		model_tier: hasKey ? "paid" : "free",
+	});
+	if (parsed.error) throw badInput(parsed.error);
+	const input = { ...parsed.input, url: sourceUrl, source: "storyboard", audio, narration: audio === "voice", music: audio === "silent" ? "none" : "auto", sfx: false };
+	const id = uuidv4();
+	const title = String(board.title || "Untitled").slice(0, 120);
+	const job = {
+		id,
+		title,
+		status: "pending",
+		step: "queued",
+		progress: 0,
+		engine: "storyboard",
+		origin: { ...origin, client: String(origin.client || "claude-code").slice(0, 40) },
+		input,
+		type_label: body.type && body.type !== "auto" ? body.type : "Claude Code",
+		estimate: { currency: "USD", estimated: true, total_usd: 0, per_video_usd: 0 },
+		sources: sourceUrl ? [{ type: "page", url: sourceUrl, ok: true, detail: "Provided by Claude Code" }] : [],
+		frames: [],
+		brief: null,
+		variants: [],
+		cost: null,
+		error: null,
+		notes,
+		logs: [],
+		created_at: new Date().toISOString(),
+		updated_at: new Date().toISOString(),
+	};
+	jobs.set(id, job);
+	const ac = new AbortController();
+	controllers.set(id, ac);
+	await save(job);
+	// Keep exactly what was submitted, so the video can be re-rendered later in another style or aspect, free.
+	await fsp.writeFile(path.join(jobDir(id), "request.json"), JSON.stringify(body, null, 2)).catch(() => {});
+	runWithSignal(ac.signal, () => runStoryboardJob(job, board, body, deps))
+		.catch(async (err) => {
+			if (ac.signal.aborted || isCancelError(err)) markCancelled(job);
+			else {
+				console.error(`[cizle] job ${id} failed:`, err);
+				job.status = "failed";
+				job.error = err?.message || String(err);
+			}
+			await save(job);
+		})
+		.finally(() => controllers.delete(id));
+	return publicJob(job);
+}
+
+async function runStoryboardJob(job, board, body, deps) {
+	const input = job.input;
+	const workDir = jobDir(job.id);
+	const costs = [];
+	const log = (msg) => {
+		job.logs.push(`${new Date().toISOString()} ${msg}`);
+		console.log(`[cizle ${job.id.slice(0, 8)}] ${msg}`);
+	};
+	const rel = (abs) => (abs ? path.relative(workDir, abs) : null);
+	throwIfCancelled();
+	Object.assign(job, { step: "render", progress: 10, status: "running" });
+	await save(job);
+
+	const library = await listPrompts();
+	const typeEntry = library.find((p) => p.kind === "type" && p.slug === body.type);
+	const style = normalizeStyle(input.style && input.style !== "auto" ? input.style : board.theme?.style || typeEntry?.style || "default");
+	job.style = style;
+	const source = { name: job.title, title: job.title, url: input.url || "", type: "page" };
+	const sb = sanitizeStoryboard(
+		{ ...board, scenes: board.scenes.slice(0, 14), music: board.music || { mood: "calm", search_query: "light instrumental", bpm: 96 }, sfx: false },
+		{ frames: [], codeFiles: [], input: { max_scenes: 14 }, source, instructions: "" },
+	);
+	const outro = sb.scenes[sb.scenes.length - 1].visual;
+	if (outro.type === "outro") {
+		if (board.cta?.text) outro.cta = String(board.cta.text).slice(0, 48);
+		if (board.cta?.url) outro.url = String(board.cta.url).replace(/^https?:\/\//, "").slice(0, 60);
+		if (!input.url && !board.cta?.url) outro.url = "";
+	}
+	if (!input.narration) for (const sc of sb.scenes) sc.narration = "";
+	if (body.duration_sec) fitPlannedDuration(sb, input.target_duration_sec);
+	sb.theme = { ...(board.theme || {}), style };
+	if (board.pack && typeof board.pack === "object") {
+		const pack = cleanPack(board.pack);
+		job.pack = { ...pack, markdown: packMarkdown(pack, { url: input.url || "Claude Code", typeName: job.type_label }), source_url: input.url || "", type_name: job.type_label };
+	}
+	const v = {
+		id: "v1",
+		concept: { type: body.type || "claude-code", title: job.title, angle: String(board.logline || "").slice(0, 200), hook: String(sb.scenes[0]?.visual?.title || sb.scenes[0]?.narration || "").slice(0, 80), audience: "", pace: "medium", theme: { accent: board.theme?.accent || null } },
+		status: "rendering",
+		step: "queued",
+		progress: 0,
+		error: null,
+		result: null,
+		storyboard: sb,
+		caption: String(board.caption || "").slice(0, 300),
+	};
+	job.variants = [v];
+	await save(job);
+	await renderOne({ job, v, gathered: { frames: [], repoDir: null }, notes: [], input, workDir, deps, costs, log, rel });
+	throwIfCancelled();
+	const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
+	job.cost = { currency: "USD", total_usd: round(spent), by_stage: groupCost(costs), by_variant: { v1: round(spent, 6) } };
+	job.status = v.status === "success" ? "success" : "failed";
+	if (v.status !== "success") job.error = v.error || "The video did not render.";
+	Object.assign(job, { step: "done", progress: 100 });
+	log(`done: ${job.status}, style ${style}, ${sb.scenes.length} scenes`);
+	await save(job);
+}
+
+/** Render the same storyboard again, optionally in another style, aspect ratio or audio mode. Free: no model call. */
+export async function reskinJob(id, overrides = {}, deps) {
+	let body;
+	try {
+		body = JSON.parse(await fsp.readFile(path.join(jobDir(id), "request.json"), "utf8"));
+	} catch {
+		return null;
+	}
+	const next = { ...body };
+	for (const k of ["style", "aspect", "audio", "duration_sec"]) if (overrides[k] !== undefined && overrides[k] !== "") next[k] = overrides[k];
+	const prev = await getJob(id);
+	return createStoryboardJob(next, deps, { origin: { ...(prev?.origin || { kind: "claude-code" }), from: id } });
+}
+
+/** True when a job was made from a stored storyboard and can be re-rendered without a model. */
+export const canReskin = (id) => fs.existsSync(path.join(jobDir(id), "request.json"));
+
 function markCancelled(job) {
 	job.status = "cancelled";
 	job.step = "cancelled";
@@ -349,6 +516,7 @@ async function renderOne({ job, v, gathered, notes, input, workDir, deps, costs,
 				v.step = name;
 				v.progress = pr;
 				job.step = name;
+				if (job.engine) job.progress = Math.max(job.progress || 0, pr); // storyboard and article jobs have a single render
 				await save(job);
 			},
 			uploadId: `${job.id.slice(0, 8)}-${v.id}`,

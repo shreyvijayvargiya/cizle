@@ -47,6 +47,8 @@ export type VideoRow = {
 	product: string | null;
 	model_tier: Tier;
 	idea_id: string | null;
+	/** "claude-code" for videos rendered from a storyboard Claude wrote. */
+	origin: string | null;
 	created_at: string;
 };
 
@@ -96,7 +98,11 @@ export type Pack = {
 export type Job = {
 	id: string;
 	title: string;
-	engine?: "article";
+	engine?: "article" | "storyboard";
+	origin?: { kind: string; client?: string; from?: string };
+	can_reskin?: boolean;
+	style?: string;
+	notes?: string[];
 	pack?: Pack;
 	status: Status;
 	step: string;
@@ -282,6 +288,7 @@ export const api = {
 	cancelVideo: (id: string) => req<Job>(`/videos/${id}/cancel`, { method: "POST", json: {} }),
 	deleteVideo: (id: string) => req<{ ok: true }>(`/videos/${id}`, { method: "DELETE" }),
 	regenerate: (id: string) => req<Job>(`/videos/${id}/regenerate`, { method: "POST", json: {} }),
+	reskin: (id: string, body: { style?: StyleId; aspect?: Aspect; audio?: Audio }) => req<Job>(`/videos/${id}/reskin`, { method: "POST", json: body }),
 	products: () => req<{ products: ProductMeta[] }>("/products").then((r) => r.products),
 	product: (slug: string) => req<Product>(`/products/${slug}`),
 	startOnboard: (body: { url: string; repos?: string; name?: string; model_tier?: Tier }, signal?: AbortSignal) => req<OnboardRun>("/products/onboard", { method: "POST", json: body, signal }),

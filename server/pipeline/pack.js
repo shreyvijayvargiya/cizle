@@ -43,12 +43,12 @@ export function estimatePackCost(input) {
 	return { currency: "USD", estimated: true, total_usd: round((PACK_STAGE_TOKENS.input * sIn + PACK_STAGE_TOKENS.output * sOut) / 1e6), per_video_usd: null };
 }
 
-function clean(raw, articleText) {
-	const hay = norm(articleText);
+export function cleanPack(raw, articleText = null) {
+	const hay = articleText === null ? null : norm(articleText);
 	const facts = list(raw?.source_facts, 30)
 		.map((f) => ({ claim: str(f?.claim, 300), passage: str(f?.passage, 400) }))
 		.filter((f) => f.claim && f.passage)
-		.map((f) => ({ ...f, found_in_source: hay.includes(norm(f.passage).slice(0, 80)) }));
+		.map((f) => ({ ...f, found_in_source: hay === null ? true : hay.includes(norm(f.passage).slice(0, 80)) }));
 	const scenes = list(raw?.storyboard, 10).map((s, i) => ({
 		scene: Number(s?.scene) || i + 1,
 		duration_sec: Math.min(10, Math.max(2, Number(s?.duration_sec) || 5)),
@@ -104,7 +104,7 @@ export async function runPackJob({ job, input, typeEntry, tone, laws, extraInstr
 	const system = `${PACK_SYSTEM}\n\nVIDEO TYPE GUIDE (${typeEntry.name}):\n${typeEntry.body}${tone ? `\n\nTONE:\n${tone.body}` : ""}${laws ? `\n\nHOUSE RULES:\n${laws}` : ""}`;
 	const user = `title: ${title}\nduration_seconds: ${input.target_duration_sec}\n${extraInstructions ? `Direction from the user (audience, takeaway, preferences):\n${extraInstructions}\n\n` : ""}${untrusted("article", article)}`;
 	const raw = await chatJson({ model: input.script_model, system, user, costs, stage: "pack", maxTokens: 6000, temperature: 0.5 });
-	const pack = clean(raw, article);
+	const pack = cleanPack(raw, article);
 	if (!pack.storyboard.length || !pack.video_prompts.length) throw new Error("The model did not return a usable storyboard. Try again or switch to a stronger model.");
 
 	const markdown = packMarkdown(pack, { url: input.url, typeName: typeEntry.name });

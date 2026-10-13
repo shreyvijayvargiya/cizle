@@ -20,6 +20,8 @@ export const STEP_LABELS: Record<string, string> = {
 export const PIPELINE = ["context", "frames", "brief", "concepts", "script", "render", "done"] as const;
 /** Article types (Sketch Explainer) skip screenshots and the product brief. */
 export const ARTICLE_PIPELINE = ["context", "script", "render", "done"] as const;
+/** Storyboards written by Claude Code (or any agent) only need rendering. */
+export const STORYBOARD_PIPELINE = ["render", "done"] as const;
 
 export const ASPECTS = [
 	{ value: "9:16", label: "9:16", hint: "Reels, Shorts, TikTok" },

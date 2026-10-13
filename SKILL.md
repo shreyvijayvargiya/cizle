@@ -5,6 +5,8 @@ description: Make short product videos (showcase, features, FAQ, comparison, glo
 
 # cizle
 
+If the cizle MCP server is installed (tools named `create_video`, `guide`, ...), prefer it: read `guide`, write the storyboard yourself and call `create_video`. No API key or running server is needed, and it is described in the README under "Use it from Claude Code". The rest of this file is for driving the dashboard server and its OpenRouter pipeline.
+
 cizle is a local video studio. Its API runs on `http://localhost:3737/api` (start it with `npm run dev` or `npm start` in the cizle folder).
 
 ## Products (optional but better)

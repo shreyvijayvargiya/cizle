@@ -79,7 +79,7 @@ body{font-family:${font};color:${p.text};background:${p.bg};position:relative;-w
 .device img{display:block;width:100%;max-height:${Math.round(size.height * 0.56)}px;object-fit:cover;object-position:top}
 .code{font-family:'JetBrains Mono',Menlo,Consolas,monospace;font-size:${U(34)};text-align:left;white-space:pre;line-height:1.5;padding:${U(30)} ${U(40)};max-width:94%;overflow:hidden}
 .arrow{display:block}
-.card.code{font-size:${U(34)};font-weight:500;width:94%;max-width:94%}
+.card.code{font-size:${U(30)};font-weight:500;width:94%;max-width:94%}
 .badge{display:inline-flex;align-items:center;justify-content:center;flex:none;width:${U(88)};height:${U(88)};border-radius:50%;font-size:${U(50)};font-weight:800;background:${p.accent};color:#fff}
 .stepcard{display:flex;align-items:center;gap:${U(32)};text-align:left;width:92%}
 .detail{font-size:${U(38)};font-weight:500;opacity:.72;margin-top:${U(6)}}
@@ -316,7 +316,7 @@ export function styledFrame({ style, size, theme, visual, scene, image, code }) 
 			break;
 		}
 		case "code": {
-			const lines = (code?.lines || []).slice(0, 14).map((l, n) => `${String((code?.startLine || 1) + n).padStart(3, " ")}  ${esc(String(l).slice(0, 56))}`).join("\n");
+			const lines = (code?.lines || []).slice(0, 14).map((l, n) => `${String((code?.startLine || 1) + n).padStart(3, " ")}  ${esc(String(l).slice(0, 50))}`).join("\n");
 			body = (visual.caption ? el("lbl", esc(visual.caption), 0) : "") + el("code card", lines || esc(visual.file || ""), 1);
 			break;
 		}

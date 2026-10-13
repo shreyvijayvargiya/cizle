@@ -19,7 +19,7 @@ try {
 const { loadSettings, saveSettings, publicSettings, testOpenRouterKey } = await import("./settings.js");
 const { listPrompts, getPrompt, savePrompt, deletePrompt } = await import("./library.js");
 const { runWithSignal } = await import("./pipeline/cancel.js");
-const { cancelJob, createJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, stats } = await import("./pipeline/job.js");
+const { canReskin, cancelJob, createJob, createStoryboardJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, reskinJob, stats } = await import("./pipeline/job.js");
 const { warmModels, modelsSummary } = await import("./models.js");
 const store = await import("./products/store.js");
 const { startOnboard, getOnboard, cancelOnboard } = await import("./products/onboard.js");
@@ -99,18 +99,35 @@ api.post("/videos", async (c) => {
 	if (c.req.raw.signal.aborted) await cancelJob(job.id);
 	return c.json(job, 202);
 });
+/* storyboards written by someone else (Claude Code, other agents): rendered locally, no model and no key */
+api.post("/videos/from-storyboard", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	try {
+		return c.json(await createStoryboardJob(body, deps, { origin: { kind: "claude-code", client: "api" } }), 202);
+	} catch (e) {
+		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
+		throw e;
+	}
+});
+api.post("/videos/:id/reskin", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	const job = await reskinJob(c.req.param("id"), body, deps);
+	return job ? c.json(job, 202) : c.json({ error: "This video has no stored storyboard to re-render." }, 404);
+});
 api.post("/videos/:id/cancel", async (c) => {
 	const job = await cancelJob(c.req.param("id"));
 	return job ? c.json(job) : c.json({ error: "That video is not running" }, 409);
 });
 api.get("/videos/:id", async (c) => {
 	const job = await getJob(c.req.param("id"));
-	return job ? c.json(job) : c.json({ error: "Video not found" }, 404);
+	return job ? c.json({ ...job, can_reskin: canReskin(job.id) }) : c.json({ error: "Video not found" }, 404);
 });
 api.delete("/videos/:id", async (c) => ((await deleteJob(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Video not found" }, 404)));
 api.post("/videos/:id/regenerate", async (c) => {
 	const job = await getJob(c.req.param("id"));
 	if (!job) return c.json({ error: "Video not found" }, 404);
+	// A video made from a stored storyboard is re-rendered as it was, with no model.
+	if (canReskin(job.id)) return c.json(await reskinJob(job.id, {}, deps), 202);
 	const { url, github_url, compare_urls, prompt, prompt_id, type, tone, variations, target_duration_sec, aspect, audio, voice, captions, model_tier, product } = job.input;
 	await warmModels();
 	const parsed = parseVideoInput({ url, github_url, compare_urls, prompt, prompt_id, type, tone, variations, duration_sec: target_duration_sec, aspect, audio, voice, captions, model_tier, product });

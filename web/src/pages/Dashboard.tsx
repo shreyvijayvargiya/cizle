@@ -107,7 +107,7 @@ export function DashboardPage() {
 			) : null}
 			<div className="grid gap-3 sm:grid-cols-3">
 				<Step n={1} icon={Key01Icon} title="Add your OpenRouter key" done={keyReady} to="/settings">
-					{keyReady ? "Key connected. Flip the Free switch to use free models instead of paid ones." : "Paste it once in Settings. It stays on this machine in data/settings.json."}
+					{keyReady ? "Key connected. Flip the Free switch to use free models instead of paid ones." : "Paste it once in Settings. It stays on this machine in data/settings.json. Not needed if you make videos from Claude Code."}
 				</Step>
 				<Step n={2} icon={Package01Icon} title="Add your product" done={Boolean(product)} to={product ? "/product" : "/products/new"}>
 					{product ? `${product.name} is remembered in products/${product.slug}/. Sync checks its repos and site for new commits and pages.` : "Paste your website and GitHub repos once. cizle saves what it learns as markdown and suggests videos."}
