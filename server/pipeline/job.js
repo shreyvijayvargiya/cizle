@@ -25,7 +25,7 @@ import {
 	verifyOpenRouterKey,
 } from "./render.js";
 import { ensureFfmpeg } from "./media.js";
-import { estimatePackCost, runPackJob } from "./pack.js";
+import { estimatePackCost, packToStoryboard, runPackJob } from "./pack.js";
 import { gatherProductContext } from "./context.js";
 import {
 	BRIEF_ANALYST_SYSTEM,
@@ -127,7 +127,11 @@ export function parseVideoInput(body = {}) {
 /* --------------------------------------------------------------- estimate */
 
 export function estimateCost(input, { pack = false } = {}) {
-	if (pack) return estimatePackCost(input);
+	if (pack) {
+		const base = estimatePackCost(input);
+		const tts = input.narration ? (input.target_duration_sec / 60) * (TTS_USD_PER_MIN[input.tts_model] ?? 0.08) * 1.1 : 0;
+		return { ...base, total_usd: round(base.total_usd + tts), per_video_usd: round(base.total_usd + tts) };
+	}
 	const [vIn, vOut] = priceFor(input.vision_model);
 	const [sIn, sOut] = priceFor(input.script_model);
 	const frames = input.max_screenshots + input.max_images;
@@ -193,7 +197,6 @@ export async function listJobs({ q = "", type = "", status = "", product = "" } 
 			product: j.input?.product || null,
 			model_tier: j.input?.model_tier || "paid",
 			idea_id: j.input?.idea_id || null,
-			kind: j.kind || "video",
 			created_at: j.created_at,
 		});
 	}
@@ -326,6 +329,53 @@ async function chatJson({ model, system, user, costs, stage, variant, maxTokens 
 	throw lastErr;
 }
 
+/** Render one variant's storyboard to an MP4 and record the result on the variant. Never throws. */
+async function renderOne({ job, v, gathered, notes, input, workDir, deps, costs, log, rel }) {
+	try {
+		const vCosts = [];
+		const out = await renderStoryboardVideo({
+			storyboard: v.storyboard,
+			frames: gathered.frames,
+			notes,
+			repoDir: gathered.repoDir,
+			input,
+			workDir: path.join(workDir, "variants", v.id),
+			deps,
+			costs: vCosts,
+			log: (m) => log(`[${v.id}] ${m}`),
+			step: async (name, pr) => {
+				v.step = name;
+				v.progress = pr;
+				job.step = name;
+				await save(job);
+			},
+			uploadId: `${job.id.slice(0, 8)}-${v.id}`,
+			uploadScreenshots: false,
+		});
+		for (const c of vCosts) costs.push({ ...c, variant: v.id });
+		v.result = {
+			video_url: out.urls.video || null,
+			video_path: rel(out.finalVideo),
+			duration_sec: round(out.finalDuration, 2),
+			resolution: `${out.size.width}x${out.size.height}`,
+			has_audio: input.audio !== "silent",
+			title: v.storyboard.title,
+			logline: v.storyboard.logline,
+			caption: v.caption,
+			music: out.musicInfo ? { source: out.musicInfo.source, title: out.musicInfo.title, attribution: out.musicInfo.attribution } : null,
+			thumbnail_path: rel(v.storyboard.scenes[0]?.frame_file),
+			captions_path: rel(out.files?.captions_srt),
+			scenes: v.storyboard.scenes.map(({ narration_file, frame_file, clip_file, ...sc }) => ({ ...sc, frame_path: rel(frame_file) })),
+		};
+		Object.assign(v, { status: "success", step: "done", progress: 100 });
+	} catch (e) {
+		if (isCancelError(e)) throw e;
+		v.status = "failed";
+		v.error = e.message;
+		log(`[${v.id}] render failed: ${e.message}`);
+	}
+}
+
 async function runJob(job, deps) {
 	const input = job.input;
 	const workDir = jobDir(job.id);
@@ -349,7 +399,7 @@ async function runJob(job, deps) {
 	const loaded = input.prompt_id ? await getPrompt(input.prompt_id) : null;
 	const typeSlug = input.type !== "auto" ? input.type : loaded?.type || "auto";
 	// "auto" only chooses among types that render a video; prompt-pack types run when picked explicitly.
-	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine !== "prompt-pack") : types.filter((t) => t.slug === typeSlug);
+	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine !== "article") : types.filter((t) => t.slug === typeSlug);
 	if (!allowedTypes.length) throw new Error(`Unknown video type "${typeSlug}"`);
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
 	const laws = await getLaws();
@@ -359,14 +409,41 @@ async function runJob(job, deps) {
 	const extraInstructions = [loaded?.kind === "custom" ? loaded.body : null, stripUrls(input.prompt) || null].filter(Boolean).join("\n\n");
 	job.type_label = typeSlug === "auto" ? "Auto" : allowedTypes[0].name;
 
-	if (allowedTypes[0]?.engine === "prompt-pack" && typeSlug !== "auto") {
-		job.kind = "prompt-pack";
-		await runPackJob({ job, input, typeEntry: allowedTypes[0], tone, laws, extraInstructions, deps, workDir, costs, chatJson, step, log });
+	if (allowedTypes[0]?.engine === "article" && typeSlug !== "auto") {
+		// An article becomes a prompt pack (for a generative video model) and a sketch-style video rendered here.
+		job.engine = "article";
+		const pack = await runPackJob({ job, input, typeEntry: allowedTypes[0], tone, laws, extraInstructions, deps, workDir, costs, chatJson, step, log });
+		await save(job);
+		await step("render", 55);
+		const source = { name: pack.title, title: pack.title, url: input.url, type: "page" };
+		const sb = sanitizeStoryboard(packToStoryboard(pack, source), { frames: [], codeFiles: [], input: { max_scenes: 12 }, source, instructions: "" });
+		const outro = sb.scenes[sb.scenes.length - 1].visual;
+		if (outro.type === "outro") outro.cta = "Read the full post";
+		if (!input.narration) for (const sc of sb.scenes) sc.narration = "";
+		fitPlannedDuration(sb, input.target_duration_sec);
+		sb.theme = packToStoryboard(pack, source).theme;
+		const v = {
+			id: "v1",
+			concept: { type: allowedTypes[0].slug, title: pack.title, angle: pack.key_takeaway, hook: pack.hook, audience: pack.audience, pace: "calm", theme: { accent: sb.theme.accent } },
+			status: "rendering",
+			step: "queued",
+			progress: 0,
+			error: null,
+			result: null,
+			storyboard: sb,
+			caption: `${pack.hook} ${pack.key_takeaway}`.slice(0, 300),
+		};
+		job.variants = [v];
+		await save(job);
+		await renderOne({ job, v, gathered: { frames: [], repoDir: null }, notes: [], input, workDir, deps, costs, log, rel });
 		throwIfCancelled();
 		const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
-		job.cost = { currency: "USD", total_usd: round(spent), by_stage: groupCost(costs), by_variant: {} };
-		Object.assign(job, { status: "success", step: "done", progress: 100 });
-		log(`done: prompt pack, $${spent.toFixed(4)}`);
+		job.cost = { currency: "USD", total_usd: round(spent), by_stage: groupCost(costs), by_variant: { v1: round(spent, 6) } };
+		// The pack is useful even if the video failed to render.
+		job.status = v.status === "success" ? "success" : "partial";
+		if (v.status !== "success") job.error = `The prompt pack is ready, but the video did not render: ${v.error}`;
+		Object.assign(job, { step: "done", progress: 100 });
+		log(`done: prompt pack + ${v.status === "success" ? "video" : "no video"}, $${spent.toFixed(4)}`);
 		await save(job);
 		return;
 	}
@@ -473,47 +550,7 @@ async function runJob(job, deps) {
 			while (queue.length) {
 				const v = queue.shift();
 				v.status = "rendering";
-				try {
-					const vCosts = [];
-					const out = await renderStoryboardVideo({
-						storyboard: v.storyboard,
-						frames: gathered.frames,
-						notes,
-						repoDir: gathered.repoDir,
-						input,
-						workDir: path.join(workDir, "variants", v.id),
-						deps,
-						costs: vCosts,
-						log: (m) => log(`[${v.id}] ${m}`),
-						step: async (name, pr) => {
-							v.step = name;
-							v.progress = pr;
-							await save(job);
-						},
-						uploadId: `${job.id.slice(0, 8)}-${v.id}`,
-						uploadScreenshots: false,
-					});
-					for (const c of vCosts) costs.push({ ...c, variant: v.id });
-					v.result = {
-						video_url: out.urls.video || null,
-						video_path: rel(out.finalVideo),
-						duration_sec: round(out.finalDuration, 2),
-						resolution: `${out.size.width}x${out.size.height}`,
-						has_audio: input.audio !== "silent",
-						title: v.storyboard.title,
-						logline: v.storyboard.logline,
-						caption: v.caption,
-						music: out.musicInfo ? { source: out.musicInfo.source, title: out.musicInfo.title, attribution: out.musicInfo.attribution } : null,
-						thumbnail_path: rel(v.storyboard.scenes[0]?.frame_file),
-						captions_path: rel(out.files?.captions_srt),
-						scenes: v.storyboard.scenes.map(({ narration_file, frame_file, clip_file, ...sc }) => ({ ...sc, frame_path: rel(frame_file) })),
-					};
-					Object.assign(v, { status: "success", step: "done", progress: 100 });
-				} catch (e) {
-					v.status = "failed";
-					v.error = e.message;
-					log(`[${v.id}] render failed: ${e.message}`);
-				}
+				await renderOne({ job, v, gathered, notes, input, workDir, deps, costs, log, rel });
 				done++;
 				job.progress = 55 + Math.round((done / total) * 44);
 				await save(job);

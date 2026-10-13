@@ -40,7 +40,7 @@ If the user has added their product to cizle, use it: videos then read the saved
    }'
    ```
 5. **Poll** `GET /api/videos/<id>` every ~10 s until `status` is `success`, `partial` or `failed`. Report `error` if it failed.
-   For a blog post or tutorial, use `"type": "sketch-explainer"` with the article link as `url`. It does not render a video: the finished job has `kind: "prompt-pack"` and `pack` (hook, narration, storyboard, `video_prompts`, subtitles, `source_facts`, and the whole thing as `pack.markdown`). Hand `pack.markdown` to a video model or the user. Ask the user for the audience and takeaway first and put them in `prompt`.
+   For a blog post or tutorial, use `"type": "sketch-explainer"` with the article link as `url`. It renders a hand-drawn explainer video like any other type (poll and deliver as below) and the finished job also has `pack` (hook, narration, storyboard, `video_prompts`, subtitles, `source_facts`, and the whole thing as `pack.markdown`). Give `pack.markdown` to a generative video model if the user wants AI-generated clips. Ask the user for the audience and takeaway first and put them in `prompt`.
    To get cizle's own questions and a drafted prompt before creating, `POST /api/review` with `{"draft": {<same fields>}}`. It creates nothing; it returns `questions`, `final_prompt`, `checks` (duplicates) and `cost`. Show them to the user, then send the approved values to `POST /api/videos`.
 6. **Deliver:** each `variants[].result.video_path` is relative to `data/videos/<id>/` (or use `video_url` when UploadThing is on). Share the path, the duration, and `result.caption` (ready-to-post copy). The dashboard page is `http://localhost:5173/videos/<id>`.
 

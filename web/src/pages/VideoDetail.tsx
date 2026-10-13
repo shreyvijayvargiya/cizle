@@ -23,14 +23,16 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/menu";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
 import { api, fileUrl, isActive, type Job, type Pack, type Variant } from "@/lib/api";
-import { PIPELINE, STEP_LABELS } from "@/lib/constants";
+import { ARTICLE_PIPELINE, PIPELINE as PRODUCT_PIPELINE, STEP_LABELS } from "@/lib/constants";
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
 
 const SOURCE_LABELS: Record<string, string> = { website: "Website", llms_txt: "llms.txt", blog: "Blog", github: "GitHub", page: "Page", faq: "FAQ", competitor: "Competitor" };
 const ASPECT_CLASS: Record<string, string> = { "9:16": "aspect-[9/16] max-h-[70vh]", "1:1": "aspect-square", "16:9": "aspect-video" };
 
 function Timeline({ job }: { job: Job }) {
-	const idx = job.step === "done" ? PIPELINE.length : Math.max(0, PIPELINE.indexOf(job.step as (typeof PIPELINE)[number]));
+	const PIPELINE = job.engine === "article" ? ARTICLE_PIPELINE : PRODUCT_PIPELINE;
+	const rank = (step: string) => Math.max(0, PIPELINE.findIndex((s) => s === step || (s === "render" && ["narration", "frames_render", "render_clips", "audio_mix", "mux"].includes(step))));
+	const idx = job.step === "done" ? PIPELINE.length : rank(job.step);
 	const failed = job.status === "failed";
 	return (
 		<ol className="space-y-0.5">
@@ -47,7 +49,7 @@ function Timeline({ job }: { job: Job }) {
 						>
 							{done ? <Icon icon={Tick02Icon} size={11} /> : current ? <Icon icon={Loading03Icon} size={11} className="animate-spin" /> : failed && i === idx ? <Icon icon={AlertCircleIcon} size={11} /> : null}
 						</span>
-						<span className={cn(done || current ? "text-foreground" : "text-muted-foreground")}>{STEP_LABELS[s]}</span>
+						<span className={cn(done || current ? "text-foreground" : "text-muted-foreground")}>{job.engine === "article" && s === "context" ? "Reading the article" : STEP_LABELS[s]}</span>
 					</li>
 				);
 			})}
@@ -127,125 +129,76 @@ const bullets = (a: string[]) => (
 	</ul>
 );
 
-/** A prompt-pack job (for example Sketch Explainer): the markdown pack a video model or agent renders. */
-function PackView({ job, pack, onStop, stopping, onDelete, onRegen }: { job: Job; pack?: Pack; onStop: () => void; stopping: boolean; onDelete: () => void; onRegen: () => void }) {
-	const download = () => {
-		if (!pack) return;
-		const a = document.createElement("a");
-		a.href = URL.createObjectURL(new Blob([pack.markdown], { type: "text/markdown" }));
-		a.download = `${(pack.title || "prompt-pack").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.md`;
-		a.click();
-		URL.revokeObjectURL(a.href);
-	};
+function PackContent({ pack }: { pack: Pack }) {
 	return (
-		<div className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6">
-			<Link to="/videos" className="mb-4 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
-				<Icon icon={ArrowLeft01Icon} size={13} /> Videos
-			</Link>
-			<div className="mb-5 flex flex-wrap items-start justify-between gap-3">
-				<div className="min-w-0">
-					<div className="flex flex-wrap items-center gap-2">
-						<h1 className="truncate text-xl font-semibold tracking-tight">{pack?.title || job.title}</h1>
-						<StatusBadge status={job.status} step={job.step} progress={job.progress} />
-					</div>
-					<p className="mt-1.5 text-xs text-muted-foreground">
-						{job.type_label} · <a href={job.input.url} target="_blank" rel="noreferrer" className="hover:text-foreground">{hostOf(job.input.url)}</a> · {job.cost ? usd(job.cost.total_usd) : `est. ${usd(job.estimate.total_usd)}`}
-					</p>
+		<div className="space-y-3">
+			<PackSection title="Hook" copy={pack.hook}>
+				{pack.hook}
+			</PackSection>
+			<PackSection title="Narration script" copy={pack.narration.join("\n")}>
+				{bullets(pack.narration)}
+			</PackSection>
+			<PackSection title="Storyboard">
+				<div className="grid gap-2 sm:grid-cols-2">
+					{pack.storyboard.map((sc) => (
+						<div key={sc.scene} className="rounded-lg bg-muted/50 p-3 text-xs">
+							<p className="mb-1 text-[13px] font-medium">
+								Scene {sc.scene} <span className="font-normal text-muted-foreground">· {sc.duration_sec}s</span>
+							</p>
+							{sc.label ? <p><span className="text-muted-foreground">On screen:</span> {sc.label}{sc.diagram.length ? ` (${sc.diagram.join(" → ")})` : ""}</p> : null}
+							<p><span className="text-muted-foreground">Subject:</span> {sc.subject}</p>
+							<p><span className="text-muted-foreground">Action:</span> {sc.action}</p>
+							<p><span className="text-muted-foreground">Camera:</span> {sc.camera}</p>
+							<p><span className="text-muted-foreground">Lighting:</span> {sc.lighting}</p>
+							<p><span className="text-muted-foreground">Transition:</span> {sc.transition}</p>
+						</div>
+					))}
 				</div>
-				<div className="flex flex-wrap gap-1.5">
-					{pack ? <CopyButton text={pack.markdown} label="Copy markdown" /> : null}
-					{pack ? (
-						<Button size="sm" onClick={download}>
-							<Icon icon={Download04Icon} size={14} /> Download .md
-						</Button>
-					) : null}
-					{isActive(job.status) ? (
-						<Button variant="outline" size="sm" onClick={onStop} disabled={stopping}>
-							<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
-						</Button>
-					) : (
-						<Button variant="outline" size="sm" onClick={onRegen}>
-							<Icon icon={RepeatIcon} size={14} /> Regenerate
-						</Button>
-					)}
-					<Button variant="danger" size="sm" onClick={onDelete} aria-label="Delete">
-						<Icon icon={Delete02Icon} size={14} />
-					</Button>
+			</PackSection>
+			<PackSection title="Video-generation prompts" copy={pack.video_prompts.map((v) => `Scene ${v.scene}\n${v.prompt}`).join("\n\n")}>
+				<div className="space-y-2">
+					{pack.video_prompts.map((v) => (
+						<div key={v.scene}>
+							<p className="mb-1 text-xs font-medium text-muted-foreground">Scene {v.scene}</p>
+							<pre className="rounded-lg bg-muted p-2.5 text-xs leading-relaxed whitespace-pre-wrap">{v.prompt}</pre>
+						</div>
+					))}
 				</div>
-			</div>
-			{job.error ? (
-				<div className="mb-5 flex gap-2 rounded-xl border border-danger/25 bg-danger/5 p-3 text-sm text-danger">
-					<Icon icon={AlertCircleIcon} size={16} className="mt-0.5" />
-					<p className="font-medium break-words">{job.error}</p>
-				</div>
-			) : null}
-			{!pack ? (
-				<div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-border p-10 text-sm text-muted-foreground">
-					{isActive(job.status) ? <Icon icon={Loading03Icon} size={22} className="animate-spin" /> : null}
-					<p>{isActive(job.status) ? `${STEP_LABELS[job.step] || "Working"}…` : job.status === "cancelled" ? "Stopped" : "No pack was produced."}</p>
-				</div>
-			) : (
-			<div className="space-y-3">
-				<PackSection title="Hook" copy={pack.hook}>
-					{pack.hook}
-				</PackSection>
-				<PackSection title="Narration script" copy={pack.narration.join("\n")}>
-					{bullets(pack.narration)}
-				</PackSection>
-				<PackSection title="Storyboard">
-					<div className="grid gap-2 sm:grid-cols-2">
-						{pack.storyboard.map((sc) => (
-							<div key={sc.scene} className="rounded-lg bg-muted/50 p-3 text-xs">
-								<p className="mb-1 text-[13px] font-medium">
-									Scene {sc.scene} <span className="font-normal text-muted-foreground">· {sc.duration_sec}s</span>
-								</p>
-								<p><span className="text-muted-foreground">Subject:</span> {sc.subject}</p>
-								<p><span className="text-muted-foreground">Action:</span> {sc.action}</p>
-								<p><span className="text-muted-foreground">Camera:</span> {sc.camera}</p>
-								<p><span className="text-muted-foreground">Lighting:</span> {sc.lighting}</p>
-								<p><span className="text-muted-foreground">Transition:</span> {sc.transition}</p>
-							</div>
-						))}
-					</div>
-				</PackSection>
-				<PackSection title="Video-generation prompts" copy={pack.video_prompts.map((v) => `Scene ${v.scene}\n${v.prompt}`).join("\n\n")}>
-					<div className="space-y-2">
-						{pack.video_prompts.map((v) => (
-							<div key={v.scene}>
-								<p className="mb-1 text-xs font-medium text-muted-foreground">Scene {v.scene}</p>
-								<pre className="rounded-lg bg-muted p-2.5 text-xs leading-relaxed whitespace-pre-wrap">{v.prompt}</pre>
-							</div>
-						))}
-					</div>
-				</PackSection>
-				<PackSection title="Subtitles" copy={pack.subtitles.map((x) => x.text).join("\n")}>
-					{bullets(pack.subtitles.map((x) => `Scene ${x.scene}: ${x.text}`))}
-				</PackSection>
-				<PackSection title="Sound design">{bullets(pack.sound_design)}</PackSection>
-				<PackSection title="Final assembly">
-					<ol className="list-decimal space-y-1 pl-5">
-						{pack.assembly.map((x, i) => (
-							<li key={i}>{x}</li>
-						))}
-					</ol>
-				</PackSection>
-				<PackSection title="Source facts">
-					<ul className="space-y-2">
-						{pack.source_facts.map((f, i) => (
-							<li key={i}>
-								<p>{f.claim}</p>
-								<p className="mt-0.5 border-l-2 border-border pl-2 text-xs text-muted-foreground">
-									{f.passage}
-									{f.found_in_source ? "" : " (quote not found in the source, check before use)"}
-								</p>
-							</li>
-						))}
-					</ul>
-				</PackSection>
-			</div>
-			)}
+			</PackSection>
+			<PackSection title="Subtitles" copy={pack.subtitles.map((x) => x.text).join("\n")}>
+				{bullets(pack.subtitles.map((x) => `Scene ${x.scene}: ${x.text}`))}
+			</PackSection>
+			<PackSection title="Sound design">{bullets(pack.sound_design)}</PackSection>
+			<PackSection title="Final assembly">
+				<ol className="list-decimal space-y-1 pl-5">
+					{pack.assembly.map((x, i) => (
+						<li key={i}>{x}</li>
+					))}
+				</ol>
+			</PackSection>
+			<PackSection title="Source facts">
+				<ul className="space-y-2">
+					{pack.source_facts.map((f, i) => (
+						<li key={i}>
+							<p>{f.claim}</p>
+							<p className="mt-0.5 border-l-2 border-border pl-2 text-xs text-muted-foreground">
+								{f.passage}
+								{f.found_in_source ? "" : " (quote not found in the source, check before use)"}
+							</p>
+						</li>
+					))}
+				</ul>
+			</PackSection>
 		</div>
 	);
+}
+
+function downloadPack(pack: Pack) {
+	const a = document.createElement("a");
+	a.href = URL.createObjectURL(new Blob([pack.markdown], { type: "text/markdown" }));
+	a.download = `${(pack.title || "prompt-pack").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.md`;
+	a.click();
+	URL.revokeObjectURL(a.href);
 }
 
 export function VideoDetailPage() {
@@ -318,13 +271,6 @@ export function VideoDetailPage() {
 			</Dialog>
 	);
 	const job = q.data;
-	if (job.kind === "prompt-pack")
-		return (
-			<>
-				<PackView job={job} pack={job.pack} onStop={() => stop.mutate()} stopping={stop.isPending} onDelete={() => setConfirmDelete(true)} onRegen={() => regen.mutate()} />
-				{deleteDialog}
-			</>
-		);
 	const v = job.variants.find((x) => x.id === variantId) || job.variants.find((x) => x.result) || job.variants[0];
 	const videoSrc = v?.result ? v.result.video_url || fileUrl(job.id, v.result.video_path, true) : null;
 	const caption = v?.result?.caption || v?.caption || "";
@@ -366,6 +312,12 @@ export function VideoDetailPage() {
 						</Button>
 					) : null}
 					{caption ? <CopyButton text={caption} label="Copy caption" /> : null}
+					{job.pack ? <CopyButton text={job.pack.markdown} label="Copy prompt pack" /> : null}
+					{job.pack ? (
+						<Button variant="outline" size="sm" onClick={() => downloadPack(job.pack!)}>
+							<Icon icon={Download04Icon} size={14} /> Pack .md
+						</Button>
+					) : null}
 					{isActive(job.status) ? (
 						<Button variant="outline" size="sm" onClick={() => stop.mutate()} disabled={stop.isPending}>
 							<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
@@ -427,6 +379,7 @@ export function VideoDetailPage() {
 					<TabsList>
 						<TabsTrigger value="overview">Overview</TabsTrigger>
 						<TabsTrigger value="script">Script</TabsTrigger>
+						{job.pack ? <TabsTrigger value="pack">Prompt pack</TabsTrigger> : null}
 						<TabsTrigger value="assets">Assets</TabsTrigger>
 						<TabsTrigger value="logs">Logs</TabsTrigger>
 					</TabsList>
@@ -509,6 +462,12 @@ export function VideoDetailPage() {
 							<p className="text-sm text-muted-foreground">The script appears here once it's written.</p>
 						)}
 					</TabsContent>
+
+					{job.pack ? (
+						<TabsContent value="pack" className="mt-4">
+							<PackContent pack={job.pack} />
+						</TabsContent>
+					) : null}
 
 					<TabsContent value="assets" className="mt-4 space-y-4">
 						{caption ? (

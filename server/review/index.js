@@ -89,7 +89,7 @@ export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 	if (existing.length) checks.push({ level: "warn", text: `${existing.length === 1 ? "A video" : `${existing.length} videos`} for this link already exist${existing.length === 1 ? "s" : ""}.` });
 
 	let page = null;
-	if (url && (chosenEntry?.engine === "prompt-pack" || ARTICLE_RE.test(url))) {
+	if (url && (chosenEntry?.engine === "article" || ARTICLE_RE.test(url))) {
 		try {
 			const p = await deps.scrape(url);
 			page = { title: p?.data?.metadata?.title || null, excerpt: String(p?.markdown || "").slice(0, 5000) };
@@ -143,7 +143,7 @@ export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 		savePrompt = { name: str(data.save_prompt.name, 80), description: str(data.save_prompt.description, 300), body: String(data.save_prompt.body).slice(0, 8000), type: typeIds.includes(t) && t !== "auto" ? t : "" };
 	}
 
-	const isPack = types.find((t) => t.slug === suggestion.type)?.engine === "prompt-pack";
+	const isPack = types.find((t) => t.slug === suggestion.type)?.engine === "article";
 	let cost = null;
 	if (intent !== "save_prompt" && parsed.input) {
 		try {
@@ -167,7 +167,7 @@ export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 		checks,
 		existing,
 		notes: (Array.isArray(data?.notes) ? data.notes : []).map((n) => str(n, 200)).filter(Boolean).slice(0, 4),
-		engine: isPack ? "prompt-pack" : "render",
+		engine: isPack ? "article" : "render",
 		cost,
 		review_cost_usd: usd,
 	};

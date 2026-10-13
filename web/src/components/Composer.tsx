@@ -188,7 +188,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 		onSuccess: (job) => {
 			qc.invalidateQueries({ queryKey: ["videos"] });
 			qc.invalidateQueries({ queryKey: ["stats"] });
-			toast.success(job.kind === "prompt-pack" ? "Writing the prompt pack" : "Video started", { description: "Reading your link now." });
+			toast.success("Video started", { description: "Reading your link now." });
 			navigate({ to: "/videos/$id", params: { id: job.id } });
 		},
 		onError,

@@ -15,7 +15,7 @@ export type Prompt = {
 	aspect: string | null;
 	duration: number | null;
 	needs: string[];
-	engine: "render" | "prompt-pack";
+	engine: "render" | "article";
 	content_types: string[];
 	built_in: boolean;
 	body: string;
@@ -43,7 +43,6 @@ export type VideoRow = {
 	product: string | null;
 	model_tier: Tier;
 	idea_id: string | null;
-	kind: "video" | "prompt-pack";
 	created_at: string;
 };
 
@@ -79,7 +78,7 @@ export type Pack = {
 	key_takeaway: string;
 	hook: string;
 	narration: string[];
-	storyboard: { scene: number; duration_sec: number; subject: string; action: string; camera: string; lighting: string; transition: string; narration: string }[];
+	storyboard: { scene: number; duration_sec: number; label: string; diagram: string[]; subject: string; action: string; camera: string; lighting: string; transition: string; narration: string }[];
 	video_prompts: { scene: number; prompt: string }[];
 	subtitles: { scene: number; text: string }[];
 	sound_design: string[];
@@ -93,7 +92,7 @@ export type Pack = {
 export type Job = {
 	id: string;
 	title: string;
-	kind?: "video" | "prompt-pack";
+	engine?: "article";
 	pack?: Pack;
 	status: Status;
 	step: string;
@@ -206,7 +205,7 @@ export type Review = {
 	checks: { level: "info" | "warn"; text: string }[];
 	existing: { id: string; title: string; type: string; status: Status; aspect: Aspect; created_at: string }[];
 	notes: string[];
-	engine: "render" | "prompt-pack";
+	engine: "render" | "article";
 	cost: null | { total_usd: number; free: boolean };
 	review_cost_usd: number;
 };

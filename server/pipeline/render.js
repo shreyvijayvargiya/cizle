@@ -418,7 +418,7 @@ export function sanitizeStoryboard(board, { frames, codeFiles, input, source, in
 		if (type === "code" && !codePaths.has(v.file)) type = "bullets";
 		if (type === "bullets" && !(Array.isArray(v.items) && v.items.length)) type = "title";
 		if (type === "stats" && !(Array.isArray(v.items) && v.items.length)) type = "title";
-		if (!["screenshot", "title", "bullets", "stats", "code", "quote", "faq", "glossary", "comparison", "outro"].includes(type)) type = "title";
+		if (!["screenshot", "title", "bullets", "stats", "code", "quote", "faq", "glossary", "comparison", "sketch", "outro"].includes(type)) type = "title";
 		v.type = type;
 		if (type === "title" && !v.title) v.title = s.on_screen_text || source.name || source.title || "";
 		if (type === "screenshot") {

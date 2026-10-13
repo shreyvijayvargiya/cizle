@@ -1,8 +1,8 @@
 ---
 name: Sketch Explainer
-description: Turns a technical blog post or tutorial into a hand-drawn explainer, as a ready-to-render prompt pack (hook, narration, storyboard, per-scene video prompts).
+description: Turns a technical blog post or tutorial into a hand-drawn explainer video, plus a prompt pack for video models (narration, storyboard, per-scene prompts).
 kind: type
-engine: prompt-pack
+engine: article
 aspect: "9:16"
 duration: 30
 content_types: [programming_tutorial, technical_blog, developer_roadmap]
@@ -11,7 +11,7 @@ visual_style: hand_drawn_minimal
 ---
 # Sketch Explainer
 
-**Goal:** convert a technical article into a clear, visually engaging explainer for developers. The output is a prompt pack that an AI video model (or an agent driving one) can render clip by clip.
+**Goal:** convert a technical article into a clear, visually engaging explainer for developers. cizle renders a sketch-style video from the storyboard (paper background, hand-drawn boxes and arrows, narration, captions, music) and also returns the full prompt pack, so an AI video model or an agent can render each scene as a generated clip.
 
 ## Inputs
 - `title`: the article title.
@@ -29,7 +29,8 @@ visual_style: hand_drawn_minimal
 6. Use simple hand-drawn objects, arrows, labels, and diagrams.
 7. Keep visual continuity across scenes.
 8. Do not ask the video model to render long, exact text. Put precise labels and subtitles in post-production.
-9. Keep every clip within a short duration (4-8 seconds) so it fits common video model limits, and assemble the clips into the final video.
+9. Give every scene a short on-screen label (at most 6 words) and a 2-4 node diagram (1-3 words per node) that cizle draws as boxes joined by arrows.
+10. Keep every clip within a short duration (4-8 seconds) so it fits common video model limits, and assemble the clips into the final video.
 
 ## Visual prompt template
 Create a minimalist hand-drawn educational animation explaining {{key_takeaway}} to {{audience}}.
@@ -44,7 +45,7 @@ Continuity: retain the same illustration style and visual language.
 No photorealistic imagery, cluttered compositions, gibberish text, unnecessary decorative elements, or abrupt style changes.
 
 ## Required output sections
-- Hook
+- Hook (scene 1's narration is the hook)
 - Narration script
 - Scene-by-scene storyboard
 - Individual video-generation prompts (one per scene, using the visual prompt template)

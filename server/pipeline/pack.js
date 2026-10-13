@@ -20,8 +20,9 @@ Return ONE JSON object and nothing else:
   "audience": string,
   "key_takeaway": string,
   "hook": string,
-  "narration": [string],                     // spoken lines in order; together about duration_seconds when read aloud
-  "storyboard": [{"scene": number, "duration_sec": number, "subject": string, "action": string, "camera": string, "lighting": string, "transition": string, "narration": string}],
+  "narration": [string],                     // every scene's narration in order; together about duration_seconds when read aloud. Scene 1's narration is the hook.
+  "storyboard": [{"scene": number, "duration_sec": number, "label": string, "diagram": [string], "subject": string, "action": string, "camera": string, "lighting": string, "transition": string, "narration": string}],
+  // label: at most 6 words, shown on screen. diagram: 2-4 node names of 1-3 words each, drawn as boxes joined by arrows.
   "video_prompts": [{"scene": number, "prompt": string}],   // one per storyboard scene, the guide's visual prompt template filled in
   "subtitles": [{"scene": number, "text": string}],
   "sound_design": [string],
@@ -51,6 +52,8 @@ function clean(raw, articleText) {
 	const scenes = list(raw?.storyboard, 10).map((s, i) => ({
 		scene: Number(s?.scene) || i + 1,
 		duration_sec: Math.min(10, Math.max(2, Number(s?.duration_sec) || 5)),
+		label: str(s?.label, 60),
+		diagram: list(s?.diagram, 4).map((n) => str(n, 28)).filter(Boolean),
 		subject: str(s?.subject),
 		action: str(s?.action),
 		camera: str(s?.camera, 200),
@@ -94,7 +97,7 @@ export async function runPackJob({ job, input, typeEntry, tone, laws, extraInstr
 	const article = String(page?.markdown || "").slice(0, 24_000);
 	if (article.length < 200) throw new Error("Could not read enough text from that page. Paste a link to the article itself.");
 	job.title = title || job.title;
-	job.sources = [{ kind: "page", url: input.url, title }];
+	job.sources = [{ type: "page", url: input.url, ok: true, detail: title || null }];
 	log(`read ${article.length} chars from ${input.url}`);
 
 	await step("script", 40);
@@ -104,11 +107,33 @@ export async function runPackJob({ job, input, typeEntry, tone, laws, extraInstr
 	const pack = clean(raw, article);
 	if (!pack.storyboard.length || !pack.video_prompts.length) throw new Error("The model did not return a usable storyboard. Try again or switch to a stronger model.");
 
-	await step("render", 85);
 	const markdown = packMarkdown(pack, { url: input.url, typeName: typeEntry.name });
 	await fsp.writeFile(path.join(workDir, "pack.md"), markdown);
 	await fsp.writeFile(path.join(workDir, "pack.json"), JSON.stringify(pack, null, 2));
-	job.kind = "prompt-pack";
+	job.engine = "article";
 	job.pack = { ...pack, markdown, source_url: input.url, type_name: typeEntry.name };
 	return pack;
+}
+
+const SKETCH_THEME = { mode: "light", background: "#fbf8f1", accent: "#2f5bea", text: "#23211d" };
+
+/** The pack's storyboard as a storyboard the existing renderer can draw: one sketch frame per scene, narrated. */
+export function packToStoryboard(pack, { url }) {
+	const total = pack.storyboard.length;
+	const scenes = pack.storyboard.map((sc, i) => ({
+		purpose: i === 0 ? "hook" : "feature",
+		duration_sec: sc.duration_sec,
+		narration: sc.narration || (i === 0 ? pack.hook : ""),
+		visual: { type: "sketch", label: sc.label || pack.title, nodes: sc.diagram, index: i + 1, total },
+	}));
+	return {
+		title: pack.title,
+		logline: pack.key_takeaway,
+		voice_direction: "calm, friendly teacher explaining at a whiteboard",
+		music: { mood: "light acoustic", search_query: "light acoustic instrumental", bpm: 90 },
+		sfx: false,
+		theme: SKETCH_THEME,
+		scenes,
+		source: { url },
+	};
 }

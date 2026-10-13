@@ -67,7 +67,7 @@ To run it as a single server: `npm run build && npm start`, then open http://loc
 | **Create from an idea** | Every idea cites its source (`github:pr:41`, `site:/pricing`). Press **Create**. Nothing renders before that. |
 | **Describe your own video** | Composer with type, tone, aspect ratio, audio, length and 1–3 variations. Type `/` to load a saved prompt. |
 | **Review before create** | Press the arrow and an AI step checks for duplicates, asks the few questions that matter (audience, format, free or paid) and writes the final prompt. You approve, then it runs. |
-| **Blog to prompt pack** | Paste an article link; the Sketch Explainer type returns a prompt pack for a video model: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
+| **Blog to sketch video** | Paste an article link; the Sketch Explainer type renders a hand-drawn explainer video and returns a prompt pack for video models: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
 | **Remix from the gallery** | 16 formats across 8 SaaS categories, landscape, portrait and square, with different motion styles. |
 | **Use free models** | A switch next to every generate button. Free OpenRouter models, $0, rate limited. |
 | **Stop anything** | Every button that starts work turns into **Stop** while it runs. |
@@ -121,9 +121,9 @@ Say "add this as a prompt …" and the card previews the markdown file instead; 
 
 Each review round and approval is appended to `data/chats/<id>.jsonl` (not shown in the dashboard yet). The review's persona and rules live in [`prompts/review.md`](prompts/review.md). Edit them.
 
-### Sketch Explainer (blog to prompt pack)
+### Sketch Explainer (blog to sketch video)
 
-[`prompts/types/sketch-explainer.md`](prompts/types/sketch-explainer.md) has `engine: prompt-pack`. Pick it, or paste an article link and let the review suggest it. The job reads the page and writes a pack instead of rendering: hook, narration, storyboard, one video-generation prompt per scene, transitions, subtitles, sound design, assembly steps and source facts. Every fact comes with a quote from the article; quotes that are not in the source are flagged. Copy it or download it as `.md` from the video page. Add your own prompt-pack types the same way: a markdown file with `engine: prompt-pack`.
+[`prompts/types/sketch-explainer.md`](prompts/types/sketch-explainer.md) has `engine: article`. Pick it, or paste an article link and let the review suggest it. The job reads the page, writes a storyboard, and renders it with the normal pipeline: paper background, hand-drawn boxes and arrows, narration, captions and music, as an MP4 on the usual video page. The **Prompt pack** tab holds the rest: hook, narration, storyboard, one video-generation prompt per scene (to feed a generative video model), transitions, subtitles, sound design, assembly steps and source facts. Every fact comes with a quote from the article; quotes that are not in the source are flagged. Copy the pack or download it as `.md`. If the video fails to render you still get the pack. Add your own article types the same way: a markdown file with `engine: article`.
 
 ## Gallery and remix
 

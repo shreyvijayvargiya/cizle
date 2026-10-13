@@ -87,7 +87,7 @@ export function ReviewCard({
 					<p className="text-sm font-medium">{review.summary}</p>
 					{!saving ? (
 						<p className="mt-0.5 text-xs text-muted-foreground">
-							{review.engine === "prompt-pack" ? "Prompt pack for a video model" : `${choice.aspect} · ${choice.duration_sec}s · ${choice.audio === "voice" ? "voice-over" : choice.audio === "music" ? "music only" : "silent"}`}
+							{review.engine === "article" ? "Sketch video + prompt pack" : `${choice.aspect} · ${choice.duration_sec}s · ${choice.audio === "voice" ? "voice-over" : choice.audio === "music" ? "music only" : "silent"}`}
 							{review.cost ? ` · ${free ? "Free" : `≈ ${usd(review.cost.total_usd)}`}` : ""}
 						</p>
 					) : null}
@@ -169,7 +169,7 @@ export function ReviewCard({
 				</Button>
 				<Button size="sm" onClick={onApprove} disabled={!review.can_approve || busy}>
 					<Icon icon={busy ? Loading03Icon : CheckmarkCircle02Icon} size={14} className={busy ? "animate-spin" : ""} />
-					{saving ? "Save prompt" : review.engine === "prompt-pack" ? "Approve and write the pack" : "Approve and create"}
+					{saving ? "Save prompt" : "Approve and create"}
 				</Button>
 			</div>
 		</div>

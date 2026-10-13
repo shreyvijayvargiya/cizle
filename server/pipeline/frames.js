@@ -12,6 +12,8 @@ export const ASPECTS = {
 const FONT_LINK =
 	'<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">';
 
+const HAND_FONT_LINK = '<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">';
+
 export function escapeHtml(s) {
 	return String(s ?? "")
 		.replace(/&/g, "&amp;")
@@ -34,8 +36,8 @@ export function normalizeTheme(theme = {}) {
 	};
 }
 
-function page({ width, height, theme, body, extraCss = "" }) {
-	return `<!doctype html><html><head><meta charset="utf-8">${FONT_LINK}<style>
+function page({ width, height, theme, body, extraCss = "", bare = false }) {
+	return `<!doctype html><html><head><meta charset="utf-8">${FONT_LINK}${bare ? HAND_FONT_LINK : ""}<style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{width:${width}px;height:${height}px;overflow:hidden}
 body{background:${theme.background};color:${theme.text};font-family:Inter,'Segoe UI',Helvetica,Arial,sans-serif;position:relative;-webkit-font-smoothing:antialiased}
@@ -44,7 +46,7 @@ body{background:${theme.background};color:${theme.text};font-family:Inter,'Segoe
 .accent{color:${theme.accent}}
 .pill{display:inline-block;padding:10px 22px;border-radius:999px;background:${theme.accent};color:#fff;font-weight:800;letter-spacing:.02em}
 ${extraCss}
-</style></head><body><div class="glow"></div><div class="grid"></div>${body}</body></html>`;
+</style></head><body>${bare ? "" : '<div class="glow"></div><div class="grid"></div>'}${body}</body></html>`;
 }
 
 /** Scale typography to the shorter side so 9:16 and 1:1 stay legible. */
@@ -289,6 +291,37 @@ ${visual.caption ? `<h2 style="font-size:${58 * u}px;font-weight:800;margin-bott
 }
 
 /**
+ * Sketch Explainer frame: paper background, wobbly ink outlines, hand-written labels. `visual.nodes` (2-4 short
+ * labels) are drawn as boxes joined by arrows, so a scene reads as a small diagram.
+ */
+function sketchFrame({ size, theme, visual }) {
+	const u = unit(size);
+	const portrait = size.height > size.width;
+	const ink = theme.text;
+	const nodes = (Array.isArray(visual.nodes) ? visual.nodes : []).map((n) => String(n).slice(0, 28)).filter(Boolean).slice(0, 4);
+	const label = String(visual.label || visual.title || "").slice(0, 60);
+	const hand = "'Caveat','Segoe Print','Bradley Hand','Comic Sans MS',cursive";
+	const box = (text) => `<div class="rough" style="padding:${34 * u}px ${54 * u}px;border:${7 * u}px solid ${ink};border-radius:${26 * u}px ${34 * u}px ${24 * u}px ${38 * u}px;font-family:${hand};font-weight:700;font-size:${100 * u}px;line-height:1.05;text-align:center;background:#ffffffb3;max-width:${portrait ? 86 : 30}%">${escapeHtml(text)}</div>`;
+	const arrow = portrait
+		? `<svg class="rough" width="${110 * u}" height="${180 * u}" viewBox="0 0 90 150"><path d="M45 6 C 40 50, 50 90, 45 134" fill="none" stroke="${theme.accent}" stroke-width="${7}" stroke-linecap="round"/><path d="M22 112 L45 140 L68 112" fill="none" stroke="${theme.accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+		: `<svg class="rough" width="${150 * u}" height="${90 * u}" viewBox="0 0 150 90"><path d="M6 45 C 50 40, 90 50, 134 45" fill="none" stroke="${theme.accent}" stroke-width="7" stroke-linecap="round"/><path d="M112 22 L140 45 L112 68" fill="none" stroke="${theme.accent}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+	const diagram = nodes.length >= 2 ? nodes.map((n, i) => (i ? arrow : "") + box(n)).join("") : label ? box(label) : "";
+	const heading = nodes.length >= 2 && label ? `<h1 style="font-family:${hand};font-weight:700;font-size:${(portrait ? 124 : 100) * u}px;line-height:1.02;text-align:center;max-width:90%">${escapeHtml(label)}<svg width="100%" height="${26 * u}" viewBox="0 0 400 26" preserveAspectRatio="none" style="display:block;margin-top:${6 * u}px"><path d="M4 16 C 60 4, 120 24, 200 12 S 340 20, 396 8" fill="none" stroke="${theme.accent}" stroke-width="6" stroke-linecap="round"/></svg></h1>` : "";
+	return page({
+		...size,
+		theme,
+		bare: true,
+		extraCss: `body{background-image:radial-gradient(${ink}14 1.2px,transparent 1.4px);background-size:${28 * u}px ${28 * u}px}.rough{filter:url(#rough)}`,
+		body: `<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="${7 * u}"/></filter></svg>
+<div style="position:absolute;top:${48 * u}px;left:${56 * u}px;font-family:${hand};font-size:${44 * u}px;opacity:.55">${visual.index && visual.total ? `${visual.index} / ${visual.total}` : ""}</div>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:${52 * u}px;padding:${130 * u}px ${70 * u}px">
+${heading}
+<div style="display:flex;flex-direction:${portrait ? "column" : "row"};align-items:center;justify-content:center;gap:${24 * u}px;width:100%">${diagram}</div>
+</div>`,
+	});
+}
+
+/**
  * @param {{ scene: object, size: { width: number, height: number }, theme: object,
  *   image?: { dataUrl: string, width: number, height: number, focus?: object }, code?: { lines: string[], startLine: number } }} p
  * @returns {{ html: string, focus: { x: number, y: number } }}
@@ -315,6 +348,8 @@ export function buildFrameHtml({ scene, size, theme, image, code }) {
 			return { html: statsFrame({ size, theme, visual }), focus: center };
 		case "code":
 			return { html: codeFrame({ size, theme, visual, code }), focus: center };
+		case "sketch":
+			return { html: sketchFrame({ size, theme, visual }), focus: center };
 		case "outro":
 			return { html: outroFrame({ size, theme, visual }), focus: center };
 		default:
