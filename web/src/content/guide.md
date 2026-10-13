@@ -73,9 +73,13 @@ Prefer Claude to do the writing? Skip steps 1 and 2 and see [Claude Code and MCP
 
 ## A tour of the dashboard
 
+### Layout
+
+The left sidebar is grouped: **Workspace** (Dashboard, Create video, Videos), **Library** (Gallery, Prompts, Product memory, Add product) and **Connect** (Claude Code over MCP, Docs, Settings, GitHub), with your recent videos below. The top bar has search, theme, **Add product** and a **New video** button on every page.
+
 ### Dashboard
 
-The home screen has a three step setup (choose who writes the video, add your product, create), live stats (videos, rendering now, ideas waiting, total spend), and the composer. Below the composer:
+The home screen starts with the composer, then live stats (videos, rendering now, ideas waiting, total spend) and, until you add a product, a three step "Get started" row. Below that:
 
 - **Prompts picked for your product**, based on your kind of brand or founder and your product category, one for each animated style.
 - **Ads for your brand**: tiles for Meta, TikTok and Google Ads with their formats.

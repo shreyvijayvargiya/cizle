@@ -349,7 +349,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 							submit();
 						}
 					}}
-					placeholder={product ? `Describe the video you want for ${product.name}…  (type / to load a prompt)` : "Paste your SaaS URL or GitHub repo, then describe the video you want…  (type / to load a prompt)"}
+					placeholder={product ? `Describe the video you want for ${product.name}…  (type / to load a prompt)` : "Paste your website or GitHub repo, then describe the ad or video you want…  (type / to load a prompt)"}
 					className={cn("block w-full resize-none bg-transparent px-4 pt-3.5 pb-2 text-[15px] leading-relaxed outline-none placeholder:text-muted-foreground/80", size === "lg" ? "min-h-24" : "min-h-16")}
 				/>
 				{type === "comparison" ? (

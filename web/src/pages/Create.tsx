@@ -5,7 +5,7 @@ import { Page } from "@/components/AppShell";
 export function CreatePage() {
 	const search = useSearch({ strict: false }) as { prompt?: string; preset?: string };
 	return (
-		<Page title="Create a video" description="Paste a SaaS URL or GitHub repo, pick a type, and describe what you want. Each run makes 1–3 videos under a minute.">
+		<Page title="Create a video" description="Paste a website or GitHub repo, pick a video type or an ad format, and describe what you want. Each run makes 1–3 videos under a minute.">
 			<Composer initialPromptId={search.prompt} initialPresetId={search.preset} autoFocus />
 			<div className="mt-8 grid gap-3 text-[13px] text-muted-foreground sm:grid-cols-3">
 				<div className="rounded-xl border border-border p-4">

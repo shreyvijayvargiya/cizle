@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
+	ArrowUpRight01Icon,
 	BookOpen01Icon,
 	Cancel01Icon,
 	ComputerIcon,
@@ -33,17 +34,35 @@ import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
-const NAV = [
-	{ to: "/", label: "Dashboard", icon: DashboardSquare01Icon, exact: true },
-	{ to: "/create", label: "Create video", icon: PlusSignIcon },
-	{ to: "/videos", label: "Videos", icon: Video01Icon },
-	{ to: "/gallery", label: "Gallery", icon: GridViewIcon },
-	{ to: "/product", label: "Product", icon: Package01Icon },
-	{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
-	{ to: "/claude", label: "Claude Code", icon: ComputerTerminal01Icon },
-	{ to: "/docs", label: "Docs", icon: BookOpen01Icon },
-	{ to: "/settings", label: "Settings", icon: Settings01Icon },
-] as const;
+type NavItem = { to: string; label: string; icon: Parameters<typeof Icon>[0]["icon"]; exact?: boolean; href?: string };
+const NAV_GROUPS: { label: string; items: NavItem[] }[] = [
+	{
+		label: "Workspace",
+		items: [
+			{ to: "/", label: "Dashboard", icon: DashboardSquare01Icon, exact: true },
+			{ to: "/create", label: "Create video", icon: PlusSignIcon },
+			{ to: "/videos", label: "Videos", icon: Video01Icon },
+		],
+	},
+	{
+		label: "Library",
+		items: [
+			{ to: "/gallery", label: "Gallery", icon: GridViewIcon },
+			{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
+			{ to: "/product", label: "Product memory", icon: Package01Icon },
+			{ to: "/products/new", label: "Add product", icon: PlusSignIcon, exact: true },
+		],
+	},
+	{
+		label: "Connect",
+		items: [
+			{ to: "/claude", label: "Claude Code (MCP)", icon: ComputerTerminal01Icon },
+			{ to: "/docs", label: "Docs", icon: BookOpen01Icon },
+			{ to: "/settings", label: "Settings", icon: Settings01Icon },
+			{ to: "", label: "GitHub", icon: GithubIcon, href: REPO_URL },
+		],
+	},
+];
 
 function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobileOpen: boolean; onClose: () => void }) {
 	const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -72,7 +91,7 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 						{slim ? null : (
 							<span className="leading-tight">
 								<span className="block text-sm font-semibold tracking-tight">cizle</span>
-								<span className="block text-[11px] text-muted-foreground">Local video studio</span>
+								<span className="block text-[11px] text-muted-foreground">Ads and video studio</span>
 							</span>
 						)}
 					</Link>
@@ -85,29 +104,39 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 				<div className="px-2 pb-2">
 					<ProductSwitcher slim={slim} onNavigate={onClose} />
 				</div>
-				<nav className="flex flex-col gap-0.5 px-2">
-					{NAV.map((item) => {
-						const active = "exact" in item && item.exact ? pathname === item.to : pathname === item.to || pathname.startsWith(`${item.to}/`);
-						return (
-							<Link
-								key={item.to}
-								to={item.to}
-								onClick={onClose}
-								title={slim ? item.label : undefined}
-								className={cn(
+				<nav className="flex min-h-0 flex-col gap-3 overflow-y-auto px-2">
+					{NAV_GROUPS.map((group, gi) => (
+						<div key={group.label} className="flex flex-col gap-0.5">
+							{slim ? gi ? <div className="mx-2 mb-1 border-t border-border" /> : null : <p className="px-2.5 pb-1 text-[11px] font-medium tracking-wide text-muted-foreground uppercase">{group.label}</p>}
+							{group.items.map((item) => {
+								const active = !item.href && (item.exact ? pathname === item.to : pathname === item.to || pathname.startsWith(`${item.to}/`));
+								const cls = cn(
 									"flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm transition-colors",
 									slim && "justify-center px-0",
 									active ? "bg-accent font-medium text-foreground" : "text-muted-foreground hover:bg-accent hover:text-foreground",
-								)}
-							>
-								<Icon icon={item.icon} size={17} />
-								{slim ? null : item.label}
-							</Link>
-						);
-					})}
+								);
+								const inner = (
+									<>
+										<Icon icon={item.icon} size={17} />
+										{slim ? null : item.label}
+										{item.href && !slim ? <Icon icon={ArrowUpRight01Icon} size={13} className="ml-auto" /> : null}
+									</>
+								);
+								return item.href ? (
+									<a key={item.label} href={item.href} target="_blank" rel="noreferrer" title={slim ? item.label : undefined} className={cls}>
+										{inner}
+									</a>
+								) : (
+									<Link key={item.to} to={item.to} onClick={onClose} title={slim ? item.label : undefined} className={cls}>
+										{inner}
+									</Link>
+								);
+							})}
+						</div>
+					))}
 				</nav>
 				{slim ? null : (
-					<div className="mt-4 min-h-0 flex-1 overflow-y-auto border-t border-border px-2 pt-3">
+					<div className="mt-3 max-h-48 shrink-0 overflow-y-auto border-t border-border px-2 pt-3">
 						<p className="px-2.5 pb-1.5 text-[11px] font-medium tracking-wide text-muted-foreground uppercase">Recent</p>
 						{recent.length ? (
 							recent.map((v) => (
@@ -135,9 +164,14 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 						)}
 					</div>
 				)}
-				{slim ? <div className="flex-1" /> : null}
+				<div className="flex-1" />
 				{slim ? null : <SyncBadge />}
-				<div className={cn("border-t border-border p-3 text-[11px] text-muted-foreground", slim && "hidden")}>Runs on this machine · MIT</div>
+				<div className={cn("flex items-center justify-between border-t border-border p-3 text-[11px] text-muted-foreground", slim && "hidden")}>
+					<span>Runs on this machine · MIT</span>
+					<a href={REPO_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
+						<Icon icon={StarIcon} size={12} /> Star
+					</a>
+				</div>
 			</aside>
 		</>
 	);
@@ -216,7 +250,7 @@ export function AppShell({ children }: { children?: ReactNode }) {
 							className="flex h-9 w-full max-w-md items-center gap-2 rounded-lg border border-border bg-background/60 px-3 text-sm text-muted-foreground transition-colors hover:bg-accent"
 						>
 							<Icon icon={Search01Icon} size={15} />
-							<span className="truncate">Search videos and prompts</span>
+							<span className="truncate">Search videos, prompts and pages</span>
 							<kbd className="ml-auto hidden rounded border border-border bg-surface px-1.5 font-mono text-[10px] sm:inline">⌘K</kbd>
 						</button>
 						<div className="ml-auto flex items-center gap-1">
@@ -231,10 +265,15 @@ export function AppShell({ children }: { children?: ReactNode }) {
 									<Icon icon={GithubIcon} size={17} />
 								</a>
 							</Button>
-							<Button variant="outline" size="sm" className="hidden sm:inline-flex" asChild>
-								<a href={REPO_URL} target="_blank" rel="noreferrer">
-									<Icon icon={StarIcon} size={14} /> Star on GitHub
-								</a>
+							<Button variant="outline" size="sm" className="ml-1 hidden md:inline-flex" asChild>
+								<Link to="/products/new">
+									<Icon icon={Package01Icon} size={14} /> Add product
+								</Link>
+							</Button>
+							<Button size="sm" asChild>
+								<Link to="/create">
+									<Icon icon={PlusSignIcon} size={14} /> <span className="hidden sm:inline">New video</span>
+								</Link>
 							</Button>
 						</div>
 					</header>
@@ -246,9 +285,9 @@ export function AppShell({ children }: { children?: ReactNode }) {
 	);
 }
 
-export function Page({ title, description, actions, children, wide }: { title: string; description?: string; actions?: ReactNode; children: ReactNode; wide?: boolean }) {
+export function Page({ title, description, actions, children }: { title: string; description?: string; actions?: ReactNode; children: ReactNode; wide?: boolean }) {
 	return (
-		<div className={cn("mx-auto w-full px-4 py-6 sm:px-6 sm:py-8", wide ? "max-w-6xl" : "max-w-5xl")}>
+		<div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
 			<div className="mb-6 flex flex-wrap items-end justify-between gap-3">
 				<div>
 					<h1 className="text-xl font-semibold tracking-tight">{title}</h1>
