@@ -16,6 +16,7 @@ import { OnboardingPage } from "@/pages/Onboarding";
 import { ProductPage } from "@/pages/Product";
 import { GalleryPage } from "@/pages/Gallery";
 import { ClaudeCodePage } from "@/pages/ClaudeCode";
+import { DocsPage } from "@/pages/Docs";
 import { WorkspaceProvider } from "@/lib/workspace";
 import { RouteError } from "@/components/RouteError";
 import "./index.css";
@@ -39,6 +40,7 @@ const routeTree = rootRoute.addChildren([
 		validateSearch: (s: Record<string, unknown>): { style?: string; founder?: string; category?: string; platform?: string } => ({ platform: typeof s.platform === "string" ? s.platform : undefined, style: typeof s.style === "string" ? s.style : undefined, founder: typeof s.founder === "string" ? s.founder : undefined, category: typeof s.category === "string" ? s.category : undefined }),
 	}),
 	createRoute({ getParentRoute: parent, path: "/claude", component: ClaudeCodePage }),
+	createRoute({ getParentRoute: parent, path: "/docs", component: DocsPage }),
 	createRoute({ getParentRoute: parent, path: "/product", component: ProductPage }),
 	createRoute({ getParentRoute: parent, path: "/products/new", component: OnboardingPage }),
 	createRoute({ getParentRoute: parent, path: "/videos", component: VideosPage }),

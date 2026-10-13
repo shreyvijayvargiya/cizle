@@ -98,6 +98,8 @@ To run the dashboard as a single server: `npm run build && npm start`, then open
 
 ## A tour of the dashboard
 
+The dashboard also has a **Docs** page (`/docs`) with the full getting-started guide and everything below in more detail. It is rendered from [`web/src/content/guide.md`](web/src/content/guide.md), so you can edit it like any other file.
+
 **Dashboard.** Pick who writes the video, add your product, and use the composer. Below it: prompts picked for your product and kind of founder, the **prompt gallery** (one animated tile per style, with counts), the **Claude Code** card (install command and a ready prompt), your latest videos and the ideas waiting.
 
 ![cizle dashboard](docs/dashboard.png)

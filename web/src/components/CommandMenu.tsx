@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { Command } from "cmdk";
-import { ComputerTerminal01Icon, DashboardSquare01Icon, GridViewIcon, Package01Icon, PlusSignIcon, QuillWrite01Icon, Settings01Icon, Video01Icon } from "@hugeicons/core-free-icons";
+import { BookOpen01Icon, ComputerTerminal01Icon, DashboardSquare01Icon, GridViewIcon, Package01Icon, PlusSignIcon, QuillWrite01Icon, Settings01Icon, Video01Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { Dialog, DialogContent } from "@/components/ui/menu";
 import { usePrompts, useVideos } from "@/lib/api";
@@ -34,6 +34,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 								{ to: "/products/new", label: "Add product", icon: PlusSignIcon },
 								{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
 								{ to: "/claude", label: "Claude Code", icon: ComputerTerminal01Icon },
+								{ to: "/docs", label: "Docs and how to get started", icon: BookOpen01Icon },
 								{ to: "/settings", label: "Settings", icon: Settings01Icon },
 							].map((n) => (
 								<Command.Item key={n.to} value={`page ${n.label}`} onSelect={() => go(() => navigate({ to: n.to }))} className={itemCls}>

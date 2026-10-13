@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
+	BookOpen01Icon,
 	Cancel01Icon,
 	ComputerIcon,
 	ComputerTerminal01Icon,
@@ -40,6 +41,7 @@ const NAV = [
 	{ to: "/product", label: "Product", icon: Package01Icon },
 	{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
 	{ to: "/claude", label: "Claude Code", icon: ComputerTerminal01Icon },
+	{ to: "/docs", label: "Docs", icon: BookOpen01Icon },
 	{ to: "/settings", label: "Settings", icon: Settings01Icon },
 ] as const;
 
