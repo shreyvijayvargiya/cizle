@@ -24,7 +24,7 @@ import {
 	sanitizeStoryboard,
 	verifyOpenRouterKey,
 } from "./render.js";
-import { ensureFfmpeg } from "./media.js";
+import { ensureFfmpeg, probeImageSize } from "./media.js";
 import { cleanPack, estimatePackCost, packMarkdown, packToStoryboard, runPackJob } from "./pack.js";
 import { STYLE_IDS, normalizeStyle } from "./styles.js";
 import { gatherProductContext } from "./context.js";
@@ -42,7 +42,7 @@ import { loadSettings } from "../settings.js";
 import { tierModels } from "../models.js";
 import { isFreeModel } from "./openrouter.js";
 import { readProductMemory } from "../products/store.js";
-import { VIDEOS_DIR } from "../paths.js";
+import { ROOT, VIDEOS_DIR } from "../paths.js";
 
 const MAX_SHORT_SEC = 59;
 const jobs = new Map();
@@ -376,6 +376,41 @@ export async function createStoryboardJob(body = {}, deps, { origin = { kind: "c
 	return publicJob(job);
 }
 
+const IMAGE_EXT = /\.(png|jpe?g)$/i;
+/**
+ * A scene written by an agent can carry its own picture: visual.image is a local PNG/JPEG path (absolute, or relative to the
+ * cizle folder) or an https URL. Each becomes a frame the renderer can show (visual.chrome: false drops the browser window).
+ */
+async function framesFromScenes(scenes, workDir) {
+	const frames = [];
+	const byKey = new Map();
+	for (const sc of scenes) {
+		const v = sc?.visual;
+		if (!v?.image || !["screenshot", "image"].includes(v.type)) continue;
+		const key = String(v.image);
+		let f = byKey.get(key);
+		if (!f) {
+			let file;
+			if (/^https:\/\//i.test(key)) {
+				const res = await fetch(key, { signal: AbortSignal.timeout(20_000) });
+				if (!res.ok) throw badInput(`Could not download the image ${key} (${res.status}).`);
+				file = path.join(workDir, "frames", `img${frames.length + 1}${/\.jpe?g/i.test(key) ? ".jpg" : ".png"}`);
+				await fsp.mkdir(path.dirname(file), { recursive: true });
+				await fsp.writeFile(file, Buffer.from(await res.arrayBuffer()));
+			} else {
+				file = path.resolve(ROOT, key);
+				if (!IMAGE_EXT.test(file) || !fs.existsSync(file) || fs.statSync(file).size > 15_000_000) throw badInput(`visual.image must be a PNG or JPEG file under 15 MB or an https URL: ${key}`);
+			}
+			const { width, height } = await probeImageSize(file);
+			f = { id: `img${frames.length + 1}`, kind: v.chrome === false ? "image" : "section", file, width, height, url: "", source: key };
+			frames.push(f);
+			byKey.set(key, f);
+		}
+		v.frame_id = f.id;
+	}
+	return frames;
+}
+
 async function runStoryboardJob(job, board, body, deps) {
 	const input = job.input;
 	const workDir = jobDir(job.id);
@@ -394,9 +429,10 @@ async function runStoryboardJob(job, board, body, deps) {
 	const style = normalizeStyle(input.style && input.style !== "auto" ? input.style : board.theme?.style || typeEntry?.style || "default");
 	job.style = style;
 	const source = { name: job.title, title: job.title, url: input.url || "", type: "page" };
+	const frames = await framesFromScenes(board.scenes.slice(0, 14), workDir);
 	const sb = sanitizeStoryboard(
 		{ ...board, scenes: board.scenes.slice(0, 14), music: board.music || { mood: "calm", search_query: "light instrumental", bpm: 96 }, sfx: false },
-		{ frames: [], codeFiles: [], input: { max_scenes: 14 }, source, instructions: "" },
+		{ frames, codeFiles: [], input: { max_scenes: 14 }, source, instructions: "" },
 	);
 	const outro = sb.scenes[sb.scenes.length - 1].visual;
 	if (outro.type === "outro") {
@@ -424,7 +460,7 @@ async function runStoryboardJob(job, board, body, deps) {
 	};
 	job.variants = [v];
 	await save(job);
-	await renderOne({ job, v, gathered: { frames: [], repoDir: null }, notes: [], input, workDir, deps, costs, log, rel });
+	await renderOne({ job, v, gathered: { frames, repoDir: null }, notes: [], input, workDir, deps, costs, log, rel });
 	throwIfCancelled();
 	const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
 	job.cost = { currency: "USD", total_usd: round(spent), by_stage: groupCost(costs), by_variant: { v1: round(spent, 6) } };

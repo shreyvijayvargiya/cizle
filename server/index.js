@@ -237,13 +237,10 @@ api.get("/gallery", async (c) => {
 
 /* local files (frames, MP4s) with Range support for video seeking */
 const TYPES = { ".mp4": "video/mp4", ".png": "image/png", ".jpg": "image/jpeg", ".json": "application/json", ".srt": "text/plain; charset=utf-8", ".wav": "audio/wav", ".m4a": "audio/mp4" };
-api.get("/files/:id", (c) => {
-	const base = path.resolve(jobDir(c.req.param("id")));
-	const file = path.resolve(base, String(c.req.query("p") || ""));
-	if (!file.startsWith(base + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return c.json({ error: "Not found" }, 404);
-	const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
+/** Stream a file with Range support (video seeking). */
+function serveFile(c, file, type, extra = {}) {
 	const size = fs.statSync(file).size;
-	const headers = { "Content-Type": type, "Accept-Ranges": "bytes", ...(c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {}) };
+	const headers = { "Content-Type": type, "Accept-Ranges": "bytes", ...extra };
 	const range = /^bytes=(\d*)-(\d*)$/.exec(c.req.header("range") || "");
 	if (range) {
 		const start = range[1] ? Number(range[1]) : 0;
@@ -252,6 +249,13 @@ api.get("/files/:id", (c) => {
 		return c.body(Readable.toWeb(fs.createReadStream(file, { start, end })), 206, { ...headers, "Content-Length": String(end - start + 1), "Content-Range": `bytes ${start}-${end}/${size}` });
 	}
 	return c.body(Readable.toWeb(fs.createReadStream(file)), 200, { ...headers, "Content-Length": String(size) });
+}
+api.get("/files/:id", (c) => {
+	const base = path.resolve(jobDir(c.req.param("id")));
+	const file = path.resolve(base, String(c.req.query("p") || ""));
+	if (!file.startsWith(base + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return c.json({ error: "Not found" }, 404);
+	const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
+	return serveFile(c, file, type, c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {});
 });
 
 app.route("/api", api);
@@ -259,10 +263,11 @@ app.route("/api", api);
 /* production: serve the built dashboard */
 const DIST = path.join(ROOT, "web", "dist");
 if (fs.existsSync(DIST)) {
-	const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".json": "application/json" };
+	const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".json": "application/json", ".jpg": "image/jpeg" };
 	app.get("*", (c) => {
 		const p = path.resolve(DIST, `.${decodeURIComponent(new URL(c.req.url).pathname)}`);
 		const file = p.startsWith(DIST) && fs.existsSync(p) && fs.statSync(p).isFile() ? p : path.join(DIST, "index.html");
+		if (path.extname(file) === ".mp4") return serveFile(c, file, "video/mp4");
 		return c.body(fs.readFileSync(file), 200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream" });
 	});
 }

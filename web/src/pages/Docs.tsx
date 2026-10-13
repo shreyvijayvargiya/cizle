@@ -27,6 +27,13 @@ function headings(md: string) {
 const components: Components = {
 	h2: ({ children }) => <h2 id={slug(text(children))}>{children}</h2>,
 	h3: ({ children }) => <h3 id={slug(text(children))}>{children}</h3>,
+	// ![alt](/videos/x.mp4) becomes a video player; any other image stays an image.
+	img: ({ src, alt }) =>
+		src && /\.mp4$/i.test(src) ? (
+			<video src={src} controls playsInline preload="metadata" aria-label={alt} className="my-4 max-h-[70vh] w-full rounded-xl border border-border bg-black" />
+		) : (
+			<img src={src} alt={alt} loading="lazy" className="my-4 rounded-xl border border-border" />
+		),
 	a: ({ href, children }) => (
 		<a href={href} {...(href?.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>
 			{children}
