@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useSearch } from "@tanstack/react-router";
 import { PlusSignIcon, QuillWrite01Icon, Search01Icon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
@@ -25,7 +25,8 @@ const GROUPS: { kind: Prompt["kind"]; title: string; hint: string }[] = [
 export function PromptsPage() {
 	const prompts = usePrompts();
 	const [q, setQ] = useState("");
-	const [kind, setKind] = useState<"" | Prompt["kind"]>("");
+	const search = useSearch({ strict: false }) as { kind?: string };
+	const [kind, setKind] = useState<"" | Prompt["kind"]>((["custom", "type", "tone", "film"].includes(search.kind || "") ? search.kind : "") as "" | Prompt["kind"]);
 	const [founder, setFounder] = useState("");
 	const [allFilms, setAllFilms] = useState(false);
 	const list = useMemo(

@@ -43,7 +43,7 @@ api.onError((err, c) => {
 api.get("/health", (c) => c.json({ ok: true }));
 
 /* settings */
-api.get("/settings", (c) => c.json({ ...publicSettings(), data_dir: DATA_DIR }));
+api.get("/settings", (c) => c.json({ ...publicSettings(), data_dir: DATA_DIR, mcp_entry: path.join(ROOT, "server", "mcp", "stdio.js") }));
 api.put("/settings", async (c) => {
 	await saveSettings(await c.req.json().catch(() => ({})));
 	return c.json({ ...publicSettings(), data_dir: DATA_DIR });

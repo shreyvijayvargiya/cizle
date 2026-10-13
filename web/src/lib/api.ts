@@ -159,6 +159,8 @@ export type Settings = {
 	free_vision_model: string;
 	auto_sync: boolean;
 	data_dir?: string;
+	/** Absolute path of the MCP server entry, for `claude mcp add`. */
+	mcp_entry?: string;
 };
 
 export type ProductMeta = {

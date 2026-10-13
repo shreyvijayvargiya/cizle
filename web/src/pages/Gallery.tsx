@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { ArrowRight01Icon, PlayCircleIcon, Video01Icon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { OptionSelect } from "@/components/ui/select";
 import { Skeleton, Tabs, TabsList, TabsTrigger } from "@/components/ui/misc";
 import { Motion, StylePreview } from "@/components/PromptPreview";
-import { api, fileUrl, usePrompts, type Aspect, type Preset } from "@/lib/api";
-import { FOUNDER_LABEL, STYLE_LABEL } from "@/lib/constants";
+import { api, fileUrl, usePrompts, type Aspect, type Preset, type StyleId } from "@/lib/api";
+import { FOUNDER_LABEL, STYLES, STYLE_LABEL } from "@/lib/constants";
 import { cn, hostOf, timeAgo } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
@@ -68,14 +68,15 @@ export function GalleryPage() {
 	const gallery = useQuery({ queryKey: ["gallery", slug], queryFn: () => api.gallery(slug) });
 	const [aspect, setAspect] = useState("all");
 	const [type, setType] = useState("");
-	const [category, setCategory] = useState("");
-	const [style, setStyle] = useState("");
-	const [founder, setFounder] = useState("");
+	const search = useSearch({ strict: false }) as { style?: string; founder?: string; category?: string };
+	const [category, setCategory] = useState(search.category || "");
+	const [style, setStyle] = useState(search.style || "");
+	const [founder, setFounder] = useState(search.founder || "");
 
 	const presets = useMemo(() => gallery.data?.presets || [], [gallery.data]);
 	// Start on the active product's category when the gallery has presets for it.
 	useEffect(() => {
-		if (product && presets.some((p) => p.categories.includes(product.category))) setCategory(product.category);
+		if (!search.category && product && presets.some((p) => p.categories.includes(product.category))) setCategory(product.category);
 	}, [product, presets]);
 
 	const typeName = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.name || t;
@@ -83,8 +84,30 @@ export function GalleryPage() {
 	const types = [...new Set(presets.map((p) => p.type))];
 	const mine = gallery.data?.mine || [];
 
+	const perStyle = (s: string) => presets.filter((p) => (p.style || "default") === s).length;
+
 	return (
-		<Page title="Gallery" description="Start from a format that works, then remix it with your product's notes. Hand-drawn, clay, glass, isometric and ASCII styles, all animated." wide>
+		<Page title="Gallery" description="Start from a format that works, then remix it with your product's notes. Pick an animated style, then a founder job or a video type. Every format is a type, a tone and a style you can remix." wide>
+			<div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6" role="radiogroup" aria-label="Animated style">
+				{STYLES.filter((s) => s.value !== "auto").map((s) => (
+					<button
+						key={s.value}
+						type="button"
+						role="radio"
+						aria-checked={style === s.value}
+						onClick={() => setStyle(style === s.value ? "" : s.value)}
+						className={cn("overflow-hidden rounded-xl border bg-surface text-left transition-colors", style === s.value ? "border-brand/50 ring-2 ring-brand/20" : "border-border hover:bg-accent/50")}
+					>
+						<div className="h-20 overflow-hidden border-b border-border bg-muted">
+							{s.value === "default" ? <div className="flex size-full items-center justify-center bg-surface/60"><Motion name="ui-zoom" /></div> : <StylePreview style={s.value as StyleId} />}
+						</div>
+						<div className="flex items-baseline justify-between px-2.5 py-2">
+							<p className="text-[13px] font-medium">{s.label}</p>
+							<p className="text-[11px] text-muted-foreground tabular-nums">{perStyle(s.value)}</p>
+						</div>
+					</button>
+				))}
+			</div>
 			<div className="mb-5 flex flex-wrap items-center gap-2">
 				<Tabs value={aspect} onValueChange={setAspect}>
 					<TabsList>

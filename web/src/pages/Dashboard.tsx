@@ -6,7 +6,6 @@ import {
 	CheckmarkCircle02Icon,
 	Coins01Icon,
 	HelpCircleIcon,
-	GridViewIcon,
 	Key01Icon,
 	Layers01Icon,
 	Package01Icon,
@@ -19,6 +18,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Composer } from "@/components/Composer";
 import { SuggestedPrompts } from "@/components/SuggestedPrompts";
+import { ClaudeCodeCard, PromptShelf } from "@/components/DashboardShelves";
 import { IdeaCard } from "@/components/IdeaCard";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -106,14 +106,14 @@ export function DashboardPage() {
 				</div>
 			) : null}
 			<div className="grid gap-3 sm:grid-cols-3">
-				<Step n={1} icon={Key01Icon} title="Add your OpenRouter key" done={keyReady} to="/settings">
-					{keyReady ? "Key connected. Flip the Free switch to use free models instead of paid ones." : "Paste it once in Settings. It stays on this machine in data/settings.json. Not needed if you make videos from Claude Code."}
+				<Step n={1} icon={Key01Icon} title="Choose who writes the video" done={keyReady} to={keyReady ? "/settings" : "/claude"}>
+					{keyReady ? "OpenRouter key connected. Flip the Free switch to use free models instead of paid ones." : "Add an OpenRouter key in Settings, or skip it and make videos from Claude Code on your own subscription."}
 				</Step>
 				<Step n={2} icon={Package01Icon} title="Add your product" done={Boolean(product)} to={product ? "/product" : "/products/new"}>
 					{product ? `${product.name} is remembered in products/${product.slug}/. Sync checks its repos and site for new commits and pages.` : "Paste your website and GitHub repos once. cizle saves what it learns as markdown and suggests videos."}
 				</Step>
 				<Step n={3} icon={Layers01Icon} title="Create from an idea or a format">
-					Press Create on a suggestion, remix a format from the Gallery, or describe a video below. Stop any run from its button.
+					Press Create on a suggestion, remix a format from the prompt gallery, or describe a video below. A card asks its questions before anything renders.
 				</Step>
 			</div>
 
@@ -130,14 +130,9 @@ export function DashboardPage() {
 				<div className="mx-auto mt-6 max-w-3xl">
 					<Composer autoFocus />
 				</div>
-				<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-2">
-					<Button variant="outline" size="sm" asChild>
-						<Link to="/gallery">
-							<Icon icon={GridViewIcon} size={14} /> Browse the gallery
-						</Link>
-					</Button>
-				</div>
 				{product ? <SuggestedPrompts slug={slug} title={`Prompts for ${product.name}`} className="mx-auto mt-8 max-w-5xl" /> : null}
+				<PromptShelf className="mx-auto mt-10 max-w-5xl" />
+				<ClaudeCodeCard className="mx-auto mt-8 max-w-5xl" />
 				{types.length ? (
 					<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-1.5">
 						{types.slice(0, 10).map((t) => (

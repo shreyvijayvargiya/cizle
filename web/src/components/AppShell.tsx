@@ -3,6 +3,7 @@ import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import {
 	Cancel01Icon,
 	ComputerIcon,
+	ComputerTerminal01Icon,
 	DashboardSquare01Icon,
 	GithubIcon,
 	GridViewIcon,
@@ -38,6 +39,7 @@ const NAV = [
 	{ to: "/gallery", label: "Gallery", icon: GridViewIcon },
 	{ to: "/product", label: "Product", icon: Package01Icon },
 	{ to: "/prompts", label: "Prompts", icon: QuillWrite01Icon },
+	{ to: "/claude", label: "Claude Code", icon: ComputerTerminal01Icon },
 	{ to: "/settings", label: "Settings", icon: Settings01Icon },
 ] as const;
 

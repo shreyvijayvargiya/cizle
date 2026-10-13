@@ -15,6 +15,7 @@ import { SettingsPage } from "@/pages/Settings";
 import { OnboardingPage } from "@/pages/Onboarding";
 import { ProductPage } from "@/pages/Product";
 import { GalleryPage } from "@/pages/Gallery";
+import { ClaudeCodePage } from "@/pages/ClaudeCode";
 import { WorkspaceProvider } from "@/lib/workspace";
 import { RouteError } from "@/components/RouteError";
 import "./index.css";
@@ -31,12 +32,23 @@ const routeTree = rootRoute.addChildren([
 		component: CreatePage,
 		validateSearch: (s: Record<string, unknown>): { prompt?: string; preset?: string } => ({ prompt: typeof s.prompt === "string" ? s.prompt : undefined, preset: typeof s.preset === "string" ? s.preset : undefined }),
 	}),
-	createRoute({ getParentRoute: parent, path: "/gallery", component: GalleryPage }),
+	createRoute({
+		getParentRoute: parent,
+		path: "/gallery",
+		component: GalleryPage,
+		validateSearch: (s: Record<string, unknown>): { style?: string; founder?: string; category?: string } => ({ style: typeof s.style === "string" ? s.style : undefined, founder: typeof s.founder === "string" ? s.founder : undefined, category: typeof s.category === "string" ? s.category : undefined }),
+	}),
+	createRoute({ getParentRoute: parent, path: "/claude", component: ClaudeCodePage }),
 	createRoute({ getParentRoute: parent, path: "/product", component: ProductPage }),
 	createRoute({ getParentRoute: parent, path: "/products/new", component: OnboardingPage }),
 	createRoute({ getParentRoute: parent, path: "/videos", component: VideosPage }),
 	createRoute({ getParentRoute: parent, path: "/videos/$id", component: VideoDetailPage }),
-	createRoute({ getParentRoute: parent, path: "/prompts", component: PromptsPage }),
+	createRoute({
+		getParentRoute: parent,
+		path: "/prompts",
+		component: PromptsPage,
+		validateSearch: (s: Record<string, unknown>): { kind?: string } => ({ kind: typeof s.kind === "string" ? s.kind : undefined }),
+	}),
 	createRoute({ getParentRoute: parent, path: "/prompts/new", component: PromptEditorPage }),
 	createRoute({ getParentRoute: parent, path: "/prompts/$id", component: PromptEditorPage }),
 	createRoute({ getParentRoute: parent, path: "/settings", component: SettingsPage }),
