@@ -1,0 +1,21 @@
+{
+  "id": "google-display-shop",
+  "title": "Shop display banners",
+  "description": "Write three display banner variants for the shop: one on the main benefit, one on the problem it fixes, one on the real offer if the brand states one.",
+  "type": "google-display-banners",
+  "tone": "polished",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "device-mockup",
+  "categories": [
+    "ecommerce",
+    "beauty-fashion",
+    "food-drink"
+  ],
+  "founders": [
+    "ecommerce",
+    "beauty",
+    "food"
+  ],
+  "prompt": "Write three display banner variants for the shop: one on the main benefit, one on the problem it fixes, one on the real offer if the brand states one. CTA: Shop now. Draw the full size set."
+}

@@ -137,7 +137,7 @@ export async function createCizleServer() {
 				style: z.enum(STYLE_ENUM).optional(),
 				aspect: z.enum(["9:16", "4:5", "1:1", "16:9"]).optional(),
 				audio: z.enum(["music", "silent", "voice"]).optional(),
-				duration_sec: z.number().min(10).max(59).optional(),
+				duration_sec: z.number().min(6).max(59).optional(),
 				product: z.string().optional().describe("Product slug"),
 				source_url: z.string().optional().describe("The page or repo the material came from"),
 				request: z.string().optional().describe("The user's request, in their words"),
@@ -146,6 +146,37 @@ export async function createCizleServer() {
 		},
 		guarded(async ({ wait_seconds, ...body }, extra) => {
 			let job = await jobs.createStoryboardJob(body, deps, { origin: { kind: "claude-code", client: "mcp" } });
+			if (wait_seconds) job = (await waitWithProgress(job.id, wait_seconds, extra)) || job;
+			return text(describeJob(job, jobs.jobDir));
+		}),
+	);
+
+	server.registerTool(
+		"create_banners",
+		{
+			title: "Render static ad banners",
+			description:
+				"Draws static ad banners (PNG) from copy you wrote, in the chosen style, one image per copy per size: 1200x628, 1200x1200, 1080x1350, 1080x1920, 300x250, 336x280, 728x90, 970x250, 300x600, 160x600, 320x50. No model call, no key. Use with an ad type that outputs banners (read_prompt first). Returns an id; the PNGs are listed when it is done (usually a few seconds).",
+			inputSchema: {
+				banners: z
+					.array(z.object({ headline: z.string().describe("Max 8 words"), subhead: z.string().optional().describe("Max 14 words"), cta: z.string().optional().describe("Max 4 words, e.g. Shop now"), offer: z.string().optional().describe("Only a real offer the brand stated"), image: z.string().optional().describe("An https image URL of the product") }))
+					.min(1)
+					.max(3)
+					.describe("One to three copy variants. Every size is drawn for each."),
+				brand: z.string().optional(),
+				accent: z.string().optional().describe("Brand colour as #rrggbb"),
+				sizes: z.array(z.string()).optional().describe("Size ids such as 300x250. Default: 1200x628, 1200x1200, 300x250, 728x90"),
+				type: z.string().optional().describe("The ad type slug, e.g. google-display-banners"),
+				style: z.enum(STYLE_ENUM).optional(),
+				title: z.string().optional(),
+				product: z.string().optional(),
+				source_url: z.string().optional(),
+				request: z.string().optional(),
+				wait_seconds: z.number().min(0).max(120).optional(),
+			},
+		},
+		guarded(async ({ wait_seconds, ...body }, extra) => {
+			let job = await jobs.createBannerJob(body, deps, { origin: { kind: "claude-code", client: "mcp" } });
 			if (wait_seconds) job = (await waitWithProgress(job.id, wait_seconds, extra)) || job;
 			return text(describeJob(job, jobs.jobDir));
 		}),
@@ -197,13 +228,13 @@ export async function createCizleServer() {
 
 	// One slash command per video type: /mcp__cizle__make-<type> <source>
 	const types = (await library.listPrompts()).filter((p) => p.kind === "type");
-	const recipe = (label, typeId, source, notes) =>
-		`Make a ${label} video with the cizle MCP server for: ${source}${notes ? `\nNotes: ${notes}` : ""}\n\n1. Call \`guide\`, then \`read_prompt\` with ${typeId ? `id "${typeId}"` : "the video type that fits (call list_prompts)"} and follow its structure and rules.\n2. Gather the real material yourself: fetch the page or post, read the relevant code in this working directory, and call \`read_product\` (or \`save_product\` if there is none yet).\n3. Write the storyboard using only facts from that material.\n4. Call \`create_video\`${typeId ? ` with type "${typeId.replace(/^type:/, "")}"` : ""}, then call \`get_video\` with wait_seconds 45 until it is done.\n5. Reply with the video file path and the dashboard link.`;
+	const recipe = (label, typeId, source, notes, banner = false) =>
+		`Make a ${label} video with the cizle MCP server for: ${source}${notes ? `\nNotes: ${notes}` : ""}\n\n1. Call \`guide\`, then \`read_prompt\` with ${typeId ? `id "${typeId}"` : "the video type that fits (call list_prompts)"} and follow its structure and rules.\n2. Gather the real material yourself: fetch the page or post, read the relevant code in this working directory, and call \`read_product\` (or \`save_product\` if there is none yet).\n3. Write the storyboard (or banner copy) using only facts from that material.\n4. ${banner ? `Write the banner copy the guide asks for and call \`create_banners\` with type "${typeId.replace(/^type:/, "")}"` : `Call \`create_video\`${typeId ? ` with type "${typeId.replace(/^type:/, "")}"` : ""}`}, then call \`get_video\` with wait_seconds 45 until it is done.\n5. Reply with the video file path and the dashboard link.`;
 	for (const t of types) {
 		server.registerPrompt(
 			`make-${t.slug}`,
-			{ title: `Make a ${t.name} video`, description: t.description, argsSchema: { source: z.string().describe("A URL, a blog post, a repo path or a topic"), notes: z.string().optional().describe("Anything else: audience, length, style") } },
-			({ source, notes }) => ({ messages: [{ role: "user", content: { type: "text", text: recipe(t.name, t.id, source, notes) } }] }),
+			{ title: `Make ${t.output === "banner" ? "" : "a "}${t.name}${t.output === "banner" ? "" : " video"}`, description: t.description, argsSchema: { source: z.string().describe("A URL, a blog post, a repo path or a topic"), notes: z.string().optional().describe("Anything else: audience, length, style") } },
+			({ source, notes }) => ({ messages: [{ role: "user", content: { type: "text", text: recipe(t.name, t.id, source, notes, t.output === "banner") } }] }),
 		);
 	}
 	server.registerPrompt(

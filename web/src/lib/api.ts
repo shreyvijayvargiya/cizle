@@ -110,6 +110,9 @@ export type Job = {
 	id: string;
 	title: string;
 	engine?: "article" | "storyboard";
+	/** "banner" jobs are static ad images, not a video. */
+	output?: "banner";
+	banners?: { file: string; size: string; width: number; height: number; label: string; copy: number; headline: string }[];
 	origin?: { kind: string; client?: string; from?: string };
 	can_reskin?: boolean;
 	style?: string;

@@ -1,0 +1,19 @@
+{
+  "id": "google-display-local",
+  "title": "Local service display banners",
+  "description": "Write two banner variants for the business: the service with the area, and the guarantee or offer if stated.",
+  "type": "google-display-banners",
+  "tone": "polished",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "device-mockup",
+  "categories": [
+    "local-services",
+    "health-fitness"
+  ],
+  "founders": [
+    "local",
+    "health"
+  ],
+  "prompt": "Write two banner variants for the business: the service with the area, and the guarantee or offer if stated. CTA: Book today or Call now. Draw the full size set."
+}

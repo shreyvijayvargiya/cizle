@@ -92,7 +92,7 @@ ${films.map((t) => `- \`${t.id}\`: ${t.name} (${t.category}${t.style ? `; cizle 
 ${tones.map((t) => `- \`${t.id}\`: ${t.name}${t.style ? ` (style: ${t.style})` : ""}. ${t.description}`).join("\n")}
 
 ## Ads for brands
-When the user wants an ad (Meta, TikTok or Google Ads; a brand, an online shop, a local business, an app or a SaaS), pick one of these types, read it with \`read_prompt\` and follow its by-brand section. Use the aspect the type names. Ad formats are never chosen automatically: pass the type slug.
+When the user wants an ad (Meta, TikTok or Google Ads; a brand, an online shop, a local business, an app or a SaaS), pick one of these types, read it with \`read_prompt\` and follow its by-brand section. Use the aspect the type names. Ad formats are never chosen automatically: pass the type slug. Types marked "static banners" are not videos: write the banner copy their guide asks for and call `create_banners` (not `create_video`); the PNGs are saved in the dashboard.
 ${ads.map((t) => `- \`${t.id}\`: ${t.name} (${t.platform}, ${t.aspect || "9:16"}, ${t.duration || 15}s${t.output === "banner" ? ", static banners" : ""}). ${t.description}`).join("\n")}
 
 ## Creative laws

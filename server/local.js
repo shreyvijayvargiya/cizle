@@ -43,6 +43,7 @@ export function describeJob(job, jobDir) {
 		style: job.style || null,
 		duration_sec: v?.result?.duration_sec ?? null,
 		video_path: abs(v?.result?.video_path),
+		banner_paths: job.banners?.length ? job.banners.map((b) => ({ size: b.size, path: abs(b.file) })) : undefined,
 		captions_path: abs(v?.result?.captions_path),
 		dashboard_url: dashboardUrl(job.id),
 		notes: job.notes?.length ? job.notes : undefined,

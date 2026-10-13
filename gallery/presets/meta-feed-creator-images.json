@@ -1,0 +1,17 @@
+{
+  "id": "meta-feed-creator-images",
+  "title": "Creator feed images",
+  "description": "Write two feed image variants for the channel, course or newsletter: what viewers get, and one real proof point.",
+  "type": "meta-feed-banners",
+  "tone": "polished",
+  "style": "clay",
+  "aspect": "4:5",
+  "animation": "device-mockup",
+  "categories": [
+    "creator"
+  ],
+  "founders": [
+    "creator"
+  ],
+  "prompt": "Write two feed image variants for the channel, course or newsletter: what viewers get, and one real proof point. CTA: Subscribe or Join."
+}

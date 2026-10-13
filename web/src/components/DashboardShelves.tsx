@@ -39,7 +39,7 @@ export function AdShelf({ className }: { className?: string }) {
 								{mine.map((a) => (
 									<li key={a.id} className="flex justify-between gap-2">
 										<span className="truncate">{a.name.replace(/^(Meta|TikTok|Google) /, "")}</span>
-										<span className="shrink-0 text-xs text-muted-foreground">{a.aspect} · {a.duration}s</span>
+										<span className="shrink-0 text-xs text-muted-foreground">{a.output === "banner" ? "images" : `${a.aspect} · ${a.duration}s`}</span>
 									</li>
 								))}
 							</ul>

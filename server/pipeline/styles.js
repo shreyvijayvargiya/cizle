@@ -23,7 +23,7 @@ const esc = (s) =>
 		.replace(/>/g, "&gt;")
 		.replace(/"/g, "&quot;");
 
-const FONTS = {
+export const FONTS = {
 	sketch: ["Caveat:wght@500;700", "'Caveat','Segoe Print','Bradley Hand','Comic Sans MS',cursive"],
 	clay: ["Fredoka:wght@500;600;700", "'Fredoka','Nunito','Baloo 2','Trebuchet MS',system-ui,sans-serif"],
 	glass: ["Inter:wght@400;600;800", "Inter,'Segoe UI',Helvetica,Arial,sans-serif"],
@@ -32,7 +32,7 @@ const FONTS = {
 };
 
 /** Palette per style. Brand accent (theme.accent) tints highlights where it stays legible. */
-function palette(style, theme) {
+export function palette(style, theme) {
 	const brand = /^#[0-9a-f]{6}$/i.test(theme.accent || "") ? theme.accent : null;
 	switch (style) {
 		case "sketch":

@@ -19,7 +19,7 @@ try {
 const { loadSettings, saveSettings, publicSettings, testOpenRouterKey } = await import("./settings.js");
 const { listPrompts, getPrompt, savePrompt, deletePrompt } = await import("./library.js");
 const { runWithSignal } = await import("./pipeline/cancel.js");
-const { canReskin, cancelJob, createJob, createStoryboardJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, reskinJob, stats } = await import("./pipeline/job.js");
+const { canReskin, cancelJob, createBannerJob, createJob, createStoryboardJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, reskinJob, stats } = await import("./pipeline/job.js");
 const { warmModels, modelsSummary } = await import("./models.js");
 const store = await import("./products/store.js");
 const { startOnboard, getOnboard, cancelOnboard } = await import("./products/onboard.js");
@@ -104,6 +104,15 @@ api.post("/videos/from-storyboard", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
 	try {
 		return c.json(await createStoryboardJob(body, deps, { origin: { kind: "claude-code", client: "api" } }), 202);
+	} catch (e) {
+		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
+		throw e;
+	}
+});
+api.post("/videos/banners", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	try {
+		return c.json(await createBannerJob(body, deps, { origin: { kind: "claude-code", client: "api" } }), 202);
 	} catch (e) {
 		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
 		throw e;

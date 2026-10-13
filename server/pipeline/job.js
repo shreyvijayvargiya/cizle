@@ -37,6 +37,7 @@ import {
 	buildShortDirectorUserText,
 } from "./directorPrompts.js";
 import { getLaws, getPrompt, listPrompts } from "../library.js";
+import { pickSizes, renderBanners, sanitizeBanners } from "./banners.js";
 import { loadSettings } from "../settings.js";
 import { tierModels } from "../models.js";
 import { isFreeModel } from "./openrouter.js";
@@ -434,6 +435,112 @@ async function runStoryboardJob(job, board, body, deps) {
 	await save(job);
 }
 
+/* ------------------------------------------- static banners */
+
+const BANNER_SYSTEM = `You write copy for static ad banners (Meta, TikTok, Google Ads display) from a product brief. Use ONLY facts in the brief. Never invent prices, discounts, reviews, ratings, awards or claims.
+Return ONLY JSON: { "brand": "brand name", "accent": "#rrggbb or null", "banners": [ { "headline": "max 8 words", "subhead": "max 14 words, optional", "cta": "max 4 words, e.g. Shop now", "offer": "max 4 words, ONLY if the brief states a real offer, else empty", "frame_id": "id of the best product screenshot or null" } ] }
+Write exactly the number of banners asked for: each takes a different angle (benefit, problem, offer) but they share one brand and one call to action.`;
+
+const imageData = async (file) => {
+	try {
+		const buf = await fsp.readFile(file);
+		return `data:image/${/\.png$/i.test(file) ? "png" : "jpeg"};base64,${buf.toString("base64")}`;
+	} catch {
+		return "";
+	}
+};
+
+/** Draw the banner set for a job and record it in the manifest (job.banners). Shared by Claude Code and the OpenRouter pipeline. */
+async function finishBannerJob({ job, banners, sizes, style, theme, deps, workDir, typeLabel, log }) {
+	Object.assign(job, { step: "render", progress: 70 });
+	await save(job);
+	const files = await renderBanners({ banners, sizes, style, theme, dir: path.join(workDir, "banners"), baseDir: workDir, renderHtml: deps.renderHtml });
+	throwIfCancelled();
+	job.output = "banner";
+	job.style = style;
+	job.banners = files;
+	job.variants = [
+		{
+			id: "v1",
+			concept: { type: typeLabel, title: job.title, angle: banners[0].headline, hook: banners[0].headline, audience: "", pace: "medium", theme: { accent: theme?.accent || null } },
+			status: "success",
+			step: "done",
+			progress: 100,
+			error: null,
+			storyboard: null,
+			caption: banners.map((b) => [b.headline, b.cta].filter(Boolean).join(" - ")).join("\n").slice(0, 300),
+			result: { title: job.title, video_path: null, video_url: null, thumbnail_path: files[0]?.file ?? null, duration_sec: null, banners: files },
+		},
+	];
+	job.status = "success";
+	Object.assign(job, { step: "done", progress: 100 });
+	log(`done: ${files.length} banners (${banners.length} copies x ${sizes.length} sizes), style ${style}`);
+	await save(job);
+}
+
+/**
+ * Static ad banners written by Claude Code (or any agent). No model, no key, no FFmpeg.
+ * body: { title?, brand?, accent?, banners: [{ headline, subhead?, cta?, offer?, image? }], sizes?: ["300x250", ...], type?, style?, product?, source_url?, request? }
+ */
+export async function createBannerJob(body = {}, deps, { origin = { kind: "claude-code" } } = {}) {
+	const banners = sanitizeBanners(body.banners, body.brand);
+	if (!banners.length) throw badInput("banners must be a non-empty array of { headline, subhead?, cta?, offer? }.");
+	const sizes = pickSizes(body.sizes);
+	const sourceUrl = normUrl(body.source_url);
+	const parsed = parseVideoInput({ url: sourceUrl || "https://cizle.local/", prompt: body.request, type: body.type, style: body.style, aspect: "1:1", audio: "silent", product: body.product, model_tier: "free" });
+	if (parsed.error) throw badInput(parsed.error);
+	const input = { ...parsed.input, url: sourceUrl, source: "storyboard", audio: "silent", narration: false, music: "none", sfx: false };
+	const id = uuidv4();
+	const job = {
+		id,
+		title: String(body.title || banners[0].brand || banners[0].headline).slice(0, 120),
+		status: "running",
+		step: "render",
+		progress: 10,
+		engine: "storyboard",
+		output: "banner",
+		origin: { ...origin, client: String(origin.client || "claude-code").slice(0, 40) },
+		input,
+		type_label: body.type && body.type !== "auto" ? body.type : "Banners",
+		estimate: { currency: "USD", estimated: true, total_usd: 0, per_video_usd: 0 },
+		sources: sourceUrl ? [{ type: "page", url: sourceUrl, ok: true, detail: "Provided by Claude Code" }] : [],
+		frames: [],
+		brief: null,
+		variants: [],
+		cost: { currency: "USD", total_usd: 0, by_stage: {}, by_variant: {} },
+		error: null,
+		notes: [],
+		logs: [],
+		created_at: new Date().toISOString(),
+		updated_at: new Date().toISOString(),
+	};
+	jobs.set(id, job);
+	const ac = new AbortController();
+	controllers.set(id, ac);
+	await save(job);
+	await fsp.writeFile(path.join(jobDir(id), "request.json"), JSON.stringify(body, null, 2)).catch(() => {});
+	const log = (msg) => {
+		job.logs.push(`${new Date().toISOString()} ${msg}`);
+		console.log(`[cizle ${id.slice(0, 8)}] ${msg}`);
+	};
+	runWithSignal(ac.signal, async () => {
+		const typeEntry = (await listPrompts()).find((p) => p.kind === "type" && p.slug === body.type);
+		const style = normalizeStyle(input.style && input.style !== "auto" ? input.style : typeEntry?.style || "default");
+		await finishBannerJob({ job, banners, sizes, style, theme: { accent: body.accent }, deps, workDir: jobDir(id), typeLabel: body.type || "banners", log });
+	})
+		.catch(async (err) => {
+			if (ac.signal.aborted || isCancelError(err)) markCancelled(job);
+			else {
+				console.error(`[cizle] job ${id} failed:`, err);
+				job.status = "failed";
+				job.error = err?.message || String(err);
+			}
+			await save(job);
+		})
+		.finally(() => controllers.delete(id));
+	return publicJob(job);
+}
+
 /** Render the same storyboard again, optionally in another style, aspect ratio or audio mode. Free: no model call. */
 export async function reskinJob(id, overrides = {}, deps) {
 	let body;
@@ -443,8 +550,9 @@ export async function reskinJob(id, overrides = {}, deps) {
 		return null;
 	}
 	const next = { ...body };
-	for (const k of ["style", "aspect", "audio", "duration_sec"]) if (overrides[k] !== undefined && overrides[k] !== "") next[k] = overrides[k];
+	for (const k of ["style", "aspect", "audio", "duration_sec", "sizes"]) if (overrides[k] !== undefined && overrides[k] !== "") next[k] = overrides[k];
 	const prev = await getJob(id);
+	if (Array.isArray(body.banners)) return createBannerJob(next, deps, { origin: { ...(prev?.origin || { kind: "claude-code" }), from: id } });
 	return createStoryboardJob(next, deps, { origin: { ...(prev?.origin || { kind: "claude-code" }), from: id } });
 }
 
@@ -650,6 +758,31 @@ async function runJob(job, deps) {
 	job.brief = brief;
 	job.title = brief?.product_name || job.title;
 	await save(job);
+
+	// Banner types skip the storyboard: one more model call writes the copy, then the banners are drawn.
+	if (allowedTypes[0]?.output === "banner" && typeSlug !== "auto") {
+		await step("script", 55);
+		const copies = Math.min(3, Math.max(1, input.variations));
+		const planned = await chatJson({
+			model: input.script_model,
+			system: `${BANNER_SYSTEM}\n\nAD TYPE GUIDE (${allowedTypes[0].name}):\n${allowedTypes[0].body}${tone ? `\n\nTONE:\n${tone.body}` : ""}\n\nRULES:\n${laws}`,
+			user: JSON.stringify({ brief, frames: frameList.filter((f) => f.use_for !== "skip").map(({ id, kind, summary }) => ({ id, kind, summary })), banners_wanted: copies, direction: extraInstructions || null }),
+			costs,
+			stage: "script",
+			temperature: 0.8,
+		});
+		const withImages = await Promise.all((planned?.banners || []).slice(0, copies).map(async (b) => {
+			const fr = gathered.frames.find((f) => f.id === b?.frame_id);
+			return { ...b, image: fr?.preview ? await imageData(fr.preview) : "" };
+		}));
+		const banners = sanitizeBanners(withImages, planned?.brand || brief?.product_name || "");
+		if (!banners.length) throw new Error("The model did not return any banner copy.");
+		await finishBannerJob({ job, banners, sizes: pickSizes(allowedTypes[0].sizes), style: styleFor(allowedTypes[0].slug), theme: { accent: /^#[0-9a-f]{6}$/i.test(planned?.accent || "") ? planned.accent : brief?.brand?.accent }, deps, workDir, typeLabel: allowedTypes[0].slug, log });
+		const spent = costs.reduce((a, c) => a + (c.usd || 0), 0);
+		job.cost = { currency: "USD", total_usd: round(spent), by_stage: groupCost(costs), by_variant: { v1: round(spent, 6) } };
+		await save(job);
+		return;
+	}
 
 	// 4. Concepts -------------------------------------------------------------
 	await step("concepts", 40);

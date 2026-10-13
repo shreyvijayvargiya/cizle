@@ -1,7 +1,7 @@
 {
 	"name": "cizle",
 	"version": "0.1.0",
-	"description": "Paste a SaaS URL or GitHub repo → get product showcase, feature, FAQ, comparison, glossary and launch videos. Local studio + markdown prompt library, powered by OpenRouter.",
+	"description": "Animated video ads and banners for Meta, TikTok and Google Ads, for brands, SaaS founders and content creators. Local studio + markdown prompt library; OpenRouter or Claude Code, no key.",
 	"license": "MIT",
 	"type": "module",
 	"private": true,

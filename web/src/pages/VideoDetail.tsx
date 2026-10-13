@@ -202,6 +202,34 @@ function downloadPack(pack: Pack) {
 	URL.revokeObjectURL(a.href);
 }
 
+/** Static ad banners: every image with its size, a download link and a copy of the link. */
+function BannerGrid({ job }: { job: Job }) {
+	const banners = job.banners || [];
+	const copies = [...new Set(banners.map((b) => b.copy))];
+	return (
+		<div className="space-y-6">
+			{copies.map((c) => (
+				<section key={c}>
+					<h2 className="mb-2 text-sm font-medium">Variant {c}: <span className="font-normal text-muted-foreground">{banners.find((b) => b.copy === c)?.headline}</span></h2>
+					<div className="flex flex-wrap items-end gap-4">
+						{banners.filter((b) => b.copy === c).map((b) => (
+							<figure key={b.file} className="space-y-1.5">
+								<img src={fileUrl(job.id, b.file) || ""} alt={`${b.size} banner`} loading="lazy" style={{ maxWidth: Math.min(b.width, 360), maxHeight: 360, width: b.width >= b.height ? Math.min(b.width, 360) : undefined, height: b.width < b.height ? Math.min(b.height, 360) : undefined }} className="rounded-lg border border-border bg-muted" />
+								<figcaption className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+									<span>{b.size} · {b.label}</span>
+									<a href={fileUrl(job.id, b.file, true) || "#"} download className="inline-flex items-center gap-1 hover:text-foreground">
+										<Icon icon={Download04Icon} size={12} /> PNG
+									</a>
+								</figcaption>
+							</figure>
+						))}
+					</div>
+				</section>
+			))}
+		</div>
+	);
+}
+
 export function VideoDetailPage() {
 	const { id } = useParams({ strict: false }) as { id: string };
 	const navigate = useNavigate();
@@ -357,9 +385,9 @@ export function VideoDetailPage() {
 										</MenuRadioItem>
 									))}
 								</MenuRadioGroup>
-								<MenuSeparator />
-								<MenuLabel>Aspect ratio</MenuLabel>
-								<MenuRadioGroup value="" onValueChange={(v) => reskin.mutate({ aspect: v as Aspect })}>
+								{job.banners?.length ? null : <MenuSeparator />}
+								<MenuLabel className={job.banners?.length ? "hidden" : undefined}>Aspect ratio</MenuLabel>
+								<MenuRadioGroup value="" className={job.banners?.length ? "hidden" : undefined} onValueChange={(v) => reskin.mutate({ aspect: v as Aspect })}>
 									{(["9:16", "4:5", "1:1", "16:9"] as const).map((a) => (
 										<MenuRadioItem key={a} value={a}>
 											{a}
@@ -412,8 +440,9 @@ export function VideoDetailPage() {
 				</div>
 			) : null}
 
-			<div className="grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
-				<div>
+			{job.banners?.length ? <BannerGrid job={job} /> : null}
+			<div className={cn("grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]", job.banners?.length && "mt-6")}>
+				<div className={job.banners?.length ? "hidden" : undefined}>
 					<Player job={job} v={v} onStop={() => stop.mutate()} stopping={stop.isPending} />
 					{v?.concept ? (
 						<div className="mt-3 rounded-xl border border-border p-3 text-xs">

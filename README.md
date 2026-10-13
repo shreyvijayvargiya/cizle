@@ -2,9 +2,9 @@
 
 # cizle
 
-**Your product, remembered. Animated videos that keep up with what you ship.**
+**Ads for brands, SaaS founders and content creators. Animated video ads and banners for Meta, TikTok and Google Ads, made from your real product.**
 
-Add your SaaS website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video. 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 30 ready formats and 43 Opus film styles, in landscape, portrait or square, made from your real product.
+Add your website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video or ad. **9 video ad formats for Meta, TikTok and Google Ads plus 2 static banner sets**, for online shops, beauty and fashion, food, fitness, local businesses, apps, creators and SaaS; and 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 52 ready formats and 43 Opus film styles, in landscape, portrait or square, made from your real product.
 
 Runs on your machine. No database, no accounts. Drive it from the dashboard with [OpenRouter](https://openrouter.ai) (free models work), or **from Claude Code on your own subscription with no API key at all**.
 
@@ -29,7 +29,7 @@ Runs on your machine. No database, no accounts. Drive it from the dashboard with
 | Start from | The composer: paste a link, pick a prompt, answer the review card | Ask Claude, or a slash command like `/mcp__cizle__make-code-walkthrough` |
 | cizle's part | Reads the product, calls the models, renders | Renders and stores (no model call at all) |
 | Voice-over | Yes (paid text-to-speech) | Captions and music; voice if you add a key |
-| Result | An MP4 in your dashboard | An MP4 in your dashboard, marked "Made with Claude Code", re-skinnable for free |
+| Result | An MP4 (or banner PNGs) in your dashboard | An MP4 or banner PNGs in your dashboard, marked "Made with Claude Code", re-skinnable for free |
 
 Both use the same prompt library, the same animated styles and the same dashboard. Set up the second in two lines: see [Claude Code, no key](#use-it-from-claude-code-no-api-key).
 
@@ -42,6 +42,26 @@ Both use the same prompt library, the same animated styles and the same dashboar
 - [How it works](#how-it-works) · [Cost](#cost) · [Use it from Claude Code, no key](#use-it-from-claude-code-no-api-key)
 - [API](#api) · [Configuration](#configuration) · [Project layout](#project-layout) · [Security](#security)
 - [Contributing](#contributing) · [Credits](#credits) · [License](#license)
+
+## Ads for brands
+
+Not only product videos: the prompt library has **ad formats for every platform and brand kind**. Each one is a markdown file in `prompts/types/` (tagged `ad: true`) with the platform's length, aspect ratio and safe margins, a scene-by-scene structure, and a "By brand" section for online shops, beauty and fashion, food and drink, health and fitness, local services, apps and games, SaaS and dev tools, and creators and agencies.
+
+| Platform | Video ads (3 each) | Static banners |
+|---|---|---|
+| **Meta** (Instagram, Facebook) | Reels hook ad (9:16) · feed offer ad (4:5) · problem and solution ad (4:5) | Feed and Stories image set: 4:5, 1:1, 9:16, 1.91:1 |
+| **TikTok** | creator-style hook ad · offer drop · 3 reasons demo (all 9:16) | |
+| **Google Ads** | 6-second bumper · 15-second YouTube ad · Shorts ad | Display set: 1200x628, 1200x1200, 300x250, 336x280, 728x90, 300x600, 160x600, 320x50 |
+
+- **Ads laws** ([`prompts/ads-laws.md`](prompts/ads-laws.md)) are added to every ad: a hook in two seconds, one offer, one action, readable with sound off, platform safe zones, and **only claims the brand really made** (no invented prices, discounts, reviews or before/after).
+- **Static banners** are rendered through the same prompt system: an ad type with `output: banner` makes the model (or Claude Code, with the `create_banners` tool) write one to three copy variants, and cizle draws a PNG for each size in any of the six looks. Preview and download them on the video page.
+- **22 ad presets** in the gallery (18 video, 4 banner). Filter by platform (Meta, TikTok, Google Ads) or brand kind. The dashboard has an "Ads for your brand" shelf.
+- Ad specs change. The numbers in the ad types are a starting point taken from public platform guidance; **check each platform's current ad specs before you spend money.**
+
+```text
+/mcp__cizle__make-meta-reels-hook https://yourshop.com
+Use cizle to make Google display banners for https://yourshop.com, clay style.
+```
 
 ## Why
 
@@ -86,7 +106,7 @@ To run the dashboard as a single server: `npm run build && npm start`, then open
 
 ![Claude Code page](docs/claude.png)
 
-**Gallery.** 30 formats. Start from a style tile, then filter by founder job, video type or category. **Remix for my product** opens the composer with everything filled in.
+**Gallery.** 52 formats. Start from a style tile, then filter by founder job, video type or category. **Remix for my product** opens the composer with everything filled in.
 
 ![Gallery](docs/gallery.png)
 
@@ -103,7 +123,7 @@ To run the dashboard as a single server: `npm run build && npm start`, then open
 | | |
 |---|---|
 | **Claude Code, no key** | Add the MCP server and Claude writes the storyboard from your blog or code on your own subscription; cizle renders it into your dashboard. No OpenRouter key. |
-| **Prompt gallery** | 30 formats, 21 video types, 5 tones and 43 Opus film styles, each with an animated preview. Remix one for your product. |
+| **Prompt gallery** | 52 formats, 21 video types, 5 tones and 43 Opus film styles, each with an animated preview. Remix one for your product. |
 | **Animated styles** | Hand-drawn, clay, glass, isometric and ASCII looks with real entrance animations, set by the tone or picked in the composer. |
 | **21 video types** | Seven for products (showcase, features, FAQ, comparison, glossary, launch, sketch explainer) and fourteen for founders (founder story, how it works, pricing, pitch teaser, code walkthrough and more). |
 | **Add a product** | Website plus any number of GitHub repos. cizle writes `products/<slug>/product.md` and suggests three first videos and the prompts that fit your kind of founder. |
@@ -367,8 +387,8 @@ Then, in Claude Code, in any project (for example your SaaS repo):
 What happens: Claude reads cizle's guide and the **Code walkthrough** (or **Sketch Explainer**) prompt, fetches the post and reads your code, calls `save_product` once so cizle remembers the product, writes about eight scenes, and calls `create_video`. A minute or two later the video is in the dashboard (**Videos**, badge "Claude Code"), at `data/videos/<id>/variants/v1/video.mp4`, with the storyboard saved next to it.
 
 - **Check it.** `npm run mcp:doctor` tests the whole chain and prints what to fix.
-- **Slash commands.** Every video type is a prompt: `/mcp__cizle__make-code-walkthrough <url>`, `/mcp__cizle__make-pitch-teaser`, `/mcp__cizle__make-whats-new` and so on (type `/mcp__cizle` to see all 21), plus `/mcp__cizle__make-video <what you want>`.
-- **Tools** Claude can call: `guide`, `list_prompts`, `read_prompt`, `list_products`, `read_product`, `save_product`, `create_video`, `get_video`, `list_videos`, `reskin_video`, `cancel_video`.
+- **Slash commands.** Every video type is a prompt: `/mcp__cizle__make-code-walkthrough <url>`, `/mcp__cizle__make-pitch-teaser`, `/mcp__cizle__make-whats-new` and so on (type `/mcp__cizle` to see all 32), plus `/mcp__cizle__make-video <what you want>`.
+- **Tools** Claude can call: `guide`, `list_prompts`, `read_prompt`, `list_products`, `read_product`, `save_product`, `create_video`, `create_banners` (static ad banners as PNGs), `get_video`, `list_videos`, `reskin_video`, `cancel_video`.
 - **Re-skin for free.** The storyboard is stored, so **Re-skin** on the video page (or `reskin_video`) renders the same video again in clay, glass, isometric, hand-drawn or ASCII, or in another aspect ratio. No model is involved.
 - **Voice.** Without a text-to-speech key you get captions on screen and music (Openverse, or generated offline). Add an OpenRouter key and `audio: "voice"` also works.
 - **Your model.** Claude Code uses whichever model you picked (choose Opus for the best storyboards). A 40-second storyboard is a few thousand output tokens.
@@ -461,7 +481,7 @@ cizle/
 ├── .mcp.json                offers the cizle MCP server when this repo is opened in Claude Code
 ├── SKILL.md                 lets coding agents drive the dashboard server and OpenRouter pipeline
 ├── scripts/                 import-film-styles.mjs (refresh the Opus film styles)
-├── prompts/                 laws, 21 video types, tones, 43 film styles, custom prompts, review persona (markdown)
+├── prompts/                 laws, ads laws, 32 video and ad types, tones, 43 film styles, custom prompts, review persona (markdown)
 ├── gallery/presets/*.json   30 gallery formats (type, tone, style, founders, aspect, direction)
 ├── products/                your product memory (git-ignored) + example/
 ├── server/

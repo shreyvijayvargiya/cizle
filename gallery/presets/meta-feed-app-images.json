@@ -1,0 +1,21 @@
+{
+  "id": "meta-feed-app-images",
+  "title": "App feed images",
+  "description": "Write three feed image variants for the app or product: the core benefit, the problem, and one proof point that is real.",
+  "type": "meta-feed-banners",
+  "tone": "polished",
+  "style": "glass",
+  "aspect": "4:5",
+  "animation": "device-mockup",
+  "categories": [
+    "apps-games",
+    "ai-agents",
+    "devtools"
+  ],
+  "founders": [
+    "app",
+    "ai",
+    "devtool"
+  ],
+  "prompt": "Write three feed image variants for the app or product: the core benefit, the problem, and one proof point that is real. Use a screenshot URL as the image if one exists. CTA: Get the app or Try it free."
+}
