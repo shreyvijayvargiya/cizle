@@ -6,6 +6,18 @@ Every single one needs the same three things: good context about the product, re
 
 So we built Cizle for our own use, then open sourced it. This page is the whole guide: what it is, how to start, every part of the dashboard, how to use it from Claude Code over MCP, and how to script it.
 
+## Watch it first
+
+Both videos below were made with Cizle itself, from the real dashboard screenshots: Claude wrote the storyboards through the MCP route and Cizle rendered them locally, with no API key.
+
+**Cizle explained** (51 seconds): what it is, who it is for, the dashboard, creating videos, Claude Code.
+
+![Cizle explained](/videos/cizle-explainer.mp4)
+
+**Launch teaser** (9:16, 22 seconds): the flashy version for Reels, Shorts and TikTok.
+
+![Cizle launch teaser](/videos/cizle-launch.mp4)
+
 ## What is Cizle?
 
 Cizle is a free, open-source video studio. You paste a website or GitHub repo, pick a video type or an ad format, and it gives you short videos (under a minute) or static banners, made from your real product.

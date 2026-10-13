@@ -10,7 +10,7 @@ Runs on your machine. No database, no accounts. Drive it from the dashboard with
 
 <a href="docs/demo.mp4"><img src="docs/demo.gif" alt="cizle demo: paste a link, get product videos" width="880" /></a>
 
-**[▶ Watch the 50-second demo with sound](docs/demo.mp4)**
+**[▶ Watch "cizle explained" (51 s, made with cizle)](web/public/videos/cizle-explainer.mp4)** · **[▶ Launch teaser (9:16)](web/public/videos/cizle-launch.mp4)** · [▶ 50-second demo with sound](docs/demo.mp4)**
 
 **[▶ Watch the 5-minute walkthrough](docs/overview.mp4)** · [captions (.srt)](docs/overview.srt) _(recorded early on: it predates animated styles, the review card, the founder types and Claude Code, all described below)_
 
