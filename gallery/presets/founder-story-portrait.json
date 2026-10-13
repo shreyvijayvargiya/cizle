@@ -1,0 +1,25 @@
+{
+  "id": "founder-story-portrait",
+  "title": "Founder story, diary page",
+  "description": "Why we built it, written like a diary page: the frustration, the insight, the product.",
+  "type": "founder-story",
+  "tone": "polished",
+  "style": "sketch",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "devtools",
+    "analytics",
+    "crm",
+    "ai-agents",
+    "project-management",
+    "fintech",
+    "marketing-seo",
+    "security"
+  ],
+  "founders": [
+    "solo",
+    "fundraising"
+  ],
+  "prompt": "Open on the exact moment that started it, as a handwritten line. Scribble the frustration, circle the insight in blue, then draw an arrow to the product on a real screenshot. Use only what the About page or a founder post says, first person, no hero talk. End with a human call to action."
+}

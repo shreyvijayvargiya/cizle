@@ -1,9 +1,10 @@
 {
   "id": "devtool-install-landscape",
   "title": "Developer demo, install to first result",
-  "description": "From the install command to the first working result.",
+  "description": "From the install command to the first working result, typed live.",
   "type": "features",
   "tone": "deadpan",
+  "style": "ascii",
   "aspect": "16:9",
   "animation": "cursor-walkthrough",
   "categories": [
@@ -11,5 +12,9 @@
     "ai-agents",
     "security"
   ],
-  "prompt": "Show the install command within eight seconds, then a short code scene from the README, then the first result. End with the repo link."
+  "founders": [
+    "devtool",
+    "ai"
+  ],
+  "prompt": "Type the install command within eight seconds, then a short code scene taken from the README, then the first result as terminal output. One scene per step, a numbered checklist ticking off as it goes. End with the repo link and 'Star it on GitHub'."
 }

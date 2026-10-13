@@ -5,6 +5,8 @@ description: Make short product videos (showcase, features, FAQ, comparison, glo
 
 # cizle
 
+If the cizle MCP server is installed (tools named `create_video`, `guide`, ...), prefer it: read `guide`, write the storyboard yourself and call `create_video`. No API key or running server is needed, and it is described in the README under "Use it from Claude Code". The rest of this file is for driving the dashboard server and its OpenRouter pipeline.
+
 cizle is a local video studio. Its API runs on `http://localhost:3737/api` (start it with `npm run dev` or `npm start` in the cizle folder).
 
 ## Products (optional but better)
@@ -30,8 +32,9 @@ If the user has added their product to cizle, use it: videos then read the saved
      "url": "<website or github repo>",
      "github_url": "<optional repo when url is a website>",
      "compare_urls": ["<competitor urls, only for type comparison>"],
-     "type": "showcase|features|faq|comparison|glossary|launch|auto",
+     "type": "showcase|features|faq|comparison|glossary|launch|sketch-explainer|auto",
      "tone": "polished|playful|cinematic|app-store|deadpan|auto",
+     "style": "auto|default|sketch|clay|glass|isometric|ascii",
      "prompt": "<extra direction from the user>",
      "aspect": "9:16|1:1|16:9",
      "audio": "voice|music|silent",
@@ -39,7 +42,10 @@ If the user has added their product to cizle, use it: videos then read the saved
      "variations": 1
    }'
    ```
+   `style` is the animated look: `auto` (default) uses the tone's style (playful = clay, cinematic = glass, app-store = isometric, deadpan = ascii). Styled videos take about a minute longer to render.
 5. **Poll** `GET /api/videos/<id>` every ~10 s until `status` is `success`, `partial` or `failed`. Report `error` if it failed.
+   For a blog post or tutorial, use `"type": "sketch-explainer"` with the article link as `url`. It renders a hand-drawn explainer video like any other type (poll and deliver as below) and the finished job also has `pack` (hook, narration, storyboard, `video_prompts`, subtitles, `source_facts`, and the whole thing as `pack.markdown`). Give `pack.markdown` to a generative video model if the user wants AI-generated clips. Ask the user for the audience and takeaway first and put them in `prompt`.
+   To get cizle's own questions and a drafted prompt before creating, `POST /api/review` with `{"draft": {<same fields>}}`. It creates nothing; it returns `questions`, `final_prompt`, `checks` (duplicates) and `cost`. Show them to the user, then send the approved values to `POST /api/videos`.
 6. **Deliver:** each `variants[].result.video_path` is relative to `data/videos/<id>/` (or use `video_url` when UploadThing is on). Share the path, the duration, and `result.caption` (ready-to-post copy). The dashboard page is `http://localhost:5173/videos/<id>`.
 
 Keep videos under 60 seconds. Never invent product claims in `prompt`; cizle grounds the script in what it reads from the product.

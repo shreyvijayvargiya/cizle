@@ -1,0 +1,21 @@
+{
+  "id": "meta-problem-saas",
+  "title": "SaaS problem and fix ad",
+  "description": "Open on the painful task a team does by hand.",
+  "type": "meta-problem-solution",
+  "tone": "polished",
+  "style": "sketch",
+  "aspect": "4:5",
+  "animation": "split-compare",
+  "categories": [
+    "marketing-seo",
+    "crm",
+    "analytics",
+    "project-management"
+  ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Open on the painful task a team does by hand. Sketch why it hurts in two lines, then show the real product doing it in three steps. Include one number only if the product's own site states it. Close on Try it free."
+}

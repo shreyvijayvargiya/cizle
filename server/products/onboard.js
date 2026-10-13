@@ -21,7 +21,7 @@ import { productJson, untrusted, UNTRUSTED_NOTE } from "./llm.js";
 import { ideaVocab, takeSnapshot } from "./sync.js";
 import { addIdeas, cleanIdea, createProduct, normalizeRepo, normalizeRepos, productDir, repoUrl, writeSources } from "./store.js";
 
-export const CATEGORIES = ["devtools", "analytics", "crm", "ai-agents", "project-management", "fintech", "marketing-seo", "security", "other"];
+export const CATEGORIES = ["devtools", "analytics", "crm", "ai-agents", "project-management", "fintech", "marketing-seo", "security", "ecommerce", "beauty-fashion", "food-drink", "health-fitness", "local-services", "apps-games", "creator", "other"];
 const runs = new Map();
 const controllers = new Map();
 

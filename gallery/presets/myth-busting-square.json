@@ -1,0 +1,23 @@
+{
+  "id": "myth-busting-square",
+  "title": "Three myths, crossed out",
+  "description": "Each myth crossed out in ink, the truth written under it.",
+  "type": "myth-busting",
+  "tone": "deadpan",
+  "style": "sketch",
+  "aspect": "1:1",
+  "animation": "split-compare",
+  "categories": [
+    "fintech",
+    "security",
+    "ai-agents",
+    "marketing-seo",
+    "analytics"
+  ],
+  "founders": [
+    "b2b",
+    "ai",
+    "fundraising"
+  ],
+  "prompt": "Open with the most surprising myth as a statement. For each of three myths write it, cross it out, then write the plain truth in under 20 words, using only what the docs, FAQ or blog say. Finish with how the product acts on the truth. No strawmen and nothing said about competitors."
+}

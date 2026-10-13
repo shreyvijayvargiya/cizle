@@ -101,6 +101,28 @@ body {
 @keyframes cz-flick { 0%, 100% { opacity: 1; transform: none } 35% { opacity: 0.3; transform: translateX(4px) } 55% { opacity: 1; transform: translateX(-4px) } }
 @keyframes cz-bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
 @keyframes cz-wipe { 0%, 100% { transform: translateX(-20%) } 50% { transform: translateX(20%) } }
+/* style previews: hand-drawn, clay, glass, isometric, ascii */
+@keyframes cz-draw { 0% { stroke-dashoffset: 1 } 45%, 100% { stroke-dashoffset: 0 } }
+@keyframes cz-clay { 0% { transform: translateY(26px) scale(.7, .45); opacity: 0 } 30% { transform: translateY(-6px) scale(.95, 1.1); opacity: 1 } 45% { transform: scale(1.06, .94) } 60%, 88% { transform: none; opacity: 1 } 100% { transform: none; opacity: 0 } }
+@keyframes cz-orb { from { transform: translate(0, 0) scale(1) } to { transform: translate(26px, -22px) scale(1.25) } }
+@keyframes cz-glass { 0% { transform: translateY(14px); opacity: 0; filter: blur(6px) } 25%, 85% { transform: none; opacity: 1; filter: none } 100% { opacity: 0 } }
+@keyframes cz-iso { 0% { transform: translate(-22px, 22px); opacity: 0 } 25%, 85% { transform: none; opacity: 1 } 100% { opacity: 0 } }
+@keyframes cz-cube { from { margin-top: 0 } to { margin-top: -10px } }
+@keyframes cz-type { 0% { clip-path: inset(0 100% 0 0) } 40%, 90% { clip-path: inset(0 0 0 0) } 100% { clip-path: inset(0 100% 0 0) } }
+@keyframes cz-blink { 50% { opacity: 0 } }
+@keyframes cz-wob { from { transform: rotate(-3deg) } to { transform: rotate(3deg) translateY(-3px) } }
 @media (prefers-reduced-motion: reduce) {
-	.cz-anim, .cz-anim * { animation: none !important; opacity: 1 !important }
+	.cz-anim, .cz-anim * { animation: none !important; opacity: 1 !important; clip-path: none !important; stroke-dashoffset: 0 !important }
 }
+
+/* docs page: long-form markdown */
+.prose-cizle pre { margin: 0.75rem 0; padding: 0.85rem 1rem; overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--muted); font-size: 0.8rem; line-height: 1.55; }
+.prose-cizle pre code { background: none; padding: 0; font-size: inherit; }
+.prose-cizle table { width: 100%; margin: 0.75rem 0; border-collapse: collapse; font-size: 0.8125rem; display: block; overflow-x: auto; }
+.prose-cizle th, .prose-cizle td { border: 1px solid var(--border); padding: 0.4rem 0.65rem; text-align: left; vertical-align: top; }
+.prose-cizle th { background: var(--muted); font-weight: 600; }
+.prose-cizle blockquote { margin: 0.75rem 0; padding: 0.1rem 0 0.1rem 0.9rem; border-left: 3px solid var(--border); color: var(--muted-foreground); }
+.prose-cizle a { text-decoration: underline; text-underline-offset: 2px; }
+.prose-docs h1 { font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 1rem; }
+.prose-docs h2 { font-size: 1.15rem; margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); scroll-margin-top: 5rem; }
+.prose-docs h3 { font-size: 0.975rem; margin-top: 1.5rem; scroll-margin-top: 5rem; }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { ArrowRight01Icon, PlayCircleIcon, Video01Icon } from "@hugeicons/core-free-icons";
 import { Page } from "@/components/AppShell";
 import { Icon } from "@/components/Icon";
@@ -8,7 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { OptionSelect } from "@/components/ui/select";
 import { Skeleton, Tabs, TabsList, TabsTrigger } from "@/components/ui/misc";
-import { api, fileUrl, usePrompts, type Aspect, type Preset } from "@/lib/api";
+import { Motion, StylePreview } from "@/components/PromptPreview";
+import { api, fileUrl, usePrompts, type Aspect, type Preset, type StyleId } from "@/lib/api";
+import { FOUNDER_LABEL, PLATFORMS, STYLES, STYLE_LABEL } from "@/lib/constants";
 import { cn, hostOf, timeAgo } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
@@ -31,92 +33,22 @@ const CATEGORIES: Record<string, string> = {
 	fintech: "Fintech",
 	"marketing-seo": "Marketing and SEO",
 	security: "Security",
+	ecommerce: "Online shops",
+	"beauty-fashion": "Beauty and fashion",
+	"food-drink": "Food and drink",
+	"health-fitness": "Health and fitness",
+	"local-services": "Local services",
+	"apps-games": "Apps and games",
+	creator: "Creators",
 };
-const ASPECT_CLASS: Record<Aspect, string> = { "16:9": "w-full aspect-video", "9:16": "w-[52%] aspect-[9/16]", "1:1": "w-[74%] aspect-square" };
-
-/** A few looping shapes that hint at the motion style. Real renders replace them as you make videos. */
-function Motion({ name }: { name: string }) {
-	const bar = "h-2 rounded-full bg-foreground/70";
-	switch (name) {
-		case "kinetic-type":
-			return (
-				<div className="flex w-3/4 flex-col gap-2">
-					{[100, 70, 85].map((w, i) => (
-						<div key={i} className="cz-anim h-3.5 rounded bg-foreground" style={{ width: `${w}%`, animation: `cz-rise 2.4s ${i * 0.35}s infinite both` }} />
-					))}
-				</div>
-			);
-		case "ui-zoom":
-			return (
-				<div className="size-3/4 overflow-hidden rounded-lg border border-foreground/30 bg-surface">
-					<div className="cz-anim grid size-full grid-cols-3 gap-1 p-1.5" style={{ animation: "cz-zoom 3s ease-in-out infinite alternate" }}>
-						{Array.from({ length: 6 }).map((_, i) => (
-							<div key={i} className={cn("rounded bg-foreground/15", i === 1 && "bg-brand/60")} />
-						))}
-					</div>
-				</div>
-			);
-		case "cursor-walkthrough":
-			return (
-				<div className="relative size-3/4 rounded-lg border border-foreground/30 bg-surface p-2">
-					<div className={cn(bar, "w-1/2")} />
-					<div className="mt-2 h-8 rounded bg-foreground/10" />
-					<span className="cz-anim absolute top-1/2 left-1/2 size-3 rounded-full bg-brand ring-4 ring-brand/30" style={{ animation: "cz-travel 3.2s ease-in-out infinite" }} />
-				</div>
-			);
-		case "split-compare":
-			return (
-				<div className="flex size-3/4 overflow-hidden rounded-lg border border-foreground/30">
-					<div className="flex-1 bg-brand/30 p-2">
-						<div className={cn(bar, "w-3/4")} />
-					</div>
-					<div className="cz-anim w-0.5 bg-foreground" style={{ animation: "cz-wipe 2.8s ease-in-out infinite" }} />
-					<div className="flex-1 bg-foreground/10 p-2">
-						<div className={cn(bar, "w-1/2")} />
-					</div>
-				</div>
-			);
-		case "device-mockup":
-			return (
-				<div className="cz-anim flex h-3/4 w-2/5 flex-col rounded-2xl border-2 border-foreground/60 bg-surface p-1.5" style={{ animation: "cz-bob 2.6s ease-in-out infinite" }}>
-					<div className="mx-auto h-1 w-1/3 rounded-full bg-foreground/50" />
-					<div className="mt-1.5 flex-1 rounded-lg bg-brand/25" />
-				</div>
-			);
-		case "count-up":
-			return (
-				<div className="cz-anim text-center" style={{ animation: "cz-rise 2.4s infinite both" }}>
-					<p className="text-3xl font-semibold tracking-tight tabular-nums">128%</p>
-					<div className={cn(bar, "mx-auto mt-2 w-16 bg-foreground/30")} />
-				</div>
-			);
-		case "card-stack":
-			return (
-				<div className="relative size-3/5">
-					{[2, 1, 0].map((i) => (
-						<div key={i} className="cz-anim absolute inset-0 rounded-lg border border-foreground/30 bg-surface" style={{ transform: `translate(${i * 8}px, ${i * -8}px)`, animation: `cz-bob 2.6s ${i * 0.25}s ease-in-out infinite` }}>
-							{i === 0 ? <div className="m-2 space-y-1.5"><div className={cn(bar, "w-2/3")} /><div className={cn(bar, "w-1/2 bg-foreground/30")} /></div> : null}
-						</div>
-					))}
-				</div>
-			);
-		default:
-			return (
-				<div className="flex w-3/4 flex-col gap-2">
-					{[90, 60, 75].map((w, i) => (
-						<div key={i} className="cz-anim h-3 rounded bg-foreground" style={{ width: `${w}%`, animation: `cz-flick 1.8s ${i * 0.2}s infinite` }} />
-					))}
-				</div>
-			);
-	}
-}
+const ASPECT_CLASS: Record<Aspect, string> = { "16:9": "w-full aspect-video", "9:16": "w-[52%] aspect-[9/16]", "4:5": "w-[60%] aspect-[4/5]", "1:1": "w-[74%] aspect-square" };
 
 function PresetCard({ preset, typeName, onRemix }: { preset: Preset; typeName: string; onRemix: () => void }) {
 	return (
 		<div className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-3">
 			<div className="flex justify-center rounded-lg bg-muted p-3">
 				<div className={cn("flex items-center justify-center overflow-hidden rounded-md bg-surface/60 ring-1 ring-border", ASPECT_CLASS[preset.aspect])}>
-					<Motion name={preset.animation} />
+					{preset.style && preset.style !== "default" ? <StylePreview style={preset.style} /> : <Motion name={preset.animation} />}
 				</div>
 			</div>
 			<div className="px-1">
@@ -126,6 +58,7 @@ function PresetCard({ preset, typeName, onRemix }: { preset: Preset; typeName: s
 			<div className="flex flex-wrap gap-1.5 px-1">
 				<Badge>{typeName}</Badge>
 				<Badge tone="outline">{preset.aspect}</Badge>
+				<Badge tone={preset.style && preset.style !== "default" ? "info" : "outline"}>{STYLE_LABEL[preset.style || "default"]}</Badge>
 				<Badge tone="outline">{ANIMATIONS[preset.animation] || preset.animation}</Badge>
 			</div>
 			<Button size="sm" variant="outline" className="mx-1 mb-1 justify-between" onClick={onRemix}>
@@ -142,31 +75,76 @@ export function GalleryPage() {
 	const gallery = useQuery({ queryKey: ["gallery", slug], queryFn: () => api.gallery(slug) });
 	const [aspect, setAspect] = useState("all");
 	const [type, setType] = useState("");
-	const [category, setCategory] = useState("");
+	const search = useSearch({ strict: false }) as { style?: string; founder?: string; category?: string; platform?: string };
+	const [category, setCategory] = useState(search.category || "");
+	const [style, setStyle] = useState(search.style || "");
+	const [founder, setFounder] = useState(search.founder || "");
+	const [platform, setPlatform] = useState(search.platform || "");
 
 	const presets = useMemo(() => gallery.data?.presets || [], [gallery.data]);
 	// Start on the active product's category when the gallery has presets for it.
 	useEffect(() => {
-		if (product && presets.some((p) => p.categories.includes(product.category))) setCategory(product.category);
+		if (!search.category && product && presets.some((p) => p.categories.includes(product.category))) setCategory(product.category);
 	}, [product, presets]);
 
 	const typeName = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.name || t;
-	const shown = presets.filter((p) => (aspect === "all" || p.aspect === aspect) && (!type || p.type === type) && (!category || p.categories.includes(category)));
+	const platformOf = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.platform || null;
+	const shown = presets.filter((p) => (!platform || platformOf(p.type) === platform) && (aspect === "all" || p.aspect === aspect) && (!type || p.type === type) && (!style || (p.style || "default") === style) && (!founder || p.founders?.includes(founder)) && (!category || p.categories.includes(category)));
 	const types = [...new Set(presets.map((p) => p.type))];
 	const mine = gallery.data?.mine || [];
 
+	const perStyle = (s: string) => presets.filter((p) => (p.style || "default") === s).length;
+
 	return (
-		<Page title="Gallery" description="Start from a format that works, then remix it with your product's notes. Types, aspect ratios and motion styles in one place." wide>
+		<Page title="Gallery" description="Start from a format that works, then remix it with your product's notes. Pick an animated style, then a founder job or a video type. Every format is a type, a tone and a style you can remix." wide>
+			<div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6" role="radiogroup" aria-label="Animated style">
+				{STYLES.filter((s) => s.value !== "auto").map((s) => (
+					<button
+						key={s.value}
+						type="button"
+						role="radio"
+						aria-checked={style === s.value}
+						onClick={() => setStyle(style === s.value ? "" : s.value)}
+						className={cn("overflow-hidden rounded-xl border bg-surface text-left transition-colors", style === s.value ? "border-brand/50 ring-2 ring-brand/20" : "border-border hover:bg-accent/50")}
+					>
+						<div className="h-20 overflow-hidden border-b border-border bg-muted">
+							{s.value === "default" ? <div className="flex size-full items-center justify-center bg-surface/60"><Motion name="ui-zoom" /></div> : <StylePreview style={s.value as StyleId} />}
+						</div>
+						<div className="flex items-baseline justify-between px-2.5 py-2">
+							<p className="text-[13px] font-medium">{s.label}</p>
+							<p className="text-[11px] text-muted-foreground tabular-nums">{perStyle(s.value)}</p>
+						</div>
+					</button>
+				))}
+			</div>
+			<div className="mb-3 flex flex-wrap items-center gap-2" role="radiogroup" aria-label="Ad platform">
+				<span className="text-xs text-muted-foreground">Ads for</span>
+				{PLATFORMS.map((p) => (
+					<button
+						key={p.value}
+						type="button"
+						role="radio"
+						aria-checked={platform === p.value}
+						onClick={() => setPlatform(platform === p.value ? "" : p.value)}
+						className={cn("rounded-full border px-2.5 py-1 text-xs transition-colors", platform === p.value ? "border-brand/40 bg-brand/10 font-medium text-brand" : "border-border text-muted-foreground hover:bg-accent hover:text-foreground")}
+					>
+						{p.label} <span className="text-muted-foreground/70">· {presets.filter((x) => platformOf(x.type) === p.value).length}</span>
+					</button>
+				))}
+			</div>
 			<div className="mb-5 flex flex-wrap items-center gap-2">
 				<Tabs value={aspect} onValueChange={setAspect}>
 					<TabsList>
 						<TabsTrigger value="all">All</TabsTrigger>
 						<TabsTrigger value="16:9">Landscape</TabsTrigger>
 						<TabsTrigger value="9:16">Portrait</TabsTrigger>
+						<TabsTrigger value="4:5">4:5</TabsTrigger>
 						<TabsTrigger value="1:1">Square</TabsTrigger>
 					</TabsList>
 				</Tabs>
 				<OptionSelect size="sm" aria-label="Video type" className="w-44" value={type} onValueChange={setType} emptyLabel="All video types" options={types.map((t) => ({ value: t, label: typeName(t) }))} />
+				<OptionSelect size="sm" aria-label="Style" className="w-40" value={style} onValueChange={setStyle} emptyLabel="All styles" options={Object.entries(STYLE_LABEL).filter(([v]) => v !== "auto").map(([value, label]) => ({ value, label }))} />
+				<OptionSelect size="sm" aria-label="Brand kind" className="w-40" value={founder} onValueChange={setFounder} emptyLabel="All brand kinds" options={Object.entries(FOUNDER_LABEL).map(([value, label]) => ({ value, label }))} />
 				<OptionSelect size="sm" aria-label="Category" className="w-48" value={category} onValueChange={setCategory} emptyLabel="All categories" options={Object.entries(CATEGORIES).map(([value, label]) => ({ value, label }))} />
 				<span className="ml-auto text-xs text-muted-foreground">{shown.length} format{shown.length === 1 ? "" : "s"}</span>
 			</div>
@@ -196,7 +174,7 @@ export function GalleryPage() {
 							const thumb = fileUrl(v.id, v.thumbnail_path);
 							return (
 								<Link key={v.id} to="/videos/$id" params={{ id: v.id }} className="group block">
-									<div className={cn("relative overflow-hidden rounded-lg border border-border bg-muted", v.aspect === "9:16" ? "aspect-[9/16]" : v.aspect === "1:1" ? "aspect-square" : "aspect-video")}>
+									<div className={cn("relative overflow-hidden rounded-lg border border-border bg-muted", v.aspect === "9:16" ? "aspect-[9/16]" : v.aspect === "4:5" ? "aspect-[4/5]" : v.aspect === "1:1" ? "aspect-square" : "aspect-video")}>
 										{thumb ? <img src={thumb} alt="" className="size-full object-cover" /> : <Icon icon={Video01Icon} size={20} className="absolute inset-0 m-auto text-muted-foreground" />}
 										<span className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
 											<Icon icon={PlayCircleIcon} size={28} className="text-white" />

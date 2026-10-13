@@ -1,9 +1,10 @@
 {
   "id": "launch-device-landscape",
-  "title": "Launch video in a device frame",
-  "description": "The product inside a laptop frame, with a clear call to action.",
+  "title": "Launch on glass",
+  "description": "A launch announcement on frosted cards: the problem, the reveal, the proof.",
   "type": "launch",
   "tone": "app-store",
+  "style": "glass",
   "aspect": "16:9",
   "animation": "device-mockup",
   "categories": [
@@ -11,5 +12,9 @@
     "project-management",
     "ai-agents"
   ],
-  "prompt": "Place the real screens inside a laptop and phone frame. Open with the outcome, close with the call to action."
+  "founders": [
+    "solo",
+    "b2b"
+  ],
+  "prompt": "Start with one short line about the old way, held for a beat. Reveal the product name and one-liner on a glowing glass card, then the best screenshot inside a frosted device frame, then one real proof number. End on 'Live now' and the URL. Everything fades up out of blur."
 }

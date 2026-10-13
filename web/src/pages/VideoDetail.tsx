@@ -12,6 +12,7 @@ import {
 	GithubIcon,
 	Globe02Icon,
 	Loading03Icon,
+	PaintBrush01Icon,
 	RepeatIcon,
 	StopIcon,
 	Tick02Icon,
@@ -20,17 +21,19 @@ import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/menu";
+import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { Skeleton, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/misc";
-import { api, fileUrl, isActive, type Job, type Variant } from "@/lib/api";
-import { PIPELINE, STEP_LABELS } from "@/lib/constants";
+import { api, fileUrl, isActive, type Aspect, type Job, type Pack, type StyleId, type Variant } from "@/lib/api";
+import { ARTICLE_PIPELINE, PIPELINE as PRODUCT_PIPELINE, STEP_LABELS, STORYBOARD_PIPELINE, STYLES } from "@/lib/constants";
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
 
 const SOURCE_LABELS: Record<string, string> = { website: "Website", llms_txt: "llms.txt", blog: "Blog", github: "GitHub", page: "Page", faq: "FAQ", competitor: "Competitor" };
-const ASPECT_CLASS: Record<string, string> = { "9:16": "aspect-[9/16] max-h-[70vh]", "1:1": "aspect-square", "16:9": "aspect-video" };
+const ASPECT_CLASS: Record<string, string> = { "9:16": "aspect-[9/16] max-h-[70vh]", "4:5": "aspect-[4/5] max-h-[70vh]", "1:1": "aspect-square", "16:9": "aspect-video" };
 
 function Timeline({ job }: { job: Job }) {
-	const idx = job.step === "done" ? PIPELINE.length : Math.max(0, PIPELINE.indexOf(job.step as (typeof PIPELINE)[number]));
+	const PIPELINE = job.engine === "article" ? ARTICLE_PIPELINE : job.engine === "storyboard" ? STORYBOARD_PIPELINE : PRODUCT_PIPELINE;
+	const rank = (step: string) => Math.max(0, PIPELINE.findIndex((s) => s === step || (s === "render" && ["narration", "frames_render", "render_clips", "audio_mix", "mux"].includes(step))));
+	const idx = job.step === "done" ? PIPELINE.length : rank(job.step);
 	const failed = job.status === "failed";
 	return (
 		<ol className="space-y-0.5">
@@ -47,7 +50,7 @@ function Timeline({ job }: { job: Job }) {
 						>
 							{done ? <Icon icon={Tick02Icon} size={11} /> : current ? <Icon icon={Loading03Icon} size={11} className="animate-spin" /> : failed && i === idx ? <Icon icon={AlertCircleIcon} size={11} /> : null}
 						</span>
-						<span className={cn(done || current ? "text-foreground" : "text-muted-foreground")}>{STEP_LABELS[s]}</span>
+						<span className={cn(done || current ? "text-foreground" : "text-muted-foreground")}>{job.engine === "article" && s === "context" ? "Reading the article" : STEP_LABELS[s]}</span>
 					</li>
 				);
 			})}
@@ -107,6 +110,126 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 	);
 }
 
+function PackSection({ title, children, copy }: { title: string; children: React.ReactNode; copy?: string }) {
+	return (
+		<section className="rounded-xl border border-border p-4">
+			<div className="mb-2 flex items-center justify-between gap-2">
+				<h2 className="text-sm font-semibold">{title}</h2>
+				{copy ? <CopyButton text={copy} label="Copy" /> : null}
+			</div>
+			<div className="text-sm leading-relaxed">{children}</div>
+		</section>
+	);
+}
+
+const bullets = (a: string[]) => (
+	<ul className="list-disc space-y-1 pl-5">
+		{a.map((x, i) => (
+			<li key={i}>{x}</li>
+		))}
+	</ul>
+);
+
+function PackContent({ pack }: { pack: Pack }) {
+	return (
+		<div className="space-y-3">
+			<PackSection title="Hook" copy={pack.hook}>
+				{pack.hook}
+			</PackSection>
+			<PackSection title="Narration script" copy={pack.narration.join("\n")}>
+				{bullets(pack.narration)}
+			</PackSection>
+			<PackSection title="Storyboard">
+				<div className="grid gap-2 sm:grid-cols-2">
+					{pack.storyboard.map((sc) => (
+						<div key={sc.scene} className="rounded-lg bg-muted/50 p-3 text-xs">
+							<p className="mb-1 text-[13px] font-medium">
+								Scene {sc.scene} <span className="font-normal text-muted-foreground">· {sc.duration_sec}s</span>
+							</p>
+							{sc.label ? <p><span className="text-muted-foreground">On screen:</span> {sc.label}{sc.diagram.length ? ` (${sc.diagram.join(" → ")})` : ""}</p> : null}
+							<p><span className="text-muted-foreground">Subject:</span> {sc.subject}</p>
+							<p><span className="text-muted-foreground">Action:</span> {sc.action}</p>
+							<p><span className="text-muted-foreground">Camera:</span> {sc.camera}</p>
+							<p><span className="text-muted-foreground">Lighting:</span> {sc.lighting}</p>
+							<p><span className="text-muted-foreground">Transition:</span> {sc.transition}</p>
+						</div>
+					))}
+				</div>
+			</PackSection>
+			<PackSection title="Video-generation prompts" copy={pack.video_prompts.map((v) => `Scene ${v.scene}\n${v.prompt}`).join("\n\n")}>
+				<div className="space-y-2">
+					{pack.video_prompts.map((v) => (
+						<div key={v.scene}>
+							<p className="mb-1 text-xs font-medium text-muted-foreground">Scene {v.scene}</p>
+							<pre className="rounded-lg bg-muted p-2.5 text-xs leading-relaxed whitespace-pre-wrap">{v.prompt}</pre>
+						</div>
+					))}
+				</div>
+			</PackSection>
+			<PackSection title="Subtitles" copy={pack.subtitles.map((x) => x.text).join("\n")}>
+				{bullets(pack.subtitles.map((x) => `Scene ${x.scene}: ${x.text}`))}
+			</PackSection>
+			<PackSection title="Sound design">{bullets(pack.sound_design)}</PackSection>
+			<PackSection title="Final assembly">
+				<ol className="list-decimal space-y-1 pl-5">
+					{pack.assembly.map((x, i) => (
+						<li key={i}>{x}</li>
+					))}
+				</ol>
+			</PackSection>
+			<PackSection title="Source facts">
+				<ul className="space-y-2">
+					{pack.source_facts.map((f, i) => (
+						<li key={i}>
+							<p>{f.claim}</p>
+							<p className="mt-0.5 border-l-2 border-border pl-2 text-xs text-muted-foreground">
+								{f.passage}
+								{f.found_in_source ? "" : " (quote not found in the source, check before use)"}
+							</p>
+						</li>
+					))}
+				</ul>
+			</PackSection>
+		</div>
+	);
+}
+
+function downloadPack(pack: Pack) {
+	const a = document.createElement("a");
+	a.href = URL.createObjectURL(new Blob([pack.markdown], { type: "text/markdown" }));
+	a.download = `${(pack.title || "prompt-pack").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.md`;
+	a.click();
+	URL.revokeObjectURL(a.href);
+}
+
+/** Static ad banners: every image with its size, a download link and a copy of the link. */
+function BannerGrid({ job }: { job: Job }) {
+	const banners = job.banners || [];
+	const copies = [...new Set(banners.map((b) => b.copy))];
+	return (
+		<div className="space-y-6">
+			{copies.map((c) => (
+				<section key={c}>
+					<h2 className="mb-2 text-sm font-medium">Variant {c}: <span className="font-normal text-muted-foreground">{banners.find((b) => b.copy === c)?.headline}</span></h2>
+					<div className="flex flex-wrap items-end gap-4">
+						{banners.filter((b) => b.copy === c).map((b) => (
+							<figure key={b.file} className="space-y-1.5">
+								<img src={fileUrl(job.id, b.file) || ""} alt={`${b.size} banner`} loading="lazy" style={{ maxWidth: Math.min(b.width, 360), maxHeight: 360, width: b.width >= b.height ? Math.min(b.width, 360) : undefined, height: b.width < b.height ? Math.min(b.height, 360) : undefined }} className="rounded-lg border border-border bg-muted" />
+								<figcaption className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+									<span>{b.size} · {b.label}</span>
+									<a href={fileUrl(job.id, b.file, true) || "#"} download className="inline-flex items-center gap-1 hover:text-foreground">
+										<Icon icon={Download04Icon} size={12} /> PNG
+									</a>
+								</figcaption>
+							</figure>
+						))}
+					</div>
+				</section>
+			))}
+		</div>
+	);
+}
+
 export function VideoDetailPage() {
 	const { id } = useParams({ strict: false }) as { id: string };
 	const navigate = useNavigate();
@@ -143,6 +266,16 @@ export function VideoDetailPage() {
 		onError: (e: Error) => toast.error(e.message),
 	});
 
+	const reskin = useMutation({
+		mutationFn: (b: { style?: StyleId; aspect?: Aspect }) => api.reskin(id, b),
+		onSuccess: (job) => {
+			qc.invalidateQueries({ queryKey: ["videos"] });
+			toast.success("Rendering the same storyboard again", { description: "No model involved, so it is free." });
+			navigate({ to: "/videos/$id", params: { id: job.id } });
+		},
+		onError: (e: Error) => toast.error(e.message),
+	});
+
 	if (q.isLoading)
 		return (
 			<div className="mx-auto max-w-6xl space-y-4 p-6">
@@ -160,6 +293,22 @@ export function VideoDetailPage() {
 			</div>
 		);
 
+	const deleteDialog = (
+		<Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
+				<DialogContent title="Delete video" className="top-[28%] max-w-md p-5">
+					<p className="text-sm font-medium">Delete this video?</p>
+					<p className="mt-1 text-sm text-muted-foreground">Its files are removed from data/videos.</p>
+					<div className="mt-4 flex justify-end gap-2">
+						<Button variant="outline" onClick={() => setConfirmDelete(false)}>
+							Cancel
+						</Button>
+						<Button variant="danger" onClick={() => del.mutate()} disabled={del.isPending}>
+							Delete
+						</Button>
+					</div>
+				</DialogContent>
+			</Dialog>
+	);
 	const job = q.data;
 	const v = job.variants.find((x) => x.id === variantId) || job.variants.find((x) => x.result) || job.variants[0];
 	const videoSrc = v?.result ? v.result.video_url || fileUrl(job.id, v.result.video_path, true) : null;
@@ -177,14 +326,17 @@ export function VideoDetailPage() {
 						<StatusBadge status={job.status} step={job.step} progress={job.progress} />
 					</div>
 					<div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
-						<a href={job.input.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
-							<Icon icon={/github\.com/.test(job.input.url) ? GithubIcon : Globe02Icon} size={12} /> {hostOf(job.input.url)}
-						</a>
+						{job.input.url ? (
+							<a href={job.input.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
+								<Icon icon={/github\.com/.test(job.input.url) ? GithubIcon : Globe02Icon} size={12} /> {hostOf(job.input.url)}
+							</a>
+						) : null}
 						{job.input.github_url ? (
 							<a href={job.input.github_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:text-foreground">
 								<Icon icon={GithubIcon} size={12} /> {job.input.github_url.replace(/^https?:\/\/github\.com\//, "")}
 							</a>
 						) : null}
+						{job.origin ? <Badge tone="info">Made with Claude Code</Badge> : null}
 						<span>{job.type_label || job.input.type}</span>
 						<span>
 							{job.input.aspect} · {job.input.audio === "voice" ? "voice-over" : job.input.audio === "music" ? "music only" : "silent"}
@@ -202,21 +354,62 @@ export function VideoDetailPage() {
 						</Button>
 					) : null}
 					{caption ? <CopyButton text={caption} label="Copy caption" /> : null}
+					{job.pack ? <CopyButton text={job.pack.markdown} label="Copy prompt pack" /> : null}
+					{job.pack ? (
+						<Button variant="outline" size="sm" onClick={() => downloadPack(job.pack!)}>
+							<Icon icon={Download04Icon} size={14} /> Pack .md
+						</Button>
+					) : null}
 					{isActive(job.status) ? (
 						<Button variant="outline" size="sm" onClick={() => stop.mutate()} disabled={stop.isPending}>
 							<Icon icon={StopIcon} size={13} className="fill-current" /> Stop
 						</Button>
 					) : (
 						<Button variant="outline" size="sm" onClick={() => regen.mutate()} disabled={regen.isPending}>
-							<Icon icon={RepeatIcon} size={14} /> Regenerate
+							<Icon icon={RepeatIcon} size={14} /> {job.can_reskin ? "Render again" : "Regenerate"}
 						</Button>
 					)}
+					{job.can_reskin && !isActive(job.status) ? (
+						<Menu>
+							<MenuTrigger asChild>
+								<Button variant="outline" size="sm" disabled={reskin.isPending}>
+									<Icon icon={PaintBrush01Icon} size={14} /> Re-skin
+								</Button>
+							</MenuTrigger>
+							<MenuContent className="w-56">
+								<MenuLabel>Same storyboard, another style (free)</MenuLabel>
+								<MenuRadioGroup value="" onValueChange={(v) => reskin.mutate({ style: v as StyleId })}>
+									{STYLES.filter((s) => s.value !== "auto").map((s) => (
+										<MenuRadioItem key={s.value} value={s.value}>
+											{s.label}
+										</MenuRadioItem>
+									))}
+								</MenuRadioGroup>
+								{job.banners?.length ? null : <MenuSeparator />}
+								<MenuLabel className={job.banners?.length ? "hidden" : undefined}>Aspect ratio</MenuLabel>
+								<MenuRadioGroup value="" className={job.banners?.length ? "hidden" : undefined} onValueChange={(v) => reskin.mutate({ aspect: v as Aspect })}>
+									{(["9:16", "4:5", "1:1", "16:9"] as const).map((a) => (
+										<MenuRadioItem key={a} value={a}>
+											{a}
+										</MenuRadioItem>
+									))}
+								</MenuRadioGroup>
+							</MenuContent>
+						</Menu>
+					) : null}
 					<Button variant="danger" size="sm" onClick={() => setConfirmDelete(true)} aria-label="Delete video">
 						<Icon icon={Delete02Icon} size={14} />
 					</Button>
 				</div>
 			</div>
 
+			{job.notes?.length ? (
+				<div className="mb-5 rounded-xl border border-border bg-muted/40 p-3 text-sm text-muted-foreground">
+					{job.notes.map((n, i) => (
+						<p key={i}>{n}</p>
+					))}
+				</div>
+			) : null}
 			{job.error ? (
 				<div className="mb-5 flex gap-2 rounded-xl border border-danger/25 bg-danger/5 p-3 text-sm text-danger">
 					<Icon icon={AlertCircleIcon} size={16} className="mt-0.5" />
@@ -247,8 +440,9 @@ export function VideoDetailPage() {
 				</div>
 			) : null}
 
-			<div className="grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
-				<div>
+			{job.banners?.length ? <BannerGrid job={job} /> : null}
+			<div className={cn("grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]", job.banners?.length && "mt-6")}>
+				<div className={job.banners?.length ? "hidden" : undefined}>
 					<Player job={job} v={v} onStop={() => stop.mutate()} stopping={stop.isPending} />
 					{v?.concept ? (
 						<div className="mt-3 rounded-xl border border-border p-3 text-xs">
@@ -263,6 +457,7 @@ export function VideoDetailPage() {
 					<TabsList>
 						<TabsTrigger value="overview">Overview</TabsTrigger>
 						<TabsTrigger value="script">Script</TabsTrigger>
+						{job.pack ? <TabsTrigger value="pack">Prompt pack</TabsTrigger> : null}
 						<TabsTrigger value="assets">Assets</TabsTrigger>
 						<TabsTrigger value="logs">Logs</TabsTrigger>
 					</TabsList>
@@ -286,7 +481,7 @@ export function VideoDetailPage() {
 										))}
 									</ul>
 								) : (
-									<p className="text-sm text-muted-foreground">Gathering…</p>
+									<p className="text-sm text-muted-foreground">{job.engine === "storyboard" ? "Read by Claude Code before it wrote the storyboard." : "Gathering…"}</p>
 								)}
 							</div>
 						</div>
@@ -346,6 +541,12 @@ export function VideoDetailPage() {
 						)}
 					</TabsContent>
 
+					{job.pack ? (
+						<TabsContent value="pack" className="mt-4">
+							<PackContent pack={job.pack} />
+						</TabsContent>
+					) : null}
+
 					<TabsContent value="assets" className="mt-4 space-y-4">
 						{caption ? (
 							<div className="rounded-xl border border-border p-4">
@@ -392,20 +593,7 @@ export function VideoDetailPage() {
 					</TabsContent>
 				</Tabs>
 			</div>
-			<Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>
-				<DialogContent title="Delete video" className="top-[28%] max-w-md p-5">
-					<p className="text-sm font-medium">Delete this video?</p>
-					<p className="mt-1 text-sm text-muted-foreground">The MP4, captions, script and every frame are removed from data/videos.</p>
-					<div className="mt-4 flex justify-end gap-2">
-						<Button variant="outline" onClick={() => setConfirmDelete(false)}>
-							Cancel
-						</Button>
-						<Button variant="danger" onClick={() => del.mutate()} disabled={del.isPending}>
-							Delete
-						</Button>
-					</div>
-				</DialogContent>
-			</Dialog>
+			{deleteDialog}
 		</div>
 	);
 }

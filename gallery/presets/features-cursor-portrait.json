@@ -1,9 +1,10 @@
 {
   "id": "features-cursor-portrait",
-  "title": "Feature walkthrough, cursor path",
-  "description": "A cursor moves through one feature step by step.",
+  "title": "Hand-drawn feature walkthrough",
+  "description": "A whiteboard walkthrough: pain, three features, result, each drawn in.",
   "type": "features",
   "tone": "polished",
+  "style": "sketch",
   "aspect": "9:16",
   "animation": "cursor-walkthrough",
   "categories": [
@@ -11,5 +12,9 @@
     "project-management",
     "analytics"
   ],
-  "prompt": "Follow an animated cursor through one feature: each scene is one click or drag. Name the result on screen before the action."
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Draw the pain as a doodle with a one-line caption, then three numbered features, each with a small diagram (boxes and arrows) that is drawn in as it is explained. Close with a circled result and the call to action. Conversational wording, like explaining it to a colleague."
 }

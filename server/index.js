@@ -19,18 +19,19 @@ try {
 const { loadSettings, saveSettings, publicSettings, testOpenRouterKey } = await import("./settings.js");
 const { listPrompts, getPrompt, savePrompt, deletePrompt } = await import("./library.js");
 const { runWithSignal } = await import("./pipeline/cancel.js");
-const { cancelJob, createJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, stats } = await import("./pipeline/job.js");
+const { canReskin, cancelJob, createBannerJob, createJob, createStoryboardJob, deleteJob, estimateCost, getJob, jobDir, listJobs, parseVideoInput, reskinJob, stats } = await import("./pipeline/job.js");
 const { warmModels, modelsSummary } = await import("./models.js");
 const store = await import("./products/store.js");
 const { startOnboard, getOnboard, cancelOnboard } = await import("./products/onboard.js");
 const { syncProduct, ideaVocab } = await import("./products/sync.js");
-const { runAgent } = await import("./agent/agent.js");
+const { reviewDraft } = await import("./review/index.js");
+const { logChat } = await import("./review/chatlog.js");
 const browser = await import("./browser.js");
 const { scrape } = await import("./scrape.js");
 
 loadSettings();
 warmModels();
-const deps = { scrape, captureSections: browser.captureSections, capture: browser.capture, renderHtml: browser.renderHtml };
+const deps = { scrape, captureSections: browser.captureSections, capture: browser.capture, renderHtml: browser.renderHtml, renderSequence: browser.renderSequence };
 const app = new Hono();
 const api = new Hono();
 
@@ -42,7 +43,7 @@ api.onError((err, c) => {
 api.get("/health", (c) => c.json({ ok: true }));
 
 /* settings */
-api.get("/settings", (c) => c.json({ ...publicSettings(), data_dir: DATA_DIR }));
+api.get("/settings", (c) => c.json({ ...publicSettings(), data_dir: DATA_DIR, mcp_entry: path.join(ROOT, "server", "mcp", "stdio.js") }));
 api.put("/settings", async (c) => {
 	await saveSettings(await c.req.json().catch(() => ({})));
 	return c.json({ ...publicSettings(), data_dir: DATA_DIR });
@@ -61,7 +62,9 @@ api.get("/prompts/:id", async (c) => {
 api.post("/prompts", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
 	if (!String(body.name || "").trim() || !String(body.body || "").trim()) return c.json({ error: "Name and prompt text are required" }, 400);
-	return c.json(await savePrompt({ ...body, id: null }), 201);
+	const saved = await savePrompt({ ...body, id: null });
+	if (body.review_id) await logChat(String(body.review_id), { event: "approved", action: "save_prompt", prompt_id: saved?.id });
+	return c.json(saved, 201);
 });
 api.put("/prompts/:id", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
@@ -79,14 +82,46 @@ api.post("/estimate", async (c) => {
 	return parsed.error ? c.json({ error: parsed.error }, 400) : c.json(estimateCost(parsed.input));
 });
 api.get("/videos", async (c) => c.json({ videos: await listJobs({ q: c.req.query("q") || "", type: c.req.query("type") || "", status: c.req.query("status") || "", product: c.req.query("product") || "" }) }));
+/* review: the AI step in front of "create". It asks questions and writes the final prompt; it creates nothing. */
+api.post("/review", async (c) => {
+	await warmModels();
+	const b = await c.req.json().catch(() => ({}));
+	return c.json(await runWithSignal(c.req.raw.signal, () => reviewDraft({ draft: b.draft || {}, tier: b.draft?.model_tier === "free" ? "free" : "paid", deps })));
+});
 api.post("/videos", async (c) => {
 	await warmModels();
-	const parsed = parseVideoInput(await c.req.json().catch(() => ({})));
+	const body = await c.req.json().catch(() => ({}));
+	const parsed = parseVideoInput(body);
 	if (parsed.error) return c.json({ error: parsed.error }, 400);
 	const job = await createJob(parsed.input, deps);
+	if (body.review_id) await logChat(String(body.review_id), { event: "approved", action: "create_video", job_id: job.id });
 	// The client pressed Stop while the job was being set up: don't leave it running.
 	if (c.req.raw.signal.aborted) await cancelJob(job.id);
 	return c.json(job, 202);
+});
+/* storyboards written by someone else (Claude Code, other agents): rendered locally, no model and no key */
+api.post("/videos/from-storyboard", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	try {
+		return c.json(await createStoryboardJob(body, deps, { origin: { kind: "claude-code", client: "api" } }), 202);
+	} catch (e) {
+		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
+		throw e;
+	}
+});
+api.post("/videos/banners", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	try {
+		return c.json(await createBannerJob(body, deps, { origin: { kind: "claude-code", client: "api" } }), 202);
+	} catch (e) {
+		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
+		throw e;
+	}
+});
+api.post("/videos/:id/reskin", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	const job = await reskinJob(c.req.param("id"), body, deps);
+	return job ? c.json(job, 202) : c.json({ error: "This video has no stored storyboard to re-render." }, 404);
 });
 api.post("/videos/:id/cancel", async (c) => {
 	const job = await cancelJob(c.req.param("id"));
@@ -94,12 +129,14 @@ api.post("/videos/:id/cancel", async (c) => {
 });
 api.get("/videos/:id", async (c) => {
 	const job = await getJob(c.req.param("id"));
-	return job ? c.json(job) : c.json({ error: "Video not found" }, 404);
+	return job ? c.json({ ...job, can_reskin: canReskin(job.id) }) : c.json({ error: "Video not found" }, 404);
 });
 api.delete("/videos/:id", async (c) => ((await deleteJob(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Video not found" }, 404)));
 api.post("/videos/:id/regenerate", async (c) => {
 	const job = await getJob(c.req.param("id"));
 	if (!job) return c.json({ error: "Video not found" }, 404);
+	// A video made from a stored storyboard is re-rendered as it was, with no model.
+	if (canReskin(job.id)) return c.json(await reskinJob(job.id, {}, deps), 202);
 	const { url, github_url, compare_urls, prompt, prompt_id, type, tone, variations, target_duration_sec, aspect, audio, voice, captions, model_tier, product } = job.input;
 	await warmModels();
 	const parsed = parseVideoInput({ url, github_url, compare_urls, prompt, prompt_id, type, tone, variations, duration_sec: target_duration_sec, aspect, audio, voice, captions, model_tier, product });
@@ -180,11 +217,6 @@ api.post("/products/:slug/ideas/:id/create", async (c) => {
 	await store.updateIdea(slug, idea.id, { status: "created", video_id: job.id });
 	return c.json(job, 202);
 });
-api.post("/products/:slug/agent", async (c) => {
-	const b = await c.req.json().catch(() => ({}));
-	await warmModels();
-	return c.json(await runWithSignal(c.req.raw.signal, () => runAgent({ slug: c.req.param("slug"), messages: b.messages, tier: b.model_tier === "free" ? "free" : "paid" })));
-});
 
 /* gallery: committed presets plus the active product's own videos */
 api.get("/gallery", async (c) => {
@@ -205,13 +237,10 @@ api.get("/gallery", async (c) => {
 
 /* local files (frames, MP4s) with Range support for video seeking */
 const TYPES = { ".mp4": "video/mp4", ".png": "image/png", ".jpg": "image/jpeg", ".json": "application/json", ".srt": "text/plain; charset=utf-8", ".wav": "audio/wav", ".m4a": "audio/mp4" };
-api.get("/files/:id", (c) => {
-	const base = path.resolve(jobDir(c.req.param("id")));
-	const file = path.resolve(base, String(c.req.query("p") || ""));
-	if (!file.startsWith(base + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return c.json({ error: "Not found" }, 404);
-	const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
+/** Stream a file with Range support (video seeking). */
+function serveFile(c, file, type, extra = {}) {
 	const size = fs.statSync(file).size;
-	const headers = { "Content-Type": type, "Accept-Ranges": "bytes", ...(c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {}) };
+	const headers = { "Content-Type": type, "Accept-Ranges": "bytes", ...extra };
 	const range = /^bytes=(\d*)-(\d*)$/.exec(c.req.header("range") || "");
 	if (range) {
 		const start = range[1] ? Number(range[1]) : 0;
@@ -220,6 +249,13 @@ api.get("/files/:id", (c) => {
 		return c.body(Readable.toWeb(fs.createReadStream(file, { start, end })), 206, { ...headers, "Content-Length": String(end - start + 1), "Content-Range": `bytes ${start}-${end}/${size}` });
 	}
 	return c.body(Readable.toWeb(fs.createReadStream(file)), 200, { ...headers, "Content-Length": String(size) });
+}
+api.get("/files/:id", (c) => {
+	const base = path.resolve(jobDir(c.req.param("id")));
+	const file = path.resolve(base, String(c.req.query("p") || ""));
+	if (!file.startsWith(base + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return c.json({ error: "Not found" }, 404);
+	const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
+	return serveFile(c, file, type, c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {});
 });
 
 app.route("/api", api);
@@ -227,10 +263,11 @@ app.route("/api", api);
 /* production: serve the built dashboard */
 const DIST = path.join(ROOT, "web", "dist");
 if (fs.existsSync(DIST)) {
-	const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".json": "application/json" };
+	const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".json": "application/json", ".jpg": "image/jpeg" };
 	app.get("*", (c) => {
 		const p = path.resolve(DIST, `.${decodeURIComponent(new URL(c.req.url).pathname)}`);
 		const file = p.startsWith(DIST) && fs.existsSync(p) && fs.statSync(p).isFile() ? p : path.join(DIST, "index.html");
+		if (path.extname(file) === ".mp4") return serveFile(c, file, "video/mp4");
 		return c.body(fs.readFileSync(file), 200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream" });
 	});
 }

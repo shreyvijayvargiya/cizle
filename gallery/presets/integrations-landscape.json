@@ -1,0 +1,22 @@
+{
+  "id": "integrations-landscape",
+  "title": "Works with your stack",
+  "description": "The real integrations as blocks plugged into the product.",
+  "type": "integrations",
+  "tone": "polished",
+  "style": "isometric",
+  "aspect": "16:9",
+  "animation": "card-stack",
+  "categories": [
+    "crm",
+    "analytics",
+    "project-management",
+    "marketing-seo",
+    "devtools"
+  ],
+  "founders": [
+    "b2b",
+    "devtool"
+  ],
+  "prompt": "Put the product block in the centre and attach integration blocks around it, grouped by purpose, with up to four official names per scene. Show one screenshot of the integration that matters most with a caption of what it does. Only integrations named on the site or in the docs, with their real capitalisation."
+}

@@ -1,9 +1,10 @@
 {
   "id": "comparison-split-square",
-  "title": "Side by side comparison",
-  "description": "Two columns, one row per question. Honest and quick.",
+  "title": "Side by side, as a diff",
+  "description": "Two columns, one row per question, as a terminal diff. Honest and quick.",
   "type": "comparison",
   "tone": "deadpan",
+  "style": "ascii",
   "aspect": "1:1",
   "animation": "split-compare",
   "categories": [
@@ -11,5 +12,9 @@
     "marketing-seo",
     "analytics"
   ],
-  "prompt": "Split screen, us on the left and the alternative on the right. One row per criterion, only facts stated on both sites."
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Draw the comparison as a diff: product lines in green, the alternative dimmed. One row per criterion (price, setup, one key capability), typed in one at a time. Only facts stated on both products' sites; unknown values stay as dashes. Finish with the one row where the product leads."
 }

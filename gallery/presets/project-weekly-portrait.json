@@ -1,9 +1,10 @@
 {
   "id": "project-weekly-portrait",
-  "title": "What's new this week",
-  "description": "A 20-second changelog video for your latest release.",
+  "title": "Weekly update in clay",
+  "description": "A friendly changelog: what we shipped this week, one soft card per change.",
   "type": "launch",
   "tone": "playful",
+  "style": "clay",
   "aspect": "9:16",
   "animation": "card-stack",
   "categories": [
@@ -11,5 +12,9 @@
     "crm",
     "devtools"
   ],
-  "prompt": "A changelog in cards: one new thing per card, newest first, ending with how to try it."
+  "founders": [
+    "solo",
+    "devtool"
+  ],
+  "prompt": "Open with 'This week in <product>'. Each shipped change is a clay card that pops in with its benefit in six words. Group at most four changes. End on what is coming next, taken from the roadmap or the latest commits."
 }

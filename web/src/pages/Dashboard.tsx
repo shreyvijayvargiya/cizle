@@ -6,11 +6,9 @@ import {
 	CheckmarkCircle02Icon,
 	Coins01Icon,
 	HelpCircleIcon,
-	GridViewIcon,
 	Key01Icon,
 	Layers01Icon,
 	Package01Icon,
-	AiMagicIcon,
 	Loading03Icon,
 	Presentation01Icon,
 	LightbulbIcon,
@@ -19,6 +17,8 @@ import {
 	Video01Icon,
 } from "@hugeicons/core-free-icons";
 import { Composer } from "@/components/Composer";
+import { SuggestedPrompts } from "@/components/SuggestedPrompts";
+import { AdShelf, ClaudeCodeCard, PromptShelf } from "@/components/DashboardShelves";
 import { IdeaCard } from "@/components/IdeaCard";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -88,63 +88,16 @@ export function DashboardPage() {
 	const running = (useVideos("").data || []).filter((v) => isActive(v.status));
 
 	return (
-		<div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
-			{productsLoaded && !product ? (
-				<div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-brand/30 bg-brand/10 p-4">
-					<div className="flex items-start gap-3">
-						<span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand/20 text-brand">
-							<Icon icon={Package01Icon} size={16} />
-						</span>
-						<div>
-							<p className="text-sm font-medium">Add your product once, get videos on the go</p>
-							<p className="text-[13px] text-muted-foreground">cizle reads your site and repos, remembers them as markdown, and suggests the first videos to make.</p>
-						</div>
-					</div>
-					<Button asChild>
-						<Link to="/products/new">Add product</Link>
-					</Button>
-				</div>
-			) : null}
-			<div className="grid gap-3 sm:grid-cols-3">
-				<Step n={1} icon={Key01Icon} title="Add your OpenRouter key" done={keyReady} to="/settings">
-					{keyReady ? "Key connected. Flip the Free switch to use free models instead of paid ones." : "Paste it once in Settings. It stays on this machine in data/settings.json."}
-				</Step>
-				<Step n={2} icon={Package01Icon} title="Add your product" done={Boolean(product)} to={product ? "/product" : "/products/new"}>
-					{product ? `${product.name} is remembered in products/${product.slug}/. Sync checks its repos and site for new commits and pages.` : "Paste your website and GitHub repos once. cizle saves what it learns as markdown and suggests videos."}
-				</Step>
-				<Step n={3} icon={Layers01Icon} title="Create from an idea or a format">
-					Press Create on a suggestion, remix a format from the Gallery, ask the agent, or describe a video below. Stop any run from its button.
-				</Step>
-			</div>
-
-			<div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
-				<Stat label="Videos" value={s ? s.videos : "—"} icon={Video01Icon} />
-				<Stat label="Rendering now" value={s ? s.rendering : "—"} icon={Loading03Icon} spin={Boolean(s?.rendering)} />
-				<Stat label="Ideas waiting" value={productsLoaded ? ideasWaiting : "—"} icon={LightbulbIcon} />
-				<Stat label="Total spend" value={s ? usd(s.spend_usd, 2) : "—"} icon={Coins01Icon} />
-			</div>
-
-			<section className="mt-10">
+		<div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+			<section>
 				<h1 className="text-center text-2xl font-semibold tracking-tight sm:text-[28px]">What are we shipping today?</h1>
-				<p className="mx-auto mt-2 max-w-lg text-center text-sm text-muted-foreground">Paste a link, describe the video, hit enter. Under a minute of video, made from your real product.</p>
+				<p className="mx-auto mt-2 max-w-lg text-center text-sm text-muted-foreground">Paste a link, describe the ad or video, hit enter. Ads for Meta, TikTok and Google, made from your real brand or product.</p>
 				<div className="mx-auto mt-6 max-w-3xl">
 					<Composer autoFocus />
 				</div>
-				<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-2">
-					<Button variant="outline" size="sm" asChild>
-						<Link to="/gallery">
-							<Icon icon={GridViewIcon} size={14} /> Browse the gallery
-						</Link>
-					</Button>
-					<Button variant="outline" size="sm" asChild>
-						<Link to="/agent">
-							<Icon icon={AiMagicIcon} size={14} /> Ask the agent what to make
-						</Link>
-					</Button>
-				</div>
 				{types.length ? (
 					<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-1.5">
-						{types.map((t) => (
+						{types.slice(0, 10).map((t) => (
 							<button
 								key={t.id}
 								type="button"
@@ -155,9 +108,38 @@ export function DashboardPage() {
 								{t.name}
 							</button>
 						))}
+						{types.length > 10 ? (
+							<Link to="/prompts" className="inline-flex items-center rounded-full px-3 py-1.5 text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground">
+								+{types.length - 10} more types
+							</Link>
+						) : null}
 					</div>
 				) : null}
 			</section>
+			<div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+				<Stat label="Videos" value={s ? s.videos : "—"} icon={Video01Icon} />
+				<Stat label="Rendering now" value={s ? s.rendering : "—"} icon={Loading03Icon} spin={Boolean(s?.rendering)} />
+				<Stat label="Ideas waiting" value={productsLoaded ? ideasWaiting : "—"} icon={LightbulbIcon} />
+				<Stat label="Total spend" value={s ? usd(s.spend_usd, 2) : "—"} icon={Coins01Icon} />
+			</div>
+
+			{!product ? (
+				<section className="mt-8">
+					<h2 className="mb-3 text-base font-semibold tracking-tight">Get started</h2>
+			<div className="grid gap-3 sm:grid-cols-3">
+				<Step n={1} icon={Key01Icon} title="Choose who writes the video" done={keyReady} to={keyReady ? "/settings" : "/claude"}>
+					{keyReady ? "OpenRouter key connected. Flip the Free switch to use free models instead of paid ones." : "Add an OpenRouter key in Settings, or skip it and make videos from Claude Code on your own subscription."}
+				</Step>
+				<Step n={2} icon={Package01Icon} title="Add your product" to="/products/new">
+					Paste your website and GitHub repos once. cizle saves what it learns as markdown and suggests the first videos to make.
+				</Step>
+				<Step n={3} icon={Layers01Icon} title="Create from an idea or a format">
+					Press Create on a suggestion, remix a format from the prompt gallery, or describe a video in the box above. A card asks its questions before anything renders.
+				</Step>
+			</div>
+
+				</section>
+			) : null}
 
 			{running.length ? (
 				<section className="mt-10">
@@ -197,6 +179,13 @@ export function DashboardPage() {
 					</div>
 				</section>
 			) : null}
+
+			<div className="mt-2">
+				{product ? <SuggestedPrompts slug={slug} title={`Prompts for ${product.name}`} className="mt-10" /> : null}
+				<AdShelf className="mt-10" />
+				<PromptShelf className="mt-10" />
+				<ClaudeCodeCard className="mt-10" />
+			</div>
 
 			<section className="mt-12">
 				<div className="mb-3 flex items-end justify-between">

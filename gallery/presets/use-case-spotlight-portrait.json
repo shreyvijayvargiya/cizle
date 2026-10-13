@@ -1,0 +1,20 @@
+{
+  "id": "use-case-spotlight-portrait",
+  "title": "For agencies, a persona spotlight",
+  "description": "One role, one workflow: the day before and the day after.",
+  "type": "use-case-spotlight",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "device-mockup",
+  "categories": [
+    "crm",
+    "marketing-seo",
+    "project-management"
+  ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Call out one audience in the first two seconds ('For small agencies'). Show three time-wasters in that role's own words, then two real screenshots with outcome captions for them, and one real number if the sources have it. Close with a call to action phrased for that audience."
+}

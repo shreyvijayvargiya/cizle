@@ -1,7 +1,7 @@
 {
 	"name": "cizle",
 	"version": "0.1.0",
-	"description": "Paste a SaaS URL or GitHub repo → get product showcase, feature, FAQ, comparison, glossary and launch videos. Local studio + markdown prompt library, powered by OpenRouter.",
+	"description": "Animated video ads and banners for Meta, TikTok and Google Ads, for brands, SaaS founders and content creators. Local studio + markdown prompt library; OpenRouter or Claude Code, no key.",
 	"license": "MIT",
 	"type": "module",
 	"private": true,
@@ -10,10 +10,16 @@
 		"dev": "concurrently -k -n api,web -c cyan,magenta \"node --watch-path=server server/index.js\" \"vite --config web/vite.config.ts\"",
 		"build": "vite build --config web/vite.config.ts",
 		"start": "node server/index.js",
-		"typecheck": "tsc --noEmit -p web"
+		"typecheck": "tsc --noEmit -p web",
+		"mcp": "node server/mcp/stdio.js",
+		"mcp:install": "node server/mcp/install.js",
+		"mcp:doctor": "node server/mcp/doctor.js",
+		"render": "node server/cli/render.js",
+		"guide": "node server/cli/guide.js"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.5",
+		"@modelcontextprotocol/sdk": "^1.32.1",
 		"cheerio": "^1.1.2",
 		"ffmpeg-static": "^5.2.0",
 		"gray-matter": "^4.0.3",
@@ -22,7 +28,8 @@
 		"puppeteer": "^24.17.0",
 		"turndown": "^7.2.1",
 		"uploadthing": "^7.7.4",
-		"uuid": "^11.1.0"
+		"uuid": "^11.1.0",
+		"zod": "^4.6.7"
 	},
 	"devDependencies": {
 		"@hugeicons/core-free-icons": "^4.3.5",

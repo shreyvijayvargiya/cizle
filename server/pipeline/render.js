@@ -16,6 +16,7 @@ import { normalizeOpenRouterUsage } from "./openRouterUsage.js";
 import { ttsSynthesizeToBuffer, pcm16ToWavBuffer } from "./openRouterTts.js";
 import { SCREENSHOT_ANALYST_SYSTEM, WORDS_PER_SECOND, buildScreenshotAnalystUserText } from "./analystPrompts.js";
 import { ASPECTS, buildFrameHtml, normalizeTheme } from "./frames.js";
+import { isStyled } from "./styles.js";
 import { readCodeSnippet } from "./source.js";
 import {
 	concatAudio,
@@ -27,6 +28,7 @@ import {
 	mixAudio,
 	muxFinal,
 	probeDurationSec,
+	renderAnimatedClip,
 	renderSceneClip,
 	silence,
 } from "./media.js";
@@ -221,12 +223,35 @@ export async function renderStoryboardVideo({ storyboard, frames, notes, repoDir
 			};
 			v.url ||= displayUrl(f.url);
 		}
-		const code = v.type === "code" ? readCodeSnippet(repoDir, v.file, v.start_line, v.end_line) : null;
+		const code = v.type === "code" ? (typeof v.code === "string" && v.code ? { startLine: v.start_line || 1, lines: v.code.split("\n") } : readCodeSnippet(repoDir, v.file, v.start_line, v.end_line)) : null;
 		built.push(buildFrameHtml({ scene, size, theme, image, code }));
 	}
 	// Concurrent captures in one headless browser can hang a background tab, so frame
 	// rendering is serialized across parallel renders (it takes seconds; FFmpeg stays parallel).
+	// Styled videos (sketch, clay, glass, isometric, ascii) are captured as animation frames; if that fails for a
+	// scene it falls back to a still with a camera move.
+	const animated = isStyled(theme.style) && typeof deps.renderSequence === "function";
+	const fps = Number(process.env.CIZLE_ANIM_FPS) || 15;
 	const pngs = await withRenderLock(async () => {
+		if (animated) {
+			const stills = [];
+			for (let i = 0; i < storyboard.scenes.length; i++) {
+				const scene = storyboard.scenes[i];
+				const dir = path.join(framesDir, `${scene.id}-anim`);
+				await fsp.rm(dir, { recursive: true, force: true });
+				await fsp.mkdir(dir, { recursive: true });
+				try {
+					const seq = await deps.renderSequence(built[i].html, size, { fps, durationSec: scene.duration, dir });
+					scene.anim = { dir, fps: seq.fps, seconds: seq.seconds };
+					stills.push(seq.still);
+				} catch (e) {
+					if (e?.code === "CANCELLED") throw e;
+					log(`animated capture failed for ${scene.id} (${String(e.message).slice(0, 120)}); using a still`);
+					stills.push((await deps.renderHtml([built[i].html], size))[0]);
+				}
+			}
+			return stills;
+		}
 		try {
 			return await deps.renderHtml(built.map((b) => b.html), size);
 		} catch (e) {
@@ -249,6 +274,11 @@ export async function renderStoryboardVideo({ storyboard, frames, notes, repoDir
 	await fsp.mkdir(clipsDir, { recursive: true });
 	await mapLimit(storyboard.scenes, Math.max(1, Math.min(3, os.cpus().length - 1)), async (scene) => {
 		scene.clip_file = path.join(clipsDir, `${scene.id}.mp4`);
+		if (scene.anim) {
+			await renderAnimatedClip({ dir: scene.anim.dir, fps: scene.anim.fps, output: scene.clip_file, durationSec: scene.duration, captureSec: scene.anim.seconds, width: size.width, height: size.height });
+			await fsp.rm(scene.anim.dir, { recursive: true, force: true }).catch(() => {});
+			return;
+		}
 		await renderSceneClip({
 			input: scene.frame_file,
 			output: scene.clip_file,
@@ -415,10 +445,36 @@ export function sanitizeStoryboard(board, { frames, codeFiles, input, source, in
 			type = "title";
 			v.title = s.on_screen_text || v.title || source.name || source.title || "";
 		}
-		if (type === "code" && !codePaths.has(v.file)) type = "bullets";
+		const inlineCode = type === "code" && typeof v.code === "string" && v.code.trim();
+		if (type === "code" && !codePaths.has(v.file) && !inlineCode) type = "bullets";
+		if (inlineCode) {
+			// Code supplied with the scene (for example by Claude Code reading the user's checkout).
+			v.code = v.code.replace(/\t/g, "  ").split("\n").slice(0, 14).map((l) => l.slice(0, 110)).join("\n");
+			v.start_line = Math.max(1, Number.parseInt(v.start_line, 10) || 1);
+			v.file = String(v.file || "").slice(0, 80);
+		}
 		if (type === "bullets" && !(Array.isArray(v.items) && v.items.length)) type = "title";
 		if (type === "stats" && !(Array.isArray(v.items) && v.items.length)) type = "title";
-		if (!["screenshot", "title", "bullets", "stats", "code", "quote", "faq", "glossary", "comparison", "outro"].includes(type)) type = "title";
+		// steps, plans, timeline: keep only well-formed items; otherwise fall back to a simpler scene
+		const clip = (x, n) => String(x ?? "").replace(/\s+/g, " ").trim().slice(0, n);
+		if (type === "steps") {
+			v.items = (Array.isArray(v.items) ? v.items : []).map((it) => ({ label: clip(it?.label ?? it, 48), detail: clip(it?.detail, 70) })).filter((it) => it.label).slice(0, 4);
+			if (v.items.length < 2) type = "title";
+		}
+		if (type === "plans") {
+			v.items = (Array.isArray(v.items) ? v.items : []).map((it) => ({ name: clip(it?.name, 24), price: clip(it?.price, 16), for: clip(it?.for, 48), perks: (Array.isArray(it?.perks) ? it.perks : []).map((x) => clip(x, 28)).filter(Boolean).slice(0, 3) })).filter((it) => it.name && it.price).slice(0, 3);
+			if (!v.items.length) type = "title";
+		}
+		if (type === "timeline") {
+			v.items = (Array.isArray(v.items) ? v.items : []).map((it) => ({ when: clip(it?.when, 14), label: clip(it?.label, 56) })).filter((it) => it.when && it.label).slice(0, 4);
+			if (v.items.length < 2) type = "title";
+		}
+		if (type === "sketch") {
+			v.nodes = (Array.isArray(v.nodes) ? v.nodes : []).map((n) => clip(n, 28)).filter(Boolean).slice(0, 4);
+			v.label = clip(v.label || v.title, 60);
+			if (!v.label && v.nodes.length < 2) type = "title";
+		}
+		if (!["screenshot", "title", "bullets", "stats", "code", "quote", "faq", "glossary", "comparison", "sketch", "steps", "plans", "timeline", "outro"].includes(type)) type = "title";
 		v.type = type;
 		if (type === "title" && !v.title) v.title = s.on_screen_text || source.name || source.title || "";
 		if (type === "screenshot") {

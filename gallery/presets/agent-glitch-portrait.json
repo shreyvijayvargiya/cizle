@@ -1,9 +1,10 @@
 {
   "id": "agent-glitch-portrait",
-  "title": "AI agent teaser, glitch cuts",
-  "description": "Fast cuts for an AI product, with a clear outcome.",
+  "title": "AI agent teaser, terminal boot",
+  "description": "A terminal-style teaser for an AI product: the problem, the agent at work, the outcome.",
   "type": "launch",
   "tone": "cinematic",
+  "style": "ascii",
   "aspect": "9:16",
   "animation": "glitch-cut",
   "categories": [
@@ -11,5 +12,9 @@
     "devtools",
     "security"
   ],
-  "prompt": "Fast glitch cuts between the problem, the agent at work and the outcome. Say what it does in the first two seconds."
+  "founders": [
+    "ai",
+    "devtool"
+  ],
+  "prompt": "Open on a blinking prompt and the one-line problem, typed out. Cut to the agent doing its job as a short log (three lines: task, action, result), then land the outcome as a single number or sentence. Say what the product does in the first two seconds and end on the repo or install command."
 }

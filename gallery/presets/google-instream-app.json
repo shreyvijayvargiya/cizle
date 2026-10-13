@@ -1,0 +1,17 @@
+{
+  "id": "google-instream-app",
+  "title": "App 15-second YouTube ad",
+  "description": "Brand and the one thing the app does in the first five seconds, then the app on a real screen, three short benefits, and a close on Get the app.",
+  "type": "google-instream-15s",
+  "tone": "cinematic",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "ui-zoom",
+  "categories": [
+    "apps-games"
+  ],
+  "founders": [
+    "app"
+  ],
+  "prompt": "Brand and the one thing the app does in the first five seconds, then the app on a real screen, three short benefits, and a close on Get the app."
+}

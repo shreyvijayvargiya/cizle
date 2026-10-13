@@ -1,0 +1,17 @@
+{
+  "id": "google-bumper-local",
+  "title": "Local service 6-second bumper",
+  "description": "Two scenes only.",
+  "type": "google-bumper-6s",
+  "tone": "cinematic",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "kinetic-type",
+  "categories": [
+    "local-services"
+  ],
+  "founders": [
+    "local"
+  ],
+  "prompt": "Two scenes only. One line with the service and the area, then the brand name with Call now or Book today and the phone number or URL."
+}

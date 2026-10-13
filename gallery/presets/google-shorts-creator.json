@@ -1,0 +1,17 @@
+{
+  "id": "google-shorts-creator",
+  "title": "Creator channel Shorts ad",
+  "description": "Hook with the question the channel answers, show a snippet of the real content, the one real proof point, and close on Subscribe.",
+  "type": "google-shorts-ad",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "creator"
+  ],
+  "founders": [
+    "creator"
+  ],
+  "prompt": "Hook with the question the channel answers, show a snippet of the real content, the one real proof point, and close on Subscribe."
+}

@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 
 export type Audio = "voice" | "music" | "silent";
-export type Aspect = "9:16" | "1:1" | "16:9";
+export type Aspect = "9:16" | "4:5" | "1:1" | "16:9";
 export type Status = "pending" | "running" | "success" | "partial" | "failed" | "cancelled";
 export type Tier = "free" | "paid";
+export type StyleId = "default" | "sketch" | "clay" | "glass" | "isometric" | "ascii";
 
 export type Prompt = {
 	id: string;
-	kind: "type" | "tone" | "custom";
+	kind: "type" | "tone" | "film" | "custom";
 	slug: string;
 	name: string;
 	description: string;
@@ -15,6 +16,22 @@ export type Prompt = {
 	aspect: string | null;
 	duration: number | null;
 	needs: string[];
+	engine: "render" | "article";
+	content_types: string[];
+	/** Opus film styles: their group, what they suit and where they came from. */
+	category: string | null;
+	uses: string[];
+	source: string | null;
+	author: string | null;
+	license: string | null;
+	/** Founder kinds this prompt suits (see FOUNDERS in constants). */
+	founders: string[];
+	/** Ad formats: Meta, TikTok or Google Ads, and static banners ("banner") instead of a video. */
+	ad: boolean;
+	platform: "meta" | "tiktok" | "google" | null;
+	output: "video" | "banner";
+	sizes: string[];
+	style: StyleId | null;
 	built_in: boolean;
 	body: string;
 	updated_at: string | null;
@@ -41,6 +58,8 @@ export type VideoRow = {
 	product: string | null;
 	model_tier: Tier;
 	idea_id: string | null;
+	/** "claude-code" for videos rendered from a storyboard Claude wrote. */
+	origin: string | null;
 	created_at: string;
 };
 
@@ -70,9 +89,35 @@ export type Variant = {
 	};
 };
 
+export type Pack = {
+	title: string;
+	audience: string;
+	key_takeaway: string;
+	hook: string;
+	narration: string[];
+	storyboard: { scene: number; duration_sec: number; label: string; diagram: string[]; subject: string; action: string; camera: string; lighting: string; transition: string; narration: string }[];
+	video_prompts: { scene: number; prompt: string }[];
+	subtitles: { scene: number; text: string }[];
+	sound_design: string[];
+	assembly: string[];
+	source_facts: { claim: string; passage: string; found_in_source: boolean }[];
+	markdown: string;
+	source_url: string;
+	type_name: string;
+};
+
 export type Job = {
 	id: string;
 	title: string;
+	engine?: "article" | "storyboard";
+	/** "banner" jobs are static ad images, not a video. */
+	output?: "banner";
+	banners?: { file: string; size: string; width: number; height: number; label: string; copy: number; headline: string }[];
+	origin?: { kind: string; client?: string; from?: string };
+	can_reskin?: boolean;
+	style?: string;
+	notes?: string[];
+	pack?: Pack;
 	status: Status;
 	step: string;
 	progress: number;
@@ -122,6 +167,8 @@ export type Settings = {
 	free_vision_model: string;
 	auto_sync: boolean;
 	data_dir?: string;
+	/** Absolute path of the MCP server entry, for `claude mcp add`. */
+	mcp_entry?: string;
 };
 
 export type ProductMeta = {
@@ -171,10 +218,25 @@ export type OnboardRun = {
 
 export type SyncResult = { ok: boolean; busy?: boolean; message?: string; changed: boolean; summary: string[]; ideas_added: number; cost_usd: number; repo_errors: string[]; synced_at: string };
 
-export type ChatMessage = { role: "user" | "assistant"; content: string };
-export type AgentReply = { reply: string; proposals: Idea[]; synced: boolean; cost_usd: number; mode: "tools" | "plain" };
+export type ReviewQuestion = { field: "audience" | "key_takeaway" | "aspect" | "audio" | "duration_sec" | "model_tier" | "variations"; text: string; multi: boolean; options: { value: string; label: string }[] };
+export type Review = {
+	id: string;
+	intent: "create_video" | "save_prompt" | "unclear";
+	can_approve: boolean;
+	summary: string;
+	suggestion: { type: string; tone: string; aspect: Aspect; audio: Audio; duration_sec: number };
+	questions: ReviewQuestion[];
+	final_prompt: string;
+	save_prompt: { name: string; description: string; body: string; type: string } | null;
+	checks: { level: "info" | "warn"; text: string }[];
+	existing: { id: string; title: string; type: string; status: Status; aspect: Aspect; created_at: string }[];
+	notes: string[];
+	engine: "render" | "article";
+	cost: null | { total_usd: number; free: boolean };
+	review_cost_usd: number;
+};
 
-export type Preset = { id: string; title: string; description: string; type: string; tone: string; aspect: Aspect; animation: string; categories: string[]; prompt: string };
+export type Preset = { id: string; title: string; description: string; type: string; tone: string; style: StyleId; founders: string[]; aspect: Aspect; animation: string; categories: string[]; prompt: string };
 
 export type ModelsInfo = { fetched: boolean; paid: { script_model: string; vision_model: string }; free: { script_model: string; vision_model: string }; free_count: number; notes: string[] };
 
@@ -188,6 +250,8 @@ export type CreateVideo = {
 	prompt_id?: string | null;
 	type: string;
 	tone: string;
+	/** "auto" = the tone's or type's own style. */
+	style?: StyleId | "auto";
 	aspect: Aspect;
 	audio: Audio;
 	duration_sec: number;
@@ -195,6 +259,7 @@ export type CreateVideo = {
 	voice?: string;
 	product?: string;
 	model_tier?: Tier;
+	review_id?: string;
 };
 
 export class ApiError extends Error {
@@ -229,7 +294,7 @@ export const api = {
 	testKey: (openrouter_api_key?: string, signal?: AbortSignal) => req<{ ok: boolean; error?: string; label?: string | null }>("/settings/test", { method: "POST", json: { openrouter_api_key }, signal }),
 	prompts: () => req<{ prompts: Prompt[] }>("/prompts").then((r) => r.prompts),
 	prompt: (id: string) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`),
-	createPrompt: (p: Partial<Prompt>) => req<Prompt>("/prompts", { method: "POST", json: p }),
+	createPrompt: (p: Partial<Prompt> & { review_id?: string }) => req<Prompt>("/prompts", { method: "POST", json: p }),
 	updatePrompt: (id: string, p: Partial<Prompt>) => req<Prompt>(`/prompts/${encodeURIComponent(id)}`, { method: "PUT", json: p }),
 	deletePrompt: (id: string) => req<{ ok: true }>(`/prompts/${encodeURIComponent(id)}`, { method: "DELETE" }),
 	stats: () => req<Stats>("/stats"),
@@ -239,6 +304,7 @@ export const api = {
 	cancelVideo: (id: string) => req<Job>(`/videos/${id}/cancel`, { method: "POST", json: {} }),
 	deleteVideo: (id: string) => req<{ ok: true }>(`/videos/${id}`, { method: "DELETE" }),
 	regenerate: (id: string) => req<Job>(`/videos/${id}/regenerate`, { method: "POST", json: {} }),
+	reskin: (id: string, body: { style?: StyleId; aspect?: Aspect; audio?: Audio }) => req<Job>(`/videos/${id}/reskin`, { method: "POST", json: body }),
 	products: () => req<{ products: ProductMeta[] }>("/products").then((r) => r.products),
 	product: (slug: string) => req<Product>(`/products/${slug}`),
 	startOnboard: (body: { url: string; repos?: string; name?: string; model_tier?: Tier }, signal?: AbortSignal) => req<OnboardRun>("/products/onboard", { method: "POST", json: body, signal }),
@@ -249,7 +315,7 @@ export const api = {
 	sync: (slug: string, model_tier: Tier, signal?: AbortSignal) => req<SyncResult>(`/products/${slug}/sync`, { method: "POST", json: { model_tier }, signal }),
 	setIdeaStatus: (slug: string, id: string, status: IdeaStatus) => req<Idea>(`/products/${slug}/ideas/${id}`, { method: "PATCH", json: { status } }),
 	createFromIdea: (slug: string, id: string, body: { model_tier: Tier; aspect?: Aspect; audio?: Audio; duration_sec?: number }, signal?: AbortSignal) => req<Job>(`/products/${slug}/ideas/${id}/create`, { method: "POST", json: body, signal }),
-	agent: (slug: string, messages: ChatMessage[], model_tier: Tier, signal?: AbortSignal) => req<AgentReply>(`/products/${slug}/agent`, { method: "POST", json: { messages, model_tier }, signal }),
+	review: (draft: CreateVideo, signal?: AbortSignal) => req<Review>("/review", { method: "POST", json: { draft }, signal }),
 	gallery: (product: string) => req<{ presets: Preset[]; mine: VideoRow[] }>(`/gallery?product=${encodeURIComponent(product)}`),
 	models: () => req<ModelsInfo>("/models"),
 	estimate: (body: CreateVideo) => req<{ total_usd: number; per_video_usd: number }>("/estimate", { method: "POST", json: body }),

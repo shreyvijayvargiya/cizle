@@ -1,0 +1,17 @@
+{
+  "id": "tiktok-listicle-creator",
+  "title": "Creator 3 reasons to subscribe ad",
+  "description": "Three reasons to follow the channel, course or newsletter, each backed by something real (topics covered, a real subscriber or student count if public).",
+  "type": "tiktok-demo-listicle",
+  "tone": "playful",
+  "style": "isometric",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "creator"
+  ],
+  "founders": [
+    "creator"
+  ],
+  "prompt": "Three reasons to follow the channel, course or newsletter, each backed by something real (topics covered, a real subscriber or student count if public). Number them on screen. Close on Subscribe or Join."
+}

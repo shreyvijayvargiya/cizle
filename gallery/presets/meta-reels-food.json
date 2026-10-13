@@ -1,0 +1,17 @@
+{
+  "id": "meta-reels-food",
+  "title": "Food and drink Reels ad",
+  "description": "Open on the product being made or poured and one taste word in huge type.",
+  "type": "meta-reels-hook",
+  "tone": "cinematic",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "food-drink"
+  ],
+  "founders": [
+    "food"
+  ],
+  "prompt": "Open on the product being made or poured and one taste word in huge type. Show the menu item or pack, then the delivery or pickup option the business really offers. Close on Order now and the ordering link."
+}

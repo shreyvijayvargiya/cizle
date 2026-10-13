@@ -46,7 +46,7 @@ export function PromptEditorPage() {
 		onSuccess: (p) => {
 			qc.invalidateQueries({ queryKey: ["prompts"] });
 			qc.setQueryData(["prompt", p.id], p);
-			toast.success(isNew ? "Prompt created" : "Prompt saved", { description: `prompts/${p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : "custom"}/${p.slug}.md` });
+			toast.success(isNew ? "Prompt created" : "Prompt saved", { description: `prompts/${p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : p.kind === "film" ? "films" : "custom"}/${p.slug}.md` });
 			if (isNew) navigate({ to: "/prompts/$id", params: { id: p.id } });
 		},
 		onError: (e: Error) => toast.error(e.message),
@@ -77,6 +77,21 @@ export function PromptEditorPage() {
 			<Link to="/prompts" className="mb-4 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
 				<Icon icon={ArrowLeft01Icon} size={13} /> Prompts
 			</Link>
+			{prompt?.kind === "film" ? (
+				<div className="mb-4 rounded-xl border border-border bg-muted/40 p-3 text-xs text-muted-foreground">
+					<p>
+						Opus film style from <span className="font-medium text-foreground">lemo-opuscar</span> by {prompt.author} ({prompt.license}), imported unchanged.{" "}
+						{prompt.source ? (
+							<a href={prompt.source} target="_blank" rel="noreferrer" className="underline hover:text-foreground">
+								View the original
+							</a>
+						) : null}
+					</p>
+					<p className="mt-1">
+						In cizle it renders as the closest look{prompt.style ? ` (${prompt.style})` : " (clean)"}. The full text is art direction for a film built entirely in code with the lemo-opuscar skill in Claude Code.
+					</p>
+				</div>
+			) : null}
 			<div className="mb-5 flex flex-wrap items-center justify-between gap-3">
 				<div className="flex items-center gap-2">
 					<h1 className="text-xl font-semibold tracking-tight">{isNew ? "New prompt" : prompt?.name}</h1>
