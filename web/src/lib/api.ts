@@ -192,7 +192,7 @@ export type OnboardRun = {
 
 export type SyncResult = { ok: boolean; busy?: boolean; message?: string; changed: boolean; summary: string[]; ideas_added: number; cost_usd: number; repo_errors: string[]; synced_at: string };
 
-export type ReviewQuestion = { field: "audience" | "key_takeaway" | "type" | "tone" | "aspect" | "audio" | "duration_sec" | "model_tier" | "variations"; text: string; options: { value: string; label: string }[] };
+export type ReviewQuestion = { field: "audience" | "key_takeaway" | "aspect" | "audio" | "duration_sec" | "model_tier" | "variations"; text: string; multi: boolean; options: { value: string; label: string }[] };
 export type Review = {
 	id: string;
 	intent: "create_video" | "save_prompt" | "unclear";

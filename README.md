@@ -110,10 +110,11 @@ Merged PRs, releases and new pages are what count. Dependency bumps, CI changes,
 
 The composer does not create anything on its own. Press the arrow and a card appears **above the input**:
 
-- **Checks**: no link found, a video for this link already exists (with a link to it), free models cannot do voice-over.
-- **Questions** (up to three, one click each): who the video is for, the key takeaway, format, length, free or paid. The model asks only what changes the result.
-- **Final prompt**: a short direction the review wrote from your text. Edit it.
-- **Cost**, then **Approve**. Only Approve calls `POST /api/videos`. Cancel and nothing happens.
+The card is docked above the input and shows one step at a time, like Claude's question card. Every answer is a **radio button or checkbox**, never typed text:
+
+1. **Prompt**: the type, tone and your own prompts from the library, with the one the review picked already selected. Change any of them.
+2. **Questions** (up to three): who the video is for (checkboxes), which takeaway to lead with, format, length, free or paid. The review only asks what changes the result.
+3. **Summary**: the prompt, format and cost, a warning if no link was found or a video for this link already exists (with a link to it), and the **final prompt** it wrote. The prompt is read-only until you press Edit. Then **Approve**. Only Approve calls `POST /api/videos`. Cancel and nothing happens.
 
 It works with free models: the server gathers every fact itself (existing videos, a peek at the page, the prompt library) and the model answers in plain JSON, with no tool calling. The review step has no way to create a video or write a file, so a hostile web page cannot spend your credit.
 

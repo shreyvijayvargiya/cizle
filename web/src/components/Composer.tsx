@@ -21,12 +21,12 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { ModelToggle } from "@/components/ModelToggle";
-import { ReviewCard, effectiveChoice, type ReviewAnswers } from "@/components/ReviewCard";
+import { ReviewCard, effectiveChoice, type AnswerKey, type ReviewAnswers } from "@/components/ReviewCard";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, Menu, MenuContent, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { isAborted, useAbort } from "@/lib/abort";
 import { Tip } from "@/components/ui/misc";
-import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt, type Review, type ReviewQuestion } from "@/lib/api";
+import { ApiError, api, usePrompts, useSettings, type Aspect, type Audio, type CreateVideo, type Prompt, type Review } from "@/lib/api";
 import { ASPECTS, AUDIO, VOICES } from "@/lib/constants";
 import { cn, hostOf } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
@@ -227,7 +227,9 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 		if (!review) return;
 		if (review.intent === "save_prompt") return savePrompt.mutate(review);
 		const choice = effectiveChoice(review, answers);
-		const extra = [answers.audience?.trim() && `Audience: ${answers.audience.trim()}`, answers.key_takeaway?.trim() && `Key takeaway: ${answers.key_takeaway.trim()}`].filter(Boolean);
+		const list = (v: string | string[] | undefined) => [v].flat().filter(Boolean) as string[];
+		const extra = [list(answers.audience).length && `Audience: ${list(answers.audience).join(", ")}`, list(answers.key_takeaway).length && `Key takeaway: ${list(answers.key_takeaway)[0]}`].filter(Boolean);
+		const promptId = answers.prompt_id !== undefined ? answers.prompt_id : loaded?.id || "";
 		create.mutate({
 			...body,
 			type: choice.type,
@@ -235,13 +237,14 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 			aspect: choice.aspect,
 			audio: choice.audio,
 			duration_sec: choice.duration_sec,
-			variations: answers.variations ? Number(answers.variations) : variations,
-			model_tier: (answers.model_tier as "free" | "paid" | undefined) ?? tier,
+			variations: list(answers.variations)[0] ? Number(list(answers.variations)[0]) : variations,
+			model_tier: (list(answers.model_tier)[0] as "free" | "paid" | undefined) ?? tier,
+			prompt_id: promptId || null,
 			prompt: [finalPrompt.trim(), ...extra].join("\n"),
 			review_id: review.id,
 		});
 	};
-	const setAnswer = (field: ReviewQuestion["field"], v: string) => setAnswers((a) => ({ ...a, [field]: v }));
+	const setAnswer = (key: AnswerKey, v: string | string[]) => setAnswers((a) => ({ ...a, [key]: v }));
 	const busy = create.isPending || reviewing.isPending || savePrompt.isPending;
 
 	const typeName = type === "auto" ? "Any type" : types.find((t) => t.slug === type)?.name || type;
@@ -250,14 +253,14 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 
 	return (
 		<div className="w-full">
+			{review ? (
+				<ReviewCard review={review} answers={answers} setAnswer={setAnswer} library={prompts.data || []} loadedPromptId={loaded?.id || null} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
+			) : null}
 			<div
 				className={cn(
 					"rounded-2xl border border-border bg-surface shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] transition-shadow focus-within:border-ring/60 focus-within:shadow-[0_1px_2px_rgba(0,0,0,0.04),0_12px_32px_-12px_rgba(0,0,0,0.18)]",
 				)}
 			>
-				{review ? (
-					<ReviewCard review={review} answers={answers} setAnswer={setAnswer} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
-				) : null}
 				{links.site || links.github || usingProduct || loaded || type !== "auto" || tone !== "auto" ? (
 					<div className="flex flex-wrap gap-1.5 px-4 pt-3.5">
 						{usingProduct ? (

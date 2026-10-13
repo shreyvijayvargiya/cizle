@@ -17,8 +17,10 @@ import { logChat } from "./chatlog.js";
 const ASPECTS = ["9:16", "1:1", "16:9"];
 const AUDIO = ["voice", "music", "silent"];
 const DURATIONS = [15, 20, 30, 45, 59];
-const FIELDS = ["audience", "key_takeaway", "type", "tone", "aspect", "audio", "duration_sec", "model_tier", "variations"];
-const TEXT_FIELDS = new Set(["audience", "key_takeaway"]);
+// type and tone are chosen in the card's first step (from the prompt library), so they are never asked as questions.
+const FIELDS = ["audience", "key_takeaway", "aspect", "audio", "duration_sec", "model_tier", "variations"];
+const MULTI_FIELDS = new Set(["audience"]);
+const DEFAULT_AUDIENCES = ["Beginner developers", "Experienced developers", "Founders and non-technical readers", "Everyone"];
 const ARTICLE_RE = /\/(blog|posts?|articles?|guides?|learn|tutorials?|docs?|news|stories)\b|medium\.com|dev\.to|substack\.com|hashnode\.|\/\d{4}\/\d{2}\//i;
 
 const str = (v, n = 300) => String(v ?? "").replace(/\s+/g, " ").trim().slice(0, n);
@@ -39,29 +41,24 @@ async function persona() {
 	return matter(raw).content.trim() || "You review a video request before it is created: ask short questions and write the final prompt. Return JSON.";
 }
 
-/** Questions the founder can answer with one click. Options are always built from real values. */
-function buildQuestion(q, { types, tones }) {
+/** Questions are always choices (radio, or checkboxes for audience). Options are built from real values. */
+function buildQuestion(q) {
 	const field = FIELDS.includes(q?.field) ? q.field : null;
 	const text = str(q?.text, 160);
 	if (!field || !text) return null;
-	if (TEXT_FIELDS.has(field)) return { field, text, options: [] };
-	const allowed = {
-		type: types.map((t) => t.slug),
-		tone: tones.map((t) => t.slug),
-		aspect: ASPECTS,
-		audio: AUDIO,
-		duration_sec: DURATIONS.map(String),
-		model_tier: ["free", "paid"],
-		variations: ["1", "2", "3"],
-	}[field];
-	const labels = { type: Object.fromEntries(types.map((t) => [t.slug, t.name])), tone: Object.fromEntries(tones.map((t) => [t.slug, t.name])) }[field] || {};
-	let options = (Array.isArray(q?.options) ? q.options : [])
-		.map((o) => ({ value: String(o?.value ?? ""), label: str(o?.label, 60) }))
-		.filter((o) => allowed.includes(o.value))
-		.slice(0, 6);
-	if (field === "type" || field === "tone") options.unshift({ value: "auto", label: field === "type" ? "Let cizle pick" : "Best tone" });
-	if (options.length < 2) options = allowed.slice(0, 5).map((v) => ({ value: v, label: labels[v] || (field === "duration_sec" ? `${v} seconds` : field === "model_tier" ? (v === "free" ? "Free models" : "Paid models") : v) }));
-	return { field, text, options };
+	const raw = (Array.isArray(q?.options) ? q.options : []).map((o) => ({ value: String(o?.value ?? ""), label: str(o?.label ?? o?.value, 90) }));
+	if (field === "audience" || field === "key_takeaway") {
+		// The answer is the sentence itself.
+		let options = raw.map((o) => ({ value: o.label, label: o.label })).filter((o) => o.label).slice(0, 5);
+		if (field === "audience" && options.length < 2) options = DEFAULT_AUDIENCES.map((v) => ({ value: v, label: v }));
+		if (options.length < 2) return null;
+		return { field, text, options, multi: MULTI_FIELDS.has(field) && q?.multi !== false };
+	}
+	const allowed = { aspect: ASPECTS, audio: AUDIO, duration_sec: DURATIONS.map(String), model_tier: ["free", "paid"], variations: ["1", "2", "3"] }[field];
+	let options = raw.filter((o) => allowed.includes(o.value)).slice(0, 5);
+	if (options.length < 2)
+		options = allowed.map((v) => ({ value: v, label: field === "duration_sec" ? `${v} seconds` : field === "model_tier" ? (v === "free" ? "Free models" : "Paid models") : field === "variations" ? `${v} ${v === "1" ? "video" : "different videos"}` : v }));
+	return { field, text, options, multi: false };
 }
 
 export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
@@ -134,8 +131,7 @@ export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 	if (loaded?.type && suggestion.type === "auto") suggestion.type = loaded.type;
 	if (draft.tone && draft.tone !== "auto") suggestion.tone = pick(draft.tone, toneIds, suggestion.tone);
 
-	const vocab = { types, tones };
-	const questions = (Array.isArray(data?.questions) ? data.questions : []).map((q) => buildQuestion(q, vocab)).filter(Boolean).slice(0, 3);
+		const questions = (Array.isArray(data?.questions) ? data.questions : []).map((q) => buildQuestion(q)).filter(Boolean).slice(0, 3);
 
 	let savePrompt = null;
 	if (intent === "save_prompt" && data?.save_prompt?.name && data?.save_prompt?.body) {
