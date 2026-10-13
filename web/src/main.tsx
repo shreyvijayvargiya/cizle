@@ -36,7 +36,7 @@ const routeTree = rootRoute.addChildren([
 		getParentRoute: parent,
 		path: "/gallery",
 		component: GalleryPage,
-		validateSearch: (s: Record<string, unknown>): { style?: string; founder?: string; category?: string } => ({ style: typeof s.style === "string" ? s.style : undefined, founder: typeof s.founder === "string" ? s.founder : undefined, category: typeof s.category === "string" ? s.category : undefined }),
+		validateSearch: (s: Record<string, unknown>): { style?: string; founder?: string; category?: string; platform?: string } => ({ platform: typeof s.platform === "string" ? s.platform : undefined, style: typeof s.style === "string" ? s.style : undefined, founder: typeof s.founder === "string" ? s.founder : undefined, category: typeof s.category === "string" ? s.category : undefined }),
 	}),
 	createRoute({ getParentRoute: parent, path: "/claude", component: ClaudeCodePage }),
 	createRoute({ getParentRoute: parent, path: "/product", component: ProductPage }),

@@ -165,7 +165,7 @@ export function cleanIdea(raw, { types, tones }) {
 		status: STATUSES.has(raw?.status) ? raw.status : "suggested",
 		type,
 		tone: tones.has(raw?.tone) ? raw.tone : "auto",
-		aspect: ["9:16", "1:1", "16:9"].includes(raw?.aspect) ? raw.aspect : "9:16",
+		aspect: ["9:16", "4:5", "1:1", "16:9"].includes(raw?.aspect) ? raw.aspect : "9:16",
 		why_now: clip(raw?.why_now, 240),
 		source: clip(raw?.source, 120),
 		prompt: String(raw?.prompt ?? "").replace(/https?:\/\/\S+/g, " ").trim().slice(0, 600),

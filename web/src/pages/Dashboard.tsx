@@ -18,7 +18,7 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Composer } from "@/components/Composer";
 import { SuggestedPrompts } from "@/components/SuggestedPrompts";
-import { ClaudeCodeCard, PromptShelf } from "@/components/DashboardShelves";
+import { AdShelf, ClaudeCodeCard, PromptShelf } from "@/components/DashboardShelves";
 import { IdeaCard } from "@/components/IdeaCard";
 import { Icon } from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -126,11 +126,12 @@ export function DashboardPage() {
 
 			<section className="mt-10">
 				<h1 className="text-center text-2xl font-semibold tracking-tight sm:text-[28px]">What are we shipping today?</h1>
-				<p className="mx-auto mt-2 max-w-lg text-center text-sm text-muted-foreground">Paste a link, describe the video, hit enter. Under a minute of video, made from your real product.</p>
+				<p className="mx-auto mt-2 max-w-lg text-center text-sm text-muted-foreground">Paste a link, describe the ad or video, hit enter. Ads for Meta, TikTok and Google, made from your real brand or product.</p>
 				<div className="mx-auto mt-6 max-w-3xl">
 					<Composer autoFocus />
 				</div>
 				{product ? <SuggestedPrompts slug={slug} title={`Prompts for ${product.name}`} className="mx-auto mt-8 max-w-5xl" /> : null}
+				<AdShelf className="mx-auto mt-10 max-w-5xl" />
 				<PromptShelf className="mx-auto mt-10 max-w-5xl" />
 				<ClaudeCodeCard className="mx-auto mt-8 max-w-5xl" />
 				{types.length ? (

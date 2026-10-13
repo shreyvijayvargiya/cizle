@@ -1,0 +1,17 @@
+{
+  "id": "meta-feed-shop-offer",
+  "title": "Shop offer feed ad",
+  "description": "A 4:5 feed ad.",
+  "type": "meta-feed-offer",
+  "tone": "polished",
+  "style": "default",
+  "aspect": "4:5",
+  "animation": "device-mockup",
+  "categories": [
+    "ecommerce"
+  ],
+  "founders": [
+    "ecommerce"
+  ],
+  "prompt": "A 4:5 feed ad. Say what the product is and who it is for, show three real benefits next to the product, state the real offer, and close on Shop now. If the brief has no offer, skip that scene."
+}

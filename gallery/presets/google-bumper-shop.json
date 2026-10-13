@@ -1,0 +1,21 @@
+{
+  "id": "google-bumper-shop",
+  "title": "Shop 6-second bumper",
+  "description": "Two scenes only.",
+  "type": "google-bumper-6s",
+  "tone": "cinematic",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "ui-zoom",
+  "categories": [
+    "ecommerce",
+    "beauty-fashion",
+    "food-drink"
+  ],
+  "founders": [
+    "ecommerce",
+    "beauty",
+    "food"
+  ],
+  "prompt": "Two scenes only. The product and the one benefit in 6 words, then the brand name with Shop now and the URL."
+}

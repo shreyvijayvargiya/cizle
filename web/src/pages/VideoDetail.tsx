@@ -28,7 +28,7 @@ import { ARTICLE_PIPELINE, PIPELINE as PRODUCT_PIPELINE, STEP_LABELS, STORYBOARD
 import { cn, hostOf, timeAgo, usd } from "@/lib/utils";
 
 const SOURCE_LABELS: Record<string, string> = { website: "Website", llms_txt: "llms.txt", blog: "Blog", github: "GitHub", page: "Page", faq: "FAQ", competitor: "Competitor" };
-const ASPECT_CLASS: Record<string, string> = { "9:16": "aspect-[9/16] max-h-[70vh]", "1:1": "aspect-square", "16:9": "aspect-video" };
+const ASPECT_CLASS: Record<string, string> = { "9:16": "aspect-[9/16] max-h-[70vh]", "4:5": "aspect-[4/5] max-h-[70vh]", "1:1": "aspect-square", "16:9": "aspect-video" };
 
 function Timeline({ job }: { job: Job }) {
 	const PIPELINE = job.engine === "article" ? ARTICLE_PIPELINE : job.engine === "storyboard" ? STORYBOARD_PIPELINE : PRODUCT_PIPELINE;
@@ -360,7 +360,7 @@ export function VideoDetailPage() {
 								<MenuSeparator />
 								<MenuLabel>Aspect ratio</MenuLabel>
 								<MenuRadioGroup value="" onValueChange={(v) => reskin.mutate({ aspect: v as Aspect })}>
-									{(["9:16", "1:1", "16:9"] as const).map((a) => (
+									{(["9:16", "4:5", "1:1", "16:9"] as const).map((a) => (
 										<MenuRadioItem key={a} value={a}>
 											{a}
 										</MenuRadioItem>

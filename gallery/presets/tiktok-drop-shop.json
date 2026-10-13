@@ -1,0 +1,19 @@
+{
+  "id": "tiktok-drop-shop",
+  "title": "Shop launch or restock drop",
+  "description": "A 12-second drop.",
+  "type": "tiktok-offer-drop",
+  "tone": "cinematic",
+  "style": "glass",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "ecommerce",
+    "beauty-fashion"
+  ],
+  "founders": [
+    "ecommerce",
+    "beauty"
+  ],
+  "prompt": "A 12-second drop. Now live in huge type, the product, the real price or deadline, and Shop now. Use urgency only if the brand gives a real date or stock level."
+}

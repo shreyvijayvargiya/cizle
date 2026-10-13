@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 export type Audio = "voice" | "music" | "silent";
-export type Aspect = "9:16" | "1:1" | "16:9";
+export type Aspect = "9:16" | "4:5" | "1:1" | "16:9";
 export type Status = "pending" | "running" | "success" | "partial" | "failed" | "cancelled";
 export type Tier = "free" | "paid";
 export type StyleId = "default" | "sketch" | "clay" | "glass" | "isometric" | "ascii";
@@ -26,6 +26,11 @@ export type Prompt = {
 	license: string | null;
 	/** Founder kinds this prompt suits (see FOUNDERS in constants). */
 	founders: string[];
+	/** Ad formats: Meta, TikTok or Google Ads, and static banners ("banner") instead of a video. */
+	ad: boolean;
+	platform: "meta" | "tiktok" | "google" | null;
+	output: "video" | "banner";
+	sizes: string[];
 	style: StyleId | null;
 	built_in: boolean;
 	body: string;

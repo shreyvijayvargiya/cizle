@@ -1,0 +1,17 @@
+{
+  "id": "meta-reels-shop",
+  "title": "Online shop Reels ad",
+  "description": "Open on the hero product in one hand-held shot and a 5-word line naming the benefit.",
+  "type": "meta-reels-hook",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "ecommerce"
+  ],
+  "founders": [
+    "ecommerce"
+  ],
+  "prompt": "Open on the hero product in one hand-held shot and a 5-word line naming the benefit. Show it being used, then one scene with the real offer (price, bundle or free shipping) only if the brand states it. Close on the shop name, Shop now and the URL."
+}

@@ -1,14 +1,55 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight01Icon, ComputerTerminal01Icon, GridViewIcon } from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon, ComputerTerminal01Icon, GridViewIcon, Megaphone01Icon } from "@hugeicons/core-free-icons";
 import { CopyBox } from "@/components/CopyBox";
 import { Icon } from "@/components/Icon";
 import { Motion, StylePreview } from "@/components/PromptPreview";
 import { Button } from "@/components/ui/button";
 import { api, usePrompts, useVideos, type StyleId } from "@/lib/api";
-import { STYLES } from "@/lib/constants";
+import { PLATFORMS, STYLES } from "@/lib/constants";
 import { cn, hostOf } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
+
+/** Ad formats: one tile per platform (Meta, TikTok, Google Ads) with the number of formats and examples. */
+export function AdShelf({ className }: { className?: string }) {
+	const { slug } = useWorkspace();
+	const prompts = usePrompts();
+	const gallery = useQuery({ queryKey: ["gallery", slug], queryFn: () => api.gallery(slug) });
+	const ads = (prompts.data || []).filter((p) => p.kind === "type" && p.ad);
+	const presets = gallery.data?.presets || [];
+	return (
+		<section className={className}>
+			<div className="mb-3">
+				<h2 className="flex items-center gap-1.5 text-base font-semibold tracking-tight">
+					<Icon icon={Megaphone01Icon} size={16} className="text-muted-foreground" /> Ads for your brand
+				</h2>
+				<p className="text-xs text-muted-foreground">Video ads for Meta, TikTok and Google Ads, for online shops, local businesses, apps, creators and SaaS. Only your real offer, never an invented one.</p>
+			</div>
+			<div className="grid gap-3 sm:grid-cols-3">
+				{PLATFORMS.map((pl) => {
+					const mine = ads.filter((a) => a.platform === pl.value);
+					return (
+						<Link key={pl.value} to="/gallery" search={{ platform: pl.value }} className="rounded-xl border border-border bg-surface p-4 transition-colors hover:bg-accent/50">
+							<div className="flex items-baseline justify-between">
+								<p className="text-sm font-medium">{pl.label}</p>
+								<p className="text-[11px] text-muted-foreground tabular-nums">{mine.length} formats · {presets.filter((x) => mine.some((a) => a.slug === x.type)).length} examples</p>
+							</div>
+							<p className="mt-0.5 text-xs text-muted-foreground">{pl.hint}</p>
+							<ul className="mt-2 space-y-0.5 text-[13px]">
+								{mine.map((a) => (
+									<li key={a.id} className="flex justify-between gap-2">
+										<span className="truncate">{a.name.replace(/^(Meta|TikTok|Google) /, "")}</span>
+										<span className="shrink-0 text-xs text-muted-foreground">{a.aspect} · {a.duration}s</span>
+									</li>
+								))}
+							</ul>
+						</Link>
+					);
+				})}
+			</div>
+		</section>
+	);
+}
 
 /** The prompt gallery on the dashboard: one animated tile per style, with counts. Each tile opens the gallery filtered to that style. */
 export function PromptShelf({ className }: { className?: string }) {

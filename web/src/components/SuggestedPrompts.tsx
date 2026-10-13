@@ -19,6 +19,13 @@ const CATEGORY_LABEL: Record<string, string> = {
 	fintech: "fintech",
 	"marketing-seo": "marketing and SEO",
 	security: "security",
+	ecommerce: "online shops",
+	"beauty-fashion": "beauty and fashion",
+	"food-drink": "food and drink",
+	"health-fitness": "health and fitness",
+	"local-services": "local services",
+	"apps-games": "apps and games",
+	creator: "creators",
 };
 
 /**

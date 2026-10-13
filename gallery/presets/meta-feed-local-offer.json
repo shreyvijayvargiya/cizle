@@ -1,0 +1,17 @@
+{
+  "id": "meta-feed-local-offer",
+  "title": "Local business feed ad",
+  "description": "Name the service and the area on screen in the first seconds.",
+  "type": "meta-feed-offer",
+  "tone": "playful",
+  "style": "default",
+  "aspect": "4:5",
+  "animation": "ui-zoom",
+  "categories": [
+    "local-services"
+  ],
+  "founders": [
+    "local"
+  ],
+  "prompt": "Name the service and the area on screen in the first seconds. Show three things the business really does, one real offer or guarantee if stated, and close on Book today with the phone number or booking link."
+}

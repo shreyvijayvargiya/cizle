@@ -98,9 +98,9 @@ export function parseVideoInput(body = {}) {
 			tone: String(body.tone || "auto"),
 			style: body.style === "auto" || STYLE_IDS.includes(body.style) ? body.style : "auto",
 			variations: Math.round(clamp(body.variations, 1, 3, 1)),
-			target_duration_sec: Math.round(clamp(body.duration_sec, 10, MAX_SHORT_SEC, s.duration_sec)),
+			target_duration_sec: Math.round(clamp(body.duration_sec, 6, MAX_SHORT_SEC, s.duration_sec)),
 			max_total_sec: MAX_SHORT_SEC,
-			aspect: ["9:16", "1:1", "16:9"].includes(body.aspect) ? body.aspect : s.aspect,
+			aspect: ["9:16", "4:5", "1:1", "16:9"].includes(body.aspect) ? body.aspect : s.aspect,
 			audio: audioMode,
 			narration,
 			music: audioMode === "silent" ? "none" : "auto",
@@ -569,10 +569,10 @@ async function runJob(job, deps) {
 	const loaded = input.prompt_id ? await getPrompt(input.prompt_id) : null;
 	const typeSlug = input.type !== "auto" ? input.type : loaded?.type || "auto";
 	// "auto" only chooses among types that render a video; prompt-pack types run when picked explicitly.
-	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine !== "article") : types.filter((t) => t.slug === typeSlug);
+	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine !== "article" && !t.ad) : types.filter((t) => t.slug === typeSlug);
 	if (!allowedTypes.length) throw new Error(`Unknown video type "${typeSlug}"`);
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
-	const laws = await getLaws();
+	const laws = await getLaws({ ads: typeSlug !== "auto" && !!allowedTypes[0]?.ad });
 	// Render style: the founder's choice, else the type's own style (Sketch Explainer), else the tone's, else the plain look.
 	const styleFor = (typeSlug) => normalizeStyle(input.style && input.style !== "auto" ? input.style : (loaded?.kind === "film" ? loaded.style : null) || types.find((t) => t.slug === typeSlug)?.style || tone?.style || "default");
 	job.style = styleFor(typeSlug === "auto" ? null : typeSlug);

@@ -1,0 +1,17 @@
+{
+  "id": "tiktok-hook-app",
+  "title": "App or game hook ad",
+  "description": "Open on the core moment of the app or game on a real screen, with a 5-word hook.",
+  "type": "tiktok-ugc-hook",
+  "tone": "cinematic",
+  "style": "glass",
+  "aspect": "9:16",
+  "animation": "glitch-cut",
+  "categories": [
+    "apps-games"
+  ],
+  "founders": [
+    "app"
+  ],
+  "prompt": "Open on the core moment of the app or game on a real screen, with a 5-word hook. Show the loop in two quick cuts, one reaction line that is a real feature (not a made-up review). Close on Get the app."
+}

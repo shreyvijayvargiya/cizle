@@ -38,6 +38,8 @@ export async function buildGuide(library) {
 	const tones = library.filter((p) => p.kind === "tone");
 	const films = library.filter((p) => p.kind === "film");
 	const laws = await getLaws();
+	const adLaws = (await getLaws({ ads: true })).slice(laws.length).trim();
+	const ads = types.filter((t) => t.ad);
 	return `# Making a video with cizle
 
 You write the storyboard. cizle renders it (animated frames, captions, music, FFmpeg) into an MP4 on this machine and files it in the dashboard. Nothing is sent to a model or a service: you do the reading and writing.
@@ -77,7 +79,7 @@ ${STYLES}
 Write for the style: styled videos use large type, so keep lines short. \`ascii\` wants terminal voice (5 words or fewer, plain letters, no emoji); \`sketch\` wants a conversational whiteboard voice.
 
 ## Options of \`create_video\`
-\`aspect\`: "9:16" (default, Reels and Shorts), "1:1" or "16:9". \`audio\`: "music" (default; captions and music, no key needed), "silent", or "voice" (needs a text-to-speech key, otherwise it falls back to music). \`duration_sec\`: rescales the scenes to a target. \`product\`: a product slug. \`source_url\`: where the material came from. \`request\`: the user's request in their words (stored with the video).
+\`aspect\`: "9:16" (default, Reels and Shorts), "4:5" (Meta feed ads), "1:1" or "16:9". \`audio\`: "music" (default; captions and music, no key needed), "silent", or "voice" (needs a text-to-speech key, otherwise it falls back to music). \`duration_sec\`: rescales the scenes to a target. \`product\`: a product slug. \`source_url\`: where the material came from. \`request\`: the user's request in their words (stored with the video).
 
 ## Video types
 ${types.map((t) => `- \`${t.id}\`: **${t.name}**. ${t.description}${t.founders?.length ? ` _(for ${t.founders.join(", ")})_` : ""}${t.needs?.length ? ` Needs: ${t.needs.join(", ")}.` : ""}`).join("\n")}
@@ -89,7 +91,13 @@ ${films.map((t) => `- \`${t.id}\`: ${t.name} (${t.category}${t.style ? `; cizle 
 ## Tones (they set a default style)
 ${tones.map((t) => `- \`${t.id}\`: ${t.name}${t.style ? ` (style: ${t.style})` : ""}. ${t.description}`).join("\n")}
 
+## Ads for brands
+When the user wants an ad (Meta, TikTok or Google Ads; a brand, an online shop, a local business, an app or a SaaS), pick one of these types, read it with \`read_prompt\` and follow its by-brand section. Use the aspect the type names. Ad formats are never chosen automatically: pass the type slug.
+${ads.map((t) => `- \`${t.id}\`: ${t.name} (${t.platform}, ${t.aspect || "9:16"}, ${t.duration || 15}s${t.output === "banner" ? ", static banners" : ""}). ${t.description}`).join("\n")}
+
 ## Creative laws
 ${laws}
+
+${adLaws}
 `;
 }

@@ -14,9 +14,9 @@ import { estimateCost, listJobs, parseVideoInput } from "../pipeline/job.js";
 import { untrusted, UNTRUSTED_NOTE, productJson } from "../products/llm.js";
 import { logChat } from "./chatlog.js";
 
-const ASPECTS = ["9:16", "1:1", "16:9"];
+const ASPECTS = ["9:16", "4:5", "1:1", "16:9"];
 const AUDIO = ["voice", "music", "silent"];
-const DURATIONS = [15, 20, 30, 45, 59];
+const DURATIONS = [6, 15, 20, 30, 45, 59];
 // type and tone are chosen in the card's first step (from the prompt library), so they are never asked as questions.
 const FIELDS = ["audience", "key_takeaway", "aspect", "audio", "duration_sec", "model_tier", "variations"];
 const MULTI_FIELDS = new Set(["audience"]);
@@ -124,7 +124,7 @@ export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 		tone: pick(String(sug.tone || draft.tone || "auto"), toneIds, "auto"),
 		aspect: pick(sug.aspect || draft.aspect, ASPECTS, "9:16"),
 		audio: pick(sug.audio || draft.audio, AUDIO, "voice"),
-		duration_sec: Math.min(59, Math.max(10, Math.round(Number(sug.duration_sec ?? draft.duration_sec) || 30))),
+		duration_sec: Math.min(59, Math.max(6, Math.round(Number(sug.duration_sec ?? draft.duration_sec) || 30))),
 	};
 	// What the founder already picked wins over the model.
 	if (draft.type && draft.type !== "auto") suggestion.type = pick(draft.type, typeIds, suggestion.type);

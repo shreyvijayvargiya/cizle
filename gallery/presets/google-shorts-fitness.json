@@ -1,0 +1,18 @@
+{
+  "id": "google-shorts-fitness",
+  "title": "Gym or studio Shorts ad",
+  "description": "A vertical ad for a class, gym or program.",
+  "type": "google-shorts-ad",
+  "tone": "cinematic",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "health-fitness"
+  ],
+  "founders": [
+    "health",
+    "local"
+  ],
+  "prompt": "A vertical ad for a class, gym or program. Hook with a question, show the space or the routine, one real offer (first class free, if stated), and close on Book a class. No body or health promises."
+}

@@ -13,10 +13,11 @@ import { FOUNDER_LABEL, STYLE_LABEL } from "@/lib/constants";
 import { cn, timeAgo } from "@/lib/utils";
 
 /** Motion sample for a built-in video type (used when the prompt has no render style of its own). */
-const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup", "founder-story": "kinetic-type", "problem-solution": "card-stack", "how-it-works": "cursor-walkthrough", "pricing-explained": "count-up", "use-case-spotlight": "device-mockup", "customer-proof": "card-stack", quickstart: "cursor-walkthrough", "whats-new": "card-stack", roadmap: "kinetic-type", integrations: "card-stack", "myth-busting": "split-compare", "tips-listicle": "kinetic-type", "pitch-teaser": "count-up", "code-walkthrough": "cursor-walkthrough" };
+const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup", "founder-story": "kinetic-type", "problem-solution": "card-stack", "how-it-works": "cursor-walkthrough", "pricing-explained": "count-up", "use-case-spotlight": "device-mockup", "customer-proof": "card-stack", quickstart: "cursor-walkthrough", "whats-new": "card-stack", roadmap: "kinetic-type", integrations: "card-stack", "myth-busting": "split-compare", "tips-listicle": "kinetic-type", "pitch-teaser": "count-up", "code-walkthrough": "cursor-walkthrough", "meta-reels-hook": "card-stack", "meta-feed-offer": "device-mockup", "meta-problem-solution": "split-compare", "tiktok-ugc-hook": "kinetic-type", "tiktok-offer-drop": "count-up", "tiktok-demo-listicle": "card-stack", "google-bumper-6s": "kinetic-type", "google-instream-15s": "ui-zoom", "google-shorts-ad": "kinetic-type" };
 
-const GROUPS: { kind: Prompt["kind"]; title: string; hint: string }[] = [
+const GROUPS: { kind: Prompt["kind"]; ad?: boolean; title: string; hint: string }[] = [
 	{ kind: "custom", title: "Your prompts", hint: "Saved in prompts/custom/*.md" },
+	{ kind: "type", ad: true, title: "Ad formats", hint: "Meta, TikTok and Google Ads video ads for any brand · prompts/types" },
 	{ kind: "type", title: "Video types", hint: "Structure for each kind of video · prompts/types" },
 	{ kind: "tone", title: "Tones", hint: "Energy, pacing and wording · prompts/tones" },
 	{ kind: "film", title: "Opus film styles", hint: "43 looks from lemo-opuscar (MIT, LemoLab) · prompts/films" },
@@ -26,11 +27,11 @@ export function PromptsPage() {
 	const prompts = usePrompts();
 	const [q, setQ] = useState("");
 	const search = useSearch({ strict: false }) as { kind?: string };
-	const [kind, setKind] = useState<"" | Prompt["kind"]>((["custom", "type", "tone", "film"].includes(search.kind || "") ? search.kind : "") as "" | Prompt["kind"]);
+	const [kind, setKind] = useState<"" | "ad" | Prompt["kind"]>((["custom", "type", "tone", "film", "ad"].includes(search.kind || "") ? search.kind : "") as "" | Prompt["kind"]);
 	const [founder, setFounder] = useState("");
 	const [allFilms, setAllFilms] = useState(false);
 	const list = useMemo(
-		() => (prompts.data || []).filter((p) => (!kind || p.kind === kind) && (!founder || p.founders?.includes(founder)) && (!q || `${p.name} ${p.description} ${p.body} ${p.category || ""} ${(p.uses || []).join(" ")}`.toLowerCase().includes(q.toLowerCase()))),
+		() => (prompts.data || []).filter((p) => (!kind || (kind === "ad" ? p.ad : p.kind === kind)) && (!founder || p.founders?.includes(founder)) && (!q || `${p.name} ${p.description} ${p.body} ${p.category || ""} ${(p.uses || []).join(" ")}`.toLowerCase().includes(q.toLowerCase()))),
 		[prompts.data, q, kind, founder],
 	);
 	return (
@@ -52,7 +53,7 @@ export function PromptsPage() {
 					<Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search prompts" className="pl-8" />
 				</div>
 				<div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-					{[["", "All"], ["custom", "Yours"], ["type", "Types"], ["tone", "Tones"], ["film", "Films"]].map(([k, label]) => (
+					{[["", "All"], ["custom", "Yours"], ["ad", "Ads"], ["type", "Types"], ["tone", "Tones"], ["film", "Films"]].map(([k, label]) => (
 						<button key={k} type="button" onClick={() => setKind(k as typeof kind)} className={cn("h-7 rounded-md px-2.5 text-xs font-medium", kind === k ? "bg-surface shadow-sm" : "text-muted-foreground hover:text-foreground")}>
 							{label}
 						</button>
@@ -75,12 +76,12 @@ export function PromptsPage() {
 			) : (
 				<div className="space-y-8">
 					{GROUPS.map((g) => {
-						const all = list.filter((p) => p.kind === g.kind);
+						const all = list.filter((p) => p.kind === g.kind && (g.kind !== "type" || !!p.ad === !!g.ad));
 						if (!all.length && (kind || q)) return null;
 						// The film library is long: show a taste first, all of it on request or when searching.
 						const items = g.kind === "film" && !allFilms && !q && !kind ? all.slice(0, 9) : all;
 						return (
-							<section key={g.kind}>
+							<section key={`${g.kind}${g.ad ? "-ad" : ""}`}>
 								<div className="mb-2.5 flex items-baseline justify-between">
 									<h2 className="text-sm font-semibold">{g.title}</h2>
 									<span className="text-xs text-muted-foreground">{g.hint}</span>

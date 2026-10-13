@@ -10,7 +10,7 @@ import { OptionSelect } from "@/components/ui/select";
 import { Skeleton, Tabs, TabsList, TabsTrigger } from "@/components/ui/misc";
 import { Motion, StylePreview } from "@/components/PromptPreview";
 import { api, fileUrl, usePrompts, type Aspect, type Preset, type StyleId } from "@/lib/api";
-import { FOUNDER_LABEL, STYLES, STYLE_LABEL } from "@/lib/constants";
+import { FOUNDER_LABEL, PLATFORMS, STYLES, STYLE_LABEL } from "@/lib/constants";
 import { cn, hostOf, timeAgo } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
@@ -33,8 +33,15 @@ const CATEGORIES: Record<string, string> = {
 	fintech: "Fintech",
 	"marketing-seo": "Marketing and SEO",
 	security: "Security",
+	ecommerce: "Online shops",
+	"beauty-fashion": "Beauty and fashion",
+	"food-drink": "Food and drink",
+	"health-fitness": "Health and fitness",
+	"local-services": "Local services",
+	"apps-games": "Apps and games",
+	creator: "Creators",
 };
-const ASPECT_CLASS: Record<Aspect, string> = { "16:9": "w-full aspect-video", "9:16": "w-[52%] aspect-[9/16]", "1:1": "w-[74%] aspect-square" };
+const ASPECT_CLASS: Record<Aspect, string> = { "16:9": "w-full aspect-video", "9:16": "w-[52%] aspect-[9/16]", "4:5": "w-[60%] aspect-[4/5]", "1:1": "w-[74%] aspect-square" };
 
 function PresetCard({ preset, typeName, onRemix }: { preset: Preset; typeName: string; onRemix: () => void }) {
 	return (
@@ -68,10 +75,11 @@ export function GalleryPage() {
 	const gallery = useQuery({ queryKey: ["gallery", slug], queryFn: () => api.gallery(slug) });
 	const [aspect, setAspect] = useState("all");
 	const [type, setType] = useState("");
-	const search = useSearch({ strict: false }) as { style?: string; founder?: string; category?: string };
+	const search = useSearch({ strict: false }) as { style?: string; founder?: string; category?: string; platform?: string };
 	const [category, setCategory] = useState(search.category || "");
 	const [style, setStyle] = useState(search.style || "");
 	const [founder, setFounder] = useState(search.founder || "");
+	const [platform, setPlatform] = useState(search.platform || "");
 
 	const presets = useMemo(() => gallery.data?.presets || [], [gallery.data]);
 	// Start on the active product's category when the gallery has presets for it.
@@ -80,7 +88,8 @@ export function GalleryPage() {
 	}, [product, presets]);
 
 	const typeName = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.name || t;
-	const shown = presets.filter((p) => (aspect === "all" || p.aspect === aspect) && (!type || p.type === type) && (!style || (p.style || "default") === style) && (!founder || p.founders?.includes(founder)) && (!category || p.categories.includes(category)));
+	const platformOf = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.platform || null;
+	const shown = presets.filter((p) => (!platform || platformOf(p.type) === platform) && (aspect === "all" || p.aspect === aspect) && (!type || p.type === type) && (!style || (p.style || "default") === style) && (!founder || p.founders?.includes(founder)) && (!category || p.categories.includes(category)));
 	const types = [...new Set(presets.map((p) => p.type))];
 	const mine = gallery.data?.mine || [];
 
@@ -108,18 +117,34 @@ export function GalleryPage() {
 					</button>
 				))}
 			</div>
+			<div className="mb-3 flex flex-wrap items-center gap-2" role="radiogroup" aria-label="Ad platform">
+				<span className="text-xs text-muted-foreground">Ads for</span>
+				{PLATFORMS.map((p) => (
+					<button
+						key={p.value}
+						type="button"
+						role="radio"
+						aria-checked={platform === p.value}
+						onClick={() => setPlatform(platform === p.value ? "" : p.value)}
+						className={cn("rounded-full border px-2.5 py-1 text-xs transition-colors", platform === p.value ? "border-brand/40 bg-brand/10 font-medium text-brand" : "border-border text-muted-foreground hover:bg-accent hover:text-foreground")}
+					>
+						{p.label} <span className="text-muted-foreground/70">· {presets.filter((x) => platformOf(x.type) === p.value).length}</span>
+					</button>
+				))}
+			</div>
 			<div className="mb-5 flex flex-wrap items-center gap-2">
 				<Tabs value={aspect} onValueChange={setAspect}>
 					<TabsList>
 						<TabsTrigger value="all">All</TabsTrigger>
 						<TabsTrigger value="16:9">Landscape</TabsTrigger>
 						<TabsTrigger value="9:16">Portrait</TabsTrigger>
+						<TabsTrigger value="4:5">4:5</TabsTrigger>
 						<TabsTrigger value="1:1">Square</TabsTrigger>
 					</TabsList>
 				</Tabs>
 				<OptionSelect size="sm" aria-label="Video type" className="w-44" value={type} onValueChange={setType} emptyLabel="All video types" options={types.map((t) => ({ value: t, label: typeName(t) }))} />
 				<OptionSelect size="sm" aria-label="Style" className="w-40" value={style} onValueChange={setStyle} emptyLabel="All styles" options={Object.entries(STYLE_LABEL).filter(([v]) => v !== "auto").map(([value, label]) => ({ value, label }))} />
-				<OptionSelect size="sm" aria-label="Founder kind" className="w-40" value={founder} onValueChange={setFounder} emptyLabel="All founders" options={Object.entries(FOUNDER_LABEL).map(([value, label]) => ({ value, label }))} />
+				<OptionSelect size="sm" aria-label="Brand kind" className="w-40" value={founder} onValueChange={setFounder} emptyLabel="All brand kinds" options={Object.entries(FOUNDER_LABEL).map(([value, label]) => ({ value, label }))} />
 				<OptionSelect size="sm" aria-label="Category" className="w-48" value={category} onValueChange={setCategory} emptyLabel="All categories" options={Object.entries(CATEGORIES).map(([value, label]) => ({ value, label }))} />
 				<span className="ml-auto text-xs text-muted-foreground">{shown.length} format{shown.length === 1 ? "" : "s"}</span>
 			</div>
@@ -149,7 +174,7 @@ export function GalleryPage() {
 							const thumb = fileUrl(v.id, v.thumbnail_path);
 							return (
 								<Link key={v.id} to="/videos/$id" params={{ id: v.id }} className="group block">
-									<div className={cn("relative overflow-hidden rounded-lg border border-border bg-muted", v.aspect === "9:16" ? "aspect-[9/16]" : v.aspect === "1:1" ? "aspect-square" : "aspect-video")}>
+									<div className={cn("relative overflow-hidden rounded-lg border border-border bg-muted", v.aspect === "9:16" ? "aspect-[9/16]" : v.aspect === "4:5" ? "aspect-[4/5]" : v.aspect === "1:1" ? "aspect-square" : "aspect-video")}>
 										{thumb ? <img src={thumb} alt="" className="size-full object-cover" /> : <Icon icon={Video01Icon} size={20} className="absolute inset-0 m-auto text-muted-foreground" />}
 										<span className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
 											<Icon icon={PlayCircleIcon} size={28} className="text-white" />

@@ -116,7 +116,7 @@ export function ClaudeCodePage() {
 							const thumb = fileUrl(v.id, v.thumbnail_path);
 							return (
 								<Link key={v.id} to="/videos/$id" params={{ id: v.id }} className="group block">
-									<div className={cn("relative overflow-hidden rounded-lg border border-border bg-muted", v.aspect === "9:16" ? "aspect-[9/16]" : v.aspect === "1:1" ? "aspect-square" : "aspect-video")}>
+									<div className={cn("relative overflow-hidden rounded-lg border border-border bg-muted", v.aspect === "9:16" ? "aspect-[9/16]" : v.aspect === "4:5" ? "aspect-[4/5]" : v.aspect === "1:1" ? "aspect-square" : "aspect-video")}>
 										{thumb ? <img src={thumb} alt="" className="size-full object-cover" /> : <Icon icon={Video01Icon} size={20} className="absolute inset-0 m-auto text-muted-foreground" />}
 									</div>
 									<p className="mt-1.5 truncate text-xs font-medium">{v.title}</p>

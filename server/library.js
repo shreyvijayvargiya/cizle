@@ -44,11 +44,16 @@ function toEntry(kind, slug, raw, stat, { light = false } = {}) {
 		// "render" = screenshots of a product; "article" = reads one article, writes a prompt pack and a sketch-style video.
 		engine: data.engine === "article" ? "article" : "render",
 		content_types: Array.isArray(data.content_types) ? data.content_types.map(String) : [],
-		// Which founders this prompt is for: solo, devtool, b2b, ai, fundraising.
+		// Which founders this prompt is for: solo, devtool, b2b, ai, fundraising, ecommerce, beauty, food, health, local, app, creator.
 		founders: Array.isArray(data.for) ? data.for.map(String) : [],
 		// Render style this prompt defaults to: sketch, clay, glass, isometric or ascii.
 		style: ["sketch", "clay", "glass", "isometric", "ascii"].includes(data.style) ? data.style : null,
 		category: data.category ? String(data.category) : null,
+		// Ad formats: ad = true, platform = meta | tiktok | google, output = "banner" for static images, sizes = banner sizes.
+		ad: data.ad === true,
+		platform: ["meta", "tiktok", "google"].includes(data.platform) ? data.platform : null,
+		output: data.output === "banner" ? "banner" : "video",
+		sizes: Array.isArray(data.sizes) ? data.sizes.map(String) : [],
 		uses: Array.isArray(data.uses) ? data.uses.map(String) : [],
 		// Film styles credit their author; the full text is only sent when one prompt is opened.
 		source: data.source ? String(data.source) : null,
@@ -82,9 +87,12 @@ export async function getPrompt(id) {
 	return toEntry(p.kind, p.slug, raw, stat);
 }
 
-export async function getLaws() {
-	const raw = await fsp.readFile(path.join(PROMPTS_DIR, "laws.md"), "utf8").catch(() => "");
-	return matter(raw).content.replace(/<!--[\s\S]*?-->/g, "").trim();
+const readLaws = async (file) => matter(await fsp.readFile(path.join(PROMPTS_DIR, file), "utf8").catch(() => "")).content.replace(/<!--[\s\S]*?-->/g, "").trim();
+
+/** Creative laws for every video. Ad formats add the ads laws (prompts/ads-laws.md) on top. */
+export async function getLaws({ ads = false } = {}) {
+	const base = await readLaws("laws.md");
+	return ads ? `${base}\n\n${await readLaws("ads-laws.md")}`.trim() : base;
 }
 
 /** Create or update a custom prompt. Built-in types/tones can be edited too (they are just files). */

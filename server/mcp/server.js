@@ -9,7 +9,7 @@ import { z } from "zod";
 import { bootLocal, describeJob, dashboardUrl, waitForJob } from "../local.js";
 import { buildGuide } from "./guide.js";
 
-const CATEGORIES = ["devtools", "analytics", "crm", "ai-agents", "project-management", "fintech", "marketing-seo", "security", "other"];
+const CATEGORIES = ["devtools", "analytics", "crm", "ai-agents", "project-management", "fintech", "marketing-seo", "security", "ecommerce", "beauty-fashion", "food-drink", "health-fitness", "local-services", "apps-games", "creator", "other"];
 const STYLE_ENUM = ["auto", "default", "sketch", "clay", "glass", "isometric", "ascii"];
 
 const text = (value) => ({ content: [{ type: "text", text: typeof value === "string" ? value : JSON.stringify(value, null, 2) }] });
@@ -135,7 +135,7 @@ export async function createCizleServer() {
 				storyboard: storyboardSchema,
 				type: z.string().optional().describe("A video type slug, e.g. sketch-explainer. Its default style applies when you give none."),
 				style: z.enum(STYLE_ENUM).optional(),
-				aspect: z.enum(["9:16", "1:1", "16:9"]).optional(),
+				aspect: z.enum(["9:16", "4:5", "1:1", "16:9"]).optional(),
 				audio: z.enum(["music", "silent", "voice"]).optional(),
 				duration_sec: z.number().min(10).max(59).optional(),
 				product: z.string().optional().describe("Product slug"),
@@ -176,7 +176,7 @@ export async function createCizleServer() {
 		{
 			title: "Re-render a video in another style",
 			description: "Render the same storyboard again as a new video in another style, aspect ratio or audio mode. Free: no model is involved. Works on videos made with create_video.",
-			inputSchema: { id: z.string(), style: z.enum(STYLE_ENUM).optional(), aspect: z.enum(["9:16", "1:1", "16:9"]).optional(), audio: z.enum(["music", "silent", "voice"]).optional(), wait_seconds: z.number().min(0).max(300).optional() },
+			inputSchema: { id: z.string(), style: z.enum(STYLE_ENUM).optional(), aspect: z.enum(["9:16", "4:5", "1:1", "16:9"]).optional(), audio: z.enum(["music", "silent", "voice"]).optional(), wait_seconds: z.number().min(0).max(300).optional() },
 		},
 		guarded(async ({ id, wait_seconds, ...overrides }, extra) => {
 			let job = await jobs.reskinJob(id, overrides, deps);
