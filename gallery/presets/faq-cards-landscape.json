@@ -12,5 +12,8 @@
     "security",
     "devtools"
   ],
+  "founders": [
+    "b2b"
+  ],
   "prompt": "Three questions in order: pricing or free plan, how it works, security or data. Each is a frosted question card followed 0.4 s later by an answer card that carries the accent gradient. Answers start with yes, no or the number. Keep one short line per card and let the background orbs drift."
 }

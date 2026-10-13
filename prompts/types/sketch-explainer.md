@@ -9,6 +9,7 @@ content_types: [programming_tutorial, technical_blog, developer_roadmap]
 platforms: [instagram_reels, youtube_shorts]
 visual_style: hand_drawn_minimal
 style: sketch
+for: [devtool, ai, solo]
 ---
 # Sketch Explainer
 

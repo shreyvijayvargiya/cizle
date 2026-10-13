@@ -1,0 +1,21 @@
+{
+  "id": "whats-new-portrait",
+  "title": "What's new, as a checklist",
+  "description": "This week's shipped changes ticked off by hand.",
+  "type": "whats-new",
+  "tone": "playful",
+  "style": "sketch",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "project-management",
+    "devtools",
+    "ai-agents",
+    "crm"
+  ],
+  "founders": [
+    "solo",
+    "devtool"
+  ],
+  "prompt": "Head it with the version or date. Draw three shipped changes as a checklist, each a benefit in six words, newest first, with a real screenshot for the biggest one. Finish with 'Also: ...' for the small stuff and a link to the changelog. Only merged work, never planned work."
+}

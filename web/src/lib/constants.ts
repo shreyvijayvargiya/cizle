@@ -46,3 +46,17 @@ export const STYLES = [
 ] as const;
 
 export const STYLE_LABEL: Record<string, string> = Object.fromEntries(STYLES.map((s) => [s.value, s.label]));
+
+/** Kinds of founder, used to pick which prompts to suggest first. */
+export const FOUNDERS = [
+	{ value: "solo", label: "Solo / indie" },
+	{ value: "devtool", label: "Dev tool" },
+	{ value: "b2b", label: "B2B SaaS" },
+	{ value: "ai", label: "AI product" },
+	{ value: "fundraising", label: "Raising" },
+] as const;
+
+export const FOUNDER_LABEL: Record<string, string> = Object.fromEntries(FOUNDERS.map((f) => [f.value, f.label]));
+
+/** A starting guess for the founder kind from the product's category. The founder can change it. */
+export const founderFromCategory = (category?: string): string => (category === "devtools" ? "devtool" : category === "ai-agents" ? "ai" : category && category !== "other" ? "b2b" : "solo");

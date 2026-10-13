@@ -12,5 +12,9 @@
     "crm",
     "devtools"
   ],
+  "founders": [
+    "solo",
+    "devtool"
+  ],
   "prompt": "Open with 'This week in <product>'. Each shipped change is a clay card that pops in with its benefit in six words. Group at most four changes. End on what is coming next, taken from the roadmap or the latest commits."
 }

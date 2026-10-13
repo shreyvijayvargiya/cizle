@@ -12,5 +12,9 @@
     "fintech",
     "marketing-seo"
   ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
   "prompt": "Stack one block per feature, each sliding in along the diagonal and clicking into place, with the feature name on the top face and the benefit beneath. Finish with one real number from the product (users, integrations, speed) counting up. Same length for every block."
 }

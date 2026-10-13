@@ -1,0 +1,21 @@
+{
+  "id": "problem-solution-square",
+  "title": "Pain to fix, in clay",
+  "description": "Three symptoms sag, then the product pops in. The fastest first video for any SaaS.",
+  "type": "problem-solution",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "1:1",
+  "animation": "card-stack",
+  "categories": [
+    "crm",
+    "project-management",
+    "marketing-seo",
+    "analytics"
+  ],
+  "founders": [
+    "solo",
+    "b2b"
+  ],
+  "prompt": "Show the pain as three grey, sagging clay cards, six words each. A one-word turn (the product name) pops in bright and puffy, followed by two outcomes on a real screenshot. No invented statistics, and the before is spreadsheets or the manual way, never a named competitor."
+}

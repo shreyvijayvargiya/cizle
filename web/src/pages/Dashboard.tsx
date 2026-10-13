@@ -140,7 +140,7 @@ export function DashboardPage() {
 				{product ? <SuggestedPrompts slug={slug} title={`Prompts for ${product.name}`} className="mx-auto mt-8 max-w-5xl" /> : null}
 				{types.length ? (
 					<div className="mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-1.5">
-						{types.map((t) => (
+						{types.slice(0, 10).map((t) => (
 							<button
 								key={t.id}
 								type="button"
@@ -151,6 +151,11 @@ export function DashboardPage() {
 								{t.name}
 							</button>
 						))}
+						{types.length > 10 ? (
+							<Link to="/prompts" className="inline-flex items-center rounded-full px-3 py-1.5 text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground">
+								+{types.length - 10} more types
+							</Link>
+						) : null}
 					</div>
 				) : null}
 			</section>

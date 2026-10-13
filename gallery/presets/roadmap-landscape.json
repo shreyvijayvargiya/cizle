@@ -1,0 +1,21 @@
+{
+  "id": "roadmap-landscape",
+  "title": "Roadmap: now, next, later",
+  "description": "A staircase of blocks showing direction without promises.",
+  "type": "roadmap",
+  "tone": "app-store",
+  "style": "isometric",
+  "aspect": "16:9",
+  "animation": "kinetic-type",
+  "categories": [
+    "devtools",
+    "project-management",
+    "ai-agents"
+  ],
+  "founders": [
+    "solo",
+    "fundraising",
+    "devtool"
+  ],
+  "prompt": "Open with what you are building next, then lay out three or four milestones labelled Now, Next and Later, each in six words or fewer, the Now block pulsing. Take items from the public roadmap, issues or recent commits, with no dates unless a source gives one. End by asking for feedback with the issues URL."
+}

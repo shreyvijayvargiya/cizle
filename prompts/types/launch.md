@@ -5,6 +5,7 @@ kind: type
 aspect: "9:16"
 duration: 20
 visuals: [title, screenshot, image, stats, outro]
+for: [solo, devtool, ai]
 ---
 # Launch teaser
 

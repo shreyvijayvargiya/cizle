@@ -1,0 +1,21 @@
+{
+  "id": "how-it-works-portrait",
+  "title": "How it works, as isometric steps",
+  "description": "Three numbered blocks from sign-up to first result.",
+  "type": "how-it-works",
+  "tone": "app-store",
+  "style": "isometric",
+  "aspect": "9:16",
+  "animation": "cursor-walkthrough",
+  "categories": [
+    "analytics",
+    "crm",
+    "project-management",
+    "fintech"
+  ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Build a staircase of three blocks, each a verb phrase of five words or fewer: step 1 at the bottom, the result on top. Add one real screenshot per step with the step number as its caption. Use only steps that exist in the docs or onboarding. End on the result and the CTA."
+}

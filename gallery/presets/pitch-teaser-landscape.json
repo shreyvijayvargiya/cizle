@@ -1,0 +1,21 @@
+{
+  "id": "pitch-teaser-landscape",
+  "title": "Pitch teaser on glass",
+  "description": "Problem, solution, traction and a way to get in touch, in 30 seconds.",
+  "type": "pitch-teaser",
+  "tone": "cinematic",
+  "style": "glass",
+  "aspect": "16:9",
+  "animation": "count-up",
+  "categories": [
+    "ai-agents",
+    "fintech",
+    "analytics",
+    "devtools",
+    "security"
+  ],
+  "founders": [
+    "fundraising"
+  ],
+  "prompt": "State the problem for the buyer in one line, reveal the product with its best screen, then show two to four real traction numbers counting up with exact labels. Add one real user quote if there is one and the real roadmap as Now, Next, Later. Never invent revenue, market size or customers, and never state an ask. End with 'Let's talk' and the contact URL."
+}

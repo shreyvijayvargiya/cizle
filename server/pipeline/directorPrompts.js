@@ -131,6 +131,10 @@ VISUALS — exactly one per scene:
 - "faq": { "question": <= 14 words, "answer": <= 22 words } — from BRIEF.faqs
 - "glossary": { "term", "definition": <= 18 words, "example": optional <= 10 words, "label": optional e.g. "Term 2/4" } — from BRIEF.glossary
 - "comparison": { "title": optional <= 6 words, "columns": [product name, competitor name(s), max 3], "rows": [{ "label": <= 4 words, "values": [one short value per column, "—" when unknown] }] max 5 rows } — from BRIEF.comparison_points only
+- "steps": { "title": optional <= 5 words, "items": 2-4 of { "label": <= 5 words, "detail": optional <= 8 words } } — a numbered 1-2-3 flow (signup to result, install to first run)
+- "plans": { "title": optional <= 5 words, "items": 2-3 of { "name", "price", "for": <= 6 words, "perks": optional up to 3 short strings } } — from BRIEF.pricing only; never invent a price
+- "timeline": { "title": optional <= 5 words, "items": 2-4 of { "when": <= 3 words such as "Now", "Next", "Later", "label": <= 6 words } } — shipped history or planned work stated in the sources
+- "sketch": { "label": <= 6 words, "nodes": 2-4 names of 1-3 words } — a small diagram of boxes joined by arrows (how a thing flows or connects)
 - "code": { "file", "start_line", "end_line", "caption" } — only files in CODE_FILES, max 14 lines
 - "outro": { "title": <= 5 words, "cta": <= 9 words, "url": display url without protocol }
 "on_screen_text": <= 6 words, required on screenshot/image scenes, "" otherwise.

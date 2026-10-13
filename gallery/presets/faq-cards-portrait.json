@@ -12,5 +12,9 @@
     "security",
     "crm"
   ],
+  "founders": [
+    "solo",
+    "b2b"
+  ],
   "prompt": "Four questions at most. Each question is a puffy bubble that pops in with a little squash; the answer bubble follows and bounces slightly. Warm, first-person-plural wording, answers under 15 words. End on the friendliest next step."
 }

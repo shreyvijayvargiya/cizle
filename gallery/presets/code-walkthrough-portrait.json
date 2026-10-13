@@ -1,0 +1,20 @@
+{
+  "id": "code-walkthrough-portrait",
+  "title": "Code walkthrough on a whiteboard",
+  "description": "One concept from the codebase, sketched and then shown in two short snippets.",
+  "type": "code-walkthrough",
+  "tone": "deadpan",
+  "style": "sketch",
+  "aspect": "9:16",
+  "animation": "cursor-walkthrough",
+  "categories": [
+    "devtools",
+    "ai-agents",
+    "security"
+  ],
+  "founders": [
+    "devtool",
+    "ai"
+  ],
+  "prompt": "State the problem the code solves in one line, sketch the main idea as three or four boxes joined by arrows, then show two code snippets of at most 14 real lines each with a caption on what to notice. Close with three takeaways and 'Star it on GitHub'. Real lines only, explain the concept rather than the file tree."
+}

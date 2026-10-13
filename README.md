@@ -69,7 +69,7 @@ To run it as a single server: `npm run build && npm start`, then open http://loc
 | **Review before create** | Press the arrow and an AI step checks for duplicates, asks the few questions that matter (audience, format, free or paid) and writes the final prompt. You approve, then it runs. |
 | **Blog to sketch video** | Paste an article link; the Sketch Explainer type renders a hand-drawn explainer video and returns a prompt pack for video models: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
 | **Animated styles** | Hand-drawn, clay, glass, isometric and ASCII looks with real entrance animations, set by the tone or picked in the composer. |
-| **Remix from the gallery** | 16 formats across 8 SaaS categories, landscape, portrait and square, each in an animated style. |
+| **Remix from the gallery** | 30 formats across 8 SaaS categories, landscape, portrait and square, each in an animated style. |
 | **Use free models** | A switch next to every generate button. Free OpenRouter models, $0, rate limited. |
 | **Stop anything** | Every button that starts work turns into **Stop** while it runs. |
 | **Edit everything** | Notes, prompts, ideas and settings are plain files you can open in any editor. |
@@ -154,7 +154,7 @@ style: clay
 
 ## Gallery and remix
 
-Sidebar → **Gallery**. Sixteen formats across the types, aspect ratios (landscape, portrait, square) and the six animated styles, filterable by category and style. When you add a product, cizle also suggests the prompts that fit its category (on the onboarding screen, the product page and the dashboard), one for each style. **Remix for my product** opens the composer with that format's type, tone, aspect ratio and direction, and your product's website and repos filled in. Your own finished videos for the active product appear below.
+Sidebar → **Gallery**. Thirty formats across the types, aspect ratios (landscape, portrait, square) and the six animated styles, filterable by category, style and founder kind. When you add a product, cizle also suggests the prompts that fit its category and your kind of founder (on the onboarding screen, the product page and the dashboard), one for each style. Switch the founder kind with the chips above the suggestions. **Remix for my product** opens the composer with that format's type, tone, aspect ratio and direction, and your product's website and repos filled in. Your own finished videos for the active product appear below.
 
 The preview on each card is a small looping sample of its style (and the same previews appear on the Prompts page cards). Presets are plain JSON in [`gallery/presets/`](gallery/presets), so adding one is a pull request.
 
@@ -200,6 +200,21 @@ Cancellation is built in: work that can be stopped runs inside a cancellable sco
 | **Product comparison** | Side-by-side table against competitors, using only facts on both sites | competitor URLs |
 | **Glossary explainer** | Teaches the key terms in your space | docs or blog |
 | **Launch teaser** | Big type, few words, strong CTA | a URL |
+| **Sketch Explainer** | A hand-drawn explainer of a blog post, plus a prompt pack | an article URL |
+
+And fourteen for the jobs founders keep needing:
+
+| Founder job | Types | Needs |
+|---|---|---|
+| **Tell the story** | **Founder story**, **Problem to solution** | an About page or blog; a URL |
+| **Convert** | **How it works** (3 steps), **Pricing explained**, **Use-case spotlight**, **Customer proof** | a URL; pricing; the audience; real quotes or numbers |
+| **Activate and retain** | **Quickstart**, **What's new**, **Integrations** | docs or README; releases or merged PRs; an integrations list |
+| **Build trust** | **Roadmap teaser**, **Myth-busting**, **Tips list** | roadmap, issues or commits; docs or blog |
+| **Raise and explain** | **Pitch teaser**, **Code walkthrough** | real traction numbers; a GitHub repo |
+
+Every type needs real material from your sources, never invented: a type whose needs are not met is skipped when you pick **Any type** (for example no pricing page means no Pricing explained, no customer quotes means no Customer proof). Each type is tagged with the kinds of founder it suits (solo, dev tool, B2B SaaS, AI product, raising), and the prompts cizle suggests when you add a product start with the ones for your kind of founder.
+
+Besides the usual scenes (title, bullets, stats, quote, FAQ, glossary, comparison, code, screenshot), videos can use **steps** (numbered 1-2-3), **plans** (pricing cards), **timeline** (now, next, later) and **sketch** diagrams, all drawn in every style.
 
 Each run gives you **1–3 different videos**, up to 59 seconds, in **9:16, 1:1 or 16:9**, with:
 

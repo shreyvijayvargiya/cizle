@@ -369,7 +369,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 						Load prompt
 					</button>
 					<Pill icon={Layers01Icon} label={typeName}>
-						<MenuContent className="w-64">
+						<MenuContent className="max-h-[60vh] w-72 overflow-y-auto">
 							<MenuLabel>Video type</MenuLabel>
 							<MenuRadioGroup value={type} onValueChange={setType}>
 								<MenuRadioItem value="auto">

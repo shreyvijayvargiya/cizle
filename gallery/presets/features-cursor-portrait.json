@@ -12,5 +12,9 @@
     "project-management",
     "analytics"
   ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
   "prompt": "Draw the pain as a doodle with a one-line caption, then three numbered features, each with a small diagram (boxes and arrows) that is drawn in as it is explained. Close with a circled result and the call to action. Conversational wording, like explaining it to a colleague."
 }

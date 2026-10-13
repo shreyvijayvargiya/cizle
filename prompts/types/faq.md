@@ -6,6 +6,7 @@ aspect: "9:16"
 duration: 35
 visuals: [title, faq, screenshot, outro]
 needs: [faqs]
+for: [b2b, solo]
 ---
 # Product FAQ
 

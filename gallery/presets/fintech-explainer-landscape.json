@@ -10,5 +10,9 @@
   "categories": [
     "fintech"
   ],
+  "founders": [
+    "b2b",
+    "fundraising"
+  ],
   "prompt": "Open with the confusing term as a question. For each of three terms: write the term, underline it, give a plain-English definition under 18 words, then a tiny diagram. Tie the last term to how the product handles it, with a real screenshot. No jargon inside definitions."
 }

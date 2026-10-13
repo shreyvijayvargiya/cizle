@@ -9,11 +9,11 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/misc";
 import { PromptThumb } from "@/components/PromptPreview";
 import { usePrompts, type Prompt } from "@/lib/api";
-import { STYLE_LABEL } from "@/lib/constants";
+import { FOUNDER_LABEL, STYLE_LABEL } from "@/lib/constants";
 import { cn, timeAgo } from "@/lib/utils";
 
 /** Motion sample for a built-in video type (used when the prompt has no render style of its own). */
-const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup" };
+const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup", "founder-story": "kinetic-type", "problem-solution": "card-stack", "how-it-works": "cursor-walkthrough", "pricing-explained": "count-up", "use-case-spotlight": "device-mockup", "customer-proof": "card-stack", quickstart: "cursor-walkthrough", "whats-new": "card-stack", roadmap: "kinetic-type", integrations: "card-stack", "myth-busting": "split-compare", "tips-listicle": "kinetic-type", "pitch-teaser": "count-up", "code-walkthrough": "cursor-walkthrough" };
 
 const GROUPS: { kind: Prompt["kind"]; title: string; hint: string }[] = [
 	{ kind: "custom", title: "Your prompts", hint: "Saved in prompts/custom/*.md" },
@@ -25,9 +25,10 @@ export function PromptsPage() {
 	const prompts = usePrompts();
 	const [q, setQ] = useState("");
 	const [kind, setKind] = useState<"" | Prompt["kind"]>("");
+	const [founder, setFounder] = useState("");
 	const list = useMemo(
-		() => (prompts.data || []).filter((p) => (!kind || p.kind === kind) && (!q || `${p.name} ${p.description} ${p.body}`.toLowerCase().includes(q.toLowerCase()))),
-		[prompts.data, q, kind],
+		() => (prompts.data || []).filter((p) => (!kind || p.kind === kind) && (!founder || p.founders?.includes(founder)) && (!q || `${p.name} ${p.description} ${p.body}`.toLowerCase().includes(q.toLowerCase()))),
+		[prompts.data, q, kind, founder],
 	);
 	return (
 		<Page
@@ -50,6 +51,13 @@ export function PromptsPage() {
 				<div className="flex items-center gap-1 rounded-lg bg-muted p-1">
 					{[["", "All"], ["custom", "Yours"], ["type", "Types"], ["tone", "Tones"]].map(([k, label]) => (
 						<button key={k} type="button" onClick={() => setKind(k as typeof kind)} className={cn("h-7 rounded-md px-2.5 text-xs font-medium", kind === k ? "bg-surface shadow-sm" : "text-muted-foreground hover:text-foreground")}>
+							{label}
+						</button>
+					))}
+				</div>
+				<div className="flex flex-wrap items-center gap-1">
+					{Object.entries(FOUNDER_LABEL).map(([v, label]) => (
+						<button key={v} type="button" onClick={() => setFounder(founder === v ? "" : v)} className={cn("h-7 rounded-full border px-2.5 text-xs", founder === v ? "border-brand/40 bg-brand/10 font-medium text-brand" : "border-border text-muted-foreground hover:bg-accent hover:text-foreground")}>
 							{label}
 						</button>
 					))}
@@ -86,6 +94,7 @@ export function PromptsPage() {
 													<span className="font-mono">{p.kind}/{p.slug}.md</span>
 													{p.type && p.kind === "custom" ? <span>· {p.type}</span> : null}
 													{p.style ? <Badge tone="info">{STYLE_LABEL[p.style]}</Badge> : null}
+													{p.kind === "type" && p.founders?.length ? <span className="truncate">· {p.founders.map((f) => FOUNDER_LABEL[f] || f).join(", ")}</span> : null}
 													<span className="ml-auto">{timeAgo(p.updated_at)}</span>
 												</div>
 											</Link>

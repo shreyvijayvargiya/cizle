@@ -18,6 +18,8 @@ export type Prompt = {
 	needs: string[];
 	engine: "render" | "article";
 	content_types: string[];
+	/** Founder kinds this prompt suits (see FOUNDERS in constants). */
+	founders: string[];
 	style: StyleId | null;
 	built_in: boolean;
 	body: string;
@@ -212,7 +214,7 @@ export type Review = {
 	review_cost_usd: number;
 };
 
-export type Preset = { id: string; title: string; description: string; type: string; tone: string; style: StyleId; aspect: Aspect; animation: string; categories: string[]; prompt: string };
+export type Preset = { id: string; title: string; description: string; type: string; tone: string; style: StyleId; founders: string[]; aspect: Aspect; animation: string; categories: string[]; prompt: string };
 
 export type ModelsInfo = { fetched: boolean; paid: { script_model: string; vision_model: string }; free: { script_model: string; vision_model: string }; free_count: number; notes: string[] };
 

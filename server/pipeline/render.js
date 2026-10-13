@@ -448,7 +448,26 @@ export function sanitizeStoryboard(board, { frames, codeFiles, input, source, in
 		if (type === "code" && !codePaths.has(v.file)) type = "bullets";
 		if (type === "bullets" && !(Array.isArray(v.items) && v.items.length)) type = "title";
 		if (type === "stats" && !(Array.isArray(v.items) && v.items.length)) type = "title";
-		if (!["screenshot", "title", "bullets", "stats", "code", "quote", "faq", "glossary", "comparison", "sketch", "outro"].includes(type)) type = "title";
+		// steps, plans, timeline: keep only well-formed items; otherwise fall back to a simpler scene
+		const clip = (x, n) => String(x ?? "").replace(/\s+/g, " ").trim().slice(0, n);
+		if (type === "steps") {
+			v.items = (Array.isArray(v.items) ? v.items : []).map((it) => ({ label: clip(it?.label ?? it, 48), detail: clip(it?.detail, 70) })).filter((it) => it.label).slice(0, 4);
+			if (v.items.length < 2) type = "title";
+		}
+		if (type === "plans") {
+			v.items = (Array.isArray(v.items) ? v.items : []).map((it) => ({ name: clip(it?.name, 24), price: clip(it?.price, 16), for: clip(it?.for, 48), perks: (Array.isArray(it?.perks) ? it.perks : []).map((x) => clip(x, 28)).filter(Boolean).slice(0, 3) })).filter((it) => it.name && it.price).slice(0, 3);
+			if (!v.items.length) type = "title";
+		}
+		if (type === "timeline") {
+			v.items = (Array.isArray(v.items) ? v.items : []).map((it) => ({ when: clip(it?.when, 14), label: clip(it?.label, 56) })).filter((it) => it.when && it.label).slice(0, 4);
+			if (v.items.length < 2) type = "title";
+		}
+		if (type === "sketch") {
+			v.nodes = (Array.isArray(v.nodes) ? v.nodes : []).map((n) => clip(n, 28)).filter(Boolean).slice(0, 4);
+			v.label = clip(v.label || v.title, 60);
+			if (!v.label && v.nodes.length < 2) type = "title";
+		}
+		if (!["screenshot", "title", "bullets", "stats", "code", "quote", "faq", "glossary", "comparison", "sketch", "steps", "plans", "timeline", "outro"].includes(type)) type = "title";
 		v.type = type;
 		if (type === "title" && !v.title) v.title = s.on_screen_text || source.name || source.title || "";
 		if (type === "screenshot") {

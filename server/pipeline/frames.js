@@ -333,6 +333,10 @@ export function buildFrameHtml({ scene, size, theme, image, code }) {
 	const visual = scene.visual || {};
 	const center = { x: 0.5, y: 0.5 };
 	if (isStyled(theme.style)) return { html: styledFrame({ style: theme.style, size, theme, visual, scene, image, code }), focus: center };
+	// The plain look has no steps, plans or timeline layout: draw them as bullets or stats.
+	if (visual.type === "steps") return { html: bulletsFrame({ size, theme, visual: { title: visual.title, items: (visual.items || []).map((it, n) => `${n + 1}. ${it.label}`) } }), focus: center };
+	if (visual.type === "timeline") return { html: bulletsFrame({ size, theme, visual: { title: visual.title, items: (visual.items || []).map((it) => `${it.when}: ${it.label}`) } }), focus: center };
+	if (visual.type === "plans") return { html: statsFrame({ size, theme, visual: { items: (visual.items || []).map((it) => ({ label: `${it.name}${it.for ? ` · ${it.for}` : ""}`, value: it.price })) } }), focus: center };
 	switch (visual.type) {
 		case "screenshot":
 		case "image":

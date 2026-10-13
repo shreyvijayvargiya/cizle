@@ -10,7 +10,7 @@ import { OptionSelect } from "@/components/ui/select";
 import { Skeleton, Tabs, TabsList, TabsTrigger } from "@/components/ui/misc";
 import { Motion, StylePreview } from "@/components/PromptPreview";
 import { api, fileUrl, usePrompts, type Aspect, type Preset } from "@/lib/api";
-import { STYLE_LABEL } from "@/lib/constants";
+import { FOUNDER_LABEL, STYLE_LABEL } from "@/lib/constants";
 import { cn, hostOf, timeAgo } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
@@ -70,6 +70,7 @@ export function GalleryPage() {
 	const [type, setType] = useState("");
 	const [category, setCategory] = useState("");
 	const [style, setStyle] = useState("");
+	const [founder, setFounder] = useState("");
 
 	const presets = useMemo(() => gallery.data?.presets || [], [gallery.data]);
 	// Start on the active product's category when the gallery has presets for it.
@@ -78,7 +79,7 @@ export function GalleryPage() {
 	}, [product, presets]);
 
 	const typeName = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.name || t;
-	const shown = presets.filter((p) => (aspect === "all" || p.aspect === aspect) && (!type || p.type === type) && (!style || (p.style || "default") === style) && (!category || p.categories.includes(category)));
+	const shown = presets.filter((p) => (aspect === "all" || p.aspect === aspect) && (!type || p.type === type) && (!style || (p.style || "default") === style) && (!founder || p.founders?.includes(founder)) && (!category || p.categories.includes(category)));
 	const types = [...new Set(presets.map((p) => p.type))];
 	const mine = gallery.data?.mine || [];
 
@@ -95,6 +96,7 @@ export function GalleryPage() {
 				</Tabs>
 				<OptionSelect size="sm" aria-label="Video type" className="w-44" value={type} onValueChange={setType} emptyLabel="All video types" options={types.map((t) => ({ value: t, label: typeName(t) }))} />
 				<OptionSelect size="sm" aria-label="Style" className="w-40" value={style} onValueChange={setStyle} emptyLabel="All styles" options={Object.entries(STYLE_LABEL).filter(([v]) => v !== "auto").map(([value, label]) => ({ value, label }))} />
+				<OptionSelect size="sm" aria-label="Founder kind" className="w-40" value={founder} onValueChange={setFounder} emptyLabel="All founders" options={Object.entries(FOUNDER_LABEL).map(([value, label]) => ({ value, label }))} />
 				<OptionSelect size="sm" aria-label="Category" className="w-48" value={category} onValueChange={setCategory} emptyLabel="All categories" options={Object.entries(CATEGORIES).map(([value, label]) => ({ value, label }))} />
 				<span className="ml-auto text-xs text-muted-foreground">{shown.length} format{shown.length === 1 ? "" : "s"}</span>
 			</div>

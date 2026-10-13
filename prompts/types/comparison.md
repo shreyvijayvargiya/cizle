@@ -6,6 +6,7 @@ aspect: "9:16"
 duration: 35
 visuals: [title, comparison, screenshot, bullets, outro]
 needs: [competitors]
+for: [b2b, solo]
 ---
 # Product comparison
 

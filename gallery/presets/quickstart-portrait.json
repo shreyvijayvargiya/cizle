@@ -1,0 +1,20 @@
+{
+  "id": "quickstart-portrait",
+  "title": "Quickstart in the terminal",
+  "description": "From install to the first result, typed live.",
+  "type": "quickstart",
+  "tone": "deadpan",
+  "style": "ascii",
+  "aspect": "9:16",
+  "animation": "cursor-walkthrough",
+  "categories": [
+    "devtools",
+    "ai-agents",
+    "security"
+  ],
+  "founders": [
+    "devtool",
+    "ai"
+  ],
+  "prompt": "Promise a result in 30 seconds, then type the real commands as numbered steps, each followed by its output. Show what success looks like on screen ('You should see this') and two next steps from the docs. Commands and flags exactly as in the README. End on the docs URL, not a sales line."
+}

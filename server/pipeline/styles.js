@@ -79,6 +79,19 @@ body{font-family:${font};color:${p.text};background:${p.bg};position:relative;-w
 .device img{display:block;width:100%;max-height:${Math.round(size.height * 0.56)}px;object-fit:cover;object-position:top}
 .code{font-family:'JetBrains Mono',Menlo,Consolas,monospace;font-size:${U(34)};text-align:left;white-space:pre;line-height:1.5;padding:${U(30)} ${U(40)};max-width:94%;overflow:hidden}
 .arrow{display:block}
+.card.code{font-size:${U(34)};font-weight:500;width:94%;max-width:94%}
+.badge{display:inline-flex;align-items:center;justify-content:center;flex:none;width:${U(88)};height:${U(88)};border-radius:50%;font-size:${U(50)};font-weight:800;background:${p.accent};color:#fff}
+.stepcard{display:flex;align-items:center;gap:${U(32)};text-align:left;width:92%}
+.detail{font-size:${U(38)};font-weight:500;opacity:.72;margin-top:${U(6)}}
+.chip{display:inline-block;padding:${U(8)} ${U(24)};border-radius:999px;font-size:${U(34)};font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:${p.accent};color:#fff}
+.plan{display:flex;justify-content:space-between;align-items:center;gap:${U(26)};text-align:left;width:92%}
+.plan .price{font-size:${U(78)};font-weight:800;line-height:1}
+.plan .perk{font-size:${U(36)};font-weight:500;opacity:.72;margin-top:${U(6)}}
+.tl{display:flex;flex-direction:column;gap:${U(30)};width:92%;position:relative;padding-left:${U(60)}}
+.tl:before{content:"";position:absolute;left:${U(18)};top:${U(30)};bottom:${U(30)};width:${U(8)};border-radius:${U(8)};background:${p.accent};opacity:.55}
+.tl .item{position:relative;text-align:left}
+.tl .item:before{content:"";position:absolute;left:${U(-60)};top:${U(34)};width:${U(44)};height:${U(44)};border-radius:50%;background:${p.accent};border:${U(8)} solid ${p.bg}}
+.tl .card{margin-top:${U(14)};width:100%;max-width:100%}
 .in{animation:var(--enter) .8s cubic-bezier(.2,.9,.25,1.15) both;animation-delay:calc(var(--i,0) * .16s + .05s)}
 `;
 	switch (style) {
@@ -99,6 +112,10 @@ body{background-image:radial-gradient(${p.text}14 1.2px,transparent 1.4px);backg
 @keyframes sk{0%{transform:scale(.55) rotate(-5deg);opacity:0}60%{transform:scale(1.07) rotate(1.5deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 @keyframes draw{to{stroke-dashoffset:0}}
 @keyframes wob{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(${U(-26)}) rotate(7deg)}}
+.badge{border:${U(6)} solid ${p.text};filter:url(#rough);background:#fff;color:${p.text}}
+.chip{border:${U(4)} solid ${p.text};background:#fff;color:${p.text};filter:url(#rough)}
+.tl:before{background:${p.text};opacity:.8;filter:url(#rough)}
+.tl .item:before{background:#fff;border:${U(6)} solid ${p.text}}
 .stage{--enter:sk}`;
 		case "clay":
 			return `${base}
@@ -112,6 +129,9 @@ body{background-image:radial-gradient(${p.text}14 1.2px,transparent 1.4px);backg
 .blob{position:absolute;border-radius:46% 54% 58% 42%/48% 44% 56% 52%;box-shadow:inset 0 ${U(-30)} ${U(50)} #00000018,inset 0 ${U(24)} ${U(40)} #ffffff99,0 ${U(40)} ${U(60)} ${U(-24)} #3a2e2955;animation:drift 6s ease-in-out infinite alternate}
 @keyframes cl{0%{transform:translateY(${U(120)}) scale(.7,.45);opacity:0}45%{transform:translateY(${U(-30)}) scale(.94,1.1);opacity:1}65%{transform:translateY(0) scale(1.07,.93)}82%{transform:scale(.98,1.03)}100%{transform:none}}
 @keyframes drift{from{transform:translate(0,0) rotate(0) scale(1)}to{transform:translate(${U(34)},${U(-46)}) rotate(14deg) scale(1.06)}}
+.badge{box-shadow:inset 0 ${U(-8)} ${U(14)} #00000030,inset 0 ${U(6)} ${U(10)} #ffffff77,0 ${U(14)} ${U(22)} ${U(-8)} ${p.accent}88}
+.chip{box-shadow:inset 0 ${U(-6)} ${U(10)} #00000026,inset 0 ${U(5)} ${U(8)} #ffffff66}
+.tl:before{box-shadow:inset 0 ${U(-4)} ${U(6)} #00000022}
 .stage{--enter:cl}`;
 		case "glass":
 			return `${base}
@@ -125,6 +145,10 @@ body{background:radial-gradient(120% 90% at 20% 0%,#1d1a4a,${p.bg} 60%)}
 .orb{position:absolute;border-radius:50%;filter:blur(${U(70)});opacity:.85;animation:orb 7s ease-in-out infinite alternate}
 @keyframes gl{0%{transform:translateY(${U(60)}) scale(.94);opacity:0;filter:blur(${U(18)})}100%{transform:none;opacity:1;filter:blur(0)}}
 @keyframes orb{from{transform:translate(0,0) scale(1)}to{transform:translate(${U(90)},${U(-120)}) scale(1.25)}}
+.badge{background:linear-gradient(135deg,${p.accent},#ff5cc8);box-shadow:0 ${U(12)} ${U(34)} ${U(-8)} ${p.accent}}
+.chip{background:linear-gradient(135deg,${p.accent},#ff5cc8)}
+.tl:before{background:linear-gradient(180deg,${p.accent},#ff5cc8);opacity:.9}
+.tl .item:before{background:#fff;box-shadow:0 0 ${U(24)} ${p.accent}}
 .stage{--enter:gl}`;
 		case "isometric":
 			return `${base}
@@ -144,6 +168,10 @@ body{background:linear-gradient(180deg,#f6f8fd,${p.bg})}
 @keyframes iso{0%{transform:translate(${U(-110)},${U(110)}) translateX(${U(-6)});opacity:0}100%{transform:translateX(${U(-6)});opacity:1}}
 @keyframes cube{from{margin-top:0}to{margin-top:${U(-46)}}}
 @keyframes gridmove{to{transform:translate(${U(90 * 0.866)},${U(45)})}}
+.badge{border-radius:${U(14)};border:${U(4)} solid ${p.text};box-shadow:${[1,2,3,4,5,6].map((n) => `${U(n)} ${U(n)} 0 ${p.text}`).join(",")}}
+.chip{border-radius:${U(8)};border:${U(3)} solid ${p.text};box-shadow:${[1,2,3,4].map((n) => `${U(n)} ${U(n)} 0 ${p.text}`).join(",")}}
+.tl:before{border-radius:0;background:${p.text};opacity:.9;width:${U(6)}}
+.tl .item:before{border-radius:${U(8)};background:${p.accent};border:${U(5)} solid ${p.text}}
 .stage{--enter:iso}`;
 		default:
 			return `${base}
@@ -158,13 +186,18 @@ body{text-shadow:0 0 ${U(14)} ${p.text}99}
 .scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,#00000066 0 ${U(3)},transparent ${U(3)} ${U(7)});pointer-events:none;animation:scan 8s linear infinite}
 .vig{position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 50%,transparent 55%,#000000dd);pointer-events:none}
 .rain{position:absolute;top:0;white-space:pre;font-family:'JetBrains Mono',monospace;font-size:${U(34)};line-height:1.1;color:${p.text};opacity:.16;text-shadow:none;animation:rain var(--d) linear infinite}
-.caret{display:inline-block;width:${U(54)};height:${U(96)};background:${p.text};vertical-align:-${U(8)};margin-left:${U(14)};animation:blink 1s steps(1) infinite}
+.caret{display:inline-block;width:.5em;height:.95em;background:${p.text};vertical-align:-.12em;margin-left:.2em;animation:blink 1s steps(1) infinite}
 .type{animation:typed var(--t,1s) steps(var(--n,24)) both;animation-delay:calc(var(--i,0) * .22s + .1s)}
 @keyframes asc{0%{clip-path:inset(0 100% 0 0);opacity:0}1%{opacity:1}100%{clip-path:inset(0 0 0 0)}}
 @keyframes typed{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes blink{50%{opacity:0}}
 @keyframes rain{from{transform:translateY(${U(-1600)})}to{transform:translateY(0)}}
 @keyframes scan{to{background-position:0 ${U(70)}}}
+.badge{border-radius:0;background:transparent;color:${p.text};border:${U(6)} double ${p.text};width:auto;min-width:${U(110)};padding:0 ${U(14)};font-size:${U(44)}}
+.chip{border-radius:0;background:${p.text};color:#04100a;text-shadow:none}
+.tl:before{background:${p.text};border-radius:0;width:${U(4)}}
+.tl .item:before{border-radius:0;background:${p.text};border:${U(6)} solid ${p.bg}}
+.plan .price{color:${p.accent};text-shadow:0 0 ${U(18)} ${p.accent}99}
 .stage{--enter:asc}`;
 	}
 }
@@ -290,6 +323,21 @@ export function styledFrame({ style, size, theme, visual, scene, image, code }) 
 		case "screenshot":
 		case "image":
 			body = (scene?.on_screen_text ? el("pill", esc(scene.on_screen_text), 0) : "") + (image ? el("device", `${image.chrome ? `<div class="bar"><i></i><i></i><i></i></div>` : ""}<img src="${image.dataUrl}" alt="">`, 1) : heading("h1", scene?.on_screen_text || "", style, 0));
+			break;
+		case "steps":
+			body = (visual.title ? heading("h2", visual.title, style, 0) : "") + `<div class="col">${(visual.items || []).slice(0, 4).map((it, n) => el("card stepcard", `<span class="badge">${style === "ascii" ? `[${n + 1}]` : n + 1}</span><div><div>${esc(it.label)}</div>${it.detail ? `<div class="detail">${esc(it.detail)}</div>` : ""}</div>`, n + 1)).join("")}</div>`;
+			break;
+		case "plans": {
+			const items = (visual.items || []).slice(0, 3);
+			const card = (it, n) =>
+				ctx.portrait
+					? el("card plan", `<div><div class="lbl" style="opacity:.8">${esc(it.name)}</div><div style="margin-top:${6 * k}px">${esc(it.for || "")}</div>${Array.isArray(it.perks) && it.perks.length ? `<div class="perk">${it.perks.slice(0, 3).map(esc).join(" · ")}</div>` : ""}</div><div class="price">${esc(it.price)}</div>`, n + 1)
+					: el("card", `<div class="lbl">${esc(it.name)}</div><div class="num" style="margin:${14 * k}px 0">${esc(it.price)}</div><div style="font-size:${40 * k}px">${esc(it.for || "")}</div>`, n + 1, "text-align:center;min-width:" + 360 * k + "px");
+			body = (visual.title ? heading("h2", visual.title, style, 0) : "") + `<div class="${ctx.portrait ? "col" : "row"}">${items.map(card).join("")}</div>`;
+			break;
+		}
+		case "timeline":
+			body = (visual.title ? heading("h2", visual.title, style, 0) : "") + `<div class="tl">${(visual.items || []).slice(0, 4).map((it, n) => el("item", `<span class="chip">${esc(it.when)}</span>${el("card", esc(it.label), 0)}`, n + 1)).join("")}</div>`;
 			break;
 		case "sketch":
 			body = sketchDiagram(visual, style, p, ctx);

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { ArrowRight01Icon, AiMagicIcon } from "@hugeicons/core-free-icons";
@@ -7,7 +7,7 @@ import { StylePreview, Motion } from "@/components/PromptPreview";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/misc";
 import { api, usePrompts, useProduct, type Preset } from "@/lib/api";
-import { STYLE_LABEL } from "@/lib/constants";
+import { FOUNDERS, FOUNDER_LABEL, STYLE_LABEL, founderFromCategory } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const CATEGORY_LABEL: Record<string, string> = {
@@ -21,22 +21,33 @@ const CATEGORY_LABEL: Record<string, string> = {
 	security: "security",
 };
 
-/** Up to `count` prompts for a product: its category first, a different animated style each. */
-export function pickSuggestions(presets: Preset[], category: string | undefined, count = 4) {
-	const fits = presets.filter((p) => category && p.categories.includes(category));
-	const rest = presets.filter((p) => !fits.includes(p));
+/**
+ * Up to `count` prompts for a product: its founder kind and category first, a different animated style each.
+ * A founder match counts more than a category match, so a dev-tool founder sees Quickstart and Code walkthrough early.
+ */
+export function pickSuggestions(presets: Preset[], category: string | undefined, founder: string, count = 4) {
+	const score = (p: Preset) => (p.founders?.includes(founder) ? 3 : 0) + (category && p.categories.includes(category) ? 2 : 0);
+	const ranked = [...presets].sort((x, y) => score(y) - score(x));
 	const chosen: Preset[] = [];
 	const styles = new Set<string>();
-	for (const p of [...fits, ...rest]) {
+	for (const p of ranked) {
 		const s = p.style || "default";
-		if (styles.has(s)) continue;
+		if (styles.has(s) || score(p) === 0) continue;
 		styles.add(s);
 		chosen.push(p);
 		if (chosen.length === count) break;
 	}
-	for (const p of [...fits, ...rest]) if (chosen.length < count && !chosen.includes(p)) chosen.push(p);
-	return { chosen, matched: fits.length > 0 };
+	for (const p of ranked) if (chosen.length < count && !chosen.includes(p)) chosen.push(p);
+	return { chosen, matched: ranked.some((p) => score(p) > 0) };
 }
+
+const readFounder = () => {
+	try {
+		return localStorage.getItem("cizle-founder") || "";
+	} catch {
+		return "";
+	}
+};
 
 /** Prompt formats that fit the product, shown when a product is added and on its page. Pressing one opens it in the composer. */
 export function SuggestedPrompts({ slug, title, className }: { slug: string; title?: string; className?: string }) {
@@ -45,7 +56,17 @@ export function SuggestedPrompts({ slug, title, className }: { slug: string; tit
 	const prompts = usePrompts();
 	const gallery = useQuery({ queryKey: ["gallery", slug], queryFn: () => api.gallery(slug), enabled: Boolean(slug) });
 	const category = product.data?.category;
-	const { chosen, matched } = useMemo(() => pickSuggestions(gallery.data?.presets || [], category), [gallery.data, category]);
+	const [picked, setPicked] = useState(readFounder);
+	const founder = picked || founderFromCategory(category);
+	const choose = (v: string) => {
+		setPicked(v);
+		try {
+			localStorage.setItem("cizle-founder", v);
+		} catch {
+			/* storage unavailable */
+		}
+	};
+	const { chosen, matched } = useMemo(() => pickSuggestions(gallery.data?.presets || [], category, founder), [gallery.data, category, founder]);
 	const typeName = (t: string) => prompts.data?.find((p) => p.kind === "type" && p.slug === t)?.name || t;
 
 	if (gallery.isLoading || product.isLoading)
@@ -60,13 +81,29 @@ export function SuggestedPrompts({ slug, title, className }: { slug: string; tit
 
 	return (
 		<section className={className}>
-			<div className="mb-3">
+			<div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+				<div>
 				<h2 className="flex items-center gap-1.5 text-base font-semibold tracking-tight">
 					<Icon icon={AiMagicIcon} size={16} className="text-brand" /> {title || `Prompts we'd use for ${product.data?.name || "your product"}`}
 				</h2>
 				<p className="text-xs text-muted-foreground">
-					{matched && category && CATEGORY_LABEL[category] ? `Picked for ${CATEGORY_LABEL[category]} products, one for each animated style.` : "One for each animated style. Press one to open it in the composer."}
+					{matched ? `Picked for ${FOUNDER_LABEL[founder] || "your"} founders${category && CATEGORY_LABEL[category] ? ` in ${CATEGORY_LABEL[category]}` : ""}, one for each animated style.` : "One for each animated style. Press one to open it in the composer."}
 				</p>
+				</div>
+				<div className="flex flex-wrap gap-1" role="radiogroup" aria-label="Founder kind">
+					{FOUNDERS.map((f) => (
+						<button
+							key={f.value}
+							type="button"
+							role="radio"
+							aria-checked={founder === f.value}
+							onClick={() => choose(f.value)}
+							className={cn("rounded-full border px-2.5 py-1 text-xs transition-colors", founder === f.value ? "border-brand/40 bg-brand/10 font-medium text-brand" : "border-border text-muted-foreground hover:bg-accent hover:text-foreground")}
+						>
+							{f.label}
+						</button>
+					))}
+				</div>
 			</div>
 			<div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
 				{chosen.map((p) => (

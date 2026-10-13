@@ -6,6 +6,7 @@ aspect: "9:16"
 duration: 30
 visuals: [title, glossary, screenshot, outro]
 needs: [glossary]
+for: [b2b, ai, devtool]
 ---
 # Glossary explainer
 

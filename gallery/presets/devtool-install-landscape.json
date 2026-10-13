@@ -12,5 +12,9 @@
     "ai-agents",
     "security"
   ],
+  "founders": [
+    "devtool",
+    "ai"
+  ],
   "prompt": "Type the install command within eight seconds, then a short code scene taken from the README, then the first result as terminal output. One scene per step, a numbered checklist ticking off as it goes. End with the repo link and 'Star it on GitHub'."
 }

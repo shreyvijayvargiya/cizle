@@ -5,6 +5,7 @@ kind: type
 aspect: "9:16"
 duration: 25
 visuals: [title, screenshot, image, bullets, stats, outro]
+for: [solo, b2b, ai, devtool]
 ---
 # Feature highlights
 
