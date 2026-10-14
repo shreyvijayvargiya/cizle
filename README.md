@@ -63,6 +63,10 @@ Not only product videos: the prompt library has **ad formats for every platform 
 Use cizle to make Google display banners for https://yourshop.com, clay style.
 ```
 
+### Recipes for Claude Code
+
+Some prompts are recipes for an agent that builds a film in code, not storyboards cizle renders. The first is [`prompts/types/landing-page-flyover.md`](prompts/types/landing-page-flyover.md): a 14.5 second 3D fly-over of your landing page (Playwright capture, WebGL, depth of field, MP4). Run `/mcp__cizle__make-landing-page-flyover https://yoursite.com` in Claude Code. It needs Node, Playwright, FFmpeg and a GPU for the final render.
+
 ## Why
 
 Every launch needs videos: a showcase for the landing page, an FAQ for the pricing page, a comparison for the sales deck, a teaser for launch day. Screen recordings are slow, generic AI video does not know your product, and the product changes every week.
@@ -483,7 +487,7 @@ cizle/
 ├── .mcp.json                offers the cizle MCP server when this repo is opened in Claude Code
 ├── SKILL.md                 lets coding agents drive the dashboard server and OpenRouter pipeline
 ├── scripts/                 import-film-styles.mjs (refresh the Opus film styles)
-├── prompts/                 laws, ads laws, 32 video and ad types, tones, 43 film styles, custom prompts, review persona (markdown)
+├── prompts/                 laws, ads laws, 33 video, ad and recipe types, tones, 43 film styles, custom prompts, review persona (markdown)
 ├── gallery/presets/*.json   30 gallery formats (type, tone, style, founders, aspect, direction)
 ├── products/                your product memory (git-ignored) + example/
 ├── server/

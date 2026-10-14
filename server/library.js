@@ -41,8 +41,9 @@ function toEntry(kind, slug, raw, stat, { light = false } = {}) {
 		aspect: data.aspect ? String(data.aspect) : null,
 		duration: data.duration ? Number(data.duration) : null,
 		needs: Array.isArray(data.needs) ? data.needs.map(String) : [],
-		// "render" = screenshots of a product; "article" = reads one article, writes a prompt pack and a sketch-style video.
-		engine: data.engine === "article" ? "article" : "render",
+		// "render" = screenshots of a product; "article" = reads one article, writes a prompt pack and a sketch-style video;
+		// "recipe" = step-by-step instructions for a coding agent (Claude Code) that builds the film in code; cizle does not render it.
+		engine: data.engine === "article" ? "article" : data.engine === "recipe" ? "recipe" : "render",
 		content_types: Array.isArray(data.content_types) ? data.content_types.map(String) : [],
 		// Which founders this prompt is for: solo, devtool, b2b, ai, fundraising, ecommerce, beauty, food, health, local, app, creator.
 		founders: Array.isArray(data.for) ? data.for.map(String) : [],

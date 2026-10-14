@@ -249,6 +249,11 @@ const hostOf = (u) => {
 };
 
 export async function createJob(input, deps) {
+	const loadedForType = input.prompt_id ? await getPrompt(input.prompt_id) : null;
+	const wantedType = input.type && input.type !== "auto" ? input.type : loadedForType?.type;
+	if (wantedType && (await listPrompts()).some((p) => p.kind === "type" && p.slug === wantedType && p.engine === "recipe")) {
+		throw badInput(`"${wantedType}" is a recipe for Claude Code, not a video cizle renders itself. Open it in Prompts and copy it, or ask Claude Code to follow it with the cizle MCP server.`);
+	}
 	if (!process.env.OPENROUTER_API_KEY?.trim()) {
 		const e = new Error("Add your OpenRouter API key in Settings first.");
 		e.code = "MISSING_API_KEY";
@@ -713,7 +718,7 @@ async function runJob(job, deps) {
 	const loaded = input.prompt_id ? await getPrompt(input.prompt_id) : null;
 	const typeSlug = input.type !== "auto" ? input.type : loaded?.type || "auto";
 	// "auto" only chooses among types that render a video; prompt-pack types run when picked explicitly.
-	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine !== "article" && !t.ad) : types.filter((t) => t.slug === typeSlug);
+	const allowedTypes = typeSlug === "auto" ? types.filter((t) => t.engine === "render" && !t.ad) : types.filter((t) => t.slug === typeSlug);
 	if (!allowedTypes.length) throw new Error(`Unknown video type "${typeSlug}"`);
 	const tone = input.tone !== "auto" ? tones.find((t) => t.slug === input.tone) : null;
 	const laws = await getLaws({ ads: typeSlug !== "auto" && !!allowedTypes[0]?.ad });

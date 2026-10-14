@@ -16,7 +16,7 @@ export type Prompt = {
 	aspect: string | null;
 	duration: number | null;
 	needs: string[];
-	engine: "render" | "article";
+	engine: "render" | "article" | "recipe";
 	content_types: string[];
 	/** Opus film styles: their group, what they suit and where they came from. */
 	category: string | null;

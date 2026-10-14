@@ -13,11 +13,12 @@ import { FOUNDER_LABEL, STYLE_LABEL } from "@/lib/constants";
 import { cn, timeAgo } from "@/lib/utils";
 
 /** Motion sample for a built-in video type (used when the prompt has no render style of its own). */
-const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup", "founder-story": "kinetic-type", "problem-solution": "card-stack", "how-it-works": "cursor-walkthrough", "pricing-explained": "count-up", "use-case-spotlight": "device-mockup", "customer-proof": "card-stack", quickstart: "cursor-walkthrough", "whats-new": "card-stack", roadmap: "kinetic-type", integrations: "card-stack", "myth-busting": "split-compare", "tips-listicle": "kinetic-type", "pitch-teaser": "count-up", "code-walkthrough": "cursor-walkthrough", "meta-reels-hook": "card-stack", "meta-feed-offer": "device-mockup", "meta-problem-solution": "split-compare", "tiktok-ugc-hook": "kinetic-type", "tiktok-offer-drop": "count-up", "tiktok-demo-listicle": "card-stack", "google-bumper-6s": "kinetic-type", "google-instream-15s": "ui-zoom", "google-shorts-ad": "kinetic-type" };
+const TYPE_MOTION: Record<string, string> = { showcase: "ui-zoom", features: "cursor-walkthrough", faq: "card-stack", comparison: "split-compare", glossary: "kinetic-type", launch: "device-mockup", "founder-story": "kinetic-type", "problem-solution": "card-stack", "how-it-works": "cursor-walkthrough", "pricing-explained": "count-up", "use-case-spotlight": "device-mockup", "customer-proof": "card-stack", quickstart: "cursor-walkthrough", "whats-new": "card-stack", roadmap: "kinetic-type", integrations: "card-stack", "myth-busting": "split-compare", "tips-listicle": "kinetic-type", "pitch-teaser": "count-up", "code-walkthrough": "cursor-walkthrough", "landing-page-flyover": "ui-zoom", "meta-reels-hook": "card-stack", "meta-feed-offer": "device-mockup", "meta-problem-solution": "split-compare", "tiktok-ugc-hook": "kinetic-type", "tiktok-offer-drop": "count-up", "tiktok-demo-listicle": "card-stack", "google-bumper-6s": "kinetic-type", "google-instream-15s": "ui-zoom", "google-shorts-ad": "kinetic-type" };
 
-const GROUPS: { kind: Prompt["kind"]; ad?: boolean; title: string; hint: string }[] = [
+const GROUPS: { kind: Prompt["kind"]; ad?: boolean; recipe?: boolean; title: string; hint: string }[] = [
 	{ kind: "custom", title: "Your prompts", hint: "Saved in prompts/custom/*.md" },
 	{ kind: "type", ad: true, title: "Ad formats", hint: "Meta, TikTok and Google Ads video ads for any brand · prompts/types" },
+	{ kind: "type", recipe: true, title: "Recipes for Claude Code", hint: "Films built in code by an agent, not rendered by cizle · prompts/types" },
 	{ kind: "type", title: "Video types", hint: "Structure for each kind of video · prompts/types" },
 	{ kind: "tone", title: "Tones", hint: "Energy, pacing and wording · prompts/tones" },
 	{ kind: "film", title: "Opus film styles", hint: "43 looks from lemo-opuscar (MIT, LemoLab) · prompts/films" },
@@ -76,12 +77,12 @@ export function PromptsPage() {
 			) : (
 				<div className="space-y-8">
 					{GROUPS.map((g) => {
-						const all = list.filter((p) => p.kind === g.kind && (g.kind !== "type" || !!p.ad === !!g.ad));
+						const all = list.filter((p) => p.kind === g.kind && (g.kind !== "type" || (!!p.ad === !!g.ad && (p.engine === "recipe") === !!g.recipe)));
 						if (!all.length && (kind || q)) return null;
 						// The film library is long: show a taste first, all of it on request or when searching.
 						const items = g.kind === "film" && !allFilms && !q && !kind ? all.slice(0, 9) : all;
 						return (
-							<section key={`${g.kind}${g.ad ? "-ad" : ""}`}>
+							<section key={`${g.kind}${g.ad ? "-ad" : ""}${g.recipe ? "-recipe" : ""}`}>
 								<div className="mb-2.5 flex items-baseline justify-between">
 									<h2 className="text-sm font-semibold">{g.title}</h2>
 									<span className="text-xs text-muted-foreground">{g.hint}</span>
@@ -93,7 +94,7 @@ export function PromptsPage() {
 												{p.kind !== "custom" ? <PromptThumb style={p.style} motion={TYPE_MOTION[p.slug]} className="mb-3 h-24" /> : null}
 												<div className="flex items-start justify-between gap-2">
 													<p className="text-sm font-medium">{p.name}</p>
-													<Badge tone={p.built_in ? "outline" : "info"}>{p.kind === "film" ? p.category || "Film" : p.built_in ? "Built-in" : "Custom"}</Badge>
+													<Badge tone={p.built_in ? "outline" : "info"}>{p.kind === "film" ? p.category || "Film" : p.engine === "recipe" ? "Claude Code" : p.built_in ? "Built-in" : "Custom"}</Badge>
 												</div>
 												<p className="mt-1 line-clamp-2 text-[13px] text-muted-foreground">{p.description || p.body.slice(0, 120)}</p>
 												<div className="mt-auto flex items-center gap-2 pt-3 text-[11px] text-muted-foreground">

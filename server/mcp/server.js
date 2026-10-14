@@ -230,11 +230,13 @@ export async function createCizleServer() {
 	const types = (await library.listPrompts()).filter((p) => p.kind === "type");
 	const recipe = (label, typeId, source, notes, banner = false) =>
 		`Make a ${label} video with the cizle MCP server for: ${source}${notes ? `\nNotes: ${notes}` : ""}\n\n1. Call \`guide\`, then \`read_prompt\` with ${typeId ? `id "${typeId}"` : "the video type that fits (call list_prompts)"} and follow its structure and rules.\n2. Gather the real material yourself: fetch the page or post, read the relevant code in this working directory, and call \`read_product\` (or \`save_product\` if there is none yet).\n3. Write the storyboard (or banner copy) using only facts from that material.\n4. ${banner ? `Write the banner copy the guide asks for and call \`create_banners\` with type "${typeId.replace(/^type:/, "")}"` : `Call \`create_video\`${typeId ? ` with type "${typeId.replace(/^type:/, "")}"` : ""}`}, then call \`get_video\` with wait_seconds 45 until it is done.\n5. Reply with the video file path and the dashboard link.`;
+	const recipeText = (t, source, notes) =>
+		`Follow the cizle recipe "${t.name}" for: ${source}${notes ? `\nNotes: ${notes}` : ""}\n\n1. Call \`read_prompt\` with id "${t.id}" and read it fully.\n2. This recipe is carried out by you, in code, in your working directory with your own tools (Playwright, a browser, FFmpeg). It is not rendered by cizle and \`create_video\` does not apply.\n3. Ask me for the inputs the recipe lists before you start, then follow its steps in order and show me the stills it asks for before the final render.\n4. If you cannot run code on my machine, say so straight away.`;
 	for (const t of types) {
 		server.registerPrompt(
 			`make-${t.slug}`,
 			{ title: `Make ${t.output === "banner" ? "" : "a "}${t.name}${t.output === "banner" ? "" : " video"}`, description: t.description, argsSchema: { source: z.string().describe("A URL, a blog post, a repo path or a topic"), notes: z.string().optional().describe("Anything else: audience, length, style") } },
-			({ source, notes }) => ({ messages: [{ role: "user", content: { type: "text", text: recipe(t.name, t.id, source, notes, t.output === "banner") } }] }),
+			({ source, notes }) => ({ messages: [{ role: "user", content: { type: "text", text: t.engine === "recipe" ? recipeText(t, source, notes) : recipe(t.name, t.id, source, notes, t.output === "banner") } }] }),
 		);
 	}
 	server.registerPrompt(

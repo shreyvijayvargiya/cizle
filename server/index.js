@@ -93,7 +93,13 @@ api.post("/videos", async (c) => {
 	const body = await c.req.json().catch(() => ({}));
 	const parsed = parseVideoInput(body);
 	if (parsed.error) return c.json({ error: parsed.error }, 400);
-	const job = await createJob(parsed.input, deps);
+	let job;
+	try {
+		job = await createJob(parsed.input, deps);
+	} catch (e) {
+		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
+		throw e;
+	}
 	if (body.review_id) await logChat(String(body.review_id), { event: "approved", action: "create_video", job_id: job.id });
 	// The client pressed Stop while the job was being set up: don't leave it running.
 	if (c.req.raw.signal.aborted) await cancelJob(job.id);

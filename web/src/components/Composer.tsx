@@ -92,7 +92,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	const taRef = useRef<HTMLTextAreaElement>(null);
 	const seeded = useRef(false);
 
-	const types = (prompts.data || []).filter((p) => p.kind === "type");
+	const types = (prompts.data || []).filter((p) => p.kind === "type" && p.engine !== "recipe");
 	const tones = (prompts.data || []).filter((p) => p.kind === "tone");
 
 	// Defaults from Settings, once.
@@ -263,7 +263,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 	return (
 		<div className="w-full">
 			{review ? (
-				<ReviewCard review={review} answers={answers} setAnswer={setAnswer} library={prompts.data || []} loadedPromptId={loaded?.id || null} style={style} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
+				<ReviewCard review={review} answers={answers} setAnswer={setAnswer} library={(prompts.data || []).filter((p) => p.engine !== "recipe")} loadedPromptId={loaded?.id || null} style={style} prompt={finalPrompt} setPrompt={setFinalPrompt} onApprove={approve} onCancel={() => setReview(null)} busy={create.isPending || savePrompt.isPending} />
 			) : null}
 			<div
 				className={cn(
@@ -509,7 +509,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 						<Command.List className="max-h-96 overflow-y-auto p-1.5">
 							<Command.Empty className="px-4 py-6 text-center text-sm text-muted-foreground">No prompts match.</Command.Empty>
 							{(["custom", "type", "tone", "film"] as const).map((kind) => {
-								const list = (prompts.data || []).filter((p) => p.kind === kind);
+								const list = (prompts.data || []).filter((p) => p.kind === kind && p.engine !== "recipe");
 								if (!list.length) return null;
 								return (
 									<Command.Group

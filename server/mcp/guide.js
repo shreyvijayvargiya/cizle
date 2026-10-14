@@ -40,6 +40,7 @@ export async function buildGuide(library) {
 	const laws = await getLaws();
 	const adLaws = (await getLaws({ ads: true })).slice(laws.length).trim();
 	const ads = types.filter((t) => t.ad);
+	const recipes = types.filter((t) => t.engine === "recipe");
 	return `# Making a video with cizle
 
 You write the storyboard. cizle renders it (animated frames, captions, music, FFmpeg) into an MP4 on this machine and files it in the dashboard. Nothing is sent to a model or a service: you do the reading and writing.
@@ -97,7 +98,11 @@ ${tones.map((t) => `- \`${t.id}\`: ${t.name}${t.style ? ` (style: ${t.style})` :
 When the user wants an ad (Meta, TikTok or Google Ads; a brand, an online shop, a local business, an app or a SaaS), pick one of these types, read it with \`read_prompt\` and follow its by-brand section. Use the aspect the type names. Ad formats are never chosen automatically: pass the type slug. Types marked "static banners" are not videos: write the banner copy their guide asks for and call \`create_banners\` (not \`create_video\`); the PNGs are saved in the dashboard.
 ${ads.map((t) => `- \`${t.id}\`: ${t.name} (${t.platform}, ${t.aspect || "9:16"}, ${t.duration || 15}s${t.output === "banner" ? ", static banners" : ""}). ${t.description}`).join("\n")}
 
-## Creative laws
+${recipes.length ? `## Recipes (films you build in code)
+Some types are step-by-step recipes for you, not storyboards for cizle. Read one with \`read_prompt\` and carry it out yourself in the working directory with your own tools (a browser, Playwright, FFmpeg). Ask the user for the inputs it lists first. Do not call \`create_video\` for these.
+${recipes.map((t) => `- \`${t.id}\`: ${t.name} (${t.duration || "?"}s). ${t.description}`).join("\n")}
+
+` : ""}## Creative laws
 ${laws}
 
 ${adLaws}

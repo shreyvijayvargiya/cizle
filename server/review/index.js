@@ -64,7 +64,7 @@ function buildQuestion(q) {
 export async function reviewDraft({ draft = {}, tier = "paid", deps }) {
 	const id = uuidv4();
 	const library = await listPrompts();
-	const types = library.filter((p) => p.kind === "type");
+	const types = library.filter((p) => p.kind === "type" && p.engine !== "recipe");
 	const tones = library.filter((p) => p.kind === "tone");
 	const typeIds = ["auto", ...types.map((t) => t.slug)];
 	const toneIds = ["auto", ...tones.map((t) => t.slug)];

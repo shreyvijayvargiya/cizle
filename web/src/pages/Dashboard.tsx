@@ -81,7 +81,7 @@ export function DashboardPage() {
 	const prompts = usePrompts();
 	const navigate = useNavigate();
 	const keyReady = Boolean(settings.data?.openrouter_api_key_set);
-	const types = (prompts.data || []).filter((p) => p.kind === "type");
+	const types = (prompts.data || []).filter((p) => p.kind === "type" && p.engine !== "recipe");
 	const s = stats.data;
 	const open = (detail.data?.ideas || []).filter((i) => i.status === "suggested").slice(0, 3);
 	const ideasWaiting = slug ? (product?.ideas_open ?? 0) : products.reduce((n, p) => n + p.ideas_open, 0);

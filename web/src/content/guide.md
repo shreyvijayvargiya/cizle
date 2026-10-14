@@ -26,7 +26,7 @@ It reads your homepage, `llms.txt`, blog posts, FAQ markup, pricing and docs pag
 
 What you get:
 
-- **32 prompt types**: 21 video types for founders (showcase, features, FAQ, comparison, glossary, launch, sketch explainer, founder story, how it works, pricing explained, pitch teaser, code walkthrough and more), **9 video ad formats** and **2 static banner sets** for Meta, TikTok and Google Ads.
+- **33 prompt types**: 21 video types for founders (showcase, features, FAQ, comparison, glossary, launch, sketch explainer, founder story, how it works, pricing explained, pitch teaser, code walkthrough and more), **9 video ad formats** and **2 static banner sets** for Meta, TikTok and Google Ads, plus a **recipe** for Claude Code that builds a 3D landing page fly-over film in code.
 - **Six looks**: clean, hand-drawn, clay, glass, isometric and ASCII, all animated.
 - **Four aspect ratios**: 9:16 (Reels, Shorts, TikTok), 4:5 (Meta feed), 1:1 (feeds), 16:9 (YouTube, landing pages).
 - **Your choice of audio**: voice-over plus music, music only, or silent.
@@ -93,7 +93,7 @@ Press `Ctrl K` (`Cmd K` on Mac) anywhere to open the command menu. It searches y
 
 Paste a link, describe the video, hit `Ctrl Enter` (or `Cmd Enter`). Type `/` to load any prompt from your library. The bar sets:
 
-- **Type**: any type, or one of the 32 built in
+- **Type**: any type, or one of the built-in types (recipes for Claude Code are not in this menu)
 - **Tone**: polished, playful, cinematic, app-store or deadpan
 - **Style**: from tone, clean, hand-drawn, clay, glass, isometric or ASCII
 - **Format**: 9:16, 4:5, 1:1 or 16:9
@@ -126,7 +126,7 @@ You can add many products. A sidebar menu switches between them, each with its o
 
 ### Prompts
 
-The library, as markdown files: 32 types (video types, ad formats and banner sets), 5 tones, 43 Opus film styles, and your own prompts. Open any to see exactly how a video is structured, then edit it, copy it, or write a new one with the editor and live preview.
+The library, as markdown files: 33 types (video types, ad formats, banner sets and recipes), 5 tones, 43 Opus film styles, and your own prompts. Open any to see exactly how a video is structured, then edit it, copy it, or write a new one with the editor and live preview.
 
 ### Claude Code
 
@@ -290,6 +290,14 @@ Every video is built from markdown layers stacked together:
 - `prompts/custom/`: what you write in the dashboard.
 
 Want a new type? Drop a file in `prompts/types/<name>.md`; it appears in the dashboard straight away. Since prompts are files, you can commit and review them and send PRs.
+
+## Recipes: films built in code
+
+Some prompts are not storyboards for Cizle to render but **recipes** for Claude Code. They live in **Prompts**, under "Recipes for Claude Code", and carry a "Claude Code" badge.
+
+The first is **Landing page 3D fly-over**: a 14.5 second one-take camera flight over your landing page, with floating cards, depth of field and a closing title card. The agent captures your page with Playwright, composes it in WebGL and records an MP4 on your computer.
+
+In Claude Code, run `/mcp__cizle__make-landing-page-flyover https://yoursite.com`, or ask: *"Use cizle's landing page fly-over recipe for https://yoursite.com."* Claude asks for your brand name, logo mark, a two-part closing line and an optional music track, shows stills at seven timestamps, then renders. It needs Node, Playwright with Chromium, FFmpeg and a GPU for the final render. The MP4 is saved where Claude puts it; it is not added to the dashboard automatically.
 
 ## Using the API from scripts
 
