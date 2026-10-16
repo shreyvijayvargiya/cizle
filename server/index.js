@@ -26,6 +26,7 @@ const { startOnboard, getOnboard, cancelOnboard } = await import("./products/onb
 const { syncProduct, ideaVocab } = await import("./products/sync.js");
 const { reviewDraft } = await import("./review/index.js");
 const { logChat } = await import("./review/chatlog.js");
+const reverse = await import("./reverse/index.js");
 const browser = await import("./browser.js");
 const { scrape } = await import("./scrape.js");
 
@@ -72,6 +73,58 @@ api.put("/prompts/:id", async (c) => {
 	return c.json(await savePrompt({ ...body, id: c.req.param("id") }));
 });
 api.delete("/prompts/:id", async (c) => ((await deletePrompt(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Only custom prompts can be deleted" }, 400)));
+
+/* reverse-engineer a video into per-scene image, video and audio prompts */
+api.get("/reverse", async (c) => c.json({ items: await reverse.listReverse(), max_seconds: reverse.MAX_VIDEO_SEC, max_mb: reverse.MAX_VIDEO_BYTES / 1024 / 1024 }));
+api.post("/reverse", async (c) => {
+	await warmModels();
+	const ct = c.req.header("content-type") || "";
+	let form = {};
+	try {
+		form = ct.includes("multipart/form-data") ? await c.req.parseBody() : await c.req.json();
+	} catch {
+		return c.json({ error: "Send a video file (multipart field \"file\") or JSON {\"url\": \"https://…/video.mp4\"}" }, 400);
+	}
+	const file = form.file;
+	const url = String(form.url || "").trim();
+	const tier = form.model_tier === "free" ? "free" : "paid";
+	if (tier === "paid" && !process.env.OPENROUTER_API_KEY?.trim()) return c.json({ error: "Add your OpenRouter API key in Settings first.", code: "MISSING_API_KEY" }, 400);
+	let src;
+	try {
+		if (file && typeof file !== "string") {
+			if (file.size > reverse.MAX_VIDEO_BYTES) return c.json({ error: `Video is larger than ${reverse.MAX_VIDEO_BYTES / 1024 / 1024} MB` }, 413);
+			src = await reverse.newSource(path.extname(file.name || ""));
+			await fs.promises.writeFile(src.file, Buffer.from(await file.arrayBuffer()));
+			src.name = file.name || "video";
+		} else if (url) {
+			src = await reverse.newSource(path.extname(new URL(url).pathname));
+			await reverse.downloadVideo(url, src.file);
+			src.name = decodeURIComponent(path.basename(new URL(url).pathname)) || url;
+		} else {
+			return c.json({ error: "Upload a video file or paste a direct video URL." }, 400);
+		}
+	} catch (e) {
+		if (src) await reverse.deleteReverse(src.id);
+		if (e?.code === "BAD_INPUT" || e instanceof TypeError) return c.json({ error: e.code === "BAD_INPUT" ? e.message : "That is not a valid video URL." }, 400);
+		throw e;
+	}
+	const job = await reverse.startReverse({ id: src.id, file: src.file, source_name: src.name, model_tier: tier, notes: form.notes });
+	return c.json(job, 202);
+});
+api.get("/reverse/:id", async (c) => {
+	const job = await reverse.getReverse(c.req.param("id"));
+	return job ? c.json(job) : c.json({ error: "Not found" }, 404);
+});
+api.post("/reverse/:id/cancel", async (c) => {
+	const job = await reverse.cancelReverse(c.req.param("id"));
+	return job ? c.json(job) : c.json({ error: "That analysis is not running" }, 409);
+});
+api.delete("/reverse/:id", async (c) => ((await reverse.deleteReverse(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Not found" }, 404)));
+api.get("/reverse/:id/frames/:name", async (c) => {
+	const file = reverse.framePath(c.req.param("id"), c.req.param("name"));
+	if (!file) return c.json({ error: "Not found" }, 404);
+	return c.body(await fs.promises.readFile(file), 200, { "Content-Type": "image/jpeg", "Cache-Control": "private, max-age=3600" });
+});
 
 /* videos */
 api.get("/stats", async (c) => c.json(await stats()));

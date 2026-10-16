@@ -436,6 +436,8 @@ curl -X POST localhost:3737/api/videos -H 'content-type: application/json' -d '{
 | `GET` | `/api/videos` · `/api/videos/:id` | list (`?product=`) · status, script, cost, files |
 | `POST` | `/api/videos/:id/cancel` | stop a running job |
 | `POST` | `/api/videos/:id/regenerate` | same settings, new take |
+| `POST` | `/api/reverse` | reverse-engineer a video: multipart `file` (or JSON `url` to a direct video file), optional `notes`, `model_tier`. Returns a job; poll `GET /api/reverse/:id` for per-scene image, video and audio prompts (max 120 s, 200 MB) |
+| `GET` | `/api/reverse` · `/api/reverse/:id` | list · status and result |
 | `GET` | `/api/products` · `/api/products/:slug` | products and their memory |
 | `POST` | `/api/products/onboard` | add a product (background run) |
 | `GET` | `/api/products/onboard/:id` | onboarding progress |

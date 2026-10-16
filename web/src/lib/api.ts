@@ -262,6 +262,36 @@ export type CreateVideo = {
 	review_id?: string;
 };
 
+export type ReverseScene = {
+	index: number;
+	start: number;
+	end: number;
+	duration_sec: number;
+	frames: string[];
+	summary: string;
+	image_prompt: string;
+	video_prompt: string;
+	camera: string;
+	animation: string;
+	transition_in: string;
+	on_screen_text: string;
+	narration: string;
+	audio_prompt: string;
+};
+export type ReverseResult = {
+	title: string;
+	summary: string;
+	aspect_ratio: string;
+	overall_style: string;
+	master_prompt: string;
+	audio: { has_audio: boolean; music_prompt: string; voiceover_transcript: string; voiceover_style: string; sfx: string[] };
+	duration_sec: number;
+	model: string;
+	scenes: ReverseScene[];
+};
+export type ReverseJob = { id: string; status: Status; step: string; progress: number; source_name: string; model_tier: Tier; created_at: string; cost_usd: number; error: string | null; result: ReverseResult | null };
+export type ReverseRow = { id: string; title: string; source_name: string; status: Status; step: string; progress: number; scene_count: number; cost_usd: number; created_at: string };
+
 export class ApiError extends Error {
 	code?: string;
 	constructor(message: string, code?: string) {
@@ -305,6 +335,18 @@ export const api = {
 	deleteVideo: (id: string) => req<{ ok: true }>(`/videos/${id}`, { method: "DELETE" }),
 	regenerate: (id: string) => req<Job>(`/videos/${id}/regenerate`, { method: "POST", json: {} }),
 	reskin: (id: string, body: { style?: StyleId; aspect?: Aspect; audio?: Audio }) => req<Job>(`/videos/${id}/reskin`, { method: "POST", json: body }),
+	reverseList: () => req<{ items: ReverseRow[]; max_seconds: number; max_mb: number }>("/reverse"),
+	reverse: (id: string) => req<ReverseJob>(`/reverse/${id}`),
+	startReverse: (body: { file?: File; url?: string; notes?: string; model_tier: Tier }) => {
+		const fd = new FormData();
+		if (body.file) fd.append("file", body.file);
+		if (body.url) fd.append("url", body.url);
+		if (body.notes) fd.append("notes", body.notes);
+		fd.append("model_tier", body.model_tier);
+		return req<ReverseJob>("/reverse", { method: "POST", body: fd });
+	},
+	cancelReverse: (id: string) => req<ReverseJob>(`/reverse/${id}/cancel`, { method: "POST", json: {} }),
+	deleteReverse: (id: string) => req<{ ok: true }>(`/reverse/${id}`, { method: "DELETE" }),
 	products: () => req<{ products: ProductMeta[] }>("/products").then((r) => r.products),
 	product: (slug: string) => req<Product>(`/products/${slug}`),
 	startOnboard: (body: { url: string; repos?: string; name?: string; model_tier?: Tier }, signal?: AbortSignal) => req<OnboardRun>("/products/onboard", { method: "POST", json: body, signal }),
