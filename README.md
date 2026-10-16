@@ -4,7 +4,7 @@
 
 **Ads for brands, SaaS founders and content creators. Animated video ads and banners for Meta, TikTok and Google Ads, made from your real product.**
 
-Add your website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video or ad. **9 video ad formats for Meta, TikTok and Google Ads plus 2 static banner sets**, for online shops, beauty and fashion, food, fitness, local businesses, apps, creators and SaaS; and 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 52 ready formats and 43 Opus film styles, in landscape, portrait or square, made from your real product.
+Add your website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video or ad. **9 video ad formats for Meta, TikTok and Google Ads plus 2 static banner sets**, for online shops, beauty and fashion, food, fitness, local businesses, apps, creators and SaaS; and 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 52 ready formats and 63 film styles (43 Opus film styles plus 20 generative styles), in landscape, portrait or square, made from your real product.
 
 Runs on your machine. No database, no accounts. Drive it from the dashboard with [OpenRouter](https://openrouter.ai) (free models work), or **from Claude Code on your own subscription with no API key at all**.
 
@@ -112,7 +112,7 @@ The dashboard also has a **Docs** page (`/docs`) with the full getting-started g
 
 ![Gallery](docs/gallery.png)
 
-**Prompts.** The library: 21 video types, 5 tones, 43 Opus film styles and your own prompts, each with an animated preview. Everything is a markdown file.
+**Prompts.** The library: 21 video types, 5 tones, 63 film styles and your own prompts, each with an animated preview. Everything is a markdown file.
 
 ![Prompt library](docs/prompts.png)
 
@@ -125,7 +125,7 @@ The dashboard also has a **Docs** page (`/docs`) with the full getting-started g
 | | |
 |---|---|
 | **Claude Code, no key** | Add the MCP server and Claude writes the storyboard from your blog or code on your own subscription; cizle renders it into your dashboard. No OpenRouter key. |
-| **Prompt gallery** | 52 formats, 21 video types, 5 tones and 43 Opus film styles, each with an animated preview. Remix one for your product. |
+| **Prompt gallery** | 52 formats, 21 video types, 5 tones and 63 film styles, each with an animated preview. Remix one for your product. |
 | **Animated styles** | Hand-drawn, clay, glass, isometric and ASCII looks with real entrance animations, set by the tone or picked in the composer. |
 | **21 video types** | Seven for products (showcase, features, FAQ, comparison, glossary, launch, sketch explainer) and fourteen for founders (founder story, how it works, pricing, pitch teaser, code walkthrough and more). |
 | **Add a product** | Website plus any number of GitHub repos. cizle writes `products/<slug>/product.md` and suggests three first videos and the prompts that fit your kind of founder. |
@@ -300,14 +300,14 @@ prompts/
 │       customer-proof, quickstart, whats-new, roadmap, integrations, myth-busting,
 │       tips-listicle, pitch-teaser, code-walkthrough
 ├── tones/             polished, playful, cinematic, app-store, deadpan (each can set a default `style:`)
-├── films/             43 Opus film styles from lemo-opuscar (MIT, LemoLab), imported unchanged
+├── films/             43 Opus film styles from lemo-opuscar (MIT, LemoLab), imported unchanged, plus 20 generative styles by Karyam
 │                      (Watercolor Brush, Risograph Print, Whiteboard Explainer, ASCII / CRT Terminal ...)
 └── custom/            prompts you create in the dashboard (Prompts → New prompt)
 ```
 
 - **Add a video type:** drop a new `prompts/types/<name>.md` file. It shows up in the dropdown straight away. Each built-in type has an "In each style" section describing how it should look in clay, glass, isometric, hand-drawn and ASCII.
 - **Use a prompt:** type `/` in the composer, or click **Load prompt**.
-- **Opus film styles:** the 43 looks in [`prompts/films/`](prompts/films) come from the open-source [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) library by LemoLab (MIT). Loading one in the composer picks its closest cizle look and passes its one-line direction to the director; the full text is art direction for films built entirely in code (install the upstream skill for those). See [`prompts/films/README.md`](prompts/films/README.md).
+- **Opus film styles:** the 43 looks in [`prompts/films/`](prompts/films) come from the open-source [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) library by LemoLab (MIT). Loading one in the composer picks its closest cizle look and passes its one-line direction to the director; the full text is art direction for films built entirely in code (install the upstream skill for those). Alongside them, 20 original **Generative & Procedural** styles (ink in water, matrix rain, chrome metal, boids flocking, reaction diffusion, infinite tunnel and more) follow the same format. See [`prompts/films/README.md`](prompts/films/README.md).
 
 A prompt file looks like this:
 
@@ -483,7 +483,7 @@ cizle/
 ├── .mcp.json                offers the cizle MCP server when this repo is opened in Claude Code
 ├── SKILL.md                 lets coding agents drive the dashboard server and OpenRouter pipeline
 ├── scripts/                 import-film-styles.mjs (refresh the Opus film styles)
-├── prompts/                 laws, ads laws, 32 video and ad types, tones, 43 film styles, custom prompts, review persona (markdown)
+├── prompts/                 laws, ads laws, 32 video and ad types, tones, 63 film styles, custom prompts, review persona (markdown)
 ├── gallery/presets/*.json   30 gallery formats (type, tone, style, founders, aspect, direction)
 ├── products/                your product memory (git-ignored) + example/
 ├── server/
@@ -542,7 +542,7 @@ Scripts: `npm run dev` (API + dashboard with hot reload), `npm run build`, `npm 
 
 ## Credits
 
-- The 43 Opus film styles in `prompts/films/` are imported unchanged from [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) by LemoLab (MIT; the licence is kept in `prompts/films/LICENSE`).
+- The 43 Opus film styles in `prompts/films/` are imported unchanged from [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) by LemoLab (MIT; the licence is kept in `prompts/films/LICENSE`). The 20 Generative & Procedural styles (`author: Karyam`) are original to cizle.
 - Creative laws and tones adapted from [brag](https://github.com/latent-spaces/brag) (MIT), the skill that turns a project into a launch video.
 - Music: royalty-free CC0/CC-BY tracks from [Openverse](https://openverse.org), with attribution saved per video, or generated offline.
 

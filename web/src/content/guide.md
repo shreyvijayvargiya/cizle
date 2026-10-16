@@ -31,7 +31,7 @@ What you get:
 - **Four aspect ratios**: 9:16 (Reels, Shorts, TikTok), 4:5 (Meta feed), 1:1 (feeds), 16:9 (YouTube, landing pages).
 - **Your choice of audio**: voice-over plus music, music only, or silent.
 - **Extras**: burned-in captions, an `.srt` file, a ready-to-post caption, the full script and every frame.
-- **43 Opus film styles** imported from the open-source lemo-opuscar library (MIT), and a gallery of 52 ready formats.
+- **63 film styles**: 43 Opus film styles imported from the open-source lemo-opuscar library (MIT) and 20 original generative styles, and a gallery of 52 ready formats.
 
 Everything is stored on your machine. No account, no login, no monthly seat. You can pay OpenRouter for model calls (roughly $0.10 to $0.20 for a 30 second narrated video), use free models for $0, or let Claude Code write the video on your own Claude subscription with no API key at all.
 
@@ -126,7 +126,7 @@ You can add many products. A sidebar menu switches between them, each with its o
 
 ### Prompts
 
-The library, as markdown files: 32 types (video types, ad formats and banner sets), 5 tones, 43 Opus film styles, and your own prompts. Open any to see exactly how a video is structured, then edit it, copy it, or write a new one with the editor and live preview.
+The library, as markdown files: 32 types (video types, ad formats and banner sets), 5 tones, 63 film styles, and your own prompts. Open any to see exactly how a video is structured, then edit it, copy it, or write a new one with the editor and live preview.
 
 ### Claude Code
 
@@ -286,7 +286,7 @@ Every video is built from markdown layers stacked together:
 - `prompts/ads-laws.md`: extra rules added to ad formats.
 - `prompts/types/`: each type's structure and pacing, including the ad formats. Front matter marks ad formats (`ad: true`, `platform`, `output`, `sizes`) and who they suit (`for:`).
 - `prompts/tones/`: energy and wording, with a default style.
-- `prompts/films/`: 43 Opus film styles (art direction, imported unchanged, MIT).
+- `prompts/films/`: 63 film styles (art direction): 43 Opus film styles imported unchanged (MIT) and 20 generative styles by Karyam.
 - `prompts/custom/`: what you write in the dashboard.
 
 Want a new type? Drop a file in `prompts/types/<name>.md`; it appears in the dashboard straight away. Since prompts are files, you can commit and review them and send PRs.

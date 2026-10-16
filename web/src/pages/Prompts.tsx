@@ -20,7 +20,7 @@ const GROUPS: { kind: Prompt["kind"]; ad?: boolean; title: string; hint: string 
 	{ kind: "type", ad: true, title: "Ad formats", hint: "Meta, TikTok and Google Ads video ads for any brand · prompts/types" },
 	{ kind: "type", title: "Video types", hint: "Structure for each kind of video · prompts/types" },
 	{ kind: "tone", title: "Tones", hint: "Energy, pacing and wording · prompts/tones" },
-	{ kind: "film", title: "Opus film styles", hint: "43 looks from lemo-opuscar (MIT, LemoLab) · prompts/films" },
+	{ kind: "film", title: "Opus film styles", hint: "43 looks from lemo-opuscar (MIT, LemoLab) + 20 generative styles · prompts/films" },
 ];
 
 export function PromptsPage() {
