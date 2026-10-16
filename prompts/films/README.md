@@ -16,6 +16,13 @@ How cizle uses them:
 - **For a full film in the exact style** (30-60 minutes of work in Claude Code), install the upstream skill:
   `claude plugin marketplace add lemomo-ai/lemo-opuscar`.
 
+## Generative & Procedural (original to cizle)
+
+20 more styles in the same format, written for cizle by Karyam (MIT, `author: Karyam`, category **Generative & Procedural**): Ink in Water, Matrix Rain,
+Chrome Metal, Wireframe Terrain, Stained Glass Tiles, Boids Flocking, Aurora Gradient, Low Poly 3D, Origami Fold, Voronoi Cells, Kaleidoscope,
+Spirograph, Fireworks, Smoke Simulation, Isometric City, Reaction Diffusion, Water Ripples, Slime Mold, Starfield Warp and Infinite Tunnel.
+Each adds a *Building it in code* section (deterministic, frame-time driven, so the renderer can capture it). The importer below never touches them.
+
 Refresh from upstream:
 
 ```bash

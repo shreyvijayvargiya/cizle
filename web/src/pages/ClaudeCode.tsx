@@ -18,7 +18,7 @@ const HOW = [
 
 const TOOLS: [string, string][] = [
 	["guide", "The storyboard format, scene types, styles, video types and laws. Claude reads it first."],
-	["list_prompts / read_prompt", "The prompt library: 21 video types, 5 tones, 43 Opus film styles and your own prompts."],
+	["list_prompts / read_prompt", "The prompt library: 21 video types, 5 tones, 63 film styles and your own prompts."],
 	["list_products / read_product / save_product", "Product context. Claude can write it from what it read, no model on cizle's side."],
 	["create_video", "Render a storyboard Claude wrote into an animated MP4."],
 	["get_video / list_videos", "Progress, the file path and the dashboard link."],
@@ -176,7 +176,7 @@ export function ClaudeCodePage() {
 				<div className="mt-4 flex flex-wrap gap-2">
 					<Button variant="outline" size="sm" asChild>
 						<Link to="/prompts" search={{ kind: "film" }}>
-							Browse the 43 Opus film styles <Icon icon={ArrowRight01Icon} size={14} />
+							Browse the 63 film styles <Icon icon={ArrowRight01Icon} size={14} />
 						</Link>
 					</Button>
 					<Button variant="outline" size="sm" asChild>
