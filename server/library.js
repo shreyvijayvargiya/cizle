@@ -4,6 +4,7 @@
  *   prompts/types/*.md     video types (showcase, features, faq, comparison, glossary, launch, …)
  *   prompts/tones/*.md     tones (polished, playful, cinematic, …)
  *   prompts/films/*.md     Opus film styles imported from lemo-opuscar (MIT, LemoLab): art direction for code-built films
+ *   prompts/community/*.md motion prompts imported from prompt-motion.com (scripts/import-prompt-motion.mjs), credited to their creators; video is linked, not copied
  *   prompts/custom/*.md    user prompts created in the dashboard
  * Ids are "<kind>:<slug>", e.g. "type:faq", "tone:polished", "custom:devtool-launch".
  */
@@ -14,7 +15,7 @@ import matter from "gray-matter";
 import { ROOT } from "./paths.js";
 
 export const PROMPTS_DIR = path.join(ROOT, "prompts");
-const DIRS = { type: "types", tone: "tones", film: "films", custom: "custom" };
+const DIRS = { type: "types", tone: "tones", film: "films", community: "community", custom: "custom" };
 
 const slugify = (s) =>
 	String(s || "")
@@ -59,8 +60,13 @@ function toEntry(kind, slug, raw, stat, { light = false } = {}) {
 		source: data.source ? String(data.source) : null,
 		author: data.author ? String(data.author) : null,
 		license: data.license ? String(data.license) : null,
+		// Community prompts link to the creator's video and original post instead of copying them.
+		video: data.video ? String(data.video) : null,
+		poster: data.poster ? String(data.poster) : null,
+		source_post: data.source_post ? String(data.source_post) : null,
+		model: data.model ? String(data.model) : null,
 		built_in: kind !== "custom",
-		body: light && kind === "film" ? "" : content.trim(),
+		body: light && (kind === "film" || kind === "community") ? "" : content.trim(),
 		updated_at: stat?.mtime?.toISOString?.() || null,
 	};
 }
@@ -76,7 +82,7 @@ export async function listPrompts() {
 			out.push(toEntry(kind, f.replace(/\.md$/, ""), raw, stat, { light: true }));
 		}
 	}
-	const order = { type: 0, tone: 1, film: 2, custom: 3 };
+	const order = { type: 0, tone: 1, film: 2, community: 3, custom: 4 };
 	return out.sort((a, b) => order[a.kind] - order[b.kind] || a.name.localeCompare(b.name));
 }
 

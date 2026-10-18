@@ -8,7 +8,7 @@ export type StyleId = "default" | "sketch" | "clay" | "glass" | "isometric" | "a
 
 export type Prompt = {
 	id: string;
-	kind: "type" | "tone" | "film" | "custom";
+	kind: "type" | "tone" | "film" | "community" | "custom";
 	slug: string;
 	name: string;
 	description: string;
@@ -24,6 +24,11 @@ export type Prompt = {
 	source: string | null;
 	author: string | null;
 	license: string | null;
+	/** Community prompts (prompt-motion.com): the creator's video, poster, original post and the model they used. */
+	video: string | null;
+	poster: string | null;
+	source_post: string | null;
+	model: string | null;
 	/** Founder kinds this prompt suits (see FOUNDERS in constants). */
 	founders: string[];
 	/** Ad formats: Meta, TikTok or Google Ads, and static banners ("banner") instead of a video. */

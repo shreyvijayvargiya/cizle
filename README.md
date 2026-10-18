@@ -323,6 +323,16 @@ type: launch
 - End with "Star it on GitHub".
 ```
 
+### Community motion prompts
+
+`prompts/community/*.md` holds motion-video prompts imported from [prompt-motion.com](https://prompt-motion.com), each credited to its creator with links to the video, the prompt page and the original post. Videos are linked, not copied. Their prompts and videos belong to their creators.
+
+```bash
+NODE_USE_ENV_PROXY=1 node scripts/import-prompt-motion.mjs 10   # import the newest 10 (add --dry to preview)
+```
+
+The site is server-rendered: the home page lists every entry (`?p=N` pagination is client side), and each entry page has a JSON-LD `VideoObject` (title, mp4, creator) plus the prompt text in its Next.js payload. The script reads those, fetches one page per second and identifies itself.
+
 ## How it works
 
 ```

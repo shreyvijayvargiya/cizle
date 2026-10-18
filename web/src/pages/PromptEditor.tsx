@@ -46,7 +46,7 @@ export function PromptEditorPage() {
 		onSuccess: (p) => {
 			qc.invalidateQueries({ queryKey: ["prompts"] });
 			qc.setQueryData(["prompt", p.id], p);
-			toast.success(isNew ? "Prompt created" : "Prompt saved", { description: `prompts/${p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : p.kind === "film" ? "films" : "custom"}/${p.slug}.md` });
+			toast.success(isNew ? "Prompt created" : "Prompt saved", { description: `prompts/${p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : p.kind === "film" ? "films" : p.kind === "community" ? "community" : "custom"}/${p.slug}.md` });
 			if (isNew) navigate({ to: "/prompts/$id", params: { id: p.id } });
 		},
 		onError: (e: Error) => toast.error(e.message),
@@ -77,6 +77,30 @@ export function PromptEditorPage() {
 			<Link to="/prompts" className="mb-4 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
 				<Icon icon={ArrowLeft01Icon} size={13} /> Prompts
 			</Link>
+			{prompt?.kind === "community" ? (
+				<div className="mb-4 grid gap-3 rounded-xl border border-border bg-muted/40 p-3 text-xs text-muted-foreground sm:grid-cols-[minmax(0,320px)_1fr]">
+					{prompt.video ? <video src={prompt.video} poster={prompt.poster || undefined} controls muted loop playsInline preload="none" className="w-full rounded-lg border border-border bg-black" /> : null}
+					<div className="space-y-1">
+						<p>
+							Motion prompt by <span className="font-medium text-foreground">{prompt.author}</span>
+							{prompt.model ? ` · made with ${prompt.model}` : ""}. The video is streamed from the creator's page, not copied into this repo.
+						</p>
+						<p>{prompt.license}</p>
+						<p className="flex flex-wrap gap-x-3">
+							{prompt.source ? (
+								<a href={prompt.source} target="_blank" rel="noreferrer" className="underline hover:text-foreground">
+									Prompt page
+								</a>
+							) : null}
+							{prompt.source_post ? (
+								<a href={prompt.source_post} target="_blank" rel="noreferrer" className="underline hover:text-foreground">
+									Original post
+								</a>
+							) : null}
+						</p>
+					</div>
+				</div>
+			) : null}
 			{prompt?.kind === "film" ? (
 				<div className="mb-4 rounded-xl border border-border bg-muted/40 p-3 text-xs text-muted-foreground">
 					<p>
@@ -98,7 +122,7 @@ export function PromptEditorPage() {
 					{prompt ? <Badge tone={prompt.built_in ? "outline" : "info"}>{prompt.built_in ? `Built-in ${prompt.kind}` : "Custom"}</Badge> : null}
 				</div>
 				<div className="flex gap-1.5">
-					{!isNew && prompt ? (
+					{!isNew && prompt && prompt.kind !== "community" ? (
 						<Button variant="outline" size="sm" onClick={() => navigate({ to: "/create", search: { prompt: prompt.id } })}>
 							<Icon icon={PlayCircleIcon} size={14} /> Use in composer
 						</Button>
