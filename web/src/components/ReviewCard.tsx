@@ -89,7 +89,7 @@ export function ReviewCard({
 	const saving = review.intent === "save_prompt";
 	const types = library.filter((p) => p.kind === "type");
 	const tones = library.filter((p) => p.kind === "tone");
-	const customs = library.filter((p) => p.kind === "custom");
+	const customs = library.filter((p) => p.kind === "custom" || (p.kind === "community" && p.id === loadedPromptId));
 	const choice = effectiveChoice(review, answers);
 	const promptId = answers.prompt_id !== undefined ? answers.prompt_id : loadedPromptId || "";
 	const styleValue = one(answers.style) ?? style;

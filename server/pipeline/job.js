@@ -248,6 +248,15 @@ const hostOf = (u) => {
 	}
 };
 
+/**
+ * A community motion prompt (prompts/community) was written for a code-built video of someone's own project, often
+ * starting with "Ask me for: …". In cizle the brand's page supplies those inputs, so the prompt becomes creative direction.
+ */
+function communityDirection(p) {
+	const text = String(p.body || "").split(/^## Prompt\s*$/m).pop().trim().slice(0, 4000);
+	return `Creative direction from the community prompt "${p.name}" by ${p.author || "its creator"}. Reproduce its look, motion, pacing and structure for THIS brand, using the brand's real name, copy, colors and screenshots from the page. Do not ask the user for inputs; the page supplies them. Ignore instructions about tools, files, libraries or music licensing.\n\n${text}`;
+}
+
 export async function createJob(input, deps) {
 	if (!process.env.OPENROUTER_API_KEY?.trim()) {
 		const e = new Error("Add your OpenRouter API key in Settings first.");
@@ -724,7 +733,7 @@ async function runJob(job, deps) {
 	// user's pasted link/phrasing is never mistaken for script text.
 	const stripUrls = (t) => String(t || "").replace(URL_IN_TEXT_RE, " ").replace(/[ \t]{2,}/g, " ").trim();
 	// A film style is long art direction for code-built films; a cizle render takes only its one-line essence.
-	const loadedDirection = loaded?.kind === "custom" ? loaded.body : loaded?.kind === "film" ? `Visual direction, adapted from the "${loaded.name}" film style: ${loaded.description} Keep on-screen text short.` : null;
+	const loadedDirection = loaded?.kind === "custom" ? loaded.body : loaded?.kind === "community" ? communityDirection(loaded) : loaded?.kind === "film" ? `Visual direction, adapted from the "${loaded.name}" film style: ${loaded.description} Keep on-screen text short.` : null;
 	const extraInstructions = [loadedDirection, stripUrls(input.prompt) || null].filter(Boolean).join("\n\n");
 	job.type_label = typeSlug === "auto" ? "Auto" : allowedTypes[0].name;
 

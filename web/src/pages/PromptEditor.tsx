@@ -122,8 +122,8 @@ export function PromptEditorPage() {
 					{prompt ? <Badge tone={prompt.built_in ? "outline" : "info"}>{prompt.built_in ? `Built-in ${prompt.kind}` : "Custom"}</Badge> : null}
 				</div>
 				<div className="flex gap-1.5">
-					{!isNew && prompt && prompt.kind !== "community" ? (
-						<Button variant="outline" size="sm" onClick={() => navigate({ to: "/create", search: { prompt: prompt.id } })}>
+					{!isNew && prompt ? (
+						<Button variant={prompt.kind === "community" ? "default" : "outline"} size="sm" onClick={() => navigate({ to: "/create", search: { prompt: prompt.id } })}>
 							<Icon icon={PlayCircleIcon} size={14} /> Use in composer
 						</Button>
 					) : null}
