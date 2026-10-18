@@ -8,7 +8,7 @@ export type StyleId = "default" | "sketch" | "clay" | "glass" | "isometric" | "a
 
 export type Prompt = {
 	id: string;
-	kind: "type" | "tone" | "film" | "community" | "custom";
+	kind: "type" | "tone" | "film" | "community" | "image" | "custom";
 	slug: string;
 	name: string;
 	description: string;
@@ -24,6 +24,8 @@ export type Prompt = {
 	source: string | null;
 	author: string | null;
 	license: string | null;
+	/** Image prompts: id of the Image studio size preset this prompt is made for. */
+	dimension: string | null;
 	/** Community prompts (prompt-motion.com): the creator's video, poster, original post and the model they used. */
 	video: string | null;
 	poster: string | null;
@@ -163,6 +165,7 @@ export type Settings = {
 	script_model: string;
 	vision_model: string;
 	tts_model: string;
+	image_model: string;
 	voice: string;
 	aspect: Aspect;
 	duration_sec: number;
@@ -297,6 +300,29 @@ export type ReverseResult = {
 export type ReverseJob = { id: string; status: Status; step: string; progress: number; source_name: string; model_tier: Tier; created_at: string; cost_usd: number; error: string | null; result: ReverseResult | null };
 export type ReverseRow = { id: string; title: string; source_name: string; status: Status; step: string; progress: number; scene_count: number; cost_usd: number; created_at: string };
 
+export type ImageModel = { id: string; name: string; free: boolean; text_also: boolean; image_in: boolean; image_usd: number | null; prompt_usd_per_m: number; completion_usd_per_m: number };
+export type ImageDimension = { id: string; label: string; width: number; height: number; group: string };
+export type ImageOptions = { dimensions: ImageDimension[]; models: ImageModel[]; default_model: string; max_count: number; min_px: number; max_px: number };
+export type ImageJob = {
+	id: string;
+	status: "running" | "success" | "partial" | "failed";
+	created_at: string;
+	prompt: string;
+	model: string;
+	model_name: string;
+	width: number;
+	height: number;
+	dimension: string;
+	count: number;
+	product: string | null;
+	prompt_id: string | null;
+	reference: { job: string; file: string } | null;
+	images: { file: string; width: number; height: number }[];
+	errors: string[];
+	cost_usd: number;
+};
+export type CreateImage = { prompt: string; model: string; dimension?: string; width?: number; height?: number; count: number; product?: string; prompt_id?: string; reference?: { job: string; file: string } };
+
 export class ApiError extends Error {
 	code?: string;
 	constructor(message: string, code?: string) {
@@ -340,6 +366,10 @@ export const api = {
 	deleteVideo: (id: string) => req<{ ok: true }>(`/videos/${id}`, { method: "DELETE" }),
 	regenerate: (id: string) => req<Job>(`/videos/${id}/regenerate`, { method: "POST", json: {} }),
 	reskin: (id: string, body: { style?: StyleId; aspect?: Aspect; audio?: Audio }) => req<Job>(`/videos/${id}/reskin`, { method: "POST", json: body }),
+	imageOptions: () => req<ImageOptions>("/images/options"),
+	images: (product = "") => req<{ items: ImageJob[] }>(`/images${product ? `?product=${encodeURIComponent(product)}` : ""}`).then((r) => r.items),
+	createImage: (body: CreateImage) => req<ImageJob>("/images", { method: "POST", json: body }),
+	deleteImage: (id: string) => req<{ ok: true }>(`/images/${id}`, { method: "DELETE" }),
 	reverseList: () => req<{ items: ReverseRow[]; max_seconds: number; max_mb: number }>("/reverse"),
 	reverse: (id: string) => req<ReverseJob>(`/reverse/${id}`),
 	startReverse: (body: { file?: File; url?: string; notes?: string; model_tier: Tier }) => {
@@ -367,6 +397,8 @@ export const api = {
 	models: () => req<ModelsInfo>("/models"),
 	estimate: (body: CreateVideo) => req<{ total_usd: number; per_video_usd: number }>("/estimate", { method: "POST", json: body }),
 };
+
+export const imageUrl = (id: string, file: string, download = false) => `/api/images/${id}/file/${file}${download ? "?download=1" : ""}`;
 
 export const fileUrl = (jobId: string, rel?: string | null, download = false) =>
 	rel ? `/api/files/${jobId}?p=${encodeURIComponent(rel)}${download ? "&download=1" : ""}` : null;

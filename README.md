@@ -333,6 +333,19 @@ NODE_USE_ENV_PROXY=1 node scripts/import-prompt-motion.mjs 10   # import the new
 
 The site is server-rendered: the home page lists every entry (`?p=N` pagination is client side), and each entry page has a JSON-LD `VideoObject` (title, mp4, creator) plus the prompt text in its Next.js payload. The script reads those, fetches one page per second and identifies itself.
 
+## Image studio
+
+A chat-style studio for the images SaaS builders need: OG images, app icons, hero illustrations, launch graphics, social posts, blog covers. Open **Image studio** in the sidebar.
+
+- **Any OpenRouter image model.** The model picker lists every image-capable model OpenRouter offers (free and paid, with price per image and an "edits" badge for models that accept an input image). The default is `image_model` in Settings.
+- **Exact sizes.** Presets (Open Graph 1200×630, app icon 1024², Product Hunt 1270×760, Story 1080×1920, …) or any custom size from 256 to 4096 px. The model draws at the nearest supported aspect ratio and cizle crops to the exact pixel size.
+- **1-4 images per prompt**, generated in parallel, with the real cost shown per generation.
+- **Your product's memory** is added to the prompt so visuals use your name, audience and tone.
+- **Edit by chatting.** Hover an image and press Edit, then say "make the background darker". The image is sent to the model as a reference.
+- **Image prompts.** `prompts/images/*.md` holds 15 ready templates (OG image, app icon, feature icon set, Product Hunt gallery, testimonial card, …). Open one in Prompts and press "Use in Image studio".
+
+Images are saved in `data/images/<id>/`. API: `GET /api/images/options`, `POST /api/images` (`prompt`, `model`, `dimension` or `width`+`height`, `count`, `product`, `prompt_id`, `reference`), `GET /api/images` · `/api/images/:id` (poll), `GET /api/images/:id/file/img-1.png`, `DELETE /api/images/:id`.
+
 ## How it works
 
 ```

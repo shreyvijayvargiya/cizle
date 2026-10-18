@@ -18,6 +18,7 @@ import { GalleryPage } from "@/pages/Gallery";
 import { ClaudeCodePage } from "@/pages/ClaudeCode";
 import { DocsPage } from "@/pages/Docs";
 import { WorkspaceProvider } from "@/lib/workspace";
+import { ImageStudioPage } from "@/pages/ImageStudio";
 import { ReversePage } from "@/pages/Reverse";
 import { RouteError } from "@/components/RouteError";
 import "./index.css";
@@ -44,6 +45,7 @@ const routeTree = rootRoute.addChildren([
 	createRoute({ getParentRoute: parent, path: "/docs", component: DocsPage }),
 	createRoute({ getParentRoute: parent, path: "/product", component: ProductPage }),
 	createRoute({ getParentRoute: parent, path: "/products/new", component: OnboardingPage }),
+	createRoute({ getParentRoute: parent, path: "/images", component: ImageStudioPage, validateSearch: (s: Record<string, unknown>) => ({ prompt: typeof s.prompt === "string" ? s.prompt : undefined }) }),
 	createRoute({ getParentRoute: parent, path: "/reverse", component: ReversePage }),
 	createRoute({ getParentRoute: parent, path: "/videos", component: VideosPage }),
 	createRoute({ getParentRoute: parent, path: "/videos/$id", component: VideoDetailPage }),

@@ -21,6 +21,7 @@ const GROUPS: { kind: Prompt["kind"]; ad?: boolean; title: string; hint: string 
 	{ kind: "type", title: "Video types", hint: "Structure for each kind of video · prompts/types" },
 	{ kind: "tone", title: "Tones", hint: "Energy, pacing and wording · prompts/tones" },
 	{ kind: "film", title: "Opus film styles", hint: "43 looks from lemo-opuscar (MIT, LemoLab) · prompts/films" },
+	{ kind: "image", title: "Image prompts", hint: "For the Image studio: OG images, icons, launch graphics · prompts/images" },
 	{ kind: "community", title: "Community motion prompts", hint: "Credited to their creators, imported from prompt-motion.com · prompts/community" },
 ];
 
@@ -28,7 +29,7 @@ export function PromptsPage() {
 	const prompts = usePrompts();
 	const [q, setQ] = useState("");
 	const search = useSearch({ strict: false }) as { kind?: string };
-	const [kind, setKind] = useState<"" | "ad" | Prompt["kind"]>((["custom", "type", "tone", "film", "community", "ad"].includes(search.kind || "") ? search.kind : "") as "" | Prompt["kind"]);
+	const [kind, setKind] = useState<"" | "ad" | Prompt["kind"]>((["custom", "type", "tone", "film", "community", "image", "ad"].includes(search.kind || "") ? search.kind : "") as "" | Prompt["kind"]);
 	const [founder, setFounder] = useState("");
 	const [allFilms, setAllFilms] = useState(false);
 	const list = useMemo(
@@ -54,7 +55,7 @@ export function PromptsPage() {
 					<Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search prompts" className="pl-8" />
 				</div>
 				<div className="flex items-center gap-1 rounded-lg bg-muted p-1">
-					{[["", "All"], ["custom", "Yours"], ["ad", "Ads"], ["type", "Types"], ["tone", "Tones"], ["film", "Films"], ["community", "Community"]].map(([k, label]) => (
+					{[["", "All"], ["custom", "Yours"], ["ad", "Ads"], ["type", "Types"], ["tone", "Tones"], ["film", "Films"], ["community", "Community"], ["image", "Images"]].map(([k, label]) => (
 						<button key={k} type="button" onClick={() => setKind(k as typeof kind)} className={cn("h-7 rounded-md px-2.5 text-xs font-medium", kind === k ? "bg-surface shadow-sm" : "text-muted-foreground hover:text-foreground")}>
 							{label}
 						</button>
@@ -94,11 +95,11 @@ export function PromptsPage() {
 												{p.kind === "community" && p.poster ? <img src={p.poster} alt="" loading="lazy" referrerPolicy="no-referrer" className="mb-3 h-24 w-full rounded-lg border border-border object-cover" /> : p.kind !== "custom" ? <PromptThumb style={p.style} motion={TYPE_MOTION[p.slug]} className="mb-3 h-24" /> : null}
 												<div className="flex items-start justify-between gap-2">
 													<p className="text-sm font-medium">{p.name}</p>
-													<Badge tone={p.built_in ? "outline" : "info"}>{p.kind === "film" || p.kind === "community" ? p.category || (p.kind === "film" ? "Film" : "Community") : p.built_in ? "Built-in" : "Custom"}</Badge>
+													<Badge tone={p.built_in ? "outline" : "info"}>{p.kind === "film" || p.kind === "community" || p.kind === "image" ? p.category || (p.kind === "film" ? "Film" : p.kind === "image" ? "Image" : "Community") : p.built_in ? "Built-in" : "Custom"}</Badge>
 												</div>
 												<p className="mt-1 line-clamp-2 text-[13px] text-muted-foreground">{p.description || p.body.slice(0, 120)}</p>
 												<div className="mt-auto flex items-center gap-2 pt-3 text-[11px] text-muted-foreground">
-													<span className="font-mono">{p.kind === "film" ? "films" : p.kind === "community" ? "community" : p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : "custom"}/{p.slug}.md</span>
+													<span className="font-mono">{p.kind === "film" ? "films" : p.kind === "community" ? "community" : p.kind === "image" ? "images" : p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : "custom"}/{p.slug}.md</span>
 													{p.type && p.kind === "custom" ? <span>· {p.type}</span> : null}
 													{p.style ? <Badge tone="info">{p.kind === "film" ? `cizle: ${STYLE_LABEL[p.style]}` : STYLE_LABEL[p.style]}</Badge> : null}
 													{p.kind === "type" && p.founders?.length ? <span className="truncate">· {p.founders.map((f) => FOUNDER_LABEL[f] || f).join(", ")}</span> : null}

@@ -122,6 +122,42 @@ export async function openRouterChatRaw({
 	};
 }
 
+/**
+ * Generate one image through chat/completions with image output.
+ * OpenRouter returns images on the assistant message as data URLs: message.images[].image_url.url.
+ * Models that also produce text take modalities ["image","text"]; image-only models take ["image"].
+ * @param {{ model: string, prompt: string, aspectRatio?: string, imageSize?: string, textAlso?: boolean, reference?: string, timeoutMs?: number }} opts
+ * @returns {Promise<{ images: { mime: string, base64: string }[], text: string, model: string, usage: object }>}
+ */
+export async function openRouterImage({ model, prompt, aspectRatio, imageSize, textAlso = true, reference, timeoutMs = 240_000 }) {
+	const content = reference ? [{ type: "text", text: prompt }, { type: "image_url", image_url: { url: reference } }] : prompt;
+	const body = {
+		model,
+		messages: [{ role: "user", content }],
+		modalities: textAlso ? ["image", "text"] : ["image"],
+		usage: { include: true },
+	};
+	const image_config = {};
+	if (aspectRatio) image_config.aspect_ratio = aspectRatio;
+	if (imageSize) image_config.image_size = imageSize;
+	if (Object.keys(image_config).length) body.image_config = image_config;
+	const res = await fetch(CHAT_URL, { method: "POST", signal: AbortSignal.timeout(timeoutMs), headers: headers(), body: JSON.stringify(body) });
+	const data = await res.json().catch(() => ({}));
+	if (!res.ok || data.error) throw failure(res, data);
+	const message = data.choices?.[0]?.message;
+	const urls = [];
+	for (const im of message?.images || []) urls.push(im?.image_url?.url || im?.url || im);
+	if (Array.isArray(message?.content)) for (const part of message.content) if (part?.type === "image_url") urls.push(part.image_url?.url);
+	const images = urls
+		.filter((u) => typeof u === "string")
+		.map((u) => /^data:(image\/[a-z0-9.+-]+);base64,(.+)$/is.exec(u))
+		.filter(Boolean)
+		.map((m) => ({ mime: m[1].toLowerCase(), base64: m[2] }));
+	const text = typeof message?.content === "string" ? message.content : "";
+	if (!images.length) throw new Error(text ? `The model returned text instead of an image: ${text.slice(0, 200)}` : "The model returned no image. Try another model or a clearer prompt.");
+	return { images, text, model: data.model || model, usage: normalizeOpenRouterUsage(data.usage) };
+}
+
 /** @param {string|string[]} input */
 export async function openRouterEmbed(input, { model = DEFAULT_EMBED_MODEL } = {}) {
 	const res = await fetch(EMBEDDINGS_URL, {

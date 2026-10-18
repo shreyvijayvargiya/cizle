@@ -16,6 +16,7 @@ export const DEFAULTS = {
 	script_model: "anthropic/claude-sonnet-4",
 	vision_model: "google/gemini-2.5-flash",
 	tts_model: "openai/gpt-audio-mini",
+	image_model: "google/gemini-2.5-flash-image", // Image studio default; pick any image model per generation
 	free_script_model: "auto", // "auto" = best free text model OpenRouter currently lists
 	free_vision_model: "auto",
 	voice: "nova",

@@ -19,6 +19,8 @@ let cache = { at: 0, models: /** @type {object[]} */ ([]) };
 let inflight = null;
 
 const num = (v) => Number(v) || 0;
+/** USD per generated image when OpenRouter prices images per image; null when it bills by tokens only. */
+const pricingImage = (m) => (num(m.pricing?.image) > 0 ? num(m.pricing.image) : null);
 
 function normalize(m) {
 	const input = m.architecture?.input_modalities || [];
@@ -31,6 +33,10 @@ function normalize(m) {
 		completion_usd_per_m: num(m.pricing?.completion) * 1e6,
 		free: String(m.id).endsWith(":free") || (num(m.pricing?.prompt) === 0 && num(m.pricing?.completion) === 0),
 		vision: input.includes("image"),
+		image_out: output.includes("image"),
+		text_also: output.includes("text"),
+		image_in: input.includes("image"),
+		image_usd: pricingImage(m),
 		text_out: output.includes("text") && !output.includes("audio"),
 	};
 }
@@ -89,4 +95,18 @@ export async function modelsSummary() {
 		free_models: free.slice(0, 60).map(({ id, name, context_length, vision }) => ({ id, name, context_length, vision })),
 		notes: ["Free models are rate limited and a little less reliable with strict JSON. Voice-over has no free option, so free runs use music or silence."],
 	};
+}
+
+/** Models that can generate images, best known first. Never throws; empty until the model list loads. */
+export async function imageModels() {
+	await warmModels();
+	const preferred = [/gemini-3.*image/, /gpt-5-image/, /gemini-2\.5-flash-image/, /flux/, /seedream/, /riverflow/];
+	const rank = (id) => {
+		const i = preferred.findIndex((re) => re.test(id));
+		return i === -1 ? preferred.length : i;
+	};
+	return cache.models
+		.filter((m) => m.image_out)
+		.map(({ id, name, free, text_also, image_in, image_usd, prompt_usd_per_m, completion_usd_per_m, context_length }) => ({ id, name, free, text_also, image_in, image_usd, prompt_usd_per_m, completion_usd_per_m, context_length }))
+		.sort((a, b) => rank(a.id) - rank(b.id) || a.name.localeCompare(b.name));
 }

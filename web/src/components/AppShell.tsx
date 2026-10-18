@@ -21,6 +21,7 @@ import {
 	Sun03Icon,
 	Video01Icon,
 	MagicWand01Icon,
+	AiImageIcon,
 } from "@hugeicons/core-free-icons";
 import { Tooltip } from "radix-ui";
 import { Icon } from "@/components/Icon";
@@ -43,6 +44,7 @@ const NAV_GROUPS: { label: string; items: NavItem[] }[] = [
 			{ to: "/", label: "Dashboard", icon: DashboardSquare01Icon, exact: true },
 			{ to: "/create", label: "Create video", icon: PlusSignIcon },
 			{ to: "/videos", label: "Videos", icon: Video01Icon },
+			{ to: "/images", label: "Image studio", icon: AiImageIcon },
 			{ to: "/reverse", label: "Reverse a video", icon: MagicWand01Icon },
 		],
 	},

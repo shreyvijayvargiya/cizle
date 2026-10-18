@@ -5,6 +5,7 @@
  *   prompts/tones/*.md     tones (polished, playful, cinematic, …)
  *   prompts/films/*.md     Opus film styles imported from lemo-opuscar (MIT, LemoLab): art direction for code-built films
  *   prompts/community/*.md motion prompts imported from prompt-motion.com (scripts/import-prompt-motion.mjs), credited to their creators; video is linked, not copied
+ *   prompts/images/*.md    image prompts for the Image studio (OG images, app icons, launch graphics, …)
  *   prompts/custom/*.md    user prompts created in the dashboard
  * Ids are "<kind>:<slug>", e.g. "type:faq", "tone:polished", "custom:devtool-launch".
  */
@@ -15,7 +16,7 @@ import matter from "gray-matter";
 import { ROOT } from "./paths.js";
 
 export const PROMPTS_DIR = path.join(ROOT, "prompts");
-const DIRS = { type: "types", tone: "tones", film: "films", community: "community", custom: "custom" };
+const DIRS = { type: "types", tone: "tones", film: "films", community: "community", image: "images", custom: "custom" };
 
 const slugify = (s) =>
 	String(s || "")
@@ -61,6 +62,8 @@ function toEntry(kind, slug, raw, stat, { light = false } = {}) {
 		author: data.author ? String(data.author) : null,
 		license: data.license ? String(data.license) : null,
 		// Community prompts link to the creator's video and original post instead of copying them.
+		// Image prompts (prompts/images): a ready size for the Image studio, e.g. "1200x630" or a dimension id.
+		dimension: data.dimension ? String(data.dimension) : null,
 		video: data.video ? String(data.video) : null,
 		poster: data.poster ? String(data.poster) : null,
 		source_post: data.source_post ? String(data.source_post) : null,
@@ -82,7 +85,7 @@ export async function listPrompts() {
 			out.push(toEntry(kind, f.replace(/\.md$/, ""), raw, stat, { light: true }));
 		}
 	}
-	const order = { type: 0, tone: 1, film: 2, community: 3, custom: 4 };
+	const order = { type: 0, tone: 1, film: 2, community: 3, image: 4, custom: 5 };
 	return out.sort((a, b) => order[a.kind] - order[b.kind] || a.name.localeCompare(b.name));
 }
 

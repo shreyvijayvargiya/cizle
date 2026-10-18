@@ -156,6 +156,9 @@ export function SettingsPage() {
 						<Row label="Voice model" hint="Text-to-speech">
 							<Input value={form.tts_model || ""} onChange={(e) => set("tts_model", e.target.value)} />
 						</Row>
+						<Row label="Image model" hint="Default for the Image studio. Any OpenRouter image model id">
+							<Input value={form.image_model || ""} onChange={(e) => set("image_model", e.target.value)} />
+						</Row>
 						<Row label="Free script model" hint="Used when the Free switch is on. “auto” picks the best free model OpenRouter lists">
 							<Input value={form.free_script_model || ""} onChange={(e) => set("free_script_model", e.target.value)} placeholder="auto" />
 						</Row>
@@ -177,6 +180,7 @@ export function SettingsPage() {
 										script_model: form.script_model,
 										vision_model: form.vision_model,
 										tts_model: form.tts_model,
+										image_model: form.image_model,
 										free_script_model: form.free_script_model,
 										free_vision_model: form.free_vision_model,
 										auto_sync: form.auto_sync,

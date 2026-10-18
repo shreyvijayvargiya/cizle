@@ -27,6 +27,7 @@ const { syncProduct, ideaVocab } = await import("./products/sync.js");
 const { reviewDraft } = await import("./review/index.js");
 const { logChat } = await import("./review/chatlog.js");
 const reverse = await import("./reverse/index.js");
+const studio = await import("./images/index.js");
 const browser = await import("./browser.js");
 const { scrape } = await import("./scrape.js");
 
@@ -73,6 +74,31 @@ api.put("/prompts/:id", async (c) => {
 	return c.json(await savePrompt({ ...body, id: c.req.param("id") }));
 });
 api.delete("/prompts/:id", async (c) => ((await deletePrompt(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Only custom prompts can be deleted" }, 400)));
+
+/* image studio: generate images with any OpenRouter image model */
+api.get("/images/options", async (c) => c.json(await studio.imageOptions()));
+api.get("/images", async (c) => c.json({ items: await studio.listImageJobs({ product: c.req.query("product") || "" }) }));
+api.post("/images", async (c) => {
+	const body = await c.req.json().catch(() => ({}));
+	try {
+		return c.json(await studio.createImageJob(body), 202);
+	} catch (e) {
+		if (e?.code === "BAD_INPUT") return c.json({ error: e.message, code: e.code }, 400);
+		throw e;
+	}
+});
+api.get("/images/:id", async (c) => {
+	const job = await studio.getImageJob(c.req.param("id"));
+	return job ? c.json(job) : c.json({ error: "Not found" }, 404);
+});
+api.delete("/images/:id", async (c) => ((await studio.deleteImageJob(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Not found" }, 404)));
+api.get("/images/:id/file/:name", async (c) => {
+	const file = studio.imageFile(c.req.param("id"), c.req.param("name"));
+	if (!file) return c.json({ error: "Not found" }, 404);
+	const headers = { "Content-Type": "image/png", "Cache-Control": "private, max-age=3600" };
+	if (c.req.query("download")) headers["Content-Disposition"] = `attachment; filename="cizle-${c.req.param("id").slice(0, 8)}-${c.req.param("name")}"`;
+	return c.body(await fs.promises.readFile(file), 200, headers);
+});
 
 /* reverse-engineer a video into per-scene image, video and audio prompts */
 api.get("/reverse", async (c) => c.json({ items: await reverse.listReverse(), max_seconds: reverse.MAX_VIDEO_SEC, max_mb: reverse.MAX_VIDEO_BYTES / 1024 / 1024 }));

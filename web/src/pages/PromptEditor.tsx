@@ -46,7 +46,7 @@ export function PromptEditorPage() {
 		onSuccess: (p) => {
 			qc.invalidateQueries({ queryKey: ["prompts"] });
 			qc.setQueryData(["prompt", p.id], p);
-			toast.success(isNew ? "Prompt created" : "Prompt saved", { description: `prompts/${p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : p.kind === "film" ? "films" : p.kind === "community" ? "community" : "custom"}/${p.slug}.md` });
+			toast.success(isNew ? "Prompt created" : "Prompt saved", { description: `prompts/${p.kind === "type" ? "types" : p.kind === "tone" ? "tones" : p.kind === "film" ? "films" : p.kind === "community" ? "community" : p.kind === "image" ? "images" : "custom"}/${p.slug}.md` });
 			if (isNew) navigate({ to: "/prompts/$id", params: { id: p.id } });
 		},
 		onError: (e: Error) => toast.error(e.message),
@@ -123,8 +123,8 @@ export function PromptEditorPage() {
 				</div>
 				<div className="flex gap-1.5">
 					{!isNew && prompt ? (
-						<Button variant={prompt.kind === "community" ? "default" : "outline"} size="sm" onClick={() => navigate({ to: "/create", search: { prompt: prompt.id } })}>
-							<Icon icon={PlayCircleIcon} size={14} /> Use in composer
+						<Button variant={prompt.kind === "community" || prompt.kind === "image" ? "default" : "outline"} size="sm" onClick={() => (prompt.kind === "image" ? navigate({ to: "/images", search: { prompt: prompt.id } }) : navigate({ to: "/create", search: { prompt: prompt.id } }))}>
+							<Icon icon={PlayCircleIcon} size={14} /> {prompt.kind === "image" ? "Use in Image studio" : "Use in composer"}
 						</Button>
 					) : null}
 					{!isNew && isCustom ? (
