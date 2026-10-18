@@ -155,13 +155,23 @@ async function main() {
 	const ids = listEntries(home);
 	console.log(`prompt-motion.com lists ${ids.length} entries; importing the first ${count}`);
 	await fs.mkdir(OUT, { recursive: true });
-	for (const id of ids.slice(0, count)) {
+	let done = 0;
+	for (const id of ids) {
+		if (done >= count) break;
 		await sleep(1000);
-		const entry = parseEntry(id, await get(`${ORIGIN}/${id}`));
+		let entry;
+		try {
+			entry = parseEntry(id, await get(`${ORIGIN}/${id}`));
+		} catch (e) {
+			// Some entries are skills to install rather than prompts: no prompt text to import.
+			console.log(`skipped ${id}: ${e.message}`);
+			continue;
+		}
 		const file = path.join(OUT, `${slugify(entry.title)}-${id.split("-").pop()}.md`);
 		if (dry) console.log(JSON.stringify({ ...entry, prompt: entry.prompt.slice(0, 120) }, null, 1));
 		else await fs.writeFile(file, toMarkdown(entry));
-		console.log(`${dry ? "(dry) " : ""}${path.basename(file)}  ←  ${entry.creator}: ${entry.prompt.slice(0, 70).replace(/\s+/g, " ")}…`);
+		done++;
+		console.log(`${dry ? "(dry) " : ""}${done}. ${path.basename(file)}  ←  ${entry.creator}: ${entry.prompt.slice(0, 70).replace(/\s+/g, " ")}…`);
 	}
 }
 
