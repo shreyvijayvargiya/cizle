@@ -1,0 +1,44 @@
+import { useEffect, useState } from "react";
+import { Outlet } from "@tanstack/react-router";
+import { Tooltip } from "radix-ui";
+import { Toaster } from "sonner";
+import { CommandMenu } from "@/layout/CommandMenu";
+import { Footer } from "@/layout/Footer";
+import { Navbar } from "@/layout/Navbar";
+import { useTheme } from "@/lib/theme";
+
+/** The shell every page shares: navbar, page, footer, ⌘K and toasts. Pages only render their own content. */
+export function Layout() {
+	const [searchOpen, setSearchOpen] = useState(false);
+	const { resolved } = useTheme();
+	useEffect(() => {
+		const onKey = (e: KeyboardEvent) => {
+			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+				e.preventDefault();
+				setSearchOpen((o) => !o);
+			}
+			if (e.key === "/" && !(e.target as HTMLElement)?.closest("input, textarea, select, [contenteditable]")) {
+				e.preventDefault();
+				setSearchOpen(true);
+			}
+		};
+		window.addEventListener("keydown", onKey);
+		return () => window.removeEventListener("keydown", onKey);
+	}, []);
+	return (
+		<Tooltip.Provider delayDuration={250}>
+			<a href="#main" className="sr-only z-[60] rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+				Skip to content
+			</a>
+			<div className="flex min-h-dvh flex-col">
+				<Navbar onSearch={() => setSearchOpen(true)} />
+				<main id="main" className="flex-1">
+					<Outlet />
+				</main>
+				<Footer />
+			</div>
+			<CommandMenu open={searchOpen} onOpenChange={setSearchOpen} />
+			<Toaster theme={resolved} position="bottom-right" richColors closeButton toastOptions={{ classNames: { toast: "!border-border" } }} />
+		</Tooltip.Provider>
+	);
+}

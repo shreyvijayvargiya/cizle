@@ -1,0 +1,405 @@
+{
+ "categories": [
+  "Product videos",
+  "Explainers",
+  "Launch & growth",
+  "Social proof",
+  "Ads",
+  "Engineering",
+  "Film styles"
+ ],
+ "skills": [
+  {
+   "dir": "types",
+   "source": "showcase",
+   "tier": "free",
+   "category": "Product videos",
+   "featured": true
+  },
+  {
+   "dir": "types",
+   "source": "features",
+   "tier": "free",
+   "category": "Product videos",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "launch",
+   "tier": "free",
+   "category": "Launch & growth",
+   "featured": true
+  },
+  {
+   "dir": "types",
+   "source": "whats-new",
+   "tier": "free",
+   "category": "Launch & growth",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "pitch-teaser",
+   "tier": "free",
+   "category": "Launch & growth",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "roadmap",
+   "tier": "free",
+   "category": "Launch & growth",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "how-it-works",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "quickstart",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "faq",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": true
+  },
+  {
+   "dir": "types",
+   "source": "glossary",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "integrations",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "tips-listicle",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "myth-busting",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "pricing-explained",
+   "tier": "free",
+   "category": "Explainers",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "problem-solution",
+   "tier": "free",
+   "category": "Product videos",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "comparison",
+   "tier": "free",
+   "category": "Product videos",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "use-case-spotlight",
+   "tier": "free",
+   "category": "Product videos",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "customer-proof",
+   "tier": "free",
+   "category": "Social proof",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "founder-story",
+   "tier": "free",
+   "category": "Social proof",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "code-walkthrough",
+   "tier": "free",
+   "category": "Engineering",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "meta-reels-hook",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": true
+  },
+  {
+   "dir": "types",
+   "source": "meta-feed-offer",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "meta-problem-solution",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "meta-feed-banners",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "tiktok-ugc-hook",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": true
+  },
+  {
+   "dir": "types",
+   "source": "tiktok-offer-drop",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "tiktok-demo-listicle",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "google-bumper-6s",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "google-instream-15s",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "google-shorts-ad",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "google-display-banners",
+   "tier": "premium",
+   "category": "Ads",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "engineering-explainer",
+   "tier": "premium",
+   "category": "Engineering",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "engineering-podcast",
+   "tier": "premium",
+   "category": "Engineering",
+   "featured": true
+  },
+  {
+   "dir": "types",
+   "source": "system-design-breakdown",
+   "tier": "premium",
+   "category": "Engineering",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "technical-deep-dive",
+   "tier": "premium",
+   "category": "Engineering",
+   "featured": false
+  },
+  {
+   "dir": "types",
+   "source": "sketch-explainer",
+   "tier": "premium",
+   "category": "Engineering",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "watercolor",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": true
+  },
+  {
+   "dir": "films",
+   "source": "dark-keynote",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": true
+  },
+  {
+   "dir": "films",
+   "source": "blueprint",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "glass-product",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "swiss-motion",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "whiteboard",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "paper-popup",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "risograph",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "ink-wash",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "iso-infographic",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "living-screencast",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "silent-film",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "engraving",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "hologram-hud",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "pictogram-motion",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "woodcut",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "art-deco",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "cel-anime-80s",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "paper-lantern",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "films",
+   "source": "dataviz",
+   "tier": "premium",
+   "category": "Film styles",
+   "featured": false
+  }
+ ]
+}

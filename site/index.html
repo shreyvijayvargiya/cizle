@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cizle skills: video prompts and Claude Code skills for product, ad and launch videos</title>
+		<meta name="description" content="A library of video skills and prompts for Claude Code. Copy a prompt or install a skill, give it your product link, and render an animated MP4 on your own machine." />
+		<meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+		<script>
+			try {
+				const t = localStorage.getItem("cizle-theme") || "system";
+				const dark = t === "dark" || (t === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+				document.documentElement.classList.toggle("dark", dark);
+			} catch {}
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
+</html>

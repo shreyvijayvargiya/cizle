@@ -1,0 +1,13 @@
+{
+	"name": "cizle",
+	"url": "https://cizle.dev",
+	"tagline": "Video skills for Claude Code",
+	"title": "cizle skills: video prompts and Claude Code skills for product, ad and launch videos",
+	"description": "A library of video skills and prompts for Claude Code. Copy a prompt or install a skill, give it your product link, and render an animated MP4 on your own machine. 20 free skills, premium ad and film-style skills for $10 a month.",
+	"email": "hello@cizle.dev",
+	"x": "",
+	"github": "https://github.com/shreyvijayvargiya/cizle",
+	"repo": "shreyvijayvargiya/cizle",
+	"price": { "usd": 10, "inr": 799 },
+	"freeCount": 20
+}
