@@ -25,6 +25,7 @@ function normalize(m) {
 	const output = m.architecture?.output_modalities || ["text"];
 	return {
 		id: m.id,
+		created: num(m.created),
 		name: m.name || m.id,
 		context_length: num(m.context_length),
 		prompt_usd_per_m: num(m.pricing?.prompt) * 1e6,
@@ -89,4 +90,26 @@ export async function modelsSummary() {
 		free_models: free.slice(0, 60).map(({ id, name, context_length, vision }) => ({ id, name, context_length, vision })),
 		notes: ["Free models are rate limited and a little less reliable with strict JSON. Voice-over has no free option, so free runs use music or silence."],
 	};
+}
+
+/**
+ * A working stand-in for a model OpenRouter no longer serves (retired ids answer "No endpoints found").
+ * Looks in the live model list for the newest model of the same family (anthropic/claude-sonnet-*), then the same vendor.
+ * Returns null when the id is still listed or nothing suitable exists.
+ */
+export async function replacementModel(id, { vision = false } = {}) {
+	const list = await warmModels({ force: true });
+	if (!list.length || list.some((m) => m.id === id)) return null;
+	const free = String(id).endsWith(":free");
+	const vendor = String(id).split("/")[0];
+	// Name words without versions: "anthropic/claude-3-opus" → [claude, opus]; "google/gemini-2.5-flash" → [gemini, flash].
+	const words = String(id).split("/")[1]?.replace(/:.*/, "").split(/[-._\d]+/).filter((w) => w.length > 1) || [];
+	const usable = list.filter((m) => m.text_out && m.free === free && m.context_length >= 16_000 && (!vision || m.vision) && !/preview|exp|thinking|guard|embed|image|audio|tts|:extended/i.test(m.id));
+	const newest = (xs) => xs.sort((a, b) => b.created - a.created)[0]?.id || null;
+	// Same vendor and every name word first (newest claude + opus), then just the first word, then anything from the vendor.
+	for (const need of [words, words.slice(0, 1), []]) {
+		const hit = newest(usable.filter((m) => m.id.startsWith(`${vendor}/`) && need.every((w) => m.id.toLowerCase().includes(w.toLowerCase()))));
+		if (hit) return hit;
+	}
+	return null;
 }

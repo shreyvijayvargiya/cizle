@@ -375,8 +375,8 @@ You pay OpenRouter for model usage; cizle itself is free. Free models cost nothi
 | Per run | Default paid model | ≈ USD |
 |---|---|---|
 | Screenshot analysis | `google/gemini-2.5-flash` | 0.01 |
-| Product brief + concepts | `anthropic/claude-sonnet-4` | 0.06 |
-| Script, per video | `anthropic/claude-sonnet-4` | 0.05 |
+| Product brief + concepts | `anthropic/claude-sonnet-4.5` | 0.06 |
+| Script, per video | `anthropic/claude-sonnet-4.5` | 0.05 |
 | Voice-over, per minute | `openai/gpt-audio-mini` | 0.03 |
 | Add a product (one-off) | script model | ≈ 0.05 |
 | Sync with changes | script model | ≈ 0.01–0.03 |

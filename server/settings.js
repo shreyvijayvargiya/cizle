@@ -13,7 +13,7 @@ const FILE = path.join(DATA_DIR, "settings.json");
 export const DEFAULTS = {
 	openrouter_api_key: "",
 	uploadthing_token: "",
-	script_model: "anthropic/claude-sonnet-4",
+	script_model: "anthropic/claude-sonnet-4.5",
 	vision_model: "google/gemini-2.5-flash",
 	tts_model: "openai/gpt-audio-mini",
 	free_script_model: "auto", // "auto" = best free text model OpenRouter currently lists
@@ -39,6 +39,8 @@ export function loadSettings() {
 	} catch {
 		/* first run */
 	}
+	// "anthropic/claude-sonnet-4" was the old default and OpenRouter no longer serves it; move saved copies of it forward.
+	if (file.script_model === "anthropic/claude-sonnet-4") file.script_model = DEFAULTS.script_model;
 	cache = { ...DEFAULTS, ...file };
 	applyToEnv(cache);
 	return cache;

@@ -157,7 +157,7 @@ Every video goes through the same pipeline:
 1. **Read the product.** Homepage, `llms.txt`, blog, FAQ schema, pricing and docs pages are read in parallel. With a GitHub repo, it is cloned locally to read the README and code.
 2. **Take screenshots.** Headless Chrome captures real UI sections and product images.
 3. **Score every frame.** A vision model (`google/gemini-2.5-flash` by default) rates each screenshot and decides where it can be used.
-4. **Write the product brief.** A script model (`anthropic/claude-sonnet-4` by default) writes an evidence-backed brief: features, proof points, FAQs, hooks.
+4. **Write the product brief.** A script model (`anthropic/claude-sonnet-4.5` by default) writes an evidence-backed brief: features, proof points, FAQs, hooks.
 5. **Stack the prompts and write storyboards.** The type, tone, your custom prompt and the creative laws are combined, then 1 to 3 storyboards are written in parallel.
 6. **Render.** Each scene is drawn as an animated HTML frame in the chosen style, captured frame by frame, then FFmpeg adds captions, music or voice-over (`openai/gpt-audio-mini`) and stitches it all together.
 7. **Save everything.** MP4, `.srt`, caption, script and frames land in `data/videos/<id>/`.
@@ -250,8 +250,8 @@ You pay OpenRouter for model usage; Cizle itself is free. Free models cost nothi
 | Per run | Default paid model | About (USD) |
 |---|---|---|
 | Screenshot analysis | `google/gemini-2.5-flash` | 0.01 |
-| Product brief and concepts | `anthropic/claude-sonnet-4` | 0.06 |
-| Script, per video | `anthropic/claude-sonnet-4` | 0.05 |
+| Product brief and concepts | `anthropic/claude-sonnet-4.5` | 0.06 |
+| Script, per video | `anthropic/claude-sonnet-4.5` | 0.05 |
 | Voice-over, per minute | `openai/gpt-audio-mini` | 0.03 |
 
 A 30 second narrated video costs about $0.10 to $0.20, and silent videos cost less. The dashboard shows an estimate before you generate and the actual cost after.

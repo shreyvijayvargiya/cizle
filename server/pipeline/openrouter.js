@@ -3,6 +3,7 @@
  */
 
 import { normalizeOpenRouterUsage } from "./openRouterUsage.js";
+import { replacementModel } from "../models.js";
 
 const BASE_URL = (process.env.OPENROUTER_BASE_URL?.trim() || "https://openrouter.ai/api/v1").replace(/\/+$/, "");
 const CHAT_URL = `${BASE_URL}/chat/completions`;
@@ -11,7 +12,7 @@ const EMBEDDINGS_URL = `${BASE_URL}/embeddings`;
 const DEFAULT_CHAT_MODEL =
 	process.env.OPENROUTER_GEO_SYNTH_MODEL ||
 	process.env.OPENROUTER_MODEL ||
-	"anthropic/claude-sonnet-4";
+	"anthropic/claude-sonnet-4.5";
 
 const DEFAULT_EMBED_MODEL =
 	process.env.OPENROUTER_EMBED_MODEL || "openai/text-embedding-3-small";
@@ -42,10 +43,41 @@ function failure(res, data) {
 	return err;
 }
 
+/** OpenRouter answers 404 "No endpoints found for <model>" once a model is retired. */
+const isUnavailable = (e) => /no endpoints found|is not a valid model id|no such model/i.test(String(e?.message || ""));
+/** Models we already replaced this run: retired id → working id. */
+const remap = new Map();
+
+/**
+ * Run a call; when its model has been retired, switch to the newest model of the same family from OpenRouter's live
+ * list and retry once. If there is none, say plainly which setting to change.
+ */
+async function withModelFallback(model, { vision = false } = {}, run) {
+	const first = remap.get(model) || model;
+	try {
+		return await run(first);
+	} catch (e) {
+		if (!isUnavailable(e)) throw e;
+		const alt = await replacementModel(first, { vision });
+		if (!alt || alt === first) {
+			throw Object.assign(new Error(`The model "${first}" is no longer available on OpenRouter. Choose another in Settings (Script model / Vision model).`), { code: "MODEL_UNAVAILABLE" });
+		}
+		console.warn(`[cizle] OpenRouter has no endpoints for ${first}; using ${alt} instead. Update the model in Settings to silence this.`);
+		remap.set(model, alt);
+		return run(alt);
+	}
+}
+
+const hasImages = (messages) => JSON.stringify(messages || []).includes('"image_url"');
+
 /**
  * @param {{ model?: string, messages: object[], temperature?: number, maxTokens?: number, jsonMode?: boolean, timeoutMs?: number }} opts
  */
-export async function openRouterChat({
+export function openRouterChat(opts) {
+	return withModelFallback(opts.model ?? DEFAULT_CHAT_MODEL, { vision: hasImages(opts.messages) }, (model) => chatOnce({ ...opts, model }));
+}
+
+async function chatOnce({
 	model = DEFAULT_CHAT_MODEL,
 	messages,
 	temperature = 0.3,
@@ -85,7 +117,11 @@ export async function openRouterChat({
  * Full chat completion (tool calls allowed). Does not require text content.
  * @param {{ model?: string, messages: object[], tools?: object[], temperature?: number, maxTokens?: number, timeoutMs?: number, toolChoice?: string }} opts
  */
-export async function openRouterChatRaw({
+export function openRouterChatRaw(opts) {
+	return withModelFallback(opts.model ?? DEFAULT_CHAT_MODEL, { vision: hasImages(opts.messages) }, (model) => chatRawOnce({ ...opts, model }));
+}
+
+async function chatRawOnce({
 	model = DEFAULT_CHAT_MODEL,
 	messages,
 	tools,
