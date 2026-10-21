@@ -8,3 +8,6 @@ data/
 products/*
 !products/example/
 !products/README.md
+
+# harvested prompts: local memory of the harvester, creators' text (see harvest/README.md)
+harvest/data/
