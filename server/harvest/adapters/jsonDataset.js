@@ -32,6 +32,15 @@ export function parseCsv(text) {
 }
 
 /** One file of items in any of the common shapes: a JSON array (or an object holding one at config.path), JSON lines, or CSV. */
+export async function parseItemsAsync(text, opts = {}) {
+	if (opts.format === "yaml") {
+		const yaml = (await import("js-yaml")).default;
+		const doc = yaml.load(text);
+		return opts.path ? dig(doc, opts.path) : doc;
+	}
+	return parseItems(text, opts);
+}
+
 export function parseItems(text, { format = "json", path: p = "" } = {}) {
 	if (format === "jsonl") return text.split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l));
 	if (format === "csv") return parseCsv(text);
@@ -41,19 +50,24 @@ export function parseItems(text, { format = "json", path: p = "" } = {}) {
 export default {
 	id: "json-dataset",
 	async run(ctx) {
-		const { url, path: p = "", mapper, format = "json" } = ctx.config;
+		const { url, urls, path: p = "", mapper, format = "json" } = ctx.config;
 		const map = MAPPERS[mapper];
-		if (!url || !map) throw new Error(`json-dataset needs config.url and a known config.mapper (got "${mapper}")`);
-		const file = ctx.rawFile("dataset.json");
-		let text;
-		try {
-			text = await fsp.readFile(file, "utf8");
-		} catch {
-			text = await ctx.http.getText(url, { accept: "application/json" });
-			await fsp.writeFile(file, text);
+		const list = [].concat(urls || url || []);
+		if (!list.length || !map) throw new Error(`json-dataset needs config.url (or urls) and a known config.mapper (got "${mapper}")`);
+		const items = [];
+		for (const [i, u] of list.entries()) {
+			const file = ctx.rawFile(list.length > 1 ? `dataset-${i}.txt` : "dataset.json");
+			let text;
+			try {
+				text = await fsp.readFile(file, "utf8");
+			} catch {
+				text = await ctx.http.getText(u, { accept: "application/json" });
+				await fsp.writeFile(file, text);
+			}
+			const part = await parseItemsAsync(text, { format, path: p });
+			if (!Array.isArray(part)) throw new Error(`json-dataset: ${p || "the file"} in ${u} is not an array`);
+			items.push(...part);
 		}
-		const items = parseItems(text, { format, path: p });
-		if (!Array.isArray(items)) throw new Error(`json-dataset: ${p || "the file"} is not an array`);
 		await ctx.mapBatches(items, (it) => ctx.emitRecord(map(ctx.id, it, ctx.config)), { network: false });
 	},
 };

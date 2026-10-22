@@ -8,14 +8,14 @@ const asList = (v) => (Array.isArray(v) ? v : typeof v === "string" ? v.split(/[
 
 export const MAPPERS = {
 	/**
-	 * A mapper you configure instead of writing: config.fields maps our names to dotted paths in the item, e.g.
+	 * A mapper you configure instead of writing (a field can be a list of paths, e.g. "video": ["media.video_hd", "media.video"]): config.fields maps our names to dotted paths in the item, e.g.
 	 *   "fields": { "id": "id", "prompt": "prompt.text", "title": "name", "author": "user.handle", "post_url": "tweet", "video": "media.mp4",
 	 *               "poster": "media.thumb", "category": "type", "tags": "tags", "date": "created_at", "source_url": "link" }
 	 * Optional config.model_claim ("Opus 5.5") is stamped on every record. Only "prompt" is required.
 	 */
 	generic(source, it, cfg = {}) {
 		const f = cfg.fields || {};
-		const get = (k) => dig(it, f[k]);
+		const get = (k) => (Array.isArray(f[k]) ? f[k].map((p) => dig(it, p)).find((v) => v != null && v !== "") : dig(it, f[k])); // a list of paths: the first that has a value
 		const post = get("post_url");
 		const video = get("video");
 		return buildRecord(source, {

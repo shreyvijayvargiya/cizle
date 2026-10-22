@@ -110,3 +110,18 @@ test("json-dataset reads a JSON array, JSON lines or CSV (quotes, commas and new
 	assert.equal(rows[0].tags, "3d,svg");
 	assert.equal(rows[1].id, "2");
 });
+
+test("the v2 graph is valid, never reuses a v1 id, and every enabled node is configured", async () => {
+	const { loadGraph } = await import("../../server/harvest/graph.js");
+	const path = await import("node:path");
+	const root = path.join(path.dirname(new URL(import.meta.url).pathname), "..", "..", "harvest");
+	const v1 = await loadGraph(path.join(root, "sources.graph.json"));
+	const v2 = await loadGraph(path.join(root, "sources.v2.graph.json"));
+	for (const id of v2.nodes.keys()) assert.ok(!v1.nodes.has(id), `${id} clashes with v1`);
+	for (const n of v2.nodes.values()) {
+		assert.ok(/^N\d+$/.test(n.id));
+		if (n.enabled === false) continue;
+		assert.ok(n.config?.url || n.config?.urls?.length, `${n.id} has no url`);
+		if (n.adapter === "json-dataset") assert.equal(n.config.mapper, "generic");
+	}
+});
