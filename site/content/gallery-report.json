@@ -1,20 +1,86 @@
 {
- "generatedAt": "2026-10-22T18:52:24.765Z",
- "read": 3169,
- "unique": 2465,
- "kept": 872,
- "pending": 683,
- "free": 216,
+ "generatedAt": "2026-10-22T19:57:23.885Z",
+ "read": 4911,
+ "unique": 3038,
+ "kept": 1487,
+ "pending": 526,
+ "free": 396,
  "reasons": {
-  "too short": 356,
-  "partial and short": 84,
-  "not English (Chinese), no translation yet": 295,
-  "not English (another language), no translation yet": 109,
-  "not English (Japanese), no translation yet": 48,
-  "not English (Korean), no translation yet": 2,
-  "near-duplicate": 16
+  "not English (Chinese), no translation yet": 343,
+  "too short": 389,
+  "not English (another language), no translation yet": 126,
+  "not English (Japanese), no translation yet": 120,
+  "partial and short": 15,
+  "not English (Arabic), no translation yet": 2,
+  "not English (Korean), no translation yet": 4,
+  "not English (Thai), no translation yet": 1,
+  "near-duplicate": 25
  },
  "dropped": [
+  {
+   "id": "x:2112521204791918675",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2112545748944556038",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2111749047598117102",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111887585639624828",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111333150018171231",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2111388497718423744",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2111391206848503923",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111446964558770632",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2111453039228043604",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2111519245733654775",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111577334436319355",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110931024469540979",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2111111416120053953",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2110722582689546297",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110292964270608425",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2110019799342260630",
+   "reason": "not English (another language), no translation yet"
+  },
   {
    "id": "x:2103751442393894989",
    "reason": "too short"
@@ -70,6 +136,30 @@
   {
    "id": "x:2108511286795640926",
    "reason": "too short"
+  },
+  {
+   "id": "x:2109515393220083912",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2109595253879816337",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109609404450607352",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109764557308592537",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109297440021201074",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109043294911291886",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
    "id": "x:2104728379798827135",
@@ -160,56 +250,84 @@
    "reason": "partial and short"
   },
   {
+   "id": "x:2108143447496679553",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2107958931230241037",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2107116106280485047",
+   "reason": "too short"
+  },
+  {
    "id": "x:2107139305324122491",
    "reason": "too short"
   },
   {
-   "id": "x:2102462889160286423",
+   "id": "x:2106237162505265499",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2106268513644273809",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106376222309761094",
    "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2105910487015674058",
+   "reason": "not English (Arabic), no translation yet"
+  },
+  {
+   "id": "x:2105922366190784915",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2106091485125091695",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2106102789160259910",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106144184449085474",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2105722219892789560",
+   "reason": "not English (Korean), no translation yet"
+  },
+  {
+   "id": "x:2105764877986099545",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105279421435572498",
+   "reason": "not English (Thai), no translation yet"
+  },
+  {
+   "id": "x:2105328316169523670",
+   "reason": "not English (Korean), no translation yet"
+  },
+  {
+   "id": "x:2105346642203546025",
+   "reason": "too short"
   },
   {
    "id": "x:2102463234586685869",
    "reason": "too short"
   },
   {
-   "id": "x:2102472633057206409",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2102518598736675262",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2102725361922625706",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2102749298673004843",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2102860811219927179",
    "reason": "too short"
   },
   {
-   "id": "x:2103024522589098014",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103214871785427173",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103227891009872147",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103372534922059888",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103486728917110846",
-   "reason": "partial and short"
+   "id": "x:2103107359727829318",
+   "reason": "not English (another language), no translation yet"
   },
   {
    "id": "x:2103537378283684126",
@@ -220,24 +338,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103603040079196586",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2103608284825661615",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103617085402407181",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103617322464301108",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103735653943128242",
-   "reason": "partial and short"
   },
   {
    "id": "x:2103759350330544254",
@@ -248,72 +350,16 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103768331782349060",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2103813886684389509",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103819139307749645",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103878940100350098",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103885113528635793",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103885710734540960",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103895246593458642",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103922812255871017",
-   "reason": "partial and short"
   },
   {
    "id": "x:2103966434280014197",
    "reason": "too short"
   },
   {
-   "id": "x:2104020177478394122",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104075537228644806",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104124855302168993",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104155161883234322",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104176976261271655",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104206465863131449",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2104227261142692347",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104257989100355650",
-   "reason": "partial and short"
   },
   {
    "id": "x:2104273407818809438",
@@ -324,208 +370,64 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104515756159623571",
-   "reason": "partial and short"
+   "id": "x:2104731596494659706",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
-   "id": "x:2104595346882175311",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2102882622053535814",
+   "id": "x:2104825754114810104",
    "reason": "too short"
   },
   {
-   "id": "x:2103044654187081860",
-   "reason": "partial and short"
+   "id": "x:2104924603126603893",
+   "reason": "too short"
   },
   {
-   "id": "x:2103082459503923578",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103105938853114092",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103117246860345550",
-   "reason": "not English (Chinese), no translation yet"
-  },
-  {
-   "id": "x:2103208157308944727",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103317768669921682",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103407536741519730",
-   "reason": "partial and short"
+   "id": "x:2104952295335370855",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
    "id": "x:2103492984474096062",
    "reason": "too short"
   },
   {
-   "id": "x:2103495629087642106",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103499771206156628",
-   "reason": "too short"
+   "id": "x:2103517910274818523",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103530789510283635",
    "reason": "too short"
   },
   {
-   "id": "x:2103532793406149036",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2103540288136315331",
-   "reason": "too short"
+   "reason": "not English (another language), no translation yet"
   },
   {
    "id": "x:2103593633832157391",
    "reason": "too short"
   },
   {
-   "id": "x:2103626582896091611",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103714595659772215",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103751290954379361",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103755997533839416",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103757499652342153",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2103766565389054427",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103775701052649723",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103788564840386691",
-   "reason": "partial and short"
   },
   {
    "id": "x:2103789882309234711",
    "reason": "too short"
   },
   {
-   "id": "x:2103792451551113363",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103793821012345137",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2103807826699129051",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103814603100856596",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2103816821782544635",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103821018947276947",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103830083446415751",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103830851897221566",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103833991879053577",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2103853898301939886",
-   "reason": "partial and short"
   },
   {
    "id": "x:2103859812123750512",
    "reason": "too short"
   },
   {
-   "id": "x:2103876499262800291",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2103876982819954689",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103904436141842605",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2103938636173742305",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103938972426834106",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103966021451465008",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103992442072813651",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2103998389058740521",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104018205580636267",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104046743751139812",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2104059393222557760",
-   "reason": "partial and short"
+   "id": "x:2103882415299350878",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2104081777119920413",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104102479927620029",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104103109358473410",
-   "reason": "partial and short"
   },
   {
    "id": "x:2104115092124012980",
@@ -544,51 +446,75 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104159752095998343",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104180455813812667",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104197450307195332",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104198927549604161",
-   "reason": "too short"
-  },
-  {
    "id": "x:2104199715076386902",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104206095313215591",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2104207365008687553",
-   "reason": "partial and short"
   },
   {
    "id": "x:2104211672370201053",
    "reason": "too short"
   },
   {
-   "id": "x:2104214187522318512",
-   "reason": "partial and short"
+   "id": "x:2104381179151753464",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
-   "id": "x:2104216976801587629",
-   "reason": "partial and short"
+   "id": "x:2104000986981486650",
+   "reason": "too short"
   },
   {
-   "id": "x:2104222017696469188",
-   "reason": "partial and short"
+   "id": "x:2104001561718591563",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
-   "id": "x:2102787937482252537",
+   "id": "x:2104008163561451923",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2104020914413441103",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104027894217572848",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104039666093572362",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2104043852684259802",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2104045451989454910",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2104077647206821899",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104081236881006606",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2104081525847605709",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2104085484347818226",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2104094838035820607",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104095944686051492",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "N07:czm-linuxdo-promo",
    "reason": "not English (Chinese), no translation yet"
   },
   {
@@ -602,10 +528,6 @@
   {
    "id": "x:2102908742518100086",
    "reason": "not English (Chinese), no translation yet"
-  },
-  {
-   "id": "x:2102973867656614053",
-   "reason": "too short"
   },
   {
    "id": "x:2102995443818897906",
@@ -626,10 +548,6 @@
   {
    "id": "x:2103122292343730437",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103144778481475686",
-   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103148907228176511",
@@ -756,12 +674,60 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103652674336067876",
+   "id": "x:2103639233693159742",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103660849055547730",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103668069801624015",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103669801554264378",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103678798827020298",
    "reason": "too short"
+  },
+  {
+   "id": "x:2103681038862147977",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103683260144292176",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103703336780530003",
    "reason": "too short"
+  },
+  {
+   "id": "x:2103705625075331442",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103712991409774609",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103722878697083380",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103723885204254734",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103731959918948730",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103737014508216515",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
    "id": "x:2103737604277780553",
@@ -772,8 +738,24 @@
    "reason": "too short"
   },
   {
+   "id": "x:2103771566982959414",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
    "id": "x:2103772327146119508",
    "reason": "too short"
+  },
+  {
+   "id": "x:2103777368351670741",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103787665569272247",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103793355759190297",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103796337041137833",
@@ -792,8 +774,32 @@
    "reason": "too short"
   },
   {
+   "id": "x:2103817034618339682",
+   "reason": "not English (Arabic), no translation yet"
+  },
+  {
+   "id": "x:2103817763991290170",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103820733159981151",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103821040174698674",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103822390870569266",
+   "reason": "too short"
+  },
+  {
    "id": "x:2103845689713111079",
    "reason": "too short"
+  },
+  {
+   "id": "x:2103846791976513981",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
    "id": "x:2103849602826834228",
@@ -804,7 +810,323 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103486218323341663",
+   "id": "x:2103903213363806575",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103992348535595425",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103996925527924910",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103997319284940856",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "N07:puzzleheaded-king584-wpwcix",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103288413969621231",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103310890716266620",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103390803192352888",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103407771102421285",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103416250743574988",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103419586964316483",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103425994610643203",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103433947040415996",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103444180861178199",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103456630679773669",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103459971174130104",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103468826364948584",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103476071018766790",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103481769999876528",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103484692997804334",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103487198758834408",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103491383554445613",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103509008049144287",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103521677259026878",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103552919249563691",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103590367518171295",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103627106240602357",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102927498858369282",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102965242439590112",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102973867656614053",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103033624463585327",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103043212869026013",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103053803386007607",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103086714772463953",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103089094666686850",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103093628230873415",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103106389489127504",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103110271711728101",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103112945341251920",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103114698610683964",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103117722741854377",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103135536634630632",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103144263735562388",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103149275945517546",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103149539880562718",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103152108224573507",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2103172885129113824",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103243328041132100",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102552313134973187",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102572941699354900",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102581759733121421",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102583898865873225",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102584165220962502",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102593608939643211",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102606609574941028",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102634536660316557",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102641653647581517",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102650069136933039",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102652072252584046",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102660297928638783",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102695787721584792",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102724347446305104",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102731669853573582",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2102737776219168939",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2102758740483305832",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102774951434695083",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102827887732932956",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102838830285898214",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102863918033178789",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2102880697467732080",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102899830951731601",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102448782776697055",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102465517403636216",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102500841097756743",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2102515055116063144",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102532031708377471",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102538655579709899",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102539904274325540",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102540480009617839",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102547809140355250",
    "reason": "too short"
   },
   {
@@ -2668,7 +2990,27 @@
    "reason": "too short"
   },
   {
-   "id": "x:2102591147927654847",
+   "id": "x:2102565161446064477",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102649707504038225",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102676815416541187",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102692209476997141",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102692569792835994",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102706640873304377",
    "reason": "not English (Chinese), no translation yet"
   },
   {
@@ -2676,27 +3018,71 @@
    "reason": "too short"
   },
   {
-   "id": "x:2102737776219168939",
+   "id": "x:2102732988262068440",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102751132502446549",
    "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102828216289566725",
+   "reason": "too short"
   },
   {
    "id": "x:2102832558602072560",
    "reason": "too short"
   },
   {
-   "id": "x:2102879729594343605",
-   "reason": "not English (Chinese), no translation yet"
+   "id": "x:2102842569940181357",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
-   "id": "x:2102889901297426722",
-   "reason": "too short"
+   "id": "x:2102879729594343605",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2102897123037761640",
    "reason": "not English (Chinese), no translation yet"
   },
   {
+   "id": "x:2102954743442399395",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103022003863355796",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103054730054517244",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103098774738628780",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103119764143108537",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103121149811130787",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103135072987795526",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103145548547322322",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
    "id": "x:2103153899431432535",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103192634395361596",
    "reason": "not English (Chinese), no translation yet"
   },
   {
@@ -2704,19 +3090,47 @@
    "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103449416325890146",
+   "id": "x:2103470566019911961",
    "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103457566978162901",
-   "reason": "not English (Chinese), no translation yet"
+   "id": "x:2103492763358786022",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103493889525178759",
+   "reason": "too short"
   },
   {
    "id": "x:2103494684374900862",
    "reason": "not English (Chinese), no translation yet"
   },
   {
+   "id": "x:2103549082585489413",
+   "reason": "too short"
+  },
+  {
    "id": "x:2103641843963473981",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103693263194685765",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103719064279597283",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103763857902883213",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2103830949201146038",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2103832142245708192",
    "reason": "too short"
   },
   {
@@ -2728,11 +3142,15 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104055441517105570",
-   "reason": "too short"
+   "id": "x:2103965723081187407",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2104159923886244176",
+   "id": "x:2104048491295318358",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2104055441517105570",
    "reason": "too short"
   },
   {
@@ -2801,6 +3219,10 @@
   },
   {
    "id": "x:2104429604815675791",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104432185277341827",
    "reason": "too short"
   },
   {
@@ -2976,10 +3398,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104981908241486064",
-   "reason": "too short"
-  },
-  {
    "id": "x:2105028528198541622",
    "reason": "too short"
   },
@@ -3068,11 +3486,11 @@
    "reason": "too short"
   },
   {
-   "id": "x:2107311661430493193",
-   "reason": "too short"
+   "id": "x:2107305869230883267",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2107435499686154557",
+   "id": "x:2107311661430493193",
    "reason": "too short"
   },
   {
@@ -3108,11 +3526,11 @@
    "reason": "too short"
   },
   {
-   "id": "x:2107843676135100870",
+   "id": "x:2107876637534568853",
    "reason": "too short"
   },
   {
-   "id": "x:2107876637534568853",
+   "id": "x:2107974221259583720",
    "reason": "too short"
   },
   {
@@ -3172,6 +3590,10 @@
    "reason": "too short"
   },
   {
+   "id": "x:2108318579410063849",
+   "reason": "too short"
+  },
+  {
    "id": "x:2108326054431707284",
    "reason": "too short"
   },
@@ -3182,6 +3604,10 @@
   {
    "id": "x:2108329031892713883",
    "reason": "too short"
+  },
+  {
+   "id": "x:2108368287591751969",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2108410208708169910",
@@ -3320,6 +3746,10 @@
    "reason": "too short"
   },
   {
+   "id": "x:2108694114476650840",
+   "reason": "too short"
+  },
+  {
    "id": "x:2108758475606229025",
    "reason": "too short"
   },
@@ -3412,10 +3842,6 @@
    "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2109523901105500260",
-   "reason": "too short"
-  },
-  {
    "id": "x:2109606505666560338",
    "reason": "too short"
   },
@@ -3425,6 +3851,10 @@
   },
   {
    "id": "x:2109675464688083380",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109718604883370450",
    "reason": "too short"
   },
   {
@@ -3445,10 +3875,6 @@
   },
   {
    "id": "x:2110046079983001783",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2110078803297055212",
    "reason": "too short"
   },
   {
@@ -3596,11 +4022,15 @@
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2104207707980869918",
+   "id": "x:2103463886372696074",
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2103566030916239768",
+   "id": "x:2103500011581440008",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103614667038052364",
    "reason": "near-duplicate"
   },
   {
@@ -3608,15 +4038,11 @@
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2103656229717328129",
-   "reason": "near-duplicate"
-  },
-  {
    "id": "x:2103692944771313960",
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2103714680577638493",
+   "id": "x:2103708363074973906",
    "reason": "near-duplicate"
   },
   {
@@ -3624,19 +4050,39 @@
    "reason": "near-duplicate"
   },
   {
+   "id": "x:2103776779064471834",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103779700954779830",
+   "reason": "near-duplicate"
+  },
+  {
    "id": "x:2103786742520184909",
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2103416909857190360",
+   "id": "x:2103925219412865457",
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2103463886372696074",
+   "id": "x:2103441222375268605",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103489794143613142",
    "reason": "near-duplicate"
   },
   {
    "id": "x:2103542756555768014",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103547478482289121",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103580011882295601",
    "reason": "near-duplicate"
   },
   {
@@ -3648,11 +4094,27 @@
    "reason": "near-duplicate"
   },
   {
+   "id": "x:2103603449971757395",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103612491922293019",
+   "reason": "near-duplicate"
+  },
+  {
    "id": "x:2103625902211088880",
    "reason": "near-duplicate"
   },
   {
    "id": "x:2090660330556776952",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104051167932355037",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104204318085931054",
    "reason": "near-duplicate"
   }
  ]
