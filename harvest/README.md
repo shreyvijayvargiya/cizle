@@ -95,3 +95,26 @@ npm run gallery:import -- --untranslated todo.json   # lists non-English prompts
 npm run gallery:import && npm run content
 ```
 Dead videos are removed; a prompt with no working video and no working poster is dropped. Non-English prompts without a translation are hidden until translated.
+
+## Enriching the library: `npm run enrich`
+
+The harvest only has what a dataset lists, so many prompts have no video, a poster only, or a cut-off prompt. The enricher visits each prompt's original source and fills the gaps. One CLI, one endpoint (`POST /api/enrich`: `run`, `status`, `stop`), one engine.
+
+```bash
+npm run enrich -- --status                 # library totals, what is enriched, library update state
+npm run enrich -- --limit 20               # try 20 entries first
+npm run enrich                             # everything not visited yet, 5 pages at a time, then the next 5
+npm run enrich -- -p 10 --loop             # 10 at a time; loop for hours: rest 30 min, come back for new, failed and stale entries
+npm run enrich -- --again --import         # refresh everything, then re-run gallery:import so dropped prompts can return
+```
+For each entry, in order: (1) the X embed endpoint `cdn.syndication.twimg.com` (mp4 variants, poster, text; no browser, no login); (2) the source page in Puppeteer: `<video>`, `og:video`, JSON-LD and the **Copy prompt** button (the clipboard write is intercepted, so it works headless); (3) the X post in Chrome, only with `--x-browser` (X's terms restrict automated access, so it is opt-in). robots.txt is honoured for source pages. Set `CHROME_PATH` if Chrome is not found.
+
+What it will and will not change: it fills a missing video or poster; it replaces a prompt only with a longer one from the Copy prompt button, or a longer tweet when the stored prompt is a cut-off copy of it. A promotional tweet never replaces a real prompt.
+
+Files, all in `site/`:
+| file | what |
+| --- | --- |
+| `content/gallery-enrichment.json` | one record per entry: status (ok, none, failed, blocked), attempts, updates, what was found, which source. `gallery:import` applies it, so a re-import keeps the work |
+| `content/gallery.jsonl` | the library, patched in place |
+| `content/library-state.json` | the library's git-status-like state: `updated_at`, `updates` (runs that changed something), `runs`, `totals`, `enrichment` counts, `files` (sha1, bytes, lines, `added`/`modified`/`unchanged` against the previous run), `last` run with its changes, and the last 100 runs |
+| `logs/<time>-<command>.log`, `logs/runs.jsonl` | a log per run of `enrich`, `import`, `media` and `seed` (git-ignored). `harvest/logs/` for the harvester |

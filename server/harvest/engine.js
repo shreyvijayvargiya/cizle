@@ -13,7 +13,8 @@ import path from "path";
 import { getAdapter } from "./adapters/index.js";
 import { loadGraph, selectNodes, walkOrder } from "./graph.js";
 import { BlockedError, NeedsAdapterError, makeHttp, sleepMs } from "./http.js";
-import { LockedError, RecordLog, acquireLock, dataRoot, readJson, readLock, sourceDir, stateFile, writeJsonAtomic } from "./store.js";
+import { LockedError, RecordLog, acquireLock, dataRoot, harvestRoot, readJson, readLock, sourceDir, stateFile, writeJsonAtomic } from "./store.js";
+import { createRunLog } from "../library/runlog.js";
 
 export const MAX_PARALLEL = 3;
 export const MAX_BATCH = 20;
@@ -28,8 +29,20 @@ let inProcess = false; // the file lock only separates processes; this separates
 export async function runHarvest(options = {}, onEvent = () => {}) {
 	if (inProcess) throw new AlreadyRunning();
 	inProcess = true;
+	// Every run leaves a local log in harvest/logs/ (git-ignored), one line per event.
+	const runlog = createRunLog("harvest", { sources: options.sources, parallel: options.parallel, limit: options.limit, retry: options.retry, fresh: options.fresh }, { dir: path.join(harvestRoot(), "logs") });
+	const tee = (e) => {
+		runlog.log(`${e.type} ${JSON.stringify(Object.fromEntries(Object.entries(e).filter(([k]) => k !== "type" && k !== "at")))}`);
+		onEvent(e);
+	};
 	try {
-		return await runHarvestOnce(options, onEvent);
+		const summary = await runHarvestOnce(options, tee);
+		runlog.end({ ok: true, stopped: summary.stopped, sources: summary.sources });
+		return summary;
+	} catch (e) {
+		runlog.log(`error ${e?.message || e}`);
+		runlog.end({ ok: false, error: String(e?.message || e) });
+		throw e;
 	} finally {
 		inProcess = false;
 	}

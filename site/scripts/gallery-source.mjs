@@ -9,6 +9,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { SITE_DIR } from "./skills-source.mjs";
+import { applyEnrichment } from "../../server/library/enrichment.js";
 import { LANG_NAME, assignTiers, capNearDuplicates, detectLang, junkReason, score } from "./gallery-quality.mjs";
 
 export const GALLERY_FILE = path.join(SITE_DIR, "content", "gallery.jsonl");
@@ -101,16 +102,17 @@ export function mergeRecords(records) {
 }
 
 /**
- * The quality pass: translate or drop non-English prompts, remove dead media, drop junk and near-duplicates, score, pick the free samples.
+ * The quality pass: apply enrichment (found videos and complete prompts), translate or drop non-English prompts, remove dead media, drop junk and near-duplicates, score, pick the free samples.
  * @returns {{ kept: object[], dropped: { id: string, reason: string }[], needTranslation: object[] }}
  */
-export function curate(entries, { translations = {}, media = null } = {}) {
+export function curate(entries, { translations = {}, media = null, enrichment = {} } = {}) {
 	const dropped = [];
 	const needTranslation = [];
 	const out = [];
 	const dead = (u) => media && u && media[u] !== undefined && !(media[u] >= 200 && media[u] < 400);
 	for (const raw of entries) {
-		const e = { ...raw, lang: detectLang(raw.text) };
+		const enriched = applyEnrichment(raw, enrichment[raw.id]);
+		const e = { ...enriched, lang: detectLang(enriched.text) };
 		if (e.lang !== "en") {
 			const t = translations[e.id];
 			if (!t?.text) {

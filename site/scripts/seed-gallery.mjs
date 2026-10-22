@@ -11,9 +11,12 @@ import path from "node:path";
 import { cert, initializeApp } from "firebase-admin/app";
 import { FieldValue, getFirestore } from "firebase-admin/firestore";
 import { loadGallery } from "./gallery-source.mjs";
+import { createRunLog } from "../../server/library/runlog.js";
+import { recordRun } from "../../server/library/state.js";
 import { SITE_DIR } from "./skills-source.mjs";
 
 const dry = process.argv.includes("--dry");
+const runlog = createRunLog("seed", { dry });
 const items = loadGallery().filter((e) => e.tier === "premium");
 if (dry) {
 	console.log(`${items.length} premium gallery prompts (${items.reduce((n, e) => n + e.text.length, 0)} chars) would be written`);
@@ -34,3 +37,6 @@ for (let i = 0; i < items.length; i += 400) {
 	console.log(`wrote ${Math.min(i + 400, items.length)}/${items.length}`);
 }
 console.log(`seeded ${items.length} premium gallery prompts`);
+runlog.log(`seeded ${items.length} premium gallery prompts to Firestore`);
+await recordRun({ cmd: "seed", id: runlog.id, args: {}, ms: Date.now() - runlog.started.getTime(), started_at: runlog.started.toISOString(), note: "premium full text written to Firestore", stats: { seeded: items.length } });
+runlog.end({ ok: true, stats: { seeded: items.length } });

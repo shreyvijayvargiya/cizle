@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "updated_at": "2026-10-22T18:26:28.490Z",
+  "updates": 1,
+  "runs": 1,
+  "totals": {
+    "prompts": 555,
+    "free": 126,
+    "premium": 429,
+    "with_video": 135,
+    "partial": 51,
+    "translated": 78
+  },
+  "enrichment": {
+    "records": 0,
+    "ok": 0,
+    "nothing_new": 0,
+    "failed": 0,
+    "blocked": 0,
+    "in_library_without_enrichment": 555,
+    "in_library_without_video": 420,
+    "found": {
+      "video": 0,
+      "full_text": 0,
+      "poster": 0
+    },
+    "last_at": null
+  },
+  "files": {
+    "content/gallery.jsonl": {
+      "sha1": "ebacfcb806eb0e7e09c40a23e6578f2aa3a8a668",
+      "bytes": 1079929,
+      "lines": 555,
+      "status": "added",
+      "updated_at": "2026-10-22T18:26:28.490Z"
+    },
+    "content/gallery-translations.json": {
+      "sha1": "c7b946327957dd8835237c51dc2fb0af3426e3e8",
+      "bytes": 85195,
+      "lines": 450,
+      "status": "added",
+      "updated_at": "2026-10-22T18:26:28.490Z"
+    },
+    "content/gallery-report.json": {
+      "sha1": "9fe8672949669d459c99253fb6eb613c343f8855",
+      "bytes": 45687,
+      "lines": 2423,
+      "status": "added",
+      "updated_at": "2026-10-22T18:26:28.490Z"
+    }
+  },
+  "last": {
+    "id": "20261022-182628Z-import",
+    "cmd": "import",
+    "at": "2026-10-22T18:26:28.490Z",
+    "started_at": "2026-10-22T18:26:28.220Z",
+    "ms": 270,
+    "ok": true,
+    "args": {
+      "argv": []
+    },
+    "changed": true,
+    "changes": {
+      "added": 0,
+      "modified": 0,
+      "removed": 0,
+      "unchanged": 555,
+      "ids": {
+        "added": [],
+        "modified": [],
+        "removed": []
+      }
+    },
+    "stats": {
+      "read": 1663,
+      "unique": 1157,
+      "kept": 555,
+      "dropped": 602
+    }
+  },
+  "history": [
+    {
+      "id": "20261022-182628Z-import",
+      "cmd": "import",
+      "at": "2026-10-22T18:26:28.490Z",
+      "started_at": "2026-10-22T18:26:28.220Z",
+      "ms": 270,
+      "ok": true,
+      "args": {
+        "argv": []
+      },
+      "changed": true,
+      "changes": {
+        "added": 0,
+        "modified": 0,
+        "removed": 0,
+        "unchanged": 555
+      },
+      "stats": {
+        "read": 1663,
+        "unique": 1157,
+        "kept": 555,
+        "dropped": 602
+      }
+    }
+  ]
+}

@@ -11,3 +11,7 @@ products/*
 
 # harvested prompts: local memory of the harvester, creators' text (see harvest/README.md)
 harvest/data/
+
+# local run logs
+harvest/logs/
+site/logs/

@@ -14,14 +14,23 @@
 import fs from "node:fs";
 import path from "node:path";
 import { GALLERY_FILE, MEDIA_FILE, REPORT_FILE, TRANSLATIONS_FILE, curate, mergeRecords } from "./gallery-source.mjs";
+import { loadEnrichment } from "../../server/library/enrichment.js";
+import { readJsonl } from "../../server/library/io.js";
+import { createRunLog } from "../../server/library/runlog.js";
+import { diffEntries, recordRun } from "../../server/library/state.js";
 import { SITE_DIR } from "./skills-source.mjs";
 
 const root = process.env.HARVEST_DIR ? path.resolve(process.env.HARVEST_DIR) : path.resolve(SITE_DIR, "..", "harvest");
 const data = path.join(root, "data");
 const dry = process.argv.includes("--dry");
+const runlog = createRunLog("import", { argv: process.argv.slice(2) }, { echo: false });
+const out = console.log;
+console.log = (...a) => (out(...a), runlog.log(a.join(" ")));
 const untranslatedOut = process.argv.includes("--untranslated") ? process.argv[process.argv.indexOf("--untranslated") + 1] : null;
 if (!fs.existsSync(data)) {
 	console.error(`No harvested data in ${data}. Run: npm run harvest`);
+	runlog.log(`no harvested data in ${data}`);
+	runlog.end({ ok: false });
 	process.exit(1);
 }
 const readJson = (f, fallback) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : fallback);
@@ -46,7 +55,9 @@ for (const id of fs.readdirSync(data).sort()) {
 const merged = mergeRecords(records);
 const translations = readJson(TRANSLATIONS_FILE, {});
 const media = readJson(MEDIA_FILE, null);
-const { kept, dropped, needTranslation } = curate(merged, { translations, media });
+const enrichment = loadEnrichment();
+const before = readJsonl(GALLERY_FILE);
+const { kept, dropped, needTranslation } = curate(merged, { translations, media, enrichment });
 
 const by = (f) => kept.filter(f).length;
 const reasons = {};
@@ -56,12 +67,21 @@ console.log(`${merged.length} unique prompts after merging ${records.length - me
 console.log(`dropped ${dropped.length}:`);
 for (const [r, n] of Object.entries(reasons).sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(4)}  ${r}`);
 console.log(`kept ${kept.length}: ${by((e) => e.tier === "free")} free samples, ${by((e) => e.tier === "premium")} premium · ${by((e) => e.video)} with a video · ${by((e) => e.translatedFrom)} translated`);
+console.log(`enrichment applied: ${Object.values(enrichment).filter((r) => r.status === "ok").length} of ${Object.keys(enrichment).length} records found something`);
 console.log(media ? `media check applied (${Object.keys(media).length} urls)` : "no media check yet: run npm run gallery:media on a machine that can reach the media hosts");
 if (needTranslation.length) console.log(`${needTranslation.length} non-English prompts wait for a translation${untranslatedOut ? ` (written to ${untranslatedOut})` : " (use --untranslated file.json)"}`);
 if (untranslatedOut) fs.writeFileSync(untranslatedOut, JSON.stringify(needTranslation, null, 1));
-if (dry) process.exit(0);
+if (dry) {
+	runlog.end({ ok: true, dry: true });
+	process.exit(0);
+}
 
 fs.mkdirSync(path.dirname(GALLERY_FILE), { recursive: true });
 fs.writeFileSync(GALLERY_FILE, kept.map((e) => JSON.stringify(e)).join("\n") + "\n");
 fs.writeFileSync(REPORT_FILE, JSON.stringify({ generatedAt: new Date().toISOString(), read: records.length, unique: merged.length, kept: kept.length, free: by((e) => e.tier === "free"), reasons, dropped }, null, 1));
 console.log(`wrote ${path.relative(process.cwd(), GALLERY_FILE)} and ${path.relative(process.cwd(), REPORT_FILE)}`);
+const changes = diffEntries(before, kept);
+console.log(`library vs before: +${changes.added} added, ${changes.modified} modified, -${changes.removed} removed, ${changes.unchanged} unchanged`);
+const state = await recordRun({ cmd: "import", id: runlog.id, args: { argv: process.argv.slice(2) }, changes, ms: Date.now() - runlog.started.getTime(), started_at: runlog.started.toISOString(), stats: { read: records.length, unique: merged.length, kept: kept.length, dropped: dropped.length } });
+console.log(`library state: ${state.updates} updates in ${state.runs} runs → content/library-state.json · log ${path.relative(process.cwd(), runlog.file)}`);
+runlog.end({ ok: true, changes: { added: changes.added, modified: changes.modified, removed: changes.removed } });

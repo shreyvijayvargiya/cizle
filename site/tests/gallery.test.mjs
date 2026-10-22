@@ -73,6 +73,16 @@ assert.ok(free.length >= 3 && free.length <= r1.kept.length * 0.2, `a minority i
 assert.ok(free.every((e) => !e.partial), "free samples are complete");
 assert.ok(free.filter((e) => e.video).length >= free.length / 2, "free samples favour prompts with a working video");
 
+// enrichment: a cut-off prompt that was dropped comes back complete, with the video the enricher found
+const cut = base("x:cut", "Make a slow dolly shot of a lighthouse at dusk with warm rim light", { partial: true });
+assert.equal(curate([cut]).kept.length, 0, "dropped while partial and short");
+const full = "Make a slow dolly shot of a lighthouse at dusk with warm rim light, film grain and a gentle score under the waves. Hold for fifteen seconds, then cut to the logo.";
+const revived = curate([cut], { enrichment: { "x:cut": { status: "ok", at: "2026-10-22T00:00:00Z", video: "https://v/cut.mp4", text: full, source: "syndication" } } }).kept;
+assert.equal(revived.length, 1);
+assert.equal(revived[0].text, full);
+assert.equal(revived[0].video, "https://v/cut.mp4");
+assert.equal(revived[0].partial, false);
+
 // the same template posted many times is capped
 const dupes = Array.from({ length: 6 }, (_, i) => base(`x:d${i}`, `make a dynamic 15-second motion graphics video about my project, please add a beat and kinetic type, and finish with a logo sting number ${i}`, { video: `https://v/d${i}.mp4` }));
 assert.equal(curate(dupes).kept.length, 2);
