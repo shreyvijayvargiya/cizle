@@ -1,87 +1,23 @@
 {
- "generatedAt": "2026-10-22T18:26:28.479Z",
- "read": 1663,
- "unique": 1157,
- "kept": 555,
- "free": 126,
+ "generatedAt": "2026-10-22T18:52:24.765Z",
+ "read": 3169,
+ "unique": 2465,
+ "kept": 872,
+ "pending": 683,
+ "free": 216,
  "reasons": {
-  "short one-liner without a video": 169,
-  "too short": 328,
-  "partial and short": 85,
-  "near-duplicate": 20
+  "too short": 356,
+  "partial and short": 84,
+  "not English (Chinese), no translation yet": 295,
+  "not English (another language), no translation yet": 109,
+  "not English (Japanese), no translation yet": 48,
+  "not English (Korean), no translation yet": 2,
+  "near-duplicate": 16
  },
  "dropped": [
   {
-   "id": "x:2102934732203782464",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103038655178694832",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103073554581671954",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103134082267750805",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103257988895035448",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103299766473875778",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103400657856417829",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103431573752500632",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103448068423356656",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103467476210389075",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103479649728921896",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103663848846950750",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103716884512227772",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103742109664858156",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103742110747054506",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103751442393894989",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103944590491521507",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103988928621486492",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104033772949680192",
@@ -92,34 +28,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104108154506408141",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104114332430741714",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104130084743659728",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104179308101005594",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104249941136666741",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104276210809512003",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104352205176500542",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104388651287269620",
    "reason": "too short"
   },
@@ -128,52 +36,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104468472344584518",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104481235028283883",
    "reason": "too short"
   },
   {
-   "id": "x:2104649290668773568",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104688668405370949",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104719121783091362",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104792004978974928",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104801713840590917",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104837895773417649",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104881648886251740",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104952364365234301",
    "reason": "too short"
-  },
-  {
-   "id": "x:2105012738174885957",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105013143596302685",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2105048723768168898",
@@ -184,22 +52,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2105245285916020905",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105271353993560372",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105374954195657142",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105656935622259061",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2105662660779893062",
    "reason": "too short"
   },
@@ -208,128 +60,16 @@
    "reason": "too short"
   },
   {
-   "id": "x:2106434118640619627",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106440528435007643",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106458692669657175",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106467130963300736",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106477834873274533",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2106732228181160324",
    "reason": "too short"
-  },
-  {
-   "id": "x:2106789700807856416",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106793839193158103",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106855420237169107",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106971898391462150",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107036053949575311",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107088216071323995",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107184179947458567",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107504609207918962",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107568937764639088",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107794785188864070",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2107841006909653042",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2107892042320007630",
    "reason": "too short"
   },
   {
-   "id": "x:2107951058584486055",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108025937212080350",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108230699224596746",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108301453907382690",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108314868189172216",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108403445304844291",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108510252404560359",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2108511286795640926",
    "reason": "too short"
-  },
-  {
-   "id": "x:2108512810774802657",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108544807333433543",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108716642540691517",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108825933608300653",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108936279081566609",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104728379798827135",
@@ -425,7 +165,7 @@
   },
   {
    "id": "x:2102462889160286423",
-   "reason": "partial and short"
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2102463234586685869",
@@ -454,10 +194,6 @@
   {
    "id": "x:2103024522589098014",
    "reason": "partial and short"
-  },
-  {
-   "id": "x:2103107359727829318",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103214871785427173",
@@ -584,10 +320,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104389736647495680",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104512280390254816",
    "reason": "too short"
   },
@@ -604,10 +336,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103020274107224281",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103044654187081860",
    "reason": "partial and short"
   },
@@ -618,6 +346,10 @@
   {
    "id": "x:2103105938853114092",
    "reason": "partial and short"
+  },
+  {
+   "id": "x:2103117246860345550",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103208157308944727",
@@ -732,10 +464,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103835848575746268",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103853898301939886",
    "reason": "partial and short"
   },
@@ -790,14 +518,6 @@
   {
    "id": "x:2104081777119920413",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104093497561436573",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104094723887501736",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104102479927620029",
@@ -868,12 +588,8 @@
    "reason": "partial and short"
   },
   {
-   "id": "x:2102592355165782312",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2102787937482252537",
-   "reason": "too short"
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2102897651008344202",
@@ -881,7 +597,11 @@
   },
   {
    "id": "x:2102903173161877996",
-   "reason": "too short"
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2102908742518100086",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2102973867656614053",
@@ -894,10 +614,6 @@
   {
    "id": "x:2103053680945868989",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103101681806475414",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103111448352244175",
@@ -913,7 +629,7 @@
   },
   {
    "id": "x:2103144778481475686",
-   "reason": "too short"
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103148907228176511",
@@ -922,10 +638,6 @@
   {
    "id": "x:2103152898708582551",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103181065976459574",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103200703598776559",
@@ -980,20 +692,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103411144899875264",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103418664854622583",
    "reason": "too short"
   },
   {
    "id": "x:2103420457110417532",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103425679618609629",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103437714695843891",
@@ -1014,10 +718,6 @@
   {
    "id": "x:2103492000733618685",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103500011581440008",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103502614134718609",
@@ -1044,20 +744,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103565090721259981",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103565104243712107",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103569170075975986",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103603025579331584",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103605007396524440",
@@ -1076,16 +764,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103708392930066575",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103737604277780553",
    "reason": "too short"
-  },
-  {
-   "id": "x:2103746736980378066",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2103763192971461057",
@@ -1112,10 +792,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2103837917538107563",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2103845689713111079",
    "reason": "too short"
   },
@@ -1130,6 +806,1850 @@
   {
    "id": "x:2103486218323341663",
    "reason": "too short"
+  },
+  {
+   "id": "W05:es-prompts-alpenglow-a-day-in-the-mountains-312fc3a",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-ambience-soundscape-mixer-d9e6cd0",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-apiary-the-honeycomb-fdf936e",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-aquarelle-generative-watercolour-landscapes-caef377",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-arcana-nocturne-a-three-card-reading-5aba381",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-ares-vii-mission-control-4c2e6e7",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-ascii-tides-386f0c8",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-asterism-draw-your-own-sky-d2d924f",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-atelier-noire-autumn-winter-17c0886",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-aurora-glass-stillwater-c5ccd35",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-brush-and-ink-calligraphy-pad-360246c",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-carriage-return-a-typewriter-for-letters-ebbd61f",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-casa-lumen-architectural-blueprint-3826402",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-chroma-colour-palette-studio-a2ce7db",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-coffee-steam-loop-f38943c",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-connected-a-dot-matrix-globe-b762b79",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-crystalline-no-two-alike-9b4c776",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-currents-flow-field-studio-f5973ce",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-descent-eleven-thousand-metres-down-07f8581",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-droste-the-infinite-room-d795ae2",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-dune-engine-falling-sand-sandbox-dad3864",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-dusk-meadow-fireflies-a6892d2",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-elastic-letterforms-on-springs-1e8eb50",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-elementa-aea77c4",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-ember-and-oak-coffee-roasters-f39815f",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-formlehre-bauhaus-composer-37ed885",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-four-seasons-a-fractal-tree-81c4bfd",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-foxglove-hollow-3107c54",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-fridge-verse-magnetic-poetry-4656371",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-frost-garden-diffusion-limited-aggregation-911d9f8",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-galerie-nocturne-4dd56ed",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-grandmaster-s-study-e88e34a",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-groovy-lava-lamp-2299fbb",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-harmonia-pendulum-wave-2ca71d1",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-harmonograph-a-drawing-machine-6272f60",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-helios-os-33d1280",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-helix-the-double-helix-explained-e3ceffa",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-herbarium-imaginarium-979aa90",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-hi-fi-walnut-vinyl-listening-room-6f27a97",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-horologe-the-word-clock-1276db0",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-hyperbrick-011d10c",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-hytte-a-winter-cabin-a394076",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-infinite-coastline-mandelbrot-and-julia-explorer-3933a20",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-iridescence-soap-bubbles-8db9c81",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-karesansui-a-zen-sand-garden-dbe0f63",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-labyrinthos-9e29e74",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-like-burst-micro-interaction-47e3253",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-lines-of-force-magnetic-field-explorer-1202666",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-loading-beautifully-fdf7126",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-loading-dots-to-spinning-ring-342dfd9",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-long-water-the-world-s-great-rivers-84feaf3",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-loud-house-records-issue-07-e8995ae",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-luminote-piano-with-falling-lights-0aeacc4",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-maison-lierre-paris-1899-0b57699",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-maison-varenne-calibre-01-9923b59",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-mercury-d647acc",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-meridian-metro-651ae10",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-midnight-window-00faba8",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-mira-okafor-bento-portfolio-8cfa2f6",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-monolith-architecture-and-landscape-b840be9",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-move-a-manifesto-in-motion-f4f85ec",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-mythic-holographic-card-cec97e5",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-neon-rain-4d5ee9d",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-nijushi-sekki-the-twenty-four-seasons-c421142",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-nimbus-weather-for-port-aurelia-faba819",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-nonna-lucia-s-lemon-ricotta-tart-e2c2ab3",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-orbital-n-body-gravity-playground-bb13b40",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-organic-wave-lab-ripple-tank-538cfe0",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-pages-from-juno-s-sketchbook-68564fe",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-patchwork-a-generative-quilt-65ffbac",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-pip-and-the-paper-moon-044c0b4",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-planet-forge-procedural-world-generator-44158df",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-plaza-aeterna-b271263",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-pocket-metropolis-9f32802",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-pulsar-ridges-2b9f776",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-pulse-generative-audio-visualizer-07e685b",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-quanta-terminal-c33a0dd",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-radical-shapes-milano-design-fest-86-1f1611c",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-raster-swiss-poster-machine-85c3491",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-riso-lab-halftone-print-studio-35467ae",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-rocket-launch-loop-d0d0b50",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-rosee-eau-de-parfum-77fec4c",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-rosette-symmetry-painter-264766a",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-rule-30-tapestries-of-elementary-cellular-automata-3191f21",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-seed-to-bloom-svg-story-a32bbf5",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-selene-tide-and-moon-clock-c477843",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-senbazuru-fold-a-paper-crane-6fe786f",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-sentinel-radar-array-815dfd7",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-signal-noise-8d3c429",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-silicon-living-circuit-board-9409b88",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-skyward-a-brief-history-of-flight-c350280",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-soft-machine-cd5d701",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-somewhere-inside-b3980c5",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-squishy-claymorphism-ui-kit-dd83fd3",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-sumi-ink-in-water-739309e",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-tempus-hourglass-timer-d9c877f",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-tend-a-habit-garden-5d28a7d",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-the-aurelian-9aa8f96",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-the-clockmaker-s-orrery-37fb6d3",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-the-glass-alibi-33d56ed",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-the-last-keepers-c5ae4ec",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-vast-a-scroll-across-the-solar-system-7e8a9a9",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-vitrail-stained-glass-generator-f912277",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-weather-cycle-icon-eb7483c",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-windwalker-a-kinetic-sculpture-simulation-dadf19b",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:es-prompts-woolgathering-f1619b8",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-alpenglow-a-day-in-the-mountains-312fc3a",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-ambience-soundscape-mixer-d9e6cd0",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-apiary-the-honeycomb-fdf936e",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-aquarelle-generative-watercolour-landscapes-caef377",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-arcana-nocturne-a-three-card-reading-5aba381",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-ares-vii-mission-control-4c2e6e7",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-ascii-tides-386f0c8",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-asterism-draw-your-own-sky-d2d924f",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-atelier-noire-autumn-winter-17c0886",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-aurora-glass-stillwater-c5ccd35",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-brush-and-ink-calligraphy-pad-360246c",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-carriage-return-a-typewriter-for-letters-ebbd61f",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-casa-lumen-architectural-blueprint-3826402",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-chroma-colour-palette-studio-a2ce7db",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-coffee-steam-loop-f38943c",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-connected-a-dot-matrix-globe-b762b79",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-crystalline-no-two-alike-9b4c776",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-currents-flow-field-studio-f5973ce",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-descent-eleven-thousand-metres-down-07f8581",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-droste-the-infinite-room-d795ae2",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-dune-engine-falling-sand-sandbox-dad3864",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-dusk-meadow-fireflies-a6892d2",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-elastic-letterforms-on-springs-1e8eb50",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-elementa-aea77c4",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-ember-and-oak-coffee-roasters-f39815f",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-formlehre-bauhaus-composer-37ed885",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-four-seasons-a-fractal-tree-81c4bfd",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-foxglove-hollow-3107c54",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-fridge-verse-magnetic-poetry-4656371",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-frost-garden-diffusion-limited-aggregation-911d9f8",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-galerie-nocturne-4dd56ed",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-grandmaster-s-study-e88e34a",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-groovy-lava-lamp-2299fbb",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-harmonia-pendulum-wave-2ca71d1",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-harmonograph-a-drawing-machine-6272f60",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-helios-os-33d1280",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-helix-the-double-helix-explained-e3ceffa",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-herbarium-imaginarium-979aa90",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-hi-fi-walnut-vinyl-listening-room-6f27a97",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-horologe-the-word-clock-1276db0",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-hyperbrick-011d10c",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-hytte-a-winter-cabin-a394076",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-infinite-coastline-mandelbrot-and-julia-explorer-3933a20",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-iridescence-soap-bubbles-8db9c81",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-karesansui-a-zen-sand-garden-dbe0f63",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-labyrinthos-9e29e74",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-like-burst-micro-interaction-47e3253",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-lines-of-force-magnetic-field-explorer-1202666",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-loading-beautifully-fdf7126",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-loading-dots-to-spinning-ring-342dfd9",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-long-water-the-world-s-great-rivers-84feaf3",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-loud-house-records-issue-07-e8995ae",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-luminote-piano-with-falling-lights-0aeacc4",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-maison-lierre-paris-1899-0b57699",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-maison-varenne-calibre-01-9923b59",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-mercury-d647acc",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-meridian-metro-651ae10",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-midnight-window-00faba8",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-mira-okafor-bento-portfolio-8cfa2f6",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-monolith-architecture-and-landscape-b840be9",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-move-a-manifesto-in-motion-f4f85ec",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-mythic-holographic-card-cec97e5",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-neon-rain-4d5ee9d",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-nijushi-sekki-the-twenty-four-seasons-c421142",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-nimbus-weather-for-port-aurelia-faba819",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-nonna-lucia-s-lemon-ricotta-tart-e2c2ab3",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-orbital-n-body-gravity-playground-bb13b40",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-organic-wave-lab-ripple-tank-538cfe0",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-pages-from-juno-s-sketchbook-68564fe",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-patchwork-a-generative-quilt-65ffbac",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-pip-and-the-paper-moon-044c0b4",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-planet-forge-procedural-world-generator-44158df",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-plaza-aeterna-b271263",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-pocket-metropolis-9f32802",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-pulsar-ridges-2b9f776",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-pulse-generative-audio-visualizer-07e685b",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-quanta-terminal-c33a0dd",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-radical-shapes-milano-design-fest-86-1f1611c",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-raster-swiss-poster-machine-85c3491",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-riso-lab-halftone-print-studio-35467ae",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-rocket-launch-loop-d0d0b50",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-rosee-eau-de-parfum-77fec4c",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-rosette-symmetry-painter-264766a",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-rule-30-tapestries-of-elementary-cellular-automata-3191f21",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-seed-to-bloom-svg-story-a32bbf5",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-selene-tide-and-moon-clock-c477843",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-senbazuru-fold-a-paper-crane-6fe786f",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-sentinel-radar-array-815dfd7",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-signal-noise-8d3c429",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-silicon-living-circuit-board-9409b88",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-skyward-a-brief-history-of-flight-c350280",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-soft-machine-cd5d701",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-somewhere-inside-b3980c5",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-squishy-claymorphism-ui-kit-dd83fd3",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-sumi-ink-in-water-739309e",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-tempus-hourglass-timer-d9c877f",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-tend-a-habit-garden-5d28a7d",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-the-aurelian-9aa8f96",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-the-clockmaker-s-orrery-37fb6d3",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-the-glass-alibi-33d56ed",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-the-last-keepers-c5ae4ec",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-vast-a-scroll-across-the-solar-system-7e8a9a9",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-vitrail-stained-glass-generator-f912277",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-weather-cycle-icon-eb7483c",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-windwalker-a-kinetic-sculpture-simulation-dadf19b",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "W05:zh-prompts-woolgathering-f1619b8",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:1973345533147349238",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2020027994429911370",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020165414752539112",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020267913316561195",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020329496847569111",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020336821012476301",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020342990318047233",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020349317693993000",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020415877993156966",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020468650570842604",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020492666538950832",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2020589661769372053",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020687040853975223",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020688711172620665",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020691248927875173",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020696605855302062",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020717903134204344",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020727853281628276",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2020755613333299549",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2020788951678607813",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021077986020045203",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021121739455934644",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021125770580721938",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021203121024926171",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021217600122884274",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021295079043023257",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021302634661941422",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021407137797493102",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021409874832392508",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021412326172393760",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021480314254786608",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021534129368768671",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021545550772924579",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021587482349895747",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021602487195562068",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021610292979876208",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021611931480609139",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2021777584913363052",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021786934536740871",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021818021354848258",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021837242767905051",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021918709573652649",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021919778667999639",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2021985063840403880",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2022045055716929675",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2022066865296601311",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2022196269624803548",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2022294267008573921",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2022324867425878479",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2022478098911117516",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2022669345395216626",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2022845725965500532",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2023129113549328497",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2023644589572473265",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2023660939954860134",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2023985866725785894",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2023995701022347601",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2024031101442728220",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2024504794748997965",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2024700816251297831",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2024865420189241718",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2025041768719561102",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2025140932585152832",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2025454107423605026",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2025557080648581177",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2025581420341809187",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2025849650654122348",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2025889347963441316",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026132584468709489",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026284902229147971",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026454987157680591",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026481512607265116",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026510205345763536",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026551465951867126",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026613680360841662",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026629230583337211",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026846380896190731",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2026874635195920771",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2027217275116486982",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2027691853815161125",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2027763476056445073",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028304779026505763",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028422287649825256",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028426875949990202",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028646448603287797",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028675796957905178",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028840216643920334",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2028991305502867641",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2029124571782365670",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2029166479166587301",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2029538271211237703",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2029716747180458244",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2029817696448303419",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2030173523499417704",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2030493624144904465",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2030672961351671995",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2031295468312080667",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2031353781720662284",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2031742797653610793",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2032067803512258837",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2032103692363842001",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2032469614693863865",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2032645224728768619",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2032722396843749813",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2033119940216344616",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2033124612234686633",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2033175478765289598",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2033512165148332263",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2033693645824819506",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2034261375703482420",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2035876116473549283",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2036096779754602769",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2036808685729837062",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2037095671552147808",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2037352088196563140",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2037624907815588301",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2037843716442820913",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2038213681067274555",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2038983920986034234",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2039496153641660508",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2040627355031646634",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2040901121720369231",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2040902451478306904",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2040903004816068698",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2041000256930763046",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2041452421591834708",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2041929120322568623",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2042888679400636519",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2043171273124319686",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2043317050307957003",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2043852149755654585",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2045796388500586823",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2046872809423712522",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2046963888625999927",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2047872562886222195",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2048387882201841815",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2051210031706878202",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2051254549206200820",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2051572607372128312",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2052263407475454007",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2052330414950498622",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2054032816883535954",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2054532186628378780",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2055845763494678853",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2057462462887109067",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2057586735597375803",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2057763237790453863",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2059286644029628514",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2059309213160214678",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2059781140245057683",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2059956230786036192",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2060481313145262213",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2060530376448123287",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2061032023935139970",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2061102860004098310",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2061473895954440670",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2062394555240964260",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2063094909687722191",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2063749025870778415",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2063930786903187754",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2063952651205677170",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2064287138037055651",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2064335689102356631",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2065246846885286040",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2065932892753326503",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2067908626166005830",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2067909156741562657",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2067915654053646561",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2068448350278664693",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2068890755901395366",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2069078650902008130",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2069291154986668423",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2069652994598244645",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2069654250263917021",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2069712149505593809",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2070335010947883066",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2070689572800057659",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2070826977561612604",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2071100026772971840",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2071429324394332446",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2071470164147654747",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2072468362467082719",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2072922445493768395",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2073008723073564761",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2073104072555561118",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2075216289014980737",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2075555056985010650",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2076291940958498999",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2076475115429142599",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2076638533754991101",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2076910556775317799",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2077001992354820157",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2077251862848311552",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2077395194773672409",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2077505990069809401",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2077631766374822080",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2078426488538607848",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2078740239510602078",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2078844495911653838",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2079359038375026893",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2080168687072379128",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2080235194397954348",
+   "reason": "not English (Korean), no translation yet"
+  },
+  {
+   "id": "x:2080543657837359391",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2080789054069830076",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2080842414177272190",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2080970673736855922",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2081358875559682390",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2081598488849080445",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2081718397914464479",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2081945874909827416",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2082804507839193581",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2083085216449741212",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2083716957279257081",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2083930797845983702",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2084644638724395138",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2085001960973860986",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2085420070952649179",
+   "reason": "not English (another language), no translation yet"
+  },
+  {
+   "id": "x:2085654478829810018",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2086331768383164710",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2086409562098450495",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2087432258693001579",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2088074164703736240",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2088178083153223989",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2088559545174175836",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2088605198973583799",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2088764827321933848",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2088980203720823210",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2089339398764761560",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2089362604011770351",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2089731377193537758",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2090378405288300626",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2090703893428871506",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2091862645720879213",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2092217560788000816",
+   "reason": "not English (Korean), no translation yet"
+  },
+  {
+   "id": "x:2092536240436363328",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2092593841920725484",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2092733830801109291",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2093096219572617467",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2093685191466484198",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2093912672127615430",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2095025524586193105",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2095840673530576995",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2096136682055864564",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2096722038811754997",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2096984350055436729",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2097320255139795072",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2097515319309013359",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2098390231695376452",
+   "reason": "not English (Japanese), no translation yet"
+  },
+  {
+   "id": "x:2102458348511879448",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2102466456491536674",
@@ -1148,80 +2668,60 @@
    "reason": "too short"
   },
   {
+   "id": "x:2102591147927654847",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
    "id": "x:2102715938671878156",
    "reason": "too short"
   },
   {
-   "id": "x:2102773737129156730",
-   "reason": "short one-liner without a video"
+   "id": "x:2102737776219168939",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2102832558602072560",
    "reason": "too short"
   },
   {
+   "id": "x:2102879729594343605",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
    "id": "x:2102889901297426722",
    "reason": "too short"
   },
   {
-   "id": "x:2102894936316420109",
-   "reason": "short one-liner without a video"
+   "id": "x:2102897123037761640",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103086714772463953",
-   "reason": "short one-liner without a video"
+   "id": "x:2103153899431432535",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103245000989659422",
-   "reason": "short one-liner without a video"
+   "id": "x:2103357848961036304",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103256743023366343",
-   "reason": "short one-liner without a video"
+   "id": "x:2103449416325890146",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103441222375268605",
-   "reason": "short one-liner without a video"
+   "id": "x:2103457566978162901",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
-   "id": "x:2103496403544928454",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103547478482289121",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103578336018505763",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103631509773025717",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103641070299218145",
-   "reason": "short one-liner without a video"
+   "id": "x:2103494684374900862",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103641843963473981",
    "reason": "too short"
   },
   {
-   "id": "x:2103766223133585863",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103776779064471834",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103779700954779830",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2103811849129234909",
-   "reason": "short one-liner without a video"
+   "id": "x:2103847239885939019",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2103896499738272041",
@@ -1240,10 +2740,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104200939095904322",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104204905523126560",
    "reason": "too short"
   },
@@ -1254,6 +2750,10 @@
   {
    "id": "x:2104213206629572779",
    "reason": "too short"
+  },
+  {
+   "id": "x:2104214970909294751",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2104219468079526187",
@@ -1268,24 +2768,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104407040135164032",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104408032792990102",
    "reason": "too short"
   },
   {
-   "id": "x:2104409268351062188",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104410457263976899",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104410894167916709",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104413797876367664",
@@ -1294,10 +2782,6 @@
   {
    "id": "x:2104416503164731646",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104418374218600719",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104419703997567302",
@@ -1348,16 +2832,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104459910247235966",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104463774862446760",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104467016719774112",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104467552281952473",
@@ -1366,14 +2842,6 @@
   {
    "id": "x:2104468704490909880",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104471436039803295",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104472001838465236",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104474644279697754",
@@ -1392,10 +2860,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104489806713553012",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104493973339570288",
    "reason": "too short"
   },
@@ -1408,24 +2872,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104509397535961220",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104509574409769436",
    "reason": "too short"
   },
   {
    "id": "x:2104510125298090331",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104516868182598079",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104518643723764131",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104519528873103773",
@@ -1440,14 +2892,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104525366224412962",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104525642121519401",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104525804604645802",
    "reason": "too short"
   },
@@ -1458,10 +2902,6 @@
   {
    "id": "x:2104535752373895249",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104539072106492193",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104539335249088582",
@@ -1476,20 +2916,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104557402154549263",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104558345118236704",
    "reason": "too short"
   },
   {
    "id": "x:2104560611095187772",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104665953883615408",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104803951296352610",
@@ -1500,20 +2932,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104827072283849181",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104832372164444162",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104843907594875185",
    "reason": "too short"
-  },
-  {
-   "id": "x:2104850150749532431",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2104859976112206265",
@@ -1536,14 +2956,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104903820639633895",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2104923224614326394",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104934916505108662",
    "reason": "too short"
   },
@@ -1560,10 +2972,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104953406708175097",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2104957026199900220",
    "reason": "too short"
   },
@@ -1572,16 +2980,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2104999693113766152",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2105028528198541622",
    "reason": "too short"
-  },
-  {
-   "id": "x:2105034298483220849",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2105049523139850561",
@@ -1604,16 +3004,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2105077715510714439",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2105086568155304269",
    "reason": "too short"
-  },
-  {
-   "id": "x:2105090561023901698",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2105095134354473053",
@@ -1636,28 +3028,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2105102932114813383",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105105890936233985",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105136634492809280",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2105143909311803524",
    "reason": "too short"
   },
   {
    "id": "x:2105145374541484257",
    "reason": "too short"
-  },
-  {
-   "id": "x:2105152588991868936",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2105158224307740811",
@@ -1668,28 +3044,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2105177028911837538",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105193450467389763",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2105208251956830625",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2106042539744862690",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2106216524465729626",
    "reason": "too short"
-  },
-  {
-   "id": "x:2106728230707159472",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2106780444163281084",
@@ -1756,10 +3112,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2107848117584543896",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2107876637534568853",
    "reason": "too short"
   },
@@ -1792,10 +3144,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2108231764023861630",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2108238386318180841",
    "reason": "too short"
   },
@@ -1824,10 +3172,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2108311732376453546",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2108326054431707284",
    "reason": "too short"
   },
@@ -1838,14 +3182,6 @@
   {
    "id": "x:2108329031892713883",
    "reason": "too short"
-  },
-  {
-   "id": "x:2108384651362394407",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108400811411996801",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2108410208708169910",
@@ -1952,8 +3288,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2108570435575222596",
-   "reason": "short one-liner without a video"
+   "id": "x:2108582054388732296",
+   "reason": "too short"
   },
   {
    "id": "x:2108584669859955083",
@@ -1984,18 +3320,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2108716885646639338",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108717646157922687",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2108729269681520726",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2108758475606229025",
    "reason": "too short"
   },
@@ -2006,10 +3330,6 @@
   {
    "id": "x:2108802612669891048",
    "reason": "too short"
-  },
-  {
-   "id": "x:2108883842061013088",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2108907357166313662",
@@ -2028,10 +3348,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2108932593911816392",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2108937773742756207",
    "reason": "too short"
   },
@@ -2042,6 +3358,10 @@
   {
    "id": "x:2108986964615840035",
    "reason": "too short"
+  },
+  {
+   "id": "x:2109034305968336929",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2109146914000457838",
@@ -2068,10 +3388,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2109243587724755158",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2109247904351445151",
    "reason": "too short"
   },
@@ -2088,6 +3404,14 @@
    "reason": "too short"
   },
   {
+   "id": "x:2109420193399357665",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
+   "id": "x:2109494015062110399",
+   "reason": "not English (Chinese), no translation yet"
+  },
+  {
    "id": "x:2109523901105500260",
    "reason": "too short"
   },
@@ -2096,19 +3420,11 @@
    "reason": "too short"
   },
   {
-   "id": "x:2109620598704087055",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2109646277592175006",
    "reason": "too short"
   },
   {
    "id": "x:2109675464688083380",
-   "reason": "too short"
-  },
-  {
-   "id": "x:2109723440710066646",
    "reason": "too short"
   },
   {
@@ -2124,8 +3440,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2109989449673347271",
-   "reason": "short one-liner without a video"
+   "id": "x:2110014984549986485",
+   "reason": "too short"
   },
   {
    "id": "x:2110046079983001783",
@@ -2136,32 +3452,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2110087264604991730",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2110121953952686261",
    "reason": "too short"
   },
   {
    "id": "x:2110166432151400762",
    "reason": "too short"
-  },
-  {
-   "id": "x:2110216255474897247",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2110274182046953661",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2110292106329874666",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2110317114418467251",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2110317136086470729",
@@ -2176,20 +3472,8 @@
    "reason": "too short"
   },
   {
-   "id": "x:2110354160986079462",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2110400267783110897",
    "reason": "too short"
-  },
-  {
-   "id": "x:2110421556031569949",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2110476412213686723",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2110478089478127834",
@@ -2198,10 +3482,6 @@
   {
    "id": "x:2110613662599942496",
    "reason": "too short"
-  },
-  {
-   "id": "x:2110620135245443294",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2110705871755878728",
@@ -2224,10 +3504,6 @@
    "reason": "too short"
   },
   {
-   "id": "x:2110792641277198383",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2110835030964732074",
    "reason": "too short"
   },
@@ -2236,16 +3512,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2110869349275935017",
-   "reason": "short one-liner without a video"
+   "id": "x:2110875842343768404",
+   "reason": "not English (Japanese), no translation yet"
   },
   {
    "id": "x:2110995500786970636",
    "reason": "too short"
-  },
-  {
-   "id": "x:2111067204925935905",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2111081760369107300",
@@ -2268,36 +3540,20 @@
    "reason": "too short"
   },
   {
-   "id": "x:2111129754254680272",
-   "reason": "short one-liner without a video"
-  },
-  {
-   "id": "x:2111133280854581722",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2111135774544441654",
    "reason": "too short"
   },
   {
-   "id": "x:2111155149003710638",
-   "reason": "short one-liner without a video"
+   "id": "x:2111172841945129256",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2111211281814294908",
    "reason": "too short"
   },
   {
-   "id": "x:2111215178532491265",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2111272683375853662",
    "reason": "too short"
-  },
-  {
-   "id": "x:2111398174548214218",
-   "reason": "short one-liner without a video"
   },
   {
    "id": "x:2111405053604999576",
@@ -2308,12 +3564,12 @@
    "reason": "too short"
   },
   {
-   "id": "x:2111436982283038922",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2111484789685735539",
    "reason": "too short"
+  },
+  {
+   "id": "x:2111662397278847478",
+   "reason": "not English (Chinese), no translation yet"
   },
   {
    "id": "x:2111920496208204235",
@@ -2336,19 +3592,11 @@
    "reason": "too short"
   },
   {
-   "id": "x:2112635371716841661",
-   "reason": "short one-liner without a video"
-  },
-  {
    "id": "x:2105746669035733275",
    "reason": "near-duplicate"
   },
   {
    "id": "x:2104207707980869918",
-   "reason": "near-duplicate"
-  },
-  {
-   "id": "x:2103538744695693512",
    "reason": "near-duplicate"
   },
   {
@@ -2369,10 +3617,6 @@
   },
   {
    "id": "x:2103714680577638493",
-   "reason": "near-duplicate"
-  },
-  {
-   "id": "x:2103723183899852885",
    "reason": "near-duplicate"
   },
   {
@@ -2408,15 +3652,7 @@
    "reason": "near-duplicate"
   },
   {
-   "id": "x:2103708363074973906",
-   "reason": "near-duplicate"
-  },
-  {
-   "id": "x:2104524606841217044",
-   "reason": "near-duplicate"
-  },
-  {
-   "id": "x:2104525094571937922",
+   "id": "x:2090660330556776952",
    "reason": "near-duplicate"
   }
  ]
