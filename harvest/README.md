@@ -123,3 +123,6 @@ Files, all in `site/`:
 | `content/gallery.jsonl` | the library, patched in place |
 | `content/library-state.json` | the library's git-status-like state: `updated_at`, `updates` (runs that changed something), `runs`, `totals`, `enrichment` counts, `files` (sha1, bytes, lines, `added`/`modified`/`unchanged` against the previous run), `last` run with its changes, and the last 100 runs |
 | `logs/<time>-<command>.log`, `logs/runs.jsonl` | a log per run of `enrich`, `import`, `media` and `seed` (git-ignored). `harvest/logs/` for the harvester |
+
+### Translating non-English prompts: `npm run gallery:translate`
+Prompts that are not in English (the YouMind source is multilingual) are hidden until translated. `cd site && npm run gallery:translate` asks an OpenRouter model (default `google/gemini-2.5-flash`, change with `--model`) to translate them, 5 per request, 3 requests at once, checks each result (complete, English, title in English) and retries a bad one once. It saves `content/gallery-translations.json` after every batch (stop and run again to resume), then runs `gallery:import`. Key: `OPENROUTER_API_KEY` or the dashboard Settings. Try `-- --limit 20` first.

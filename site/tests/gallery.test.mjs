@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import http from "node:http";
+import { checkTranslation, translateBatch } from "../scripts/translate-gallery.mjs";
 import { checkUrl, curate, galleryId, mergeRecords, previewOf, publicItem, titleFrom } from "../scripts/gallery-source.mjs";
 import { detectLang, junkReason, assignTiers } from "../scripts/gallery-quality.mjs";
 
@@ -128,4 +129,27 @@ assert.equal(await checkUrl(`${base_}/html`), 415);
 assert.equal(await checkUrl("http://127.0.0.1:1/x.mp4"), 0);
 srv.closeAllConnections?.();
 srv.close();
+// translation: validation and one batch against a fake OpenRouter
+const src = { id: "x:1", lang: "ja", text: "JavaScriptだけでアニメーション動画を作って。テーマは「Claude Codeって何？」。15秒・16:9、手描きの紙コラージュ風で、日本語ナレーション付き。" };
+const goodT = { title: "Paper collage Claude Code explainer", text: "Make an animated video using only JavaScript. Theme: what is Claude Code. 15 seconds, 16:9, a hand-drawn paper collage look, with Japanese narration." };
+assert.equal(checkTranslation(src, goodT), null);
+assert.match(checkTranslation(src, { title: "ok title", text: "短い" }), /too short/);
+assert.match(checkTranslation(src, { title: "ok title", text: "JavaScriptだけでアニメーション動画を作って。テーマは「Claude Codeって何？」。15秒・16:9、手描きの紙コラージュ風で、日本語ナレーションを入れてください" }), /not English/);
+assert.match(checkTranslation(src, { title: "紙コラージュ", text: goodT.text }), /bad title/);
+const fakeAI = http.createServer((req, res) => {
+	let body = "";
+	req.on("data", (d) => (body += d));
+	req.on("end", () => {
+		const items = JSON.parse(JSON.parse(body).messages[1].content);
+		const out = Object.fromEntries(items.map((i) => [i.id, i.id === "x:2" ? { title: "x", text: "no" } : goodT]));
+		res.setHeader("content-type", "application/json");
+		res.end(JSON.stringify({ choices: [{ message: { content: "```json\n" + JSON.stringify(out) + "\n```" } }] }));
+	});
+});
+await new Promise((r) => fakeAI.listen(0, "127.0.0.1", r));
+const tb = await translateBatch([src, { ...src, id: "x:2" }], { baseUrl: `http://127.0.0.1:${fakeAI.address().port}`, key: "k", model: "m" });
+assert.deepEqual(Object.keys(tb.ok), ["x:1"]);
+assert.ok(tb.bad["x:2"], "an unusable translation is rejected, not saved");
+fakeAI.closeAllConnections?.();
+fakeAI.close();
 console.log("gallery tests passed");
