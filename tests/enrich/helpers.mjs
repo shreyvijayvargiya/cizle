@@ -30,3 +30,6 @@ export const tweetJson = (id, { video = true, text = "A tweet about a video" } =
 		? [{ media_url_https: `https://pbs.example/${id}.jpg`, video_info: { variants: [{ content_type: "application/x-mpegURL", url: `https://video.example/${id}.m3u8` }, { content_type: "video/mp4", bitrate: 832000, url: `https://video.example/${id}/480.mp4` }, { content_type: "video/mp4", bitrate: 2176000, url: `https://video.example/${id}/720.mp4` }] } }]
 		: [],
 });
+
+export const fxJson = (id, { video = true, text = "A long tweet about a video, in full" } = {}) => ({ code: 200, tweet: { id: String(id), text, author: { screen_name: "ann" }, media: video ? { videos: [{ url: `https://video.example/fx/${id}.mp4`, thumbnail_url: `https://pbs.example/fx/${id}.jpg` }] } : { photos: [{ url: `https://pbs.example/${id}.jpg` }] } } });
+export const vxJson = (id) => ({ text: "vx text", media_extended: [{ type: "video", url: `https://video.example/vx/${id}.mp4`, thumbnail_url: `https://pbs.example/vx/${id}.jpg` }] });

@@ -105,9 +105,14 @@ npm run enrich -- --status                 # library totals, what is enriched, l
 npm run enrich -- --limit 20               # try 20 entries first
 npm run enrich                             # everything not visited yet, 5 pages at a time, then the next 5
 npm run enrich -- -p 10 --loop             # 10 at a time; loop for hours: rest 30 min, come back for new, failed and stale entries
-npm run enrich -- --again --import         # refresh everything, then re-run gallery:import so dropped prompts can return
+npm run enrich -- --report                 # coverage: videos, complete prompts, why the rest have none, by source
+npm run enrich -- --again                  # refresh everything (a pass publishes new videos by itself)
 ```
-For each entry, in order: (1) the X embed endpoint `cdn.syndication.twimg.com` (mp4 variants, poster, text; no browser, no login); (2) the source page in Puppeteer: `<video>`, `og:video`, JSON-LD and the **Copy prompt** button (the clipboard write is intercepted, so it works headless); (3) the X post in Chrome, only with `--x-browser` (X's terms restrict automated access, so it is opt-in). robots.txt is honoured for source pages. Set `CHROME_PATH` if Chrome is not found.
+For each entry, in order, and only while it still lacks a video or has a cut-off prompt: (1) the X embed endpoint `cdn.syndication.twimg.com`; (2) the FixTweet API `api.fxtwitter.com` (mp4, poster, and the full text of long tweets); (3) the vxTwitter API `api.vxtwitter.com`; (4) the source page in Puppeteer: `<video>`, `og:video`, JSON-LD, network mp4 and the **Copy prompt** button (the clipboard write is intercepted, so it works headless); (5) the X post in Chrome, only with `--x-browser` (X's terms restrict automated access, so it is opt-in). robots.txt is honoured for source pages. Set `CHROME_PATH` if Chrome is not found. Override the endpoints with `ENRICH_SYNDICATION_URL`, `ENRICH_FXTWITTER_URL`, `ENRICH_VXTWITTER_URL`.
+
+**No demo video, no listing.** A prompt without a working video is not shown on the site. It waits in `content/gallery-pending.jsonl` with the reason it has no video, and is published into `gallery.jsonl` (tier and all) as soon as enrichment finds one: enrich runs `gallery:import` itself after each pass (`--no-import` to skip). `gallery:import` works with or without `harvest/data` (without it, it re-curates the library files).
+
+**Coverage report:** `npm run enrich -- --report` (also in `--status`, in `POST /api/enrich {"action":"status"}`, and in `library-state.json` after every run) shows how many prompts have a demo video and a complete prompt, why the rest do not (`post deleted`, `post has no video`, `HLS only`, `blocked`, `unreachable`, `not visited yet`), which route found each video, and the breakdown by source.
 
 What it will and will not change: it fills a missing video or poster; it replaces a prompt only with a longer one from the Copy prompt button, or a longer tweet when the stored prompt is a cut-off copy of it. A promotional tweet never replaces a real prompt.
 

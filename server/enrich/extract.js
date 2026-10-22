@@ -37,3 +37,19 @@ export function parseSyndication(json) {
 
 /** First plausible mp4 out of a pile of urls (network sniffing, <video> tags, meta tags). */
 export const firstMp4 = (urls) => [...new Set(urls)].filter(isMp4Url).sort((a, b) => Number(/blob:|thumb|preview/.test(a)) - Number(/blob:|thumb|preview/.test(b)))[0] || null;
+
+/** api.fxtwitter.com/status/<id>: { tweet: { text, media: { videos: [{ url, thumbnail_url }], photos } } }. Long tweets come back in full. */
+export function parseFx(json) {
+	const t = json?.tweet;
+	if (!t) return { gone: json?.code === 404 };
+	const v = t.media?.videos?.find((x) => isMp4Url(x.url)) || t.media?.all?.find((x) => x.type !== "photo" && isMp4Url(x.url));
+	return { text: String(t.text || "").trim(), video: v?.url || null, poster: v?.thumbnail_url || t.media?.photos?.[0]?.url || null, handle: t.author?.screen_name || null, hasMedia: Boolean(t.media), photosOnly: Boolean(t.media?.photos?.length) && !t.media?.videos?.length };
+}
+
+/** api.vxtwitter.com/<user>/status/<id>: { text, media_extended: [{ type, url, thumbnail_url }] }. */
+export function parseVx(json) {
+	if (!json || typeof json !== "object" || json.error) return { gone: true };
+	const media = json.media_extended || [];
+	const v = media.find((m) => m.type !== "image" && isMp4Url(m.url)) || (json.mediaURLs || []).map((url) => ({ url })).find((m) => isMp4Url(m.url));
+	return { text: String(json.text || "").trim(), video: v?.url || null, poster: media.find((m) => m.thumbnail_url)?.thumbnail_url || null, hasMedia: media.length > 0, photosOnly: media.length > 0 && media.every((m) => m.type === "image") };
+}

@@ -1,7 +1,8 @@
 /**
  * Enrichment sidecar: site/content/gallery-enrichment.json = { "<entry id>": record }. It survives re-imports of the harvest data,
  * because the import applies it (see applyEnrichment). Record:
- *   { at, status: ok|none|failed|blocked, attempts, updates, source: "syndication|page|copy-button|browser", tried: [...],
+ *   { at, status: ok|none|failed|blocked, attempts, updates, source, video_via, text_via, tried: [...],
+ *     video_state: has_video|hls_only|no_video_in_post|post_gone|blocked|unreachable|no_video_found|no_source (why there is, or is not, a video),
  *     video?, poster?, hls?, text?, title?, tweet_text?, error?, fields: ["video", ...] }
  */
 import { readJson, writeJsonAtomic } from "./io.js";
@@ -28,10 +29,10 @@ export function applyEnrichment(entry, enr) {
 		const cur = norm(e.text);
 		const next = norm(enr.text);
 		const sameStart = cur.slice(0, 40).toLowerCase() === next.slice(0, 40).toLowerCase();
-		if (next.length > cur.length && (e.partial || sameStart || enr.source === "copy-button")) {
+		if (next.length > cur.length && (e.partial || sameStart || (enr.text_via || enr.source) === "copy-button")) {
 			e.text = String(enr.text).trim();
 			e.partial = false;
-			e.textSource = enr.source;
+			e.textSource = enr.text_via || enr.source;
 		} else if (e.partial && next.length >= cur.length * 0.9 && sameStart) {
 			e.partial = false;
 		}
@@ -43,6 +44,7 @@ export function applyEnrichment(entry, enr) {
 /** Does this entry still need a visit? */
 export function needsVisit(entry, rec, { staleDays = 14, again = false, retry = false, maxAttempts = 3 } = {}) {
 	if (!entry.postUrl && !entry.sourceUrl) return false;
+	if (!rec && entry.video && !entry.partial) return false; // already has its demo video and a complete prompt
 	if (!rec) return true;
 	if (again) return true;
 	if ((rec.status === "failed" || rec.status === "blocked") && retry) return (rec.attempts || 0) < maxAttempts + 3;

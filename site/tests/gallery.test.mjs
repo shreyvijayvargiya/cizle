@@ -44,7 +44,7 @@ assert.equal(detectLang("Dribbble-level dark-mode UI motion. One continuous time
 assert.equal(junkReason({ text: "make a video", partial: false }), "too short");
 assert.equal(junkReason({ text: "x".repeat(150), partial: true }), "partial and short");
 assert.equal(junkReason({ text: "A slow dolly shot of a lighthouse at dusk, 24fps, cinematic grade, with a score.".repeat(3), partial: false }), null);
-assert.equal(junkReason({ text: "A slow dolly shot of a lighthouse at dusk, 24fps, cinematic grade, with a score.".repeat(2), partial: false }), "short one-liner without a video");
+assert.equal(junkReason({ text: "A slow dolly shot of a lighthouse at dusk, 24fps, cinematic grade, with a score.".repeat(2), partial: false }), null, "a one-liner is fine: video is checked separately");
 assert.equal(junkReason({ text: "A slow dolly shot of a lighthouse at dusk, 24fps, cinematic grade, with a score.".repeat(2), partial: false, video: "https://v/1.mp4" }), null);
 
 // curate: translate or drop non-English, drop dead media, cap near-duplicates, pick free samples
@@ -52,7 +52,7 @@ const base = (id, text, o = {}) => ({ id, title: `T ${id}`, author: {}, category
 const en = (i) => `Scene ${i}: a slow dolly shot of a lighthouse at dusk, with warm rim light, film grain and a gentle score under the waves. Variation ${i} ${"detail ".repeat(60)}`;
 const ja = "JavaScriptだけでアニメーション動画を作って。テーマは「Claude Codeって何？」。15秒・16:9、手描きの紙コラージュ風で、日本語ナレーション付き。台本・素材・アニメーションを全部作ってください。";
 const entries = [
-	...Array.from({ length: 30 }, (_, i) => base(`x:${i}`, en(i), { video: i % 3 === 0 ? `https://v/${i}.mp4` : null, category: ["motion", "3d", "explainer"][i % 3] })),
+	...Array.from({ length: 30 }, (_, i) => base(`x:${i}`, en(i), { video: `https://v/${i}.mp4`, category: ["motion", "3d", "explainer"][i % 3] })),
 	base("x:ja", ja, { video: "https://v/ja.mp4" }),
 	base("x:ja2", ja.replace("15秒", "30秒")),
 	base("x:short", "make a video"),
@@ -76,6 +76,19 @@ assert.ok(free.filter((e) => e.video).length >= free.length / 2, "free samples f
 // enrichment: a cut-off prompt that was dropped comes back complete, with the video the enricher found
 const cut = base("x:cut", "Make a slow dolly shot of a lighthouse at dusk with warm rim light", { partial: true });
 assert.equal(curate([cut]).kept.length, 0, "dropped while partial and short");
+
+// no demo video: held back (pending), not dropped, and shown once a video is found
+const noVid = base("x:novid", en(77));
+const held = curate([noVid, base("x:vid", en(78), { video: "https://v/78.mp4" })]);
+assert.deepEqual(held.kept.map((e) => e.id), ["x:vid"]);
+assert.deepEqual(held.pending.map((e) => e.id), ["x:novid"]);
+assert.ok(!held.dropped.some((d) => d.id === "x:novid"));
+assert.equal(held.pending[0].videoState, "not_visited");
+assert.deepEqual(curate([noVid], { enrichment: { "x:novid": { status: "none", at: "t", video_state: "post_gone" } } }).pending[0].videoState, "post_gone");
+const promoted = curate([noVid], { enrichment: { "x:novid": { status: "ok", at: "t", video: "https://v/77.mp4", source: "fxtwitter" } } });
+assert.equal(promoted.kept.length, 1);
+assert.equal(promoted.pending.length, 0);
+assert.equal(promoted.kept[0].video, "https://v/77.mp4");
 const full = "Make a slow dolly shot of a lighthouse at dusk with warm rim light, film grain and a gentle score under the waves. Hold for fifteen seconds, then cut to the logo.";
 const revived = curate([cut], { enrichment: { "x:cut": { status: "ok", at: "2026-10-22T00:00:00Z", video: "https://v/cut.mp4", text: full, source: "syndication" } } }).kept;
 assert.equal(revived.length, 1);

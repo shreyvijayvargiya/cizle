@@ -14,6 +14,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { GALLERY_FILE, MEDIA_FILE, REPORT_FILE, TRANSLATIONS_FILE, curate, mergeRecords } from "./gallery-source.mjs";
+import { files } from "../../server/library/paths.js";
+import { writeJsonlAtomic } from "../../server/library/io.js";
 import { loadEnrichment } from "../../server/library/enrichment.js";
 import { readJsonl } from "../../server/library/io.js";
 import { createRunLog } from "../../server/library/runlog.js";
@@ -27,8 +29,11 @@ const runlog = createRunLog("import", { argv: process.argv.slice(2) }, { echo: f
 const out = console.log;
 console.log = (...a) => (out(...a), runlog.log(a.join(" ")));
 const untranslatedOut = process.argv.includes("--untranslated") ? process.argv[process.argv.indexOf("--untranslated") + 1] : null;
-if (!fs.existsSync(data)) {
-	console.error(`No harvested data in ${data}. Run: npm run harvest`);
+const PENDING_FILE = files().pending;
+// Without harvest data (another machine, a fresh clone) the library itself is the input: shown prompts plus the ones waiting for a video.
+const fromLibrary = !fs.existsSync(data);
+if (fromLibrary && !fs.existsSync(GALLERY_FILE) && !fs.existsSync(PENDING_FILE)) {
+	console.error(`No harvested data in ${data} and no library yet. Run: npm run harvest`);
 	runlog.log(`no harvested data in ${data}`);
 	runlog.end({ ok: false });
 	process.exit(1);
@@ -37,7 +42,8 @@ const readJson = (f, fallback) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync
 
 const records = [];
 const perSource = {};
-for (const id of fs.readdirSync(data).sort()) {
+if (fromLibrary) console.log(`no harvest data here: re-curating the library itself (${GALLERY_FILE})`);
+for (const id of fromLibrary ? [] : fs.readdirSync(data).sort()) {
 	const file = path.join(data, id, "records.jsonl");
 	if (id.startsWith("_") || !fs.existsSync(file)) continue;
 	let n = 0;
@@ -52,12 +58,13 @@ for (const id of fs.readdirSync(data).sort()) {
 	}
 	perSource[id] = n;
 }
-const merged = mergeRecords(records);
+const merged = fromLibrary ? [...readJsonl(GALLERY_FILE), ...readJsonl(PENDING_FILE)] : mergeRecords(records);
+if (fromLibrary) perSource.library = merged.length;
 const translations = readJson(TRANSLATIONS_FILE, {});
 const media = readJson(MEDIA_FILE, null);
 const enrichment = loadEnrichment();
 const before = readJsonl(GALLERY_FILE);
-const { kept, dropped, needTranslation } = curate(merged, { translations, media, enrichment });
+const { kept, pending, dropped, needTranslation } = curate(merged, { translations, media, enrichment });
 
 const by = (f) => kept.filter(f).length;
 const reasons = {};
@@ -66,6 +73,7 @@ console.log(`read ${records.length} records (${Object.entries(perSource).map(([k
 console.log(`${merged.length} unique prompts after merging ${records.length - merged.length} duplicates`);
 console.log(`dropped ${dropped.length}:`);
 for (const [r, n] of Object.entries(reasons).sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(4)}  ${r}`);
+console.log(`waiting for a video: ${pending.length} (shown on the site as soon as enrichment finds one: npm run enrich)`);
 console.log(`kept ${kept.length}: ${by((e) => e.tier === "free")} free samples, ${by((e) => e.tier === "premium")} premium · ${by((e) => e.video)} with a video · ${by((e) => e.translatedFrom)} translated`);
 console.log(`enrichment applied: ${Object.values(enrichment).filter((r) => r.status === "ok").length} of ${Object.keys(enrichment).length} records found something`);
 console.log(media ? `media check applied (${Object.keys(media).length} urls)` : "no media check yet: run npm run gallery:media on a machine that can reach the media hosts");
@@ -78,7 +86,8 @@ if (dry) {
 
 fs.mkdirSync(path.dirname(GALLERY_FILE), { recursive: true });
 fs.writeFileSync(GALLERY_FILE, kept.map((e) => JSON.stringify(e)).join("\n") + "\n");
-fs.writeFileSync(REPORT_FILE, JSON.stringify({ generatedAt: new Date().toISOString(), read: records.length, unique: merged.length, kept: kept.length, free: by((e) => e.tier === "free"), reasons, dropped }, null, 1));
+await writeJsonlAtomic(PENDING_FILE, pending);
+fs.writeFileSync(REPORT_FILE, JSON.stringify({ generatedAt: new Date().toISOString(), read: records.length, unique: merged.length, kept: kept.length, pending: pending.length, free: by((e) => e.tier === "free"), reasons, dropped }, null, 1));
 console.log(`wrote ${path.relative(process.cwd(), GALLERY_FILE)} and ${path.relative(process.cwd(), REPORT_FILE)}`);
 const changes = diffEntries(before, kept);
 console.log(`library vs before: +${changes.added} added, ${changes.modified} modified, -${changes.removed} removed, ${changes.unchanged} unchanged`);

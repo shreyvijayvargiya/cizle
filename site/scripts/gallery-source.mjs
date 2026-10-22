@@ -103,10 +103,12 @@ export function mergeRecords(records) {
 
 /**
  * The quality pass: apply enrichment (found videos and complete prompts), translate or drop non-English prompts, remove dead media, drop junk and near-duplicates, score, pick the free samples.
- * @returns {{ kept: object[], dropped: { id: string, reason: string }[], needTranslation: object[] }}
+ * An entry without a working demo video is not shown: it waits in `pending` and is promoted as soon as enrichment finds a video.
+ * @returns {{ kept: object[], pending: object[], dropped: { id: string, reason: string }[], needTranslation: object[] }}
  */
 export function curate(entries, { translations = {}, media = null, enrichment = {} } = {}) {
 	const dropped = [];
+	const pending = [];
 	const needTranslation = [];
 	const out = [];
 	const dead = (u) => media && u && media[u] !== undefined && !(media[u] >= 200 && media[u] < 400);
@@ -128,13 +130,14 @@ export function curate(entries, { translations = {}, media = null, enrichment = 
 		if (detectLang(e.title) !== "en") e.title = titleFrom({ prompt: { text: e.text } }); // a foreign title from one source, English text from another
 		if (dead(e.video)) e.video = null;
 		if (dead(e.poster)) e.poster = null;
-		if (media && !e.video && !e.poster) {
-			dropped.push({ id: e.id, reason: "no working video or poster" });
-			continue;
-		}
 		const junk = junkReason(e);
 		if (junk) {
 			dropped.push({ id: e.id, reason: junk });
+			continue;
+		}
+		if (!e.video) {
+			const { score: _s, tier: _t, dropped: _d, ...rest } = e;
+			pending.push({ ...rest, pending: true, videoState: enrichment[e.id]?.video_state || "not_visited" });
 			continue;
 		}
 		e.score = score(e);
@@ -144,7 +147,7 @@ export function curate(entries, { translations = {}, media = null, enrichment = 
 	for (const e of out) if (e.dropped) dropped.push({ id: e.id, reason: e.dropped });
 	assignTiers(kept);
 	kept.sort((a, b) => String(b.added || "").localeCompare(String(a.added || "")) || a.id.localeCompare(b.id));
-	return { kept, dropped, needTranslation };
+	return { kept, pending, dropped, needTranslation };
 }
 
 /** Status of one media url: the HTTP status, 415 for a 2xx that is not media (an HTML error page), 0 for DNS, timeout or reset. */

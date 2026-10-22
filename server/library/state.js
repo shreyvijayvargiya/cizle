@@ -11,9 +11,10 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { readJson, readJsonl, writeJsonAtomic } from "./io.js";
+import { coverage } from "./coverage.js";
 import { contentDir, files } from "./paths.js";
 
-const TRACKED = ["gallery", "enrichment", "translations", "media"]; // the report is derived and changes every run, so it is not state
+const TRACKED = ["gallery", "pending", "enrichment", "translations", "media"]; // the report is derived and changes every run, so it is not state
 
 const fingerprint = (file) => {
 	if (!fs.existsSync(file)) return null;
@@ -39,7 +40,7 @@ export function librarySummary() {
 	const count = (fn) => rows.filter(fn).length;
 	const ids = new Set(gallery.map((e) => e.id));
 	return {
-		totals: { prompts: gallery.length, free: gallery.filter((e) => e.tier === "free").length, premium: gallery.filter((e) => e.tier === "premium").length, with_video: gallery.filter((e) => e.video).length, partial: gallery.filter((e) => e.partial).length, translated: gallery.filter((e) => e.translatedFrom).length },
+		totals: { prompts: gallery.length, waiting_for_video: readJsonl(f.pending).length, free: gallery.filter((e) => e.tier === "free").length, premium: gallery.filter((e) => e.tier === "premium").length, with_video: gallery.filter((e) => e.video).length, partial: gallery.filter((e) => e.partial).length, translated: gallery.filter((e) => e.translatedFrom).length },
 		enrichment: {
 			records: rows.length,
 			ok: count((r) => r.status === "ok"),
@@ -83,6 +84,7 @@ export async function recordRun({ cmd, id, args = {}, ok = true, changes = null,
 		updates: (prev.updates || 0) + (changed ? 1 : 0),
 		runs: (prev.runs || 0) + 1,
 		...summary,
+		coverage: (({ examples, by_source, ...c }) => c)(coverage()),
 		files: fileState,
 		last: { ...entry, changes: changes || { added: 0, modified: 0, removed: 0, unchanged: summary.totals.prompts, ids: {} } },
 		history: [entry, ...(prev.history || [])].slice(0, 100),

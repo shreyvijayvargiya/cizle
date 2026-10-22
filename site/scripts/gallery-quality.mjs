@@ -33,7 +33,6 @@ export const PREMIUM_MIN_CHARS = 200; // below this a prompt is a one-liner: sho
 export function junkReason(e) {
 	if (e.text.length < MIN_CHARS) return "too short";
 	if (e.partial && e.text.length < 300) return "partial and short";
-	if (!e.video && e.text.length < PREMIUM_MIN_CHARS) return "short one-liner without a video";
 	const alnum = e.text.replace(/[^\p{L}\p{N}]/gu, "").length;
 	if (alnum < e.text.length * 0.4) return "mostly symbols";
 	if ((e.text.match(/https?:\/\/\S+/g) || []).join("").length > e.text.length * 0.5) return "mostly links";

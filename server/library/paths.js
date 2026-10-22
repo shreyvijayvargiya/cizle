@@ -8,6 +8,7 @@ export const contentDir = () => path.join(siteDir(), "content");
 export const logsDir = () => path.join(siteDir(), "logs");
 export const files = () => ({
 	gallery: path.join(contentDir(), "gallery.jsonl"),
+	pending: path.join(contentDir(), "gallery-pending.jsonl"), // prompts without a working demo video: held back until one is found
 	enrichment: path.join(contentDir(), "gallery-enrichment.json"),
 	translations: path.join(contentDir(), "gallery-translations.json"),
 	media: path.join(contentDir(), "media-status.json"),

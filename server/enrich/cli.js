@@ -3,7 +3,7 @@
  * npm run enrich: visit the original source of every prompt in the library and fill in the video, poster and complete prompt.
  * Drives the same engine as POST /api/enrich. State and results are files in site/content, every run has a log in site/logs.
  */
-import { spawn, spawnSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -29,8 +29,9 @@ function parseArgs(argv) {
 		else if (a === "--force") o.force = true;
 		else if (a === "--x-browser") o.xBrowser = true;
 		else if (a === "--no-browser") o.noBrowser = true;
-		else if (a === "--import") o.import = true;
+		else if (a === "--no-import") o.import = false;
 		else if (a === "--status") o.status = true;
+		else if (a === "--report") o.report = true;
 		else if (a === "--json") o.json = true;
 		else if (a === "--help" || a === "-h") o.help = true;
 		else throw new Error(`Unknown option ${a}. Try --help.`);
@@ -56,12 +57,14 @@ Usage: npm run enrich -- [options]
       --force          visit every entry
       --x-browser      also open the X post itself in Chrome when the embed endpoint has no video (X's terms restrict this; use at your own risk)
       --no-browser     only use the X embed endpoint, no Chrome
-      --import         when finished, run npm run gallery:import in site/ so enriched prompts are re-curated (free/premium, dropped ones return)
+      --no-import      do not run gallery:import after each pass (by default prompts that found a video are published into the library right away)
       --status         show the library state and exit
+      --report         coverage report: how many prompts have a demo video and a complete prompt, why the rest do not, by source
       --json           print events as JSON lines
 
-Where it looks, in order: the X embed endpoint (video, poster, text); the source page in Chrome (<video>, og:video, and the Copy prompt
-button); the post in Chrome (only with --x-browser). Set CHROME_PATH if Chrome is not found.
+Where it looks, in order: the X embed endpoint, the FixTweet and vxTwitter APIs (video, poster, full text); the source page in Chrome
+(<video>, og:video, and the Copy prompt button); the post in Chrome (only with --x-browser). A prompt with no demo video is held back
+from the site (gallery-pending.jsonl) until one is found. Set CHROME_PATH if Chrome is not found.
 Results: site/content/gallery-enrichment.json, gallery.jsonl (patched), library-state.json. Logs: site/logs/. Ctrl+C stops after the batch.`;
 
 const hhmmss = () => new Date().toTimeString().slice(0, 8);
@@ -72,8 +75,10 @@ function printer(json) {
 		if (e.type === "pass_start") line(`pass ${e.pass}: ${e.pending} to visit of ${e.entries} (${e.from}), ${e.parallel} at a time, ${Math.round(e.batch_pause_ms / 1000)}s between batches`);
 		else if (e.type === "progress") line(`${e.done}/${e.total}  +${e.videos} videos  +${e.texts} full prompts  +${e.posters} posters  · ok ${e.ok} · nothing new ${e.none} · failed ${e.failed} · blocked ${e.blocked}`);
 		else if (e.type === "sleep") line(`sleeping ${Math.round(e.ms / 1000)}s (${e.reason === "pass" ? "before the next pass" : "between batches"})`);
+		else if (e.type === "import") line("publishing prompts that found a video (gallery:import)…");
+		else if (e.type === "import_done") line(`gallery:import done${e.code ? ` (exit ${e.code})` : ""}`);
 		else if (e.type === "warn" || e.type === "error") line(`${e.type}: ${e.msg}`);
-		else if (e.type === "run_done") line(`${e.stopped ? "stopped" : "finished"}: ${e.visited} visited · ${e.videos} new videos · ${e.texts} full prompts · library updates so far ${e.updates} · log ${e.log}`);
+		else if (e.type === "run_done") line(`${e.stopped ? "stopped" : "finished"}: ${e.visited} visited · ${e.videos} new videos · ${e.texts} full prompts · library updates so far ${e.updates} · log ${e.log}${e.coverage ? `\n          coverage: ${e.coverage.with_video}/${e.coverage.total} prompts have a video (${e.coverage.video_coverage}%), ${e.coverage.waiting} waiting. Details: npm run enrich -- --report` : ""}`);
 	};
 }
 
@@ -87,6 +92,11 @@ async function main() {
 	}
 	if (o.help) return console.log(HELP);
 	const { runEnrich, snapshot } = await import("./engine.js");
+	if (o.report) {
+		const { coverage, formatCoverage } = await import("../library/coverage.js");
+		const c = coverage();
+		return console.log(o.json ? JSON.stringify(c) : formatCoverage(c));
+	}
 	if (o.status) {
 		const s = await snapshot();
 		if (o.json) return console.log(JSON.stringify(s));
@@ -112,11 +122,6 @@ async function main() {
 	process.on("SIGTERM", () => controller.abort());
 	try {
 		const done = await runEnrich({ ...o, signal: controller.signal }, printer(o.json));
-		if (o.import && !done.stopped) {
-			const site = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "site");
-			console.log("running gallery:import …");
-			spawnSync(process.execPath, ["scripts/import-harvest.mjs"], { cwd: site, stdio: "inherit", env: process.env });
-		}
 		process.exit(done.stopped ? 130 : done.failed + done.blocked > done.ok + done.none ? 2 : 0);
 	} catch (e) {
 		if (e.code === "LOCKED") {

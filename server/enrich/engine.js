@@ -7,6 +7,7 @@
  * Files (site/content): gallery-enrichment.json (the sidecar, one record per entry), gallery.jsonl (patched in place) and
  * library-state.json (the library's git-status-like state). Every run writes a log in site/logs/.
  */
+import { spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { makeHttp, sleepMs } from "../harvest/http.js";
@@ -14,9 +15,27 @@ import { acquireLock, LockedError, readJson, readJsonl, readLock, writeJsonlAtom
 import { applyEnrichment, loadEnrichment, needsVisit, saveEnrichment } from "../library/enrichment.js";
 import { files, ROOT, siteDir } from "../library/paths.js";
 import { createRunLog } from "../library/runlog.js";
+import { coverage } from "../library/coverage.js";
 import { diffEntries, librarySummary, recordRun } from "../library/state.js";
 import { launchBrowser } from "./browser.js";
 import { enrichEntry } from "./worker.js";
+
+/** Publish what enrichment found: gallery:import re-curates the library (tiers, dropped prompts) and moves prompts that now have a video out of pending. */
+function runImport(log) {
+	const script = path.join(siteDir(), "scripts", "import-harvest.mjs");
+	if (!fs.existsSync(script)) return Promise.resolve({ skipped: true });
+	return new Promise((resolve) => {
+		const child = spawn(process.execPath, [script], { cwd: siteDir(), env: process.env, stdio: ["ignore", "pipe", "pipe"] });
+		let out = "";
+		child.stdout.on("data", (d) => (out += d));
+		child.stderr.on("data", (d) => (out += d));
+		child.on("close", (code) => {
+			log(`gallery:import exit ${code}\n${out.trim().split("\n").map((l) => `  ${l}`).join("\n")}`);
+			resolve({ code });
+		});
+		child.on("error", (e) => resolve({ error: e.message }));
+	});
+}
 
 export const MAX_PARALLEL = 10;
 export const DEFAULT_PARALLEL = 5;
@@ -30,7 +49,7 @@ let inProcess = false;
 
 /** Entries to look at: the library (gallery.jsonl), plus everything the harvester merged when its data is here ("all"). */
 export async function loadEntries(from = "auto") {
-	const lib = readJsonl(files().gallery);
+	const lib = [...readJsonl(files().gallery), ...readJsonl(files().pending)]; // shown prompts and the ones waiting for a video
 	const harvestData = path.join(process.env.HARVEST_DIR?.trim() ? path.resolve(process.env.HARVEST_DIR) : path.join(ROOT, "harvest"), "data");
 	if (from === "library" || !fs.existsSync(harvestData)) return { entries: lib, library: lib, from: "library" };
 	const { mergeRecords } = await import(path.join(siteDir(), "scripts", "gallery-source.mjs"));
@@ -70,7 +89,7 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 	try {
 		lock = await acquireLock(f.lock);
 		const http = makeHttp({ signal, log: (m) => runlog.log(`http ${m}`) });
-		before = readJsonl(f.gallery);
+		before = [...readJsonl(f.gallery), ...readJsonl(f.pending)];
 		let enrichment = loadEnrichment();
 		let quiet = 0;
 		browser = opts.noBrowser ? null : await launchBrowser().catch((e) => (runlog.log(`no browser: ${e.message}`), null));
@@ -84,6 +103,7 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 			if (limit) todo = todo.slice(0, Math.max(0, limit - totals.visited));
 			totals.passes = pass;
 			say("pass_start", { pass, from, library: library.length, entries: entries.length, pending: todo.length, parallel, batch_pause_ms: batchPauseMs });
+			const shownIds = new Set(readJsonl(f.gallery).map((e) => e.id));
 			let lib = new Map(library.map((e) => [e.id, e]));
 			let batches = 0;
 			for (let i = 0; i < todo.length && !signal?.aborted; i += parallel) {
@@ -108,7 +128,10 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 				});
 				batches++;
 				await saveEnrichment(enrichment);
-				if (lib.size) await writeJsonlAtomic(f.gallery, [...lib.values()]);
+				if (lib.size) {
+					await writeJsonlAtomic(f.gallery, [...lib.values()].filter((e) => shownIds.has(e.id)));
+					await writeJsonlAtomic(f.pending, [...lib.values()].filter((e) => !shownIds.has(e.id)));
+				}
 				say("progress", { pass, done: Math.min(i + parallel, todo.length), total: todo.length, ...totals });
 				if (batches % 20 === 0) await recordRun({ cmd: "enrich", id: runlog.id, args: { partial: true }, ok: true, stats: { ...totals } }).catch(() => {});
 				if (i + parallel < todo.length && !signal?.aborted) {
@@ -117,6 +140,11 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 				}
 			}
 			say("pass_done", { pass, ...totals });
+			if (opts.import !== false && coverage().ready_to_publish > 0) {
+				say("import", { reason: "prompts with a new video are ready to publish" });
+				const r = await runImport((m) => runlog.log(m));
+				say("import_done", r);
+			}
 			quiet = todo.length === 0 ? quiet + 1 : 0;
 			if (limit && totals.visited >= limit) break;
 			if (!opts.loop || signal?.aborted || (opts.maxPasses && pass >= opts.maxPasses) || quiet >= 2) break;
@@ -137,12 +165,12 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 		await lock?.release().catch(() => {});
 		inProcess = false;
 	}
-	const after = readJsonl(f.gallery);
+	const after = [...readJsonl(f.gallery), ...readJsonl(f.pending)];
 	const changes = diffEntries(before, after);
 	const state = await recordRun({ cmd: "enrich", id: runlog.id, args: { ...opts, signal: undefined }, ok, changes, stats: totals, ms: Date.now() - runlog.started.getTime(), started_at: runlog.started.toISOString() });
 	const rec = runlog.end({ ok, stats: totals, changes: { added: changes.added, modified: changes.modified, removed: changes.removed } });
 	const done = { success: ok, stopped: Boolean(signal?.aborted), ...totals, library_changes: { added: changes.added, modified: changes.modified, removed: changes.removed }, updates: state.updates, log: rec?.log };
-	say("run_done", done);
+	say("run_done", { ...done, coverage: (({ examples, by_source, ...c }) => c)(coverage()) });
 	return done;
 }
 
@@ -150,7 +178,7 @@ export async function snapshot() {
 	const f = files();
 	const enr = loadEnrichment();
 	const state = readJson(f.state, null);
-	return { running: Boolean(readLock(f.lock)) || inProcess, lock: readLock(f.lock), summary: librarySummary(), state: state ? { updated_at: state.updated_at, updates: state.updates, runs: state.runs, last: state.last } : null, records: Object.keys(enr).length };
+	return { running: Boolean(readLock(f.lock)) || inProcess, lock: readLock(f.lock), summary: librarySummary(), coverage: coverage(), state: state ? { updated_at: state.updated_at, updates: state.updates, runs: state.runs, last: state.last } : null, records: Object.keys(enr).length };
 }
 
 /* ---- the same run, started through the API (POST /api/enrich) ---- */
