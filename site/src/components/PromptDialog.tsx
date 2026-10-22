@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
 import { useAuth } from "@/lib/auth";
-import { priceLabel } from "@/lib/billing";
+import { fromLabel } from "@/lib/billing";
 import { SITE } from "@/lib/config";
 import { usePromptText, type GalleryFilters, type GalleryItem } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
@@ -32,9 +32,9 @@ export function PromptDialog({ item, search, base = "/gallery" }: { item: Galler
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
 			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] data-[state=open]:animate-[fade-in_.15s_ease-out]" />
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45  data-[state=open]:animate-[fade-in_.15s_ease-out]" />
 				<D.Content
-					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(52rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-2xl sm:[animation:pop-in_.18s_ease-out]"
+					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(52rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-lg sm:[animation:pop-in_.18s_ease-out]"
 					aria-describedby="prompt-desc"
 					tabIndex={-1}
 				>
@@ -71,7 +71,7 @@ export function PromptDialog({ item, search, base = "/gallery" }: { item: Galler
 						</div>
 
 						{item.video && !videoBad ? (
-							<video key={item.video} controls playsInline preload="metadata" poster={item.poster || undefined} onError={() => setVideoBad(true)} className="mt-4 max-h-[52dvh] w-full rounded-lg border border-border bg-black">
+							<video key={item.video} controls autoPlay muted loop playsInline preload="auto" poster={item.poster || undefined} onError={() => setVideoBad(true)} className="mt-4 max-h-[52dvh] w-full rounded-lg border border-border bg-black">
 								<source src={item.video} type="video/mp4" onError={() => setVideoBad(true)} />
 							</video>
 						) : item.poster && !posterBad ? (
@@ -94,16 +94,16 @@ export function PromptDialog({ item, search, base = "/gallery" }: { item: Galler
 
 						<h2 className="mt-6 text-sm font-semibold">Prompt</h2>
 						{text ? (
-							<pre className="mt-2 max-h-[46dvh] overflow-auto rounded-lg border border-border bg-muted/50 p-3 text-[13px] leading-relaxed whitespace-pre-wrap">{text}</pre>
+							<pre className="mt-2 max-h-[46dvh] overflow-auto rounded-lg border border-border bg-muted/50 p-3 text-xs leading-relaxed whitespace-pre-wrap">{text}</pre>
 						) : locked ? (
 							<div className="relative mt-2 overflow-hidden rounded-lg border border-border bg-muted/50 p-3">
-								<p className="text-[13px] leading-relaxed whitespace-pre-wrap">{item.preview}</p>
+								<p className="text-xs leading-relaxed whitespace-pre-wrap">{item.preview}</p>
 								<div aria-hidden className="mt-2 space-y-2 select-none blur-[5px]">
 									<div className="h-3 w-full rounded bg-foreground/15" />
 									<div className="h-3 w-11/12 rounded bg-foreground/15" />
 									<div className="h-3 w-4/5 rounded bg-foreground/15" />
 								</div>
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background to-transparent" />
+								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-background/80" />
 							</div>
 						) : full.isError ? (
 							<p className="mt-2 rounded-lg border border-border bg-muted/50 p-3 text-sm text-muted-foreground">{(full.error as Error).message}</p>
@@ -114,9 +114,9 @@ export function PromptDialog({ item, search, base = "/gallery" }: { item: Galler
 						<p className="mt-1 text-xs text-muted-foreground">{item.chars.toLocaleString()} characters</p>
 
 						{locked ? (
-							<div className="mt-5 rounded-xl border border-border bg-surface p-4 text-center">
+							<div className="mt-5 rounded-lg border border-border bg-surface p-4 text-center">
 								<p className="font-medium">Unlock the full prompt</p>
-								<p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">Premium shows the full text of every gallery prompt and lets you copy it into Claude Code. {priceLabel("USD")} a month, cancel any time.</p>
+								<p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">Premium shows the full text of every gallery prompt and lets you copy it into Claude Code. from {fromLabel("USD")} a month, cancel any time.</p>
 								<Button className="mt-3" asChild>
 									{user ? <Link to="/pricing">See Premium</Link> : <Link to="/login" search={{ next: "/pricing" }}>Sign in to unlock</Link>}
 								</Button>

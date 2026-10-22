@@ -67,7 +67,7 @@ export function LoginPage() {
 	}
 	return (
 		<div className="mx-auto w-full max-w-sm px-4 py-12 sm:py-20">
-			<h1 className="text-2xl font-semibold tracking-tight">{mode === "in" ? "Welcome back" : "Create your account"}</h1>
+			<h1 className="display" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{mode === "in" ? "Welcome back" : "Create your account"}</h1>
 			<p className="mt-1 text-sm text-muted-foreground">{mode === "in" ? "Sign in to unlock your Premium skills." : "Free to join. Upgrade whenever you like."}</p>
 			{!configured ? (
 				<p className="mt-4 flex gap-2 rounded-lg border border-warning/30 bg-warning/10 p-3 text-xs text-warning"><Icon icon={Alert02Icon} size={15} className="mt-0.5" />Sign-in is not set up on this deployment yet. The site owner needs to add the Firebase keys (see .env.example).</p>

@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { OptionSelect } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/misc";
 import { useAuth } from "@/lib/auth";
-import { portalUrl, priceLabel } from "@/lib/billing";
+import { fromLabel, portalUrl } from "@/lib/billing";
 import { celebrate } from "@/lib/confetti";
 import { DEV_UNLOCK, SITE } from "@/lib/config";
 import { useHead } from "@/lib/head";
@@ -57,7 +57,7 @@ export function SettingsPage() {
 	if (!user) {
 		return (
 			<div className="mx-auto w-full max-w-md px-4 py-24 text-center">
-				<h1 className="text-xl font-semibold">Sign in to see your settings</h1>
+				<h1 className="display" style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}>Sign in to see your settings</h1>
 				<p className="mt-1 text-sm text-muted-foreground">Your subscription and account live here.</p>
 				<Button className="mt-5" asChild><Link to="/login" search={{ next: "/settings" }}>Sign in</Link></Button>
 			</div>
@@ -66,15 +66,15 @@ export function SettingsPage() {
 	const portal = portalUrl();
 	return (
 		<div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
-			<h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+			<h1 className="display" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>Settings</h1>
 			<p className="mt-1 text-sm text-muted-foreground">Your account, subscription and preferences.</p>
 
 			{waiting && !isPro ? (
-				<div role="status" className="mt-6 flex items-start gap-3 rounded-xl border border-brand/30 bg-brand/5 p-4">
+				<div role="status" className="mt-6 flex items-start gap-3 rounded-lg border border-brand/30 bg-brand/5 p-4">
 					<Icon icon={Loading03Icon} size={18} className="mt-0.5 animate-spin text-brand" />
 					<div>
 						<p className="text-sm font-medium">Confirming your payment…</p>
-						<p className="mt-0.5 text-[13px] text-muted-foreground">This usually takes a few seconds. This page updates by itself, no need to refresh.{slow ? <> It is taking longer than usual. If Premium is still locked in a minute, <Link to="/contact" className="underline underline-offset-2">contact us</Link> with the email you paid with.</> : null}</p>
+						<p className="mt-0.5 text-xs text-muted-foreground">This usually takes a few seconds. This page updates by itself, no need to refresh.{slow ? <> It is taking longer than usual. If Premium is still locked in a minute, <Link to="/contact" className="underline underline-offset-2">contact us</Link> with the email you paid with.</> : null}</p>
 					</div>
 				</div>
 			) : null}
@@ -102,7 +102,7 @@ export function SettingsPage() {
 								{["Every premium skill, in full", "SKILL.md and install commands", "New skills as they are published"].map((t) => <li key={t} className="flex gap-2"><Icon icon={CheckmarkCircle02Icon} size={16} className="mt-0.5 text-success" />{t}</li>)}
 							</ul>
 						) : (
-							<p className="text-sm text-muted-foreground">Unlock ad formats, engineering formats and 20 film styles for {priceLabel("USD")} or {priceLabel("INR")} a month.</p>
+							<p className="text-sm text-muted-foreground">Unlock ad formats, engineering formats and 20 film styles from {fromLabel("USD")} or {fromLabel("INR")} a month.</p>
 						)}
 						<div className="flex flex-wrap gap-2">
 							{isPro ? (

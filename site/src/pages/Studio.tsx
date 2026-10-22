@@ -14,10 +14,10 @@ export function StudioPage() {
 	useHead({ title: "Studio: run the cizle dashboard locally | cizle", description: "cizle renders videos on your own machine. Start the local studio dashboard to browse prompts, create videos and see every render.", path: "/dashboard" });
 	return (
 		<div className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-			<h1 className="text-3xl font-semibold tracking-tight">Studio</h1>
-			<p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">The cizle studio is the dashboard where videos are rendered and kept. It runs on your own machine, so your product links and videos never leave it. The skills on this site tell Claude Code what to make; the studio makes it.</p>
+			<h1 className="display" style={{ fontSize: "clamp(2.75rem, 7vw, 6rem)" }}>Studio</h1>
+			<p className="mt-2 text-base leading-relaxed text-muted-foreground">The cizle studio is the dashboard where videos are rendered and kept. It runs on your own machine, so your product links and videos never leave it. The skills on this site tell Claude Code what to make; the studio makes it.</p>
 			<h2 className="mt-8 text-sm font-semibold">Start it</h2>
-			<pre className="mt-2 overflow-auto rounded-lg border border-border bg-muted/50 p-3 font-mono text-[12.5px] leading-relaxed">{STEPS}</pre>
+			<pre className="mt-2 overflow-auto rounded-lg border border-border bg-muted/50 p-3 font-mono text-[14px] leading-relaxed">{STEPS}</pre>
 			<div className="mt-3 flex flex-wrap gap-2">
 				<CopyButton text={STEPS} label="Copy commands" done="Commands copied" />
 				<Button variant="outline" asChild><Link to="/docs">Read the docs</Link></Button>

@@ -1,51 +1,39 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { LockIcon, PlayIcon } from "@hugeicons/core-free-icons";
-import { Icon } from "@/components/Icon";
-import { Badge } from "@/components/ui/badge";
+import { plain } from "@/lib/utils";
+import { AutoVideo } from "@/lib/videos";
 import type { GalleryFilters, GalleryItem } from "@/lib/gallery";
 
-/** Poster from the creator's own post. If it fails to load the card shows a text tile instead (dead media is removed at import time by npm run gallery:media, not guessed at in the browser). */
+/** The demo plays in the card (muted, looping, while it is on screen). Its poster shows until it starts, and if it cannot play. */
 function Poster({ item }: { item: GalleryItem }) {
 	const [bad, setBad] = useState(false);
-	const [hover, setHover] = useState(false);
 	const [videoBad, setVideoBad] = useState(false);
 	return (
-		<div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-lg border border-border bg-muted">
-			{item.poster && !bad ? <img src={item.poster} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBad(true)} className="absolute inset-0 size-full object-cover" /> : <span className="px-4 text-center text-xs text-muted-foreground">{item.category || "video prompt"}</span>}
-			{hover && item.video && !videoBad ? <video src={item.video} muted loop autoPlay playsInline preload="none" onError={() => setVideoBad(true)} className="absolute inset-0 size-full object-cover" aria-hidden /> : null}
-			{item.hasVideo ? <span className="absolute right-2 bottom-2 grid size-6 place-items-center rounded-full bg-black/55 text-white"><Icon icon={PlayIcon} size={12} /></span> : null}
+		<div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-field-3 text-field-3-ink">
+			{item.poster && !bad ? <img src={item.poster} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBad(true)} className="absolute inset-0 size-full object-cover" /> : <span className="px-4 text-center text-base">{item.category || "video prompt"}</span>}
+			{item.video && !videoBad ? <AutoVideo src={item.video} poster={item.poster} onFail={() => setVideoBad(true)} className="absolute inset-0 size-full object-cover" aria-label={`Demo video: ${item.title}`} /> : null}
 		</div>
 	);
 }
 
 export function PromptCard({ item, search, base = "/gallery" }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
 	return (
-		<article className="group relative flex h-full flex-col rounded-xl border border-border bg-surface p-3 transition-colors hover:border-foreground/25 hover:bg-accent/40">
-			<Poster item={item} />
-			<div className="mt-3 flex items-start justify-between gap-2">
-				<h3 className="text-sm font-semibold tracking-tight">
-					<Link to={base} search={{ ...search, p: item.id } as never} resetScroll={false} className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-ring">
-						{item.title}
-					</Link>
-				</h3>
-				{item.tier === "premium" ? (
-					<Badge tone="warning" className="shrink-0">
-						<Icon icon={LockIcon} size={11} /> Pro
-					</Badge>
-				) : (
-					<Badge tone="success" className="shrink-0">
-						Free
-					</Badge>
-				)}
-			</div>
-			<p className="mt-1 text-xs text-muted-foreground">by {item.handle ? `@${item.handle}` : item.author || "the creator"}</p>
-			<p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground">{item.preview}</p>
-			<div className="mt-auto flex flex-wrap gap-1.5 pt-3">
-				{item.category ? <Badge tone="outline">{item.category}</Badge> : null}
-				{item.model ? <Badge tone="outline">{item.model}</Badge> : null}
-				{item.translatedFrom ? <Badge tone="outline">Translated</Badge> : null}
-			</div>
+		<article className="lift h-full">
+			<Link to={base} search={{ ...search, p: item.id } as never} resetScroll={false} className="group flex h-full flex-col overflow-hidden rounded-lg bg-surface outline-none transition-colors hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring">
+				<Poster item={item} />
+				<div className="flex flex-1 flex-col p-4">
+					<h3 className="text-xl leading-tight tracking-[-0.03em]">{plain(item.title)}</h3>
+					<p className="mt-1 text-base text-muted-foreground">by {item.handle ? `@${item.handle}` : item.author || "the creator"}</p>
+					<p className="mt-3 line-clamp-3 text-base leading-snug">{plain(item.preview)}</p>
+					<p className="mt-auto pt-4 text-base">
+						<span className={item.tier === "premium" ? "font-semibold" : "font-semibold text-brand-ink"}>{item.tier === "premium" ? "Premium" : "Free"}</span>
+						<span className="text-muted-foreground">
+							{item.category ? ` · ${item.category}` : ""}
+							{item.translatedFrom ? " · translated" : ""}
+						</span>
+					</p>
+				</div>
+			</Link>
 		</article>
 	);
 }

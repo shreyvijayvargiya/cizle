@@ -18,6 +18,10 @@ const next = "2026-12-01T00:00:00Z";
 let p = subscriptionPatch("subscription.active", { subscription_id: "s", customer: { email: "a@b.c", customer_id: "c" }, next_billing_date: next });
 assert.equal(p.plan, "pro"); assert.equal(p.proUntil.toDate().toISOString(), "2026-12-01T00:00:00.000Z");
 p = subscriptionPatch("subscription.active", {}); assert.ok(p.proUntil.toDate() > new Date(Date.now() + 30 * 864e5), "fallback 35 days");
+// plans that bill every 6 or 12 months keep access for the paid period even if next_billing_date is missing
+const days = (d) => (d.toDate() - Date.now()) / 864e5;
+p = subscriptionPatch("subscription.active", { payment_frequency_count: 6, payment_frequency_interval: "Month" }); assert.ok(days(p.proUntil) > 185 && days(p.proUntil) < 195, "6 months");
+p = subscriptionPatch("subscription.active", { payment_frequency_count: 1, payment_frequency_interval: "Year" }); assert.ok(days(p.proUntil) > 370 && days(p.proUntil) < 380, "12 months");
 p = subscriptionPatch("payment.succeeded", { subscription_id: "s" }, true); assert.equal(p.plan, "pro");
 p = subscriptionPatch("subscription.cancelled", {}); assert.equal(p.plan, "pro"); assert.equal(p.cancelAtPeriodEnd, true); assert.equal("proUntil" in p, false, "cancel keeps paid period");
 p = subscriptionPatch("subscription.expired", {}); assert.equal(p.plan, "free"); assert.ok(p.proUntil.toDate() <= new Date());

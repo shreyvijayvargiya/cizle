@@ -52,9 +52,9 @@ export function SkillDialog({ slug, list, search }: { slug: string; list: SkillM
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
 			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45 backdrop-blur-[2px] data-[state=open]:animate-[fade-in_.15s_ease-out]" />
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45  data-[state=open]:animate-[fade-in_.15s_ease-out]" />
 				<D.Content
-					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-2xl sm:[animation:pop-in_.18s_ease-out]"
+					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-lg sm:[animation:pop-in_.18s_ease-out]"
 					aria-describedby="skill-desc"
 					onOpenAutoFocus={(e) => {
 						// Land on the dialog itself, not on the first arrow (which would pop its tooltip open).

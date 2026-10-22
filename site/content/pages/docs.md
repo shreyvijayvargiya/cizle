@@ -52,7 +52,7 @@ Press <kbd>⌘</kbd> + <kbd>K</kbd> (or <kbd>Ctrl</kbd> + <kbd>K</kbd>) anywhere
 ## Free and premium
 
 - **Free:** 20 skills, forever, with the full prompt, the SKILL.md and the install command.
-- **Premium ($10/month):** ad formats for Meta, TikTok and Google, engineering and technical formats, and 20 film styles. Locked skills show their summary and scene list so you can see what you are getting.
+- **Premium (from $10/month, three plans):** ad formats for Meta, TikTok and Google, engineering and technical formats, and 20 film styles. Locked skills show their summary and scene list so you can see what you are getting.
 
 To upgrade, [sign in](/login) and open [pricing](/pricing). After payment you return to Settings and Premium unlocks automatically.
 

@@ -8,8 +8,8 @@ export function ContentPage({ name, path, title, description, toc = false, noind
 	const page = usePage(name);
 	useHead({ title, description, path, noindex });
 	return (
-		<div className={toc ? "mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1fr_14rem]" : "mx-auto w-full max-w-3xl px-4 py-12 sm:px-6"}>
-			<article className="prose-cizle prose-docs min-w-0 !text-[15px]">
+		<div className={toc ? "board-w board grid gap-10 py-10 lg:grid-cols-[1fr_16rem]" : "mx-auto w-full max-w-3xl px-4 py-12 sm:px-6"}>
+			<article className="prose-cizle prose-docs reveal min-w-0 !text-base">
 				{page.isLoading ? (
 					<div className="space-y-3"><Skeleton className="h-8 w-2/3" /><Skeleton className="h-4" /><Skeleton className="h-4" /><Skeleton className="h-40" /></div>
 				) : page.data ? (
@@ -23,11 +23,11 @@ export function ContentPage({ name, path, title, description, toc = false, noind
 			</article>
 			{toc && page.data ? (
 				<aside className="hidden lg:block">
-					<nav aria-label="On this page" className="sticky top-24 text-sm">
-						<p className="mb-2 text-xs font-semibold tracking-wide text-foreground uppercase">On this page</p>
-						<ul className="space-y-1.5 border-l border-border pl-3">
+					<nav aria-label="On this page" className="sticky top-24">
+						<p className="mb-3 text-lg font-semibold">On this page</p>
+						<ul className="space-y-2 rounded-lg bg-surface p-4">
 							{page.data.toc.map((t) => (
-								<li key={t.id}><a href={`#${t.id}`} className="text-muted-foreground transition-colors hover:text-foreground">{t.title}</a></li>
+								<li key={t.id}><a href={`#${t.id}`} className="text-base text-foreground transition-opacity hover:opacity-70">{t.title}</a></li>
 							))}
 						</ul>
 					</nav>

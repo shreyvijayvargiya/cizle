@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
 import { useAuth } from "@/lib/auth";
-import { priceLabel } from "@/lib/billing";
+import { fromLabel } from "@/lib/billing";
 import { DEV_UNLOCK } from "@/lib/config";
 import { usePremiumBody, useSkills, type SkillDetail } from "@/lib/data";
 
@@ -37,7 +37,7 @@ export function SkillActions({ skill, className }: { skill: SkillDetail; classNa
 		return (
 			<div className={className}>
 				<Button onClick={() => navigate(u.loggedIn ? { to: "/pricing" } : { to: "/login", search: { next: `/skills/${skill.slug}` } })}>
-					<Icon icon={LockIcon} size={14} /> {u.loggedIn ? `Unlock with Premium · ${priceLabel("USD")}/mo` : "Sign in to unlock"}
+					<Icon icon={LockIcon} size={14} /> {u.loggedIn ? `Unlock with Premium · from ${fromLabel("USD")}/mo` : "Sign in to unlock"}
 				</Button>
 				<Button variant="outline" asChild>
 					<Link to="/pricing">See what's included</Link>
@@ -59,7 +59,7 @@ function CodeBlock({ title, children, copy }: { title: string; children: string;
 				<span className="text-xs font-medium text-muted-foreground">{title}</span>
 				{copy ? <CopyButton text={copy.text} label={copy.label} variant="ghost" /> : null}
 			</div>
-			<pre className="skill-pre max-h-80 overflow-auto p-3 font-mono text-[12.5px] leading-relaxed">{children}</pre>
+			<pre className="skill-pre max-h-80 overflow-auto p-3 font-mono text-[14px] leading-relaxed">{children}</pre>
 		</div>
 	);
 }
@@ -70,7 +70,7 @@ function LockedPrompt({ skill }: { skill: SkillDetail }) {
 	const items = skill.scenes.length ? skill.scenes : skill.anatomy;
 	return (
 		<div className="relative overflow-hidden rounded-lg border border-border bg-muted/40">
-			<div aria-hidden className="select-none p-4 font-mono text-[12.5px] leading-relaxed text-muted-foreground blur-[5px]">
+			<div aria-hidden className="select-none p-4 font-mono text-[14px] leading-relaxed text-muted-foreground blur-[5px]">
 				{items.map((s) => (
 					<p key={s.n}>
 						{s.n}. {s.name} {s.time ? `(${s.time})` : ""} {s.visual ? `\`${s.visual}\`` : ""}: ━━━━ ━━━━━━━ ━━━━ ━━━━━━ ━━━ ━━━━━━━━━ ━━━━━
@@ -78,13 +78,13 @@ function LockedPrompt({ skill }: { skill: SkillDetail }) {
 				))}
 				<p>## Rules · ━━━━ ━━━━━━ ━━━ ━━━━━━━ ━━━━ ━━━━━━━━━</p>
 			</div>
-			<div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface/70 p-4 text-center backdrop-blur-[1px]">
+			<div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface/70 p-4 text-center ">
 				<span className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground">
 					<Icon icon={LockIcon} size={18} />
 				</span>
 				<div>
 					<p className="text-sm font-semibold">The full prompt is part of Premium</p>
-					<p className="mt-0.5 text-[13px] text-muted-foreground">Scene by scene text, rules and the SKILL.md for Claude Code. {priceLabel("USD")}/month, cancel any time.</p>
+					<p className="mt-0.5 text-xs text-muted-foreground">Scene by scene text, rules and the SKILL.md for Claude Code. From {fromLabel("USD")}/month, cancel any time.</p>
 				</div>
 				<Button size="sm" onClick={() => navigate(u.loggedIn ? { to: "/pricing" } : { to: "/login", search: { next: `/skills/${skill.slug}` } })}>
 					{u.loggedIn ? "Get Premium" : "Sign in to get Premium"}
@@ -109,7 +109,7 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 					{skill.platform !== "Any" ? <Badge tone="outline">{skill.platform}</Badge> : null}
 					<Badge tone="outline">{skill.format}</Badge>
 				</div>
-				<p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">{skill.summary}</p>
+				<p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">{skill.summary}</p>
 				<SkillActions skill={skill} className="mt-4 flex flex-wrap gap-2" />
 			</header>
 
@@ -118,7 +118,7 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 					Demo
 				</h2>
 				{skill.video ? (
-					<video className="mb-3 w-full rounded-xl border border-border bg-black" controls playsInline preload="none" poster={skill.poster || undefined} src={skill.video} aria-label={`${skill.name} example video`} />
+					<video className="mb-3 w-full rounded-lg border border-border bg-black" controls autoPlay muted loop playsInline preload="auto" poster={skill.poster || undefined} src={skill.video} aria-label={`${skill.name} example video`} />
 				) : null}
 				{skill.scenes.length || skill.anatomy.length ? (
 					<StoryboardDemo scenes={skill.scenes} anatomy={skill.anatomy} aspect={skill.aspect} label={skill.scenes.length ? "Scene by scene" : "What the style defines"} />
@@ -154,7 +154,7 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 							{skill.cli}
 						</CodeBlock>
 						{skill.locked ? (
-							<p className="text-[13px] text-muted-foreground">
+							<p className="text-xs text-muted-foreground">
 								Premium skills are not served as public files. Press <strong>Copy SKILL.md</strong>, then save it to <code className="rounded bg-muted px-1 font-mono text-xs">.claude/skills/cizle-{skill.slug}/SKILL.md</code>.{" "}
 								<CopyButton text={u.skillMd || ""} label="Copy SKILL.md" variant="outline" disabled={!u.skillMd} />
 							</p>

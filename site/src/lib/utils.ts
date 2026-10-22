@@ -25,3 +25,6 @@ export function hostOf(u?: string | null) {
 }
 
 export const usd = (n?: number | null, digits = 3) => (n == null ? "—" : `$${n.toFixed(digits)}`);
+
+/** Emoji out of text we display as our own typography (card previews, titles). The prompt itself is shown untouched in its dialog. */
+export const plain = (s: string | null | undefined) => String(s ?? "").replace(/[\p{Extended_Pictographic}️‍]/gu, "").replace(/[ \t]{2,}/g, " ").trim();

@@ -4,6 +4,8 @@ export const SITE = {
 	...site,
 	url: ((import.meta.env.VITE_SITE_URL as string | undefined) || site.url).replace(/\/+$/, ""),
 	price: { usd: site.price.usd, inr: Number(import.meta.env.VITE_PRICE_INR || site.price.inr) },
+	/** The three plans. INR per-month prices can be overridden to match the Dodo INR products: VITE_PRICE_INR_MONTH, _HALF, _YEAR. */
+	plans: site.plans.map((p) => ({ ...p, inr: Number((import.meta.env as Record<string, string | undefined>)[`VITE_PRICE_INR_${p.id.toUpperCase()}`] || p.inr) })),
 };
 
 /** Local testing only: pretend to be a Premium subscriber without Firebase. Ignored in production builds. */

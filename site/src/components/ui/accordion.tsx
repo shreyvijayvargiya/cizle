@@ -1,26 +1,27 @@
 import { Accordion as A } from "radix-ui";
-import { ArrowDown01Icon } from "@hugeicons/core-free-icons";
-import { Icon } from "@/components/Icon";
 import { cn } from "@/lib/utils";
 
 export const Accordion = A.Root;
 export function AccordionItem({ className, ...p }: React.ComponentProps<typeof A.Item>) {
-	return <A.Item className={cn("border-b border-border last:border-b-0", className)} {...p} />;
+	return <A.Item className={cn("reveal mb-2 rounded-lg bg-surface data-[state=open]:bg-field-1 data-[state=open]:text-field-1-ink", className)} {...p} />;
 }
 export function AccordionTrigger({ className, children, ...p }: React.ComponentProps<typeof A.Trigger>) {
 	return (
 		<A.Header className="flex">
-			<A.Trigger className={cn("group flex flex-1 items-center justify-between gap-4 py-4 text-left text-sm font-medium outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring/40", className)} {...p}>
+			<A.Trigger className={cn("group flex flex-1 items-center justify-between gap-4 px-6 py-5 text-left text-lg font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring/40", className)} {...p}>
 				{children}
-				<Icon icon={ArrowDown01Icon} size={16} className="shrink-0 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
+				<span aria-hidden className="relative block size-4 shrink-0">
+					<span className="absolute top-1/2 left-0 h-[3px] w-4 -translate-y-1/2 bg-current" />
+					<span className="absolute top-1/2 left-0 h-[3px] w-4 -translate-y-1/2 rotate-90 bg-current transition-transform group-data-[state=open]:rotate-0" />
+				</span>
 			</A.Trigger>
 		</A.Header>
 	);
 }
 export function AccordionContent({ className, children, ...p }: React.ComponentProps<typeof A.Content>) {
 	return (
-		<A.Content className="overflow-hidden text-sm text-muted-foreground data-[state=closed]:animate-[acc-up_.2s_ease-out] data-[state=open]:animate-[acc-down_.2s_ease-out]" {...p}>
-			<div className={cn("pb-4 leading-relaxed", className)}>{children}</div>
+		<A.Content className="overflow-hidden text-base data-[state=closed]:animate-[acc-up_.2s_ease-out] data-[state=open]:animate-[acc-down_.2s_ease-out]" {...p}>
+			<div className={cn("max-w-[52ch] px-6 pb-6 leading-relaxed", className)}>{children}</div>
 		</A.Content>
 	);
 }

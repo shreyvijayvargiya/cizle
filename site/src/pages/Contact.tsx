@@ -29,11 +29,11 @@ export function ContactPage() {
 		toast.success("Opening your email app. If nothing opens, copy our address and write to us.");
 	};
 	return (
-		<div className="mx-auto w-full max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
-			<h1 className="text-3xl font-semibold tracking-tight">Contact us</h1>
-			<p className="mt-2 max-w-xl text-[15px] text-muted-foreground">A real person reads every message, usually within one working day. For payment issues include the email you paid with.</p>
+		<div className="board-w px-[var(--margin)] py-12 sm:py-16">
+			<h1 className="display reveal" style={{ fontSize: "clamp(2.75rem, 6.4vw, 5.75rem)", maxWidth: "15ch" }}>Questions? Write to us</h1>
+			<p className="mt-2 max-w-xl text-base text-muted-foreground">A real person reads every message, usually within one working day. For payment issues include the email you paid with.</p>
 			<div className="mt-8 grid gap-6 md:grid-cols-[1fr_16rem]">
-				<form onSubmit={send} className="space-y-4 rounded-2xl border border-border bg-surface p-5 sm:p-6">
+				<form onSubmit={send} className="reveal space-y-4 rounded-lg bg-surface p-5 sm:p-6">
 					<div className="grid gap-4 sm:grid-cols-2">
 						<div className="space-y-1.5"><Label htmlFor="c-name">Name</Label><Input id="c-name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder={user?.name || "Your name"} /></div>
 						<div className="space-y-1.5"><Label htmlFor="c-email">Email</Label><Input id="c-email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={user?.email || "you@company.com"} /></div>
@@ -43,7 +43,7 @@ export function ContactPage() {
 					<Button type="submit">Send message</Button>
 				</form>
 				<aside className="space-y-3">
-					<div className="rounded-2xl border border-border bg-surface p-5">
+					<div className="rounded-lg border border-border bg-surface p-5">
 						<span className="grid size-9 place-items-center rounded-lg bg-muted"><Icon icon={Mail01Icon} size={17} /></span>
 						<p className="mt-3 text-sm font-medium">Email</p>
 						<a href={`mailto:${SITE.email}`} className="text-sm text-muted-foreground underline underline-offset-2">{SITE.email}</a>

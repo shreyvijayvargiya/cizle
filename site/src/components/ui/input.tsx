@@ -5,7 +5,7 @@ export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElem
 	return (
 		<input
 			className={cn(
-				"flex h-9 w-full rounded-lg border border-input bg-surface px-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/40",
+				"flex h-11 w-full rounded-lg border border-input bg-surface px-3.5 text-base outline-none transition-shadow placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/40",
 				className,
 			)}
 			{...props}
@@ -17,7 +17,7 @@ export function Textarea({ className, ...props }: TextareaHTMLAttributes<HTMLTex
 	return (
 		<textarea
 			className={cn(
-				"flex w-full rounded-lg border border-input bg-surface px-3 py-2 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/40",
+				"flex w-full rounded-lg border border-input bg-surface px-3.5 py-2.5 text-base outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring/40",
 				className,
 			)}
 			{...props}
@@ -26,5 +26,5 @@ export function Textarea({ className, ...props }: TextareaHTMLAttributes<HTMLTex
 }
 
 export function Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {
-	return <label className={cn("text-xs font-medium text-foreground", className)} {...props} />;
+	return <label className={cn("text-sm font-medium text-foreground", className)} {...props} />;
 }

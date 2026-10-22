@@ -1,31 +1,30 @@
 import { cn } from "@/lib/utils";
+import { AutoVideo } from "@/lib/videos";
 import type { SkillMeta } from "@/lib/data";
 
-const HUE: Record<string, number> = { "Product videos": 24, Explainers: 205, "Launch & growth": 340, "Social proof": 145, Ads: 12, Engineering: 262, "Film styles": 38 };
-const FRAME: Record<string, string> = { "9:16": "aspect-[9/16] h-[78%]", "16:9": "aspect-[16/9] w-[62%]", "1:1": "aspect-square h-[72%]", "4:5": "aspect-[4/5] h-[78%]", Other: "aspect-[4/3] w-[54%]" };
+const FIELDS = ["bg-field-1 text-field-1-ink", "bg-field-2 text-field-2-ink", "bg-field-3 text-field-3-ink", "bg-tile-2 text-foreground"];
+const ORDER = ["Product videos", "Explainers", "Launch & growth", "Social proof", "Ads", "Engineering", "Film styles"];
 
-/** A small looping mock of the video's shape: its aspect ratio and one bar per scene. No images to load. */
-export function SkillThumb({ skill, className }: { skill: Pick<SkillMeta, "category" | "aspect" | "scenes" | "anatomy" | "poster" | "name">; className?: string }) {
-	const hue = HUE[skill.category] ?? 24;
-	const bars = Math.min(8, Math.max(3, skill.scenes.length || skill.anatomy.length || 4));
+/** A flat field in one of the palette colours with two real facts of the skill set large: how long it runs and its shape. No mock interface. */
+export function SkillThumb({ skill, className }: { skill: Pick<SkillMeta, "category" | "aspect" | "scenes" | "anatomy" | "poster" | "name" | "duration"> & { video?: string | null }; className?: string }) {
+	const field = FIELDS[Math.max(0, ORDER.indexOf(skill.category)) % FIELDS.length];
+	const steps = skill.scenes.length || skill.anatomy.length;
 	return (
-		<div className={cn("relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-lg border border-border", className)} style={{ background: `linear-gradient(135deg, hsl(${hue} 90% 94%), hsl(${hue + 28} 85% 88%))` }} aria-hidden>
-			<div className="pointer-events-none absolute inset-0 hidden dark:block" style={{ background: `linear-gradient(135deg, hsl(${hue} 38% 22%), hsl(${hue + 28} 42% 30%))` }} />
-			{skill.poster ? (
+		<div className={cn("relative flex aspect-[16/10] flex-col justify-end gap-1 overflow-hidden p-4", field, className)}>
+			{skill.video ? (
+				<AutoVideo src={skill.video} poster={skill.poster} className="absolute inset-0 size-full object-cover" aria-label={`Demo video: ${skill.name}`} />
+			) : skill.poster ? (
 				<img src={skill.poster} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
 			) : (
-				<div className={cn("relative flex flex-col justify-between rounded-md border border-black/10 bg-white/85 p-2 shadow-sm dark:border-white/10 dark:bg-black/45", FRAME[skill.aspect] || FRAME.Other)}>
-					<div className="h-1.5 w-3/5 rounded-full" style={{ background: `hsl(${hue} 85% 52%)`, animation: "sheen 3s linear infinite", backgroundSize: "200% 100%" }} />
-					<div className="space-y-1">
-						<div className="h-1 w-full rounded-full bg-black/15 dark:bg-white/20" />
-						<div className="h-1 w-4/5 rounded-full bg-black/10 dark:bg-white/15" />
-					</div>
-					<div className="flex gap-0.5">
-						{Array.from({ length: bars }).map((_, i) => (
-							<span key={i} className="h-1 flex-1 rounded-full" style={{ background: `hsl(${hue} 80% ${50 + (i % 3) * 8}%)`, opacity: 0.35 + (i % 4) * 0.18 }} />
-						))}
-					</div>
-				</div>
+				<>
+					<p className="display tabular" style={{ fontSize: "3rem" }}>
+						{skill.duration ? `${skill.duration}s` : skill.aspect}
+					</p>
+					<p className="text-base">
+						{skill.category}, {skill.duration ? skill.aspect : "style guide"}
+						{steps ? ` · ${steps} ${steps === 1 ? "step" : "steps"}` : ""}
+					</p>
+				</>
 			)}
 		</div>
 	);

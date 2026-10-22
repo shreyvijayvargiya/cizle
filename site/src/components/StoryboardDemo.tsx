@@ -25,10 +25,10 @@ export function StoryboardDemo({ scenes, anatomy, aspect, label }: { scenes: Sce
 	const cur = items[Math.min(i, items.length - 1)];
 	const portrait = aspect === "9:16" || aspect === "4:5";
 	return (
-		<figure className="rounded-xl border border-border bg-muted/40 p-3 sm:p-4">
+		<figure className="rounded-lg border border-border bg-muted/40 p-3 sm:p-4">
 			<div className={cn("flex gap-4", portrait ? "flex-col items-center sm:flex-row sm:items-stretch" : "flex-col")}>
 				<div className={cn("relative mx-auto flex shrink-0 flex-col justify-between overflow-hidden rounded-lg border border-border bg-surface p-4 shadow-sm", FRAME[aspect] || FRAME.Other)}>
-					<div className="flex items-center justify-between text-[11px] font-medium text-muted-foreground">
+					<div className="flex items-center justify-between text-xs font-medium text-muted-foreground">
 						<span>
 							Scene {cur.n} of {items.length}
 						</span>
@@ -36,8 +36,8 @@ export function StoryboardDemo({ scenes, anatomy, aspect, label }: { scenes: Sce
 					</div>
 					<div key={cur.n} className="my-3 [animation:scene-in_.45s_ease-out]">
 						<p className="text-xl leading-tight font-semibold tracking-tight sm:text-2xl">{cur.name}</p>
-						{cur.visual ? <p className="mt-2 inline-block rounded-md bg-brand/10 px-2 py-0.5 font-mono text-[11px] text-brand">{cur.visual}</p> : null}
-						{cur.text ? <p className="mt-3 line-clamp-4 text-[13px] leading-relaxed text-muted-foreground">{cur.text}</p> : null}
+						{cur.visual ? <p className="mt-2 inline-block rounded-md bg-brand/10 px-2 py-0.5 font-mono text-sm text-brand">{cur.visual}</p> : null}
+						{cur.text ? <p className="mt-3 line-clamp-4 text-xs leading-relaxed text-muted-foreground">{cur.text}</p> : null}
 					</div>
 					<div className="flex gap-1" aria-hidden>
 						{items.map((s, k) => (
@@ -59,7 +59,7 @@ export function StoryboardDemo({ scenes, anatomy, aspect, label }: { scenes: Sce
 					<ol className="grid gap-1">
 						{items.map((s, k) => (
 							<li key={s.n}>
-								<button type="button" onClick={() => (setI(k), setPlaying(false))} aria-current={k === i} className={cn("flex w-full items-baseline gap-2 rounded-md px-2 py-1.5 text-left text-[13px] transition-colors hover:bg-accent", k === i && "bg-accent font-medium")}>
+								<button type="button" onClick={() => (setI(k), setPlaying(false))} aria-current={k === i} className={cn("flex w-full items-baseline gap-2 rounded-md px-2 py-1.5 text-left text-xs transition-colors hover:bg-accent", k === i && "bg-accent font-medium")}>
 									<span className="w-4 shrink-0 text-xs text-muted-foreground">{s.n}</span>
 									<span className="min-w-0 flex-1 truncate">{s.name}</span>
 									{s.time ? <span className="shrink-0 text-xs text-muted-foreground">{s.time}</span> : null}

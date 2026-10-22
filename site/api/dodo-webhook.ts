@@ -74,7 +74,11 @@ const ENDED = new Set(["subscription.expired", "subscription.failed", "subscript
 /** What an event does to users/{uid}. Pure, so it can be tested without Firebase. */
 export function subscriptionPatch(type: string, data: Record<string, any>, isPaid = false, now = Date.now()) {
 	const nextBilling = data.next_billing_date ? new Date(data.next_billing_date) : null;
-	const proUntil = nextBilling && !Number.isNaN(+nextBilling) ? nextBilling : new Date(now + 35 * DAY);
+	// Plans bill every 1, 6 or 12 months. next_billing_date is what is paid for; without it, fall back on the plan's own interval plus a few days of grace.
+	const count = Number(data.payment_frequency_count) || 1;
+	const unit = String(data.payment_frequency_interval || "Month").toLowerCase();
+	const months = unit.startsWith("year") ? count * 12 : unit.startsWith("week") ? count / 4 : unit.startsWith("day") ? count / 30 : count;
+	const proUntil = nextBilling && !Number.isNaN(+nextBilling) ? nextBilling : new Date(now + Math.max(1, months) * 31 * DAY + 4 * DAY);
 	const base = { subscriptionId: data.subscription_id || null, customerId: data.customer?.customer_id || null, email: data.customer?.email || null };
 	if (ACTIVE.has(type) || isPaid) return { ...base, plan: "pro", status: "active", cancelAtPeriodEnd: false, proUntil: Timestamp.fromDate(proUntil) };
 	// Cancelled means "does not renew": keep access to the end of the period that was paid for.

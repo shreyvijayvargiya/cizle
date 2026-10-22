@@ -5,7 +5,7 @@
 	},
 	{
 		"q": "Is it free?",
-		"a": "Yes, 20 skills are free forever: the basic video types for product, launch, explainer and social proof videos. The premium library (ad formats for Meta, TikTok and Google, engineering and technical formats, and 20 film styles) is $10 a month. The prompt gallery is free to browse: every prompt shows its creator, a preview and a link to the original post, and about one in ten is readable in full."
+		"a": "Yes, 20 skills are free forever: the basic video types for product, launch, explainer and social proof videos. The premium library (ad formats for Meta, TikTok and Google, engineering and technical formats, and 20 film styles) is from from $10 a month. The prompt gallery is free to browse: every prompt shows its creator, a preview and a link to the original post, and about one in ten is readable in full."
 	},
 	{
 		"q": "What do I get with Premium?",
@@ -33,7 +33,7 @@
 	},
 	{
 		"q": "How does billing work?",
-		"a": "Premium is a monthly subscription handled by Dodo Payments, who act as the merchant of record and support cards, UPI and other local methods. You can pay in US dollars or Indian rupees. Cancel any time from your account; you keep access until the end of the period you paid for."
+		"a": "Premium is a subscription in US dollars or Indian rupees through Dodo Payments, which acts as the merchant of record. There are three plans: 1 month at $20 (₹1,599), 6 months at $15 a month (25% off, billed $90 every 6 months, ₹7,194) and 12 months at $10 a month (50% off, billed $120 once a year, ₹9,588). It renews at the end of the period you chose and you can cancel any time from Settings; access continues until the end of the period you paid for."
 	},
 	{
 		"q": "Can I get a refund?",
