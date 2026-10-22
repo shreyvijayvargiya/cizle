@@ -26,6 +26,8 @@ const skills = index.skills.map((s) => ({ ...s, ...read(`skills/${s.slug}.json`)
 const posts = read("blog.json").map((p) => read(`blog/${p.slug}.json`));
 const faq = read("content/faq.json");
 const pages = Object.fromEntries(["docs", "terms", "privacy", "refund"].map((n) => [n, read(`content/${n}.json`)]));
+const galleryFile = path.join(DIST, "gallery.json");
+const gallery = fs.existsSync(galleryFile) ? read("gallery.json") : null;
 const free = skills.filter((s) => s.tier === "free");
 const premium = skills.filter((s) => s.tier === "premium");
 
@@ -44,7 +46,7 @@ const skillLd = (s) => [
 
 /* ------------------------------------------------------------------ page shell */
 const STYLE = `<style>.ssr{max-width:62rem;margin:0 auto;padding:1rem 1.25rem 3rem;font:15px/1.65 Inter,ui-sans-serif,system-ui,sans-serif;color:#0a0a0a}.ssr a{color:inherit}.ssr nav ul{display:flex;gap:1rem;list-style:none;padding:0;flex-wrap:wrap}.ssr pre{white-space:pre-wrap;word-break:break-word;background:#f4f4f5;border:1px solid #e4e4e7;border-radius:8px;padding:.8rem;font-size:12.5px}.ssr code{font-family:ui-monospace,Menlo,monospace}.ssr ul.cards{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.75rem}.ssr ul.cards li{border:1px solid #e4e4e7;border-radius:10px;padding:.75rem}@media (prefers-color-scheme:dark){.ssr{color:#fafafa}.ssr pre{background:#1c1c1f;border-color:#27272a}.ssr ul.cards li{border-color:#27272a}}</style>`;
-const NAV = [["Skills", "/"], ["Pricing", "/pricing"], ["Docs", "/docs"], ["Blog", "/blog"], ["FAQ", "/faq"], ["Contact", "/contact"]];
+const NAV = [["Skills", "/"], ["Gallery", "/gallery"], ["Pricing", "/pricing"], ["Docs", "/docs"], ["Blog", "/blog"], ["FAQ", "/faq"], ["Contact", "/contact"]];
 const header = `<header><nav aria-label="Main"><ul><li><a href="/"><strong>cizle</strong></a></li>${NAV.map(([n, p]) => `<li><a href="${p}">${n}</a></li>`).join("")}<li><a href="/login">Sign in</a></li></ul></nav></header>`;
 const footer = `<footer><nav aria-label="Legal"><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refund">Refunds</a></li><li><a href="${esc(siteConfig.github)}">GitHub</a></li></ul></nav><p>© ${new Date().getFullYear()} cizle. Payments by Dodo Payments.</p></footer>`;
 
@@ -115,6 +117,22 @@ for (const s of skills) {
 	}));
 }
 
+// prompt gallery: credit, tags and the public preview of the first prompts. Premium full text is never in the HTML.
+if (gallery) {
+	const top = gallery.items.filter((g) => g.poster).slice(0, 60);
+	const by = (g) => (g.handle ? `@${g.handle}` : g.author || "the creator");
+	out("/gallery", document({
+		title: `Prompt gallery: ${gallery.total.toLocaleString()} Opus 5.5 video prompts, with credit | cizle`,
+		description: "Browse real video prompts people made with Claude Opus 5.5: motion graphics, explainers, product videos and 3D. Each one credits its creator and links to the original post. Free samples in full, the rest with Premium.",
+		path: "/gallery",
+		ld: [crumbs([["Skills", "/"], ["Prompt gallery", "/gallery"]]), { "@context": "https://schema.org", "@type": "CollectionPage", name: "cizle prompt gallery", url: abs("/gallery"), description: "Community video prompts for Claude Opus 5.5, credited and linked to the original posts.", mainEntity: { "@type": "ItemList", numberOfItems: gallery.total, itemListElement: top.map((g, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "CreativeWork", name: g.title, author: { "@type": "Person", name: by(g) }, ...(g.postUrl ? { sameAs: g.postUrl } : {}), isAccessibleForFree: g.tier === "free" } })) } }],
+		body: `<h1>Prompt gallery</h1><p>${gallery.total.toLocaleString()} real video prompts that people made with Claude Opus 5.5, each credited to its creator and linked to the original post. ${gallery.free} are free to read in full. <a href="/pricing">Premium</a> opens the full text of the rest.</p>` +
+			`<h2>Categories</h2><ul>${gallery.categories.slice(0, 24).map((c) => `<li>${esc(c)}</li>`).join("")}</ul>` +
+			`<h2>Latest prompts</h2><ul class="cards">${top.map((g) => `<li><article><h3>${esc(g.title)}</h3><p><small>by ${esc(by(g))}${g.tier === "free" ? " · free sample" : " · Premium"}${g.category ? ` · ${esc(g.category)}` : ""}</small></p><p>${esc(g.preview)}</p>${g.postUrl ? `<p><a href="${esc(g.postUrl)}" rel="noopener noreferrer">Original post</a></p>` : ""}</article></li>`).join("")}</ul>` +
+			`<p><small>Prompts belong to their creators. Email ${esc(siteConfig.email)} to have one corrected or removed.</small></p>`,
+	}));
+}
+
 // pricing
 out("/pricing", document({
 	title: `Pricing: ${free.length} free skills, Premium $${price.usd}/month | cizle`,
@@ -142,7 +160,7 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ["/pricing", 0.9], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
 

@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { OptionSelect } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/misc";
+import { PromptCard } from "@/components/PromptCard";
+import { useGallery } from "@/lib/gallery";
 import { useAuth } from "@/lib/auth";
 import { priceLabel } from "@/lib/billing";
 import { SITE } from "@/lib/config";
@@ -23,6 +25,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 	const search = useSearch({ strict: false }) as Filters;
 	const { isPro, user } = useAuth();
 	const skills = useSkills();
+	const gallery = useGallery();
 	const fuse = useFuse(skills.data?.skills);
 	const [q, setQ] = useState(search.q || "");
 
@@ -61,6 +64,14 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 				<p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
 					Pick a skill, copy the prompt or install it, and give Claude your product link. It plans the scenes and cizle renders the MP4 on your machine. {freeCount} skills are free; the ad and film-style library is Premium.
 				</p>
+				{!slug ? (
+					<p className="mt-3 text-sm">
+						<Link to="/gallery" className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 hover:bg-accent">
+							<span className="font-medium">New: prompt gallery</span>
+							<span className="text-muted-foreground">{gallery.data ? `${gallery.data.total.toLocaleString()} credited Opus 5.5 video prompts` : "credited Opus 5.5 video prompts"} →</span>
+						</Link>
+					</p>
+				) : null}
 			</div>
 
 			<div className="sticky top-14 z-30 -mx-4 mt-6 border-b border-border bg-background/90 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
@@ -125,6 +136,32 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 					</Button>
 				</div>
 			)}
+
+			{!slug && gallery.data ? (
+				<section aria-labelledby="gal-h" className="mt-14">
+					<div className="flex flex-wrap items-end justify-between gap-3">
+						<div className="max-w-2xl">
+							<h2 id="gal-h" className="text-xl font-semibold tracking-tight">Prompt gallery: see what people make with Opus 5.5</h2>
+							<p className="mt-1 text-sm text-muted-foreground">
+								{gallery.data.total.toLocaleString()} real video prompts, each credited to its creator and linked to the original post. {gallery.data.free} are free to read in full; Premium opens the rest.
+							</p>
+						</div>
+						<Button variant="outline" asChild>
+							<Link to="/gallery">Browse the gallery</Link>
+						</Button>
+					</div>
+					<ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+						{gallery.data.items
+							.filter((g) => g.poster)
+							.slice(0, 4)
+							.map((g) => (
+								<li key={g.id}>
+									<PromptCard item={g} search={{}} />
+								</li>
+							))}
+					</ul>
+				</section>
+			) : null}
 
 			{!user && skills.data ? (
 				<section aria-labelledby="cta-h" className="mt-12 rounded-2xl border border-border bg-surface p-6 text-center sm:p-8">

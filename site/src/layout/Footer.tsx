@@ -15,6 +15,7 @@ export function Footer() {
 				<nav aria-label="Product" className="flex flex-col gap-2">
 					<h2 className="mb-1 text-xs font-semibold tracking-wide text-foreground uppercase">Product</h2>
 					<Link to="/" className={COL}>Skills library</Link>
+					<Link to="/gallery" className={COL}>Prompt gallery</Link>
 					<Link to="/pricing" className={COL}>Pricing</Link>
 					<Link to="/docs" className={COL}>Docs</Link>
 					<Link to="/blog" className={COL}>Blog</Link>

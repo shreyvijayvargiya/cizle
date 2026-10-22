@@ -22,7 +22,7 @@ You may use skills and prompts to create videos and images for yourself or your 
 
 ## What you cannot do
 
-You may not resell, republish or share premium skill content, the library, or your account; scrape the premium library; or use the service to create unlawful, deceptive or infringing content.
+You may not resell, republish or share premium skill content, the prompt gallery, the library, or your account; scrape the premium library; or use the service to create unlawful, deceptive or infringing content.
 
 ## Content and credits
 
@@ -31,6 +31,10 @@ Skills and prompts remain the property of cizle and their authors. Film styles a
 ## No warranty
 
 The service is provided "as is". AI-generated output can be wrong; check every claim in a video before you publish it. To the extent the law allows, our liability is limited to the amount you paid in the 12 months before the claim.
+
+## Prompt gallery
+
+The prompt gallery lists prompts written by other people. Each prompt belongs to its creator, who is credited and linked on the prompt's page. The gallery is for reading, learning and as a starting point for your own work. Do not republish, resell or bulk copy gallery prompts. If you are a creator and want a prompt corrected or removed, email us and we will act within two working days.
 
 ## Changes and contact
 

@@ -11,7 +11,10 @@
 		"preview": "vite preview --port 4173",
 		"typecheck": "tsc --noEmit",
 		"seed:premium": "node scripts/seed-premium.mjs",
-		"test": "node tests/webhook.test.mjs",
+		"gallery:import": "node scripts/import-harvest.mjs",
+		"seed:gallery": "node scripts/seed-gallery.mjs",
+		"seed:gallery:dry": "node scripts/seed-gallery.mjs --dry",
+		"test": "node tests/webhook.test.mjs && node tests/gallery.test.mjs",
 		"seed:premium:dry": "node scripts/seed-premium.mjs --dry"
 	},
 	"dependencies": {

@@ -74,3 +74,14 @@ Statuses: `pending`, `running`, `partial`, `done`, `under_target` (finished with
 ## Rights
 
 Prompts and videos belong to their creators. Records keep the author, post URL and source URL, and store media as links, not copies. Check each source's `meta.json` → `policy` before reusing text; Prompt Motion signals reference use only.
+
+## Putting harvested prompts on the website (claude/marketplace)
+
+```bash
+cd site
+npm run gallery:import          # harvest/data/*/records.jsonl → content/gallery.jsonl (merged by X post id and prompt text)
+npm run content                 # → public/gallery.json (cards and previews; premium full text is never written here)
+npm run seed:gallery            # full text of premium prompts → Firestore "gallery" (needs a service account, see seed:premium)
+git add content/gallery.jsonl && git commit
+```
+About one prompt in ten is a free sample (readable in full); the rest show the creator, a preview and the original links to everyone, and the full text only to subscribers.

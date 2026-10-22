@@ -7,6 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { loadGallery, publicItem } from "./gallery-source.mjs";
 import { CATEGORIES, SITE_DIR, SITE_URL, loadSkills, md, publicSkill, siteConfig, skillDetail } from "./skills-source.mjs";
 
 const PUB = path.join(SITE_DIR, "public");
@@ -32,6 +33,7 @@ const finish = (html) => html.replace(/<a href="(https?:\/\/[^"]+)"/g, '<a href=
 
 for (const d of ["skills", "content", "blog"]) fs.rmSync(path.join(PUB, d), { recursive: true, force: true });
 fs.rmSync(path.join(PUB, "skills.json"), { force: true });
+fs.rmSync(path.join(PUB, "gallery.json"), { force: true });
 
 /* skills */
 const skills = loadSkills();
@@ -55,6 +57,12 @@ write("skills.json", {
 	aspects: ["9:16", "16:9", "1:1", "4:5", "Other"].filter((a) => skills.some((s) => s.aspect === a)),
 	skills: skills.map(publicSkill).map(({ scenes, anatomy, faq, cli, goal, needs, ...s }) => ({ ...s, scenes: scenes.map((x) => x.name), anatomy: anatomy.map((x) => x.name) })),
 });
+
+/* prompt gallery: card data and previews only. The full text of premium prompts is never written to public/. */
+const gallery = loadGallery().map(publicItem);
+const count = (key) => Object.entries(gallery.reduce((m, g) => ((g[key] ? (m[g[key]] = (m[g[key]] || 0) + 1) : 0), m), {})).sort((a, b) => b[1] - a[1]);
+if (gallery.length)
+	write("gallery.json", { generatedAt: new Date().toISOString(), total: gallery.length, free: gallery.filter((g) => g.tier === "free").length, categories: count("category").map(([c]) => c), items: gallery });
 
 /* pages */
 for (const name of ["docs", "terms", "privacy", "refund"]) {
@@ -84,4 +92,5 @@ const posts = fs
 for (const p of posts) write(`blog/${p.slug}.json`, p);
 write("blog.json", posts.map(({ html, toc, ...p }) => p));
 
+console.log(`gallery: ${gallery.length} prompts (${gallery.filter((g) => g.tier === "free").length} free)`);
 console.log(`content: ${skills.length} skills (${skills.filter((s) => s.tier === "free").length} free), ${posts.length} posts → public/ for ${siteConfig.name} at ${SITE_URL}`);

@@ -24,6 +24,17 @@ function devPremium(enabled: boolean): Plugin {
 				}
 				res.end(JSON.stringify({ promptText: src.copyPrompt(s), skillMd: src.skillMd(s) }));
 			});
+			server.middlewares.use("/__gallery", async (req, res) => {
+				const id = decodeURIComponent((req.url || "").replace(/^\//, "").replace(/\.json$/, ""));
+				const g = (await import(/* @vite-ignore */ path.resolve(__dirname, "scripts/gallery-source.mjs"))) as typeof import("./scripts/gallery-source.mjs");
+				const e = g.loadGallery().find((x: { gid: string }) => x.gid === id);
+				res.setHeader("content-type", "application/json");
+				if (!e) {
+					res.statusCode = 404;
+					return res.end("{}");
+				}
+				res.end(JSON.stringify({ text: e.text }));
+			});
 		},
 	};
 }

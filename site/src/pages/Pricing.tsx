@@ -10,6 +10,7 @@ import { useAuth } from "@/lib/auth";
 import { checkoutUrl, defaultCurrency, priceLabel, type Currency } from "@/lib/billing";
 import { SITE } from "@/lib/config";
 import { useFaq, useSkills } from "@/lib/data";
+import { useGallery } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
 import { faqJsonLd } from "@/lib/seo";
 
@@ -18,6 +19,8 @@ export function PricingPage() {
 	const navigate = useNavigate();
 	const skills = useSkills();
 	const faq = useFaq();
+	const gallery = useGallery();
+	const galleryTotal = gallery.data?.total ?? 0;
 	const [currency, setCurrency] = useState<Currency>(defaultCurrency);
 	const [busy, setBusy] = useState(false);
 	const premium = skills.data?.skills.filter((s) => s.tier === "premium") ?? [];
@@ -62,7 +65,7 @@ export function PricingPage() {
 					<p className="mt-1 text-sm text-muted-foreground">Everything you need for your first videos.</p>
 					<p className="mt-5 text-4xl font-semibold tracking-tight">{currency === "INR" ? "₹0" : "$0"}<span className="text-sm font-normal text-muted-foreground"> forever</span></p>
 					<ul className="mt-6 flex-1 space-y-2.5 text-sm">
-						{[`${freeCount} free skills with the full prompt`, "SKILL.md and install command for each", "Product, launch, explainer and social proof videos", "Code walkthrough for developer tools", "Docs and the cizle MCP server (open source)"].map((t) => (
+						{[`${freeCount} free skills with the full prompt`, "SKILL.md and install command for each", "Product, launch, explainer and social proof videos", "Code walkthrough for developer tools", "Browse the whole prompt gallery, with creator credit and a preview", "Free gallery samples in full", "Docs and the cizle MCP server (open source)"].map((t) => (
 							<li key={t} className="flex gap-2"><Icon icon={CheckmarkCircle02Icon} size={16} className="mt-0.5 text-success" />{t}</li>
 						))}
 					</ul>
@@ -87,6 +90,7 @@ export function PricingPage() {
 							`${count("Engineering") || 5} engineering formats: podcast, system design, deep dive`,
 							`${count("Film styles") || 20} film styles, from watercolor to dark keynote`,
 							"Full prompts, SKILL.md and install commands",
+							`Full text and copy button for ${galleryTotal ? galleryTotal.toLocaleString() : "1,000+"} community prompts in the gallery`,
 							"New skills added to your plan as they ship",
 						].map((t) => (
 							<li key={t} className="flex gap-2"><Icon icon={CheckmarkCircle02Icon} size={16} className="mt-0.5 text-brand" />{t}</li>

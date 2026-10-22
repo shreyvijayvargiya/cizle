@@ -31,6 +31,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 	const actions: Action[] = useMemo(
 		() => [
 			{ id: "skills", label: "Browse all skills", icon: Search01Icon, run: () => navigate({ to: "/" }), keywords: "home library" },
+			{ id: "gallery", label: "Prompt gallery", icon: SparklesIcon, run: () => navigate({ to: "/gallery" }), keywords: "community prompts opus motion video" },
 			{ id: "pricing", label: "Pricing", icon: CreditCardIcon, run: () => navigate({ to: "/pricing" }), keywords: "plans subscribe premium" },
 			{ id: "docs", label: "Docs: how to use skills", icon: BookOpen01Icon, run: () => navigate({ to: "/docs" }), keywords: "help guide install mcp" },
 			{ id: "blog", label: "Blog", icon: SparklesIcon, run: () => navigate({ to: "/blog" }), keywords: "articles examples" },

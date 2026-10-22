@@ -13,6 +13,7 @@ export const env = (k: string) => ((import.meta.env as Record<string, string | u
 
 export const NAV = [
 	{ to: "/", label: "Skills" },
+	{ to: "/gallery", label: "Gallery" },
 	{ to: "/pricing", label: "Pricing" },
 	{ to: "/docs", label: "Docs" },
 	{ to: "/blog", label: "Blog" },

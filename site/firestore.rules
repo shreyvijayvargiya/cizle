@@ -19,6 +19,12 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Full text of premium gallery prompts: same rule as premium skills.
+    match /gallery/{id} {
+      allow read: if signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && isPro();
+      allow write: if false;
+    }
+
     // Webhook bookkeeping: never visible to clients.
     match /webhooks/{id} {
       allow read, write: if false;
