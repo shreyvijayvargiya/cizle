@@ -5,7 +5,9 @@
 	"license": "MIT",
 	"type": "module",
 	"private": true,
-	"engines": { "node": ">=20.12" },
+	"engines": {
+		"node": ">=20.12"
+	},
 	"scripts": {
 		"dev": "concurrently -k -n api,web -c cyan,magenta \"node --watch-path=server server/index.js\" \"vite --config web/vite.config.ts\"",
 		"build": "vite build --config web/vite.config.ts",
@@ -15,7 +17,9 @@
 		"mcp:install": "node server/mcp/install.js",
 		"mcp:doctor": "node server/mcp/doctor.js",
 		"render": "node server/cli/render.js",
-		"guide": "node server/cli/guide.js"
+		"guide": "node server/cli/guide.js",
+		"harvest": "node server/harvest/cli.js",
+		"test:harvest": "node --test tests/harvest/*.test.mjs"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.5",
