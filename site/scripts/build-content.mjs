@@ -34,6 +34,7 @@ const finish = (html) => html.replace(/<a href="(https?:\/\/[^"]+)"/g, '<a href=
 for (const d of ["skills", "content", "blog"]) fs.rmSync(path.join(PUB, d), { recursive: true, force: true });
 fs.rmSync(path.join(PUB, "skills.json"), { force: true });
 fs.rmSync(path.join(PUB, "gallery.json"), { force: true });
+fs.rmSync(path.join(PUB, "gallery"), { recursive: true, force: true });
 
 /* skills */
 const skills = loadSkills();
@@ -63,6 +64,20 @@ const gallery = loadGallery().map(publicItem);
 const count = (key) => Object.entries(gallery.reduce((m, g) => ((g[key] ? (m[g[key]] = (m[g[key]] || 0) + 1) : 0), m), {})).sort((a, b) => b[1] - a[1]);
 if (gallery.length)
 	write("gallery.json", { generatedAt: new Date().toISOString(), total: gallery.length, free: gallery.filter((g) => g.tier === "free").length, categories: count("category").map(([c]) => c), items: gallery });
+
+/* Full text of premium prompts. Default ("public"): one small file per prompt, fetched only when a subscriber opens it. That is a soft gate (the
+   page hides it from everyone else, but the file url is public), and it needs no Firebase read or seeding. Strict: VITE_GALLERY_TEXT=firestore keeps
+   the text out of public/ and serves it from Firestore (npm run seed:gallery). */
+const textMode = (process.env.VITE_GALLERY_TEXT || "public").trim();
+let textFiles = 0;
+if (textMode !== "firestore") {
+	for (const e of loadGallery()) {
+		if (e.tier !== "premium") continue;
+		write(`gallery/text/${e.gid}.json`, { text: e.text });
+		textFiles++;
+	}
+}
+console.log(`gallery text: ${textMode === "firestore" ? "kept out of public/ (Firestore)" : `${textFiles} premium prompts as public/gallery/text/*.json (soft gate)`}`);
 
 /* pages */
 for (const name of ["docs", "terms", "privacy", "refund"]) {

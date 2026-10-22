@@ -147,3 +147,7 @@ site/content/library-changelog.jsonl  library runs ("enrich: +42 videos, +3 full
 npm run changelog                     print both like `git log --oneline` (-- --full for bodies, -- --scope harvest, -- --json)
 ```
 Entry: `{ id, parent, at, scope, cmd, message, body[], stats, ids, ok, run }`. Both files are committed, so the history travels with the repo. `site/content/library-state.json` is the current state (like `git status`); the changelog is the history (like `git log`).
+
+
+## Premium gallery text: no Firebase seeding by default
+`npm run content` writes the full text of each premium prompt to `site/public/gallery/text/<id>.json` and the page fetches it only when a signed-in subscriber opens the prompt. That is a **soft gate**: the page hides the text from everyone else, but the file URL is public, so anyone who finds it can read it. It needs no Firebase read, no service account and no `seed:gallery`. For a strict gate set `VITE_GALLERY_TEXT=firestore` (text stays out of the site and is read from Firestore by subscribers; run `npm run seed:gallery` after each library update). Firebase is still used for sign-in and the subscription check.

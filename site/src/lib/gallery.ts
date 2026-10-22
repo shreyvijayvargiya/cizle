@@ -41,13 +41,19 @@ export const useGallery = () =>
 		gcTime: 60 * 60_000,
 	});
 
-/** The full prompt: already in the file for free samples, otherwise Firestore (subscribers only) or the dev server when testing. */
+/** The full prompt: already in the file for free samples, otherwise a public per-prompt file (default), or Firestore (VITE_GALLERY_TEXT=firestore), or the dev server when testing. */
 export function usePromptText(item: GalleryItem | undefined, isPro: boolean) {
 	return useQuery({
 		queryKey: ["gallery-text", item?.id],
 		enabled: Boolean(item) && !item?.text && isPro,
 		staleTime: 30 * 60_000,
 		queryFn: async (): Promise<string> => {
+			// Default: a small public file per prompt (soft gate, no Firebase read). VITE_GALLERY_TEXT=firestore: Firestore, subscribers only.
+			if (!DEV_UNLOCK && import.meta.env.VITE_GALLERY_TEXT !== "firestore") {
+				const res = await fetch(`/gallery/text/${item!.id}.json`);
+				if (!res.ok) throw new Error("This prompt has not been published yet. Rebuild the site (npm run content).");
+				return (await res.json()).text;
+			}
 			if (DEV_UNLOCK) {
 				const res = await fetch(`/__gallery/${item!.id}.json`);
 				if (!res.ok) throw new Error("Not found");
