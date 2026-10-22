@@ -202,8 +202,16 @@ export default {
 		let urls = ctx.cursor.urls;
 		if (!urls) {
 			urls = await listUrls(ctx);
+			if (ctx.cursor.prevUrls?.length) {
+				// a refresh: only the pages that were not in the list last time
+				const before = new Set(ctx.cursor.prevUrls);
+				const fresh = urls.filter((u) => !before.has(u));
+				ctx.log(`refresh: ${fresh.length} new pages of ${urls.length} listed`);
+				urls = fresh;
+				if (!urls.length) return;
+			}
 			if (!urls.length) throw new NeedsAdapterError("No prompt pages found. Check config.list for this source.", {});
-			await ctx.setCursor({ urls });
+			await ctx.setCursor({ urls, prevUrls: undefined });
 		}
 		ctx.log(`${urls.length} prompt pages listed`);
 

@@ -61,7 +61,7 @@ export default {
 			files,
 			async (f) => {
 				const text = how === "clone" ? await fsp.readFile(path.join(root, dir, f), "utf8") : await ctx.http.getText(`https://raw.githubusercontent.com/${repo}/${ref}/${dir}/${f}`);
-				await ctx.emitRecord(map(ctx.id, JSON.parse(text)));
+				await ctx.emitRecord(map(ctx.id, JSON.parse(text), ctx.config));
 			},
 			{ idOf, network: how === "api" },
 		);

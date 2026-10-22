@@ -20,6 +20,7 @@
 		"guide": "node server/cli/guide.js",
 		"harvest": "node server/harvest/cli.js",
 		"enrich": "node server/enrich/cli.js",
+		"changelog": "node server/library/changelog-cli.js",
 		"test:harvest": "node --test tests/harvest/*.test.mjs",
 		"test:enrich": "node --test tests/enrich/*.test.mjs"
 	},

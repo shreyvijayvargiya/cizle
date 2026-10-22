@@ -81,7 +81,8 @@ api.delete("/prompts/:id", async (c) => ((await deletePrompt(c.req.param("id")))
  *   "run"    (default) start or resume a run and stream progress as NDJSON; the run keeps going if the client disconnects
  *   "status" JSON: graph order, per-source status and counts, pointer, who holds the lock
  *   "stop"   finish the current batch, save, and stop
- * "run" also takes { sources: ["G01","G02"], parallel: 1-3, limit, batch_size, batch_pause_ms, source_pause_ms, retry, fresh }.
+ * "run" also takes { sources: ["G01","G02"], parallel: 1-3, limit, batch_size, batch_pause_ms, source_pause_ms, retry, fresh, refresh,
+ *   enrich (look up each new prompt's video and full prompt as its source finishes), import (update the prompt library), enrich_parallel: 1-10 }.
  * The CLI (npm run harvest) drives the same engine; only one of them can run at a time.
  */
 api.post("/harvest", async (c) => {
@@ -93,7 +94,7 @@ api.post("/harvest", async (c) => {
 	const sources = (Array.isArray(b.sources) ? b.sources : String(b.sources || "").split(",")).map((s) => String(s).trim()).filter(Boolean);
 	let run;
 	try {
-		run = await harvest.startManaged({ sources, parallel: b.parallel, limit: b.limit, batchSize: b.batch_size, batchPauseMs: b.batch_pause_ms, sourcePauseMs: b.source_pause_ms, retry: Boolean(b.retry), fresh: Boolean(b.fresh) });
+		run = await harvest.startManaged({ sources, parallel: b.parallel, limit: b.limit, batchSize: b.batch_size, batchPauseMs: b.batch_pause_ms, sourcePauseMs: b.source_pause_ms, retry: Boolean(b.retry), fresh: Boolean(b.fresh), refresh: Boolean(b.refresh), enrich: b.enrich ?? !process.env.HARVEST_DIR, import: b.import ?? !process.env.HARVEST_DIR, enrichParallel: b.enrich_parallel, xBrowser: Boolean(b.x_browser) });
 	} catch (e) {
 		if (e.code === "RUNNING" || e.code === "LOCKED") return c.json({ error: e.message, code: e.code, status: await harvest.snapshot().catch(() => null) }, 409);
 		throw e;

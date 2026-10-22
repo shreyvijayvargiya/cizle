@@ -13,7 +13,12 @@ import path from "path";
 import { getAdapter } from "./adapters/index.js";
 import { loadGraph, selectNodes, walkOrder } from "./graph.js";
 import { BlockedError, NeedsAdapterError, makeHttp, sleepMs } from "./http.js";
-import { LockedError, RecordLog, acquireLock, dataRoot, harvestRoot, readJson, readLock, sourceDir, stateFile, writeJsonAtomic } from "./store.js";
+import { LockedError, RecordLog, acquireLock, dataRoot, harvestRoot, readJson, readLock, readRecords, sourceDir, stateFile, writeJsonAtomic } from "./store.js";
+import { spawn } from "node:child_process";
+import fs from "node:fs";
+import { appendChange } from "../library/changelog.js";
+import { siteDir } from "../library/paths.js";
+import { createInlineEnricher } from "../enrich/inline.js";
 import { createRunLog } from "../library/runlog.js";
 
 export const MAX_PARALLEL = 3;
@@ -26,18 +31,62 @@ const RETRYABLE = new Set(["failed", "blocked", "needs_adapter", "under_target"]
 
 let inProcess = false; // the file lock only separates processes; this separates two runs inside one
 
+/** One commit-style line per harvest run: what each source added, and which sources are new. */
+function recordHarvest(done, knownBefore, summary, runlog) {
+	if (!done.length) return;
+	const total = done.reduce((n, d) => n + (d.added || 0), 0);
+	const parts = done.filter((d) => d.added > 0).map((d) => `${d.id} +${d.added}${knownBefore.has(d.id) ? "" : " new source"}`);
+	const bad = done.filter((d) => ["failed", "blocked", "needs_adapter"].includes(d.status));
+	appendChange("harvest", {
+		cmd: "harvest",
+		message: `harvest: ${total ? `+${total} records (${parts.join(", ")})` : "nothing new"}${bad.length ? ` · ${bad.map((d) => `${d.id} ${d.status}`).join(", ")}` : ""}${summary.stopped ? " · stopped" : ""}`,
+		body: done.map((d) => `${d.id} ${d.status}: ${d.records} records (+${d.added || 0}) in ${d.duration_s}s${d.error ? ` — ${d.error}` : ""}`),
+		ok: !bad.length,
+		stats: { added: total, sources: Object.fromEntries(done.map((d) => [d.id, { status: d.status, records: d.records, added: d.added || 0, new_source: !knownBefore.has(d.id) }])) },
+		run: runlog.id,
+	});
+}
+
+/** Update the prompt library from the harvest (site/scripts/import-harvest.mjs). Skipped where there is no site/ (a harvest-only checkout). */
+function runLibraryImport(log) {
+	const script = path.join(siteDir(), "scripts", "import-harvest.mjs");
+	if (!fs.existsSync(script)) return Promise.resolve({ skipped: true });
+	return new Promise((resolve) => {
+		const child = spawn(process.execPath, [script], { cwd: siteDir(), env: process.env, stdio: ["ignore", "pipe", "pipe"] });
+		let out = "";
+		child.stdout.on("data", (d) => (out += d));
+		child.stderr.on("data", (d) => (out += d));
+		child.on("close", (code) => (log(`gallery:import exit ${code}\n${out.trim()}`), resolve({ code })));
+		child.on("error", (e) => resolve({ error: e.message }));
+	});
+}
+
 export async function runHarvest(options = {}, onEvent = () => {}) {
 	if (inProcess) throw new AlreadyRunning();
 	inProcess = true;
 	// Every run leaves a local log in harvest/logs/ (git-ignored), one line per event.
 	const runlog = createRunLog("harvest", { sources: options.sources, parallel: options.parallel, limit: options.limit, retry: options.retry, fresh: options.fresh }, { dir: path.join(harvestRoot(), "logs") });
+	const done = [];
 	const tee = (e) => {
 		runlog.log(`${e.type} ${JSON.stringify(Object.fromEntries(Object.entries(e).filter(([k]) => k !== "type" && k !== "at")))}`);
+		if (e.type === "source_done") done.push(e);
 		onEvent(e);
 	};
+	let knownBefore = new Set();
+	try {
+		knownBefore = new Set(Object.keys((await readJson(stateFile(), { sources: {} })).sources || {}));
+	} catch {
+		/* first run */
+	}
 	try {
 		const summary = await runHarvestOnce(options, tee);
 		runlog.end({ ok: true, stopped: summary.stopped, sources: summary.sources });
+		recordHarvest(done, knownBefore, summary, runlog);
+		if (options.import === true && done.some((d) => d.added > 0) && !summary.stopped) {
+			tee({ type: "import", at: new Date().toISOString(), reason: "new records were harvested: updating the prompt library" });
+			const r = await runLibraryImport((m) => runlog.log(m));
+			tee({ type: "import_done", at: new Date().toISOString(), ...r });
+		}
 		return summary;
 	} catch (e) {
 		runlog.log(`error ${e?.message || e}`);
@@ -60,6 +109,9 @@ async function runHarvestOnce(options, onEvent) {
 		limit: options.limit ? Math.floor(Number(options.limit)) : 0,
 		retry: Boolean(options.retry),
 		fresh: Boolean(options.fresh),
+		refresh: Boolean(options.refresh),
+		enrich: options.enrich === true, // look up each new record's video and full prompt as the source finishes (the CLI turns this on)
+		enrichParallel: Math.min(10, Math.max(1, Math.floor(Number(options.enrichParallel) || 5))),
 	};
 	const signal = options.signal;
 	const emit = (type, data = {}) => onEvent({ type, at: new Date().toISOString(), ...data });
@@ -69,6 +121,7 @@ async function runHarvestOnce(options, onEvent) {
 	if (!nodes.length) throw new Error("No sources to run. Enable one in harvest/sources.graph.json or name it with --source.");
 	await fsp.mkdir(dataRoot(), { recursive: true });
 	const lock = await acquireLock();
+	let enricher = null;
 
 	try {
 		let state = (await readJson(stateFile())) || { version: 1, pointer: null, sources: {} };
@@ -87,6 +140,13 @@ async function runHarvestOnce(options, onEvent) {
 				await fsp.rm(sourceDir(node.id), { recursive: true, force: true });
 				state.sources[node.id] = { status: "pending" };
 			}
+			if (o.refresh && ["done", "under_target", "partial"].includes(state.sources[node.id]?.status)) {
+				// Look for new items: keep every stored record, forget where we were (the old url list is kept so only NEW pages are fetched).
+				const old = (await readJson(path.join(sourceDir(node.id), "cursor.json"), {})) || {};
+				await fsp.rm(path.join(sourceDir(node.id), "raw"), { recursive: true, force: true });
+				await writeJsonAtomic(path.join(sourceDir(node.id), "cursor.json"), { prevUrls: old.prevUrls || old.urls || null });
+				state.sources[node.id] = { ...state.sources[node.id], status: "pending" };
+			}
 			const status = state.sources[node.id]?.status || "pending";
 			state.sources[node.id] ||= { status };
 			if (RESUMABLE.has(status) || (RETRYABLE.has(status) && o.retry)) queue.push(node);
@@ -96,6 +156,8 @@ async function runHarvestOnce(options, onEvent) {
 		await saveState();
 		emit("run_start", { queue: queue.map((n) => n.id), parallel: o.parallel, batch_size: o.batchSize, batch_pause_ms: o.batchPauseMs, source_pause_ms: o.sourcePauseMs, limit: o.limit || null, named, order: walkOrder(graph) });
 
+		if (o.enrich) enricher = await createInlineEnricher({ parallel: o.enrichParallel, batchPauseMs: Math.min(o.batchPauseMs, 3000), xBrowser: Boolean(options.xBrowser), noBrowser: Boolean(options.noBrowser), signal, http: makeHttp({ signal }), log: (m) => emit("log", { id: "enrich", msg: m }), emit });
+
 		let next = 0;
 		async function worker() {
 			for (;;) {
@@ -104,6 +166,10 @@ async function runHarvestOnce(options, onEvent) {
 				if (!node) return;
 				state.pointer = queue[next]?.id ?? null;
 				await runSource(node);
+				if (enricher && !signal?.aborted && ["done", "partial", "under_target"].includes(state.sources[node.id]?.status)) {
+					const r = await enricher.source(node.id, await readRecords(node.id)).catch((e) => (emit("log", { id: node.id, msg: `enrichment failed: ${e.message}` }), null));
+					if (r) emit("enrich_done", r);
+				}
 				if (signal?.aborted) return;
 				if (next < queue.length) {
 					emit("sleep", { id: node.id, ms: o.sourcePauseMs, reason: "source" });
@@ -244,6 +310,7 @@ async function runHarvestOnce(options, onEvent) {
 		emit("run_done", summary);
 		return summary;
 	} finally {
+		await enricher?.close().catch(() => {});
 		await lock.release();
 	}
 }

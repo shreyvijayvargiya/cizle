@@ -126,3 +126,24 @@ Files, all in `site/`:
 
 ### Translating non-English prompts: `npm run gallery:translate`
 Prompts that are not in English (the YouMind source is multilingual) are hidden until translated. `cd site && npm run gallery:translate` asks an OpenRouter model (default `google/gemini-2.5-flash`, change with `--model`) to translate them, 5 per request, 3 requests at once, checks each result (complete, English, title in English) and retries a bad one once. It saves `content/gallery-translations.json` after every batch (stop and run again to resume), then runs `gallery:import`. Key: `OPENROUTER_API_KEY` or the dashboard Settings. Try `-- --limit 20` first.
+
+
+## Harvest v2: complete records, refreshes, and a changelog
+
+**The harvest now enriches as it goes.** When a source finishes, its records that lack a demo video or have a cut-off prompt are looked up with the same routes as `npm run enrich` (X embed, FixTweet, vxTwitter, the source page in Chrome with its Copy prompt button) and the result goes into `site/content/gallery-enrichment.json`, which `gallery:import` applies. One shared limiter keeps it at 5 lookups at once across all sources (`--enrich-parallel`, max 10). When the run added records it then runs `gallery:import`, so the library is updated with nothing else to run. In the repo these are on by default; `--no-enrich` and `--no-import` turn them off, and a custom `HARVEST_DIR` (tests, scratch) turns them off. `npm run enrich` is for refreshes and retries.
+
+```bash
+npm run harvest                       # new and unfinished sources: harvest, look up video + prompt, update the library
+npm run harvest -- --refresh          # look for NEW items in finished sources (stored records kept; only new pages/entries are fetched)
+npm run harvest -- --refresh -p 3     # for hours: three sources at a time
+```
+
+**Adding a dataset source is config only.** In `sources.graph.json` use adapter `json-dataset` (one JSON array) or `github-files` (one JSON file per prompt) with `"mapper": "generic"` and a field map, e.g. `"fields": { "id": "slug", "prompt": "body.prompt", "title": "name", "author": "by.handle", "post_url": "tweet", "video": "media.mp4", "poster": "media.thumb", "tags": "tags", "date": "created_at" }`. Only `prompt` is required. A record with an X link gets the post id as its id, so the same prompt found by two sources merges into one.
+
+**The changelog (a git log for the data).** Every harvest, import, enrich, translate, media check and seed appends a commit-style entry, chained to the previous one by `parent`:
+```
+harvest/changelog.jsonl               what each harvest run added, per source ("harvest: +112 records (G07 +100 new source, W06 +12)")
+site/content/library-changelog.jsonl  library runs ("enrich: +42 videos, +3 full prompts from 60 visits")
+npm run changelog                     print both like `git log --oneline` (-- --full for bodies, -- --scope harvest, -- --json)
+```
+Entry: `{ id, parent, at, scope, cmd, message, body[], stats, ids, ok, run }`. Both files are committed, so the history travels with the repo. `site/content/library-state.json` is the current state (like `git status`); the changelog is the history (like `git log`).
