@@ -1,11 +1,12 @@
 import fs from "node:fs";
 import fsp from "node:fs/promises";
+import crypto from "node:crypto";
 import os from "node:os";
 import path from "node:path";
 
 export async function writeJsonAtomic(file, obj, space) {
 	await fsp.mkdir(path.dirname(file), { recursive: true });
-	const tmp = `${file}.${process.pid}.${Date.now()}.tmp`;
+	const tmp = `${file}.${process.pid}.${crypto.randomBytes(4).toString("hex")}.tmp`;
 	await fsp.writeFile(tmp, JSON.stringify(obj, null, space));
 	await fsp.rename(tmp, file);
 }
@@ -31,7 +32,7 @@ export function readJsonl(file) {
 }
 export async function writeJsonlAtomic(file, rows) {
 	await fsp.mkdir(path.dirname(file), { recursive: true });
-	const tmp = `${file}.${process.pid}.${Date.now()}.tmp`;
+	const tmp = `${file}.${process.pid}.${crypto.randomBytes(4).toString("hex")}.tmp`;
 	await fsp.writeFile(tmp, rows.map((r) => JSON.stringify(r)).join("\n") + (rows.length ? "\n" : ""));
 	await fsp.rename(tmp, file);
 }

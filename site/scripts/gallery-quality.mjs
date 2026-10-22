@@ -31,6 +31,7 @@ export const PREMIUM_MIN_CHARS = 200; // below this a prompt is a one-liner: sho
 
 /** Why an entry should not be shown, or null. */
 export function junkReason(e) {
+	if (/^\[object Object\]$/.test(e.text.trim())) return "broken record";
 	if (e.text.length < MIN_CHARS) return "too short";
 	if (e.partial && e.text.length < 300) return "partial and short";
 	const alnum = e.text.replace(/[^\p{L}\p{N}]/gu, "").length;

@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updated_at": "2026-10-22T18:52:24.775Z",
+  "updated_at": "2026-10-22T18:55:27.915Z",
   "updates": 2,
-  "runs": 2,
+  "runs": 3,
   "totals": {
     "prompts": 872,
     "waiting_for_video": 683,
@@ -11,6 +11,13 @@
     "with_video": 872,
     "partial": 0,
     "translated": 15
+    "prompts": 555,
+    "waiting_for_video": 0,
+    "free": 126,
+    "premium": 429,
+    "with_video": 135,
+    "partial": 51,
+    "translated": 78
   },
   "enrichment": {
     "records": 0,
@@ -49,6 +56,23 @@
       "near-duplicate": 16
     }
   },
+  "coverage": {
+    "total": 555,
+    "shown": 555,
+    "waiting": 0,
+    "ready_to_publish": 0,
+    "with_video": 135,
+    "complete_prompt": 504,
+    "video_coverage": 24.3,
+    "waiting_reasons": {},
+    "videos_found_via": {},
+    "dropped": {
+      "short one-liner without a video": 169,
+      "too short": 328,
+      "partial and short": 85,
+      "near-duplicate": 20
+    }
+  },
   "files": {
     "content/gallery.jsonl": {
       "sha1": "5a75949500987c721da87d3698b06d404e3bc138",
@@ -63,11 +87,17 @@
       "lines": 683,
       "status": "added",
       "updated_at": "2026-10-22T18:52:24.775Z"
+      "sha1": "ebacfcb806eb0e7e09c40a23e6578f2aa3a8a668",
+      "bytes": 1079929,
+      "lines": 555,
+      "status": "unchanged",
+      "updated_at": "2026-10-22T18:26:28.490Z"
     },
     "content/gallery-translations.json": {
       "sha1": "c7b946327957dd8835237c51dc2fb0af3426e3e8",
       "bytes": 85195,
       "lines": 450,
+      "status": "unchanged",
       "status": "unchanged",
       "updated_at": "2026-10-22T18:26:28.490Z"
     },
@@ -77,6 +107,12 @@
       "lines": 1,
       "status": "added",
       "updated_at": "2026-10-22T18:52:24.775Z"
+    "content/media-status.json": {
+      "sha1": "57117978a465f1ea7adde9f542dcbd18b8213220",
+      "bytes": 61669,
+      "lines": 1,
+      "status": "unchanged",
+      "updated_at": "2026-10-22T18:55:27.915Z"
     }
   },
   "last": {
@@ -85,11 +121,21 @@
     "at": "2026-10-22T18:52:24.775Z",
     "started_at": "2026-10-22T18:52:24.350Z",
     "ms": 425,
+    "id": "20261022-185531Z-translate",
+    "cmd": "translate",
+    "at": "2026-10-22T18:55:31.429Z",
+    "started_at": "2026-10-22T18:55:31.196Z",
+    "ms": 232,
     "ok": true,
     "args": {
-      "argv": []
+      "model": "google/gemini-2.5-flash"
     },
-    "changed": true,
+    "changed": false,
+    "stats": {
+      "translated": 0,
+      "rejected": 0,
+      "failed_batches": 0
+    },
     "changes": {
       "added": 726,
       "modified": 74,
@@ -583,6 +629,11 @@
       "unique": 2465,
       "kept": 872,
       "dropped": 910
+      "added": 0,
+      "modified": 0,
+      "removed": 0,
+      "unchanged": 555,
+      "ids": {}
     }
   },
   "history": [
@@ -608,6 +659,40 @@
         "unique": 2465,
         "kept": 872,
         "dropped": 910
+      }
+    },
+    {
+      "id": "20261022-185531Z-translate",
+      "cmd": "translate",
+      "at": "2026-10-22T18:55:31.429Z",
+      "started_at": "2026-10-22T18:55:31.196Z",
+      "ms": 232,
+      "ok": true,
+      "args": {
+        "model": "google/gemini-2.5-flash"
+      },
+      "changed": false,
+      "stats": {
+        "translated": 0,
+        "rejected": 0,
+        "failed_batches": 0
+      }
+    },
+    {
+      "id": "20261022-185527Z-translate",
+      "cmd": "translate",
+      "at": "2026-10-22T18:55:27.915Z",
+      "started_at": "2026-10-22T18:55:27.674Z",
+      "ms": 240,
+      "ok": true,
+      "args": {
+        "model": "google/gemini-2.5-flash"
+      },
+      "changed": true,
+      "stats": {
+        "translated": 0,
+        "rejected": 0,
+        "failed_batches": 0
       }
     },
     {

@@ -11,6 +11,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { readJson, readJsonl, writeJsonAtomic } from "./io.js";
+import { appendChange, describeLibraryRun } from "./changelog.js";
 import { coverage } from "./coverage.js";
 import { contentDir, files } from "./paths.js";
 
@@ -90,5 +91,10 @@ export async function recordRun({ cmd, id, args = {}, ok = true, changes = null,
 		history: [entry, ...(prev.history || [])].slice(0, 100),
 	};
 	await writeJsonAtomic(f.state, state, 2);
+	// a commit-style line for the changelog (skipped for the engine's mid-run checkpoints)
+	if (!args?.partial) {
+		const d = describeLibraryRun({ cmd, changes, stats: stats || {}, note });
+		if (d) appendChange("library", { cmd, message: d.message, body: d.body, ok, stats: stats || undefined, changes: changes ? { added: changes.added, modified: changes.modified, removed: changes.removed } : undefined, ids: changes?.ids?.added?.length ? { added: changes.ids.added.slice(0, 50) } : undefined, run: id });
+	}
 	return state;
 }

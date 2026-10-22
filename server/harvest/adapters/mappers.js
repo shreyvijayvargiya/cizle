@@ -3,7 +3,35 @@ import { buildRecord } from "../record.js";
 
 const pyList = (v) => (Array.isArray(v) ? v : [...String(v || "").matchAll(/'([^']+)'/g)].map((m) => m[1]));
 
+const dig = (o, p) => (p ? String(p).split(".").reduce((x, k) => (x == null ? x : x[k]), o) : undefined);
+const asList = (v) => (Array.isArray(v) ? v : typeof v === "string" ? v.split(/[,;|]/).map((x) => x.trim()).filter(Boolean) : []);
+
 export const MAPPERS = {
+	/**
+	 * A mapper you configure instead of writing: config.fields maps our names to dotted paths in the item, e.g.
+	 *   "fields": { "id": "id", "prompt": "prompt.text", "title": "name", "author": "user.handle", "post_url": "tweet", "video": "media.mp4",
+	 *               "poster": "media.thumb", "category": "type", "tags": "tags", "date": "created_at", "source_url": "link" }
+	 * Optional config.model_claim ("Opus 5.5") is stamped on every record. Only "prompt" is required.
+	 */
+	generic(source, it, cfg = {}) {
+		const f = cfg.fields || {};
+		const get = (k) => dig(it, f[k]);
+		const post = get("post_url");
+		const video = get("video");
+		return buildRecord(source, {
+			slug: String(get("id") ?? "").trim() || undefined,
+			post_url: post,
+			author: { handle: get("author") },
+			title: get("title"),
+			category: get("category"),
+			tags: asList(get("tags")),
+			prompt: { text: get("prompt"), status: "verbatim" },
+			media: { poster_url: get("poster"), video_urls: [].concat(video || []).filter((v) => typeof v === "string") },
+			model_claim: cfg.model_claim || null,
+			source_url: get("source_url"),
+			extra: get("date") ? { added: String(get("date")).slice(0, 10) } : undefined,
+		});
+	},
 	/** yihui-dev/awesome-opus5-5-videos → data/videos.json */
 	yihui(source, it) {
 		const partial = it.prompt_partial === true || String(it.prompt_partial).toLowerCase() === "true";

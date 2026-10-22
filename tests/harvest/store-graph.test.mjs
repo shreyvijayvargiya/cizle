@@ -84,3 +84,29 @@ test("the shipped graph is valid and every node can reach 100 records", async ()
 	}
 	assert.ok(walkOrder(g).length === g.nodes.size);
 });
+
+test("the generic mapper turns any dataset into records from a config alone", async () => {
+	const { MAPPERS } = await import("../../server/harvest/adapters/mappers.js");
+	const cfg = { model_claim: "Opus 5.5", fields: { id: "slug", prompt: "body.prompt", title: "name", author: "by.handle", post_url: "tweet", video: "media.mp4", poster: "media.thumb", tags: "tags", date: "created_at" } };
+	const r = MAPPERS.generic("G99", { slug: "abc", body: { prompt: "A slow dolly shot of a lighthouse at dusk." }, name: "Lighthouse", by: { handle: "ann" }, tweet: "https://x.com/ann/status/1900000000001", media: { mp4: "https://v/1.mp4", thumb: "https://p/1.jpg" }, tags: "3d, svg", created_at: "2026-10-01T10:00:00Z" }, cfg);
+	assert.equal(r.id, "x:1900000000001", "an X link makes the record id the post id, so it merges with the other sources");
+	assert.equal(r.title, "Lighthouse");
+	assert.deepEqual(r.tags, ["3d", "svg"]);
+	assert.deepEqual(r.media.video_urls, ["https://v/1.mp4"]);
+	assert.equal(r.model_claim, "Opus 5.5");
+	assert.equal(r.extra.added, "2026-10-01");
+	assert.equal(MAPPERS.generic("G99", { slug: "x", body: {} }, cfg), null, "no prompt, no record");
+	assert.equal(MAPPERS.generic("G99", { slug: "s1", body: { prompt: "A prompt without a post link." } }, cfg).id, "G99:s1");
+});
+
+test("json-dataset reads a JSON array, JSON lines or CSV (quotes, commas and newlines inside cells)", async () => {
+	const { parseItems } = await import("../../server/harvest/adapters/jsonDataset.js");
+	assert.deepEqual(parseItems('{"data":{"rows":[{"a":1}]}}', { path: "data.rows" }), [{ a: 1 }]);
+	assert.deepEqual(parseItems('{"a":1}\n{"a":2}\n', { format: "jsonl" }), [{ a: 1 }, { a: 2 }]);
+	const csv = 'id,prompt,tags\n1,"Make a video, then ""cut"" to logo\nsecond line","3d,svg"\n2,plain,x\n';
+	const rows = parseItems(csv, { format: "csv" });
+	assert.equal(rows.length, 2);
+	assert.equal(rows[0].prompt, 'Make a video, then "cut" to logo\nsecond line');
+	assert.equal(rows[0].tags, "3d,svg");
+	assert.equal(rows[1].id, "2");
+});

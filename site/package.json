@@ -13,6 +13,7 @@
 		"seed:premium": "node scripts/seed-premium.mjs",
 		"gallery:import": "node scripts/import-harvest.mjs",
 		"gallery:media": "node scripts/check-media.mjs",
+		"gallery:translate": "node scripts/translate-gallery.mjs",
 		"seed:gallery": "node scripts/seed-gallery.mjs",
 		"seed:gallery:dry": "node scripts/seed-gallery.mjs --dry",
 		"test": "node tests/webhook.test.mjs && node tests/gallery.test.mjs",

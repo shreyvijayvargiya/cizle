@@ -28,6 +28,11 @@ function parseArgs(argv) {
 		else if (a === "--graph") o.graphFile = need(i++, a);
 		else if (a === "--retry") o.retry = true;
 		else if (a === "--fresh") o.fresh = true;
+		else if (a === "--refresh") o.refresh = true;
+		else if (a === "--no-enrich") o.enrich = false;
+		else if (a === "--no-import") o.import = false;
+		else if (a === "--x-browser") o.xBrowser = true;
+		else if (a === "--enrich-parallel") o.enrichParallel = Number(need(i++, a));
 		else if (a === "--json") o.json = true;
 		else if (a === "--status") o.status = true;
 		else if (a === "--list") o.list = true;
@@ -52,6 +57,12 @@ Usage: npm run harvest -- [options] [source ids]
       --jitter F         randomise pauses by +-F (0-0.5, default 0)
       --retry            also retry sources that failed, were blocked, need an adapter or fell short of 100
       --fresh            delete the named sources' saved data and start them over
+      --refresh          look for NEW items in sources that are done (stored records are kept; only new pages / entries are fetched)
+      --no-enrich        do not look up each new prompt's video and full prompt (by default a finished source is enriched right away: X embed,
+                         FixTweet, vxTwitter, the source page in Chrome and its Copy prompt button; see npm run enrich)
+      --enrich-parallel N  lookups at once across all sources, 1-10 (default 5)
+      --x-browser        also open the X post in Chrome when the APIs have no video (X's terms restrict this)
+      --no-import        do not update the prompt library (gallery:import) when the run added records
       --status           show the state of every source and exit
       --list             show the graph order and exit
       --inspect URL      fetch one page and show where its prompt text is (for fixing a needs_adapter source)
@@ -83,6 +94,18 @@ function printer(json) {
 				return line(`${e.id}  ${e.msg}`);
 			case "source_done":
 				return line(`${e.id}  ${e.status.toUpperCase()}  ${e.records} records (+${e.added} new) in ${e.duration_s}s${e.status === "under_target" ? `  ← below the ${e.target} minimum` : ""}${e.error ? `\n          ${e.error}` : ""}`);
+			case "enrich_start":
+				return line(`${e.id}  looking up video and full prompt for ${e.pending} records (${e.parallel} at a time)`);
+			case "enrich_progress":
+				return line(`${e.id}  enrich ${e.done}/${e.total}  +${e.videos} videos  +${e.texts} full prompts${e.failed ? `  · ${e.failed} failed` : ""}${e.blocked ? `  · ${e.blocked} blocked` : ""}`);
+			case "enrich_done":
+				return line(`${e.source}  enrichment done: ${e.visited} visited, +${e.videos} videos, +${e.texts} full prompts`);
+			case "import":
+				return line(`updating the prompt library (gallery:import): ${e.reason}`);
+			case "import_done":
+				return line(`library import ${e.skipped ? "skipped (no site/ here)" : e.code ? `failed (exit ${e.code})` : "done"}`);
+			case "warn":
+				return line(`warning: ${e.msg}`);
 			case "run_done":
 				return line(`${e.stopped ? "stopped" : "finished"}  ${Object.entries(e.sources).map(([k, v]) => `${k}:${v}`).join("  ")}`);
 		}
@@ -132,7 +155,9 @@ async function main() {
 	process.on("SIGTERM", () => controller.abort());
 
 	try {
-		const summary = await runHarvest({ ...o, signal: controller.signal }, printer(o.json));
+		// In the repo itself a run is complete: harvest, look up videos and full prompts, update the library. A custom HARVEST_DIR (tests, scratch) opts out.
+		const real = !process.env.HARVEST_DIR;
+		const summary = await runHarvest({ ...o, enrich: o.enrich ?? real, import: o.import ?? real, signal: controller.signal }, printer(o.json));
 		const bad = Object.values(summary.sources).some((s) => ["failed", "blocked", "needs_adapter"].includes(s));
 		process.exit(summary.stopped ? 130 : bad ? 2 : 0);
 	} catch (e) {

@@ -16,7 +16,8 @@ const clip = (s, n) => String(s ?? "").slice(0, n);
  * @returns {object|null}  null when there is no prompt text (nothing to harvest)
  */
 export function buildRecord(source, p) {
-	const text = String(p.prompt?.text ?? p.prompt ?? "").trim();
+	const raw = p.prompt && typeof p.prompt === "object" ? p.prompt.text : p.prompt;
+	const text = String(raw ?? "").trim();
 	if (!text) return null;
 	const x = parseXUrl(p.post_url);
 	const slug = p.slug || p.native_id;
