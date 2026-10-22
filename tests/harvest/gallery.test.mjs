@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import path from "path";
 import test from "node:test";
+import { collapseLocales } from "../../server/harvest/adapters/sitemapGallery.js";
 import { runHarvest } from "../../server/harvest/engine.js";
 import { buildGraph } from "../../server/harvest/graph.js";
 import { dataRoot, readJson } from "../../server/harvest/store.js";
@@ -115,9 +116,10 @@ test("pages that yield no prompt end as needs_adapter with a diagnostic, not a b
 		const out = await run([{ mode: "sitemap", url: `${s.url}/sitemap.xml`, match: "/p/\\d+$" }], g);
 		const done = out.of("source_done", "W")[0];
 		assert.equal(done.status, "needs_adapter");
-		assert.ok(g.hits.details <= 5, `only the probe fetched pages (${g.hits.details})`);
+		assert.ok(g.hits.details <= 20, `only the probe fetched pages (${g.hits.details})`);
 		const meta = await readJson(path.join(dataRoot(), "W", "meta.json"));
-		assert.equal(meta.diagnostic.probe.length, 5);
+		assert.equal(meta.diagnostic.probe.length, 20);
+		assert.equal(meta.diagnostic.probe_hits, "0/20");
 		assert.equal(meta.diagnostic.probe[0].found, false);
 	} finally {
 		await s.close();
@@ -156,6 +158,30 @@ more();addEventListener('scroll',()=>{if(n<${N})more();document.body.style.heigh
 	try {
 		const out = await run([{ mode: "scroll", url: `${s.url}/scroll`, linkMatch: "/p/\\d+$", scrollPauseMs: 150, maxScrolls: 60 }], g);
 		assert.equal(out.of("source_done", "W")[0].records, N);
+	} finally {
+		await s.close();
+	}
+});
+
+test("the same page in several languages is fetched once", () => {
+	const re = /^\/[a-z]{2}(?:-[A-Z0-9]{2,4})?\/(?=video-prompts\/)/;
+	const urls = ["https://a.com/ja-JP/video-prompts/x-1", "https://a.com/video-prompts/x-1", "https://a.com/zh-CN/video-prompts/x-1", "https://a.com/ko-KR/video-prompts/y-2", "https://a.com/video-prompts/z-3"];
+	assert.deepEqual(collapseLocales(urls, re).sort(), ["https://a.com/ko-KR/video-prompts/y-2", "https://a.com/video-prompts/x-1", "https://a.com/video-prompts/z-3"].sort());
+});
+
+test("a probe passes when only some pages have a prompt (many galleries list works without one)", async () => {
+	await tmpHarvest();
+	const g = gallery();
+	const s = await serve((req, res) => {
+		const m = /^\/p\/(\d+)$/.exec(req.url);
+		if (m && Number(m[1]) % 4 !== 0) return (res.end("<html>no prompt here</html>"), true);
+		return g.handler(req, res);
+	});
+	try {
+		const out = await run([{ mode: "sitemap", url: `${s.url}/sitemap.xml`, match: "/p/\\d+$" }], g);
+		const done = out.of("source_done", "W")[0];
+		assert.equal(done.status, "under_target");
+		assert.ok(done.records >= 30 && done.no_prompt > 80, `${done.records} records, ${done.no_prompt} without prompt`);
 	} finally {
 		await s.close();
 	}

@@ -1,7 +1,13 @@
 {
 	"version": 1,
 	"description": "The harvester's sources, as a graph. Nodes are sources; an edge says which source comes next. The engine walks it from `start` with a pointer, runs up to 3 nodes at once, and remembers progress in harvest/data/ so it can resume. Every node must be able to reach 100+ prompts (min_records).",
-	"defaults": { "min_records": 100, "batch_size": 20, "batch_pause_ms": 8000, "source_pause_ms": 8000, "max_parallel": 3 },
+	"defaults": {
+		"min_records": 100,
+		"batch_size": 20,
+		"batch_pause_ms": 8000,
+		"source_pause_ms": 8000,
+		"max_parallel": 3
+	},
 	"start": "G01",
 	"nodes": [
 		{
@@ -11,7 +17,10 @@
 			"url": "https://github.com/yihui-dev/awesome-opus5-5-videos",
 			"expect": 703,
 			"verified": true,
-			"config": { "url": "https://raw.githubusercontent.com/yihui-dev/awesome-opus5-5-videos/main/data/videos.json", "mapper": "yihui" },
+			"config": {
+				"url": "https://raw.githubusercontent.com/yihui-dev/awesome-opus5-5-videos/main/data/videos.json",
+				"mapper": "yihui"
+			},
 			"notes": "One JSON file, 703 records; some prompts are partial (kept, flagged)."
 		},
 		{
@@ -21,7 +30,13 @@
 			"url": "https://github.com/LeaddeOpenLab/awesome-opus-5-5-video-prompts",
 			"expect": 728,
 			"verified": true,
-			"config": { "repo": "LeaddeOpenLab/awesome-opus-5-5-video-prompts", "ref": "main", "dir": "data/library", "mapper": "leadde", "mode": "auto" },
+			"config": {
+				"repo": "LeaddeOpenLab/awesome-opus-5-5-video-prompts",
+				"ref": "main",
+				"dir": "data/library",
+				"mapper": "leadde",
+				"mode": "auto"
+			},
 			"notes": "728 JSON files, one per tweet id. Sparse git clone of data/library only (the repo is 360 MB of GIFs otherwise)."
 		},
 		{
@@ -31,7 +46,9 @@
 			"url": "https://prompt-motion.com",
 			"expect": 235,
 			"verified": true,
-			"config": { "origin": "https://prompt-motion.com" },
+			"config": {
+				"origin": "https://prompt-motion.com"
+			},
 			"notes": "Server-rendered Next.js; home page lists everything. robots.txt: ai-train=no, use=reference. Reference use only."
 		},
 		{
@@ -42,12 +59,25 @@
 			"verified": false,
 			"config": {
 				"list": [
-					{ "mode": "sitemap", "url": "https://youmind.com/sitemap.xml", "childMatch": "video-prompts|prompts", "match": "/video-prompts/[a-z0-9-]+-\\d+/?$" },
-					{ "mode": "scroll", "url": "https://youmind.com/opus-5-5-prompts", "linkMatch": "/video-prompts/[a-z0-9-]+-\\d+/?$", "maxScrolls": 200 }
+					{
+						"mode": "sitemap",
+						"url": "https://youmind.com/sitemap.xml",
+						"childMatch": "video-prompts|prompts",
+						"match": "/video-prompts/[a-z0-9-]+-\\d+/?$",
+						"localeStrip": "^/[a-z]{2}(?:-[A-Z0-9]{2,4})?/(?=video-prompts/)"
+					},
+					{
+						"mode": "scroll",
+						"url": "https://youmind.com/opus-5-5-prompts",
+						"linkMatch": "/video-prompts/[a-z0-9-]+-\\d+/?$",
+						"maxScrolls": 200
+					}
 				],
-				"detail": { "mustInclude": "Opus 5\\.5|opus-5-5" }
+				"detail": {
+					"mustInclude": "Opus 5\\.5|opus-5-5"
+				}
 			},
-			"notes": "UNVERIFIED (blocked in the research sandbox). URL pattern from search results: /video-prompts/<slug>-<id>. Probe decides."
+			"notes": "First live run: 1,005 records. The sitemap lists every page in 8 languages, so localeStrip fetches each page once."
 		},
 		{
 			"id": "W07",
@@ -57,12 +87,27 @@
 			"verified": false,
 			"config": {
 				"list": [
-					{ "mode": "page", "url": "https://carat.im/prompt-gallery/claude-opus-5-5", "param": "page", "start": 1, "linkMatch": "/prompt-gallery/p/\\d+/?$", "maxPages": 100 },
-					{ "mode": "scroll", "url": "https://carat.im/prompt-gallery/claude-opus-5-5", "linkMatch": "/prompt-gallery/p/\\d+/?$", "maxScrolls": 200 }
+					{
+						"mode": "page",
+						"url": "https://carat.im/prompt-gallery/claude-opus-5-5",
+						"param": "page",
+						"start": 1,
+						"linkMatch": "/prompt-gallery/p/\\d+/?$",
+						"maxPages": 100
+					},
+					{
+						"mode": "scroll",
+						"url": "https://carat.im/prompt-gallery/claude-opus-5-5",
+						"linkMatch": "/prompt-gallery/p/\\d+/?$",
+						"maxScrolls": 200
+					}
 				],
-				"detail": { "mustInclude": "Opus 5\\.5|opus-5-5" }
+				"detail": {
+					"mustInclude": "Opus 5\\.5|opus-5-5"
+				}
 			},
-			"notes": "UNVERIFIED. Detail pages /prompt-gallery/p/<id> (ids 42164-42363 seen). The sitemap lists every model, so pagination/scroll of the Opus 5.5 page is used."
+			"notes": "First live run: the Opus 5.5 list has only 12 prompts (page and scroll agree). Below the 100 minimum, so switched off.",
+			"enabled": false
 		},
 		{
 			"id": "W08",
@@ -72,12 +117,24 @@
 			"verified": false,
 			"config": {
 				"list": [
-					{ "mode": "page", "url": "https://jasonzhu.ai/en/prompts/claude-opus-5-5", "param": "page", "start": 1, "linkMatch": "/en/prompts/claude-opus-5-5/[^/?#]+/?$", "maxPages": 100 },
-					{ "mode": "scroll", "url": "https://jasonzhu.ai/en/prompts/claude-opus-5-5", "linkMatch": "/en/prompts/claude-opus-5-5/[^/?#]+/?$", "maxScrolls": 300 }
+					{
+						"mode": "page",
+						"url": "https://jasonzhu.ai/en/prompts/claude-opus-5-5",
+						"param": "page",
+						"start": 1,
+						"linkMatch": "/en/prompts/claude-opus-5-5/[^/?#]+/?$",
+						"maxPages": 100
+					},
+					{
+						"mode": "scroll",
+						"url": "https://jasonzhu.ai/en/prompts/claude-opus-5-5",
+						"linkMatch": "/en/prompts/claude-opus-5-5/[^/?#]+/?$",
+						"maxScrolls": 300
+					}
 				],
 				"detail": {}
 			},
-			"notes": "UNVERIFIED. Claims 1,854 works, 464 with the creator's prompt."
+			"notes": "Notes claim 1,854 works but only 464 have the creator's prompt, so misses are normal. The list is one page with ~2,011 links."
 		},
 		{
 			"id": "W03",
@@ -87,8 +144,17 @@
 			"verified": false,
 			"config": {
 				"list": [
-					{ "mode": "sitemap", "url": "https://claudevideo.org/sitemap.xml", "match": "/(video|videos|prompt|prompts|v)/[^/]+/?$" },
-					{ "mode": "scroll", "url": "https://claudevideo.org/", "linkMatch": "/(video|videos|prompt|prompts|v)/[^/?#]+/?$", "maxScrolls": 300 }
+					{
+						"mode": "sitemap",
+						"url": "https://claudevideo.org/sitemap.xml",
+						"match": "/(video|videos|prompt|prompts|v)/[^/]+/?$"
+					},
+					{
+						"mode": "scroll",
+						"url": "https://claudevideo.org/",
+						"linkMatch": "/(video|videos|prompt|prompts|v)/[^/?#]+/?$",
+						"maxScrolls": 300
+					}
 				],
 				"detail": {}
 			},
@@ -102,8 +168,17 @@
 			"verified": false,
 			"config": {
 				"list": [
-					{ "mode": "sitemap", "url": "https://promptcat.org/sitemap.xml", "match": "/(prompt|prompts|p)/[^/]+/?$" },
-					{ "mode": "scroll", "url": "https://promptcat.org/", "linkMatch": "/(prompt|prompts|p)/[^/?#]+/?$", "maxScrolls": 200 }
+					{
+						"mode": "sitemap",
+						"url": "https://promptcat.org/sitemap.xml",
+						"match": "/(prompt|prompts|p)/[^/]+/?$"
+					},
+					{
+						"mode": "scroll",
+						"url": "https://promptcat.org/",
+						"linkMatch": "/(prompt|prompts|p)/[^/?#]+/?$",
+						"maxScrolls": 200
+					}
 				],
 				"detail": {}
 			},
@@ -111,20 +186,59 @@
 		}
 	],
 	"edges": [
-		{ "from": "G01", "to": "G02" },
-		{ "from": "G02", "to": "W01" },
-		{ "from": "W01", "to": "W06" },
-		{ "from": "W06", "to": "W07" },
-		{ "from": "W07", "to": "W08" },
-		{ "from": "W08", "to": "W03" },
-		{ "from": "W03", "to": "W05" }
+		{
+			"from": "G01",
+			"to": "G02"
+		},
+		{
+			"from": "G02",
+			"to": "W01"
+		},
+		{
+			"from": "W01",
+			"to": "W06"
+		},
+		{
+			"from": "W06",
+			"to": "W07"
+		},
+		{
+			"from": "W07",
+			"to": "W08"
+		},
+		{
+			"from": "W08",
+			"to": "W03"
+		},
+		{
+			"from": "W03",
+			"to": "W05"
+		}
 	],
 	"excluded": [
-		{ "id": "G03", "reason": "athemeroy index: 424 posts but no prompt text (links and notes only). Use to cross-check model attribution." },
-		{ "id": "G04", "reason": "eastling/awesome-opus-5.5-video-prompts: 90 prompts, below the 100 minimum." },
-		{ "id": "G05", "reason": "X-RayLuan/awesome-opus-5-5-video-prompts: 83 entries, below the 100 minimum." },
-		{ "id": "G06", "reason": "TripoGrowthLab/awesome-opus-5-5-prompts: 63 examples, below the 100 minimum." },
-		{ "id": "O01", "reason": "Anthropic docs: a handful of guides, not a prompt collection." },
-		{ "id": "X01", "reason": "X posts need the fxtwitter mirror or the paid API plus a search step; add as an enrichment pass, not a source." }
+		{
+			"id": "G03",
+			"reason": "athemeroy index: 424 posts but no prompt text (links and notes only). Use to cross-check model attribution."
+		},
+		{
+			"id": "G04",
+			"reason": "eastling/awesome-opus-5.5-video-prompts: 90 prompts, below the 100 minimum."
+		},
+		{
+			"id": "G05",
+			"reason": "X-RayLuan/awesome-opus-5-5-video-prompts: 83 entries, below the 100 minimum."
+		},
+		{
+			"id": "G06",
+			"reason": "TripoGrowthLab/awesome-opus-5-5-prompts: 63 examples, below the 100 minimum."
+		},
+		{
+			"id": "O01",
+			"reason": "Anthropic docs: a handful of guides, not a prompt collection."
+		},
+		{
+			"id": "X01",
+			"reason": "X posts need the fxtwitter mirror or the paid API plus a search step; add as an enrichment pass, not a source."
+		}
 	]
 }

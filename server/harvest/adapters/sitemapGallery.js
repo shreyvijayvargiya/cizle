@@ -4,7 +4,8 @@
  * yields a prompt, stops with a diagnostic instead of crawling thousands of pages blind.
  *
  * config.list     one or more list entries tried in order until one finds enough URLs:
- *                   { mode: "sitemap", url, match, childMatch?, maxMaps? }
+ *                   { mode: "sitemap", url, match, childMatch?, maxMaps?, localeStrip? }   localeStrip: regex for a language prefix such as
+ *                                      "^/(?:[a-z]{2}(?:-[A-Z0-9]{2,4})?)/(?=video-prompts/)": the same page in 8 languages is fetched once
  *                   { mode: "page",    url, param?: "page", start?: 1, linkMatch, maxPages?: 200 }     (20 pages at a time)
  *                   { mode: "scroll",  url, linkMatch, maxScrolls?: 200, scrollPauseMs?: 1200 }         (needs Chrome: CHROME_PATH)
  *                   { mode: "single",  url, linkMatch }
@@ -59,7 +60,18 @@ async function sitemapList(ctx, e) {
 		}
 		if (queue.length) await ctx.sleep(1000, "listing");
 	}
-	return [...found];
+	return e.localeStrip ? collapseLocales([...found], new RegExp(e.localeStrip)) : [...found];
+}
+
+/** One url per page: /ja-JP/x/1 and /x/1 are the same page. Keep the one without a language prefix, else the first seen. */
+export function collapseLocales(urls, re) {
+	const byKey = new Map();
+	for (const u of urls) {
+		const x = new URL(u);
+		const key = x.origin + x.pathname.replace(re, "/") + x.search;
+		if (!byKey.has(key) || u === key) byKey.set(key, u);
+	}
+	return [...byKey.values()];
 }
 
 /** ?page=N, fetched batchSize pages at once (no sleep inside the batch), pausing between batches until a batch brings nothing new. */
@@ -195,24 +207,33 @@ export default {
 		}
 		ctx.log(`${urls.length} prompt pages listed`);
 
-		// Probe: five pages must yield a prompt before we crawl the rest.
+		// Probe: up to 20 pages spread over the whole list, fetched together. Many galleries list works that have no prompt, so a few misses are normal;
+		// only when none of them yields a prompt do we stop with a diagnostic instead of crawling the rest blind.
 		if (!ctx.cursor.probed && !ctx.stopping()) {
-			const sample = [];
+			const n = Math.min(20, urls.length);
+			const picks = Array.from({ length: n }, (_, i) => urls[Math.floor((i * urls.length) / n)]);
+			const sample = await Promise.all(
+				picks.map(async (url) => {
+					const robots = await ctx.http.robots(url);
+					if (!robots.allowed) return { url, skipped: "robots.txt", found: false };
+					try {
+						const html = await ctx.http.getText(url);
+						const info = parseDetail(html, url, ctx.config.detail);
+						return { url, bytes: html.length, found: Boolean(info), info, has: { flight: html.includes("__next_f"), next_data: html.includes("__NEXT_DATA__"), ld: html.includes("ld+json") }, head: info ? undefined : html.replace(/\s+/g, " ").slice(0, 300) };
+					} catch (err) {
+						if (err.code === "BLOCKED") throw err;
+						return { url, found: false, error: err.message };
+					}
+				}),
+			);
 			let hits = 0;
-			for (const url of urls.slice(0, 5)) {
-				const robots = await ctx.http.robots(url);
-				if (!robots.allowed) continue;
-				const html = await ctx.http.getText(url);
-				const info = parseDetail(html, url, ctx.config.detail);
-				sample.push({ url, bytes: html.length, found: Boolean(info), has: { flight: html.includes("__next_f"), next_data: html.includes("__NEXT_DATA__"), ld: html.includes("ld+json") }, head: info ? undefined : html.replace(/\s+/g, " ").slice(0, 300) });
-				if (info) {
-					hits++;
-					await ctx.emitRecord(buildRecord(ctx.id, info));
-				}
-				await ctx.sleep(1000, "probe");
+			for (const r of sample) {
+				if (!r.info) continue;
+				hits++;
+				await ctx.emitRecord(buildRecord(ctx.id, r.info));
 			}
-			ctx.diagnostic({ probe: sample });
-			if (!hits && sample.length) throw new NeedsAdapterError("Pages were reachable but no prompt text could be extracted. See diagnostic.probe, then set config.detail (promptRegex or keys).", { probe: sample });
+			ctx.diagnostic({ probe: sample.map(({ info, ...r }) => r), probe_hits: `${hits}/${sample.length}` });
+			if (!hits && sample.length) throw new NeedsAdapterError(`None of ${sample.length} sample pages gave a prompt. Run: npm run harvest -- --inspect ${picks[0]}  then set config.detail (keys or promptRegex).`, { probe: sample.map(({ info, ...r }) => r) });
 			await ctx.setCursor({ probed: true });
 		}
 
@@ -220,7 +241,7 @@ export default {
 			urls,
 			async (url) => {
 				const robots = await ctx.http.robots(url);
-				if (!robots.allowed) return void (ctx.stats.robotsSkipped = (ctx.stats.robotsSkipped || 0) + 1);
+				if (!robots.allowed) return void (ctx.stats.robotsSkipped++);
 				const info = parseDetail(await ctx.http.getText(url), url, ctx.config.detail);
 				await ctx.emitRecord(info ? buildRecord(ctx.id, info) : null);
 			},

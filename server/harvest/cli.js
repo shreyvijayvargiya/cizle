@@ -31,6 +31,7 @@ function parseArgs(argv) {
 		else if (a === "--json") o.json = true;
 		else if (a === "--status") o.status = true;
 		else if (a === "--list") o.list = true;
+		else if (a === "--inspect") o.inspect = need(i++, a);
 		else if (a === "--help" || a === "-h") o.help = true;
 		else if (!a.startsWith("-")) o.sources.push(...a.split(",").filter(Boolean));
 		else throw new Error(`Unknown option ${a}. Try --help.`);
@@ -53,6 +54,7 @@ Usage: npm run harvest -- [options] [source ids]
       --fresh            delete the named sources' saved data and start them over
       --status           show the state of every source and exit
       --list             show the graph order and exit
+      --inspect URL      fetch one page and show where its prompt text is (for fixing a needs_adapter source)
       --graph FILE       use another graph file (default harvest/sources.graph.json)
       --json             print events as JSON lines
 
@@ -74,7 +76,7 @@ function printer(json) {
 			case "source_start":
 				return line(`${e.id}  start  ${e.name}${e.resume ? `  (resuming, ${e.have} records saved)` : ""}${e.expect ? `  expect ~${e.expect}` : ""}`);
 			case "progress":
-				return line(`${e.id}  ${e.done}/${e.total}  records ${e.records}  (+${e.added} new${e.failed ? `, ${e.failed} failed` : ""}${e.no_prompt ? `, ${e.no_prompt} without prompt` : ""})`);
+				return line(`${e.id}  ${e.done}/${e.total}  records ${e.records}  (+${e.added} new${e.failed ? `, ${e.failed} failed` : ""}${e.no_prompt ? `, ${e.no_prompt} without prompt` : ""}${e.duplicate ? `, ${e.duplicate} duplicate` : ""}${e.robots_skipped ? `, ${e.robots_skipped} blocked by robots.txt` : ""})`);
 			case "sleep":
 				return line(`${e.id}  sleeping ${secs(e.ms)}  (${e.reason === "source" ? "between sources" : e.reason === "batch" ? "between batches" : e.reason})`);
 			case "log":
@@ -99,6 +101,7 @@ async function main() {
 	const { runHarvest, snapshot } = await import("./engine.js");
 	const { loadGraph, walkOrder } = await import("./graph.js");
 
+	if (o.inspect) return (await import("./inspect.js")).inspectPage(o.inspect);
 	if (o.list) {
 		const g = await loadGraph(o.graphFile);
 		for (const id of walkOrder(g)) {

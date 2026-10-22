@@ -110,7 +110,7 @@ async function runHarvestOnce(options, onEvent) {
 			const meta = (await readJson(metaFile, {})) || {};
 			const started = Date.now();
 			const had = records.size;
-			const stats = { added: 0, noPrompt: 0, failed: 0, failedItems: [] };
+			const stats = { added: 0, noPrompt: 0, duplicate: 0, robotsSkipped: 0, failed: 0, failedItems: [] };
 			let limitHit = false;
 			let diagnostic = null;
 			let policy = meta.policy || {};
@@ -160,11 +160,12 @@ async function runHarvestOnce(options, onEvent) {
 					}
 					const added = await records.add(rec);
 					if (added) stats.added++;
+					else stats.duplicate++; // already stored, e.g. the same X post under another page
 					if (o.limit && records.size >= o.limit) limitHit = true;
 					return added;
 				},
 				progress({ done, total }) {
-					emit("progress", { id, done, total, records: records.size, added: stats.added, failed: stats.failed, no_prompt: stats.noPrompt });
+					emit("progress", { id, done, total, records: records.size, added: stats.added, failed: stats.failed, no_prompt: stats.noPrompt, duplicate: stats.duplicate, robots_skipped: stats.robotsSkipped });
 				},
 				sleep(ms, reason = "batch") {
 					emit("sleep", { id, ms, reason });
@@ -215,7 +216,7 @@ async function runHarvestOnce(options, onEvent) {
 				if (e instanceof NeedsAdapterError) diagnostic = { ...(diagnostic || {}), ...e.diagnostic };
 			}
 			if (stats.failedItems.length) await writeJsonAtomic(path.join(dir, "failed.json"), stats.failedItems).catch(() => {});
-			const summary = { status, records: records.size, added: stats.added, failed: stats.failed, no_prompt: stats.noPrompt, duration_s: Math.round((Date.now() - started) / 1000) };
+			const summary = { status, records: records.size, added: stats.added, failed: stats.failed, no_prompt: stats.noPrompt, duplicate: stats.duplicate, robots_skipped: stats.robotsSkipped, duration_s: Math.round((Date.now() - started) / 1000) };
 			await writeMeta({ status, finished_at: new Date().toISOString(), ...summary, error });
 			state.sources[id] = { ...state.sources[id], status, records: records.size, finished_at: new Date().toISOString(), error };
 			await saveState();
