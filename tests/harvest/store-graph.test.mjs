@@ -98,3 +98,15 @@ test("the generic mapper turns any dataset into records from a config alone", as
 	assert.equal(MAPPERS.generic("G99", { slug: "x", body: {} }, cfg), null, "no prompt, no record");
 	assert.equal(MAPPERS.generic("G99", { slug: "s1", body: { prompt: "A prompt without a post link." } }, cfg).id, "G99:s1");
 });
+
+test("json-dataset reads a JSON array, JSON lines or CSV (quotes, commas and newlines inside cells)", async () => {
+	const { parseItems } = await import("../../server/harvest/adapters/jsonDataset.js");
+	assert.deepEqual(parseItems('{"data":{"rows":[{"a":1}]}}', { path: "data.rows" }), [{ a: 1 }]);
+	assert.deepEqual(parseItems('{"a":1}\n{"a":2}\n', { format: "jsonl" }), [{ a: 1 }, { a: 2 }]);
+	const csv = 'id,prompt,tags\n1,"Make a video, then ""cut"" to logo\nsecond line","3d,svg"\n2,plain,x\n';
+	const rows = parseItems(csv, { format: "csv" });
+	assert.equal(rows.length, 2);
+	assert.equal(rows[0].prompt, 'Make a video, then "cut" to logo\nsecond line');
+	assert.equal(rows[0].tags, "3d,svg");
+	assert.equal(rows[1].id, "2");
+});
