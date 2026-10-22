@@ -85,3 +85,13 @@ npm run seed:gallery            # full text of premium prompts → Firestore "ga
 git add content/gallery.jsonl && git commit
 ```
 About one prompt in ten is a free sample (readable in full); the rest show the creator, a preview and the original links to everyone, and the full text only to subscribers.
+
+### Quality checks (run before publishing)
+`gallery:import` drops prompts that are too short, partial, symbol-only or near-duplicates, and moves the best 12% of the rest (picked separately among prompts with and without a video) to free; one-liners that have a video are free too. It needs two things only you can supply:
+```bash
+npm run gallery:media           # HEAD-checks every poster and mp4 from a machine that can reach the media hosts → content/media-status.json
+npm run gallery:import -- --untranslated todo.json   # lists non-English prompts that still need a translation
+# put translations in content/gallery-translations.json as { "<id>": { "title": "...", "text": "..." } }, then import again
+npm run gallery:import && npm run content
+```
+Dead videos are removed; a prompt with no working video and no working poster is dropped. Non-English prompts without a translation are hidden until translated.

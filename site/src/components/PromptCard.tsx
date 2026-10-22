@@ -5,7 +5,7 @@ import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
 import type { GalleryFilters, GalleryItem } from "@/lib/gallery";
 
-/** Poster from the creator's own post. Hidden if it fails to load, so a card never shows a broken image. */
+/** Poster from the creator's own post. If it fails to load the card shows a text tile instead (dead media is removed at import time by npm run gallery:media, not guessed at in the browser). */
 function Poster({ item }: { item: GalleryItem }) {
 	const [bad, setBad] = useState(false);
 	return (
@@ -16,13 +16,13 @@ function Poster({ item }: { item: GalleryItem }) {
 	);
 }
 
-export function PromptCard({ item, search }: { item: GalleryItem; search: GalleryFilters }) {
+export function PromptCard({ item, search, base = "/gallery" }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
 	return (
 		<article className="group relative flex h-full flex-col rounded-xl border border-border bg-surface p-3 transition-colors hover:border-foreground/25 hover:bg-accent/40">
 			<Poster item={item} />
 			<div className="mt-3 flex items-start justify-between gap-2">
 				<h3 className="text-sm font-semibold tracking-tight">
-					<Link to="/gallery" search={{ ...search, p: item.id }} resetScroll={false} className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-ring">
+					<Link to={base} search={{ ...search, p: item.id } as never} resetScroll={false} className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:ring-2 focus-visible:after:ring-ring">
 						{item.title}
 					</Link>
 				</h3>
@@ -41,6 +41,7 @@ export function PromptCard({ item, search }: { item: GalleryItem; search: Galler
 			<div className="mt-auto flex flex-wrap gap-1.5 pt-3">
 				{item.category ? <Badge tone="outline">{item.category}</Badge> : null}
 				{item.model ? <Badge tone="outline">{item.model}</Badge> : null}
+				{item.translatedFrom ? <Badge tone="outline">Translated</Badge> : null}
 			</div>
 		</article>
 	);

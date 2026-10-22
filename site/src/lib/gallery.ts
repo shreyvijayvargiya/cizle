@@ -17,6 +17,8 @@ export type GalleryItem = {
 	chars: number;
 	text?: string;
 	partial?: boolean;
+	translatedFrom?: string;
+	video: string | null;
 	postUrl: string | null;
 	sourceUrl: string | null;
 	poster: string | null;

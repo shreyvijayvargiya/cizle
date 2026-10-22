@@ -1,0 +1,2423 @@
+{
+ "generatedAt": "2026-10-22T17:40:11.932Z",
+ "read": 1663,
+ "unique": 1157,
+ "kept": 555,
+ "free": 126,
+ "reasons": {
+  "short one-liner without a video": 169,
+  "too short": 328,
+  "partial and short": 85,
+  "near-duplicate": 20
+ },
+ "dropped": [
+  {
+   "id": "x:2102934732203782464",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103038655178694832",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103073554581671954",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103134082267750805",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103257988895035448",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103299766473875778",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103400657856417829",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103431573752500632",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103448068423356656",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103467476210389075",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103479649728921896",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103663848846950750",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103716884512227772",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103742109664858156",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103742110747054506",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103751442393894989",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103944590491521507",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103988928621486492",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104033772949680192",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104063140371861770",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104108154506408141",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104114332430741714",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104130084743659728",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104179308101005594",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104249941136666741",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104276210809512003",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104352205176500542",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104388651287269620",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104451249269780900",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104468472344584518",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104481235028283883",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104649290668773568",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104688668405370949",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104719121783091362",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104792004978974928",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104801713840590917",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104837895773417649",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104881648886251740",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104952364365234301",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105012738174885957",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105013143596302685",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105048723768168898",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105116391439270222",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105245285916020905",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105271353993560372",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105374954195657142",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105656935622259061",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105662660779893062",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105991032571617500",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106434118640619627",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106440528435007643",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106458692669657175",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106467130963300736",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106477834873274533",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106732228181160324",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106789700807856416",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106793839193158103",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106855420237169107",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106971898391462150",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107036053949575311",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107088216071323995",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107184179947458567",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107504609207918962",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107568937764639088",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107794785188864070",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107841006909653042",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107892042320007630",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107951058584486055",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108025937212080350",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108230699224596746",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108301453907382690",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108314868189172216",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108403445304844291",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108510252404560359",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108511286795640926",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108512810774802657",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108544807333433543",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108716642540691517",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108825933608300653",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108936279081566609",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104728379798827135",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104807505297871023",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104961677963690124",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2105033204319277506",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2105346401878356252",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105414480910069765",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2105939128705802479",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106061225851568278",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2106201281199284735",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2106265463378350200",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2106270979932532873",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2106391068367597929",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2106734468715466818",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107019496078843957",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107520392302825921",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107547689819017555",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107568904075706454",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107737607908249613",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107741413769347341",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107790132061622720",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107809209593004331",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107985883949600983",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2107139305324122491",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102462889160286423",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102463234586685869",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102472633057206409",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102518598736675262",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102725361922625706",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102749298673004843",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102860811219927179",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103024522589098014",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103107359727829318",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103214871785427173",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103227891009872147",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103372534922059888",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103486728917110846",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103537378283684126",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103539067317072370",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103603040079196586",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103608284825661615",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103617085402407181",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103617322464301108",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103735653943128242",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103759350330544254",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103763542432505873",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103768331782349060",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103813886684389509",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103819139307749645",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103878940100350098",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103885113528635793",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103885710734540960",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103895246593458642",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103922812255871017",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103966434280014197",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104020177478394122",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104075537228644806",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104124855302168993",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104155161883234322",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104176976261271655",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104206465863131449",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104227261142692347",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104257989100355650",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104273407818809438",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104389736647495680",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104512280390254816",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104515756159623571",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104595346882175311",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102882622053535814",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103020274107224281",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103044654187081860",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103082459503923578",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103105938853114092",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103208157308944727",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103317768669921682",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103407536741519730",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103492984474096062",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103495629087642106",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103499771206156628",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103530789510283635",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103532793406149036",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103540288136315331",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103593633832157391",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103626582896091611",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103714595659772215",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103751290954379361",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103755997533839416",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103757499652342153",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103766565389054427",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103775701052649723",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103788564840386691",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103789882309234711",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103792451551113363",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103793821012345137",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103807826699129051",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103814603100856596",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103816821782544635",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103821018947276947",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103830083446415751",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103830851897221566",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103833991879053577",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103835848575746268",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103853898301939886",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103859812123750512",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103876499262800291",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103876982819954689",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103904436141842605",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103938636173742305",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103938972426834106",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103966021451465008",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103992442072813651",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2103998389058740521",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104018205580636267",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104046743751139812",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104059393222557760",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104081777119920413",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104093497561436573",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104094723887501736",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104102479927620029",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104103109358473410",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104115092124012980",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104119716533178533",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104140498344800659",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104154307071475858",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104159752095998343",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104180455813812667",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104197450307195332",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104198927549604161",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104199715076386902",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104206095313215591",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104207365008687553",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104211672370201053",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104214187522318512",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104216976801587629",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2104222017696469188",
+   "reason": "partial and short"
+  },
+  {
+   "id": "x:2102592355165782312",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2102787937482252537",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102897651008344202",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102903173161877996",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102973867656614053",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102995443818897906",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103053680945868989",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103101681806475414",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103111448352244175",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103118009535459784",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103122292343730437",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103144778481475686",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103148907228176511",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103152898708582551",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103181065976459574",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103200703598776559",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103212966703436195",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103225854599807308",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103247530259603851",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103258346690121886",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103272941832306746",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103358957050068999",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103387771180138551",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103400046922543147",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103401006281441493",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103401461837406275",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103407629880148436",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103411004902416787",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103411144899875264",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103418664854622583",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103420457110417532",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103425679618609629",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103437714695843891",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103449418460753990",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103483174957597035",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103490331815952637",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103492000733618685",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103500011581440008",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103502614134718609",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103514073476334026",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103527289619173471",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103536553930752011",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103540656182308943",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103542568361369810",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103565090721259981",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103565104243712107",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103569170075975986",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103603025579331584",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103605007396524440",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103628970000347627",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103652674336067876",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103703336780530003",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103708392930066575",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103737604277780553",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103746736980378066",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103763192971461057",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103772327146119508",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103796337041137833",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103801351993975279",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103804459986161719",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103811146411041046",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103837917538107563",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103845689713111079",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103849602826834228",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103857153308029058",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103486218323341663",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102466456491536674",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102486204419817954",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102493035393372363",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102501547062239317",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102715938671878156",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102773737129156730",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2102832558602072560",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102889901297426722",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2102894936316420109",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103086714772463953",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103245000989659422",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103256743023366343",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103441222375268605",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103496403544928454",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103547478482289121",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103578336018505763",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103631509773025717",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103641070299218145",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103641843963473981",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2103766223133585863",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103776779064471834",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103779700954779830",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103811849129234909",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2103896499738272041",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104055441517105570",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104159923886244176",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104189915693269112",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104200939095904322",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104204905523126560",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104212398303543512",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104213206629572779",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104219468079526187",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104403368752071059",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104406088862810533",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104407040135164032",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104408032792990102",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104409268351062188",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104410457263976899",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104410894167916709",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104413797876367664",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104416503164731646",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104418374218600719",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104419703997567302",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104421343429312968",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104424421641314396",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104428313544667245",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104429604815675791",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104434742959755463",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104436377546818041",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104441050211475528",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104448788790477239",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104452405144535314",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104453496363999462",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104458849524863062",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104459910247235966",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104463774862446760",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104467016719774112",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104467552281952473",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104468704490909880",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104471436039803295",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104472001838465236",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104474644279697754",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104484761238671402",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104485636690584000",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104487655757029501",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104489806713553012",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104493973339570288",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104498456626651380",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104506459530866869",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104509397535961220",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104509574409769436",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104510125298090331",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104516868182598079",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104518643723764131",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104519528873103773",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104522362402267138",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104522740695007363",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104525366224412962",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104525642121519401",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104525804604645802",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104532802486345950",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104535752373895249",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104539072106492193",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104539335249088582",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104543926644564036",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104554735382778328",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104557402154549263",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104558345118236704",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104560611095187772",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104665953883615408",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104803951296352610",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104820349838000492",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104827072283849181",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104832372164444162",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104843907594875185",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104850150749532431",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104859976112206265",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104872812674793697",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104880176580731165",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104893606679253047",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104895018683044262",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104903820639633895",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104923224614326394",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104934916505108662",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104939145252749710",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104939693355995311",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104940371038109764",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104953406708175097",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2104957026199900220",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104981908241486064",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2104999693113766152",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105028528198541622",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105034298483220849",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105049523139850561",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105051697525686340",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105064666904813711",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105075516156047624",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105077598934241383",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105077715510714439",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105086568155304269",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105090561023901698",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105095134354473053",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105100452232577419",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105100907952353560",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105102105702756414",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105102530049175928",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105102932114813383",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105105890936233985",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105136634492809280",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105143909311803524",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105145374541484257",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105152588991868936",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105158224307740811",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105160746363662816",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2105177028911837538",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105193450467389763",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105208251956830625",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106042539744862690",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106216524465729626",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106728230707159472",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2106780444163281084",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2106843639879987460",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107128920407502910",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107172334423650521",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107230816871055641",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107311661430493193",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107435499686154557",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107591732561097013",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107648310714442230",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107683152865173619",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107712528239218744",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107730352353452332",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107757882561208410",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107788313390416110",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107812780690596105",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107843676135100870",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2107848117584543896",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2107876637534568853",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108157503209197887",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108161031243759993",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108195714081738990",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108196827036054007",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108223014471106723",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108226554740289897",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108228989063991575",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108231764023861630",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108238386318180841",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108241523200676048",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108242769844310331",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108257115026649419",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108301527483838465",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108301605544047099",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108303873538683065",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108311732376453546",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108326054431707284",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108326197516198346",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108329031892713883",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108384651362394407",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108400811411996801",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108410208708169910",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108428917509911018",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108438685184401904",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108459952683811167",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108475056082850278",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108484778747920389",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108490153467478249",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108495368585371666",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108498649269567492",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108501256067285443",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108505251036774875",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108505330066092060",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108506248341856721",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108511993955065948",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108514670411907296",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108517404712325592",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108520350908916007",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108537908583919966",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108547893506478160",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108550192882503797",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108552389871444113",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108553430708990181",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108555077933822275",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108558677850435724",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108563710260170985",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108563779046813910",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108570435575222596",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108584669859955083",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108587180218327099",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108588869255827570",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108604020814233606",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108611423421043095",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108663466383016430",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108685334343221621",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108716885646639338",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108717646157922687",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108729269681520726",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108758475606229025",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108788464909218140",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108802612669891048",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108883842061013088",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108907357166313662",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108914859492483132",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108928100624896157",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108932159419339151",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108932593911816392",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2108937773742756207",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108944282379796747",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2108986964615840035",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109146914000457838",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109172836535566610",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109197651518636184",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109198771712303213",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109230205365858694",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109243092142571577",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109243587724755158",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2109247904351445151",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109297316242812936",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109313213678367157",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109373583445156338",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109523901105500260",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109606505666560338",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109620598704087055",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2109646277592175006",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109675464688083380",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109723440710066646",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109748109312172039",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109782159250608604",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109898484413542800",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2109989449673347271",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110046079983001783",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110078803297055212",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110087264604991730",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110121953952686261",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110166432151400762",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110216255474897247",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110274182046953661",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110292106329874666",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110317114418467251",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110317136086470729",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110331654522736697",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110340955677376851",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110354160986079462",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110400267783110897",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110421556031569949",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110476412213686723",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110478089478127834",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110613662599942496",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110620135245443294",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110705871755878728",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110708088680403204",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110712475167629442",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110724865711862155",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110728146664206570",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110792641277198383",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110835030964732074",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110845560995381514",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2110869349275935017",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2110995500786970636",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111067204925935905",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111081760369107300",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111085252592415232",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111099179171037233",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111121904388251714",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111129290464964764",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111129754254680272",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111133280854581722",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111135774544441654",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111155149003710638",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111211281814294908",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111215178532491265",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111272683375853662",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111398174548214218",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111405053604999576",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111408548249006439",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111436982283038922",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2111484789685735539",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111920496208204235",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2111959819301044536",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2112286414230695983",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2112309298768306299",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2112605599145832540",
+   "reason": "too short"
+  },
+  {
+   "id": "x:2112635371716841661",
+   "reason": "short one-liner without a video"
+  },
+  {
+   "id": "x:2105746669035733275",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104207707980869918",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103538744695693512",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103566030916239768",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103638831669076027",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103656229717328129",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103692944771313960",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103714680577638493",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103723183899852885",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103728953785496049",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103786742520184909",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103416909857190360",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103463886372696074",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103542756555768014",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103580532852589043",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103600308010041677",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103625902211088880",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2103708363074973906",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104524606841217044",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104525094571937922",
+   "reason": "near-duplicate"
+  }
+ ]
+}

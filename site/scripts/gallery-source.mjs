@@ -2,16 +2,19 @@
  * The prompt gallery: community prompts collected by the harvester (npm run harvest), merged by `npm run gallery:import` into
  * content/gallery.jsonl. Shared by build-content (public index), prerender (static HTML), seed-gallery (Firestore) and the dev server.
  *
- * Rights: these are creators' prompts. Every item keeps its credit and a link to the original. About one in ten is free to read in
- * full (a sample); the full text of the rest is kept out of every public file and lives in Firestore for subscribers.
+ * Rights: these are creators' prompts. Every item keeps its credit and a link to the original. The best ~12% are free to read in full
+ * (a sample); the full text of the rest is kept out of every public file and lives in Firestore for subscribers.
  */
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { SITE_DIR } from "./skills-source.mjs";
+import { LANG_NAME, assignTiers, capNearDuplicates, detectLang, junkReason, score } from "./gallery-quality.mjs";
 
 export const GALLERY_FILE = path.join(SITE_DIR, "content", "gallery.jsonl");
-export const FREE_EVERY = 10; // 1 in 10 prompts is a free sample
+export const TRANSLATIONS_FILE = path.join(SITE_DIR, "content", "gallery-translations.json"); // { "<entry id>": { title, text } }
+export const MEDIA_FILE = path.join(SITE_DIR, "content", "media-status.json"); // { "<url>": 200 | 404 | 0 ... } from npm run gallery:media
+export const REPORT_FILE = path.join(SITE_DIR, "content", "gallery-report.json");
 
 const clip = (s, n) => String(s ?? "").slice(0, n);
 const words = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
@@ -97,7 +100,64 @@ export function mergeRecords(records) {
 	return [...byId.values()].sort((a, b) => String(b.added || "").localeCompare(String(a.added || "")) || a.id.localeCompare(b.id));
 }
 
-export const isFree = (id) => parseInt(crypto.createHash("sha1").update(String(id)).digest("hex").slice(0, 6), 16) % FREE_EVERY === 0;
+/**
+ * The quality pass: translate or drop non-English prompts, remove dead media, drop junk and near-duplicates, score, pick the free samples.
+ * @returns {{ kept: object[], dropped: { id: string, reason: string }[], needTranslation: object[] }}
+ */
+export function curate(entries, { translations = {}, media = null } = {}) {
+	const dropped = [];
+	const needTranslation = [];
+	const out = [];
+	const dead = (u) => media && u && media[u] !== undefined && !(media[u] >= 200 && media[u] < 400);
+	for (const raw of entries) {
+		const e = { ...raw, lang: detectLang(raw.text) };
+		if (e.lang !== "en") {
+			const t = translations[e.id];
+			if (!t?.text) {
+				needTranslation.push({ id: e.id, lang: e.lang, title: e.title, text: e.text });
+				dropped.push({ id: e.id, reason: `not English (${LANG_NAME[e.lang]}), no translation yet` });
+				continue;
+			}
+			e.translatedFrom = e.lang;
+			e.title = clip(words(t.title) || titleFrom({ prompt: { text: t.text } }), 90);
+			e.text = String(t.text).trim();
+			e.lang = "en";
+		}
+		if (detectLang(e.title) !== "en") e.title = titleFrom({ prompt: { text: e.text } }); // a foreign title from one source, English text from another
+		if (dead(e.video)) e.video = null;
+		if (dead(e.poster)) e.poster = null;
+		if (media && !e.video && !e.poster) {
+			dropped.push({ id: e.id, reason: "no working video or poster" });
+			continue;
+		}
+		const junk = junkReason(e);
+		if (junk) {
+			dropped.push({ id: e.id, reason: junk });
+			continue;
+		}
+		e.score = score(e);
+		out.push(e);
+	}
+	const kept = capNearDuplicates(out);
+	for (const e of out) if (e.dropped) dropped.push({ id: e.id, reason: e.dropped });
+	assignTiers(kept);
+	kept.sort((a, b) => String(b.added || "").localeCompare(String(a.added || "")) || a.id.localeCompare(b.id));
+	return { kept, dropped, needTranslation };
+}
+
+/** Status of one media url: the HTTP status, 415 for a 2xx that is not media (an HTML error page), 0 for DNS, timeout or reset. */
+export async function checkUrl(url, fetchFn = fetch) {
+	try {
+		const res = await fetchFn(url, { headers: { range: "bytes=0-1023", "user-agent": "Mozilla/5.0 (compatible; cizle-media-check)" }, signal: AbortSignal.timeout(20_000), redirect: "follow" });
+		await res.body?.cancel().catch(() => {});
+		const type = res.headers.get("content-type") || "";
+		if (res.status >= 200 && res.status < 400 && !/^(image|video)\//.test(type) && !/octet-stream/.test(type)) return 415; // an HTML error page
+		return res.status;
+	} catch {
+		return 0; // DNS, timeout, reset
+	}
+}
+
 
 export function loadGallery(file = GALLERY_FILE) {
 	if (!fs.existsSync(file)) return [];
@@ -106,7 +166,7 @@ export function loadGallery(file = GALLERY_FILE) {
 		.split("\n")
 		.filter(Boolean)
 		.map((l) => JSON.parse(l))
-		.map((e) => ({ ...e, gid: galleryId(e.id), tier: isFree(e.id) ? "free" : "premium" }));
+		.map((e) => ({ ...e, gid: galleryId(e.id), tier: e.tier === "free" ? "free" : "premium" }));
 }
 
 /** What the public gallery.json may carry. Premium entries get a preview only; free samples carry the whole prompt. */
@@ -125,9 +185,11 @@ export function publicItem(e) {
 		chars: e.text.length,
 		text: free ? e.text : undefined,
 		partial: e.partial || undefined,
+		translatedFrom: e.translatedFrom ? LANG_NAME[e.translatedFrom] || e.translatedFrom : undefined,
 		postUrl: e.postUrl,
 		sourceUrl: e.sourceUrl,
 		poster: e.poster,
+		video: e.video || null,
 		hasVideo: Boolean(e.video || e.postUrl),
 		added: e.added,
 	};

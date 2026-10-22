@@ -15,7 +15,7 @@ import type { Filters } from "@/lib/data";
 import type { GalleryFilters } from "@/lib/gallery";
 
 const str = (v: unknown) => (typeof v === "string" && v ? v : undefined);
-const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort) });
+const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p) });
 
 const root = createRootRoute({ component: Layout, notFoundComponent: NotFound });
 function r<const P extends string>(path: P, component: () => React.ReactNode) {

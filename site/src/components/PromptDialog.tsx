@@ -17,16 +17,17 @@ import { useHead } from "@/lib/head";
  * One gallery prompt over the list (the URL is /gallery?p=<id>). Free samples show in full. For the rest everyone sees the credit,
  * the links to the original post and a preview; the full text and copy button belong to subscribers.
  */
-export function PromptDialog({ item, search }: { item: GalleryItem; search: GalleryFilters }) {
+export function PromptDialog({ item, search, base = "/gallery" }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
 	const navigate = useNavigate();
 	const { isPro, user } = useAuth();
 	const full = usePromptText(item, isPro);
 	const text = item.text ?? full.data;
-	const close = () => navigate({ to: "/gallery", search: { ...search, p: undefined }, resetScroll: false });
+	const close = () => navigate({ to: base, search: { ...search, p: undefined } as never, resetScroll: false });
+	const [videoBad, setVideoBad] = useState(false);
 	const [posterBad, setPosterBad] = useState(false);
 	const locked = !text && !isPro;
 
-	useHead({ title: `${item.title} | cizle prompt gallery`, description: item.preview.slice(0, 180), path: "/gallery", noindex: true });
+	useHead({ title: `${item.title} | cizle prompt gallery`, description: item.preview.slice(0, 180), path: base, noindex: true });
 
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
@@ -66,14 +67,22 @@ export function PromptDialog({ item, search }: { item: GalleryItem; search: Gall
 							{item.tier === "free" ? <Badge tone="success">Free sample</Badge> : <Badge tone="warning"><Icon icon={LockIcon} size={11} /> Pro</Badge>}
 							{item.category ? <Badge tone="outline">{item.category}</Badge> : null}
 							{item.model ? <Badge tone="outline">{item.model}</Badge> : null}
+							{item.translatedFrom ? <Badge tone="outline">Translated from {item.translatedFrom}</Badge> : null}
 						</div>
 
-						{item.poster && !posterBad ? <img src={item.poster} alt="" referrerPolicy="no-referrer" onError={() => setPosterBad(true)} className="mt-4 max-h-72 w-full rounded-lg border border-border object-cover" /> : null}
+						{item.video && !videoBad ? (
+							<video key={item.video} controls playsInline preload="metadata" poster={item.poster || undefined} onError={() => setVideoBad(true)} className="mt-4 max-h-[52dvh] w-full rounded-lg border border-border bg-black">
+								<source src={item.video} type="video/mp4" onError={() => setVideoBad(true)} />
+							</video>
+						) : item.poster && !posterBad ? (
+							<img src={item.poster} alt="" referrerPolicy="no-referrer" onError={() => setPosterBad(true)} className="mt-4 max-h-72 w-full rounded-lg border border-border object-cover" />
+						) : null}
+						{item.video && videoBad ? <p className="mt-2 text-xs text-muted-foreground">The video did not load here. Use the link to the original post to watch it.</p> : null}
 
 						<div className="mt-4 flex flex-wrap gap-2">
 							{item.postUrl ? (
 								<Button variant="outline" size="sm" asChild>
-									<a href={item.postUrl} target="_blank" rel="noopener noreferrer"><Icon icon={LinkSquare02Icon} size={14} /> Original post{item.hasVideo ? " and video" : ""}</a>
+									<a href={item.postUrl} target="_blank" rel="noopener noreferrer"><Icon icon={LinkSquare02Icon} size={14} /> {item.video ? "Original post" : item.hasVideo ? "Watch the original post and video" : "Original post"}</a>
 								</Button>
 							) : null}
 							{item.sourceUrl ? (

@@ -80,7 +80,7 @@ export function usePremiumBody(slug: string | undefined, isPro: boolean) {
 	});
 }
 
-export type Filters = { q?: string; category?: string; platform?: string; format?: string; aspect?: string; access?: string; sort?: string };
+export type Filters = { q?: string; category?: string; platform?: string; format?: string; aspect?: string; access?: string; sort?: string; kind?: string; p?: string };
 
 export function useFuse(skills: SkillMeta[] | undefined) {
 	return useMemo(() => new Fuse(skills || [], { keys: [{ name: "name", weight: 3 }, { name: "summary", weight: 1.5 }, { name: "tags", weight: 1.5 }, { name: "category", weight: 1 }, { name: "platform", weight: 1 }, { name: "scenes", weight: 0.7 }], threshold: 0.34, ignoreLocation: true, minMatchCharLength: 2 }), [skills]);

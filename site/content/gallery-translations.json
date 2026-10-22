@@ -1,0 +1,450 @@
+{
+ "x:2103038655178694832": {
+  "title": "Interactive Three.js boat scene through Japanese nature",
+  "text": "Create an interactive boat scene passing through the beauty of Japanese nature using Three.js, with dynamic weather, realistic water reflections, architectural details and 3D characters"
+ },
+ "x:2103145567945986461": {
+  "title": "Yohaku: 36s vertical three.js stained-glass cathedral film",
+  "text": "Please make a short vertical film in three.js: 1080×1920, 30 frames per second, about 36 seconds.\n\n【Title】\nYohaku (Space to Breathe)\n\n【The experience to convey】\nA film that makes the viewer feel the sense of losing time while chasing efficiency, and the sense of life being filled with rich light the moment you gain some breathing room, without showing any person at all. The aim is for the viewer to catch their breath at the stained-glass light that finally spreads across the whole floor.\n\n【Setting】\n・The interior of a dim stone cathedral. On the front wall there is a single pointed-arch window, 15 m high and 10 m wide\n・Strong light comes in from outside the window at a 45-degree angle, casting the shape of the window onto the stone floor\n・The window holds stained glass with the Virgin Mary in the centre, two winged angels on either side, and a rose window at the top. The design is original, not imitating any existing work, and has a left-right symmetrical composition\n\n【Timeline】\n0–3s: The light coming through the window is still white, without colour. A soft white shape of light on the floor\n3–11s: Grey cubes engraved with words such as \"Busy\", \"Efficiency\", \"Urgent\" and \"Deadline\" fly in one after another from the front of the room and fill the window. The pace of arrival keeps accelerating, and the more the window is filled, the darker the room becomes\n11–14s: The window is completely blocked; darkness and silence\n14–19s: A single \"Busy\" block comes loose from the window, falls, and vanishes into particles of light. A streak of vividly coloured light pours in through the opened hole\n19–26s: Centred on the first hole, the blocks come loose in a chain reaction. With every new hole, more pillars of colourful light appear, and the hidden stained glass gradually reveals itself\n26–33s: All the blocks disappear, and the camera passes through the pillars of light, rises, and looks down on the floor from directly above. Across the whole floor, the stained glass of the Virgin Mary and the angels is projected as brilliantly coloured light\n33–36s: The whole screen is enveloped in dazzling light, a final line of text appears, and the film ends quietly\n\n【Words (in Mincho typeface, appearing and fading modestly)】\n・\"Every day, faster.\"\n・\"More, more efficiently.\"\n・\"Before I knew it, the light had stopped coming in.\"\n・\"Let go of just one.\"\n・\"Light comes in through the empty spaces.\"\n・\"That light was richer than before.\"\n・Finally, large: \"Richness dwells in the space to breathe\"\n\n【Light and texture】\n・Each pillar of light takes on the colour of that spot in the stained glass, and dust in the air sparkles\n・The projection on the floor accurately reflects which holes in the window are open (where a block remains, there is shadow)\n・The blocks are inorganic matte grey. The words are engraved in white\n・The first half is cold and achromatic; the second half is jewel-like red, blue and gold. This colour contrast tells the story of having become richer\n\n【Technical conditions】\n・Generate the stained-glass pattern as an image, and compute the floor light, the pillars of light and the window display all from that same pattern so that they match\n・Advance time precisely 1/30 of a second at a time, render out frame by frame, and produce an MP4\n\n【Finishing】\nRender and check each scene for real, and fix things before handing it over: whether the stained-glass pattern on the floor can be read as the Virgin Mary and angels, whether the words are legible, and whether any movement is abrupt."
+ },
+ "x:2103424962350776726": {
+  "title": "15-second motion designer showreel for a resume",
+  "text": "Create a dynamic 15-second motion graphics video that shows what a great motion designer you are. Something like a showreel for a resume. Give it everything you've got."
+ },
+ "x:2103452241848160705": {
+  "title": "30s typing game commercial with Remotion and three.js",
+  "text": "① Using remotion + three.js, I want to make a 30-second commercial-style video, so please come up with a structure. 〇〇 (it's best to write the image you want to make! This time I roughly instructed: \"I want it to convey that this is a typing game that lets you practice enjoyably, rather than a boring typing game where you just type\")\n\n② I'd like you to research the technology in depth and find out what can be made and which skills might be useful. I'd also like you to reconsider the structure and think it through in detail.\n\n③ Based on what you've worked out, actually create the video."
+ },
+ "x:2103679243196719199": {
+  "title": "15s 2D motion graphics celebrating the shishi-odoshi",
+  "text": "Create a dynamic 15-second motion graphics video that tells the world how wonderful the shishi-odoshi (Japanese bamboo deer scarer) is. Give it everything you've got, as if you were also showing what a great motion designer you are.\nExpression: do not use 3D. It should be 2D motion graphics shown through text, shapes, lines and colour fields. Scenes should switch at a good tempo, and the transitions themselves should feel satisfying. Make the moment of the \"clack\" sound the climax of the video."
+ },
+ "x:2103717347790065690": {
+  "title": "Cheese Camera concept animation with sound and music",
+  "text": "Help me make an animation that portrays the concept and usage scenarios of Cheese Camera, and that moves our target users (boyfriends taking photos of their girlfriends, getting better-looking pictures). Include sound effects and music. You may use any tools and techniques you think are suitable to achieve the best, most stunning result. Do not use existing skills, and do not refer to videos or copy made before."
+ },
+ "x:2103757767727255661": {
+  "title": "Rain Station: 30s 2D animatic in custom Python and ffmpeg",
+  "text": "Help me make a 30-second 2D animation storyboard-preview short film, \"Rain Station\", at benchmark-level quality. Do not install HyperFrames/Remotion; write all the code yourself (Python + ffmpeg).\n\nStory (24fps, 2.39:1, 4K): An elevated station platform on a rainy night. She wears a beige trench coat and holds a transparent umbrella, standing on the near platform; across the way, he stands under a street lamp, wearing a long dark-grey coat and a scarf.\n1. 0–6.4s Close-up of raindrops on the transparent umbrella → pull back, with focus shifting to reveal him on the opposite side (over-the-shoulder shot)\n2. 6.4–9.4s Medium close-up of him: lowers his head → raises it and looks to the left of frame\n3. 9.4–12.4s Front close-up of her: blinks → recognises him; a train whistle sounds in the distance\n4. 12.4–17s Wide shot: the train's headlights arrive first, then a 5-car train passes; he is still there in the gap of the first carriage, while the second is already empty\n5. 17–18.8s Close-up of her with tears in her eyes, bands of light from the train windows sweeping across her face, her hair blown by the wind\n6. 18.8–22.4s The tail lights recede into the distance and the opposite platform is empty; his lamp flickers a few times and then goes out\n7. 22.4–28.6s Her back view, with focus pulling from the empty platform back to her; footsteps behind her, a black umbrella is held over her head, and she turns to look at the camera; a male voice says \"Long time no see.\", with subtitles\n8. 28.6–30s Black screen with the title \"Rain Station / RAIN STATION\"\n\nMethod:\n- Artwork: use GPT Image 2.5 to draw the wide background, him, her, and the train (lead car / middle car / tail car). Always use a pure green #00FF00 background for characters and do the keying yourself (asking for a transparent background with a reference image gives a fake checkerboard). Keep all the poses of one character in the same session, editing continuously with the base image as reference; when changing pose, composite only the changed region.\n- Image quality: upscale all artwork 4x with Real-ESRGAN x4plus anime 6B (the safetensors version on HF, writing the RRDBNet yourself, running on MPS); use Depth Anything V2 to estimate depth for the wide background and do per-pixel parallax.\n- Rendering: write your own 2.5D compositor. Place each layer at its real depth and move a pinhole camera with a real focal length; do circular bokeh, focus pulls, 3D rain streaks, train motion blur, volumetric light, bloom and film halation, fine grain, and colour grading. Use mesh warping on the characters for breathing, wind-blown hair strands and umbrella shake, and switch key poses on Japanese-style \"one pose per two frames\" timing. Supersample at 4K, cache every frame to disk, and run in parallel in 3 processes split by time range (16GB RAM).\n- Sound: Mixkit real sound effects (rain, rain on the umbrella, train, whistle, footsteps); write the score according to the story beats and render it with the Steinway piano and string samples that come with Logic/GarageBand; the dialogue uses a Kokoro Chinese male voice; set sound distance per shot, with loudness at -16 LUFS.\n- At every step, render preview frames and stitch them into a contact sheet to self-check, and fix problems before producing the final. Deliver a 4K master and a 1080p shareable version."
+ },
+ "x:2104044910769016888": {
+  "title": "Beginner-friendly Git explainer video with Chinese narration",
+  "text": "Help me make a video with JS. The topic is: What is Git\nExplain it in a way that is accessible yet insightful, so that someone with zero computer background can understand it, and also introduce the meaning of some commonly used commands, etc.\nIt needs sound, narrated in Chinese\nYou can use any tools or install tools, and you can search online"
+ },
+ "x:2104122410027110674": {
+  "title": "Fast, punchy motion graphics showreel from supplied images",
+  "text": "Is it also possible to give you images and have you make a motion graphics showreel?\n\nThe concept is \"showcasing works\". The taste is about momentum.\nFast cuts, strong colours, with screen shakes and flashes."
+ },
+ "x:2104462072344182908": {
+  "title": "Landscape JS Canvas video with Web Audio music and SFX",
+  "text": "Extract the content from the post and make a landscape video with JS, including background music and sound effects. Draw all visuals with JS on a Canvas, and synthesise the music and sound effects in real time with the browser's Web Audio, without using any image or audio assets."
+ },
+ "x:2104757097850421448": {
+  "title": "Last-train platform horror short with ElevenLabs v4 voices",
+  "text": "This time I tried ElevenLabs v4: a short horror set on a platform at the last train\n\nThe voices: generated the two-person exchange in one go with v4\nThe visuals: just 9 still images given depth and moved; no video generation AI\n\nThe first voice was not scary at all, so\n→ kept the lines as they were, and inserted acting directions in English mid-line, such as [whispering] and [laughs softly]\n→ stability 0.5 → 0.3\n→ for the woman's voice, compared three and chose a low, breathy one\nThe woman stays in a low voice to the end, and her face is never shown, only her back and lips\n\nSubtitles are in Mincho typeface: the woman's are vertical and the man's are horizontal\nThe woman's characters appear one at a time at a whispering pace, and the man's characters shake more the louder he shouts\n\nTools used\n・Claude Code's Opus 5.5: planning, direction, code for motion and subtitles, checking the finish\n・ElevenLabs v4: the two-person voice exchange, and ambient sound\n・Codex image generation: the 9 still images\n・Three.js: adding depth to the stills and moving the camera\n・Shippori Mincho B1: subtitle typeface\n・Playwright: exporting frame by frame in the browser\n・ffmpeg: exporting the video"
+ },
+ "x:2104782293558583635": {
+  "title": "His Candied Hawthorn: paper-puppet stroll animation with Opus 5.5",
+  "text": "A little animation made with Claude Opus 5.5! The story is called \"His Candied Hawthorn\" ⬇️\n\nWhen I was in grad school there was a teacher who was extremely strict. He showed no mercy when marking assignments and often left us feeling humiliated in class. I also secretly thought his view of translation was too fixated on \"fidelity\", so I never really liked him, haha.\n\nThen one day, after a meal, as I walked out of the canteen and looked up, there he was walking right in front of us: tall, with thin hair, carrying a backpack, and actually holding up a stick of candied hawthorn! Eating as he walked, delighted beyond words 😂\n\nMy classmates and I decided on the spot to secretly follow him, holding in our laughter all the way until we were shaking. I still remember this scene, and it's incredibly endearing.\n\nI turned that scene into a little animation, using the \"strolling paper puppet\" style from last time ↓"
+ },
+ "x:2105180285520486816": {
+  "title": "3-minute solar system and Milky Way science explainer video",
+  "text": "Help me generate a video of about 3 minutes explaining the major planets of the solar system. Make it a popular-science explainer that even high school students can understand, and after explaining the solar system, go on to explain the Milky Way. The visuals should show the vastness of the universe in a cool way, with Chinese and English subtitles."
+ },
+ "x:2105675303670477264": {
+  "title": "\"The Future Is Here\" video animation with sound and music",
+  "text": "Help me make a video animation. The theme is: \"The Future Is Here\", including sound effects and music. You may use any tools and techniques you think are suitable, and if needed you can also go to this website https://t.co/rG1XlnIVU5"
+ },
+ "x:2105933530190827805": {
+  "title": "New feature release motion graphics: audio test in admin panel",
+  "text": "I want to make something like an image video for a new feature release. Can you make motion graphics and the like?\nFor reference, something like this. (paste the X link to a reference of the animated-UI style often seen in product launches)\nThe update is that you can now check voice tests from the admin panel (paste a screenshot of the admin panel)"
+ },
+ "x:2106208175792050247": {
+  "title": "Storyboard-first Remotion explainer in Kurzgesagt x Pixar style",
+  "text": "Give it a script and a \"director's brief\" (style reference: Kurzgesagt × Pixar opening). It first produces a plan, and I confirm before it starts. It first writes STORYBOARD.md, spelling out the time, visuals, text and transition for each scene. Build it scene by scene with Remotion. Also, generate the voice locally with Microsoft TTS. Free."
+ },
+ "x:2106958663525314769": {
+  "title": "Gmail: 5 features that speed up work, made from SKILL.md",
+  "text": "Make \"5 Gmail features that make work faster\" following SKILL.md. Structure the script into 5 items, verify how each works in the official help, draw the images with code, and switch scenes to the second to match the slow audio"
+ },
+ "x:2107316487715487818": {
+  "title": "Top-5 short video made following SKILL.md",
+  "text": "\"Make a top-5 short following SKILL.md. Structure the script into 5 items and headings, and verify the facts in the official documentation. Draw the image for each item with code, and switch scenes to the second to match the length of the slow audio.\""
+ },
+ "x:2107715000227831964": {
+  "title": "Typography-and-code psychology explainer in NextCore style",
+  "text": "Make a psychology explainer video created only with typography and code, as a homage to cool overseas YouTube channels like NextCore. Do not use image-generation AI or video-generation AI; limit it to visuals that can be expressed entirely in code (HTML/CSS/JS, etc.). Structure it so that it keeps progressing while switching to a different visual style every few seconds."
+ },
+ "x:2108152460523311469": {
+  "title": "2-minute AI history motion video with HyperFrames and Three.js",
+  "text": "Create a 2-minute motion video on the topic of the history of AI. Use HyperFrames for the motion, Three.js for the 3D shots, and even the typing sounds are synthesised in code. Every frame is rendered by code, without using any video generation model."
+ },
+ "x:2108480534254944719": {
+  "title": "Temple of Heaven Hall of Prayer drawn in Three.js",
+  "text": "I used Claude Opus 5.5 to write code that makes the Hall of Prayer for Good Harvests at the Temple of Heaven get \"drawn\" in the browser 🏯\n\nFirst a pencil line drawing: the platform, 28 pillars, dougong brackets and the triple eaves, built stroke by stroke\nThen coloured in the way one paints: vermilion, decorative painting, blue tiles, and finally touches of gold\n\nNo image or video models were used; it is all rendered in real time with Three.js, and the music is a guzheng synthesised in code."
+ },
+ "x:2105976102074437835": {
+  "title": "15s Remotion business video with animated figures and sales chart",
+  "text": "I made a video with Claude Code's Opus 5.5 and Remotion 🎬\n\nIn a 15-second video, text, achievement numbers and a sales graph are animated.\nI handed over the structure and motion instructions and exported it to MP4 💡\n\nAttached is the video I made.\n* The company and figures are fictional.\n\n#ClaudeCode #Opus55 #Remotion"
+ },
+ "x:2106201281199284735": {
+  "title": "Pigeon festival opening with Suno song, Remotion and Three.js",
+  "text": "Opus5.5 made it for me! No video generation! No AE! All code. A Suno song → Claude automatically times the lyrics one character at a time → made 3D with Remotion + Three.js 🕊\nPigeon-san, I made an opening for the Pigeon Festival! The font is uncool-cute, right? lol @hatolaborvol2"
+ },
+ "x:2107425308773412996": {
+  "title": "Cardilife 1.3 release promo video built with Remotion",
+  "text": "We have released Cardilife 1.3.\nWe also made an introduction video (56 seconds).\n\nThe video was made with Claude Code (Opus 5.5 and Fable 5.1). No editing software was used.\n\nTech stack\n・Remotion 4 (React 19 / TypeScript): everything. 1920×1080, 30fps\n・three.js (React Three Fiber / @remotion/three): the 3D at the opening\n・Python (standard library only): music synthesis\n\nThe Japanese and English versions are exported from the same code, switched with props.\n\nhttps://apps.apple.com/jp/app/cardilife/id6802896176\n\n#ClaudeCode #Remotion #threejs"
+ },
+ "x:2106532575712022677": {
+  "title": "Keyframe motion design reel",
+  "text": "Create a 15-second motion graphics video that shows what an outstanding motion designer you are, like a portfolio on your resume. Use whatever tools or techniques you think will produce the best result. You have complete creative freedom; prioritise excellent visual design, bold art direction, striking composition and powerful motion, and make every second count. Give it everything you've got."
+ },
+ "x:2102634404774629665": {
+  "title": "Event management website reel in Remotion with 120 BPM music",
+  "text": "I put together this reel for my event management website with Opus 5.5 \n\nEverything is code: React + TypeScript with Remotion, and the music synthesised in Python at 120 BPM, with every cut synced to the beat. \nNo editor. No stock.\n\nDo you organise events? Come in here 👉 https://planningmanager.app"
+ },
+ "x:2103497319899693327": {
+  "title": "Shin Majin-style PV made with Claude Code and HyperFrames",
+  "text": "I'm the guy who tries whatever is trending at least once.\n\nApparently making motion graphics with Claude Code (Opus 5.5) is fun, so I just asked it to \"make a PV in Shin Majin style\" and this came out.\n\nZero video generation AI.\n・Visuals: drawn frame by frame with HTML + code (HyperFrames)\n・BGM: generated with Gemini's Lyria\n・Sound effects: analyses the beats and syncs sounds to the moments of landings and stamps\n\nAll I did was install a skill and reply \"leave it to you\".\nAnd the crazy part is that Claude itself can't hear sound, yet it analyses the waveform numerically and syncs the sound effects.\n\nWhat even is this... So many revolutions happening every day that my head is pounding"
+ },
+ "x:2103759350330544254": {
+  "title": "M3E Canvas promo video with Remotion and three.js",
+  "text": "Claude Opus 5.5 is amazing...!\nI made a video of M3E Canvas with Remotion × three.js 👇️"
+ },
+ "x:2103878940100350098": {
+  "title": "Fictional household budget app video with HyperFrames and Three.js",
+  "text": "I made a video of a fictional household budget service with Claude Opus 5.5 + HyperFrames + Gemini Flash 3.8 + Three js, and it's pretty good"
+ },
+ "x:2103966434280014197": {
+  "title": "Opus 5.5 and Remotion combo video from a single prompt",
+  "text": "Like everyone, I tried the Opus 5.5 and Remotion combo, here is the result in one prompt!"
+ },
+ "x:2104163377560088672": {
+  "title": "Reproducing the viral Opus 5.5 motion graphics prompt",
+  "text": "I reproduced the much-talked-about Opus 5.5 motion graphics using the original prompt as is.\n\nClaude Code + official Remotion plugin, effort set to xhigh.\nOne prompt, with a single continue after an API disconnect midway.\nThinking about 23 minutes, rendering about 90 seconds. The BGM was also generated in code, without samples."
+ },
+ "x:2103057174855634965": {
+  "title": "Bubble-game (Crazy Arcade style) clone built from one prompt",
+  "text": "Is Opus 5.5 about to take off? One prompt recreated a Bomberman-style Crazy Arcade for me in one go! A real childhood classic 💣\n\nI think both the game mechanics and the game aesthetics are good enough to be listed on 7k7k, and the key thing is that in my first test I actually lost to the AI NPC 🤣\n\nFolks who want to play, tell me in the comments"
+ },
+ "x:2103751290954379361": {
+  "title": "Car-moving puzzle game generated by Claude Opus 5.5",
+  "text": "Completely floored by the game generated by Claude Opus 5.5.... It used only 19% of the Pro plan's 5-hour limit, and 1h45m of continuous running produced this level of completeness..... Floored.....\nGame link: https://move-car-kappa.vercel.app/"
+ },
+ "x:2103821018947276947": {
+  "title": "Web 3D projects built with GPT 6 Astra and Opus 5.5",
+  "text": "Lately I have made a bunch of web 3D projects with GPT 6 Astra and Opus 5.5: games, interiors, FX, cultural tourism, and just-for-fun ones, hh\n\nI have put all the workflows and prompts for these projects into an online workplace, and will keep updating it, so interested friends can bookmark it hh"
+ },
+ "x:2104114814536843325": {
+  "title": "Opus 5.5 pixel-art 3D renderer intro video for Binance",
+  "text": "Taking advantage of some free time today, I looked back at and analysed the whole video\n\nOpus 5.5, with its aesthetic sense, is indeed top-notch @claudeai \n\n3D renderer in pixel style\n\nThis rendering is indeed very strong; logical orchestration ability and aesthetic literacy really are linked\n\nThe transitions, sound effects and uplifting bgm of this intro could really be taken and used by @binancezh \n\nThe pixel character also has a very @cz_binance feel\n\n#binance #claude"
+ },
+ "x:2104159752095998343": {
+  "title": "Tokyo Tower 3D model video made by Claude Opus 5.5 in 5 minutes",
+  "text": "* Designers' jobs are gone.\n\nI had Claude Opus 5.5 make a Tokyo Tower video with a 3D model, and it popped out this quality in 5 minutes\n\nMultiple projects such as PR videos and YouTube video production can all be handled with this alone.\n\nThe specific method is explained in the article ↓"
+ },
+ "x:2104193522715029657": {
+  "title": "Anime robot combining sequence",
+  "text": "Could it be possible to make a scene in anime-style 3D CG where three vehicles, like in a robot anime, transform and combine into a robot?"
+ },
+ "x:2103532681774424245": {
+  "title": "Lidlezz app promo",
+  "text": "I wonder what a good motion graphics designer you are. To prove it to me, I want a motion graphics video from you that will last 15 seconds. This video will promote https://t.co/TdKZEIYaxO and will be shown to 10,000 people on X. Do your best."
+ },
+ "x:2103119227192225926": {
+  "title": "15-second paper-collage explainer: What is Claude Code?",
+  "text": "Make an animated video using only JavaScript.\nThe theme is \"What is Claude Code?\". 15 seconds, 16:9, hand-drawn paper collage style, with Japanese narration.\n\nI leave everything to you: script, assets, animation and structure.\nImages with gpt-image-2.5, voice with Gemini TTS"
+ },
+ "x:2103419813263815008": {
+  "title": "30-second website promo video with soundtrack",
+  "text": "Make a 30-second promo video for the website https://t.co/MpUyPSxZVk, including the soundtrack.\n\nYou can read the code and assets on the current Mac mini, and you can also use the browser to visit https://t.co/fOQQgAhran. Find the brand identity yourself from the code and the real website"
+ },
+ "x:2103431573752500632": {
+  "title": "15-second motion graphics product showreel",
+  "text": "Create a dynamic 15-second motion graphics video introducing this product. Pour in all the skill you have, so that it proves your high level of technical ability, like a portfolio showreel."
+ },
+ "x:2103586082336166351": {
+  "title": "Dribbble-style morphing UI shape loop video, 120 BPM",
+  "text": "<inputs>\nAsk me for these three things: 8 to 12 UI components the shape transforms into (e.g. button, loading indicator, music player, volume slider, on/off switch, tabs, chart, search box opened with ⌘K, a momentary notification), whether the colours should be pure black and white or black and white plus one accent colour, and a royalty-free track at around 120 BPM (120 beats per minute) (e.g. Mixkit, free for commercial use).\n</inputs>\n\n<direction>\nPolished UI motion at the level of designer portfolio site \"Dribbble\". There is only one shape, and you must never cut between scenes. Every state is expressed by that same single shape changing form while changing its size, corner radius and colour, and the contents are swapped through a short blur. A cursor causes every change with real clicks and drags. The background is a warm, light grey, the components are white and black, the on-screen text is in Japanese, with Noto Sans JP for Japanese text and Geist (one typeface) for alphanumerics and symbols. All motion must be natural, spring-like motion, with overshoot (bounce-back) kept to the very slightest. The camera zooms so that each state fills the screen. Make the last frame identical to the first frame so that it loops.\nForbidden: bouncy motion, scattering particles, glowing blooms, gradients on components, icons with inconsistent stroke widths, wasted pauses where nothing happens, and anything that looks like a template.\n</direction>\n\n<structure>\n120 BPM, 7 bars (about 14 seconds), something happens on every beat.\nButton -> loading indicator -> checkmark -> iPhone Dynamic Island-style display -> music player where the play/pause icon morphs smoothly -> drag the playback bar's handle to move the playback position -> transforms into a volume slider (dragging past the maximum stretches it like rubber) -> on/off switch toggling on the beat -> becomes a tab selection indicator where the switch's knob moves like a liquid -> the tab opens into a chart that draws its own line (a tooltip appears when the cursor hovers) -> folds into a ⌘K search box -> type to filter the suggestions -> Enter -> a momentary notification -> back to the button.\n</structure>\n\n<build>\n1. A single HTML file, square 1440x1440. Every visual is computed from time inside seek(t) (a function that, given time t, determines the screen at that instant). Use no CSS transitions (automatic animation features) and no timers, and carry no state over between frames.\n2. Make the \"spring\" motion a form that can be computed directly by formula (closed-form step response). For values whose target changes many times, sum one separately computed motion per change. That way a value is always determined by time alone.\n3. For the tab selection indicator, move the left and right edges with separate springs so that the leading edge in the direction of travel stretches out ahead of the trailing edge. Use the same technique for the switch's knob.\n4. Dragging is direct manipulation: while the cursor is held down, the value is computed from the cursor position. When released, it springs back from that position.\n5. Analyse the track with numpy (a computing tool) to find the beat positions, and start from the first beat of a bar. Place interaction sounds at the positions of the measured sound peaks.\n6. Render with Playwright (a tool that automates the browser and exports the screen as images). Export 4 sub-frames per frame, overlay them with ffmpeg's (video creation tool) tmix to apply motion blur (motion trails), and output at 60fps.\n7. Before rendering the whole piece, export just one frame per beat and check it. Fix anything that is off the beat, cramped or hard to read.\n</build>\n\n<gotchas>\nNever put will-change (a browser rendering hint) on elements that the camera scales. Doing so blurs the text. Text that swaps inside a shape-changing box must each have its own dedicated enter and exit timing (to prevent overlap). The last frame must match the first frame exactly, including the cursor's position and velocity. Otherwise the loop will stutter.\n</gotchas>\n\n<start>\nFirst ask me for the inputs, and before writing any code, show me the per-beat list of states.\n</start>"
+ },
+ "x:2103683057689522564": {
+  "title": "JS video explaining Transformers to high-school students",
+  "text": "Help me make a video with JS. The theme: What is a Transformer?\nExplain it in an accessible way that a high-school student can understand, not only clear at the high level but also with detail, including the attention mechanism and even some mathematical concepts.\n\nYou may use any tools or install tools, and you can search the web.\n\nPlease surprise me."
+ },
+ "x:2103725737551532344": {
+  "title": "Renaissance naturalist manuscript style Claude vs GPT animation",
+  "text": "I chose the topic and the style; I wanted the feel of a Renaissance naturalist's manuscript. Opus5.5 did the research, wrote the storyboard, wrote the animation and composed the music; the drawings were done by Codex, following the requirements document Opus5.5 wrote.  \nThe only thing that surprised me was the music. It first wrote a MIDI score in Python, containing a chord progression and two main melodies: a recorder playing Claude's theme, and a celesta playing that circling arpeggio of GPT's. For the section where names fly around, the harpsichord notes were generated by a random walk, each bar a little denser and a little more dissonant, ending with a dense dissonant chord slammed down, and then a stop. The fast version has 2 seconds per bar, and every key transition lands on a bar line.  \n\nThen it used the open-source synthesizer FluidSynth with a free set of standard instrument sounds (a soundfont) to \"perform\" the score into audio. The lute, recorder, organ and other timbres all come from that library. Finally it used ffmpeg to normalize loudness, add a fade-out, and combine it with the visuals."
+ },
+ "x:2103802156675706979": {
+  "title": "15-second self-introduction motion design reel starring Claude",
+  "text": "# Your role\nYou are a top-class motion designer.\nMake a self-introduction video that makes a recruiter, after watching for just 15 seconds, think \"I want to hire this person.\"\nThe star is you yourself (Claude).\n\n# What to make\n- A single HTML file made only of HTML, CSS and JavaScript\n- Use no external images or videos. Draw all shapes, text and particles in code (only Google Fonts may be used for fonts)\n- The screen is 16:9, based on 1920x1080, scaled down to fit the window size\n- The length is exactly 15 seconds. At the end, show a \"Play again\" button\n- Manage all motion with a single \"elapsed time\" and run it at 60fps with requestAnimationFrame\n- When the play button is pressed, beats and sound effects synthesized with the Web Audio API play in perfect sync with the motion\n\n# How to proceed (always in this order)\n1. Decide the concept in one sentence (example: \"A single line is reborn as every shape\")\n2. Narrow down to 3 to 4 colours and at most 2 typefaces, and write the reason in one line\n3. Present a storyboard table in 0.5-second steps (time / what happens on screen / technique used / intent)\n4. Implement\n5. Self-check against the \"pass criteria\" below, fix any shortcomings, and then deliver\n\n# Structure guide\n- 0-2 seconds: the hook. Grab the eye in the first 0.5 seconds\n- 2-10 seconds: the showcase of techniques. Switch to a different technique every 1.5 to 2 seconds\n- 10-13 seconds: the densest climax\n- 13-15 seconds: the name \"Claude\" lands cleanly and the video ends\n\n# Techniques you must use (at least 6)\n- Text motion (characters appearing one by one, breaking apart and reassembling)\n- Shape transformation (a circle becoming a square, a line becoming text, etc.)\n- Scene transitions using cut-outs (masks)\n- Depth (parallax, three-dimensional rotation)\n- Gathering and dispersing of particles\n- Counting up numbers, and lines being drawn\n\n# Pass criteria\n- Zero constant-speed motion. Every motion has easing (fast in, soft landing, also use spring wobble)\n- Overlap motions that cross scenes. The next begins before the previous finishes, with no sense of a break\n- Align the main motions to a 0.5-second beat (equivalent to 120BPM)\n- Place a 0.3 to 0.5-second \"wind-up\" right before a showpiece moment to create contrast\n- Whatever moment you pause on, it holds together as a beautiful single picture\n- Avoid clichés (everything just fading in, rainbow colouring, meaningless rotation)\n\n# Finally\nDeliver the finished file and the storyboard table.\nAn explanation of three lines or fewer is enough."
+ },
+ "x:2104085539419021491": {
+  "title": "Original mobile-game highlight-moment animation (single HTML)",
+  "text": "Make me an original mobile-game \"highlight moment\" animation: [subject, e.g.: opening a treasure chest / rank promotion / achievement unlocked / boss drop / character level-up].\nMake it a single-file web page (HTML + CSS + JS) that can be opened directly, plays out in full with one click, with an effect on par with the result / reward presentations of commercial mobile games.\n\n[Worldview and style]\n- Original art; do not imitate any existing game's"
+ },
+ "x:2104128370493812752": {
+  "title": "30-second voice-input feature motion graphics video",
+  "text": "You are a top-tier motion designer. Please make a roughly 30-second motion graphics video for our product, showing off our core voice-input-method feature. Give it your all, forget the rules and constraints of the other video you made before, and start over."
+ },
+ "x:2104481664898621849": {
+  "title": "Dribbble-grade shape-to-UI morphing video at 120 BPM",
+  "text": "<inputs> Ask me for: 8 to 12 UI states that I want the shape to turn into (e.g. button, loader, player, slider, switch, tabs, chart, command palette, notification), pure black and white or one accent colour, and a royalty-free song of about 120 BPM (e.g. Mixkit, free for commercial use). </inputs>\n\n<direction> A Dribbble-grade UI motion video. Make a basic geometric shape morph smoothly into the specified UI components, keeping a minimalist aesthetic, with fluid, springy motion perfectly synced to the rhythm of the music. Output as a playable video file."
+ },
+ "x:2104764925478642123": {
+  "title": "Research and make a tutorial animation: how to animate with Opus 5.5",
+  "text": "Please research online how people use Claude Opus 5.5 to make animations, organize it into a clear workflow, and then use that workflow to personally make a tutorial animation titled \"How to make animations with Opus 5.5\".\n\nPhase 1: Gathering material\n\n1. Search scope: YouTube tutorial videos (read subtitles or description boxes), X/Twitter, Reddit (r/ClaudeAI\nPhase 3: Making the tutorial animation\n\n1. Content: Use animation to present the workflow organized in Phase 2, so that someone with no experience knows how to get started after watching.\n2. Length: about [2-4] minutes, divided into [5-7] sections (opening -> each step -> tips -> closing summary).\n3."
+ },
+ "x:2104786451980288258": {
+  "title": "NVIDIA Blackwell GPU journey down to a silicon atom (single HTML)",
+  "text": "The subject is the NVIDIA Blackwell GPU: walk into the data center, power on the server, take apart the graphics card, pass through the circuits and transistors, and go all the way down to a single silicon atom.\nEverything is packed into a single HTML file that runs when opened directly in a browser."
+ },
+ "x:2105302007896797351": {
+  "title": "Beat-synced three.js falling 3D ball animation with humor",
+  "text": "A beat-synced animation video of a 3D ball falling: aim for the look of professional Blender work, with music made up of several classic instrumental pieces, scenes that change with the music, and the 3D ball bouncing among the objects in the 3D scene as it falls, lighting up the objects on the rhythm of the music. Include some humorous elements.\nMake it with three.js; do not use Blender."
+ },
+ "x:2105879685322457273": {
+  "title": "Blender-as-Python-module dance video with synthesized 137 BPM music",
+  "text": "Install Blender as a Python module in a cloud Linux environment and run everything from scene construction to rendering entirely by script\nBuild the stage, lighting, confetti and camera work in code, and render with Cycles\nPost-processing of glow, flash and chromatic aberration, and conversion to MP4, all automated\nThe BGM uses no sample material either. Kick, snare, bass and synth are synthesized in numpy code\nAnalyse the height of the dancers' hips and identify the original tempo as about 137BPM\nCorrect the dance timing beat by beat so that on every beat the dip lands within ±0.5 frames of the kick\nCuts, lighting, zooms and material switches are all aligned to the downbeat, and everyone freezes on the final hit\nThe camera is computed in Python every frame. Dives, orbiting shots, a cut from a face close-up swinging out sideways, and so on\nOn the downbeat, the material and mesh change to chrome, gold, hologram and voxel"
+ },
+ "x:2105991032571617500": {
+  "title": "3Blue1Brown-style explainer: how a steam engine works",
+  "text": "how does a steam engine work, please give me that as an explainer video in the style of 3Blue1Brown"
+ },
+ "x:2106307182019145882": {
+  "title": "Landing page to 9-scene vertical video, HTML/CSS/JS at 60fps",
+  "text": "1. Break the LP (landing page) down into 9 scenes and make it the structure of a vertical video. Reset the copy word for word in web fonts, and redraw the logo in SVG.\n\n2. The people photos in the original image are about 150px and fall apart when enlarged -> regenerate in high resolution, calling Codex\n\n3. Write the motion in HTML/CSS/JavaScript (the hair sway in WebGL), capture it frame by frame in the browser and make it 60fps. Do not use video editing software. BGM is Lyria 3 Pro."
+ },
+ "x:2107087191738662953": {
+  "title": "Workflow for particle-style beat-synced video remix, for Opus5.5",
+  "text": "Publishing my production method; you can use it just by sending it to Opus5.5\n\n  1. Choose the footage\n\n  Three criteria that directly decide success or failure:\n\n  - Complete subject: the person or object is fully in frame, head to toe. Detail will be lost in processing, and viewers recognise things by their silhouette, so a close-up turns into a blob.\n  - Clean background: a solid colour, snow or sky all work, so the subject and background are easy to separate.\n  - A clear moment of action: a strike, a jump, a landing, a turn. These are the pivot points for the effects later.\n\n  Sources can be footage you shot yourself, generated by a video model, or licensed ready-made clips.\n\n  2. Break down the footage\n\n  Extract three kinds of information from every frame:\n\n  - Colour: the original image.\n  - Near and far: how far each position is from the camera, calculated with an off-the-shelf depth-estimation model.\n  - Subject extent: where the subject is and where the background is.\n\n  Also find the moments at which shot cuts occur. The key to this step is keeping it stable: near/far and subject extent must be processed consistently within the same shot, otherwise it will jitter during playback.\n\n  3. Decide the \"particles\" and the \"styles\"\n\n  First decide what to use to rebuild the picture: dots, squares, text or lines all work.\n\n  Then design several styles. Each style is really just a different combination of three rules:\n\n  - Where to place them: across the whole frame, or only on the subject.\n  - How large: a uniform size, or varying with brightness and distance.\n  - What colour: the original picture's colours, or one or two uniform colours.\n\n  Add one more switch: whether they lie flat on a single plane, or are pushed into three-dimensional space according to distance. Only once pushed in can the camera orbit.\n\n  Preparing four to six clearly different styles is enough. The density of the particles needs tuning by eye: too large and the content cannot be recognised, too small and it is no different from the original footage.\n\n  4. Find the rhythm\n\n  - Set the tempo: choose the music's tempo and slice time into equal small cells. Make one cell exactly a whole number of frames, so all later transitions are easy to align.\n  - Find the action moments: combine the two signals \"sound suddenly gets loud\" and \"picture suddenly moves\" to find the hit points in the footage.\n  - Prepare the music: you can use an existing track and analyse its beats, or synthesize one at the set tempo and add accents on the hit points.\n\n  5. Arrangement\n\n  Make a timetable stating which style, which colour scheme and where the camera is for each cell. Store this table separately, so that adjusting the rhythm later only means editing it.\n\n  Four principles of arrangement:\n\n  - Open by showing the change: give the original picture first, then transition to particles, so the audience understands what is happening.\n  - Alternate fast and slow: constant speed numbs people, so include a clearly slowed-down section in the middle.\n  - Make the colours clash: the greater the contrast in colour and style between adjacent cells, the more powerful the switch.\n  - End with a resolution: for example the particles grow larger and larger until they become blocks of colour, or return to the original picture.\n\n  6. Feedback at key moments\n\n  Layer short, sharp reactions on the hit points, graded by weight:\n\n  - Light feedback on every single hit: the particles deform for a moment, the camera gives a nudge.\n  - Medium feedback only for heavier hits: some of the particles pop outward toward the camera.\n  - Big feedback for only the heaviest one or two: time freezes and the camera orbits.\n\n  The principle is weak and brief. Move only some of the particles and finish within a few frames; otherwise the picture explodes into a mess and the audience cannot see what the subject is doing.\n\n  Working method throughout\n\n  - Small samples before the full film: after finishing each step, render a few frames first to see the effect, and only proceed once confirmed. Render the full film only at the very end.\n  - For uncertain parameters, produce a whole row at once: for example density, have the AI produce five or six levels laid side by side for you to choose.\n  - Re-render only what you change: when adjusting one section, re-render only that section.\n  - Make the AI look at the images itself: at every step, require it to open and look over the render results before reporting.\n  - Fix all randomness: make sure the same settings give the same render every time, otherwise you cannot revise step by step."
+ },
+ "x:2107644501372322001": {
+  "title": "30-second all-tile ad video revealing an attached image (Three.js)",
+  "text": "Using the attached image as the \"final screen\", make a 30-second ad video (with sound, mp4) made entirely of tiles.\nBuild it in the browser (Three.js), export every frame with Chrome, and make the mp4 with ffmpeg.\n\n# Goal\n- The viewer watches for 25 seconds thinking it is a video about how tiles are made. In the last few seconds, they realize it was the attached image (an ad)\n- The final screen is almost the same as the attached image. The text is legible. The whole screen is tiles (the floor is not shown)\n\n# Specs\n- 1920x1080, 30fps, 30 seconds. A single HTML file (Three.js. Installed with npm and bundled into one file with esbuild)\n- Build it so that given a time t, the same t always gives exactly the same picture (seek(t))\n- Each tile is a separate instance. About 190,000 tiles (576x324) in a 16:9 grid\n- Vary position, orientation, thickness, bevel and colour per tile. Grout lines (gaps) are left empty. Draw no lines\n- The attached image is used only to take the tiles' colours (do not apply it as a texture)\n- About 12 materials (glazed ceramic, slate, mother-of-pearl, white porcelain, terracotta, glass, etc.). Assign them by colour brightness and saturation\n- Light is a single hard sun at the upper left. The floor is plaster. In the back, a red carpenter's chalk line comes in out of focus\n- Build a depth of field (circular bokeh) yourself in post-processing. The aperture is large at first and small at the end\n\n# Flow (seconds)\n0-3　 One dark tile on the floor. The camera is right at floor level\n3-10　Starting from [place to start building], tiles fall in a swirl. The first tile -> then the surroundings, increasing in order\n10-21 Spreads outward all at once. The camera pulls back and [the picture to show] comes into view\n21-24 The whole is visible. The places that will become text stay the same pale colour as their surroundings\n24-26 The tiles for the text, logo and button flip over one after another from the left and appear\n26-30 Comes to rest in a top-down composition. The cursor clicks [button text], and the button's tiles sink slightly\n\n# Pitfalls (must follow)\n- The tiles that will form the text are at first assembled in the surrounding background colour. The background colour is decided by painting it from the outside inward. The text's edge (white outline) is flipped together with it. If you don't follow this, the shape of the text will be visible partway through\n- Do not put the top-down camera exactly straight overhead (the orientation rotates 90°). At the place where it stops, bring the motion's momentum to zero (overshoot of the interpolation makes it flip)\n- For the final screen, compare it side by side with the original image and match exposure, saturation and colour tone\n- If the text is too small to read, increase the number of tiles\n- The dark base surface appears only in the cells where a tile has landed\n\n# Sound\n- With ElevenLabs sound effects, make the sound of placing a tile, the sound of flipping, and a mouse click (0.5 seconds each). Before making them, tell me how many credits will be consumed\n- Line them up and layer them to match the times of tile landings and flips. The farther the camera, the quieter; when the number grows, group them like rain\n- Make the flipping clatter from 24-26 seconds the most prominent. Loudness is -16 LUFS\n\n# How to proceed\n1. First give the script (the scene second by second) in Japanese, and build only after getting my OK\n2. Look at the intermediate frames yourself (the first tile / start of building / pull-back / full view / the moment the text appears / the end) and fix them\n3. For export, call seek(t) for 30fps worth of frames with Chrome (puppeteer-core) and stream the png files into ffmpeg\n4. Deliver the mp4 (high quality and a share-friendly version) and the images you checked\n\n# Input\n- End frame: [attached]\n- Place to start building: [e.g.: a person's eye]\n- Picture to show when pulled back: [e.g.: a smiling woman]\n- Button text: [e.g.: Try it free here]"
+ },
+ "x:2107811706411864352": {
+  "title": "15-second social track card video for an attached song",
+  "text": "You are a top-class motion designer and creative engineer.\nMake a track card video for social media posts that introduces the attached song.\n\n## Deliverables\n- A 1920x1080 (16:9), 60fps, roughly 15-second MP4 (with sound, AAC 192kbps, -14 LUFS)\n-"
+ },
+ "x:2108301453907382690": {
+  "title": "Realistic WebGL lava lamp in a single HTML file",
+  "text": "a realistic lava lamp in ONE single HTML with WebGL, no images or libraries. Brushed metal, conical glass, wax that rises, stretches and splits; a switch, a colour button and a temperature control."
+ },
+ "x:2108663865936429530": {
+  "title": "3D logo intro studio in a single HTML file (three.js)",
+  "text": "a 3D intro studio for logos in ONE single HTML with three.js. 3 example logos or you paste your SVG; the pieces fly in, assemble, it spins, a flash passes and the name appears letter by letter. Chrome, gold, glass, clay or neon."
+ },
+ "x:2106177888265576886": {
+  "title": "Making the Kotosearch SEO tool release video with Opus 5.5",
+  "text": "Opus 5.5 x Gemini 3.8 Flash TTS is insane\n\nIt made the release video for my new SEO tool \"Kotosearch\" almost automatically.\nAll I did was \"log in to the tool\" and \"approve\".\n\nPersonally, the part where it even takes the screenshots automatically feels like it crossed a line.\n(Of course the narration is so natural it's amazing too..)\n\nThe specific steps go like this 👇\n1. Claude logs in to the tool in the browser\n(this is the only part I did myself)\n\n2. Claude uses the app and writes a feature specification\nIt organizes features, pricing, and even expressions that must not be said\n\n3. Claude takes screenshots of the tool's screens\n38 images across PC, phone and cropped parts\n\n4. Claude writes the storyboard and narration script\n\n5. Claude implements the video in Remotion\nIt looks at the stills it exports itself, and even fixes cut-off and overlapping text\n\n6. Generate the narration audio with Gemini 3.8 Flash TTS\nClaude operates both the voice settings and entering the script\n\n7. Claude splits the audio into 32 phrases\nIt syncs automatically so the screen and captions appear the moment it is spoken\n\n8. Claude composes the BGM in code\nIt automatically lowers the volume under the voice\n\n9. A 52-second video is complete\n\nAnd so, the SEO tool \"Kotosearch\" officially releases on October 4.\nJust enter a keyword and it produces an SEO article, and even sorts out the internal links across the whole site.\nLook forward to tomorrow's release!!!"
+ },
+ "x:2106270979932532873": {
+  "title": "Promo video for scroll+ made with Opus 5.5 and Remotion",
+  "text": "I had a promo video prepared for scroll+ with Opus 5.5 and remotion.\n\nI think it did a very good job. \n\n@scroll_plus \n\nhttps://scroll.pics"
+ },
+ "x:2107737607908249613": {
+  "title": "Fictional company logo sting made with Opus5.5 and HyperFrames",
+  "text": "With Opus5.5 and the recently trending HyperFrames, I made a fictional company logo of the kind that might appear at the end of a TV commercial, and I can't believe you can do this...!"
+ },
+ "x:2105824736072925621": {
+  "title": "Lism CSS 1.0 release video, 15-second motion graphics",
+  "text": "I want to post a video on social media when releasing Lism CSS ver.1.0. Create a simple yet dynamic 15-second motion graphics video that shows what a wonderful motion designer you are."
+ },
+ "x:2103372534922059888": {
+  "title": "AI agency service promo video with Opus 5.5 and Hyperframe",
+  "text": "@gonahmias I asked it for a video to show a service of my AI Agency (Opus 5.5 + Hyperframe). In 20 minutes I had this put together; it cost 20% of the 5-hour usage of the Max plan."
+ },
+ "x:2103505435802341449": {
+  "title": "Remotion motion graphics video with Opus 5.5 and Gemini TTS",
+  "text": "I don't think any jump equals the one Opus 5.5 made in the motion graphics industry, both in terms of quality and cost (token consumption) \n\nI made this video with a quarter of the 5-hour limit 👇🏻\n\n【Author's added production notes】\nThe method in short: \nI used claude with the opus 5.5 model, at medium-to-high thinking level, and asked it to use remotion to speed up the preview process, and also asked it to limit most of the sound effects to the sounds of cameras and photographic lenses that are common in reels, and I used the gemini 3.8 tts flash model to produce the audio. \nIt took me about an hour and a half of conversation with it, but most of that went into trying different things, and the experience was really enjoyable."
+ },
+ "x:2103763542432505873": {
+  "title": "Opus5.5 motion graphics made in Remotion",
+  "text": "Opus5.5 motion graphics\nWith Remotion it's easy to reuse, which is handy!\n#AIMotionDesign"
+ },
+ "x:2103885113528635793": {
+  "title": "Fictional drink ad with Opus 5.5, HyperFrames, Gemini and Three.js",
+  "text": "I made an ad video for a fictional beverage with Claude Opus 5.5 + HyperFrames + Gemini Flash 3.8 + Three js, and it's pretty good"
+ },
+ "x:2104022166471918002": {
+  "title": "Editorial-style video with Remotion, ElevenLabs and Gemini TTS",
+  "text": "Editorial style. Opus\n\n【Author's added production notes】\nMade with Opus5.5 using Remotion + ElevenLabs (BGM) + Gemini TTS (3.8). It also takes the screenshots by accessing Chrome headlessly. It adjusts to and checks YouTube's standards with ffmpeg, and even uploads with the YouTube Data API. Thoroughly taken care of."
+ },
+ "x:2104206756482334921": {
+  "title": "Flashy game PV from replays with Opus 5.5 and HyperFrames",
+  "text": "I handed Opus 5.5 a blanket \"make a flashy PV\" and it came out almost entirely left to it 😳\nIt records actual replays of top world-ranked players and layers \"close call!\" moments on the beat.\nTwo versions, Japanese and English, in one night. Claude x HyperFrames, the world has changed 🔥\nhttps://biribiri-game.web.app"
+ },
+ "x:2103492984474096062": {
+  "title": "Game making with Opus 5.5",
+  "text": "opus 5.5 game making, hurry up and try it this weekend."
+ },
+ "x:2103792451551113363": {
+  "title": "3D animation from data center down to a silicon atom, one HTML file",
+  "text": "Claude Opus 5.5 made a crazy 3D animation\n\nIt starts at the data center, enters the server, opens up the graphics card, goes inside the chip, passes through the circuits and transistors, and reaches the silicon atom.\nIt all runs in a single HTML file and took about 1 hour."
+ },
+ "x:2103870009877635565": {
+  "title": "Retro pixel game Compound QUEST and 40-second intro video",
+  "text": "I tried using Opus 5.5 to make a retro pixel game, \"Compound QUEST\", for \"The Evolution of Wealth\".\n\nI designed some of the difficulties on our family's path of investing and money management as levels.\n\nIn this pixel world, impulse spending is a trap to be jumped over, inflation turns into a monster that chases us. What levels up along the way is our patience stat.\n\nAdd 8-bit music, and knowledge like saving, compound interest and long-term holding gets concrete characters and levels.\n\nAfter the game was finished, I used it to make this 40-second intro video."
+ },
+ "x:2104119716533178533": {
+  "title": "Article explainer video made with Opus 5.5",
+  "text": "An article explainer made with Opus 5.5, the short version"
+ },
+ "x:2104211672370201053": {
+  "title": "3D product demo site for a bicycle with Opus 5.5",
+  "text": "Opus 5.5 was a great fit for 3D product demo sites too.\nhttps://bicycle.washoku.dev"
+ },
+ "x:2103292636945846347": {
+  "title": "Modern promo video for Flora app using JS, Playwright, FFmpeg",
+  "text": "Inside the flora folder there is another folder called \"ads\" with videos and screenshots of Flora (in case you want to use them as a reference).\n\nUse only: JavaScript, Playwright and FFmpeg. Make a modern, elegant and impactful video for my product.\n\nhttps://apps.apple.com/pt/app/flora-calend%C3%A1rio-menstrual/id6789702093"
+ },
+ "x:2103134082267750805": {
+  "title": "Modern product promo video with JS, Playwright and FFmpeg",
+  "text": "Use only: JavaScript, Playwright and FFmpeg. Make a modern, elegant and impactful video for my product (https://t.co/Lv7w1nzKzq)"
+ },
+ "x:2103419817034428866": {
+  "title": "Remotion video with Python soundtrack, tech stack listed by Opus 5.5",
+  "text": "Have opus5.5 list the whole tech stack itself too!\n\nRemotion handles the visuals, Python handles the soundtrack, and finally Remotion calls ffmpeg to composite the finished video.\n\nVisuals\nThe video project is Remotion 4.0.528, which is a React"
+ },
+ "x:2103442781096288376": {
+  "title": "60s hand-drawn animation: what happens when the human brain dies",
+  "text": "Create a flashy 16:9, bold, hand-drawn-style animation that shows off your full capabilities. In 60 seconds, explain \"what happens when the human brain dies\" in a way a middle school student can easily understand. It should be a high-quality, beautifully designed animation with flashy motion."
+ },
+ "x:2103670987879539054": {
+  "title": "Incredible 2D explainer animation on drifting (Napoleon Hill quote)",
+  "text": "Input as follows: The easiest way for the devil to control humans is to keep them in a state of drifting. 98% of people drift their whole lives.\" — Napoleon Hill, Outwitting the Devil\n\nBased on this insight, create an explainer video: as incredible a 2D animation as possible, 1 to 3 minutes long, with coherent narration, dialogue and sound."
+ },
+ "x:2103709731777048854": {
+  "title": "Pixar-style Claude vs ChatGPT animation, code only",
+  "text": "Use all your abilities and generate it using code only. Can you make a Pixar-style animated video? The content is Claude vs ChatGPT. Create the content yourself based on the popular memes of the AI world on the internet. You have all permissions; do whatever you need to.\n\nAddition: the voice-over connects to OpenRouter"
+ },
+ "x:2103740786177134910": {
+  "title": "30s psychedelic pop-punk VJ visuals with synced cyber-punk techno",
+  "text": "Make a psychedelic pop-punk, VJ-style motion graphics video that floods the viewer's brain with dopamine and sends them into a trance, and then make a trance cyber-punk techno track perfectly synchronized with that video and attach it. About 30 seconds is fine."
+ },
+ "x:2103964025683927166": {
+  "title": "Epic chronicle film: A History of Chinese Civilization",
+  "text": "Make an epic chronicle film, \"A History of Chinese Civilization\". You can write code to render frame by frame, then composite with ffmpeg.\nUse the soundtrack as a clock: pentatonic modes, with instruments evolving from bone flute and bianzhong bells all the way to orchestra, BPM speeding up with the eras, and all cuts landing on the beat.\nAlternate two art styles: line drawings on xuan paper and mud-gold on a dark ground; each volume gets one main colour and a set of patterns that evolve with the era (painted pottery pattern → taotie pattern → cloud-vapour pattern → scrolling-grass pattern → interlocking-branch pattern → meander pattern).\nEach shot has one large calligraphy keyword that appears phrase by phrase, accompanied by a line drawing. Full-film HUD: a vermilion seal with the volume number at the top left, dynasty names in vertical text on the right, and a scroll-style timeline ruler with a year counter at the bottom.\nVolume transitions are impact transitions, with a vermilion seal stamped down and a heavy drum and bell strike. First set the beat grid and the shot list, then render.\nMaps are schematic only, and no real modern or contemporary figures are drawn. Verify the dates before delivery."
+ },
+ "x:2104088986969055288": {
+  "title": "15s dynamic dance motion graphics showreel from an image",
+  "text": "Create a dynamic 15-second motion graphics video in which the girl in this image does an exciting dance. Make it like a showreel for a resume, and go all out."
+ },
+ "x:2104130084743659728": {
+  "title": "15s dynamic dance motion graphics showreel of Ecchan",
+  "text": "Create a dynamic 15-second motion graphics video in which Ecchan does an exciting dance.\nMake it like a showreel for a resume, and go all out."
+ },
+ "x:2104649290668773568": {
+  "title": "15s motion designer showreel",
+  "text": "Make a 15-second motion graphics video that shows off your extraordinary ability as a motion designer."
+ },
+ "x:2104771222005535145": {
+  "title": "15s vertical X showreel from three screenshots, HTML and MP4",
+  "text": "Using the 3 attached images (my X profile, a post that took off, and a post I want to include), make a 15-second showreel of my X as a vertical HTML animation and as an MP4 for iPhone. Don't ask questions; see it through to the end.  The flow is \"when I started → what I've done → the numbers that grew → the reality that's still not enough → a closing line for the future\"."
+ },
+ "x:2105177788043157811": {
+  "title": "Vox-style video using Claude Opus 5.5 and headless Chrome tools",
+  "text": "I tried Motion with Claude Opus 5.5\nHeadless chrome\nCanvas API (Assets Generation/ Paper textures)\nYoga-layout\nPrextext\nFloating UI\nand I told it to make\nVox-vibe video\nand I gave it PDF files and images"
+ },
+ "x:2105628049169658335": {
+  "title": "1-minute Three.js found-footage horror, all in code",
+  "text": "Make a 1-minute horror video with Three.js. The subject is ○○. The setting is the last minute of a found videotape, from a handheld-camera point of view, advancing automatically. Including the sound, use no image or audio files; do everything in code."
+ },
+ "x:2105902139902246969": {
+  "title": "15s vertical Remotion product usage video, 1080x1920",
+  "text": "Please make a 15-second product usage instruction video in the current project, using Remotion, vertical 1080×1920, 30fps, 450 frames in total. Use only the product images provided in the assets directory and the facts I give you; do not download unfamiliar assets, and do not invent sales data.\n\nSeconds 0 to 3 show the product and one line about the usage scenario. Seconds 3 to 9 demonstrate a two-step operation, with only one action appearing per step. Seconds 9 to 13 show the result, and keep a clearly visible hold time. The last 2 seconds show the product name, with no call to purchase.\n\nFirst list the storyboard and any asset gaps, then make a preview. Lay out the subtitles separately, and compute the animation from the current frame number. Do not drive the timeline with a real clock, and do not use non-deterministic random numbers. Configure the product, text and shot timings separately so they are easy to replace later.\n\nDeliver an editable project, the start and render commands, the MP4, and still frames at seconds 1, 5, 10 and 14. If necessary assets are missing, stop and explain; do not substitute fake assets.\""
+ },
+ "x:2106052083040256293": {
+  "title": "Canvas 2D animation of Galileo and the cycloid",
+  "text": "Without using any image generation model, turn this into an animation with Canvas 2D, as creatively as you can. Subject: Galileo asked in 1638, \"By which path does a ball go down fastest from point A to point B?\" and his own answer was: a straight ramp is the shortest path but not the fastest! Galileo showed that a circular arc is faster. The real answer (the cycloid) was found by Bernoulli in 1696."
+ },
+ "x:2106605246235762929": {
+  "title": "Motion comic of The Spider's Thread with Codex CLI and Gemini audio",
+  "text": "\"I'm making a manga of The Spider's Thread.\nhttps://t.co/8DlK2EPeo0\nBased on it, please create a motion comic.\nHowever, use the Codex CLI for generating the difference images. Also, the only things you may use the Gemini API for are Gemini 3.8 Flash TTS and TTS Lite, and Lyria 3.5 for the BGM; since this is Tier 1, make sure you don't hit the per-minute or per-day limits.\nFor the scenes of the thread being lowered and of climbing up the thread, don't just crop the image; make them like an actual video effect of the thread being lowered.\""
+ },
+ "x:2107092673005822057": {
+  "title": "JS and Canvas product intro animation for an Obsidian plugin",
+  "text": "Use JS + Canvas to make a product introduction animation for this product and plugin. It needs to be clean, minimalist and stylish, with natural, smooth animation transitions. The script content should target ordinary consumers with no technical background. It has both an Obsidian plugin and a web/desktop version; if possible, it would be best to include a real operation video demonstration animation. Here \"real\" means realistic operation animations and motion effects that can be implemented programmatically. It also needs suitable promotional background music (instrumental, no lyrics), implemented with code. Finally, export a lossless mp4 video."
+ },
+ "x:2107653056771068069": {
+  "title": "Fourteen 10-12s educational animations in varied styles",
+  "text": "Make a 10-second colour shadow puppet play telling the story of [Cao Chong Weighing the Elephant]. Silhouette layout, warm light shining through from behind, jointed puppets. The scale pan, copper bowl and stones appear in turn; first balance, then weigh the stones in batches and add them up. Subtitles appear on the beat. Render with code and export a playable video.\n\nMake a 12-second isometric 2.5D process animation about [How Parcels Are Sorted]. Parcels move along the sorting line, loading dock, flatbed transport and customs checkpoint, each step with a numbered label, and finally the two lines merge into one. Clean and easy to follow.\n\nMake a 10-second scale comparison placing [Earth, Jupiter and the Sun] on the same screen at their true radii. The camera pulls back smoothly, the first object shrinks, and it lands the point: \"The Sun could fit about 1.3 million Earths.\" Number labels are clear.\n\nMake a 10-second whiteboard hand-drawn video. On a white background, black marker draws, stroke by stroke, [a stick figure throwing 5 baozi in a row]; red only emphasizes key points. The satisfaction particles get bigger one after another, and finally the corner is filled with them. Subtitle: The 1st one, so satisfying.\n\nMake a 10-second cinematic WebGL Chinese-character evolution on the theme of [Fire]. Textures of oracle turtle shell, bronze, ink and firelight. The character \"火\" transforms continuously in form from oracle bone script to lightning and a torch, then to modern lighting, corresponding to 炎, 烈, 焰.\n\nUsing three.js, make a 12-second exploded view taking apart [a smartphone]. The casing, mid-frame and chip explode apart in layers, the camera orbits and pulls in, and parts are called out with dotted-line labels. It can be swapped for any structure.\n\nMake a 10-second 16-bit pixel allusion telling the story of [The Yellow Millet Dream]. Becoming a scholar, passing the exam, taming the river, leading a campaign; each segment is about 1.6 seconds with hard cuts, and finally returns to reality. Subtitle: The second year, he passed the imperial exam and became an official.\n\nMake a 10-second picture-book style science explainer on [How Little Goldfish Swim]. Crayon lines with coloured-pencil fill, wobbling lines, the eyes, gills and tail fin symmetrical, the tail swinging along to the beat. Paper texture.\n\nMake a 10-second 3Blue1Brown-style math visualization on [The Area of a Circle]. Dark background, the circle cut into 8, 16 and 32 sectors, which are actually moved and rearranged into a rectangle. The formula appears term by term, freezing on πr².\n\nMake a 10-second old-map animation on [Chang'an to Dunhuang]. Parchment, light-ink mountain roads, a vermilion route drawn in one stroke, with mileage labels and one line of narration, and a seal stamped at the end. The camera can zoom.\n\nMake a 10-second Kurzgesagt-style infographic on [Thickness of Folded Paper]. Clean graphics, big numbers: folded 2 times, thickness 0.4 mm, thickness ×2. The camera pulls in regularly until the end.\n\nMake a 10-second flat motion graphic on [Precipitation]. Solid-colour geometry, no outlines. Small water droplets in a cloud gather and grow bigger, then fall. Two tones of light and dark, cartoon clouds.\n\nMake a 10-second beat-synced typography piece at 120 BPM on [The Feynman Technique]. Each word lands on one beat, cutting in as orange text on a black background. The four steps slam in one after another, with a final hammer blow: If you can't explain it clearly, you haven't truly understood it.\n\nMake a 10-second comic-panel piece on [A Window Broke]. Black-and-white halftone dots with a single red accent. Listening in class, being caught, rushing out of the classroom, with hard cuts between panels, and the last panel lands the point.\n\nMake a 12-second horizontal-axis timeline on [From Dartmouth to ChatGPT]. The camera advances along the axis, and nodes scale up and light up. Large year numbers plus one line describing the event. Example node: 1971, then another 41 years."
+ },
+ "x:2108143449841262769": {
+  "title": "World-class explainer video on this year's Nobel Prize winners",
+  "text": "Make a popular-science video about the people and achievements that have been awarded Nobel Prizes this year. It should reach the production standard of a world-top YouTuber's video. A top film director, a top science communicator, a data visualization expert, a master composer, a master motion graphics designer, the professionalism of an academician's explanation + the wit of a stand-up comedian + a filmmaker's storytelling + a high-class, clear and fresh design style."
+ },
+ "x:2108458503367200908": {
+  "title": "5-minute 3D science explainer on pedal fracture, Opus 5.5 and three.js",
+  "text": "I used Claude Opus 5.5 to write code and made a 5-minute 3D science explainer from scratch: a three.js recreation of the pedal assembly, a shader computing a stress heat map in real time, a fracture animation where the crack grows longer one step at a time, and bilingual Chinese-English subtitles.\n\n 🧠 Claude Opus 5.5 ｜ 🎙️ Voice-over: ElevenLabs\nNot a single frame of ready-made footage 👇"
+ },
+ "x:2105033204319277506": {
+  "title": "30s Remotion article intro video made in about 10 minutes",
+  "text": "Is \"With Opus 5.5 you can do it in a few minutes\" true?\n\nI made a 30-second video to place at the top of an article, using Remotion.\nThe first one took 10 minutes 33 seconds from the request.\nFrom the very first second, the lead text moves big.\n\nFor the steps and the prompt, see the quoted article."
+ },
+ "x:2106192761632231813": {
+  "title": "iOS release promo video for the Tsuin Memory app",
+  "text": "/\nTsuin Memory\niOS version is released!\n\\\n#IndieDev\n\nIt had passed review, but I was struggling with making the video... 😇\nMade with Opus5.5/Remotion/Gemini API, it was blazing fast. lol\n\nIf you have children, or want to manage a family member's hospital visits and medication, please install it from the link in the reply 🙌"
+ },
+ "x:2106391068367597929": {
+  "title": "Promo video for CLIProxyAPI article, Opus 5.5 and Remotion",
+  "text": "Haha, stop rushing to buy an API; use CLIProxyAPI to make full use of your AI subscriptions. The video promo version of this article is here\n\nMade entirely with Opus 5.5 + remotion\n\nI think it turned out pretty well, and it explains every step of the process clearly"
+ },
+ "x:2107790132061622720": {
+  "title": "Fictional game console power-on logo, Opus 5.5 and HyperFrames",
+  "text": "Once again with Opus5.5 and HyperFrames, I also tried making \"the game hardware logo that appears when you turn on the power of a fictional game\".\nIt might feel fresh that 3D motion graphics can be handled this easily 👀"
+ },
+ "x:2105917770907156748": {
+  "title": "30s motion graphics with BGM telling today's weekday",
+  "text": "What day of the week is it today? Tell me with a cool 30-second motion graphics piece with BGM (give it your all)."
+ },
+ "x:2103486728917110846": {
+  "title": "Code-only motion video with Opus 5.5 and Remotion",
+  "text": "I tried making a video with code only, using Opus5.5 × Remotion! This is amazing for something delivered on the spot. Alongside video generation, it will really widen the range of what's possible. Next I'll seriously try driving AE.\n#Claude #Motiondesign #ai"
+ },
+ "x:2103731575661990109": {
+  "title": "Casual Remotion video made by chatting with Opus 5.5",
+  "text": "It's uncool, but I made something video-like with Remotion. I haven't looked at the code. I only prepared the environment... and even that was just, as usual, running my custom try command that does jj init, creating a directory and saying \"Remotion environment please\". I did nothing. After that I only chatted a bit with Opus 5.5. The future."
+ },
+ "x:2103813886684389509": {
+  "title": "Opus 5.5 motion graphics with Remotion, AIMotionDesign 02",
+  "text": "Opus5.5 motion graphics\nIt looks like you can do a lot with Remotion after all!\n#AIMotionDesign 02"
+ },
+ "x:2103885710734540960": {
+  "title": "Meta VR intro video with Opus 5.5, HyperFrames, Gemini and Three.js",
+  "text": "I made a Meta VR introduction video with Claude Opus 5.5 + HyperFrames + Gemini Flash 3.8 + Three js and it turned out weird"
+ },
+ "x:2104155161883234322": {
+  "title": "Two product ad videos in one hour with Opus 5.5, Remotion, Gemini TTS",
+  "text": "opus5.5 + Remotion + Gemini3.8 TTS\nIn just 1 hour I made 2 ad videos for our product...\n\nI'll never outsource again lol\nIf I had outsourced, I think it would have cost over 100,000 yen"
+ },
+ "x:2104595346882175311": {
+  "title": "Stylish ad-style video with Claude Code, Gemini TTS and HyperFrames",
+  "text": "Making videos with Claude Code is trendy, but it has an AI smell, so I made a stylish video of the kind you've seen somewhere before.\nDo you think it could be used as a commercial?\n\nUsed: Claude Code (Opus 5.5) / Gemini TTS / HyperFrames"
+ },
+ "x:2103724883301814408": {
+  "title": "Original mobile-game highlight animation in Three.js",
+  "text": "Help me make an original mobile game \"highlight moment\" animation: [Subject, e.g.: opening a treasure chest / rank promotion / achievement unlocked / Boss drop / character level-up].\nMake it a single-file web page (HTML + CSS + JS) that can be opened directly and plays in full with one click, with an effect that matches the result / reward presentations of commercial mobile games.\n\n[Worldview and Style]\n- Original art; do not imitate any existing game's IP, characters or logo.\n- Cartoon mobile-game style: highly saturated colours, a uniform dark outline (e.g. #1A1033), rounded, chunky shapes.\n- Colours upgrade with the tier: [tier ladder, e.g.: common green → rare blue → epic purple → legendary gold]. With each tier up, switch the main colour, the light-effect colour and the background tone.\n- The title uses a round, fat game font (such as Titan One / Lilita One), with a black outline and a drop shadow; the text \"slams\" into the screen letter by letter, with a bounce-back.\n\n[Main Object: Make It True 3D]\n- Model it with Three.js; do not use flat SVG textures. It needs thickness, bevels, and structural details appropriate to the subject (plank seams, rivets, edge trim, gem facets, latches, etc.); details like plank seams must be built from real geometry, not by pasting black lines.\n- Shade it with cartoon banding (MeshToonMaterial with a 3 to 4 step gradient map), with three lights: key light, sky light, and a tier-coloured rim light.\n- Draw outlines with post-process edge detection: render a normal map plus a depth map, then draw the lines with a shader. Thick for the outer silhouette, thin where parts meet, with consistent thickness throughout; also do 1.5x supersampling and multisample anti-aliasing.\n  Do not use the \"slightly enlarged black back-face\" outline method, because its thickness is uneven and it breaks at corners.\n  Loosen the depth-test threshold, and detect seams mainly with normals, otherwise fine diagonal streaks appear on surfaces seen at a slant.\n- Moving parts must move realistically, e.g. the chest lid flips open around its hinge, and a medal rotates around its vertical axis.\n- At idle, the subject slowly turns left and right so the sides and thickness can be seen, while bobbing slightly up and down; there must be a soft shadow under its feet that varies with height.\n\n[If the Screen Has 2D Illustrations (card faces, reward icons, characters)]\n- Three-layer cartoon shading: base colour, blocky shadow colour, and highlight colour; do not use just a single gradient.\n- Lines of differing weight: thick for the outer outline, thin for internal structure lines.\n- Each character or object should have its own expression and pose; do not let everything share the same face.\n- Draw a drop shadow beneath the feet so the subject \"stands\" in the scene; vary the background pattern by attribute, and do not use the same radial lines for everything.\n\n[Pacing of the Presentation: Five Phases, None Optional]\n1. Ready: the subject idles and floats, shakes every few seconds to hint it can be clicked, and a \"Tap\" prompt is shown at the bottom.\n2. Level-up: with each click, the subject jumps up, spins once in the air, squashes on landing and springs back; at the same time it switches to the next tier's colour, flashes, bursts out a ring of particles, and the title updates.\n3. Charge-up (about 1 second): the subject shakes more and more violently, light leaks through the seams, particles around it are sucked toward the centre, and the sound pitch keeps rising; at the last moment it squashes down hard.\n4. Burst: a flash of bloom white spreading outward from the burst point, screen shake, the camera pushing forward, multiple layers of shockwaves, slender streaks of light shooting out, glittering star points, and coins and gems (spinning). Bursts at high tiers must be clearly stronger. Confetti is used only once, at the climax; do not fill the screen with confetti.\n5. Reveal and settlement:\n   - The reward card flies out of the subject along an arc, landing with overshoot and a wobbling finish, and the numbers count up by rolling.\n   - Rare items get a rainbow flowing-light border and a \"NEW!\" corner badge.\n   - After tapping to claim, coins and gems fly along Bezier curves into the balance at the top right, and the balance bounces each time one arrives.\n\n[Reveal Stage: Let the Hero Own the Screen]\n- When revealing the highest rarity, other elements retract or fade out, and behind it a clean gradient backdrop plus slowly rotating soft light replaces the scene; do not let the hero sit on a cluttered background.\n- When the backdrop appears, hide the other 3D objects in the scene, otherwise the post-process outline will draw their silhouette lines on the backdrop.\n- The hero's outer glow must sit behind the subject and only spill from the edges; it must not cover the front of the subject and wash it out into a patch of white.\n- You may add a ring of stardust trails circling the hero, but the orbit must lie entirely outside the hero's silhouette and must not sweep across the front of the subject.\n\n[Light Effects: Must Be Soft, No Hard Edges]\n- Background rays: use a conic-gradient with gradient transitions, not blocks with sharp edges; layer 2 to 3 layers of light with different densities and rotation speeds.\n- Light pillar: 5 to 7 blurred beams fanning out, each flickering slightly in brightness; add a soft glowing core at the root, with light dust slowly drifting upward inside the light.\n- Flash: a radial bloom outward from the burst point (mix-blend-mode: screen), with intensity not exceeding 0.8, and no full-screen pure-white overexposure.\n- Particles: each spark carries a low-opacity outer halo; shockwaves use three layers of stroke (wide and faint, medium, thin and bright).\n\n[Materials and UI]\n- Frames, nameplates and buttons need a sense of material: brushed-metal gradients, bevel light that is bright at top left and dark at bottom right, and inner shadows; swap the inlays by rarity (steel rivets → silver frame with gems → gold frame with diamond and a small crown).\n- Do not cram small numeric text onto small cards; put detailed values into the info panel shown at the reveal, where the numbers roll upward and pop out a \"▲+value\".\n- Textures drawn on Canvas must have a resolution at least 1.5 times the largest on-screen display size, otherwise they blur when scaled up.\n\n[Animation Principles]\n- Orchestrate with GSAP timelines. All motion must have squash and stretch, overshoot and elastic bounce-back; nothing at constant speed.\n- Write the particle system yourself with Canvas 2D: gravity, drag, lifetime, additive blending, and three kinds of motion: \"sucked in\", \"curved flight\" and \"orbiting\".\n- Do not use CSS 3D perspective to flip large elements, because when scaling up with a side flip they get projected into a flat plane that fills the screen; do all 3D flips in WebGL.\n- For all looping tweens of the \"shake\" and \"breathing\" type, cancel them first and then zero them out on a state switch, to avoid them finishing one frame after the stop command and setting the value back.\n\n[Sound Effects]\n- All synthesized in real time with Web Audio, no audio files: jump, landing, level-up chord, charge-up rising tone, explosion low frequency plus noise, pop, counting ticks, coin clinks, victory fanfare.\n- Initialize audio only on the first click; put a mute toggle at the top right.\n\n[UI and Engineering]\n- Top HUD: mode switch, coin and gem balances, mute button.\n- It must also work at phone width; respect the \"reduce motion\" setting (turn off screen shake, reduce particles).\n- The animation state machine must be rigorous: ignore clicks while an animation is playing, with no swallowed clicks or confused states.\n- Target 60fps. The first time it opens it must already be a complete idle screen, not blank.\n\n[Self-Check Before Delivery]\nTake one screenshot each at the charge-up, burst, reveal and settlement moments, and check them one by one:\n- Is the hero blocked by glow, particles or text?\n- Is it overexposed into a patch of white?\n- Is the background cluttered, and are there any outline lines that give the game away?\n- Is the small text legible?\n- After settlement, is anything still shaking when it shouldn't be moving?\n\nFinally, tell me: the duration of each phase, and which parameters can be adjusted to tune the intensity of the presentation."
+ },
+ "x:2103816821782544635": {
+  "title": "Why are my Opus 5.5 generated videos so pixelated?",
+  "text": "I keep seeing cool videos generated with opus 5.5\n\nWhy are the videos I generate with opus full of pixelation?\n\nHow does everyone generate them?"
+ },
+ "x:2104081777119920413": {
+  "title": "Particle website from a one-line prompt with Opus 5.5",
+  "text": "A group member's one-line prompt\n\nA particle website made with Opus5.5\n\nSo cool"
+ },
+ "x:2104144532644544921": {
+  "title": "Physics-modelled calm sound design for graphics videos",
+  "text": "Making graphics videos for dopagaki is trending with Claude Opus 5.5, so I also tried making calm sounds with physics simulation.\n\nStrings, flutes, drums, bells, water bubbles. I turn physically simulable sounds into code and play them. It's not only about making video. I want to put extra effort into sound expression too. I think it's worth a try for people who feel that way.\n\nFor those making graphics videos, why not try sound effects with a different flavour as well?\n\n#ClaudeCode #PhysicsSimulation #Opus"
+ },
+ "x:2104222017696469188": {
+  "title": "Train simulator from images to 3D asset and circular railway, Opus 5.5",
+  "text": "This is crazy: in just 3 steps, Opus 5.5 produced a \"train simulator\" for me.\n\n1. Have ChatGPT generate images of the Shaoshan 8 from every angle;\n2. Have Opus make a 3D asset that recreates this image 100%;\n3. Build a circular railway on which this train can be operated and driven."
+ },
+ "x:2103478369245688099": {
+  "title": "5-minute story about time with video, audio and subtitles",
+  "text": "I heard opus 5.5 is very good at making videos, so please show me. Combining the style of the local environment, make a story about time, 5 minutes long. I want a complete video, with audio and subtitles. Set up whatever tools you need yourself in devshell, and after rendering is finished, keep only the finished video file and clean up everything else."
+ }
+}
