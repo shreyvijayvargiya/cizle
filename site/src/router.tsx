@@ -10,7 +10,6 @@ import { LoginPage } from "@/pages/Login";
 import { NotFound } from "@/pages/NotFound";
 import { PricingPage } from "@/pages/Pricing";
 import { SettingsPage } from "@/pages/Settings";
-import { StudioPage } from "@/pages/Studio";
 import type { Filters } from "@/lib/data";
 import type { GalleryFilters } from "@/lib/gallery";
 
@@ -51,7 +50,6 @@ const tree = root.addChildren([
 	r("/refund", () => <ContentPage name="refund" path="/refund" title="Refund policy | cizle" description="Refunds for cizle Premium: 7 days from your first payment, no questions asked." />),
 	login,
 	settings,
-	r("/dashboard", StudioPage),
 ]);
 
 export const router = createRouter({ routeTree: tree, defaultPreload: "intent", scrollRestoration: true, defaultNotFoundComponent: NotFound });

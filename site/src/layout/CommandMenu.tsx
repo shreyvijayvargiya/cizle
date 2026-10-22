@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { BookOpen01Icon, ComputerTerminal01Icon, CreditCardIcon, GithubIcon, LockIcon, Logout01Icon, Mail01Icon, Moon02Icon, Search01Icon, Settings01Icon, SparklesIcon, Sun03Icon, UserIcon } from "@hugeicons/core-free-icons";
+import { BookOpen01Icon, CreditCardIcon, GithubIcon, LockIcon, Logout01Icon, Mail01Icon, Moon02Icon, Search01Icon, Settings01Icon, SparklesIcon, Sun03Icon, UserIcon } from "@hugeicons/core-free-icons";
 import { toast } from "sonner";
 import { Icon } from "@/components/Icon";
 import { Badge } from "@/components/ui/badge";
@@ -40,7 +40,6 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 			...(user
 				? [
 						{ id: "settings", label: "Settings and billing", icon: Settings01Icon, run: () => navigate({ to: "/settings" }), keywords: "account subscription" },
-						{ id: "studio", label: "Studio: run cizle locally", icon: ComputerTerminal01Icon, run: () => navigate({ to: "/dashboard" }), keywords: "dashboard" },
 						{ id: "out", label: "Sign out", icon: Logout01Icon, run: () => void signOut().then(() => toast.success("Signed out")).catch(() => {}) },
 					]
 				: [{ id: "in", label: "Sign in", icon: UserIcon, run: () => navigate({ to: "/login", search: {} }), keywords: "login account" }]),

@@ -1,5 +1,4 @@
 node_modules
-web/dist
 data/
 .env
 .DS_Store

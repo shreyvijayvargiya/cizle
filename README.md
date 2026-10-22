@@ -10,7 +10,7 @@ Runs on your machine. No database, no accounts. Drive it from the dashboard with
 
 <a href="docs/demo.mp4"><img src="docs/demo.gif" alt="cizle demo: paste a link, get product videos" width="880" /></a>
 
-**[▶ Watch "cizle explained" (51 s, made with cizle)](web/public/videos/cizle-explainer.mp4)** · **[▶ Launch teaser (9:16)](web/public/videos/cizle-launch.mp4)** · [▶ 50-second demo with sound](docs/demo.mp4)**
+**[▶ Watch "cizle explained" (51 s, made with cizle)](docs/media/cizle-explainer.mp4)** · **[▶ Launch teaser (9:16)](site/public/videos/cizle-launch.mp4)** · [▶ 50-second demo with sound](docs/demo.mp4)**
 
 **[▶ Watch the 5-minute walkthrough](docs/overview.mp4)** · [captions (.srt)](docs/overview.srt) _(recorded early on: it predates animated styles, the review card, the founder types and Claude Code, all described below)_
 
@@ -98,7 +98,6 @@ To run the dashboard as a single server: `npm run build && npm start`, then open
 
 ## A tour of the dashboard
 
-The dashboard also has a **Docs** page (`/docs`) with the full getting-started guide and everything below in more detail. It is rendered from [`web/src/content/guide.md`](web/src/content/guide.md), so you can edit it like any other file.
 
 **Dashboard.** Pick who writes the video, add your product, and use the composer. Below it: prompts picked for your product and kind of founder, the **prompt gallery** (one animated tile per style, with counts), the **Claude Code** card (install command and a ready prompt), your latest videos and the ideas waiting.
 
@@ -508,11 +507,6 @@ cizle/
 │   ├── local.js             shared boot for the CLI and the MCP server
 │   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js,
 │                            styles.js (the five animated styles), pack.js (article → pack)
-├── web/src/
-│   ├── pages/               Dashboard, Create, Videos, VideoDetail, Gallery, ClaudeCode, Product,
-│   │                        Onboarding, Prompts, PromptEditor, Settings
-│   └── components/          AppShell, Composer, IdeaCard, ProductSwitcher, SyncBadge, ModelToggle,
-│                            PromptPreview, SuggestedPrompts, DashboardShelves, CopyBox, ReviewCard, RouteError, ui/ (shadcn-style: Button, Select, Menu, Dialog, Tabs, Switch…)
 ├── data/                    videos and settings (git-ignored)
 └── docs/                    screenshots and the demo video
 ```
@@ -550,7 +544,6 @@ Scripts: `npm run dev` (API + dashboard with hot reload), `npm run build`, `npm 
   ```
 
   `type` and `tone` must match a file in `prompts/`. `style` is one of `default`, `sketch`, `clay`, `glass`, `isometric`, `ascii`. `founders` are `solo`, `devtool`, `b2b`, `ai`, `fundraising`. Categories: `devtools`, `analytics`, `crm`, `ai-agents`, `project-management`, `fintech`, `marketing-seo`, `security`.
-- **Dashboard:** components follow the shadcn pattern on Radix (`web/src/components/ui/`). Please use them instead of native form controls.
 
 ## Credits
 

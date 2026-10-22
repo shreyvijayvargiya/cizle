@@ -408,18 +408,6 @@ api.get("/files/:id", (c) => {
 
 app.route("/api", api);
 
-/* production: serve the built dashboard */
-const DIST = path.join(ROOT, "web", "dist");
-if (fs.existsSync(DIST)) {
-	const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".json": "application/json", ".jpg": "image/jpeg" };
-	app.get("*", (c) => {
-		const p = path.resolve(DIST, `.${decodeURIComponent(new URL(c.req.url).pathname)}`);
-		const file = p.startsWith(DIST) && fs.existsSync(p) && fs.statSync(p).isFile() ? p : path.join(DIST, "index.html");
-		if (path.extname(file) === ".mp4") return serveFile(c, file, "video/mp4");
-		return c.body(fs.readFileSync(file), 200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream" });
-	});
-}
-
 /* keep products fresh while the app is open: once at start, then every 6 hours (Settings → auto sync) */
 async function autoSync() {
 	if (!loadSettings().auto_sync || !process.env.OPENROUTER_API_KEY?.trim()) return;
@@ -434,7 +422,6 @@ setInterval(autoSync, 6 * 3600_000).unref();
 const port = Number(process.env.PORT) || 3737;
 serve({ fetch: app.fetch, port }, () => {
 	console.log(`\n  cizle API  →  http://localhost:${port}/api`);
-	if (fs.existsSync(DIST)) console.log(`  dashboard  →  http://localhost:${port}\n`);
 });
 
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, async () => (await browser.closeBrowser(), process.exit(0)));

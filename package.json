@@ -9,10 +9,7 @@
 		"node": ">=20.12"
 	},
 	"scripts": {
-		"dev": "concurrently -k -n api,web -c cyan,magenta \"node --watch-path=server server/index.js\" \"vite --config web/vite.config.ts\"",
-		"build": "vite build --config web/vite.config.ts",
 		"start": "node server/index.js",
-		"typecheck": "tsc --noEmit -p web",
 		"mcp": "node server/mcp/stdio.js",
 		"mcp:install": "node server/mcp/install.js",
 		"mcp:doctor": "node server/mcp/doctor.js",

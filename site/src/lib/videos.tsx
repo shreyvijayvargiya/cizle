@@ -66,6 +66,17 @@ export function VideoProvider({ children }: { children: ReactNode }) {
 /** A muted looping demo that plays while it is on screen (and playback is on). `priority` videos (the first screen) always win a slot. */
 export function AutoVideo({ src, poster, className, priority = false, onFail, ...rest }: { src: string; poster?: string | null; className?: string; priority?: boolean; onFail?: () => void } & Omit<VideoHTMLAttributes<HTMLVideoElement>, "src" | "poster">) {
 	const ref = useRef<HTMLVideoElement>(null);
+	const [bad, setBad] = useState(false);
+	const fail = useCallback(() => (setBad(true), onFail?.()), [onFail]);
+	useEffect(() => {
+		setBad(false);
+		const el = ref.current;
+		if (!el) return;
+		// a file that never starts loading (dead link, blocked host) falls back to the poster
+		const dead = window.setTimeout(() => el.readyState === 0 && fail(), 12000);
+		el.addEventListener("loadeddata", () => clearTimeout(dead), { once: true });
+		return () => clearTimeout(dead);
+	}, [src, fail]);
 	useEffect(() => {
 		const el = ref.current;
 		if (!el || typeof IntersectionObserver === "undefined") return;
@@ -80,5 +91,6 @@ export function AutoVideo({ src, poster, className, priority = false, onFail, ..
 		io.observe(el);
 		return () => (io.disconnect(), visible.delete(el), rebalance());
 	}, [src, priority]);
-	return <video ref={ref} src={src} poster={poster || undefined} muted loop playsInline preload="metadata" onError={onFail} className={cn("bg-black", className)} {...rest} />;
+	if (bad) return null;
+	return <video ref={ref} src={src} poster={poster || undefined} muted loop playsInline preload="metadata" onError={fail} className={cn("bg-black", className)} {...rest} />;
 }

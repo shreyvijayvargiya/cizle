@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Logout01Icon, Menu01Icon, Moon02Icon, Search01Icon, Settings01Icon, Sun03Icon, ComputerTerminal01Icon } from "@hugeicons/core-free-icons";
+import { Logout01Icon, Menu01Icon, Moon02Icon, Search01Icon, Settings01Icon, Sun03Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { Logo } from "@/components/Logo";
 import { Kbd } from "@/components/ui/command";
@@ -53,9 +53,6 @@ function UserMenu() {
 				<MenuSeparator />
 				<MenuItem onSelect={() => navigate({ to: "/settings" })}>
 					<Icon icon={Settings01Icon} size={15} /> Settings {isPro ? <span className="ml-auto text-sm font-semibold text-brand">Premium</span> : null}
-				</MenuItem>
-				<MenuItem onSelect={() => navigate({ to: "/dashboard" })}>
-					<Icon icon={ComputerTerminal01Icon} size={15} /> Studio
 				</MenuItem>
 				<MenuSeparator />
 				<MenuItem

@@ -155,8 +155,8 @@ out("/blog", document({ title: "Blog: video prompts, Claude Code skills and ad f
 for (const p of posts)
 	out(`/blog/${p.slug}`, document({ title: `${p.title} | cizle`, description: p.description, path: `/blog/${p.slug}`, type: "article", ld: [{ "@context": "https://schema.org", "@type": "Article", headline: p.title, description: p.description, datePublished: p.date, dateModified: p.date, mainEntityOfPage: abs(`/blog/${p.slug}`), author: { "@type": "Organization", name: siteConfig.name }, publisher: { "@type": "Organization", name: siteConfig.name, logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.svg` } } }, crumbs([["Home", "/"], ["Blog", "/blog"], [p.title, `/blog/${p.slug}`]])], body: `<nav aria-label="Breadcrumb"><a href="/blog">Blog</a> / ${esc(p.title)}</nav><article><h1>${esc(p.title)}</h1><p>${esc(p.description)}</p><p><time datetime="${p.date}">${p.date}</time> · ${p.minutes} min read</p>${p.html}</article>` }));
 
-for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Settings and billing | cizle"], ["/dashboard", "Studio: run the cizle dashboard locally | cizle"]])
-	out(route, document({ title, description: route === "/dashboard" ? "cizle renders videos on your own machine. Start the local studio dashboard." : "Your cizle account.", path: route, noindex: route !== "/dashboard", body: `<h1>${esc(title.split("|")[0].trim())}</h1><p>Loading…</p>` }));
+for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Settings and billing | cizle"]])
+	out(route, document({ title, description: "Your cizle account.", path: route, noindex: true, body: `<h1>${esc(title.split("|")[0].trim())}</h1><p>Loading…</p>` }));
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
