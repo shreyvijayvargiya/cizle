@@ -156,7 +156,7 @@ async function runHarvestOnce(options, onEvent) {
 		await saveState();
 		emit("run_start", { queue: queue.map((n) => n.id), parallel: o.parallel, batch_size: o.batchSize, batch_pause_ms: o.batchPauseMs, source_pause_ms: o.sourcePauseMs, limit: o.limit || null, named, order: walkOrder(graph) });
 
-		if (o.enrich) enricher = await createInlineEnricher({ parallel: o.enrichParallel, batchPauseMs: Math.min(o.batchPauseMs, 3000), xBrowser: Boolean(options.xBrowser), noBrowser: Boolean(options.noBrowser), signal, http: makeHttp({ signal }), log: (m) => emit("log", { id: "enrich", msg: m }), emit });
+		if (o.enrich) enricher = await createInlineEnricher({ parallel: o.enrichParallel, batchPauseMs: Math.min(o.batchPauseMs, 3000), xBrowser: Boolean(options.xBrowser), noYtdlp: Boolean(options.noYtdlp), noBrowser: Boolean(options.noBrowser), signal, http: makeHttp({ signal }), log: (m) => emit("log", { id: "enrich", msg: m }), emit });
 
 		let next = 0;
 		async function worker() {

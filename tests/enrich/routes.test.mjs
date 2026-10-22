@@ -114,3 +114,29 @@ test("pending prompts are enriched in place; coverage and the report say what is
 		await w.close();
 	}
 });
+
+test("yt-dlp is the last resort for an X post, and --source limits a run to some harvest sources", async () => {
+	const { resetYtdlpCache } = await import("../../server/enrich/worker.js");
+	const lib = await tmpLibrary([entry(0, { sources: ["N01"] }), entry(1, { sources: ["G01"] }), entry(2, { sources: ["N07"] })]);
+	const fake = path.join(lib.dir, "fake-ytdlp.sh");
+	await fsp.writeFile(fake, '#!/bin/sh\necho "https://video.example/ytdlp/direct.mp4"\n', { mode: 0o755 });
+	process.env.ENRICH_YTDLP = fake;
+	resetYtdlpCache();
+	const w = await world({ [idOf(0)]: { syn: "novideo", fx: "photo" }, [idOf(1)]: { syn: "novideo", fx: "photo" }, [idOf(2)]: { syn: "novideo", fx: "photo" } });
+	try {
+		const done = await runEnrich({ batchPauseMs: 0, noBrowser: true, sources: ["N01", "N07"] });
+		assert.equal(done.visited, 2, "G01's entry is left alone");
+		const enr = readJson(path.join(lib.content, "gallery-enrichment.json"));
+		assert.equal(enr[entry(0).id].video, "https://video.example/ytdlp/direct.mp4");
+		assert.equal(enr[entry(0).id].video_via, "yt-dlp");
+		assert.equal(enr[entry(1).id], undefined);
+		// switched off, nothing is found and the reason is recorded
+		const off = await runEnrich({ batchPauseMs: 0, noBrowser: true, noYtdlp: true, ids: [entry(1).id] });
+		assert.equal(off.videos, 0);
+		assert.equal(readJson(path.join(lib.content, "gallery-enrichment.json"))[entry(1).id].video_state, "no_video_in_post");
+	} finally {
+		delete process.env.ENRICH_YTDLP;
+		resetYtdlpCache();
+		await w.close();
+	}
+});

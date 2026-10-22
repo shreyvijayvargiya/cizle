@@ -32,6 +32,7 @@ function parseArgs(argv) {
 		else if (a === "--no-enrich") o.enrich = false;
 		else if (a === "--no-import") o.import = false;
 		else if (a === "--x-browser") o.xBrowser = true;
+		else if (a === "--no-ytdlp") o.noYtdlp = true;
 		else if (a === "--enrich-parallel") o.enrichParallel = Number(need(i++, a));
 		else if (a === "--json") o.json = true;
 		else if (a === "--status") o.status = true;

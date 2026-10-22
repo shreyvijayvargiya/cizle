@@ -140,7 +140,7 @@ api.post("/enrich", async (c) => {
 	if (action !== "run") return c.json({ error: `Unknown action "${action}". Use run, status or stop.` }, 400);
 	let run;
 	try {
-		run = await enrich.startManaged({ parallel: b.parallel, limit: b.limit, ids: Array.isArray(b.ids) ? b.ids : [], from: b.from, batchPauseMs: b.batch_pause_ms, loop: Boolean(b.loop), restMs: b.rest_min != null ? Number(b.rest_min) * 60_000 : undefined, maxPasses: b.max_passes, again: Boolean(b.again), retry: Boolean(b.retry), force: Boolean(b.force), xBrowser: Boolean(b.x_browser), import: b.import !== false, staleDays: b.stale_days, noBrowser: Boolean(b.no_browser) });
+		run = await enrich.startManaged({ sources: Array.isArray(b.sources) ? b.sources : [], noYtdlp: Boolean(b.no_ytdlp), parallel: b.parallel, limit: b.limit, ids: Array.isArray(b.ids) ? b.ids : [], from: b.from, batchPauseMs: b.batch_pause_ms, loop: Boolean(b.loop), restMs: b.rest_min != null ? Number(b.rest_min) * 60_000 : undefined, maxPasses: b.max_passes, again: Boolean(b.again), retry: Boolean(b.retry), force: Boolean(b.force), xBrowser: Boolean(b.x_browser), import: b.import !== false, staleDays: b.stale_days, noBrowser: Boolean(b.no_browser) });
 	} catch (e) {
 		if (e.code === "RUNNING" || e.code === "LOCKED") return c.json({ error: e.message, code: e.code, status: await enrich.snapshot().catch(() => null) }, 409);
 		throw e;

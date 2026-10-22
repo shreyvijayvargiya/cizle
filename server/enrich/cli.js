@@ -18,6 +18,8 @@ function parseArgs(argv) {
 		if (a === "--parallel" || a === "-p") o.parallel = Number(need(i++, a));
 		else if (a === "--limit" || a === "-n") o.limit = Number(need(i++, a));
 		else if (a === "--id") o.ids.push(...need(i++, a).split(",").filter(Boolean));
+		else if (a === "--source" || a === "-s") (o.sources ||= []).push(...need(i++, a).split(",").filter(Boolean));
+		else if (a === "--no-ytdlp") o.noYtdlp = true;
 		else if (a === "--from") o.from = need(i++, a);
 		else if (a === "--batch-pause") o.batchPauseMs = Number(need(i++, a));
 		else if (a === "--rest-min") o.restMs = Number(need(i++, a)) * 60_000;
@@ -46,6 +48,8 @@ Usage: npm run enrich -- [options]
 
   -p, --parallel N     pages fetched together, 1-10 (default 5); then the next N
   -n, --limit N        stop after N entries
+      -s, --source ID  only prompts found in these harvest sources (e.g. -s N01,N02,N03,N07 for the v2 sources)
+      --no-ytdlp       do not use yt-dlp even if it is installed (it is the extra route for X posts and video pages)
       --id ID[,ID]     only these entries (e.g. x:2102853258582880547)
       --from WHERE     library (gallery.jsonl), all (everything the harvester merged, so dropped prompts can come back) or auto (default)
       --batch-pause MS pause between batches (default 3000)
@@ -62,7 +66,7 @@ Usage: npm run enrich -- [options]
       --report         coverage report: how many prompts have a demo video and a complete prompt, why the rest do not, by source
       --json           print events as JSON lines
 
-Where it looks, in order: the X embed endpoint, the FixTweet and vxTwitter APIs (video, poster, full text); the source page in Chrome
+Where it looks, in order: the X embed endpoint, the FixTweet and vxTwitter APIs (video, poster, full text), yt-dlp when installed; the source page in Chrome
 (<video>, og:video, and the Copy prompt button); the post in Chrome (only with --x-browser). A prompt with no demo video is held back
 from the site (gallery-pending.jsonl) until one is found. Set CHROME_PATH if Chrome is not found.
 Results: site/content/gallery-enrichment.json, gallery.jsonl (patched), library-state.json. Logs: site/logs/. Ctrl+C stops after the batch.`;

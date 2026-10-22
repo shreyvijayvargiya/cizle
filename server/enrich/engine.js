@@ -98,7 +98,7 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 		for (let pass = 1; !signal?.aborted; pass++) {
 			const { entries, library, from } = await loadEntries(opts.from);
 			const inLib = new Map(library.map((e) => [e.id, e]));
-			let todo = entries.filter((e) => (opts.ids?.length ? opts.ids.includes(e.id) : opts.force ? Boolean(e.postUrl || e.sourceUrl) : needsVisit(e, enrichment[e.id], { staleDays, again: opts.again, retry: opts.retry })));
+			let todo = entries.filter((e) => (opts.sources?.length && !e.sources?.some((x) => opts.sources.includes(x))) ? false : (opts.ids?.length ? opts.ids.includes(e.id) : opts.force ? Boolean(e.postUrl || e.sourceUrl) : needsVisit(e, enrichment[e.id], { staleDays, again: opts.again, retry: opts.retry })));
 			todo.sort((a, b) => priority(a, inLib) - priority(b, inLib));
 			if (limit) todo = todo.slice(0, Math.max(0, limit - totals.visited));
 			totals.passes = pass;
@@ -108,7 +108,7 @@ export async function runEnrich(opts = {}, emit = () => {}) {
 			let batches = 0;
 			for (let i = 0; i < todo.length && !signal?.aborted; i += parallel) {
 				const chunk = todo.slice(i, i + parallel);
-				const results = await Promise.allSettled(chunk.map((e) => enrichEntry(e, { browser, http, xBrowser: opts.xBrowser, signal, prev: enrichment[e.id], log: (m) => runlog.log(m) })));
+				const results = await Promise.allSettled(chunk.map((e) => enrichEntry(e, { browser, http, xBrowser: opts.xBrowser, noYtdlp: opts.noYtdlp, signal, prev: enrichment[e.id], log: (m) => runlog.log(m) })));
 				results.forEach((r, k) => {
 					const e = chunk[k];
 					if (r.status === "rejected") {

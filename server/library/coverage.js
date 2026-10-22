@@ -33,7 +33,8 @@ export function coverage() {
 	let complete = 0;
 	for (const { e, shown: isShown } of all) {
 		const src = e.sources?.[0] || "unknown";
-		const row = (bySource[src] ||= { total: 0, shown: 0, waiting: 0, partial: 0 });
+		const row = (bySource[src] ||= { total: 0, shown: 0, waiting: 0, partial: 0, with_video: 0 });
+		if (e.video) row.with_video++;
 		row.total++;
 		if (isShown) row.shown++;
 		else row.waiting++;
@@ -80,8 +81,8 @@ export function formatCoverage(c) {
 	if (!c.waiting) L.push("  none waiting");
 	for (const [k, n] of Object.entries(c.waiting_reasons)) L.push(`  ${String(n).padStart(5)}  ${REASONS[k] || k}${c.examples[k]?.length ? `   e.g. ${c.examples[k].join(", ")}` : ""}`);
 	L.push("");
-	L.push("BY SOURCE        total  shown  waiting  partial");
-	for (const [k, r] of Object.entries(c.by_source)) L.push(`  ${k.padEnd(14)} ${String(r.total).padStart(5)}  ${String(r.shown).padStart(5)}  ${String(r.waiting).padStart(7)}  ${String(r.partial).padStart(7)}`);
+	L.push("BY SOURCE        total  shown  waiting  partial  with video");
+	for (const [k, r] of Object.entries(c.by_source)) L.push(`  ${k.padEnd(14)} ${String(r.total).padStart(5)}  ${String(r.shown).padStart(5)}  ${String(r.waiting).padStart(7)}  ${String(r.partial).padStart(7)}  ${String(r.with_video).padStart(10)}`);
 	if (c.dropped) {
 		L.push("");
 		L.push("NOT IN THE LIBRARY (dropped at import)");

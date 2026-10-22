@@ -8,9 +8,12 @@ import type { GalleryFilters, GalleryItem } from "@/lib/gallery";
 /** Poster from the creator's own post. If it fails to load the card shows a text tile instead (dead media is removed at import time by npm run gallery:media, not guessed at in the browser). */
 function Poster({ item }: { item: GalleryItem }) {
 	const [bad, setBad] = useState(false);
+	const [hover, setHover] = useState(false);
+	const [videoBad, setVideoBad] = useState(false);
 	return (
-		<div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-lg border border-border bg-muted">
+		<div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-lg border border-border bg-muted">
 			{item.poster && !bad ? <img src={item.poster} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBad(true)} className="absolute inset-0 size-full object-cover" /> : <span className="px-4 text-center text-xs text-muted-foreground">{item.category || "video prompt"}</span>}
+			{hover && item.video && !videoBad ? <video src={item.video} muted loop autoPlay playsInline preload="none" onError={() => setVideoBad(true)} className="absolute inset-0 size-full object-cover" aria-hidden /> : null}
 			{item.hasVideo ? <span className="absolute right-2 bottom-2 grid size-6 place-items-center rounded-full bg-black/55 text-white"><Icon icon={PlayIcon} size={12} /></span> : null}
 		</div>
 	);

@@ -8,6 +8,7 @@
  * Every record says WHY an entry has no video (video_state), so the coverage report can tell "post deleted" from "blocked".
  * Returns the sidecar record (see server/library/enrichment.js). It never throws for a page that simply has nothing.
  */
+import { execFile } from "node:child_process";
 import { visit } from "./browser.js";
 import { parseFx, parseSyndication, parseVx, syndicationToken, xStatusId } from "./extract.js";
 
@@ -18,6 +19,24 @@ const VXTWITTER = () => base("ENRICH_VXTWITTER_URL", "https://api.vxtwitter.com"
 const norm = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
 const handleOf = (url) => /(?:x|twitter)\.com\/([A-Za-z0-9_]{1,30})\/status/.exec(String(url || ""))?.[1] || "i";
 
+let ytdlpBin; // undefined = not looked up yet, null = not installed
+/** yt-dlp is the other widely used way to get a direct mp4 for an X post (or many video pages). Optional: used only when it is installed. */
+async function ytdlp(url, signal) {
+	if (ytdlpBin === undefined) {
+		const bin = process.env.ENRICH_YTDLP?.trim() || "yt-dlp";
+		ytdlpBin = await new Promise((r) => execFile(bin, ["--version"], { timeout: 10_000 }, (e) => r(e ? null : bin)));
+	}
+	if (!ytdlpBin) return null;
+	return new Promise((resolve) => {
+		const child = execFile(ytdlpBin, ["-g", "--no-warnings", "--no-playlist", "-f", "best[ext=mp4]/best", url], { timeout: 45_000, maxBuffer: 1 << 20, signal }, (e, out) => {
+			if (e) return resolve(null);
+			resolve(String(out).split("\n").map((l) => l.trim()).find((l) => /^https?:\/\//.test(l) && !/\.m3u8(\?|$)/i.test(l)) || null);
+		});
+		child.on("error", () => resolve(null));
+	});
+}
+export const resetYtdlpCache = () => (ytdlpBin = undefined);
+
 /** { status, json }: 404 is an answer ("gone"), 403/429 is BLOCKED, other failures throw. */
 async function getJson(url, signal) {
 	const res = await fetch(url, { signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(20_000)]) : AbortSignal.timeout(20_000), headers: { "user-agent": "Mozilla/5.0 (compatible; cizle-enrich/1.0)", accept: "application/json" } });
@@ -27,7 +46,7 @@ async function getJson(url, signal) {
 	return { status: 200, json: await res.json().catch(() => null) };
 }
 
-export async function enrichEntry(entry, { browser, http, xBrowser = false, signal, prev = null, log = () => {} } = {}) {
+export async function enrichEntry(entry, { browser, http, xBrowser = false, noYtdlp = false, signal, prev = null, log = () => {} } = {}) {
 	const rec = { at: new Date().toISOString(), status: "none", attempts: (prev?.attempts || 0) + 1, updates: prev?.updates || 0, tried: [] };
 	const found = { video: entry.video || null, poster: entry.poster || null, text: null, tweet_text: null, hls: null };
 	const seen = { gone: false, noVideoPost: false, blocked: false, unreachable: false, answered: false };
@@ -96,6 +115,11 @@ export async function enrichEntry(entry, { browser, http, xBrowser = false, sign
 					if (p.text) takeText("vxtwitter", p.text, { trusted: false });
 				});
 		}
+		if (id && need().video && !noYtdlp && !signal?.aborted)
+			await route("yt-dlp", async () => {
+				const v = await ytdlp(entry.postUrl, signal);
+				if (v) take("yt-dlp", { video: v });
+			});
 		// the source page
 		const n = need();
 		if (entry.sourceUrl && browser && (n.video || n.text) && !signal?.aborted) {
@@ -109,6 +133,11 @@ export async function enrichEntry(entry, { browser, http, xBrowser = false, sign
 					if (v.copied) takeText("copy-button", v.copied, { trusted: true });
 				});
 		}
+		if (!found.video && entry.sourceUrl && !noYtdlp && !signal?.aborted)
+			await route("yt-dlp-page", async () => {
+				const v = await ytdlp(entry.sourceUrl, signal);
+				if (v) take("yt-dlp", { video: v });
+			});
 		// the post in the browser (opt-in)
 		if (xBrowser && browser && id && need().video && !signal?.aborted)
 			await route("browser", async () => {

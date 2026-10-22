@@ -151,3 +151,14 @@ Entry: `{ id, parent, at, scope, cmd, message, body[], stats, ids, ok, run }`. B
 
 ## Premium gallery text: no Firebase seeding by default
 `npm run content` writes the full text of each premium prompt to `site/public/gallery/text/<id>.json` and the page fetches it only when a signed-in subscriber opens the prompt. That is a **soft gate**: the page hides the text from everyone else, but the file URL is public, so anyone who finds it can read it. It needs no Firebase read, no service account and no `seed:gallery`. For a strict gate set `VITE_GALLERY_TEXT=firestore` (text stays out of the site and is read from Firestore by subscribers; run `npm run seed:gallery` after each library update). Firebase is still used for sign-in and the subscription check.
+
+
+## Prompts with an image but no video
+
+Harvest v2 sources N01, N02 and N03 ship no video, so their prompts depend on enrichment (the harvest does it as each source finishes; `npm run enrich` repeats it). Find out what is missing and why:
+```bash
+npm run enrich -- --report                       # per source: with video / waiting, and why the rest have none
+npm run enrich -- -s N01,N02,N03,N07 --retry     # only the v2 prompts, again, including failed/blocked ones
+npm run enrich -- -s N01,N02,N03 --x-browser     # also open the X post in Chrome when the APIs have no video
+```
+Routes for an X post: X embed, FixTweet, vxTwitter, **yt-dlp** (used when it is installed: `brew install yt-dlp`; `--no-ytdlp` skips it), then the source page in Chrome, then (opt-in) the post itself in Chrome. Cards with a video play a muted preview on hover; a prompt with no working video stays out of the gallery until one is found.

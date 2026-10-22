@@ -16,7 +16,7 @@ import { enrichEntry } from "./worker.js";
 /** A harvester record, as the enricher's entry shape. */
 export const recordToEntry = (r) => ({ id: r.id, postUrl: r.post_url || null, sourceUrl: r.source_ref?.url || null, video: r.media?.video_urls?.[0] || null, poster: r.media?.poster_url || null, text: r.prompt?.text || "", partial: r.prompt?.status === "partial" });
 
-export async function createInlineEnricher({ parallel = 5, batchPauseMs = 3000, xBrowser = false, noBrowser = false, signal, http, log = () => {}, emit = () => {} } = {}) {
+export async function createInlineEnricher({ parallel = 5, batchPauseMs = 3000, xBrowser = false, noBrowser = false, noYtdlp = false, signal, http, log = () => {}, emit = () => {} } = {}) {
 	const limit = Math.min(10, Math.max(1, Math.floor(Number(parallel) || 5)));
 	let lock = null;
 	try {
@@ -55,7 +55,7 @@ export async function createInlineEnricher({ parallel = 5, batchPauseMs = 3000, 
 					chunk.map(async (e) => {
 						await acquire();
 						try {
-							return await enrichEntry(e, { browser, http, xBrowser, signal, prev: enrichment[e.id], log });
+							return await enrichEntry(e, { browser, http, xBrowser, noYtdlp, signal, prev: enrichment[e.id], log });
 						} finally {
 							release();
 						}
