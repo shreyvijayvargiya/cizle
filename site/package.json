@@ -17,7 +17,8 @@
 		"seed:gallery": "node scripts/seed-gallery.mjs",
 		"seed:gallery:dry": "node scripts/seed-gallery.mjs --dry",
 		"test": "node tests/webhook.test.mjs && node tests/gallery.test.mjs && node tests/mcp.test.mjs",
-		"seed:premium:dry": "node scripts/seed-premium.mjs --dry"
+		"seed:premium:dry": "node scripts/seed-premium.mjs --dry",
+		"export:free": "node scripts/export-free.mjs"
 	},
 	"dependencies": {
 		"@hugeicons/core-free-icons": "^4.3.5",

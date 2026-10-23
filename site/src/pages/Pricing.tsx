@@ -33,10 +33,16 @@ export function PricingPage() {
 		],
 	});
 
+	// Until the Dodo products are set, the plans take early-access requests by email instead of failing at checkout.
+	const payReady = (plan: PlanId) => Boolean(checkoutUrl({ uid: "x", email: "x", currency, plan }));
 	const subscribe = (plan: PlanId) => {
+		if (!payReady(plan)) {
+			window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(`Premium early access (${plan}, ${currency})`)}&body=${encodeURIComponent("Hi, I would like early access to cizle Premium. My email is ")}`;
+			return;
+		}
 		if (!user) return navigate({ to: "/login", search: { next: "/pricing" } });
 		const url = checkoutUrl({ uid: user.uid, email: user.email, name: user.name, currency, plan });
-		if (!url) return toast.error(`Payments are not switched on for this plan yet. Add VITE_DODO_PRODUCT_${plan.toUpperCase()}_${currency} from .env.example.`);
+		if (!url) return toast.error("Checkout could not open. Try again in a moment.");
 		setBusy(plan);
 		window.location.href = url;
 	};
@@ -89,7 +95,7 @@ export function PricingPage() {
 										</Link>
 									) : (
 										<button type="button" onClick={() => subscribe(p.id as PlanId)} disabled={Boolean(busy) || !ready} className={`press flex h-16 items-center px-6 text-left text-lg font-medium disabled:opacity-60 sm:px-7 ${st.strip}`}>
-											{busy === p.id ? "Opening checkout…" : user ? `Get ${p.name} · ${planTotalLabel(p, currency)}` : "Sign in to subscribe"}
+											{busy === p.id ? "Opening checkout…" : !payReady(p.id as PlanId) ? `Get early access · ${planTotalLabel(p, currency)}` : user ? `Get ${p.name} · ${planTotalLabel(p, currency)}` : "Sign in to subscribe"}
 										</button>
 									)}
 								</section>
