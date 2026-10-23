@@ -19,10 +19,10 @@ function Poster({ item }: { item: GalleryItem }) {
 export function PromptCard({ item, search, base = "/gallery" }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
 	return (
 		<article className="lift h-full">
-			<Link to={base} search={{ ...search, p: item.id } as never} resetScroll={false} className="group flex h-full flex-col overflow-hidden rounded-lg bg-surface outline-none transition-colors hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring">
+			<Link to="/prompts/$slug" params={{ slug: item.slug }} search={search as never} resetScroll={false} className="group flex h-full flex-col overflow-hidden rounded-lg bg-surface outline-none transition-colors hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring">
 				<Poster item={item} />
 				<div className="flex flex-1 flex-col p-4">
-					<h3 className="text-xl leading-tight tracking-[-0.03em]">{plain(item.title)}</h3>
+					<h3 className="text-xl leading-tight tracking-[-0.03em] [overflow-wrap:anywhere]">{plain(item.title)}</h3>
 					<p className="mt-1 text-base text-muted-foreground">by {item.handle ? `@${item.handle}` : item.author || "the creator"}</p>
 					<p className="mt-3 line-clamp-3 text-base leading-snug">{plain(item.preview)}</p>
 					<p className="mt-auto pt-4 text-base">

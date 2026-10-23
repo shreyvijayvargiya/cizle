@@ -1,140 +1,163 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useCanGoBack, useNavigate, useRouter } from "@tanstack/react-router";
 import { Dialog as D } from "radix-ui";
-import { Cancel01Icon, LinkSquare02Icon, LockIcon } from "@hugeicons/core-free-icons";
-import { useState } from "react";
+import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
+import { useEffect, useState } from "react";
 import { CopyButton } from "@/components/CopyButton";
 import { Icon } from "@/components/Icon";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
+import { VideoPlayer } from "@/components/VideoPlayer";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
 import { SITE } from "@/lib/config";
 import { usePromptText, type GalleryFilters, type GalleryItem } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
 
+const pill = "inline-flex h-8 items-center rounded-full border border-input px-3 text-sm";
+const round = "grid size-9 place-items-center rounded-full border border-input outline-none transition-colors hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-30 disabled:hover:bg-transparent";
+
 /**
- * One gallery prompt over the list (the URL is /gallery?p=<id>). Free samples show in full. For the rest everyone sees the credit,
- * the links to the original post and a preview; the full text and copy button belong to subscribers.
+ * One gallery prompt over the list, at its own address (/prompts/<title-words>-<id>). Video on the left, details on the right.
+ * Free samples show in full. For the rest everyone sees the credit, the links to the original post and a preview; the full text
+ * and copy button belong to subscribers.
  */
-export function PromptDialog({ item, search, base = "/gallery" }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
+export function PromptDialog({ item, search, list = [] }: { item: GalleryItem; search: GalleryFilters; list?: GalleryItem[] }) {
 	const navigate = useNavigate();
+	const router = useRouter();
+	const canGoBack = useCanGoBack();
 	const { isPro, user } = useAuth();
 	const full = usePromptText(item, isPro);
 	const text = item.text ?? full.data;
-	const close = () => navigate({ to: base, search: { ...search, p: undefined } as never, resetScroll: false });
 	const [videoBad, setVideoBad] = useState(false);
 	const [posterBad, setPosterBad] = useState(false);
+	const [expanded, setExpanded] = useState(false);
 	const locked = !text && !isPro;
+	const at = list.findIndex((g) => g.id === item.id);
+	const prev = at > 0 ? list[at - 1] : undefined;
+	const next = at >= 0 ? list[at + 1] : undefined;
+	const by = item.handle ? `@${item.handle}` : item.author || "the creator";
+	const posted = item.added && !Number.isNaN(Date.parse(item.added)) ? new Date(item.added).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : null;
 
-	useHead({ title: `${item.title} | cizle prompt gallery`, description: item.preview.slice(0, 180), path: base, noindex: true });
+	useEffect(() => (setVideoBad(false), setPosterBad(false), setExpanded(false)), [item.id]);
+
+	const close = () => (canGoBack ? router.history.back() : navigate({ to: "/gallery", search: { ...search, p: undefined } as never, resetScroll: false }));
+	const go = (g?: GalleryItem) => g && navigate({ to: "/prompts/$slug", params: { slug: g.slug }, search: search as never, replace: true, resetScroll: false });
+	useEffect(() => {
+		const onKey = (e: KeyboardEvent) => {
+			if (e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+			if (e.key === "ArrowLeft") go(prev);
+			if (e.key === "ArrowRight") go(next);
+		};
+		window.addEventListener("keydown", onKey);
+		return () => window.removeEventListener("keydown", onKey);
+	});
+
+	useHead({
+		title: `${item.title}: ${item.category ? `${item.category} ` : ""}video prompt by ${by} | cizle`,
+		description: item.preview.slice(0, 180),
+		path: `/prompts/${item.slug}`,
+	});
 
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
 			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45  data-[state=open]:animate-[fade-in_.15s_ease-out]" />
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45 data-[state=open]:animate-[fade-in_.15s_ease-out]" />
 				<D.Content
-					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(52rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-lg sm:[animation:pop-in_.18s_ease-out]"
+					className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background outline-none md:inset-auto md:top-1/2 md:left-1/2 md:h-[min(878px,calc(100dvh-2rem))] md:w-[min(1320px,calc(100vw-2rem))] md:-translate-x-1/2 md:-translate-y-1/2 md:flex-row md:overflow-hidden md:rounded-2xl md:shadow-2xl md:[animation:pop-in_.18s_ease-out]"
 					aria-describedby="prompt-desc"
 					tabIndex={-1}
 				>
-					<div className="flex items-center justify-between gap-3 border-b border-border bg-surface px-4 py-2.5">
-						<div className="min-w-0">
-							<D.Title asChild>
-								<h1 className="truncate text-base font-semibold tracking-tight sm:text-lg">{item.title}</h1>
-							</D.Title>
-							<D.Description id="prompt-desc" className="sr-only">
-								Video prompt by {item.handle ? `@${item.handle}` : item.author || "the creator"}
-							</D.Description>
-						</div>
-						<D.Close asChild>
-							<Button variant="ghost" size="icon" aria-label="Close and go back to the gallery">
-								<Icon icon={Cancel01Icon} size={16} />
-							</Button>
-						</D.Close>
+					<div className="relative flex h-[62dvh] w-full shrink-0 items-center justify-center bg-surface p-4 md:h-auto md:min-w-0 md:flex-1 md:p-8">
+						{item.video && !videoBad ? (
+							<VideoPlayer src={item.video} poster={item.poster} label={`Video: ${item.title}`} onFail={() => setVideoBad(true)} />
+						) : item.poster && !posterBad ? (
+							<img src={item.poster} alt="" referrerPolicy="no-referrer" onError={() => setPosterBad(true)} className="max-h-full max-w-full rounded-xl object-contain" />
+						) : (
+							<p className="max-w-xs text-center text-lg text-muted-foreground">No video here yet. Use View post to watch the original.</p>
+						)}
+						{item.video && videoBad ? <p className="absolute inset-x-6 bottom-4 text-center text-sm text-muted-foreground">The video did not load here. Use View post to watch it.</p> : null}
 					</div>
 
-					<div className="flex-1 overflow-y-auto overscroll-contain px-4 py-5 sm:px-6">
-						<div className="flex flex-wrap items-center gap-2 text-sm">
-							<span className="text-muted-foreground">Prompt by</span>
-							{item.handle ? (
-								<a className="font-medium underline-offset-2 hover:underline" href={`https://x.com/${item.handle}`} target="_blank" rel="noopener noreferrer">
-									@{item.handle}
+					<div className="flex w-full min-w-0 shrink-0 flex-col p-6 md:w-[400px] md:overflow-y-auto md:p-7">
+						<div className="flex items-center gap-3">
+							<span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full bg-field-2 text-sm font-semibold text-background">{by.replace("@", "").slice(0, 1).toUpperCase()}</span>
+							<div className="min-w-0 flex-1 leading-tight">
+								{item.handle ? (
+									<a className="block truncate text-base font-medium hover:underline" href={`https://x.com/${item.handle}`} target="_blank" rel="noopener noreferrer">{item.author?.replace(/^@/, "") || item.handle}</a>
+								) : (
+									<span className="block truncate text-base font-medium">{by}</span>
+								)}
+								{item.handle ? <span className="block truncate text-sm text-muted-foreground">@{item.handle}</span> : null}
+							</div>
+							{item.postUrl ? (
+								<a href={item.postUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+									View post <Icon icon={ArrowUpRight01Icon} size={13} />
 								</a>
-							) : (
-								<span className="font-medium">{item.author || "the creator"}</span>
-							)}
-							{item.tier === "free" ? <Badge tone="success">Free sample</Badge> : <Badge tone="warning"><Icon icon={LockIcon} size={11} /> Pro</Badge>}
-							{item.category ? <Badge tone="outline">{item.category}</Badge> : null}
-							{item.model ? <Badge tone="outline">{item.model}</Badge> : null}
-							{item.translatedFrom ? <Badge tone="outline">Translated from {item.translatedFrom}</Badge> : null}
+							) : null}
+							<D.Close asChild>
+								<button type="button" aria-label="Close and go back" className="grid size-8 place-items-center rounded-full outline-none hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring">
+									<Icon icon={Cancel01Icon} size={16} />
+								</button>
+							</D.Close>
 						</div>
 
-						{item.video && !videoBad ? (
-							<video key={item.video} controls autoPlay muted loop playsInline preload="auto" poster={item.poster || undefined} onError={() => setVideoBad(true)} className="mt-4 max-h-[52dvh] w-full rounded-lg border border-border bg-black">
-								<source src={item.video} type="video/mp4" onError={() => setVideoBad(true)} />
-							</video>
-						) : item.poster && !posterBad ? (
-							<img src={item.poster} alt="" referrerPolicy="no-referrer" onError={() => setPosterBad(true)} className="mt-4 max-h-72 w-full rounded-lg border border-border object-cover" />
-						) : null}
-						{item.video && videoBad ? <p className="mt-2 text-xs text-muted-foreground">The video did not load here. Use the link to the original post to watch it.</p> : null}
+						<D.Title asChild>
+							<h2 className="mt-6 text-xl leading-tight tracking-[-0.02em]">{item.title}</h2>
+						</D.Title>
+						<D.Description id="prompt-desc" className="sr-only">Video prompt by {by}</D.Description>
 
 						<div className="mt-4 flex flex-wrap gap-2">
-							{item.postUrl ? (
-								<Button variant="outline" size="sm" asChild>
-									<a href={item.postUrl} target="_blank" rel="noopener noreferrer"><Icon icon={LinkSquare02Icon} size={14} /> {item.video ? "Original post" : item.hasVideo ? "Watch the original post and video" : "Original post"}</a>
-								</Button>
-							) : null}
-							{item.sourceUrl ? (
-								<Button variant="outline" size="sm" asChild>
-									<a href={item.sourceUrl} target="_blank" rel="noopener noreferrer"><Icon icon={LinkSquare02Icon} size={14} /> Source page</a>
-								</Button>
-							) : null}
+							{item.category ? <span className={pill}>{item.category}</span> : null}
+							<span className={pill}>{item.tier === "free" ? "Free sample" : "Premium"}</span>
+							{item.translatedFrom ? <span className={pill}>Translated from {item.translatedFrom}</span> : null}
 						</div>
 
-						<h2 className="mt-6 text-sm font-semibold">Prompt</h2>
-						{text ? (
-							<pre className="mt-2 max-h-[46dvh] overflow-auto rounded-lg border border-border bg-muted/50 p-3 text-xs leading-relaxed whitespace-pre-wrap">{text}</pre>
-						) : locked ? (
-							<div className="relative mt-2 overflow-hidden rounded-lg border border-border bg-muted/50 p-3">
-								<p className="text-xs leading-relaxed whitespace-pre-wrap">{item.preview}</p>
-								<div aria-hidden className="mt-2 space-y-2 select-none blur-[5px]">
-									<div className="h-3 w-full rounded bg-foreground/15" />
-									<div className="h-3 w-11/12 rounded bg-foreground/15" />
-									<div className="h-3 w-4/5 rounded bg-foreground/15" />
-								</div>
-								<div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-background/80" />
-							</div>
+						<div className="mt-6 flex min-h-8 items-center justify-between text-sm">
+							<h2 className="text-muted-foreground">Prompt</h2>
+							{text ? <CopyButton text={text} label="Copy" done="Copied" variant="ghost" size="sm" /> : null}
+						</div>
+						{text || locked ? (
+							<div className={`mt-2 rounded-lg bg-surface p-4 ${expanded ? "max-h-[46dvh] overflow-y-auto" : "max-h-52 overflow-hidden [mask-image:linear-gradient(to_bottom,#000_65%,transparent)]"}`}>
+								<p className="text-base leading-relaxed whitespace-pre-wrap">{text || item.preview}</p>
+											</div>
 						) : full.isError ? (
-							<p className="mt-2 rounded-lg border border-border bg-muted/50 p-3 text-sm text-muted-foreground">{(full.error as Error).message}</p>
+							<p className="mt-2 rounded-lg bg-surface p-4 text-base text-muted-foreground">{(full.error as Error).message}</p>
 						) : (
 							<Skeleton className="mt-2 h-40" />
 						)}
-						{item.partial ? <p className="mt-2 text-xs text-muted-foreground">The creator shared only part of this prompt.</p> : null}
-						<p className="mt-1 text-xs text-muted-foreground">{item.chars.toLocaleString()} characters</p>
-
+						{text && !expanded ? (
+							<button type="button" onClick={() => setExpanded(true)} className="mt-3 self-start text-base text-muted-foreground hover:text-foreground">Show all</button>
+						) : null}
 						{locked ? (
-							<div className="mt-5 rounded-lg border border-border bg-surface p-4 text-center">
-								<p className="font-medium">Unlock the full prompt</p>
-								<p className="mx-auto mt-1 max-w-md text-sm text-muted-foreground">Premium shows the full text of every gallery prompt and lets you copy it into Claude Code. from {fromLabel("USD")} a month, cancel any time.</p>
+							<div className="mt-4">
+								<p className="text-base">The full text, and copy, open with Premium from {fromLabel("USD")} a month.</p>
 								<Button className="mt-3" asChild>
 									{user ? <Link to="/pricing">See Premium</Link> : <Link to="/login" search={{ next: "/pricing" }}>Sign in to unlock</Link>}
 								</Button>
 							</div>
 						) : null}
-
-						<p className="mt-6 text-xs text-muted-foreground">
-							This prompt belongs to its creator and is listed with credit and a link to the original. Are you the creator and want it changed or removed? Email{" "}
-							<a className="underline" href={`mailto:${SITE.email}?subject=Gallery%20removal%20${item.id}`}>
-								{SITE.email}
-							</a>{" "}
-							with this prompt's link.
+						{item.partial ? <p className="mt-2 text-sm text-muted-foreground">The creator shared only part of this prompt.</p> : null}
+						<p className="mt-3 text-sm text-muted-foreground">
+							This prompt was taken directly from {item.postUrl ? <a className="underline underline-offset-2" href={item.postUrl} target="_blank" rel="noopener noreferrer">{by}&rsquo;s post</a> : `${by}'s post`}.{" "}
+							{item.sourceUrl ? <a className="underline underline-offset-2" href={item.sourceUrl} target="_blank" rel="noopener noreferrer">Source page</a> : null}
 						</p>
-					</div>
 
-					<div className="flex items-center justify-between gap-3 border-t border-border bg-surface px-4 py-3 sm:px-6">
-						<p className="hidden min-w-0 truncate text-sm text-muted-foreground sm:block">{item.title}</p>
-						<div className="flex flex-wrap justify-end gap-2">{text ? <CopyButton text={text} label="Copy prompt" done="Prompt copied" variant="default" /> : null}</div>
+						<dl className="mt-6 grid grid-cols-[5rem_1fr] gap-y-2 border-t border-input pt-5 text-base">
+							{item.model ? (<><dt className="text-muted-foreground">Model</dt><dd>{item.model}</dd></>) : null}
+							{posted ? (<><dt className="text-muted-foreground">Posted</dt><dd>{posted}</dd></>) : null}
+							<dt className="text-muted-foreground">Length</dt>
+							<dd>{item.chars.toLocaleString()} characters</dd>
+						</dl>
+
+						<div className="mt-auto flex items-end justify-between gap-4 pt-8">
+							<p className="text-xs text-muted-foreground">
+								Are you the creator and want this changed or removed? Email <a className="underline" href={`mailto:${SITE.email}?subject=Gallery%20removal%20${item.id}`}>{SITE.email}</a>.
+							</p>
+							<div className="flex shrink-0 gap-2">
+								<button type="button" className={round} aria-label="Previous prompt" disabled={!prev} onClick={() => go(prev)}><Icon icon={ArrowLeft01Icon} size={16} /></button>
+								<button type="button" className={round} aria-label="Next prompt" disabled={!next} onClick={() => go(next)}><Icon icon={ArrowRight01Icon} size={16} /></button>
+							</div>
+						</div>
 					</div>
 				</D.Content>
 			</D.Portal>

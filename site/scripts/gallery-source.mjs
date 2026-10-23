@@ -174,11 +174,21 @@ export function loadGallery(file = GALLERY_FILE) {
 		.map((e) => ({ ...e, gid: galleryId(e.id), tier: e.tier === "free" ? "free" : "premium" }));
 }
 
+/** SEO path segment for one prompt: readable title words plus a short id tail, e.g. engraving-style-claude-ad-0227823. The tail alone identifies it, so a reworded title keeps resolving. */
+export function promptSlug(title, gid, category, tailLen = 7) {
+	const words = String(title ?? "").normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+	const lead = words.replace(/^(?:[0-9]+-)+(?=[a-z])/, "");
+	let base = lead.length > 56 ? lead.slice(0, 56).replace(/-[^-]*$/, "") : lead;
+	if (base.length < 3) base = `${String(category || "video").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "video"}-prompt`;
+	return `${base}-${String(gid).replace(/[^A-Za-z0-9]/g, "").toLowerCase().slice(-tailLen)}`;
+}
+
 /** What the public gallery.json may carry. Premium entries get a preview only; free samples carry the whole prompt. */
 export function publicItem(e) {
 	const free = e.tier === "free";
 	return {
 		id: e.gid,
+		slug: promptSlug(e.title, e.gid, e.category),
 		title: e.title,
 		handle: e.author.handle,
 		author: e.author.name || (e.author.handle ? `@${e.author.handle}` : null),

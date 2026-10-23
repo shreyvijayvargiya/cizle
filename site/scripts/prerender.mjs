@@ -133,6 +133,30 @@ if (gallery) {
 	}));
 }
 
+// one page per prompt: /prompts/<title-words>-<id>. Free samples carry the whole text, premium ones the preview only.
+const promptPages = gallery ? gallery.items.filter((g) => g.slug) : [];
+for (const g of promptPages) {
+	const by = g.handle ? `@${g.handle}` : g.author || "the creator";
+	const p = `/prompts/${g.slug}`;
+	const when = g.added && !Number.isNaN(Date.parse(g.added)) ? new Date(g.added).toISOString().slice(0, 10) : today;
+	out(p, document({
+		title: `${g.title}: ${g.category ? `${g.category} ` : ""}video prompt by ${by} | cizle`.slice(0, 120),
+		description: g.preview.replace(/\s+/g, " ").slice(0, 170),
+		path: p,
+		type: "article",
+		ld: [
+			crumbs([["Skills", "/"], ["Prompt gallery", "/gallery"], [g.title, p]]),
+			{ "@context": "https://schema.org", "@type": "CreativeWork", name: g.title, description: g.preview, url: abs(p), author: { "@type": "Person", name: by }, ...(g.postUrl ? { sameAs: g.postUrl } : {}), isAccessibleForFree: g.tier === "free", datePublished: when, publisher: { "@type": "Organization", name: siteConfig.name, url: SITE_URL } },
+			...(g.video ? [{ "@context": "https://schema.org", "@type": "VideoObject", name: g.title, description: g.preview, thumbnailUrl: g.poster || abs("/favicon.svg"), contentUrl: g.video, uploadDate: when }] : []),
+		],
+		body: `<nav aria-label="Breadcrumb"><a href="/">Skills</a> / <a href="/gallery">Prompt gallery</a> / ${esc(g.title)}</nav><article><h1>${esc(g.title)}</h1><p>Video prompt by ${esc(by)}${g.model ? ` for ${esc(g.model)}` : ""}${g.category ? ` · ${esc(g.category)}` : ""} · ${g.tier === "free" ? "free sample" : "Premium"}.</p>` +
+			(g.video ? `<video controls preload="none" muted playsinline${g.poster ? ` poster="${esc(g.poster)}"` : ""} src="${esc(g.video)}" width="360"></video>` : "") +
+			`<h2 id="prompt">Prompt</h2>${g.text ? `<pre><code>${esc(g.text)}</code></pre>` : `<p>${esc(g.preview)}</p><p>The full prompt is part of cizle Premium. <a href="/pricing">Unlock Premium</a> to read and copy it.</p>`}` +
+			(g.postUrl ? `<p><a href="${esc(g.postUrl)}" rel="noopener noreferrer">Original post by ${esc(by)}</a></p>` : "") +
+			`<p><small>This prompt belongs to its creator. Email ${esc(siteConfig.email)} to have it corrected or removed.</small></p></article>`,
+	}));
+}
+
 // pricing
 out("/pricing", document({
 	title: `Pricing: Premium from $${Math.min(...siteConfig.plans.map((p) => p.usd))} a month | cizle`,
@@ -160,7 +184,7 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
 
@@ -168,4 +192,4 @@ const line = (s) => `- [${s.name}](${abs(`/skills/${s.slug}`)}): ${s.summary}`;
 fs.writeFileSync(path.join(DIST, "llms.txt"), `# cizle\n\n> ${siteConfig.description}\n\ncizle is a library of video skills and prompts for Claude Code. Each skill is a scene-by-scene guide for one kind of video (product launch, feature tour, FAQ, Meta/TikTok/Google ad, film style). The cizle MCP server renders the storyboard Claude writes into an MP4 on the user's own machine, with no model call and no API key. ${free.length} skills are free; ${premium.length} premium skills are $${price.usd} per month (₹${price.inr} in India).\n\n## Start here\n- [How to use cizle skills](${abs("/docs")}): install a skill, connect the MCP server, ask for a video\n- [Pricing](${abs("/pricing")})\n- [FAQ](${abs("/faq")})\n- [Full text for language models](${abs("/llms-full.txt")})\n\n## Free skills\n${free.map(line).join("\n")}\n\n## Premium skills (summary only; prompts require a subscription)\n${premium.map(line).join("\n")}\n\n## Blog\n${posts.map((p) => `- [${p.title}](${abs(`/blog/${p.slug}`)}): ${p.description}`).join("\n")}\n`);
 fs.writeFileSync(path.join(DIST, "llms-full.txt"), `# cizle: full text\n\n${siteConfig.description}\n\n---\n\n# Docs\n\n${pages.docs.html.replace(/<[^>]+>/g, "")}\n\n---\n\n# FAQ\n\n${faq.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}\n\n---\n\n# Free skills (full prompts)\n\n${free.map((s) => `## ${s.name}\n${abs(`/skills/${s.slug}`)}\n\n${s.promptText}`).join("\n\n---\n\n")}\n`);
 
-console.log(`prerender: ${skills.length} skill pages, ${posts.length} posts, sitemap with ${urls.length} urls → dist/`);
+console.log(`prerender: ${skills.length} skill pages, ${promptPages.length} prompt pages, ${posts.length} posts, sitemap with ${urls.length} urls → dist/`);

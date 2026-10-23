@@ -6,6 +6,7 @@ import { firebaseConfigured, loadFirebase } from "./firebase";
 
 export type GalleryItem = {
 	id: string;
+	slug: string;
 	title: string;
 	handle: string | null;
 	author: string | null;
@@ -26,6 +27,11 @@ export type GalleryItem = {
 	added: string | null;
 };
 export type GalleryIndex = { generatedAt: string; total: number; free: number; categories: string[]; items: GalleryItem[] };
+/** The prompt a /prompts/<slug> path names. The trailing id code decides, so an older title in a shared link still opens it. */
+export function findPrompt(items: GalleryItem[] | undefined, slug: string) {
+	const code = slug.slice(slug.lastIndexOf("-") + 1);
+	return items?.find((g) => g.slug === slug) ?? (code ? items?.find((g) => g.slug.endsWith(`-${code}`)) : undefined);
+}
 export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string };
 
 /** One static file, loaded only on the gallery (and its home-page teaser). Premium prompts carry a preview, never the full text. */

@@ -32,6 +32,8 @@ const post = createRoute({ getParentRoute: () => root, path: "/blog/$slug", comp
 const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p) });
 const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", validateSearch: galleryFilters, component: GalleryPage });
 
+const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
+
 const login = createRoute({ getParentRoute: () => root, path: "/login", component: LoginPage, validateSearch: (s: Record<string, unknown>): { next?: string } => ({ next: str(s.next) }) });
 const settings = createRoute({ getParentRoute: () => root, path: "/settings", component: SettingsPage, validateSearch: (s: Record<string, unknown>): { payment?: string; status?: string } => ({ payment: str(s.payment), status: str(s.status) }) });
 
@@ -39,6 +41,7 @@ const tree = root.addChildren([
 	home,
 	skill,
 	gallery,
+	prompt,
 	r("/pricing", PricingPage),
 	r("/faq", FaqPage),
 	r("/contact", ContactPage),

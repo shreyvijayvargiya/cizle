@@ -11,14 +11,14 @@ import { Skeleton } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
-import { filterGallery, useGallery, useGalleryFuse, type GalleryFilters } from "@/lib/gallery";
+import { filterGallery, findPrompt, useGallery, useGalleryFuse, type GalleryFilters } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
 
 const PAGE = 48;
 const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort"];
 
 /** Community video prompts, each credited and linked to the original. A free sample in full; the rest open to subscribers. */
-export function GalleryPage() {
+export function GalleryPage({ slug }: { slug?: string } = {}) {
 	const navigate = useNavigate();
 	const search = useSearch({ strict: false }) as GalleryFilters;
 	const { isPro } = useAuth();
@@ -44,10 +44,15 @@ export function GalleryPage() {
 	const list = useMemo(() => (items ? filterGallery(items, fuse, search) : []), [items, fuse, search]);
 	const active = KEYS.some((k) => k !== "sort" && search[k]);
 	const total = gallery.data?.total ?? 0;
-	const open = search.p ? items?.find((g) => g.id === search.p) : undefined;
+	const open = slug ? findPrompt(items, slug) : undefined;
+	const legacy = search.p ? items?.find((g) => g.id === search.p) : undefined;
+	useEffect(() => {
+		// old ?p=<id> links move to the readable address
+		if (legacy) navigate({ to: "/prompts/$slug", params: { slug: legacy.slug }, search: { ...search, p: undefined } as never, replace: true, resetScroll: false });
+	}, [legacy]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useHead({
-		enabled: !open,
+		enabled: !open && !legacy,
 		title: `Prompt gallery: ${total ? total.toLocaleString() : "1,000+"} Opus 5.5 video prompts, with credit | cizle`,
 		description: "Browse real video prompts people made with Claude Opus 5.5: motion graphics, explainers, product videos and 3D. Each one credits its creator and links to the original post. Read a free sample, unlock the rest with Premium.",
 		path: "/gallery",
@@ -91,7 +96,7 @@ export function GalleryPage() {
 				</p>
 
 				{gallery.isLoading ? (
-					<div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+					<div className="grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 						{Array.from({ length: 8 }).map((_, i) => (
 							<Skeleton key={i} className="h-80" />
 						))}
@@ -106,7 +111,7 @@ export function GalleryPage() {
 					</div>
 				) : list.length ? (
 					<>
-						<ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+						<ul className="grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 							{list.slice(0, shown).map((g, k) => (
 								<li key={g.id} className="reveal" style={{ ["--i" as string]: k % 4 }}>
 									<PromptCard item={g} search={search} />
@@ -131,7 +136,7 @@ export function GalleryPage() {
 				<p className="mx-auto mt-10 max-w-[60ch] px-1 text-center text-base">Prompts belong to the people who wrote them. We link to every original and remove a prompt on request. Email us from the contact page.</p>
 			</div>
 
-			{open ? <PromptDialog item={open} search={search} /> : null}
+			{open ? <PromptDialog item={open} search={search} list={list} /> : null}
 		</div>
 	);
 }

@@ -7,7 +7,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { loadGallery, publicItem } from "./gallery-source.mjs";
+import { loadGallery, promptSlug, publicItem } from "./gallery-source.mjs";
 import { CATEGORIES, SITE_DIR, SITE_URL, loadSkills, md, publicSkill, siteConfig, skillDetail } from "./skills-source.mjs";
 
 const PUB = path.join(SITE_DIR, "public");
@@ -61,6 +61,7 @@ write("skills.json", {
 
 /* prompt gallery: card data and previews only. The full text of premium prompts is never written to public/. */
 const gallery = loadGallery().map(publicItem);
+{ const seen = new Set(); for (const g of gallery) { for (let n = 8; seen.has(g.slug) && n < 24; n++) g.slug = promptSlug(g.title, g.id, g.category, n); seen.add(g.slug); } }
 const count = (key) => Object.entries(gallery.reduce((m, g) => ((g[key] ? (m[g[key]] = (m[g[key]] || 0) + 1) : 0), m), {})).sort((a, b) => b[1] - a[1]);
 if (gallery.length)
 	write("gallery.json", { generatedAt: new Date().toISOString(), total: gallery.length, free: gallery.filter((g) => g.tier === "free").length, categories: count("category").map(([c]) => c), items: gallery });

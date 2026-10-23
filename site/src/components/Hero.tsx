@@ -78,7 +78,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 								>
 									<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
 								</button>
-								<Link to="/gallery" search={{ p: cur.id }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
+								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
 									Open it
 								</Link>
 								<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next prompt" className="press ml-auto inline-flex h-11 items-center gap-2 rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">

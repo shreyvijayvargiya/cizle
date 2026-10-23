@@ -11,7 +11,6 @@ import { Skeleton } from "@/components/ui/misc";
 import { Hero } from "@/components/Hero";
 import { VideoToggle } from "@/components/VideoToggle";
 import { PromptCard } from "@/components/PromptCard";
-import { PromptDialog } from "@/components/PromptDialog";
 import { filterGallery, useGallery, useGalleryFuse, type GalleryItem } from "@/lib/gallery";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
@@ -79,6 +78,9 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 	const freeCount = skills.data?.skills.filter((s) => s.tier === "free").length ?? SITE.freeCount;
 	const lockedPrompts = promptTotal - (gallery.data?.free ?? 0);
 	const openPrompt = search.p ? gallery.data?.items.find((g) => g.id === search.p) : undefined;
+	useEffect(() => {
+		if (openPrompt) navigate({ to: "/prompts/$slug", params: { slug: openPrompt.slug }, search: {}, replace: true, resetScroll: false });
+	}, [openPrompt]); // eslint-disable-line react-hooks/exhaustive-deps
 	const categories = useMemo(() => [...new Set([...(skills.data?.categories ?? []), ...(gallery.data?.categories ?? []).slice(0, 24)])], [skills.data, gallery.data]);
 
 	useHead({
@@ -145,7 +147,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</div>
 					) : mixed.length ? (
 						<>
-							<ul className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+							<ul className="mt-2 grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 								{mixed.slice(0, shown).map((e, k) =>
 									e.type === "skill" ? (
 										<li key={`s-${e.skill.slug}`} className="reveal" style={{ ["--i" as string]: k % 4 }}>
@@ -198,7 +200,6 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 				</div>
 			</section>
 
-			{openPrompt && !slug ? <PromptDialog item={openPrompt} search={search} base="/" /> : null}
 			{slug && skills.data ? <SkillDialog slug={slug} list={list.some((s) => s.slug === slug) ? list : skills.data.skills} search={search} /> : null}
 		</div>
 	);
