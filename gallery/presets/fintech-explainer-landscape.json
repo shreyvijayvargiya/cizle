@@ -1,0 +1,18 @@
+{
+  "id": "fintech-explainer-landscape",
+  "title": "Whiteboard explainer for fintech terms",
+  "description": "Teach three terms a buyer should know, drawn like a whiteboard lesson.",
+  "type": "glossary",
+  "tone": "polished",
+  "style": "sketch",
+  "aspect": "16:9",
+  "animation": "split-compare",
+  "categories": [
+    "fintech"
+  ],
+  "founders": [
+    "b2b",
+    "fundraising"
+  ],
+  "prompt": "Open with the confusing term as a question. For each of three terms: write the term, underline it, give a plain-English definition under 18 words, then a tiny diagram. Tie the last term to how the product handles it, with a real screenshot. No jargon inside definitions."
+}

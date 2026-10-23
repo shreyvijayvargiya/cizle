@@ -1,0 +1,20 @@
+{
+  "id": "agent-glitch-portrait",
+  "title": "AI agent teaser, terminal boot",
+  "description": "A terminal-style teaser for an AI product: the problem, the agent at work, the outcome.",
+  "type": "launch",
+  "tone": "cinematic",
+  "style": "ascii",
+  "aspect": "9:16",
+  "animation": "glitch-cut",
+  "categories": [
+    "ai-agents",
+    "devtools",
+    "security"
+  ],
+  "founders": [
+    "ai",
+    "devtool"
+  ],
+  "prompt": "Open on a blinking prompt and the one-line problem, typed out. Cut to the agent doing its job as a short log (three lines: task, action, result), then land the outcome as a single number or sentence. Say what the product does in the first two seconds and end on the repo or install command."
+}

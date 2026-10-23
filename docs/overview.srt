@@ -1,0 +1,235 @@
+1
+00:00:00,800 --> 00:00:03,104
+Your product changes every week.
+
+2
+00:00:03,224 --> 00:00:05,555
+Your videos fall a month behind.
+
+3
+00:00:05,675 --> 00:00:14,068
+Meet cizle: a local video studio that remembers your SaaS product, notices what you ship, and suggests the next video to make.
+
+4
+00:00:15,768 --> 00:00:17,287
+Here is the idea.
+
+5
+00:00:17,407 --> 00:00:21,029
+You give cizle your website and your GitHub repos, once.
+
+6
+00:00:21,149 --> 00:00:25,632
+It reads them, and saves what it learns as plain markdown on your machine.
+
+7
+00:00:25,752 --> 00:00:31,183
+From then on it checks for changes, and suggests videos with the reason and the source.
+
+8
+00:00:31,303 --> 00:00:34,317
+Pick one, press create, and it makes the video. Never before you press create.
+
+9
+00:00:36,017 --> 00:00:38,649
+Getting started takes three commands.
+
+10
+00:00:38,769 --> 00:00:40,651
+Clone the repository, run npm install, then npm run dev.
+
+11
+00:00:40,771 --> 00:00:43,933
+Open localhost:5173 and paste your OpenRouter key in Settings.
+
+12
+00:00:44,053 --> 00:00:48,810
+There is no database and no account. Everything stays on your computer.
+
+13
+00:00:50,510 --> 00:00:55,310
+To add a product, open the product menu in the sidebar and choose add product.
+
+14
+00:00:55,430 --> 00:01:00,539
+Paste your website, and any GitHub repos, separated by commas.
+
+15
+00:01:00,659 --> 00:01:08,864
+cizle reads your homepage, llms.txt, blog, and pricing and docs pages, plus your first repo. Other repos are read by their README.
+
+16
+00:01:08,984 --> 00:01:15,367
+Then it writes what it knows about your product, and suggests three first videos, each with a cost estimate.
+
+17
+00:01:17,067 --> 00:01:21,891
+What it learns is saved in a folder called products, one folder per product.
+
+18
+00:01:22,011 --> 00:01:25,569
+product.md holds the positioning, features, pricing and tone, and every fact names its source.
+
+19
+00:01:25,689 --> 00:01:31,086
+changes.md logs what shipped. ideas.md tracks your video ideas.
+
+20
+00:01:31,206 --> 00:01:38,837
+It is all plain markdown, so you can open it in any editor and fix what is wrong. The next video reads your correction.
+
+21
+00:01:38,957 --> 00:01:43,249
+The folder is git ignored, so your notes never leave your machine.
+
+22
+00:01:44,949 --> 00:01:47,611
+Sync is how cizle notices what you ship.
+
+23
+00:01:47,731 --> 00:01:50,144
+It does a light git fetch for each repo, reads releases from the public feed, and checks your sitemap and key pages for anything new.
+
+24
+00:01:50,264 --> 00:01:52,291
+There is no GitHub API and no token for public repos. For private repos, add GITHUB_TOKEN to .env.
+
+25
+00:01:52,411 --> 00:01:58,856
+Dependency bumps and bot commits are filtered out. If nothing changed, no model is called at all.
+
+26
+00:01:58,976 --> 00:02:07,290
+Otherwise one call writes the changes and adds new ideas. cizle also checks when it starts, and every six hours while it runs.
+
+27
+00:02:08,990 --> 00:02:14,113
+Every idea shows where it came from: a pull request, a release, or a page.
+
+28
+00:02:14,233 --> 00:02:18,545
+You see why it is suggested, which format it will use, and what it will cost.
+
+29
+00:02:18,665 --> 00:02:22,401
+Pick one and press create. Nothing renders until you do.
+
+30
+00:02:22,521 --> 00:02:27,017
+Switch products from the sidebar, and the whole dashboard follows.
+
+31
+00:02:28,717 --> 00:02:31,473
+Want a second opinion? Ask the agent.
+
+32
+00:02:31,593 --> 00:02:38,027
+It reads your notes, your recent changes, your queued ideas, and the videos you already made.
+
+33
+00:02:38,147 --> 00:02:41,465
+Then it proposes up to three videos as cards.
+
+34
+00:02:41,585 --> 00:02:45,052
+The agent can propose, but it cannot render. Only your click spends money.
+
+35
+00:02:45,172 --> 00:02:49,305
+Anything scraped from a website or a repository is treated as data, never as instructions.
+
+36
+00:02:51,005 --> 00:02:53,338
+Prefer to describe your own video? Use the composer.
+
+37
+00:02:53,458 --> 00:02:56,970
+Pick a type: showcase, features, FAQ, comparison, glossary, or launch teaser. Then a tone.
+
+38
+00:02:57,090 --> 00:03:03,273
+Choose 9:16 for Reels and Shorts, square for feeds, or 16:9 for YouTube.
+
+39
+00:03:03,393 --> 00:03:06,252
+Choose voice over with music, music only, or silent. Up to fifty nine seconds, one to three variations.
+
+40
+00:03:06,372 --> 00:03:13,542
+Every video comes with burned-in captions, an .srt file, a ready-to-post caption, and the full script.
+
+41
+00:03:15,242 --> 00:03:20,309
+The gallery has sixteen formats across eight SaaS categories, in landscape, portrait and square.
+
+42
+00:03:20,429 --> 00:03:23,185
+Motion styles include kinetic type, UI zoom, cursor walkthrough, split compare, and device mockups.
+
+43
+00:03:23,305 --> 00:03:27,808
+Press remix for my product, and the composer opens with that format, filled in with your product.
+
+44
+00:03:29,508 --> 00:03:32,546
+Every generate button has a free model switch.
+
+45
+00:03:32,666 --> 00:03:38,355
+Turn it on and cizle uses free OpenRouter models, listed live, so the cost shows zero.
+
+46
+00:03:38,475 --> 00:03:46,072
+Free models are rate limited and a little less reliable, and there is no free voice, so free runs use music or silence.
+
+47
+00:03:46,192 --> 00:03:52,065
+Turn it off to use the paid models you chose in Settings. You need an OpenRouter key either way.
+
+48
+00:03:53,765 --> 00:03:59,249
+Changed your mind? Every button that starts work turns into stop while it runs.
+
+49
+00:03:59,369 --> 00:04:05,424
+Stop a video from its page, from the list, or from the running now panel on the dashboard.
+
+50
+00:04:05,544 --> 00:04:07,951
+Stop a sync, an agent reply, or adding a product.
+
+51
+00:04:08,071 --> 00:04:16,934
+cizle cancels the model calls, downloads and processes, and closes the browser pages. Stopped syncs and product reads save nothing.
+
+52
+00:04:18,634 --> 00:04:21,549
+Creative direction is plain markdown too.
+
+53
+00:04:21,669 --> 00:04:27,164
+The prompts folder holds the rules every video follows, one file per video type, the tones, and the agent's persona. Add a type by dropping in a new file.
+
+54
+00:04:27,284 --> 00:04:34,994
+Coding agents can drive cizle through SKILL.md, and everything the dashboard does is available through a small local API.
+
+55
+00:04:36,694 --> 00:04:42,127
+You pay OpenRouter for model usage, and nothing else. Free models cost nothing.
+
+56
+00:04:42,247 --> 00:04:48,565
+A thirty second narrated video is roughly ten to twenty cents. A sync with changes is a couple of cents.
+
+57
+00:04:48,685 --> 00:04:53,310
+Your keys stay on your machine. There is no login, so keep it local.
+
+58
+00:04:55,010 --> 00:04:59,984
+cizle. Add your product once, and keep your videos as fresh as your product.
+
+59
+00:05:00,104 --> 00:05:02,695
+It is open source and MIT licensed. Clone it from GitHub: shreyvijayvargiya/cizle.

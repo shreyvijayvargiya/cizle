@@ -1,0 +1,19 @@
+{
+  "id": "security-trust-landscape",
+  "title": "Security and trust, built in blocks",
+  "description": "How the product protects data, shown as layers of isometric blocks.",
+  "type": "showcase",
+  "tone": "polished",
+  "style": "isometric",
+  "aspect": "16:9",
+  "animation": "ui-zoom",
+  "categories": [
+    "security",
+    "fintech"
+  ],
+  "founders": [
+    "b2b",
+    "fundraising"
+  ],
+  "prompt": "Build the stack from the bottom up: encryption, access control, audit trail, each as a labelled block that clicks into place, using only claims the product states on its own pages. Finish with a trust proof (certification, uptime, open source) if the sources have one."
+}

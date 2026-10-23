@@ -1,0 +1,20 @@
+{
+  "id": "showcase-zoom-landscape",
+  "title": "Clean showcase with UI zoom",
+  "description": "A calm, polished tour with camera pushes into the real interface.",
+  "type": "showcase",
+  "tone": "polished",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "ui-zoom",
+  "categories": [
+    "analytics",
+    "crm",
+    "project-management"
+  ],
+  "founders": [
+    "b2b",
+    "fundraising"
+  ],
+  "prompt": "Hook with the sharpest pain point, reveal the product over the hero screenshot, then three moments, each a real screenshot with a slow push into the part that matters. Captions name outcomes, not features. Proof if the sources have it, then the CTA."
+}

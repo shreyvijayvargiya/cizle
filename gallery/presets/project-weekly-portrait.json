@@ -1,0 +1,20 @@
+{
+  "id": "project-weekly-portrait",
+  "title": "Weekly update in clay",
+  "description": "A friendly changelog: what we shipped this week, one soft card per change.",
+  "type": "launch",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "project-management",
+    "crm",
+    "devtools"
+  ],
+  "founders": [
+    "solo",
+    "devtool"
+  ],
+  "prompt": "Open with 'This week in <product>'. Each shipped change is a clay card that pops in with its benefit in six words. Group at most four changes. End on what is coming next, taken from the roadmap or the latest commits."
+}

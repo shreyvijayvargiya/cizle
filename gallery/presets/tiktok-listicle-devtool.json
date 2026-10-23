@@ -1,0 +1,19 @@
+{
+  "id": "tiktok-listicle-devtool",
+  "title": "Dev tool 3 reasons ad",
+  "description": "Three reasons a developer would try the tool, each shown as a command or a real screen.",
+  "type": "tiktok-demo-listicle",
+  "tone": "deadpan",
+  "style": "ascii",
+  "aspect": "9:16",
+  "animation": "cursor-walkthrough",
+  "categories": [
+    "devtools",
+    "ai-agents"
+  ],
+  "founders": [
+    "devtool",
+    "ai"
+  ],
+  "prompt": "Three reasons a developer would try the tool, each shown as a command or a real screen. Number them on screen, keep each to 5 words, and close on the install command or repo link."
+}

@@ -1,0 +1,17 @@
+{
+  "id": "tiktok-hook-beauty",
+  "title": "Beauty creator-style hook ad",
+  "description": "A creator-voice hook aimed at one kind of buyer (for example sensitive skin, a capsule wardrobe).",
+  "type": "tiktok-ugc-hook",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "beauty-fashion"
+  ],
+  "founders": [
+    "beauty"
+  ],
+  "prompt": "A creator-voice hook aimed at one kind of buyer (for example sensitive skin, a capsule wardrobe). Show the product and its texture or fit up close, two quick benefits in captions, no before and after claims, no invented reviews. Close on Shop the look."
+}

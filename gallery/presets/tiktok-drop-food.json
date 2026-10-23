@@ -1,0 +1,17 @@
+{
+  "id": "tiktok-drop-food",
+  "title": "Food and drink special drop",
+  "description": "A new item, seasonal special or opening day.",
+  "type": "tiktok-offer-drop",
+  "tone": "cinematic",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "count-up",
+  "categories": [
+    "food-drink"
+  ],
+  "founders": [
+    "food"
+  ],
+  "prompt": "A new item, seasonal special or opening day. Big type with the item name, one close shot of the product, the real price or hours, and Order now or the address."
+}

@@ -1,0 +1,153 @@
+{
+	"categories": [
+		"Product videos",
+		"Explainers",
+		"Launch & growth",
+		"Social proof",
+		"Ads",
+		"Engineering",
+		"Film styles"
+	],
+	"skills": [
+		{
+			"dir": "types",
+			"source": "showcase",
+			"tier": "free",
+			"category": "Product videos",
+			"featured": true
+		},
+		{
+			"dir": "types",
+			"source": "features",
+			"tier": "free",
+			"category": "Product videos",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "launch",
+			"tier": "free",
+			"category": "Launch & growth",
+			"featured": true
+		},
+		{
+			"dir": "types",
+			"source": "whats-new",
+			"tier": "free",
+			"category": "Launch & growth",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "pitch-teaser",
+			"tier": "free",
+			"category": "Launch & growth",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "roadmap",
+			"tier": "free",
+			"category": "Launch & growth",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "how-it-works",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "quickstart",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "faq",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": true
+		},
+		{
+			"dir": "types",
+			"source": "glossary",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "integrations",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "tips-listicle",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "myth-busting",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "pricing-explained",
+			"tier": "free",
+			"category": "Explainers",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "problem-solution",
+			"tier": "free",
+			"category": "Product videos",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "comparison",
+			"tier": "free",
+			"category": "Product videos",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "use-case-spotlight",
+			"tier": "free",
+			"category": "Product videos",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "customer-proof",
+			"tier": "free",
+			"category": "Social proof",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "founder-story",
+			"tier": "free",
+			"category": "Social proof",
+			"featured": false
+		},
+		{
+			"dir": "types",
+			"source": "code-walkthrough",
+			"tier": "free",
+			"category": "Engineering",
+			"featured": false
+		}
+	]
+}

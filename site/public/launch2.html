@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>cizle: the render</title>
+<meta name="description" content="A second interactive launch film for cizle, in CG: fly through 1,487 real video prompts, watch Claude Code and cizle render a launch video, then make one for your own product." />
+<meta name="theme-color" content="#05060f" />
+<link rel="icon" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+	:root { --bg:#05060f; --cyan:#5ef0ff; --mag:#ff3ea5; --vio:#7c5cff; --white:#eef3ff; --dim:rgba(238,243,255,.62); }
+	* { box-sizing: border-box; margin: 0; }
+	html, body { height: 100%; background: var(--bg); color: var(--white); overflow: hidden; font-family: "Space Mono", ui-monospace, monospace; }
+	canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+	canvas:active { cursor: grabbing; }
+	button, select, input, textarea { font: inherit; color: inherit; }
+	button { cursor: pointer; border: 0; }
+	#gate { position: fixed; inset: 0; z-index: 6; display: grid; place-items: center; text-align: center; padding: 24px; background: radial-gradient(ellipse at 50% 40%, #151a44 0%, var(--bg) 70%); transition: opacity .7s; }
+	#gate.off { opacity: 0; pointer-events: none; }
+	#gate h1 { font: 800 clamp(2.4rem, 9vw, 7rem)/0.95 "Unbounded", sans-serif; letter-spacing: -.04em; background: linear-gradient(180deg, #fff 0%, #9fb3ff 55%, #ff3ea5 120%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+	#gate p { margin: 20px auto 28px; max-width: 38ch; color: var(--dim); font-size: 1rem; line-height: 1.5; }
+	#start { background: linear-gradient(135deg, var(--cyan), var(--vio) 60%, var(--mag)); color: #05060f; font: 800 1rem "Unbounded", sans-serif; padding: 18px 30px; border-radius: 999px; box-shadow: 0 0 40px rgba(124,92,255,.55); }
+	#start:hover, #start:focus-visible { filter: brightness(1.15); outline: none; }
+	#hud { position: fixed; left: 0; right: 0; bottom: 0; z-index: 4; display: flex; align-items: center; gap: 8px; padding: 12px 16px; opacity: 0; transition: opacity .5s; pointer-events: none; }
+	#hud.on { opacity: 1; pointer-events: auto; }
+	#chapters { display: flex; gap: 6px; flex: 1; min-width: 0; }
+	#chapters button { flex: 1; min-width: 0; height: 32px; border-radius: 999px; background: rgba(238,243,255,.07); border: 1px solid rgba(238,243,255,.12); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); position: relative; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 8px; }
+	#chapters button i { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(94,240,255,.4), rgba(255,62,165,.4)); transform-origin: left; transform: scaleX(0); }
+	#chapters button.cur { color: var(--white); border-color: rgba(94,240,255,.7); }
+	.tog { height: 32px; padding: 0 12px; border-radius: 999px; background: rgba(238,243,255,.07); border: 1px solid rgba(238,243,255,.12); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+	.tog[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
+	.tog:hover { background: rgba(238,243,255,.18); }
+	select.tog { max-width: 120px; appearance: none; text-overflow: ellipsis; cursor: pointer; }
+	select.tog option { color: #05060f; }
+	#cap { position: fixed; left: 50%; bottom: 62px; transform: translateX(-50%); z-index: 3; width: min(92vw, 860px); text-align: center; font: 500 clamp(.95rem, 2.2vw, 1.35rem)/1.3 "Unbounded", sans-serif; letter-spacing: -.01em; pointer-events: none; text-wrap: balance; text-shadow: 0 2px 22px #000, 0 0 40px rgba(124,92,255,.6); }
+	#hint { position: fixed; top: 14px; right: 16px; z-index: 3; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); pointer-events: none; }
+	#panel { position: fixed; z-index: 5; right: 16px; top: 50%; transform: translateY(-50%) translateX(30px); width: min(400px, calc(100vw - 32px)); padding: 18px; border-radius: 18px; background: rgba(8,10,28,.78); border: 1px solid rgba(94,240,255,.35); box-shadow: 0 0 60px rgba(124,92,255,.35), inset 0 0 30px rgba(94,240,255,.06); backdrop-filter: blur(14px); opacity: 0; pointer-events: none; transition: opacity .6s, transform .6s; }
+	#panel.on { opacity: 1; pointer-events: auto; transform: translateY(-50%); }
+	#panel h2 { font: 800 1.05rem "Unbounded", sans-serif; letter-spacing: -.02em; margin-bottom: 4px; }
+	#panel p.s { color: var(--dim); font-size: 12px; line-height: 1.45; margin-bottom: 12px; }
+	#panel label { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); margin: 10px 0 4px; }
+	#panel input, #panel select { width: 100%; height: 38px; border-radius: 10px; border: 1px solid rgba(238,243,255,.22); background: rgba(238,243,255,.06); padding: 0 12px; font-size: 14px; }
+	#panel input:focus, #panel select:focus, #panel textarea:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
+	#panel select option { color: #05060f; }
+	#panel textarea { width: 100%; height: 118px; margin-top: 12px; border-radius: 10px; border: 1px solid rgba(238,243,255,.22); background: rgba(0,0,0,.35); padding: 10px 12px; font-size: 12px; line-height: 1.45; resize: none; }
+	#panel .row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+	#panel .row button, #panel .row a { flex: 1; height: 40px; border-radius: 999px; display: inline-grid; place-items: center; text-decoration: none; font: 800 12px "Unbounded", sans-serif; padding: 0 14px; white-space: nowrap; }
+	.go { background: linear-gradient(135deg, var(--cyan), var(--vio)); color: #05060f; }
+	.ghost { background: rgba(238,243,255,.08); border: 1px solid rgba(238,243,255,.22); color: var(--white); }
+	.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+	@media (max-width: 760px) { #panel { top: auto; bottom: 108px; right: 16px; left: 16px; width: auto; transform: translateY(30px); max-height: 56dvh; overflow: auto; } #panel.on { transform: none; } #chapters button { font-size: 0; } #chapters button::before { content: attr(data-n); font-size: 11px; } #cap { bottom: 104px; } }
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="cizle launch film, second cut"></canvas>
+<p class="sr">A second 60-second launch film for cizle, in CG. Fly through nearly fifteen hundred real video prompts, watch Claude Code write a storyboard and cizle render the video on your own machine, then enter your product's name to get a ready-to-paste prompt for your own launch video.</p>
+<div id="cap" aria-live="polite"></div>
+<div id="hint"></div>
+<div id="gate">
+	<div>
+		<h1>cizle<br />the render</h1>
+		<p>A second film, rendered in code. Sound on. Drag to steer the camera, click to fire. At the end, make one for your own product.</p>
+		<button id="start" type="button">Play the film</button>
+	</div>
+</div>
+<form id="panel" autocomplete="off" aria-label="Make this film for your product">
+	<h2>Make it for your product</h2>
+	<p class="s">Type it in. The film and the prompt update as you go. Then paste the prompt into Claude Code.</p>
+	<label for="pn">Product name</label><input id="pn" maxlength="28" placeholder="Acme" />
+	<label for="pd">What it does, in one line</label><input id="pd" maxlength="80" placeholder="Invoices that send themselves" />
+	<label for="pu">Product link</label><input id="pu" maxlength="120" placeholder="https://acme.com" inputmode="url" />
+	<label for="pl">Look</label>
+	<select id="pl"><option>CG render</option><option>hand-drawn</option><option>clay</option><option>glass</option><option>isometric</option><option>terminal</option></select>
+	<textarea id="pp" readonly aria-label="Your prompt"></textarea>
+	<div class="row"><button type="button" class="go" id="copy">Copy prompt</button><a class="ghost" href="/gallery">1,487 prompts</a></div>
+	<div class="row"><a class="ghost" href="/launch.html">Film one</a><a class="ghost" href="/pricing">Free + Premium</a></div>
+</form>
+<div id="hud">
+	<div id="chapters" role="group" aria-label="Chapters"></div>
+	<select class="tog" id="vsel" aria-label="Narrator voice" title="Pick the narrator voice you like best" hidden></select>
+	<button class="tog" id="tm" type="button" aria-pressed="true" title="Music (M)">Music</button>
+	<button class="tog" id="tv" type="button" aria-pressed="true" title="Voice (V)">Voice</button>
+	<button class="tog" id="tp" type="button" title="Pause (Space)">Pause</button>
+</div>
+
+<script>
+"use strict";
+/* ---------------------------------------------------------------------------------------------
+   cizle launch film 2: "the render". A tiny 3D engine on a 2D canvas (perspective projection, glass slabs,
+   mirror floor, bloom, grain), Web Audio for the music, the browser's speech voice for the narrator.
+   You steer the camera. The slabs are real prompts from the live library (/gallery.json).
+   Facts: 1,487 prompts · render on your machine, no API key · scene types title/bullets/stats/steps/code/outro.
+   Personalise it: ?name=Acme&does=Invoices%20that%20send%20themselves&url=https://acme.com&look=glass
+--------------------------------------------------------------------------------------------- */
+const $ = (id) => document.getElementById(id);
+const cv = $("c"), g = cv.getContext("2d");
+const CY = "#5ef0ff", MG = "#ff3ea5", VI = "#7c5cff", WH = "#eef3ff";
+let W = 0, H = 0, DPR = 1, F = 600;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = (t) => 1 - Math.pow(1 - clamp(t), 3);
+const easeIO = (t) => { t = clamp(t); return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+const lerp = (a, b, t) => a + (b - a) * t;
+const rnd = (a, b) => a + Math.random() * (b - a);
+const UN = '"Unbounded", system-ui, sans-serif', MO = '"Space Mono", ui-monospace, monospace';
+function resize() { DPR = Math.min(2, devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; g.setTransform(DPR, 0, 0, DPR, 0, 0); F = Math.min(W * 0.9, H * 1.5); }
+addEventListener("resize", resize); resize();
+const mouse = { x: W / 2, y: H / 2, nx: 0, ny: 0, down: false, dx: 0, dy: 0 };
+let orbitYaw = 0, orbitPitch = 0, dolly = 0;
+
+/* ------------------------------------------------------------------ the product (personalised by the URL or the panel) */
+const qs = new URLSearchParams(location.search);
+const PROD = { name: (qs.get("name") || "").slice(0, 28), does: (qs.get("does") || "").slice(0, 80), url: (qs.get("url") || "").slice(0, 120), look: qs.get("look") || "CG render" };
+const prodName = () => PROD.name.trim() || "your product";
+function buildPrompt() {
+	const n = prodName(), u = PROD.url.trim(), d = PROD.does.trim();
+	return `Use the cizle MCP tools to make a launch video for ${n}${u ? ` (${u})` : ""}.\n${d ? `What it does: ${d}.\n` : ""}Read ${u || "my product page"} first and use only facts you find there. Do not invent features, numbers or quotes.\nType: launch. Look: ${PROD.look}. 16:9, about 30 seconds, with a voice-over if one is available, otherwise music.\nEnd on one clear call to action with my link. When it is done, give me the path to the MP4.`;
+}
+
+/* ------------------------------------------------------------------ library data (real prompts) */
+let LIB = ["Haunted house at different effort levels", "Engraving-style Claude ad", "Night forest website with fireflies", "Pelican driving a roadster", "Self-building mech", "Harbor jelly interactive diorama", "Cinematic coffee ad", "Glass product render", "Kinetic type launch", "Isometric city build"].map((t) => ({ t, by: "community" }));
+let TOTAL = 1487;
+fetch("/gallery.json").then((r) => r.json()).then((d) => {
+	TOTAL = d.total || TOTAL;
+	LIB = d.items.filter((x) => x.title && x.title.length < 54).slice(0, 300).map((x) => ({ t: x.title, by: x.handle ? "@" + x.handle : x.author || "the creator" }));
+	buildWorld();
+}).catch(() => {});
+
+/* ------------------------------------------------------------------ audio: darker, 100 BPM, A minor */
+let AC = null, master, musicBus, delayIn, voiceOn = true, musicOn = true, duck = 1, intensity = 0.2, targetIntensity = 0.2, noiseBuf, nextBeat = 0, beat = 0;
+const BPM = 100, SPB = 60 / BPM, ROOT = 55;
+const note = (semi, oct = 0) => ROOT * Math.pow(2, (semi + 12 * oct) / 12);
+const PROG = [[0, 3, 7], [-4, 0, 3], [3, 7, 10], [-2, 2, 5]]; // Am F C G
+function audioInit() {
+	if (AC) return;
+	AC = new (window.AudioContext || window.webkitAudioContext)();
+	master = AC.createGain(); master.gain.value = 0.9;
+	const comp = AC.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4; master.connect(comp); comp.connect(AC.destination);
+	musicBus = AC.createGain(); musicBus.gain.value = 0.7; musicBus.connect(master);
+	// echo send for the arpeggio: a dotted-eighth feedback delay
+	delayIn = AC.createGain(); const dl = AC.createDelay(2), fb = AC.createGain(), wet = AC.createGain(), dlp = AC.createBiquadFilter();
+	dl.delayTime.value = SPB * 0.75; fb.gain.value = 0.42; wet.gain.value = 0.5; dlp.type = "lowpass"; dlp.frequency.value = 2600;
+	delayIn.connect(dl); dl.connect(dlp); dlp.connect(fb); fb.connect(dl); dlp.connect(wet); wet.connect(musicBus);
+	noiseBuf = AC.createBuffer(1, AC.sampleRate * 2, AC.sampleRate); const d = noiseBuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+	nextBeat = AC.currentTime + 0.1;
+}
+function env(gn, t, a, d, peak, end = 0.0001) { peak = Math.max(peak, 0.0002); gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(peak, t + a); gn.gain.exponentialRampToValueAtTime(end, t + a + d); }
+function tone(type, f, t, len, vol, dest, o = {}) {
+	if (!Number.isFinite(f) || !Number.isFinite(t)) return;
+	const os = AC.createOscillator(), gn = AC.createGain(); os.type = type; os.frequency.setValueAtTime(f, t);
+	if (o.slide) os.frequency.exponentialRampToValueAtTime(o.slide, t + len);
+	if (o.detune) os.detune.value = o.detune;
+	let node = os; if (o.lp) { const lp = AC.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = o.lp; lp.Q.value = o.q || 0.7; os.connect(lp); node = lp; }
+	node.connect(gn); gn.connect(dest || musicBus); if (o.send) { const sg = AC.createGain(); sg.gain.value = o.send; gn.connect(sg); sg.connect(delayIn); }
+	env(gn, t, o.a || 0.008, len, vol); os.start(t); os.stop(t + len + (o.a || 0.008) + 0.05);
+}
+function noise(t, len, vol, f, type = "highpass", dest, q = 0.8) {
+	const s = AC.createBufferSource(), fl = AC.createBiquadFilter(), gn = AC.createGain(); s.buffer = noiseBuf; fl.type = type; fl.frequency.value = f; fl.Q.value = q;
+	s.connect(fl); fl.connect(gn); gn.connect(dest || musicBus); env(gn, t, 0.003, len, vol); s.start(t, Math.random()); s.stop(t + len + 0.05);
+}
+function riser(len = 1.4) { if (!AC) return; const t = AC.currentTime, s = AC.createBufferSource(), fl = AC.createBiquadFilter(), gn = AC.createGain(); s.buffer = noiseBuf; fl.type = "bandpass"; fl.Q.value = 3; fl.frequency.setValueAtTime(250, t); fl.frequency.exponentialRampToValueAtTime(6000, t + len); s.connect(fl); fl.connect(gn); gn.connect(master); gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(0.28, t + len); gn.gain.exponentialRampToValueAtTime(0.0001, t + len + 0.1); s.start(t); s.stop(t + len + 0.2); }
+function boom() { if (!AC) return; const t = AC.currentTime; tone("sine", 90, t, 1.1, 1, master, { slide: 28 }); noise(t, 0.35, 0.3, 700, "lowpass", master); }
+function zap(i = 0) { if (!AC) return; const t = AC.currentTime, f = note([0, 3, 7, 10, 12][i % 5], 3); tone("sawtooth", f * 2, t, 0.35, 0.12, master, { slide: f * 0.5, lp: 4000, send: 0.5 }); tone("sine", f, t, 0.6, 0.2, master, { send: 0.6 }); noise(t, 0.06, 0.12, 6000, "highpass", master); }
+function scheduleMusic() {
+	if (!AC || AC.state !== "running") return;
+	intensity += (targetIntensity - intensity) * 0.02;
+	musicBus.gain.setTargetAtTime(0.75 * duck * (musicOn ? 1 : 0), AC.currentTime, 0.12);
+	while (nextBeat < AC.currentTime + 0.25) {
+		const t = nextBeat, step = beat % 16, bar = Math.floor(beat / 16) % 4, ch = PROG[bar], I = intensity;
+		if (I > 0.4 && step % 4 === 0) { tone("sine", 150, t, 0.3, 0.9, musicBus, { slide: 40 }); }
+		if (I > 0.6 && (step === 4 || step === 12)) { noise(t, 0.16, 0.2, 1500, "bandpass", musicBus, 0.6); tone("triangle", 190, t, 0.08, 0.1, musicBus); }
+		if (I > 0.5 && step % 2 === 0) noise(t, 0.03, 0.05 + (step % 4 === 2 ? 0.04 : 0), 8000);
+		if (I > 0.35 && step % 2 === 0) tone("sawtooth", note(ch[0]), t, SPB * 0.42, 0.17, musicBus, { lp: 220 + I * 800 + (step % 8 === 0 ? 500 : 0), q: 5 });
+		if (step === 0) ch.forEach((s, k) => [-7, 7].forEach((d) => tone("sawtooth", note(s, 2), t, SPB * 15, 0.03 + I * 0.025, musicBus, { lp: 800 + I * 1800, a: 0.7, detune: d + k })));
+		if (I > 0.5) { const seq = [0, 2, 1, 2, 0, 1, 2, 1], s = ch[seq[(step / 1) % 8 | 0] % 3] + 12 * (step % 8 >= 4 ? 2 : 1); tone("triangle", note(s, 2), t, SPB * 0.4, 0.05 * I, musicBus, { lp: 4200, send: 0.7 }); }
+		if (I <= 0.4 && step % 8 === 0) tone("sine", note(ch[0], 1), t, SPB * 4, 0.18, musicBus, { a: 0.15 });
+		nextBeat += SPB / 4; beat++;
+	}
+}
+setInterval(scheduleMusic, 60);
+
+/* ------------------------------------------------------------------ narrator (see launch.html for the notes: best voice first, short sentences, optional recorded files) */
+const VOICE_DIR = "/launch-voice/";
+let voice = null, voiceList = [], speaking = 0, recorded = null, capTimer = 0;
+const badRec = new Set();
+function scoreVoice(v) {
+	const n = v.name; if (!/^en/i.test(v.lang)) return -999; let sc = 0;
+	if (/natural|neural/i.test(n)) sc += 60; if (/online/i.test(n)) sc += 40; if (/premium|enhanced|siri/i.test(n)) sc += 45;
+	if (/\b(aria|jenny|guy|ryan|sonia|libby|davis|andrew|emma|brian|ava|allison|evan|serena|oliver|samantha|daniel|karen|moira|tessa|google uk english male|google us english)\b/i.test(n)) sc += 20;
+	if (!v.localService) sc += 12; if (/en-(US|GB)/i.test(v.lang)) sc += 6;
+	if (/compact|novelty|whisper|zarvox|bad |bells|boing|cellos|trinoids|organ|albert|junior|kathy|ralph|fred|bubbles|deranged|hysterical|good news|superstar/i.test(n)) sc -= 200;
+	if (/espeak|mbrola/i.test(n)) sc -= 80; return sc;
+}
+function pickVoice() {
+	if (!("speechSynthesis" in window)) return;
+	voiceList = speechSynthesis.getVoices().filter((v) => scoreVoice(v) > -100).sort((x, y) => scoreVoice(y) - scoreVoice(x));
+	let saved = null; try { saved = localStorage.getItem("cizle-voice"); } catch {}
+	voice = voiceList.find((v) => v.name === saved) || voiceList[0] || null;
+	const sel = $("vsel"); sel.innerHTML = "";
+	voiceList.slice(0, 14).forEach((v) => { const o = document.createElement("option"); o.value = v.name; o.textContent = v.name.replace(/^(Microsoft|Google)\s+/, "").replace(/\s*-.*$/, "").replace(/\s*\(.*\)/, ""); sel.append(o); });
+	if (voice) sel.value = voice.name; sel.hidden = voiceList.length < 2;
+}
+if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+const endSpeech = () => { if (--speaking <= 0) { speaking = 0; duck = 1; } };
+function speakTTS(text) {
+	if (!("speechSynthesis" in window)) return;
+	(text.match(/[^.!?]+[.!?]*/g) || [text]).map((x) => x.trim()).filter(Boolean).forEach((sentence) => {
+		const u = new SpeechSynthesisUtterance(sentence.replace(/\bcizle\b/gi, "sizzle"));
+		if (voice) { u.voice = voice; u.lang = voice.lang; }
+		u.rate = 0.93; u.pitch = 0.95; u.volume = 1; speaking++; u.onstart = () => (duck = 0.36); u.onend = u.onerror = endSpeech; speechSynthesis.speak(u);
+	});
+}
+function showCap(t) { const c = $("cap"); c.innerHTML = t ? "<span></span>" : ""; if (t) c.firstChild.textContent = t; clearTimeout(capTimer); capTimer = setTimeout(() => (c.innerHTML = ""), Math.max(2800, t.length * 80)); }
+function say(text, key) {
+	showCap(text.replace(/\{name\}/g, prodName()));
+	if (!voiceOn) return;
+	const spoken = text.replace(/\{name\}/g, prodName());
+	if (!key || badRec.has(key)) return speakTTS(spoken);
+	const a = new Audio(`${VOICE_DIR}${key}.mp3`); recorded = a;
+	a.onerror = () => (badRec.add(key), speakTTS(spoken)); a.onplaying = () => (duck = 0.36); a.onended = () => (duck = 1);
+	a.play().catch(() => (badRec.add(key), speakTTS(spoken)));
+}
+
+/* ------------------------------------------------------------------ the 3D engine */
+const cam = { x: 0, y: 0, z: 0, yaw: 0, pitch: 0 };
+function proj(x, y, z) {
+	const dx = x - cam.x, dy = y - cam.y, dz = z - cam.z, cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw), cp = Math.cos(cam.pitch), sp = Math.sin(cam.pitch);
+	const x1 = dx * cy - dz * sy, z1 = dx * sy + dz * cy, y1 = dy * cp - z1 * sp, z2 = dy * sp + z1 * cp, s = F / Math.max(z2, 0.001);
+	return { x: W / 2 + x1 * s, y: H / 2 - y1 * s, z: z2, s };
+}
+const FLOOR = -3.4;
+/** a flat rectangle in the world, turned by `ang` about the vertical axis. Returns its four screen corners (TL, TR, BR, BL) or null if it is behind us. */
+function corners(cx, cy, cz, w, h, ang = 0) {
+	const rx = Math.cos(ang) * w / 2, rz = Math.sin(ang) * w / 2, hh = h / 2;
+	const p = [proj(cx - rx, cy + hh, cz - rz), proj(cx + rx, cy + hh, cz + rz), proj(cx + rx, cy - hh, cz + rz), proj(cx - rx, cy - hh, cz - rz)];
+	return p.every((q) => q.z > 0.25) ? p : null;
+}
+const bbox = (p) => ({ x0: Math.min(...p.map((q) => q.x)), x1: Math.max(...p.map((q) => q.x)), y0: Math.min(...p.map((q) => q.y)), y1: Math.max(...p.map((q) => q.y)) });
+/** a glass slab. opts: hue colour, label (drawn flat on it), sub, alpha, glow, lit (0..1 fill), mirror */
+function slab(cx, cy, cz, w, h, ang, o = {}) {
+	const p = corners(cx, cy, cz, w, h, ang); if (!p) return null;
+	const a = (o.alpha ?? 1) * clamp(1 - (p[0].z - 40) / 40) * clamp((p[0].z - 0.25) / 1.2);
+	if (a <= 0.01) return null;
+	const col = o.col || CY;
+	g.save(); g.globalAlpha = a;
+	g.beginPath(); g.moveTo(p[0].x, p[0].y); for (let i = 1; i < 4; i++) g.lineTo(p[i].x, p[i].y); g.closePath();
+	const gr = g.createLinearGradient(p[0].x, p[0].y, p[2].x, p[2].y);
+	gr.addColorStop(0, o.dark ? "rgba(14,18,48,.92)" : "rgba(160,190,255,.30)"); gr.addColorStop(0.55, o.dark ? "rgba(8,10,30,.92)" : "rgba(90,70,220,.22)"); gr.addColorStop(1, o.dark ? "rgba(20,10,40,.92)" : "rgba(255,62,165,.20)");
+	g.fillStyle = gr; g.fill();
+	if (o.lit) { g.globalCompositeOperation = "lighter"; g.globalAlpha = a * o.lit; const lg = g.createLinearGradient(p[0].x, p[0].y, p[2].x, p[2].y); lg.addColorStop(0, CY); lg.addColorStop(1, MG); g.fillStyle = lg; g.fill(); g.globalCompositeOperation = "source-over"; g.globalAlpha = a; }
+	g.strokeStyle = col; g.lineWidth = Math.max(1, p[0].s * 0.012 + (o.glow ? 1.5 : 0)); g.shadowColor = col; g.shadowBlur = o.glow ? 18 : 6; g.stroke(); g.shadowBlur = 0;
+	// a bright top edge, like a bevel catching the light
+	g.globalCompositeOperation = "lighter"; g.strokeStyle = "rgba(255,255,255,.55)"; g.lineWidth = Math.max(1, p[0].s * 0.008); g.beginPath(); g.moveTo(p[0].x, p[0].y); g.lineTo(p[1].x, p[1].y); g.stroke(); g.globalCompositeOperation = "source-over";
+	if (o.label) {
+		const LW = 320, LH = LW * h / w;
+		g.save(); g.transform((p[1].x - p[0].x) / LW, (p[1].y - p[0].y) / LW, (p[3].x - p[0].x) / LH, (p[3].y - p[0].y) / LH, p[0].x, p[0].y);
+		g.fillStyle = o.ink || WH; g.textBaseline = "top";
+		const size = o.size || 26; g.font = `800 ${size}px ${UN}`;
+		wrapText(o.label, 18, 16, LW - 36, size * 1.15, o.lines || 3);
+		if (o.sub) { g.font = `400 ${Math.max(11, size * 0.5)}px ${MO}`; g.fillStyle = "rgba(238,243,255,.7)"; g.fillText(o.sub, 18, LH - 30); }
+		g.restore();
+	}
+	g.restore();
+	return p;
+}
+function wrapText(str, x, y, maxW, lh, maxLines) {
+	let line = "", yy = y, n = 0;
+	for (const w of str.split(" ")) { const t = line ? line + " " + w : w; if (g.measureText(t).width > maxW && line) { g.fillText(line, x, yy); yy += lh; line = w; if (++n >= maxLines - 1) { break; } } else line = t; }
+	g.fillText(line, x, yy);
+}
+function glow(x, y, r, col, a = 1) { g.save(); g.globalCompositeOperation = "lighter"; const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, col); gr.addColorStop(1, "rgba(0,0,0,0)"); g.globalAlpha = a; g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, 6.283); g.fill(); g.restore(); }
+function line3(a, b, col, w = 1, alpha = 1) { const p = proj(a[0], a[1], a[2]), q = proj(b[0], b[1], b[2]); if (p.z < 0.25 || q.z < 0.25) return; g.globalAlpha = alpha; g.strokeStyle = col; g.lineWidth = w; g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(q.x, q.y); g.stroke(); g.globalAlpha = 1; }
+
+/* stars: dust that gives the void depth */
+const dust = Array.from({ length: 260 }, () => ({ x: rnd(-30, 30), y: rnd(-12, 14), z: rnd(0, 120), c: Math.random() < 0.3 ? MG : Math.random() < 0.5 ? CY : WH }));
+function drawDust(zoff = 0) {
+	g.save(); g.globalCompositeOperation = "lighter";
+	for (const d of dust) { const zz = ((d.z - cam.z + 400) % 120 + 120) % 120 + 0.5; const p = proj(d.x + cam.x, d.y + cam.y, cam.z + zz); if (p.z < 0.3) continue; const a = clamp(1 - zz / 120); g.globalAlpha = a * 0.8; g.fillStyle = d.c; const r = Math.max(0.6, 2.6 * p.s / F * 6); g.fillRect(p.x, p.y, r, r); }
+	g.restore();
+}
+function drawFloor(alpha = 1, span = 90) {
+	g.save(); g.lineWidth = 1; g.strokeStyle = VI; g.shadowColor = VI; g.shadowBlur = 6;
+	const z0 = Math.floor(cam.z / 2) * 2;
+	for (let i = 0; i < 40; i++) { const z = z0 + i * 2; const a = proj(-40, FLOOR, z), b = proj(40, FLOOR, z); if (a.z < 0.3) continue; g.globalAlpha = alpha * 0.55 * clamp(1 - i / 40); g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); }
+	const x0 = Math.floor(cam.x / 3) * 3;
+	for (let i = -14; i <= 14; i++) { const x = x0 + i * 3, a = proj(x, FLOOR, cam.z + 0.6), b = proj(x, FLOOR, cam.z + span); if (a.z < 0.25 || b.z < 0.25) continue; g.globalAlpha = alpha * 0.35 * clamp(1 - Math.abs(i) / 14); g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); }
+	g.restore();
+}
+
+/* ------------------------------------------------------------------ the world: built per scene */
+let slabs = [], cards = [], bursts = [], shock = 0, hoverSlab = null;
+function buildWorld() {
+	slabs = [];
+	for (let i = 0; i < 64; i++) {
+		const L = LIB[i % LIB.length], th = rnd(0, 6.283), R = rnd(2.6, 5.6), w = rnd(2.2, 3.3);
+		const x = Math.cos(th) * R, y = clamp(Math.sin(th) * R * 0.55 + 0.4, FLOOR + w * 0.31 + 0.15, 4.6);
+		slabs.push({ x, y, z: 8 + i * 1.25, w, h: w * 0.62, ang: rnd(-0.55, 0.55), col: [CY, MG, VI][i % 3], t: L.t, by: L.by, ox: 0, oy: 0, vx: 0, vy: 0, seed: Math.random() * 9 });
+	}
+}
+buildWorld();
+function spawnBurst(x, y, n = 30, col = CY) { for (let i = 0; i < n; i++) { const a = rnd(0, 6.283), s = rnd(1, 7); bursts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 1, col }); } }
+function drawBursts() { g.save(); g.globalCompositeOperation = "lighter"; for (let i = bursts.length - 1; i >= 0; i--) { const b = bursts[i]; b.x += b.vx; b.y += b.vy; b.vy += 0.1; b.life -= 0.02; if (b.life <= 0) { bursts.splice(i, 1); continue; } g.globalAlpha = b.life; g.fillStyle = b.col; g.fillRect(b.x, b.y, 3, 3); } g.restore(); }
+
+/* icosahedron for Claude Code's core */
+const PHI = (1 + Math.sqrt(5)) / 2;
+const IV = [[-1, PHI, 0], [1, PHI, 0], [-1, -PHI, 0], [1, -PHI, 0], [0, -1, PHI], [0, 1, PHI], [0, -1, -PHI], [0, 1, -PHI], [PHI, 0, -1], [PHI, 0, 1], [-PHI, 0, -1], [-PHI, 0, 1]].map((v) => v.map((c) => c / 1.9));
+const IE = []; for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) if (Math.hypot(IV[i][0] - IV[j][0], IV[i][1] - IV[j][1], IV[i][2] - IV[j][2]) < 1.1 * (2 / 1.9)) IE.push([i, j]);
+function rot(v, ay, ax) { const c = Math.cos(ay), s = Math.sin(ay); let x = v[0] * c + v[2] * s, z = -v[0] * s + v[2] * c, y = v[1]; const c2 = Math.cos(ax), s2 = Math.sin(ax); const y2 = y * c2 - z * s2, z2 = y * s2 + z * c2; return [x, y2, z2]; }
+
+/* ------------------------------------------------------------------ the film */
+const S = [
+	{ id: "one", name: "One prompt", dur: 7, lvl: 0.25, lines: [[0.5, "One prompt."], [2.8, "That's all it takes to make a launch video."]] },
+	{ id: "lib", name: "Library", dur: 9, lvl: 0.65, lines: [[0.4, "Nearly fifteen hundred real video prompts, each one credited to the person who wrote it."], [6.2, "Fly through them. Touch one."]] },
+	{ id: "core", name: "Claude Code", dur: 9, lvl: 0.8, lines: [[0.3, "Paste one into Claude Code, with your product link."], [5.2, "It reads your pages, and the prompt tells it exactly how to make the film."]] },
+	{ id: "board", name: "Storyboard", dur: 8, lvl: 0.9, lines: [[0.3, "It writes a storyboard, scene by scene, from your real pages. Nothing invented."], [5.4, "A title. Steps. Code. A call to action."]] },
+	{ id: "render", name: "Render", dur: 10, lvl: 1, lines: [[0.3, "Then cizle renders it, frame by frame, on your own machine."], [6.4, "No API key. One video file, ready to post."]] },
+	{ id: "yours", name: "Yours", dur: 14, lvl: 0.85, lines: [[0.5, "Now it's your turn."], [3.4, "Type your product's name, copy the prompt, and paste it into Claude Code."], [9.6, "Start with the free skills."]] },
+];
+const hints = ["steer: drag or move the mouse", "scroll to fly. click to fire", "click to fire", "drag to look around", "click for a flare", "type your product, copy the prompt"];
+let cur = -1, t0 = 0, paused = false, started = false, pausedAt = 0, timers = [], flash = 0;
+function sceneTime() { return Math.max(0, ((paused ? pausedAt : performance.now()) - t0) / 1000); }
+function goto(i) {
+	i = clamp(i, 0, S.length - 1); timers.forEach(clearTimeout); timers = [];
+	if ("speechSynthesis" in window) speechSynthesis.cancel(); if (recorded) { recorded.pause(); recorded = null; }
+	speaking = 0; duck = 1; cur = i; t0 = performance.now(); flash = 1; dolly = 0; targetIntensity = S[i].lvl; shock = 0; cards = [];
+	if (AC) { riser(1.1); setTimeout(boom, 900); }
+	S[i].lines.forEach(([d, text], k) => timers.push(setTimeout(() => !paused && say(text, `${S[i].id}-${k}`), d * 1000)));
+	[...$("chapters").children].forEach((b, k) => b.classList.toggle("cur", k === i));
+	$("hint").textContent = hints[i] || ""; $("panel").classList.toggle("on", i === S.length - 1);
+}
+
+/* camera rig: each scene sets its own path, then the viewer's drag and mouse bend it */
+function aim(t) { cam.yaw += orbitYaw + mouse.nx * 0.12; cam.pitch += orbitPitch + mouse.ny * 0.07; }
+
+const draw = [
+	/* 0: a lone light, then the line of text */
+	(t) => {
+		cam.x = 0; cam.y = 0.2; cam.z = lerp(-9, -5.5, ease(t / 7)); cam.yaw = 0; cam.pitch = 0; aim(t);
+		drawDust();
+		const c = proj(0, 0, 0), pulse = 1 + Math.sin(t * 3) * 0.05;
+		glow(c.x, c.y, c.s * 2.6 * pulse, "rgba(124,92,255,.75)"); glow(c.x, c.y, c.s * 0.9 * pulse, "rgba(255,255,255,.95)");
+		// three orbiting rings, drawn as 3D circles
+		for (let r = 0; r < 3; r++) { g.save(); g.globalCompositeOperation = "lighter"; g.strokeStyle = [CY, MG, VI][r]; g.lineWidth = 1.5; g.shadowColor = [CY, MG, VI][r]; g.shadowBlur = 12; g.beginPath(); for (let i = 0; i <= 64; i++) { const a = i / 64 * 6.283, v = rot([Math.cos(a) * (1.8 + r * 0.7), 0, Math.sin(a) * (1.8 + r * 0.7)], t * (0.4 + r * 0.2), 1.1 + r * 0.5 + Math.sin(t * 0.5 + r) * 0.2); const p = proj(v[0], v[1], v[2]); i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y); } g.stroke(); g.restore(); }
+		const a1 = ease((t - 0.6) / 1.2);
+		g.save(); g.globalAlpha = a1; g.textAlign = "center"; g.fillStyle = WH; g.font = `800 ${Math.min(W / 9, 110)}px ${UN}`; g.letterSpacing = "-0.04em"; g.shadowColor = CY; g.shadowBlur = 30; g.fillText("ONE PROMPT", W / 2, H * 0.78); g.restore();
+		if (t > 3) { g.save(); g.globalAlpha = ease((t - 3) / 1); g.textAlign = "center"; g.fillStyle = CY; g.font = `700 ${Math.min(W / 40, 20)}px ${MO}`; g.fillText("→  ONE LAUNCH VIDEO", W / 2, H * 0.78 + Math.min(W / 22, 46)); g.restore(); }
+	},
+	/* 1: the library tunnel */
+	(t) => {
+		const p = easeIO(t / 9.6); cam.z = lerp(-3, 74, p) + dolly; cam.x = Math.sin(t * 0.7) * 0.8; cam.y = 0.5 + Math.sin(t * 0.9) * 0.3; cam.yaw = Math.sin(t * 0.5) * 0.06; cam.pitch = -0.04; aim(t);
+		drawDust(); drawFloor(1);
+		hoverSlab = null; const vis = [];
+		for (const s of slabs) {
+			s.ox += s.vx; s.oy += s.vy; s.vx += -s.ox * 0.04; s.vy += -s.oy * 0.04; s.vx *= 0.9; s.vy *= 0.9;
+			if (s.z - cam.z > 0.6 && s.z - cam.z < 60) vis.push(s);
+		}
+		vis.sort((a, b) => b.z - a.z);
+		for (const m of [1, 0]) for (const s of vis) {
+			const y = m ? s.y + s.oy : 2 * FLOOR - (s.y + s.oy);
+			if (!m && y > FLOOR) continue;
+			const hov = m && s === hoverSlab;
+			const pts = slab(s.x + s.ox, y, s.z, s.w, s.h, s.ang + Math.sin(t + s.seed) * 0.05, { col: s.col, label: m ? s.t : "", sub: m ? s.by : "", alpha: m ? 1 : 0.16, size: 25, glow: hov });
+			if (m && pts) { s._p = pts; }
+		}
+		// hit test the nearest slab under the pointer
+		let best = null; for (const s of vis) { if (!s._p) continue; const b = bbox(s._p); if (mouse.x > b.x0 && mouse.x < b.x1 && mouse.y > b.y0 && mouse.y < b.y1 && (!best || s.z < best.z)) best = s; }
+		hoverSlab = best;
+		if (best) { const b = bbox(best._p); g.save(); g.strokeStyle = WH; g.lineWidth = 2; g.shadowColor = CY; g.shadowBlur = 20; g.strokeRect(b.x0, b.y0, b.x1 - b.x0, b.y1 - b.y0); g.restore(); const w = Math.min(W - 32, 420); const x = Math.min(Math.max(16, mouse.x + 16), W - w - 16), y = Math.min(Math.max(16, mouse.y + 16), H - 120); g.save(); g.fillStyle = "rgba(5,6,15,.88)"; g.strokeStyle = CY; g.lineWidth = 1.5; g.beginPath(); g.roundRect(x, y, w, 76, 14); g.fill(); g.stroke(); g.fillStyle = WH; g.textBaseline = "top"; g.font = `800 17px ${UN}`; wrapText(best.t, x + 16, y + 14, w - 32, 22, 2); g.font = `400 12px ${MO}`; g.fillStyle = CY; g.fillText("by " + best.by, x + 16, y + 54); g.restore(); }
+		// counter
+		const n = Math.floor(TOTAL * ease(t / 3.2));
+		g.save(); g.textAlign = "left"; g.fillStyle = WH; g.shadowColor = MG; g.shadowBlur = 24; g.font = `800 ${Math.min(W / 7, 120)}px ${UN}`; g.letterSpacing = "-0.05em"; g.fillText(n.toLocaleString("en-US"), 24, Math.min(W / 7, 120) + 28); g.shadowBlur = 0; g.font = `400 ${Math.min(W / 45, 15)}px ${MO}`; g.letterSpacing = "0.08em"; g.fillStyle = CY; g.fillText("REAL VIDEO PROMPTS · EACH CREDITED", 28, Math.min(W / 7, 120) + 56); g.restore();
+	},
+	/* 2: Claude Code's core */
+	(t) => {
+		const a = t * 0.32 + orbitYaw * 2; cam.x = Math.sin(a) * (9 - Math.min(t, 3) * 0.3 + dolly * 0.2); cam.z = -Math.cos(a) * (9 - Math.min(t, 3) * 0.3 + dolly * 0.2); cam.y = 1.2 + Math.sin(t * 0.5) * 0.5; cam.yaw = -a; cam.pitch = -Math.atan2(cam.y, 9); aim(t);
+		drawDust();
+		const spin = t * 0.5, pulse = 1 + Math.sin(t * 4) * 0.04 + shock * 0.2;
+		const vs = IV.map((v) => rot(v.map((c) => c * 2.4 * pulse), spin, spin * 0.6));
+		const c = proj(0, 0, 0); glow(c.x, c.y, c.s * 4.5, "rgba(124,92,255,.55)"); glow(c.x, c.y, c.s * 1.6, "rgba(94,240,255,.6)");
+		g.save(); g.globalCompositeOperation = "lighter"; g.shadowColor = CY; g.shadowBlur = 14;
+		for (const [i, j] of IE) line3(vs[i], vs[j], CY, 2);
+		for (const v of vs) { const p = proj(v[0], v[1], v[2]); if (p.z > 0.3) glow(p.x, p.y, p.s * 0.2, "rgba(255,255,255,.9)"); }
+		g.restore();
+		// prompt cards stream in and are absorbed
+		if (Math.random() < 0.18 && cards.length < 16) { const th = rnd(0, 6.283), ph = rnd(-0.6, 0.6); cards.push({ th, ph, k: 0, sp: rnd(0.006, 0.012), t: LIB[(Math.random() * LIB.length) | 0].t, col: [CY, MG, VI][(Math.random() * 3) | 0] }); }
+		for (let i = cards.length - 1; i >= 0; i--) {
+			const cd = cards[i]; cd.k += cd.sp; const r = lerp(11, 0.2, cd.k * cd.k); const x = Math.cos(cd.th + cd.k * 1.5) * Math.cos(cd.ph) * r, y = Math.sin(cd.ph) * r, z = Math.sin(cd.th + cd.k * 1.5) * Math.cos(cd.ph) * r;
+			if (cd.k >= 1) { cards.splice(i, 1); shock = Math.min(1, shock + 0.15); const q = proj(0, 0, 0); spawnBurst(q.x, q.y, 6, cd.col); continue; }
+			slab(x, y, z, 1.7 * (1 - cd.k * 0.7), 1.0 * (1 - cd.k * 0.7), cam.yaw * -1 + 0.0, { col: cd.col, label: cd.t, size: 20, alpha: clamp(cd.k * 6) * (1 - cd.k * 0.4) });
+		}
+		shock *= 0.96;
+		g.save(); g.textAlign = "center"; g.fillStyle = WH; g.shadowColor = CY; g.shadowBlur = 24; g.font = `800 ${Math.min(W / 14, 64)}px ${UN}`; g.letterSpacing = "-0.03em"; g.fillText("CLAUDE CODE", W / 2, H * 0.17); g.shadowBlur = 0; g.font = `400 ${Math.min(W / 50, 15)}px ${MO}`; g.fillStyle = CY; g.letterSpacing = "0.1em";
+		const cmd = "> use the launch skill to make a video for " + (PROD.url || "my-product.com"); g.fillText(cmd.slice(0, Math.floor(clamp(t / 4) * cmd.length)) + (Math.floor(t * 2.5) % 2 ? "_" : ""), W / 2, H * 0.17 + Math.min(W / 22, 34)); g.restore();
+	},
+	/* 3: the storyboard ring */
+	(t) => {
+		const R = 10, a = -0.5 + t * 0.3 + orbitYaw * 2; cam.x = 0; cam.y = 0.2; cam.z = 0; cam.yaw = a; cam.pitch = -0.02; aim(t);
+		drawDust(); drawFloor(0.6, 60);
+		const names = ["title", "bullets", "stats", "steps", "code", "outro"], subs = ["the hook", "what it is", "real numbers", "how it works", "show the code", "one action"];
+		const order = names.map((n, i) => ({ n, i, ph: i / 6 * 6.283 })).sort((p, q) => Math.cos(q.ph - a) - Math.cos(p.ph - a));
+		for (const f of order) {
+			const k = ease((t - f.i * 0.7) / 0.9); if (k <= 0) continue;
+			const x = Math.sin(f.ph) * R, z = Math.cos(f.ph) * R;
+			slab(x, 0.3 + (1 - k) * -3, z, 5 * k, 2.8 * k, -f.ph, { col: [CY, MG, VI][f.i % 3], label: names[f.i].toUpperCase(), sub: subs[f.i], size: 38, lines: 1, glow: true });
+		}
+		g.save(); g.textAlign = "center"; g.fillStyle = WH; g.shadowColor = MG; g.shadowBlur = 24; g.font = `800 ${Math.min(W / 14, 64)}px ${UN}`; g.letterSpacing = "-0.03em"; g.fillText("THE STORYBOARD", W / 2, H * 0.16); g.restore();
+	},
+	/* 4: the render wall, then the file */
+	(t) => {
+		cam.x = Math.sin(t * 0.4) * 1.2; cam.y = 0.4; cam.z = lerp(-9, -2, easeIO(t / 6.5)) + dolly * 0.3; cam.yaw = Math.sin(t * 0.4) * -0.06; cam.pitch = 0; aim(t);
+		drawDust(); drawFloor(1, 60);
+		const cols = 8, rows = 4, cw = 1.9, ch = 1.07, prog = clamp((t - 0.6) / 5.6);
+		const wallA = 1 - ease((t - 6.8) / 1.2) * 0.85;
+		for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+			const idx = r * cols + c, lit = clamp(prog * (cols * rows) - idx);
+			slab((c - (cols - 1) / 2) * (cw + 0.18), (rows - 1) / 2 * (ch + 0.16) - r * (ch + 0.16) + 0.6, 16, cw, ch, 0, { col: lit > 0.1 ? CY : VI, lit: lit * 0.8, dark: lit < 0.05, alpha: wallA, glow: lit > 0 && lit < 1 });
+		}
+		g.save(); g.textAlign = "center"; g.fillStyle = WH; g.shadowColor = CY; g.shadowBlur = 24; g.font = `800 ${Math.min(W / 14, 64)}px ${UN}`; g.letterSpacing = "-0.03em"; g.globalAlpha = wallA; g.fillText("RENDERING", W / 2, H * 0.15); g.font = `400 ${Math.min(W / 45, 16)}px ${MO}`; g.fillStyle = CY; g.letterSpacing = "0.1em"; g.shadowBlur = 0; g.fillText(`frame ${Math.floor(prog * 1800)} / 1800 · on this machine · no API key`, W / 2, H * 0.15 + Math.min(W / 24, 36)); g.restore();
+		if (t > 6.4) {
+			const k = ease((t - 6.4) / 1.4); const s = slab(0, 0.4, lerp(20, 12, k), 7, 3.94, Math.sin(t * 1.2) * 0.12, { col: WH, glow: true, alpha: k, label: "launch.mp4", sub: "your launch video", size: 44, lines: 1 });
+			if (s) { const cx = (s[0].x + s[2].x) / 2, cy = (s[0].y + s[2].y) / 2 + (s[2].y - s[0].y) * 0.08; g.save(); g.globalAlpha = k; g.fillStyle = WH; g.shadowColor = MG; g.shadowBlur = 30; const r = (s[2].y - s[0].y) * 0.22; g.beginPath(); g.moveTo(cx - r * 0.5, cy - r * 0.7); g.lineTo(cx + r * 0.9, cy); g.lineTo(cx - r * 0.5, cy + r * 0.7); g.fill(); g.restore(); glow(cx, cy, r * 6, "rgba(255,62,165,.35)", k); }
+			if (!draw[4].done && k > 0.7) { draw[4].done = true; spawnBurst(W / 2, H / 2, 90, CY); spawnBurst(W / 2, H / 2, 60, MG); zap(2); boom(); }
+		}
+		if (t < 0.2) draw[4].done = false;
+	},
+	/* 5: yours */
+	(t) => {
+		const sw = Math.sin(t * 0.35) * 0.35 + orbitYaw * 2; cam.x = Math.sin(sw) * 14; cam.z = -Math.cos(sw) * 14 + 1 + dolly * 0.2; cam.y = 0.6; cam.yaw = -sw; cam.pitch = 0.02; aim(t);
+		drawDust(); drawFloor(1, 50);
+		const nm = prodName().toUpperCase(), k = ease(t / 1.4);
+		for (const m of [1, 0]) {
+			const cyy = m ? 0.9 : 2 * FLOOR - 0.9;
+			const sz = Math.min(120, 1500 / Math.max(6, nm.length * 1.18));
+			const p = slab(W > 900 ? -2.8 : 0, cyy, 0, 9.2, 5.2, 0, { col: CY, dark: true, glow: m === 1, alpha: (m ? 1 : 0.18) * k });
+			if (p && m) {
+				const LW = 320, LH = LW * 5.2 / 9.2;
+				g.save(); g.globalAlpha = k; g.transform((p[1].x - p[0].x) / LW, (p[1].y - p[0].y) / LW, (p[3].x - p[0].x) / LH, (p[3].y - p[0].y) / LH, p[0].x, p[0].y);
+				g.textAlign = "center"; g.textBaseline = "middle"; g.font = `800 100px ${UN}`; g.letterSpacing = "-4px"; const fs = Math.min(72, 100 * 276 / Math.max(1, g.measureText(nm).width)); g.font = `800 ${fs}px ${UN}`; g.letterSpacing = `${-0.04 * fs}px`;
+				const gr = g.createLinearGradient(0, LH * 0.2, 0, LH * 0.7); gr.addColorStop(0, "#fff"); gr.addColorStop(0.55, "#9fb3ff"); gr.addColorStop(1, MG); g.fillStyle = gr; g.shadowColor = CY; g.shadowBlur = 18; g.fillText(nm, LW / 2, LH * 0.42);
+				g.shadowBlur = 0; g.letterSpacing = "0px"; g.font = `400 12px ${MO}`; g.fillStyle = CY; g.fillText((PROD.does.trim() || "your one-line pitch goes here").toUpperCase().slice(0, 44), LW / 2, LH * 0.72);
+				g.fillStyle = "rgba(238,243,255,.6)"; g.fillText(PROD.url.trim() ? PROD.url.trim().replace(/^https?:\/\//, "") : "made with cizle", LW / 2, LH * 0.86);
+				g.restore();
+			}
+		}
+		if (t > 0.8 && Math.random() < 0.15) { const q = proj(rnd(-6, 2), rnd(-1, 3), 0); spawnBurst(q.x, q.y, 3, [CY, MG][(Math.random() * 2) | 0]); }
+	},
+];
+
+/* ------------------------------------------------------------------ post: bloom, vignette, grain */
+const bl = document.createElement("canvas"), bg = bl.getContext("2d"), bl2 = document.createElement("canvas"), bg2 = bl2.getContext("2d"), noiseC = document.createElement("canvas");
+{ noiseC.width = noiseC.height = 160; const n = noiseC.getContext("2d"), im = n.createImageData(160, 160); for (let i = 0; i < im.data.length; i += 4) { const v = Math.random() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; } n.putImageData(im, 0, 0); }
+function post() {
+	const w1 = Math.max(8, W >> 3), h1 = Math.max(8, H >> 3), w2 = Math.max(4, W >> 5), h2 = Math.max(4, H >> 5);
+	if (bl.width !== w1) { bl.width = w1; bl.height = h1; bl2.width = w2; bl2.height = h2; }
+	bg.globalCompositeOperation = "copy"; bg.drawImage(cv, 0, 0, cv.width, cv.height, 0, 0, w1, h1);
+	bg2.globalCompositeOperation = "copy"; bg2.drawImage(bl, 0, 0, w1, h1, 0, 0, w2, h2);
+	g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = "lighter"; g.imageSmoothingQuality = "high";
+	g.globalAlpha = 0.3; g.drawImage(bl2, 0, 0, w2, h2, 0, 0, cv.width, cv.height); g.globalAlpha = 0.12; g.drawImage(bl, 0, 0, w1, h1, 0, 0, cv.width, cv.height);
+	g.restore(); g.setTransform(DPR, 0, 0, DPR, 0, 0);
+	const vg = g.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.35, W / 2, H / 2, Math.max(W, H) * 0.75); vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,6,.7)"); g.fillStyle = vg; g.fillRect(0, 0, W, H);
+	g.save(); g.globalAlpha = 0.05; g.globalCompositeOperation = "overlay"; g.fillStyle = g.createPattern(noiseC, "repeat"); g.translate(rnd(0, 160), rnd(0, 160)); g.fillRect(-160, -160, W + 320, H + 320); g.restore();
+}
+
+/* ------------------------------------------------------------------ loop */
+function frame() {
+	requestAnimationFrame(frame);
+	// background: deep gradient that shifts with the scene
+	const bgG = g.createRadialGradient(W / 2, H * 0.45, 0, W / 2, H * 0.45, Math.max(W, H) * 0.8); bgG.addColorStop(0, started ? ["#0d0b2e", "#0a0d2a", "#0f0a2e", "#08122e", "#0c0a2c", "#120a30"][cur] || "#14173f" : "#151a44"); bgG.addColorStop(1, "#04050c");
+	g.fillStyle = bgG; g.fillRect(0, 0, W, H);
+	if (!started) { cam.x = 0; cam.y = 0; cam.z = (performance.now() / 1500) % 60; cam.yaw = 0; cam.pitch = 0; drawDust(); return; }
+	mouse.nx += ((mouse.x / W - 0.5) * 2 - mouse.nx) * 0.06; mouse.ny += ((mouse.y / H - 0.5) * 2 - mouse.ny) * 0.06;
+	orbitYaw *= 0.985; orbitPitch *= 0.985;
+	let t = sceneTime(); if (!paused && t >= S[cur].dur) { if (cur < S.length - 1) goto(cur + 1); else t = S[cur].dur; } t = sceneTime();
+	g.save(); draw[cur](t); g.restore();
+	drawBursts(); post();
+	if (flash > 0) { g.fillStyle = WH; g.globalAlpha = flash * 0.4; g.fillRect(0, 0, W, H); g.globalAlpha = 1; flash -= 0.05; }
+	[...$("chapters").children].forEach((b, k) => { b.firstChild.style.transform = `scaleX(${k < cur ? 1 : k === cur ? clamp(t / S[k].dur) : 0})`; });
+}
+
+/* ------------------------------------------------------------------ interaction */
+cv.addEventListener("pointermove", (e) => { mouse.dx = e.clientX - mouse.x; mouse.dy = e.clientY - mouse.y; mouse.x = e.clientX; mouse.y = e.clientY; if (mouse.down) { orbitYaw += mouse.dx * 0.0016; orbitPitch = Math.max(-0.3, Math.min(0.3, orbitPitch + mouse.dy * 0.0008)); } });
+cv.addEventListener("pointerdown", (e) => { mouse.down = true; mouse.x = e.clientX; mouse.y = e.clientY; mouse.moved = 0; fire(e.clientX, e.clientY); });
+addEventListener("pointerup", () => (mouse.down = false));
+cv.addEventListener("wheel", (e) => { dolly = Math.max(-10, Math.min(18, dolly - e.deltaY * 0.02)); }, { passive: true });
+function fire(x, y) {
+	if (!started) return; spawnBurst(x, y, 36, [CY, MG, VI][(Math.random() * 3) | 0]); zap((Math.random() * 5) | 0); shock = 1;
+	if (cur === 1) for (const s of slabs) { const d = s.z - cam.z; if (d > 0 && d < 30) { s.vx += (s.x || 0.2) * 0.12 * (1 - d / 30); s.vy += (s.y - 0.4) * 0.1 * (1 - d / 30) + 0.3 * (1 - d / 30); } }
+	if (cur === 4 || cur === 3) flash = Math.max(flash, 0.5);
+}
+addEventListener("keydown", (e) => {
+	if (!started || (e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))) return;
+	if (e.code === "Space") { e.preventDefault(); return togglePause(); }
+	if (e.key === "ArrowRight") return goto(cur + 1); if (e.key === "ArrowLeft") return goto(cur - 1);
+	if (e.key === "m" || e.key === "M") return $("tm").click(); if (e.key === "v" || e.key === "V") return $("tv").click();
+});
+function togglePause() {
+	paused = !paused;
+	if (paused) { pausedAt = performance.now(); if ("speechSynthesis" in window) speechSynthesis.pause(); recorded && recorded.pause(); AC && AC.suspend(); }
+	else { t0 += performance.now() - pausedAt; if ("speechSynthesis" in window) speechSynthesis.resume(); recorded && recorded.play().catch(() => {}); AC && AC.resume(); }
+	$("tp").textContent = paused ? "Play" : "Pause";
+}
+$("tp").onclick = togglePause;
+$("tm").onclick = (e) => { musicOn = !musicOn; e.currentTarget.setAttribute("aria-pressed", String(musicOn)); };
+$("tv").onclick = (e) => { voiceOn = !voiceOn; e.currentTarget.setAttribute("aria-pressed", String(voiceOn)); if (!voiceOn && "speechSynthesis" in window) { speechSynthesis.cancel(); if (recorded) recorded.pause(); duck = 1; } };
+$("vsel").onchange = (e) => { voice = voiceList.find((v) => v.name === e.target.value) || voice; try { localStorage.setItem("cizle-voice", e.target.value); } catch {} if ("speechSynthesis" in window) { speechSynthesis.cancel(); speaking = 0; duck = 1; } speakTTS("Hello. This is how I sound."); };
+S.forEach((s, i) => { const b = document.createElement("button"); b.type = "button"; b.dataset.n = i + 1; b.innerHTML = "<i></i>"; b.append(s.name); b.onclick = () => goto(i); $("chapters").append(b); });
+
+/* the "make it yours" panel: the film and the prompt follow what you type */
+const pn = $("pn"), pd = $("pd"), pu = $("pu"), pl = $("pl"), pp = $("pp");
+pn.value = PROD.name; pd.value = PROD.does; pu.value = PROD.url; [...pl.options].forEach((o) => { if (o.value.toLowerCase() === PROD.look.toLowerCase()) pl.value = o.value; });
+function syncProd() {
+	PROD.name = pn.value; PROD.does = pd.value; PROD.url = pu.value; PROD.look = pl.value; pp.value = buildPrompt();
+	const u = new URLSearchParams(); if (PROD.name) u.set("name", PROD.name); if (PROD.does) u.set("does", PROD.does); if (PROD.url) u.set("url", PROD.url); if (PROD.look !== "CG render") u.set("look", PROD.look);
+	try { history.replaceState(null, "", location.pathname + (u.toString() ? "?" + u : "")); } catch {}
+}
+[pn, pd, pu].forEach((el) => el.addEventListener("input", syncProd)); pl.addEventListener("change", syncProd); syncProd();
+$("panel").addEventListener("submit", (e) => e.preventDefault());
+$("copy").onclick = async (e) => {
+	const b = e.currentTarget; syncProd();
+	try { await navigator.clipboard.writeText(pp.value); } catch { pp.removeAttribute("readonly"); pp.select(); document.execCommand("copy"); pp.setAttribute("readonly", ""); }
+	b.textContent = "Copied. Paste it into Claude Code"; setTimeout(() => (b.textContent = "Copy prompt"), 2600); zap(3); spawnBurst(W - 200, H / 2, 40, CY);
+};
+
+$("start").onclick = async () => {
+	audioInit(); try { await AC.resume(); } catch {}
+	started = true; $("gate").classList.add("off"); $("hud").classList.add("on");
+	if ("speechSynthesis" in window) { pickVoice(); const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); }
+	intensity = 0.2; targetIntensity = 0.25; goto(Number(location.hash.slice(1)) || 0);
+};
+addEventListener("hashchange", () => started && goto(Number(location.hash.slice(1)) || 0));
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

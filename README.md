@@ -1,0 +1,570 @@
+<div align="center">
+
+# cizle
+
+**[Free prompts and skills: `library/`](library/README.md)**: 20 free skills and 532 free community prompts, one markdown file each, named after the prompt.
+
+**Ads for brands, SaaS founders and content creators. Animated video ads and banners for Meta, TikTok and Google Ads, made from your real product.**
+
+Add your website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video or ad. **9 video ad formats for Meta, TikTok and Google Ads plus 2 static banner sets**, for online shops, beauty and fashion, food, fitness, local businesses, apps, creators and SaaS; and 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 52 ready formats and 43 Opus film styles, in landscape, portrait or square, made from your real product.
+
+Runs on your machine. No database, no accounts. Drive it from the dashboard with [OpenRouter](https://openrouter.ai) (free models work), or **from Claude Code on your own subscription with no API key at all**.
+
+<a href="docs/demo.mp4"><img src="docs/demo.gif" alt="cizle demo: paste a link, get product videos" width="880" /></a>
+
+**[▶ Watch "cizle explained" (51 s, made with cizle)](docs/media/cizle-explainer.mp4)** · **[▶ Launch teaser (9:16)](site/public/videos/cizle-launch.mp4)** · [▶ 50-second demo with sound](docs/demo.mp4)**
+
+**[▶ Watch the 5-minute walkthrough](docs/overview.mp4)** · [captions (.srt)](docs/overview.srt) _(recorded early on: it predates animated styles, the review card, the founder types and Claude Code, all described below)_
+
+<a href="docs/overview.mp4"><img src="docs/overview-poster.jpg" alt="cizle walkthrough" width="560" /></a>
+
+</div>
+
+---
+
+## Two ways to make a video
+
+| | **Dashboard + OpenRouter** | **Claude Code, no key** |
+|---|---|---|
+| Who writes the video | A model on OpenRouter reads your site and writes the script | Claude, in your Claude Code session, writes the storyboard from your blog or code |
+| You need | An OpenRouter key (free models work) | Claude Code, nothing else |
+| Start from | The composer: paste a link, pick a prompt, answer the review card | Ask Claude, or a slash command like `/mcp__cizle__make-code-walkthrough` |
+| cizle's part | Reads the product, calls the models, renders | Renders and stores (no model call at all) |
+| Voice-over | Yes (paid text-to-speech) | Captions and music; voice if you add a key |
+| Result | An MP4 (or banner PNGs) in your dashboard | An MP4 or banner PNGs in your dashboard, marked "Made with Claude Code", re-skinnable for free |
+
+Both use the same prompt library, the same animated styles and the same dashboard. Set up the second in two lines: see [Claude Code, no key](#use-it-from-claude-code-no-api-key).
+
+## Use the library inside Claude (remote MCP and CLI)
+
+The site serves the whole skills and prompts library as a remote MCP server at `https://cizle.dev/mcp`, built with Hono in `site/api/_lib` (it runs as a Vercel function, and `npm start` serves the same app locally).
+
+```bash
+claude mcp add --transport http cizle https://cizle.dev/mcp                       # free library, no sign-in
+claude mcp add --transport http cizle https://cizle.dev/mcp --header "Authorization: Bearer TOKEN"   # Premium
+node server/cli/cizle.js search "launch video" --all                              # the same library as a CLI
+```
+
+Tools: `search` (paged, returns a table), `get`, `categories`, `whoami`. Tokens are made on the site's **Connect** page from a Firebase sign-in (`MCP_JWT_SECRET`, `FIREBASE_PROJECT_ID`, `FIREBASE_SERVICE_ACCOUNT` in `site/.env.example`); the plan is read from `users/{uid}` on every request.
+
+## Contents
+
+- [Why](#why) · [Quick start](#quick-start) · [A tour of the dashboard](#a-tour-of-the-dashboard) · [What you can do](#what-you-can-do)
+- [Product memory](#product-memory) · [Sync](#sync-what-shipped) · [Review before create](#review-before-create) · [Animated styles](#animated-styles) · [Gallery](#gallery-and-remix)
+- [Free or paid models](#free-or-paid-models) · [Stop anything](#stop-anything)
+- [Video types and formats](#video-types-and-formats) · [The prompt library](#the-prompt-library)
+- [How it works](#how-it-works) · [Cost](#cost) · [Use it from Claude Code, no key](#use-it-from-claude-code-no-api-key)
+- [API](#api) · [Configuration](#configuration) · [Project layout](#project-layout) · [Security](#security)
+- [Contributing](#contributing) · [Credits](#credits) · [License](#license)
+
+## Ads for brands
+
+Not only product videos: the prompt library has **ad formats for every platform and brand kind**. Each one is a markdown file in `prompts/types/` (tagged `ad: true`) with the platform's length, aspect ratio and safe margins, a scene-by-scene structure, and a "By brand" section for online shops, beauty and fashion, food and drink, health and fitness, local services, apps and games, SaaS and dev tools, and creators and agencies.
+
+| Platform | Video ads (3 each) | Static banners |
+|---|---|---|
+| **Meta** (Instagram, Facebook) | Reels hook ad (9:16) · feed offer ad (4:5) · problem and solution ad (4:5) | Feed and Stories image set: 4:5, 1:1, 9:16, 1.91:1 |
+| **TikTok** | creator-style hook ad · offer drop · 3 reasons demo (all 9:16) | |
+| **Google Ads** | 6-second bumper · 15-second YouTube ad · Shorts ad | Display set: 1200x628, 1200x1200, 300x250, 336x280, 728x90, 300x600, 160x600, 320x50 |
+
+- **Ads laws** ([`prompts/ads-laws.md`](prompts/ads-laws.md)) are added to every ad: a hook in two seconds, one offer, one action, readable with sound off, platform safe zones, and **only claims the brand really made** (no invented prices, discounts, reviews or before/after).
+- **Static banners** are rendered through the same prompt system: an ad type with `output: banner` makes the model (or Claude Code, with the `create_banners` tool) write one to three copy variants, and cizle draws a PNG for each size in any of the six looks. Preview and download them on the video page.
+- **22 ad presets** in the gallery (18 video, 4 banner). Filter by platform (Meta, TikTok, Google Ads) or brand kind. The dashboard has an "Ads for your brand" shelf.
+- Ad specs change. The numbers in the ad types are a starting point taken from public platform guidance; **check each platform's current ad specs before you spend money.**
+
+```text
+/mcp__cizle__make-meta-reels-hook https://yourshop.com
+Use cizle to make Google display banners for https://yourshop.com, clay style.
+```
+
+## Why
+
+Every launch needs videos: a showcase for the landing page, an FAQ for the pricing page, a comparison for the sales deck, a teaser for launch day. Screen recordings are slow, generic AI video does not know your product, and the product changes every week.
+
+cizle reads **your actual product** (website, `llms.txt`, blog, FAQ, pricing and docs pages, GitHub repos), takes real screenshots, writes a script grounded in what it read, and renders the video. Every claim comes from your sources. Then it keeps watching: when you merge a PR or publish a page, it suggests the video that goes with it.
+
+## Quick start
+
+```bash
+git clone https://github.com/shreyvijayvargiya/cizle.git
+cd cizle
+npm install
+npm run dev
+```
+
+Open **http://localhost:5173**. You need Node 20.12+. Chrome (for screenshots and frames) is downloaded by `puppeteer` on install, and FFmpeg is bundled.
+
+**A. With OpenRouter (the dashboard writes the video)**
+
+1. **Settings** → paste your OpenRouter key, or leave the **Free model** switch on for $0 runs.
+2. Sidebar → product menu → **Add product**. Paste your website and any GitHub repos.
+3. Press **Create** on one of the suggested videos, pick a prompt from the gallery, or describe your own in the composer. A card asks its questions, you approve, it renders.
+
+**B. With Claude Code (Claude writes the video, no key)**
+
+```bash
+npm run mcp:install    # once: adds cizle to Claude Code for every project
+```
+
+Then, in Claude Code, in any project: *"Use cizle to make a 40-second sketch explainer of the latest blog post on my site. Explain the code using the main concept."* The finished video appears in the dashboard. Details in [Claude Code, no key](#use-it-from-claude-code-no-api-key).
+
+To run the dashboard as a single server: `npm run build && npm start`, then open http://localhost:3737.
+
+## A tour of the dashboard
+
+
+**Dashboard.** Pick who writes the video, add your product, and use the composer. Below it: prompts picked for your product and kind of founder, the **prompt gallery** (one animated tile per style, with counts), the **Claude Code** card (install command and a ready prompt), your latest videos and the ideas waiting.
+
+![cizle dashboard](docs/dashboard.png)
+
+**Claude Code.** The setup page: how it works, the install commands, example prompts filled in with your product, every slash command, the tools Claude gets, and the videos made this way.
+
+![Claude Code page](docs/claude.png)
+
+**Gallery.** 52 formats. Start from a style tile, then filter by founder job, video type or category. **Remix for my product** opens the composer with everything filled in.
+
+![Gallery](docs/gallery.png)
+
+**Prompts.** The library: 21 video types, 5 tones, 43 Opus film styles and your own prompts, each with an animated preview. Everything is a markdown file.
+
+![Prompt library](docs/prompts.png)
+
+**A video.** Player, script, assets and logs. Videos made from Claude Code also get a **Re-skin** menu (another style or aspect ratio, free) and a **Prompt pack** tab when the type has one.
+
+![Video page](docs/video.png)
+
+## What you can do
+
+| | |
+|---|---|
+| **Claude Code, no key** | Add the MCP server and Claude writes the storyboard from your blog or code on your own subscription; cizle renders it into your dashboard. No OpenRouter key. |
+| **Prompt gallery** | 52 formats, 21 video types, 5 tones and 43 Opus film styles, each with an animated preview. Remix one for your product. |
+| **Animated styles** | Hand-drawn, clay, glass, isometric and ASCII looks with real entrance animations, set by the tone or picked in the composer. |
+| **21 video types** | Seven for products (showcase, features, FAQ, comparison, glossary, launch, sketch explainer) and fourteen for founders (founder story, how it works, pricing, pitch teaser, code walkthrough and more). |
+| **Add a product** | Website plus any number of GitHub repos. cizle writes `products/<slug>/product.md` and suggests three first videos and the prompts that fit your kind of founder. |
+| **Review before create** | Press the arrow and an AI step checks for duplicates, asks the few questions that matter (audience, format, free or paid) and writes the final prompt. You approve, then it runs. |
+| **Sync** | Finds new commits, releases and pages since last time, turns them into plain-language changes and video ideas. |
+| **Blog to sketch video** | Paste an article link; the Sketch Explainer type renders a hand-drawn explainer video and returns a prompt pack for video models: hook, narration, storyboard, one prompt per scene, subtitles, sound notes, source facts. |
+| **Describe your own video** | Composer with type, tone, style, aspect ratio, audio, length and 1–3 variations. Type `/` to load a saved prompt. |
+| **Re-skin for free** | Videos made from a stored storyboard can be rendered again in another style or aspect ratio, with no model. |
+| **Switch products** | Sidebar dropdown. Videos, composer and gallery follow the active product. |
+| **Use free models** | A switch next to every generate button. Free OpenRouter models, $0, rate limited. |
+| **Stop anything** | Every button that starts work turns into **Stop** while it runs. |
+| **Edit everything** | Notes, prompts, ideas and settings are plain files you can open in any editor. |
+
+![Product page](docs/product.png)
+
+## Product memory
+
+cizle remembers each product as markdown in `products/<slug>/` on your machine:
+
+```
+products/<slug>/
+├── product.md     positioning, features, pricing, tone (edit it: every video reads it)
+├── changes.md     what shipped since each sync, newest first
+├── ideas.md       video ideas: suggested → created / dismissed
+├── sources.json   sync state: last commit per repo, page hashes, seen releases
+└── assets/        screenshots kept when the product was added
+```
+
+- **Add a product** from the sidebar menu. Give it a website, a GitHub repo, or both, plus any extra repos (`owner/app, owner/docs, owner/api`). cizle reads the site, `llms.txt`, blog, pricing and docs pages and the first repo (cloned locally), reads the other repos' READMEs, and writes the notes with one model call.
+- Each fact in `product.md` carries its source, for example `*(site:/pricing)*` or `*(github:README)*`.
+- The **Product** page shows ideas, changes, notes (with a markdown editor) and sources (name, website, repos). Fix anything that is wrong. The next video reads your correction.
+- The folder is git-ignored except `products/example/`, a committed reference. Your notes never land in the open-source repo. If you fork cizle for your own product you can commit them.
+- Set `CIZLE_PRODUCTS_DIR` to keep the folder somewhere else.
+
+## Sync: what shipped
+
+Press **Sync** in the sidebar (or on the Product page). cizle also checks when it starts and every 6 hours while it runs (turn this off in Settings → *Keep products fresh*).
+
+| Source | How it is read |
+|---|---|
+| **GitHub repos** | A shallow, blobless `git fetch` into a local cache, then `git log` since the last commit it saw. Releases come from the public `releases.atom` feed. **No GitHub API and no token for public repos.** |
+| **Private repos** | Put `GITHUB_TOKEN` in `.env`. It is only used for the git fetch and is stripped from error messages. |
+| **Website** | `sitemap.xml` (or homepage links) for new pages. Content hashes on the homepage, pricing, features, changelog and similar pages for changes. |
+
+Merged PRs, releases and new pages are what count. Dependency bumps, CI changes, merge noise and bot commits are dropped before the model sees anything. If nothing changed, **no model is called**. Otherwise one call writes `changes.md`, adds new features to `product.md`, and adds up to four ideas to `ideas.md`, each naming its source.
+
+## Review before create
+
+The composer does not create anything on its own. Press the arrow and a card appears **above the input**, one step at a time, like Claude's question card. Every answer is a **radio button or checkbox**, never typed text:
+
+1. **Prompt**: the type, tone and your own prompts from the library, with the one the review picked already selected. Change any of them.
+2. **Questions** (up to three): who the video is for (checkboxes), which takeaway to lead with, format, length, free or paid. The review only asks what changes the result.
+3. **Summary**: the prompt, format and cost, a warning if no link was found or a video for this link already exists (with a link to it), and the **final prompt** it wrote. The prompt is read-only until you press Edit. Then **Approve**. Only Approve calls `POST /api/videos`. Cancel and nothing happens.
+
+It works with free models: the server gathers every fact itself (existing videos, a peek at the page, the prompt library) and the model answers in plain JSON, with no tool calling. The review step has no way to create a video or write a file, so a hostile web page cannot spend your credit.
+
+Say "add this as a prompt …" and the card previews the markdown file instead; **Save prompt** writes it to `prompts/custom/` and links to it.
+
+Each review round and approval is appended to `data/chats/<id>.jsonl` (not shown in the dashboard yet). The review's persona and rules live in [`prompts/review.md`](prompts/review.md). Edit them.
+
+### Sketch Explainer (blog to sketch video)
+
+[`prompts/types/sketch-explainer.md`](prompts/types/sketch-explainer.md) has `engine: article`. Pick it, or paste an article link and let the review suggest it. The job reads the page, writes a storyboard, and renders it with the normal pipeline: paper background, hand-drawn boxes and arrows, narration, captions and music, as an MP4 on the usual video page. The **Prompt pack** tab holds the rest: hook, narration, storyboard, one video-generation prompt per scene (to feed a generative video model), transitions, subtitles, sound design, assembly steps and source facts. Every fact comes with a quote from the article; quotes that are not in the source are flagged. Copy the pack or download it as `.md`. If the video fails to render you still get the pack. Add your own article types the same way: a markdown file with `engine: article`.
+
+## Animated styles
+
+Every video is drawn in one of six looks, and everything in it moves: items pop, slide or type in one after another, and the backdrop keeps drifting.
+
+| Style | Look | Motion | Default for |
+|---|---|---|---|
+| **Clean** | Real UI, soft gradients | Camera pushes and pans | the Polished tone |
+| **Hand-drawn** | Paper, wobbly ink, hand lettering | Boxes pop in, arrows and underlines are drawn | the Sketch Explainer type |
+| **Clay** | Soft pastel blobs, puffy cards | Squash-and-stretch pops, drifting blobs | the Playful tone |
+| **Glass** | Frosted cards over colour orbs | Blur-to-focus fades, drifting glow | the Cinematic tone |
+| **Isometric** | Extruded slabs, floating cubes, grid floor | Cards slide in along the 30-degree axis, cubes bob | the App Store tone |
+| **ASCII** | Phosphor terminal, double-line boxes, falling characters | Lines typed character by character, blinking cursor | the Deadpan tone |
+
+Pick one with the **Style** button in the composer (or in the review card). **From tone** (the default) uses the style written in the tone file, so changing the tone changes the look. Styles apply to every scene type, including screenshots (shown inside a styled device frame). The browser captures the CSS animations frame by frame, so rendering a styled video adds roughly 30 to 90 seconds. If a scene fails to capture it falls back to a still with a camera move.
+
+A tone or type sets its default style in its front matter:
+
+```markdown
+---
+name: Playful
+kind: tone
+style: clay
+---
+```
+
+## Gallery and remix
+
+Sidebar → **Gallery**. Thirty formats across the types, aspect ratios (landscape, portrait, square) and the six animated styles, filterable by category, style and founder kind. When you add a product, cizle also suggests the prompts that fit its category and your kind of founder (on the onboarding screen, the product page and the dashboard), one for each style. Switch the founder kind with the chips above the suggestions. **Remix for my product** opens the composer with that format's type, tone, aspect ratio and direction, and your product's website and repos filled in. Your own finished videos for the active product appear below.
+
+The preview on each card is a small looping sample of its style (and the same previews appear on the Prompts page cards). Presets are plain JSON in [`gallery/presets/`](gallery/presets), so adding one is a pull request.
+
+## Free or paid models
+
+The **Free model** switch sits next to every generate button (composer, ideas, onboarding, sync). It is remembered between visits, and a brand-new install starts on free.
+
+| | Free | Paid |
+|---|---|---|
+| Script, brief, review | best free text model OpenRouter lists | your **Script model** |
+| Screenshot reading | best free vision model | your **Vision model** |
+| Voice-over | not available: runs use music or silence | your **Voice model** |
+| Cost shown | $0 | estimate before you run |
+
+- The free list is fetched live from OpenRouter's model list (cached for an hour), so it never goes stale in the repo. Pin your own in Settings → *Free script model* / *Free vision model*, or leave them on `auto`.
+- Free models are rate limited and a little less reliable with strict JSON. cizle retries and shows a clear message when a limit is hit, with the option to switch to paid.
+- You still need an OpenRouter key for free models.
+
+## Stop anything
+
+Every button that starts work shows **Stop** while it runs, in the same place as the generate button.
+
+| Where | What Stop does |
+|---|---|
+| Composer, idea cards | Cancels the request. If the video was already queued it is stopped too. |
+| Running video (detail page, list, dashboard **Running now**) | Cancels the job: model calls, downloads, git and FFmpeg processes are aborted and open browser pages closed. The video is marked **Stopped**. |
+| Add product | Cancels the read. **Nothing is saved.** |
+| Sync | Cancels the fetch and the model call. `changes.md`, `ideas.md` and `sources.json` are left untouched. |
+| Review | Cancels the request. Nothing is created. |
+| Settings → Test key | Cancels the check. |
+
+Cancellation is built in: work that can be stopped runs inside a cancellable scope, and every network request, child process and browser page inside it listens for the stop. A model call that was already running may still be billed by your provider for tokens it generated before it stopped.
+
+## Video types and formats
+
+| Video type | What it does | Needs |
+|---|---|---|
+| **Product showcase** | A polished tour built around real screenshots | a URL |
+| **Feature highlights** | Fast cuts, one feature per scene | a URL |
+| **Product FAQ** | The top buyer questions, answered from your own FAQ and docs | an FAQ section, docs or `llms.txt` |
+| **Product comparison** | Side-by-side table against competitors, using only facts on both sites | competitor URLs |
+| **Glossary explainer** | Teaches the key terms in your space | docs or blog |
+| **Launch teaser** | Big type, few words, strong CTA | a URL |
+| **Sketch Explainer** | A hand-drawn explainer of a blog post, plus a prompt pack | an article URL |
+
+And fourteen for the jobs founders keep needing:
+
+| Founder job | Types | Needs |
+|---|---|---|
+| **Tell the story** | **Founder story**, **Problem to solution** | an About page or blog; a URL |
+| **Convert** | **How it works** (3 steps), **Pricing explained**, **Use-case spotlight**, **Customer proof** | a URL; pricing; the audience; real quotes or numbers |
+| **Activate and retain** | **Quickstart**, **What's new**, **Integrations** | docs or README; releases or merged PRs; an integrations list |
+| **Build trust** | **Roadmap teaser**, **Myth-busting**, **Tips list** | roadmap, issues or commits; docs or blog |
+| **Raise and explain** | **Pitch teaser**, **Code walkthrough** | real traction numbers; a GitHub repo |
+
+Every type needs real material from your sources, never invented: a type whose needs are not met is skipped when you pick **Any type** (for example no pricing page means no Pricing explained, no customer quotes means no Customer proof). Each type is tagged with the kinds of founder it suits (solo, dev tool, B2B SaaS, AI product, raising), and the prompts cizle suggests when you add a product start with the ones for your kind of founder.
+
+Besides the usual scenes (title, bullets, stats, quote, FAQ, glossary, comparison, code, screenshot), videos can use **steps** (numbered 1-2-3), **plans** (pricing cards), **timeline** (now, next, later) and **sketch** diagrams, all drawn in every style.
+
+Each run gives you **1–3 different videos**, up to 59 seconds, in **9:16, 1:1 or 16:9**, with:
+
+- **audio** of your choice: voice-over + music, music only, or silent
+- burned-in captions plus an `.srt` file
+- a ready-to-post social caption
+- the full script, every frame and screenshot
+
+Everything is saved in `data/videos/`.
+
+## The prompt library
+
+All creative direction is plain markdown, so you can read it, edit it and send PRs for it.
+
+```
+prompts/
+├── laws.md            rules every video follows (hook in 2 s, readable, grounded, no "supercharge")
+├── review.md          the review step's persona and rules
+├── types/             one file per video type: structure, pacing, rules
+│   └── 21 files: showcase, features, faq, comparison, glossary, launch, sketch-explainer,
+│       founder-story, problem-solution, how-it-works, pricing-explained, use-case-spotlight,
+│       customer-proof, quickstart, whats-new, roadmap, integrations, myth-busting,
+│       tips-listicle, pitch-teaser, code-walkthrough
+├── tones/             polished, playful, cinematic, app-store, deadpan (each can set a default `style:`)
+├── films/             43 Opus film styles from lemo-opuscar (MIT, LemoLab), imported unchanged
+│                      (Watercolor Brush, Risograph Print, Whiteboard Explainer, ASCII / CRT Terminal ...)
+└── custom/            prompts you create in the dashboard (Prompts → New prompt)
+```
+
+- **Add a video type:** drop a new `prompts/types/<name>.md` file. It shows up in the dropdown straight away. Each built-in type has an "In each style" section describing how it should look in clay, glass, isometric, hand-drawn and ASCII.
+- **Use a prompt:** type `/` in the composer, or click **Load prompt**.
+- **Opus film styles:** the 43 looks in [`prompts/films/`](prompts/films) come from the open-source [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) library by LemoLab (MIT). Loading one in the composer picks its closest cizle look and passes its one-line direction to the director; the full text is art direction for films built entirely in code (install the upstream skill for those). See [`prompts/films/README.md`](prompts/films/README.md).
+
+A prompt file looks like this:
+
+```markdown
+---
+name: Dev tool launch
+description: Launch cut for developers, built around the install command.
+kind: custom
+type: launch
+---
+- Show the install command on screen within 8 seconds.
+- Include one short code scene from the README.
+- End with "Star it on GitHub".
+```
+
+### Community motion prompts
+
+`prompts/community/*.md` holds motion-video prompts imported from [prompt-motion.com](https://prompt-motion.com), each credited to its creator with links to the video, the prompt page and the original post. Videos are linked, not copied. Their prompts and videos belong to their creators.
+
+```bash
+NODE_USE_ENV_PROXY=1 node scripts/import-prompt-motion.mjs 10   # import the newest 10 (add --dry to preview)
+```
+
+The site is server-rendered: the home page lists every entry (`?p=N` pagination is client side), and each entry page has a JSON-LD `VideoObject` (title, mp4, creator) plus the prompt text in its Next.js payload. The script reads those, fetches one page per second and identifies itself.
+
+## How it works
+
+```
+ add product ─┬─ homepage, llms.txt, blog, FAQ markup, pricing/docs pages    (read in parallel)
+              ├─ GitHub repos (first cloned, others by README)
+              └─ screenshots + product images (headless Chrome)
+                          │
+                          ▼
+              products/<slug>/product.md  ←── edit it any time
+                          │
+        sync ─────────────┤   new commits · releases · new and changed pages
+                          ▼
+              changes.md  +  ideas.md  ──►  idea cards
+                                                   │  you press Create
+                                                   ▼
+  vision model scores every frame  →  evidence-backed brief (+ your product notes)
+                          │
+  prompts/types/<type>.md + prompts/tones/<tone>.md + your direction + prompts/laws.md
+                          │
+          1–3 storyboards in parallel  →  frames  →  voice-over  →  FFmpeg  →  MP4
+```
+
+With Claude Code the reading and writing happen in your Claude session instead, and cizle only renders:
+
+```
+ you ask Claude Code ──► guide + prompts/types/<type>.md + product notes   (cizle's MCP server)
+        │
+        ▼
+ Claude fetches your blog, reads your code, writes the storyboard (scenes, narration, diagrams, code)
+        │
+        ▼  create_video
+ styled animated frames (Chrome) ──► captions + music ──► FFmpeg ──► data/videos/<id>/  ──► dashboard
+                                                                 └─ request.json: re-skin it later, free
+```
+
+## Cost
+
+You pay OpenRouter for model usage; cizle itself is free. Free models cost nothing. Videos made from Claude Code cost nothing on cizle's side: the writing is part of your Claude subscription, and rendering is local.
+
+| Per run | Default paid model | ≈ USD |
+|---|---|---|
+| Screenshot analysis | `google/gemini-2.5-flash` | 0.01 |
+| Product brief + concepts | `anthropic/claude-sonnet-4.5` | 0.06 |
+| Script, per video | `anthropic/claude-sonnet-4.5` | 0.05 |
+| Voice-over, per minute | `openai/gpt-audio-mini` | 0.03 |
+| Add a product (one-off) | script model | ≈ 0.05 |
+| Sync with changes | script model | ≈ 0.01–0.03 |
+
+These are rough estimates: a 30 s narrated video costs about **$0.10–0.20**, and silent videos cost less. The dashboard shows an estimate before you generate and the actual cost after. Auto-sync only calls a model when something changed. You can change any model in Settings.
+
+## Use it from Claude Code (no API key)
+
+Claude Code can make the videos itself, on your Claude subscription, with no OpenRouter key and no dashboard server running. Claude reads your blog post or code and writes the storyboard; cizle only renders it (animated frames, captions, music, FFmpeg) and files the MP4 in your dashboard.
+
+```bash
+npm install
+npm run mcp:install     # adds cizle to Claude Code for every project (or: see below)
+```
+
+Then, in Claude Code, in any project (for example your SaaS repo):
+
+> Use cizle to make a 40-second sketch explainer of the latest blog post on ihatereading.in. Explain the code using the main concept.
+
+What happens: Claude reads cizle's guide and the **Code walkthrough** (or **Sketch Explainer**) prompt, fetches the post and reads your code, calls `save_product` once so cizle remembers the product, writes about eight scenes, and calls `create_video`. A minute or two later the video is in the dashboard (**Videos**, badge "Claude Code"), at `data/videos/<id>/variants/v1/video.mp4`, with the storyboard saved next to it.
+
+- **Check it.** `npm run mcp:doctor` tests the whole chain and prints what to fix.
+- **Slash commands.** Every video type is a prompt: `/mcp__cizle__make-code-walkthrough <url>`, `/mcp__cizle__make-pitch-teaser`, `/mcp__cizle__make-whats-new` and so on (type `/mcp__cizle` to see all 32), plus `/mcp__cizle__make-video <what you want>`.
+- **Tools** Claude can call: `guide`, `list_prompts`, `read_prompt`, `list_products`, `read_product`, `save_product`, `create_video`, `create_banners` (static ad banners as PNGs), `get_video`, `list_videos`, `reskin_video`, `cancel_video`.
+- **Re-skin for free.** The storyboard is stored, so **Re-skin** on the video page (or `reskin_video`) renders the same video again in clay, glass, isometric, hand-drawn or ASCII, or in another aspect ratio. No model is involved.
+- **Voice.** Without a text-to-speech key you get captions on screen and music (Openverse, or generated offline). Add an OpenRouter key and `audio: "voice"` also works.
+- **Your model.** Claude Code uses whichever model you picked (choose Opus for the best storyboards). A 40-second storyboard is a few thousand output tokens.
+- **Where it renders.** In the MCP process on your machine, so Chrome and FFmpeg are needed, as for the dashboard. A video takes one to three minutes. The dashboard reads the same `data/` folder; to see videos while Claude works, run `npm run dev` (set `CIZLE_DASHBOARD_URL=http://localhost:5173` so links point at the dev server).
+- **Add it by hand:** `claude mcp add --scope user cizle -- node /absolute/path/to/cizle/server/mcp/stdio.js`. Opening this repository in Claude Code also offers the project-scoped `.mcp.json`.
+
+**If Claude says the cizle tools are not available** (it will say there is no cizle connector, or offer to clone the repo), run `npm run mcp:doctor` in the cizle folder. It checks Node, the packages, Chrome and FFmpeg, starts the server the way Claude Code does, lists the tools, and tells you whether `claude` has cizle registered. The usual causes:
+
+- **You are not in the terminal app.** Claude Code on the web and other cloud sessions cannot see a server on your computer. Run `claude` in a terminal on your machine, in your project, and type `/mcp` to see `cizle` and its tools.
+- **The session started before you added the server.** Quit it and start `claude` again.
+- **`claude: command not found`.** Install Claude Code (`curl -fsSL https://claude.ai/install.sh | bash`), open a new terminal, and check `claude --version`.
+- **Not registered or not connecting.** `claude mcp list` should show `cizle` as connected. Re-add it with the command the doctor prints (it uses the exact `node` that passed the checks). If you pass `-e KEY=value`, put the server name first: `claude mcp add --scope user cizle -e KEY=value -- node /path/to/stdio.js`.
+- **`Pending approval`** next to a project-scoped `cizle` means Claude Code is waiting for you to approve the repo's `.mcp.json`: run `claude` in that folder and approve it, or use the user-scoped command.
+
+Not using Claude Code? The renderer is also a command, `npm run render -- storyboard.json --style clay`, and an endpoint, `POST /api/videos/from-storyboard`. `npm run guide` prints the storyboard format. Any agent that can write JSON can use them.
+
+The older [`SKILL.md`](SKILL.md) is for agents that drive the dashboard server and OpenRouter pipeline (it reads the site, writes the script and renders), as before.
+
+## API
+
+The dashboard is a client of a small local API (port 3737), so you can script it:
+
+```bash
+curl -X POST localhost:3737/api/videos -H 'content-type: application/json' -d '{
+  "url": "https://yoursaas.com",
+  "github_url": "https://github.com/you/repo",
+  "type": "faq",
+  "tone": "polished",
+  "prompt": "Aim it at agency owners",
+  "aspect": "9:16",
+  "audio": "voice",
+  "duration_sec": 30,
+  "variations": 2,
+  "model_tier": "free",
+  "product": "yoursaas"
+}'
+# → { "id": "…", "status": "pending" }   then poll GET /api/videos/:id
+```
+
+| Method | Path | |
+|---|---|---|
+| `POST` | `/api/videos` | start a job (`model_tier`: `free` or `paid`, optional `product`) |
+| `GET` | `/api/videos` · `/api/videos/:id` | list (`?product=`) · status, script, cost, files |
+| `POST` | `/api/videos/:id/cancel` | stop a running job |
+| `POST` | `/api/videos/:id/regenerate` | same settings, new take |
+| `POST` | `/api/reverse` | reverse-engineer a video: multipart `file` (or JSON `url` to a direct video file), optional `notes`, `model_tier`. Returns a job; poll `GET /api/reverse/:id` for per-scene image, video and audio prompts (max 120 s, 200 MB) |
+| `GET` | `/api/reverse` · `/api/reverse/:id` | list · status and result |
+| `GET` | `/api/products` · `/api/products/:slug` | products and their memory |
+| `POST` | `/api/products/onboard` | add a product (background run) |
+| `GET` | `/api/products/onboard/:id` | onboarding progress |
+| `POST` | `/api/products/onboard/:id/cancel` | stop onboarding (nothing is saved) |
+| `PUT` `DELETE` | `/api/products/:slug` | edit notes, name, site, repos · delete |
+| `POST` | `/api/products/:slug/sync` | look for new commits, releases and pages |
+| `GET` `PATCH` | `/api/products/:slug/ideas[/:id]` | video ideas · dismiss or restore |
+| `POST` | `/api/products/:slug/ideas/:id/create` | turn an idea into a video |
+| `GET` | `/api/gallery` | format presets plus the product's own videos |
+| `GET` | `/api/models` | free and paid models in use, and the free list |
+| `GET` `PUT` | `/api/settings` · `POST /api/settings/test` | keys and defaults |
+| `GET` `POST` | `/api/prompts` · `/api/prompts/:id` | prompt library |
+| `POST` | `/api/videos/from-storyboard` | render a storyboard someone else wrote (no model, no key) |
+| `POST` | `/api/videos/:id/reskin` | render a stored storyboard again in another style or aspect |
+| `POST` | `/api/review` | review a draft: checks, questions, final prompt, cost (creates nothing) |
+| `POST` | `/api/estimate` | cost before you run |
+
+Closing a request that is still running (sync, review) stops the work behind it.
+
+## Configuration
+
+Settings live in `data/settings.json` (git-ignored). Environment variables also work, and they win over the settings file.
+
+| Variable | |
+|---|---|
+| `OPENROUTER_API_KEY` | required for the dashboard pipeline (or paste it in Settings). Not needed for Claude Code videos, except for voice-over |
+| `GITHUB_TOKEN` | optional: only for **private** repos. Public repos are read with plain `git`, no token |
+| `UPLOADTHING_TOKEN` | optional: also upload finished videos to [UploadThing](https://uploadthing.com) |
+| `CHROME_PATH` | optional: use your own Chrome instead of the downloaded one |
+| `CIZLE_DATA_DIR` | optional: where videos and settings are stored (default `./data`) |
+| `CIZLE_PRODUCTS_DIR` | optional: where product memory lives (default `./products`) |
+| `OPENROUTER_BASE_URL` | optional: point at a proxy or a local mock instead of `openrouter.ai` |
+| `PORT` | API port (default `3737`) |
+| `CIZLE_DASHBOARD_URL` | optional: where video links from Claude Code point (default `http://localhost:3737`; use `http://localhost:5173` with `npm run dev`) |
+| `CIZLE_ANIM_FPS` | optional: frames per second captured for animated styles (default `15`) |
+
+Put them in a `.env` file at the repo root (it is git-ignored) to set them in a file.
+
+**Settings page:** OpenRouter key, UploadThing token, default aspect ratio, audio, voice and length, the script, vision and voice models, the free script and vision models (`auto` by default), caption burn-in, and **Keep products fresh** (auto-sync at start and every 6 hours).
+
+## Project layout
+
+```
+cizle/
+├── .mcp.json                offers the cizle MCP server when this repo is opened in Claude Code
+├── SKILL.md                 lets coding agents drive the dashboard server and OpenRouter pipeline
+├── scripts/                 import-film-styles.mjs (refresh the Opus film styles)
+├── prompts/                 laws, ads laws, 32 video and ad types, tones, 43 film styles, custom prompts, review persona (markdown)
+├── gallery/presets/*.json   30 gallery formats (type, tone, style, founders, aspect, direction)
+├── products/                your product memory (git-ignored) + example/
+├── server/
+│   ├── index.js             Hono API (+ serves the dashboard in production)
+│   ├── settings.js models.js library.js scrape.js browser.js
+│   ├── products/            store, onboard, sync, llm helpers
+│   ├── review/              the review step in front of create, and its chat log
+│   ├── mcp/                 the MCP server for Claude Code (stdio.js, server.js, guide.js, install.js)
+│   ├── cli/                 npm run render / npm run guide
+│   ├── local.js             shared boot for the CLI and the MCP server
+│   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js,
+│                            styles.js (the five animated styles), pack.js (article → pack)
+├── data/                    videos and settings (git-ignored)
+└── docs/                    screenshots and the demo video
+```
+
+Scripts: `npm run dev` (API + dashboard with hot reload), `npm run build`, `npm start`, `npm run typecheck`, `npm run mcp:install` (add cizle to Claude Code), `npm run render -- storyboard.json`, `npm run guide`.
+
+## Security
+
+> cizle has no login. It is built to run on your own machine; **do not expose it to the internet as-is.**
+
+- Keys stay in `data/settings.json` or your environment. Nothing leaves your computer except the model, website and GitHub requests you trigger.
+- Everything scraped from websites and repositories is passed to models inside an "untrusted data" wrapper, and the review step cannot start renders, so prompt injection from a web page cannot spend your credit.
+- Auto-sync is the one thing that can use a model without a click, and only when it found a change. Turn it off in Settings.
+- The Claude Code MCP server runs on your machine with your user's permissions, like any local MCP server, and Claude Code asks before it calls a tool. A storyboard is validated and every piece of text is escaped before it is drawn; it can only produce a video file and product notes, never run code. Treat text Claude pulled from a web page as untrusted, as Claude Code itself does.
+
+## Contributing
+
+- **Prompts:** add or improve files in `prompts/types` (give each an "In each style" section and `for:` founder tags), `prompts/tones` (set a default `style:`) and `prompts/review.md`. Film styles in `prompts/films` come from upstream; refresh them with `scripts/import-film-styles.mjs` rather than editing by hand.
+- **Gallery formats:** add a JSON file to `gallery/presets/`:
+
+  ```json
+  {
+    "id": "launch-kinetic-portrait",
+    "title": "Launch teaser, kinetic type",
+    "description": "Big words land on the beat. A 15-second announcement for Reels and Shorts.",
+    "type": "launch",
+    "tone": "cinematic",
+    "style": "glass",
+    "aspect": "9:16",
+    "animation": "kinetic-type",
+    "categories": ["devtools", "ai-agents", "marketing-seo"],
+    "founders": ["solo", "devtool", "ai"],
+    "prompt": "Kinetic typography: one huge line per scene, each word landing on the beat."
+  }
+  ```
+
+  `type` and `tone` must match a file in `prompts/`. `style` is one of `default`, `sketch`, `clay`, `glass`, `isometric`, `ascii`. `founders` are `solo`, `devtool`, `b2b`, `ai`, `fundraising`. Categories: `devtools`, `analytics`, `crm`, `ai-agents`, `project-management`, `fintech`, `marketing-seo`, `security`.
+
+## Credits
+
+- The 43 Opus film styles in `prompts/films/` are imported unchanged from [lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) by LemoLab (MIT; the licence is kept in `prompts/films/LICENSE`).
+- Creative laws and tones adapted from [brag](https://github.com/latent-spaces/brag) (MIT), the skill that turns a project into a launch video.
+- Music: royalty-free CC0/CC-BY tracks from [Openverse](https://openverse.org), with attribution saved per video, or generated offline.
+
+## License
+
+MIT

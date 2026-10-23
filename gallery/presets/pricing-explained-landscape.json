@@ -1,0 +1,21 @@
+{
+  "id": "pricing-explained-landscape",
+  "title": "Pricing explained on glass",
+  "description": "Who each plan is for, on frosted cards with the best fit glowing.",
+  "type": "pricing-explained",
+  "tone": "polished",
+  "style": "glass",
+  "aspect": "16:9",
+  "animation": "count-up",
+  "categories": [
+    "crm",
+    "analytics",
+    "marketing-seo",
+    "project-management"
+  ],
+  "founders": [
+    "solo",
+    "b2b"
+  ],
+  "prompt": "Open on the friendliest true fact (free tier, no seats). Show two or three plan cards left to right with the exact prices and limits from the pricing page, the recommended plan carrying the gradient. Close with 'Which one is yours' in three short lines and a start-free call to action. No invented discounts or urgency."
+}

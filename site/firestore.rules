@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isPro() {
+      let u = get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+      return signedIn() && u.plan == 'pro' && u.proUntil > request.time;
+    }
+
+    // A person can read their own subscription. Only the webhook (Admin SDK, bypasses rules) can write it.
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // Premium prompts and SKILL.md files: readable only while the subscription is active, writable only by the seed script.
+    match /premium/{slug} {
+      allow read: if signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && isPro();
+      allow write: if false;
+    }
+
+    // Full text of premium gallery prompts: same rule as premium skills.
+    match /gallery/{id} {
+      allow read: if signedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && isPro();
+      allow write: if false;
+    }
+
+    // Webhook bookkeeping: never visible to clients.
+    match /webhooks/{id} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.env.local
+src/generated
+public/skills
+public/content
+public/skills.json
+service-account.json
+public/gallery.json
+logs
+public/gallery/

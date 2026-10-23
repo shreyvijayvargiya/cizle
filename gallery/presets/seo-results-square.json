@@ -1,0 +1,19 @@
+{
+  "id": "seo-results-square",
+  "title": "SEO results, sketched",
+  "description": "Hand-drawn charts that grow, finishing on the headline result.",
+  "type": "features",
+  "tone": "playful",
+  "style": "sketch",
+  "aspect": "1:1",
+  "animation": "count-up",
+  "categories": [
+    "marketing-seo",
+    "analytics"
+  ],
+  "founders": [
+    "solo",
+    "b2b"
+  ],
+  "prompt": "Draw an axis, then a line that climbs, with three short labels for what drove it. End on the headline number, circled. Only numbers the sources state. Casual, confident wording."
+}

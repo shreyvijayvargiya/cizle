@@ -1,0 +1,21 @@
+{
+  "id": "launch-kinetic-portrait",
+  "title": "Launch trailer, big type on glow",
+  "description": "Huge type, very few words, a dark glow that builds to the reveal.",
+  "type": "launch",
+  "tone": "cinematic",
+  "style": "glass",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "devtools",
+    "ai-agents",
+    "marketing-seo"
+  ],
+  "founders": [
+    "solo",
+    "devtool",
+    "ai"
+  ],
+  "prompt": "Three one-or-two-word beats (the problem, the shift, the promise), each entering faster than the last over a drifting colour glow, then a held reveal of the product name. One real number if the sources have one. End with 'Out today' and the URL."
+}

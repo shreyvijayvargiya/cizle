@@ -1,0 +1,20 @@
+{
+  "id": "showcase-device-portrait",
+  "title": "Product showcase on an isometric stage",
+  "description": "The product on a floating device, flanked by feature blocks.",
+  "type": "showcase",
+  "tone": "app-store",
+  "style": "isometric",
+  "aspect": "9:16",
+  "animation": "device-mockup",
+  "categories": [
+    "crm",
+    "fintech",
+    "project-management"
+  ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Reveal the product name on a slab, then three real screenshots inside extruded device frames, each with a two-to-four word caption naming the outcome. Floating cubes in the brand colour drift behind. Outro with the name, the CTA and the URL."
+}

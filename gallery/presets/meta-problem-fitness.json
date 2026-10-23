@@ -1,0 +1,17 @@
+{
+  "id": "meta-problem-fitness",
+  "title": "Fitness problem and fix ad",
+  "description": "Name the routine problem in the viewer's words (no body or health promises).",
+  "type": "meta-problem-solution",
+  "tone": "playful",
+  "style": "sketch",
+  "aspect": "4:5",
+  "animation": "kinetic-type",
+  "categories": [
+    "health-fitness"
+  ],
+  "founders": [
+    "health"
+  ],
+  "prompt": "Name the routine problem in the viewer's words (no body or health promises). Sketch the fix as three simple steps with the real class, plan or equipment. Close on Start free or Book a class with the link."
+}

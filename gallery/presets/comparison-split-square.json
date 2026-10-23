@@ -1,0 +1,20 @@
+{
+  "id": "comparison-split-square",
+  "title": "Side by side, as a diff",
+  "description": "Two columns, one row per question, as a terminal diff. Honest and quick.",
+  "type": "comparison",
+  "tone": "deadpan",
+  "style": "ascii",
+  "aspect": "1:1",
+  "animation": "split-compare",
+  "categories": [
+    "crm",
+    "marketing-seo",
+    "analytics"
+  ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Draw the comparison as a diff: product lines in green, the alternative dimmed. One row per criterion (price, setup, one key capability), typed in one at a time. Only facts stated on both products' sites; unknown values stay as dashes. Finish with the one row where the product leads."
+}

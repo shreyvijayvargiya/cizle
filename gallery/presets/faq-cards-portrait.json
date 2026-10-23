@@ -1,0 +1,20 @@
+{
+  "id": "faq-cards-portrait",
+  "title": "Playful FAQ bubbles",
+  "description": "Q and A as soft clay bubbles that pop in one after the other.",
+  "type": "faq",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "card-stack",
+  "categories": [
+    "fintech",
+    "security",
+    "crm"
+  ],
+  "founders": [
+    "solo",
+    "b2b"
+  ],
+  "prompt": "Four questions at most. Each question is a puffy bubble that pops in with a little squash; the answer bubble follows and bounces slightly. Warm, first-person-plural wording, answers under 15 words. End on the friendliest next step."
+}

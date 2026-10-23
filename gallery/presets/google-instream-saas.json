@@ -1,0 +1,23 @@
+{
+  "id": "google-instream-saas",
+  "title": "SaaS 15-second YouTube ad",
+  "description": "Name the brand and the audience in the first five seconds, show the real product doing the job, up to three benefits from the product's own copy, and close on Try it free with the URL.",
+  "type": "google-instream-15s",
+  "tone": "polished",
+  "style": "default",
+  "aspect": "16:9",
+  "animation": "device-mockup",
+  "categories": [
+    "marketing-seo",
+    "analytics",
+    "crm",
+    "project-management",
+    "fintech",
+    "security"
+  ],
+  "founders": [
+    "b2b",
+    "solo"
+  ],
+  "prompt": "Name the brand and the audience in the first five seconds, show the real product doing the job, up to three benefits from the product's own copy, and close on Try it free with the URL."
+}

@@ -1,0 +1,21 @@
+{
+  "id": "tips-listicle-portrait",
+  "title": "Five tips, clay tiles",
+  "description": "Numbered tiles that hop in, ending on the shortcut.",
+  "type": "tips-listicle",
+  "tone": "playful",
+  "style": "clay",
+  "aspect": "9:16",
+  "animation": "kinetic-type",
+  "categories": [
+    "marketing-seo",
+    "analytics",
+    "crm",
+    "project-management"
+  ],
+  "founders": [
+    "solo",
+    "b2b"
+  ],
+  "prompt": "Promise a number in the hook ('5 mistakes teams make with X'). Show each tip as a numbered clay tile of eight words or fewer, all entering at the same speed, specific to the domain and taken from the blog or docs. Last, show the product doing the tedious part as the shortcut. The tips must be useful without the product."
+}

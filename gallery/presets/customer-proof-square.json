@@ -1,0 +1,20 @@
+{
+  "id": "customer-proof-square",
+  "title": "Customer proof wall",
+  "description": "Verbatim quotes and real numbers on frosted cards.",
+  "type": "customer-proof",
+  "tone": "cinematic",
+  "style": "glass",
+  "aspect": "1:1",
+  "animation": "card-stack",
+  "categories": [
+    "crm",
+    "analytics",
+    "fintech"
+  ],
+  "founders": [
+    "b2b",
+    "fundraising"
+  ],
+  "prompt": "Set it up with one true headline ('What teams say'). Show two or three verbatim quotes, attributed exactly as the sources do, each held long enough to read, then the result numbers that appear in a case study. Never tidy a quote. If there are no customers yet, use real public proof such as stars or reviews."
+}
