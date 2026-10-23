@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Skeleton } from "@/components/ui/misc";
+import { LAUNCH_FREE } from "@/lib/config";
 import { useFaq } from "@/lib/data";
 import { useHead } from "@/lib/head";
 import { faqJsonLd } from "@/lib/seo";
 
 export function FaqPage() {
 	const faq = useFaq();
-	useHead({ title: "FAQ: cizle skills, pricing and how it works", description: "Answers about cizle video skills for Claude Code: what is free, what Premium includes, how billing works, how to install a skill and who owns the videos.", path: "/faq", jsonLd: faq.data ? faqJsonLd(faq.data) : undefined });
+	useHead({ title: LAUNCH_FREE ? "FAQ: cizle skills and prompts | cizle" : "FAQ: cizle skills, pricing and how it works", description: LAUNCH_FREE ? "Answers about cizle video skills and prompts for Claude Code: what is free, how to install a skill and who owns the videos." : "Answers about cizle video skills for Claude Code: what is free, what Premium includes, how billing works, how to install a skill and who owns the videos.", path: "/faq", jsonLd: faq.data ? faqJsonLd(faq.data) : undefined });
 	return (
 		<div className="board pt-6 pb-4">
 			<div className="board-w grid gap-8 md:grid-cols-12">
@@ -16,7 +17,7 @@ export function FaqPage() {
 						Questions, answered
 					</h1>
 					<p className="reveal mt-6 max-w-[34ch] text-lg" style={{ ["--i" as string]: 1 }}>
-						Everything about cizle skills, Premium and billing. Something missing? <Link to="/contact" className="underline decoration-field-1 decoration-2 underline-offset-4">Ask us</Link>.
+						{LAUNCH_FREE ? "Everything about cizle skills and the prompt library." : "Everything about cizle skills, Premium and billing."} Something missing? <Link to="/contact" className="underline decoration-field-1 decoration-2 underline-offset-4">Ask us</Link>.
 					</p>
 					<Link to="/contact" className="press reveal mt-6 inline-flex h-12 items-center rounded-lg bg-primary px-6 text-base font-medium text-primary-foreground hover:bg-primary/85" style={{ ["--i" as string]: 2 }}>
 						Ask a question

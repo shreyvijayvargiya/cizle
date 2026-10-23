@@ -14,7 +14,7 @@ import { PromptCard } from "@/components/PromptCard";
 import { filterGallery, useGallery, useGalleryFuse, type GalleryItem } from "@/lib/gallery";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
-import { SITE } from "@/lib/config";
+import { LAUNCH_FREE, SITE } from "@/lib/config";
 import { filterSkills, useFuse, useSkills, type Filters, type SkillMeta } from "@/lib/data";
 import { useHead } from "@/lib/head";
 import { orgJsonLd, siteJsonLd } from "@/lib/seo";
@@ -105,7 +105,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</h2>
 						<p className="max-w-[44ch] text-lg leading-snug" aria-live="polite">
 							{skills.isLoading ? "Loading…" : `${skillList.length} skills and ${promptList.length.toLocaleString()} prompts${active ? ` match, of ${total} and ${promptTotal.toLocaleString()}` : ""}.`}{" "}
-							{!isPro ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock {lockedPrompts > 0 ? lockedPrompts.toLocaleString() : "all"} full prompts and {total - freeCount || 36} premium skills.</Link> : <span>Premium is unlocked.</span>}
+							{LAUNCH_FREE ? null : !isPro ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock {lockedPrompts > 0 ? lockedPrompts.toLocaleString() : "all"} full prompts and {total - freeCount || 36} premium skills.</Link> : <span>Premium is unlocked.</span>}
 						</p>
 					</div>
 
@@ -120,7 +120,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 							<OptionSelect aria-label="Platform" value={search.platform || ""} onValueChange={(v) => setFilter({ platform: v })} emptyLabel="Any platform" options={options(skills.data?.platforms.filter((p) => p !== "Any"))} className="w-[11rem]" />
 							<OptionSelect aria-label="Format" value={search.format || ""} onValueChange={(v) => setFilter({ format: v })} emptyLabel="Any format" options={options(skills.data?.formats)} className="w-[11rem]" />
 							<OptionSelect aria-label="Aspect ratio" value={search.aspect || ""} onValueChange={(v) => setFilter({ aspect: v })} emptyLabel="Any ratio" options={options(skills.data?.aspects)} className="w-[10rem]" />
-							<OptionSelect aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free" }, { value: "premium", label: "Premium" }]} className="w-[10.5rem]" />
+							{LAUNCH_FREE ? null : <OptionSelect aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free" }, { value: "premium", label: "Premium" }]} className="w-[10.5rem]" />}
 							<OptionSelect aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Recommended" options={[{ value: "az", label: "A to Z" }, { value: "short", label: "Shortest first" }]} className="w-[12rem]" />
 							{active ? (
 								<Button type="button" variant="secondary" onClick={() => (setQ(""), navigate(slug ? { to: "/skills/$slug", params: { slug }, search: {}, replace: true } : { to: "/", search: {}, replace: true }))}>
@@ -178,7 +178,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</div>
 					)}
 
-					{!user && skills.data && !slug ? (
+					{!LAUNCH_FREE && !user && skills.data && !slug ? (
 						<section aria-labelledby="cta-h" className="mt-2 grid gap-2 md:grid-cols-12">
 							<div className="tile-accent reveal p-6 sm:p-8 md:col-span-8">
 								<h2 id="cta-h" className="text-5xl">

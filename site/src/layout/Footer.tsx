@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { SITE } from "@/lib/config";
+import { LAUNCH_FREE, SITE } from "@/lib/config";
 
 const LINK = "press block py-1 text-base text-foreground transition-opacity hover:opacity-70";
 /** The mark returns at full width, each letter knocked out of its own block; heights differ, bottoms share one line. */
@@ -33,8 +33,8 @@ export function Footer() {
 						<Link to="/" className={LINK}>Skills and prompts</Link>
 						<Link to="/gallery" className={LINK}>Prompt gallery</Link>
 						<Link to="/connect" className={LINK}>Use in Claude (MCP)</Link>
-						<Link to="/films" className={LINK}>Launch films</Link>
-						<Link to="/pricing" className={LINK}>Pricing</Link>
+						{LAUNCH_FREE ? null : <Link to="/films" className={LINK}>Launch films</Link>}
+						{LAUNCH_FREE ? null : <Link to="/pricing" className={LINK}>Pricing</Link>}
 						<Link to="/docs" className={LINK}>Docs</Link>
 						<Link to="/blog" className={LINK}>Blog</Link>
 					</nav>
@@ -49,12 +49,12 @@ export function Footer() {
 						<p className="mb-2 text-lg font-semibold">Legal</p>
 						<Link to="/terms" className={LINK}>Terms</Link>
 						<Link to="/privacy" className={LINK}>Privacy</Link>
-						<Link to="/refund" className={LINK}>Refunds</Link>
+						{LAUNCH_FREE ? null : <Link to="/refund" className={LINK}>Refunds</Link>}
 					</nav>
 				</div>
 
 				<div className="flex flex-wrap items-center justify-between gap-3 px-1 pb-2 text-base">
-					<p>© {new Date().getFullYear()} cizle. Payments by Dodo Payments. Prompts belong to their creators and are credited on every card.</p>
+					<p>© {new Date().getFullYear()} cizle.{LAUNCH_FREE ? "" : " Payments by Dodo Payments."} Prompts belong to their creators and are credited on every card.</p>
 					<a href="#main" className="press rounded-lg bg-primary px-4 py-2 text-base text-primary-foreground hover:bg-primary/85">
 						Back to top
 					</a>

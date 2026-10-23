@@ -41,7 +41,7 @@ function splitSkills() {
 		if (fs.existsSync(pub)) { fs.mkdirSync(path.dirname(priv), { recursive: true }); fs.copyFileSync(pub, priv); fs.rmSync(pub); moved++; }
 	}
 	// the snapshot is written from the full sources, so it must be read while they are available (they now sit in private/)
-	for (const s of loadSkills()) if (s.tier === "premium") {
+	for (const s of loadSkills({ all: true })) if (s.tier === "premium") {
 		if (!s.body) { console.error(`cannot snapshot ${s.source}: its source is missing from prompts/ and private/prompts/`); process.exit(1); }
 		out[s.source] = snapshotOf(s);
 	}

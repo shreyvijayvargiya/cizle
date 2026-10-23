@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Logout01Icon, Menu01Icon, Moon02Icon, Search01Icon, Settings01Icon, Sun03Icon } from "@hugeicons/core-free-icons";
+import { GithubIcon, Logout01Icon, Menu01Icon, Moon02Icon, Search01Icon, Settings01Icon, Sun03Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { Logo } from "@/components/Logo";
 import { Kbd } from "@/components/ui/command";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, MenuContent, MenuItem, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/lib/auth";
-import { NAV } from "@/lib/config";
+import { LAUNCH_FREE, NAV, SITE } from "@/lib/config";
 import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -98,7 +98,11 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 					<div className="hidden items-center rounded-lg bg-surface px-1 lg:flex">
 						<ThemeMenu />
 					</div>
-					{!ready ? null : user ? (
+					{LAUNCH_FREE ? (
+						<a href={SITE.github} target="_blank" rel="noopener noreferrer" className="press hidden items-center gap-2 rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
+							<Icon icon={GithubIcon} size={18} /> Free prompts on GitHub
+						</a>
+					) : !ready ? null : user ? (
 						<>
 							{!isPro ? (
 								<Link to="/pricing" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
@@ -145,7 +149,13 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 								</SheetClose>
 							</nav>
 							<div className="mt-auto flex flex-col gap-2 pt-4">
-								{user ? (
+								{LAUNCH_FREE ? (
+									<Button variant="brand" size="lg" asChild>
+										<a href={SITE.github} target="_blank" rel="noopener noreferrer">
+											<Icon icon={GithubIcon} size={18} /> Free prompts on GitHub
+										</a>
+									</Button>
+								) : user ? (
 									<SheetClose asChild>
 										<Button variant="outline" size="lg" asChild>
 											<Link to="/settings">Settings</Link>
@@ -160,7 +170,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 										</Button>
 									</SheetClose>
 								)}
-								{!isPro ? (
+								{!isPro && !LAUNCH_FREE ? (
 									<SheetClose asChild>
 										<Button variant="brand" size="lg" asChild>
 											<Link to="/pricing">Get Premium</Link>

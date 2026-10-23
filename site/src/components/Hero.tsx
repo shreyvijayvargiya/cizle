@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { copyText } from "@/components/CopyButton";
 import { Icon } from "@/components/Icon";
 import { fromLabel } from "@/lib/billing";
+import { LAUNCH_FREE } from "@/lib/config";
 import { useGallery, type GalleryItem } from "@/lib/gallery";
 import { plain } from "@/lib/utils";
 import { AutoVideo } from "@/lib/videos";
@@ -98,7 +99,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 				</div>
 
 				<div className="tile-accent reveal order-2 flex min-h-[200px] flex-col justify-between gap-6 p-5 sm:p-6 md:order-none md:col-span-6 lg:col-span-3" style={{ ["--i" as string]: 3 }}>
-					<p className="statement">Free samples open in full. Premium opens the rest, from {fromLabel("USD")} a month.</p>
+					<p className="statement">{LAUNCH_FREE ? "Every prompt is free to read and copy, and open source on GitHub." : `Free samples open in full. Premium opens the rest, from ${fromLabel("USD")} a month.`}</p>
 					<a href="#library" className="press inline-flex h-12 w-fit items-center gap-2 rounded-lg bg-field-2 px-5 text-base font-medium text-field-2-ink hover:opacity-90">
 						Browse the library <Icon icon={ArrowRight01Icon} size={16} />
 					</a>

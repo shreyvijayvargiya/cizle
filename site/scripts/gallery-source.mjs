@@ -8,7 +8,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import { SITE_DIR } from "./skills-source.mjs";
+import { LAUNCH_FREE, SITE_DIR } from "./skills-source.mjs";
 import { LANG_NAME } from "./gallery-quality.mjs";
 
 export const GALLERY_FILE = path.join(SITE_DIR, "content", "gallery.jsonl");
@@ -42,7 +42,7 @@ function premiumText() {
 export const hasFullPremiumText = () => Boolean(premiumText());
 
 /** Every entry. Premium text is the full text when the private file is present, otherwise the short opening that is committed. */
-export function loadGallery(file = GALLERY_FILE) {
+export function loadGallery(file = GALLERY_FILE, { all = false } = {}) {
 	if (!fs.existsSync(file)) return [];
 	const full = file === GALLERY_FILE ? premiumText() : null;
 	return fs
@@ -50,6 +50,7 @@ export function loadGallery(file = GALLERY_FILE) {
 		.split("\n")
 		.filter(Boolean)
 		.map((l) => JSON.parse(l))
+		.filter((e) => !(LAUNCH_FREE && !all && e.tier !== "free"))
 		.map((e) => {
 			const tier = e.tier === "free" ? "free" : "premium";
 			const text = tier === "premium" && full?.[e.id] ? full[e.id] : e.text;

@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
+import { LAUNCH_FREE } from "@/lib/config";
 import { canonCategory, filterGallery, findPrompt, useGallery, useGalleryFuse, type GalleryFilters } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
 
@@ -75,7 +76,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 						Prompt gallery
 					</h1>
 					<p className="max-w-[46ch] pb-2 text-lg leading-snug">
-						{total ? `${total.toLocaleString()} real video prompts` : "Real video prompts"} people made with Claude Opus 5.5. Every card credits its creator and links to the original post. {gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.
+						{total ? `${total.toLocaleString()} real video prompts` : "Real video prompts"} people made with Claude Opus 5.5. Every card credits its creator and links to the original post. {LAUNCH_FREE ? "Every one is free to read and copy." : `${gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.`}
 					</p>
 				</div>
 
@@ -86,7 +87,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 							<Input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
 						</div>
 						<OptionSelect icon={Layers01Icon} aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: categoryLabel(c) }))} className="w-[12.5rem]" />
-						<OptionSelect icon={LockIcon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples" }, { value: "premium", label: "Premium" }]} className="w-[12rem]" />
+						{LAUNCH_FREE ? null : <OptionSelect icon={LockIcon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples" }, { value: "premium", label: "Premium" }]} className="w-[12rem]" />}
 						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Newest" options={[{ value: "az", label: "A to Z" }, { value: "long", label: "Longest first" }]} className="w-[12rem]" />
 						{active ? (
 							<Button type="button" variant="secondary" onClick={() => (setQ(""), setShown(PAGE), navigate({ to: "/gallery", search: {}, replace: true }))}>
@@ -100,7 +101,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 
 				<p className="px-1 py-3 text-lg" aria-live="polite">
 					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? "prompt" : "prompts"}${active ? ` of ${total.toLocaleString()}` : ""}. `}
-					{!isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : isPro ? "Premium is unlocked." : null}
+					{LAUNCH_FREE ? null : !isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : isPro ? "Premium is unlocked." : null}
 				</p>
 
 				{gallery.isLoading ? (

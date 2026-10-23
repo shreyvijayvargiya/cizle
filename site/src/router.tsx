@@ -1,3 +1,4 @@
+import { LAUNCH_FREE } from "@/lib/config";
 import { Outlet, createRootRoute, createRoute, createRouter, useParams } from "@tanstack/react-router";
 import { Layout } from "@/layout/Layout";
 import { BlogPage, BlogPostPage } from "@/pages/Blog";
@@ -48,9 +49,9 @@ const tree = root.addChildren([
 	gallery,
 	prompt,
 	launch,
-	r("/films", FilmsPage),
+	...(LAUNCH_FREE ? [] : [r("/films", FilmsPage)]),
 	r("/connect", ConnectPage),
-	r("/pricing", PricingPage),
+	...(LAUNCH_FREE ? [] : [r("/pricing", PricingPage)]),
 	r("/faq", FaqPage),
 	r("/contact", ContactPage),
 	r("/blog", BlogPage),
@@ -58,9 +59,8 @@ const tree = root.addChildren([
 	r("/docs", () => <ContentPage name="docs" path="/docs" toc title="Docs: how to use cizle skills with Claude Code | cizle" description="Step-by-step: install a cizle skill, connect the MCP server to Claude Code, ask for a video and open the MP4. Includes search, free vs premium and troubleshooting." />),
 	r("/terms", () => <ContentPage name="terms" path="/terms" title="Terms of service | cizle" description="The terms for using the cizle skills library and Premium subscription." />),
 	r("/privacy", () => <ContentPage name="privacy" path="/privacy" title="Privacy policy | cizle" description="What cizle collects, who processes it and how to ask us to delete it." />),
-	r("/refund", () => <ContentPage name="refund" path="/refund" title="Refund policy | cizle" description="Refunds for cizle Premium: 7 days from your first payment, no questions asked." />),
-	login,
-	settings,
+	...(LAUNCH_FREE ? [] : [r("/refund", () => <ContentPage name="refund" path="/refund" title="Refund policy | cizle" description="Refunds for cizle Premium: 7 days from your first payment, no questions asked." />)]),
+	...(LAUNCH_FREE ? [] : [login, settings]),
 ]);
 
 export const router = createRouter({ routeTree: tree, defaultPreload: "intent", scrollRestoration: true, defaultNotFoundComponent: NotFound });

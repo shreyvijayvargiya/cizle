@@ -28,6 +28,9 @@ try {
 }
 
 export const siteConfig = JSON.parse(fs.readFileSync(path.join(SITE_DIR, "content", "site.json"), "utf8"));
+/** Free-only launch (VITE_LAUNCH_FREE_ONLY=1 in site/.env): premium skills and prompts are left out of every build output. */
+export const LAUNCH_FREE = ["1", "true"].includes(String(process.env.VITE_LAUNCH_FREE_ONLY || "").trim().toLowerCase());
+if (LAUNCH_FREE) siteConfig.description = siteConfig.description.replace(/ 20 free skills, premium.*$/, " Free and open source.");
 export const SITE_URL = (process.env.VITE_SITE_URL || siteConfig.url).replace(/\/+$/, "");
 const catalog = JSON.parse(fs.readFileSync(path.join(SITE_DIR, "content", "catalog.json"), "utf8"));
 export const CATEGORIES = catalog.categories;
@@ -73,9 +76,10 @@ function platformOf(fm) {
 
 const VIDEO_DEMOS = { launch: { video: "/videos/cizle-launch.mp4", poster: "/videos/cizle-launch-poster.jpg" } };
 
-export function loadSkills() {
+/** `all` keeps premium skills even in a free-only launch (the private/seed tools need them). */
+export function loadSkills({ all = false } = {}) {
 	const snapshot = fs.existsSync(SNAPSHOT_FILE) ? JSON.parse(fs.readFileSync(SNAPSHOT_FILE, "utf8")) : {};
-	return catalog.skills.map((entry, order) => {
+	return catalog.skills.filter((entry) => !(LAUNCH_FREE && !all && entry.tier === "premium")).map((entry, order) => {
 		const file = [PROMPTS_DIR, PRIVATE_PROMPTS_DIR].map((d) => path.join(d, entry.dir, `${entry.source}.md`)).find((f) => fs.existsSync(f));
 		if (!file) {
 			const snap = snapshot[`${entry.dir}/${entry.source}`];
