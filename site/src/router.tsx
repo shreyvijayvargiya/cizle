@@ -5,6 +5,7 @@ import { ContactPage } from "@/pages/Contact";
 import { ContentPage } from "@/pages/Docs";
 import { ExplorerPage } from "@/pages/Explorer";
 import { FaqPage } from "@/pages/Faq";
+import { FilmsPage } from "@/pages/Films";
 import { GalleryPage } from "@/pages/Gallery";
 import { LoginPage } from "@/pages/Login";
 import { NotFound } from "@/pages/NotFound";
@@ -46,6 +47,7 @@ const tree = root.addChildren([
 	gallery,
 	prompt,
 	launch,
+	r("/films", FilmsPage),
 	r("/pricing", PricingPage),
 	r("/faq", FaqPage),
 	r("/contact", ContactPage),

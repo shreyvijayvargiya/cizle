@@ -157,6 +157,15 @@ for (const g of promptPages) {
 	}));
 }
 
+// launch films
+out("/films", document({
+	title: "Launch films: watch two, make one for your product | cizle",
+	description: "Two interactive launch films built in code, with music and a narrator. Type your product, copy the prompt and paste it into Claude Code to make your own launch video.",
+	path: "/films",
+	ld: [crumbs([["Skills", "/"], ["Launch films", "/films"]])],
+	body: `<h1>Watch two films, make your own</h1><p>Two interactive launch films built in code, with sound. Type your product, copy the prompt, and paste it into Claude Code to render your own launch video.</p><ul><li><a href="/launch.html">Film one: the prompt library, in your hands</a></li><li><a href="/launch2.html">Film two: the render, in CG</a></li></ul><p>It works with the free skills. <a href="/pricing">Premium</a> opens the rest. <a href="/gallery">Browse the prompt gallery</a>.</p>`,
+}));
+
 // pricing
 out("/pricing", document({
 	title: `Pricing: Premium from $${Math.min(...siteConfig.plans.map((p) => p.usd))} a month | cizle`,
@@ -184,7 +193,7 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
 

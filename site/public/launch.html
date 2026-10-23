@@ -31,6 +31,8 @@
 	#chapters button:hover { background: rgba(229,225,216,.28); }
 	.tog { height: 34px; padding: 0 12px; border-radius: 6px; background: rgba(229,225,216,.1); font: 500 12px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
 	.tog[aria-pressed="false"] { opacity: .45; text-decoration: line-through; }
+	select.tog { max-width: 120px; color: var(--bone); appearance: none; text-overflow: ellipsis; cursor: pointer; }
+	select.tog option { color: #17110d; }
 	.tog:hover { background: rgba(229,225,216,.28); }
 	#cap { position: fixed; left: 50%; bottom: 74px; transform: translateX(-50%); z-index: 3; width: min(92vw, 880px); text-align: center; font-size: clamp(1.05rem, 2.4vw, 1.6rem); line-height: 1.25; letter-spacing: -.02em; pointer-events: none; text-wrap: balance; text-shadow: 0 2px 18px #000; }
 	#cap span { background: rgba(23,17,13,.7); padding: 2px 10px; border-radius: 6px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
@@ -54,6 +56,7 @@
 <div id="hud">
 	<div id="chapters" role="group" aria-label="Chapters"></div>
 	<button class="tog" id="tm" type="button" aria-pressed="true" title="Music (M)">Music</button>
+	<select class="tog" id="vsel" aria-label="Narrator voice" title="Pick the narrator voice you like best" hidden></select>
 	<button class="tog" id="tv" type="button" aria-pressed="true" title="Voice (V)">Voice</button>
 	<button class="tog" id="tp" type="button" title="Pause (Space)">Pause</button>
 </div>
@@ -189,22 +192,59 @@ function scheduleMusic() {
 }
 setInterval(scheduleMusic, 60);
 
-/* ------------------------------------------------------------------ narrator */
-let voice = null;
+/* ------------------------------------------------------------------ narrator
+   The browser's speech voices vary a lot: a "Natural" or "Online" voice (Edge), an "Enhanced"/"Premium" or Siri voice (Apple) or a Google voice
+   sound human; the old default ones sound robotic. So: rank every English voice, pick the best, let the viewer choose, say the script
+   in short natural sentences with real pauses, and say "sizzle" where the page shows "cizle". To use a recorded or studio voice instead,
+   drop files named launch-voice/<scene id>-<line number>.mp3 (for example hook-0.mp3) next to this page: they play instead of the browser voice. */
+const VOICE_DIR = "/launch-voice/";
+let voice = null, voiceList = [], speaking = 0, recorded = null;
+const badRec = new Set();
+function scoreVoice(v) {
+	const n = v.name; if (!/^en/i.test(v.lang)) return -999;
+	let sc = 0;
+	if (/natural|neural/i.test(n)) sc += 60;
+	if (/online/i.test(n)) sc += 40;
+	if (/premium|enhanced|siri/i.test(n)) sc += 45;
+	if (/\b(aria|jenny|guy|ryan|sonia|libby|davis|andrew|emma|brian|ava|allison|evan|serena|oliver|samantha|daniel|karen|moira|tessa|google uk english male|google us english)\b/i.test(n)) sc += 20;
+	if (!v.localService) sc += 12;
+	if (/en-(US|GB)/i.test(v.lang)) sc += 6;
+	if (/compact|novelty|whisper|zarvox|bad |bells|boing|cellos|trinoids|organ|albert|junior|kathy|ralph|fred|bubbles|deranged|hysterical|good news|superstar/i.test(n)) sc -= 200;
+	if (/espeak|mbrola/i.test(n)) sc -= 80;
+	return sc;
+}
 function pickVoice() {
-	const vs = speechSynthesis.getVoices().filter((v) => /^en/i.test(v.lang));
-	const pref = ["Google UK English Male", "Daniel", "Google US English", "Alex", "Samantha", "Microsoft Guy", "Microsoft Aria"];
-	voice = pref.map((n) => vs.find((v) => v.name.includes(n))).find(Boolean) || vs.find((v) => /en-(US|GB)/i.test(v.lang)) || vs[0] || null;
+	if (!("speechSynthesis" in window)) return;
+	voiceList = speechSynthesis.getVoices().filter((v) => scoreVoice(v) > -100).sort((x, y) => scoreVoice(y) - scoreVoice(x));
+	let saved = null; try { saved = localStorage.getItem("cizle-voice"); } catch {}
+	voice = voiceList.find((v) => v.name === saved) || voiceList[0] || null;
+	const sel = $("vsel"); if (!sel) return;
+	sel.innerHTML = ""; voiceList.slice(0, 14).forEach((v) => { const o = document.createElement("option"); o.value = v.name; o.textContent = v.name.replace(/^(Microsoft|Google)\s+/, "").replace(/\s*-.*$/, "").replace(/\s*\(.*\)/, ""); sel.append(o); });
+	if (voice) sel.value = voice.name; sel.hidden = voiceList.length < 2;
 }
 if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
 let capTimer = 0;
-function say(text, display) {
+function endSpeech() { if (--speaking <= 0) { speaking = 0; duck = 1; } }
+function speakTTS(text) {
+	if (!("speechSynthesis" in window)) return;
+	// short sentences, a breath between them: it sounds spoken, not read
+	(text.match(/[^.!?]+[.!?]*/g) || [text]).map((x) => x.trim()).filter(Boolean).forEach((sentence, i) => {
+		const u = new SpeechSynthesisUtterance(sentence.replace(/\bcizle\b/gi, "sizzle"));
+		if (voice) { u.voice = voice; u.lang = voice.lang; }
+		u.rate = 0.95; u.pitch = 1; u.volume = 1;
+		speaking++; u.onstart = () => (duck = 0.38); u.onend = u.onerror = endSpeech;
+		speechSynthesis.speak(u);
+	});
+}
+function say(text, display, key) {
 	showCap(display || text);
-	if (!voiceOn || !("speechSynthesis" in window)) return;
-	const u = new SpeechSynthesisUtterance(text);
-	if (voice) u.voice = voice; u.rate = 1.04; u.pitch = 0.85; u.volume = 1;
-	u.onstart = () => (duck = 0.38); u.onend = u.onerror = () => (duck = 1);
-	speechSynthesis.speak(u);
+	if (!voiceOn) return;
+	const fallback = () => speakTTS(text);
+	if (!key || badRec.has(key)) return fallback();
+	const a = new Audio(`${VOICE_DIR}${key}.mp3`); recorded = a;
+	a.onerror = () => (badRec.add(key), fallback());
+	a.onplaying = () => (duck = 0.38); a.onended = () => (duck = 1);
+	a.play().catch(() => (badRec.add(key), fallback()));
 }
 function showCap(t) { const c = $("cap"); c.innerHTML = t ? `<span></span>` : ""; if (t) c.firstChild.textContent = t; clearTimeout(capTimer); capTimer = setTimeout(() => (c.innerHTML = ""), Math.max(2600, t.length * 75)); }
 
@@ -256,13 +296,13 @@ let hover = null;
 
 /* ------------------------------------------------------------------ the film */
 const S = [
-	{ id: "hook", name: "The deadline", dur: 7, lvl: 0.2, lines: [[0.4, "Your launch video is due tomorrow."], [3.6, "Nobody has the time."]] },
-	{ id: "lib", name: "1,487 prompts", dur: 10, lvl: 0.6, lines: [[0.5, "There are fourteen hundred and eighty seven video prompts, already written."], [6.2, "Somebody made yours. Go on. Touch one."]] },
-	{ id: "paste", name: "Paste", dur: 9, lvl: 0.75, lines: [[0.3, "Pick one. Paste it into Claude Code."], [4.6, "Give it your product link. That's all."]] },
-	{ id: "make", name: "Render", dur: 11, lvl: 0.9, lines: [[0.3, "Claude Code reads your product, and writes the storyboard."], [5.4, "cizle renders it on your own machine. No API key. One M P four."]] },
-	{ id: "looks", name: "Five looks", dur: 9, lvl: 1, lines: [[0.2, "Hand drawn. Clay. Glass. Isometric. Terminal."], [5.2, "Same story. Five looks."]] },
-	{ id: "price", name: "Free", dur: 8, lvl: 0.8, lines: [[0.3, "Twenty of fifty six skills are free."], [4.0, "Premium opens everything, from ten dollars a month."]] },
-	{ id: "end", name: "cizle", dur: 9, lvl: 1, lines: [[0.5, "cizle. Like sizzle."], [3.2, "Make the video."]], capShow: ["cizle. Say it like sizzle.", "Make the video."] },
+	{ id: "hook", name: "The deadline", dur: 7, lvl: 0.2, lines: [[0.4, "Your launch video is due tomorrow."], [3.6, "And nobody has the time."]] },
+	{ id: "lib", name: "1,487 prompts", dur: 10, lvl: 0.6, lines: [[0.5, "There are one thousand, four hundred and eighty-seven video prompts, already written."], [6.2, "Someone has made yours. Go on, touch one."]] },
+	{ id: "paste", name: "Paste", dur: 9, lvl: 0.75, lines: [[0.3, "Pick one, and paste it into Claude Code."], [4.6, "Then give it your product link. That's it."]] },
+	{ id: "make", name: "Render", dur: 11, lvl: 0.9, lines: [[0.3, "Claude Code reads your product, and writes the storyboard."], [5.4, "Then cizle renders it, right on your own machine. No API key. One video file."]] },
+	{ id: "looks", name: "Five looks", dur: 9, lvl: 1, lines: [[0.2, "Hand-drawn. Clay. Glass. Isometric. Terminal."], [5.2, "Same story, five different looks."]] },
+	{ id: "price", name: "Free", dur: 8, lvl: 0.8, lines: [[0.3, "Twenty of the fifty-six skills are free."], [4.0, "And Premium opens everything, from ten dollars a month."]] },
+	{ id: "end", name: "cizle", dur: 9, lvl: 1, lines: [[0.5, "It's called cizle. Like sizzle."], [3.2, "Go and make the video."]], capShow: ["cizle. Say it like sizzle.", "Make the video."] },
 ];
 const TOTALDUR = S.reduce((a, s) => a + s.dur, 0);
 let cur = -1, t0 = 0, paused = false, started = false, pausedAt = 0, timers = [], flash = 0, typed = "";
@@ -272,10 +312,11 @@ function goto(i) {
 	i = clamp(i, 0, S.length - 1);
 	timers.forEach(clearTimeout); timers = [];
 	if ("speechSynthesis" in window) speechSynthesis.cancel();
-	duck = 1; cur = i; t0 = performance.now(); flash = 1; typed = "";
+	if (recorded) { recorded.pause(); recorded = null; }
+	speaking = 0; duck = 1; cur = i; t0 = performance.now(); flash = 1; typed = "";
 	targetIntensity = S[i].lvl;
 	if (AC) { whoosh(i % 2 === 0); if (i > 0) thud(); }
-	S[i].lines.forEach(([d, text], k) => timers.push(setTimeout(() => !paused && say(text, S[i].capShow ? S[i].capShow[k] : text), d * 1000)));
+	S[i].lines.forEach(([d, text], k) => timers.push(setTimeout(() => !paused && say(text, S[i].capShow ? S[i].capShow[k] : text, `${S[i].id}-${k}`), d * 1000)));
 	[...$("chapters").children].forEach((b, k) => b.classList.toggle("cur", k === i));
 	$("hint").textContent = ["", "move the mouse. click a tile.", "type anything", "click to fire a render", "click for the next look", "click to sizzle", "click anywhere. it sizzles."][i] || "";
 }
@@ -468,13 +509,14 @@ addEventListener("keydown", (e) => {
 });
 function togglePause() {
 	paused = !paused;
-	if (paused) { pausedAt = performance.now(); if ("speechSynthesis" in window) speechSynthesis.pause(); AC && AC.suspend(); }
-	else { t0 += performance.now() - pausedAt; if ("speechSynthesis" in window) speechSynthesis.resume(); AC && AC.resume(); }
+	if (paused) { pausedAt = performance.now(); if ("speechSynthesis" in window) speechSynthesis.pause(); recorded && recorded.pause(); AC && AC.suspend(); }
+	else { t0 += performance.now() - pausedAt; if ("speechSynthesis" in window) speechSynthesis.resume(); recorded && recorded.play().catch(() => {}); AC && AC.resume(); }
 	$("tp").textContent = paused ? "Play" : "Pause";
 }
 $("tp").onclick = togglePause;
 $("tm").onclick = (e) => { musicOn = !musicOn; e.currentTarget.setAttribute("aria-pressed", String(musicOn)); };
-$("tv").onclick = (e) => { voiceOn = !voiceOn; e.currentTarget.setAttribute("aria-pressed", String(voiceOn)); if (!voiceOn && "speechSynthesis" in window) { speechSynthesis.cancel(); duck = 1; } };
+$("vsel").onchange = (e) => { voice = voiceList.find((v) => v.name === e.target.value) || voice; try { localStorage.setItem("cizle-voice", e.target.value); } catch {} if ("speechSynthesis" in window) { speechSynthesis.cancel(); speaking = 0; duck = 1; } speakTTS("Hello. This is how I sound."); };
+$("tv").onclick = (e) => { voiceOn = !voiceOn; e.currentTarget.setAttribute("aria-pressed", String(voiceOn)); if (!voiceOn && "speechSynthesis" in window) { speechSynthesis.cancel(); if (recorded) recorded.pause(); duck = 1; } };
 S.forEach((s, i) => { const b = document.createElement("button"); b.type = "button"; b.dataset.n = i + 1; b.innerHTML = "<i></i>"; b.append(s.name); b.onclick = () => goto(i); $("chapters").append(b); });
 $("start").onclick = async () => {
 	audioInit(); try { await AC.resume(); } catch {}
