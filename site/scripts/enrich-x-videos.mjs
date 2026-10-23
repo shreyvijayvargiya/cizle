@@ -11,8 +11,7 @@
  *   npm run enrich:x -- --limit 50            stop after 50 entries that needed work
  *   npm run enrich:x -- --no-browser          skip the headless Chrome route (HTTP routes only)
  *
- * An entry keeps its current video unless a new one that plays is found, so a run never makes the gallery worse. Only video, poster
- * and xVideo change in content/gallery.jsonl; a backup (gallery.jsonl.bak) is made the first time, and content/x-video-report.json
+ * An entry keeps its current video unless a new one that plays is found, so a run never makes the gallery worse. Only video and poster change in content/gallery.jsonl; a backup (gallery.jsonl.bak) is made the first time, and content/x-video-report.json
  * lists every entry that needed work with the routes tried and why they failed.
  */
 import fs from "node:fs";
@@ -50,7 +49,7 @@ for (const { idx, e, id } of needs) {
 	stats[r.state] = (stats[r.state] || 0) + 1;
 	report[e.id] = { tweet: id, had_video: Boolean(e.video), state: r.state, via: r.via || null, tried: r.tried || [], video: r.video || null, poster: r.poster || null, hls: r.hls || null, ...(r.error ? { error: r.error } : {}) };
 	if (r.state === "has_video" && r.video !== e.video) {
-		rows[idx] = { ...e, video: r.video, poster: r.poster || e.poster, xVideo: { via: r.via, at: new Date().toISOString() } };
+		rows[idx] = { ...e, video: r.video, poster: r.poster || e.poster };
 		changed++;
 		console.log(`  fixed   ${e.id}  ${r.via}`);
 	} else if (r.state !== "has_video") console.log(`  ${String(r.state).padEnd(12)} ${e.id}  ${e.postUrl || ""}`);

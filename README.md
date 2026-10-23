@@ -2,6 +2,8 @@
 
 # cizle
 
+**[Free prompts and skills: `library/`](library/README.md)**: 20 free skills and 532 free community prompts, one markdown file each, named after the prompt.
+
 **Ads for brands, SaaS founders and content creators. Animated video ads and banners for Meta, TikTok and Google Ads, made from your real product.**
 
 Add your website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video or ad. **9 video ad formats for Meta, TikTok and Google Ads plus 2 static banner sets**, for online shops, beauty and fashion, food, fitness, local businesses, apps, creators and SaaS; and 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 52 ready formats and 43 Opus film styles, in landscape, portrait or square, made from your real product.
@@ -495,7 +497,7 @@ Settings live in `data/settings.json` (git-ignored). Environment variables also 
 | `CIZLE_DASHBOARD_URL` | optional: where video links from Claude Code point (default `http://localhost:3737`; use `http://localhost:5173` with `npm run dev`) |
 | `CIZLE_ANIM_FPS` | optional: frames per second captured for animated styles (default `15`) |
 
-Copy `.env.example` to `.env` to set them in a file.
+Put them in a `.env` file at the repo root (it is git-ignored) to set them in a file.
 
 **Settings page:** OpenRouter key, UploadThing token, default aspect ratio, audio, voice and length, the script, vision and voice models, the free script and vision models (`auto` by default), caption burn-in, and **Keep products fresh** (auto-sync at start and every 6 hours).
 

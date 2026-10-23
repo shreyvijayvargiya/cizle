@@ -40,3 +40,15 @@ free-export/
 /site/content/media-status.json
 /site/content/library-state.json
 /site/content/library-changelog.jsonl
+
+# local-only: harvest/enrich output and reports, backups
+site/content/x-video-report.json
+site/content/*.bak
+site/content/gallery.jsonl.bak
+
+# local-only: agent tooling and skill locks (not part of the product)
+.agents/
+.claude/
+skills-lock.json
+.mcp.json
+docs/snapcn-comparison.md
