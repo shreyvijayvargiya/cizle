@@ -173,6 +173,35 @@ export async function renderedHtml(url) {
 	});
 }
 
+/**
+ * Opens a page and records the video files the page itself loads (X serves tweet videos from video.twimg.com), plus its og:video / og:image tags.
+ * For pages where the plain HTTP routes find nothing because the player is built by JavaScript.
+ */
+export async function sniffVideos(url, { waitMs = 6000 } = {}) {
+	throwIfCancelled();
+	return withPage(async (page) => {
+		const seen = new Set();
+		page.on("response", (res) => {
+			const u = res.url();
+			if (/^https:\/\/video\.twimg\.com\/.+\.(mp4|m3u8)(\?|$)/.test(u)) seen.add(u);
+		});
+		await page.setViewport(VIEWPORTS.desktop);
+		await page.setUserAgent(UA.desktop);
+		await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30_000 }).catch(() => {});
+		await page.waitForSelector("video, [data-testid=videoPlayer]", { timeout: 10_000 }).catch(() => {});
+		await page.evaluate(() => document.querySelector("[data-testid=videoPlayer] [role=button], video")?.dispatchEvent(new MouseEvent("click", { bubbles: true }))).catch(() => {});
+		await new Promise((r) => setTimeout(r, waitMs));
+		const meta = await page.evaluate(() => ({
+			video: document.querySelector("video")?.currentSrc || document.querySelector("video")?.src || null,
+			ogVideo: document.querySelector('meta[property="og:video"]')?.content || null,
+			ogImage: document.querySelector('meta[property="og:image"]')?.content || null,
+			poster: document.querySelector("video")?.poster || null,
+			text: document.querySelector("[data-testid=tweetText]")?.innerText || null,
+		})).catch(() => ({}));
+		return { urls: [...seen], ...meta };
+	});
+}
+
 export async function closeBrowser() {
 	const b = await browserPromise?.catch(() => null);
 	await b?.close().catch(() => {});

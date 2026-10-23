@@ -54,6 +54,20 @@ api.post("/settings/test", async (c) => {
 	return c.json(await testOpenRouterKey(body.openrouter_api_key));
 });
 
+/* x.com scraper: tweet → video, poster, text, author */
+const { scrapeX, scrapeXMany } = await import("./x/scrape.js");
+api.post("/x/scrape", async (c) => {
+	const { url } = await c.req.json().catch(() => ({}));
+	if (!url) return c.json({ error: "Send { url } with an x.com post link." }, 400);
+	return c.json(await scrapeX(url));
+});
+api.post("/x/scrape-multiple", async (c) => {
+	const { urls, concurrency } = await c.req.json().catch(() => ({}));
+	if (!Array.isArray(urls) || !urls.length) return c.json({ error: "Send { urls: [...] } with x.com post links." }, 400);
+	if (urls.length > 100) return c.json({ error: "At most 100 links per call." }, 400);
+	return c.json({ results: await scrapeXMany(urls, { concurrency: Math.min(Number(concurrency) || 4, 6) }) });
+});
+
 /* prompt library */
 api.get("/prompts", async (c) => c.json({ prompts: await listPrompts() }));
 api.get("/prompts/:id", async (c) => {
