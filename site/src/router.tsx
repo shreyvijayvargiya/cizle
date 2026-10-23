@@ -34,6 +34,9 @@ const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", vali
 
 const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
 
+/** The film is a static page (public/launch.html). The dev server and hosts without clean URLs reach it through this route. */
+const launch = createRoute({ getParentRoute: () => root, path: "/launch", component: function LaunchRoute() { window.location.replace("/launch.html"); return null; } });
+
 const login = createRoute({ getParentRoute: () => root, path: "/login", component: LoginPage, validateSearch: (s: Record<string, unknown>): { next?: string } => ({ next: str(s.next) }) });
 const settings = createRoute({ getParentRoute: () => root, path: "/settings", component: SettingsPage, validateSearch: (s: Record<string, unknown>): { payment?: string; status?: string } => ({ payment: str(s.payment), status: str(s.status) }) });
 
@@ -42,6 +45,7 @@ const tree = root.addChildren([
 	skill,
 	gallery,
 	prompt,
+	launch,
 	r("/pricing", PricingPage),
 	r("/faq", FaqPage),
 	r("/contact", ContactPage),
