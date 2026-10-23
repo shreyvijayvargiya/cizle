@@ -118,7 +118,7 @@ export function PromptEditorPage() {
 			) : null}
 			<div className="mb-5 flex flex-wrap items-center justify-between gap-3">
 				<div className="flex items-center gap-2">
-					<h1 className="text-xl font-semibold tracking-tight">{isNew ? "New prompt" : prompt?.name}</h1>
+					<h1 className="text-lg font-semibold tracking-tight">{isNew ? "New prompt" : prompt?.name}</h1>
 					{prompt ? <Badge tone={prompt.built_in ? "outline" : "info"}>{prompt.built_in ? `Built-in ${prompt.kind}` : "Custom"}</Badge> : null}
 				</div>
 				<div className="flex gap-1.5">

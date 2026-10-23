@@ -11,14 +11,14 @@ export function SelectTrigger({ className, children, ...p }: React.ComponentProp
 	return (
 		<S.Trigger
 			className={cn(
-				"flex h-9 w-full items-center justify-between gap-2 rounded-lg border border-input bg-surface px-2.5 text-sm outline-none transition-colors hover:bg-accent focus-visible:border-ring/60 data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 data-[size=sm]:h-8 data-[size=sm]:text-xs",
+				"flex h-8 w-full items-center justify-between gap-2 rounded-md border border-input bg-surface px-2.5 text-[13px] outline-none transition-colors hover:bg-accent focus-visible:border-ring/60 data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 data-[size=sm]:h-7 data-[size=sm]:text-xs",
 				className,
 			)}
 			{...p}
 		>
 			<span className="min-w-0 truncate">{children}</span>
 			<S.Icon asChild>
-				<Icon icon={ArrowDown01Icon} size={14} className="text-muted-foreground" />
+				<Icon icon={ArrowDown01Icon} size={13} className="text-muted-foreground" />
 			</S.Icon>
 		</S.Trigger>
 	);
@@ -31,7 +31,7 @@ export function SelectContent({ className, children, position = "popper", ...p }
 				position={position}
 				sideOffset={6}
 				className={cn(
-					"z-50 max-h-72 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-lg border border-border bg-surface text-sm shadow-lg shadow-black/5",
+					"z-50 max-h-72 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-md border border-border bg-surface text-[13px] shadow-lg shadow-black/5",
 					className,
 				)}
 				{...p}
@@ -44,7 +44,7 @@ export function SelectContent({ className, children, position = "popper", ...p }
 
 export function SelectItem({ className, children, ...p }: React.ComponentProps<typeof S.Item>) {
 	return (
-		<S.Item className={cn("relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-accent data-[disabled]:opacity-50", className)} {...p}>
+		<S.Item className={cn("relative flex cursor-default items-center gap-2 rounded-md py-1 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-accent data-[disabled]:opacity-50", className)} {...p}>
 			<S.ItemIndicator className="absolute left-2 flex size-3.5 items-center justify-center">
 				<Icon icon={Tick02Icon} size={13} />
 			</S.ItemIndicator>

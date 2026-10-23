@@ -166,7 +166,7 @@ export function GalleryPage() {
 			)}
 
 			<section className="mt-12">
-				<h2 className="text-base font-semibold tracking-tight">{product ? `Your videos for ${product.name}` : "Your videos"}</h2>
+				<h2 className="text-sm font-semibold tracking-tight">{product ? `Your videos for ${product.name}` : "Your videos"}</h2>
 				<p className="mb-3 text-xs text-muted-foreground">Open one to watch it, or to make another take.</p>
 				{mine.length ? (
 					<div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">

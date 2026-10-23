@@ -13,22 +13,22 @@ export function Switch({ checked, onCheckedChange, disabled, id }: { checked: bo
 			checked={checked}
 			onCheckedChange={onCheckedChange}
 			disabled={disabled}
-			className="peer inline-flex h-5 w-9 shrink-0 items-center rounded-full border border-transparent bg-input transition-colors data-[state=checked]:bg-primary disabled:opacity-50"
+			className="peer inline-flex h-4 w-7 shrink-0 items-center rounded-full border border-transparent bg-input transition-colors data-[state=checked]:bg-primary disabled:opacity-50"
 		>
-			<SwitchPrimitive.Thumb className="block size-4 rounded-full bg-surface shadow transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0.5 dark:data-[state=checked]:bg-primary-foreground" />
+			<SwitchPrimitive.Thumb className="block size-3 rounded-full bg-surface shadow transition-transform data-[state=checked]:translate-x-3.5 data-[state=unchecked]:translate-x-0.5" />
 		</SwitchPrimitive.Root>
 	);
 }
 
 export const Tabs = TabsPrimitive.Root;
 export function TabsList({ className, ...p }: React.ComponentProps<typeof TabsPrimitive.List>) {
-	return <TabsPrimitive.List className={cn("inline-flex h-9 items-center gap-1 rounded-lg bg-muted p-1", className)} {...p} />;
+	return <TabsPrimitive.List className={cn("inline-flex h-8 items-center gap-1 rounded-md bg-muted p-1", className)} {...p} />;
 }
 export function TabsTrigger({ className, ...p }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
 	return (
 		<TabsPrimitive.Trigger
 			className={cn(
-				"inline-flex h-7 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-surface data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+				"inline-flex h-6 items-center gap-1.5 rounded px-2 text-xs font-medium text-muted-foreground transition-colors data-[state=active]:bg-surface data-[state=active]:text-foreground data-[state=active]:shadow-sm",
 				className,
 			)}
 			{...p}

@@ -4,13 +4,11 @@ import {
 	ArrowUpRight01Icon,
 	BookOpen01Icon,
 	Cancel01Icon,
-	ComputerIcon,
 	ComputerTerminal01Icon,
 	DashboardSquare01Icon,
 	GithubIcon,
 	GridViewIcon,
 	Menu01Icon,
-	Moon02Icon,
 	Package01Icon,
 	PlusSignIcon,
 	QuillWrite01Icon,
@@ -18,7 +16,6 @@ import {
 	Settings01Icon,
 	SidebarLeftIcon,
 	StarIcon,
-	Sun03Icon,
 	Video01Icon,
 	MagicWand01Icon,
 } from "@hugeicons/core-free-icons";
@@ -28,10 +25,8 @@ import { CommandMenu } from "@/components/CommandMenu";
 import { ProductSwitcher } from "@/components/ProductSwitcher";
 import { SyncBadge } from "@/components/SyncBadge";
 import { Button } from "@/components/ui/button";
-import { Menu, MenuContent, MenuRadioGroup, MenuRadioItem, MenuTrigger } from "@/components/ui/menu";
 import { useSettings, useVideos } from "@/lib/api";
 import { REPO_URL } from "@/lib/constants";
-import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { useWorkspace } from "@/lib/workspace";
 
@@ -179,32 +174,6 @@ function Sidebar({ collapsed, mobileOpen, onClose }: { collapsed: boolean; mobil
 	);
 }
 
-function ThemeMenu() {
-	const { theme, resolved, setTheme } = useTheme();
-	return (
-		<Menu>
-			<MenuTrigger asChild>
-				<Button variant="ghost" size="icon" aria-label="Theme">
-					<Icon icon={resolved === "dark" ? Moon02Icon : Sun03Icon} size={17} />
-				</Button>
-			</MenuTrigger>
-			<MenuContent align="end" className="min-w-36">
-				<MenuRadioGroup value={theme} onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}>
-					<MenuRadioItem value="light">
-						<Icon icon={Sun03Icon} size={14} /> Light
-					</MenuRadioItem>
-					<MenuRadioItem value="dark">
-						<Icon icon={Moon02Icon} size={14} /> Dark
-					</MenuRadioItem>
-					<MenuRadioItem value="system">
-						<Icon icon={ComputerIcon} size={14} /> System
-					</MenuRadioItem>
-				</MenuRadioGroup>
-			</MenuContent>
-		</Menu>
-	);
-}
-
 export function AppShell({ children }: { children?: ReactNode }) {
 	const [collapsed, setCollapsed] = useState(() => {
 		try {
@@ -261,7 +230,6 @@ export function AppShell({ children }: { children?: ReactNode }) {
 									OpenRouter key (not needed for Claude Code)
 								</Link>
 							) : null}
-							<ThemeMenu />
 							<Button variant="ghost" size="icon" asChild>
 								<a href={REPO_URL} target="_blank" rel="noreferrer" aria-label="GitHub">
 									<Icon icon={GithubIcon} size={17} />
@@ -292,7 +260,7 @@ export function Page({ title, description, actions, children }: { title: string;
 		<div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
 			<div className="mb-6 flex flex-wrap items-end justify-between gap-3">
 				<div>
-					<h1 className="text-xl font-semibold tracking-tight">{title}</h1>
+					<h1 className="text-lg font-semibold tracking-tight">{title}</h1>
 					{description ? <p className="mt-1 text-sm text-muted-foreground">{description}</p> : null}
 				</div>
 				{actions ? <div className="flex items-center gap-2">{actions}</div> : null}

@@ -30,7 +30,7 @@ export function ProductSwitcher({ slim, onNavigate }: { slim?: boolean; onNaviga
 						<Avatar name={product?.name} />
 					</Button>
 				) : (
-					<Button variant="outline" className="h-10 w-full justify-between px-2 font-medium" aria-label="Switch product">
+					<Button variant="outline" className="h-9 w-full justify-between px-2 font-medium" aria-label="Switch product">
 						<span className="flex min-w-0 items-center gap-2">
 							<Avatar name={product?.name} />
 							<span className="truncate">{product ? product.name : products.length ? "All products" : "Add a product"}</span>

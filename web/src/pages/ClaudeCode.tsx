@@ -30,7 +30,7 @@ function Section({ title, hint, children, className }: { title: string; hint?: s
 	return (
 		<section className={cn("mt-8", className)}>
 			<div className="mb-3">
-				<h2 className="text-base font-semibold tracking-tight">{title}</h2>
+				<h2 className="text-sm font-semibold tracking-tight">{title}</h2>
 				{hint ? <p className="text-xs text-muted-foreground">{hint}</p> : null}
 			</div>
 			{children}

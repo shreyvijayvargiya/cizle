@@ -10,7 +10,7 @@ export function RouteError({ error, reset }: { error: unknown; reset?: () => voi
 			<span className="mx-auto flex size-10 items-center justify-center rounded-xl bg-danger/10 text-danger">
 				<Icon icon={Alert02Icon} size={20} />
 			</span>
-			<h1 className="mt-4 text-base font-semibold tracking-tight">This page hit a problem</h1>
+			<h1 className="mt-4 text-sm font-semibold tracking-tight">This page hit a problem</h1>
 			<p className="mt-1 text-sm text-muted-foreground">The rest of the dashboard still works. Try again, or go back to the dashboard.</p>
 			<pre className="mt-4 max-h-32 overflow-auto rounded-lg border border-border bg-muted p-3 text-left font-mono text-[11px] text-muted-foreground">{error instanceof Error ? error.message : String(error)}</pre>
 			<div className="mt-4 flex justify-center gap-2">

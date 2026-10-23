@@ -21,7 +21,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent title="Search" className="max-w-xl">
 				<Command loop>
-					<Command.Input autoFocus placeholder="Search videos, prompts, pages…" className="h-12 w-full border-b border-border bg-transparent px-4 text-sm outline-none placeholder:text-muted-foreground" />
+					<Command.Input autoFocus placeholder="Search videos, prompts, pages…" className="h-10 w-full border-b border-border bg-transparent px-3 text-[13px] outline-none placeholder:text-muted-foreground" />
 					<Command.List className="max-h-80 overflow-y-auto py-1">
 						<Command.Empty className="px-4 py-6 text-center text-sm text-muted-foreground">Nothing found.</Command.Empty>
 						<Command.Group heading="Go to" className={groupCls}>

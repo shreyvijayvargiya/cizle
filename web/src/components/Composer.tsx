@@ -350,7 +350,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 						}
 					}}
 					placeholder={product ? `Describe the video you want for ${product.name}…  (type / to load a prompt)` : "Paste your website or GitHub repo, then describe the ad or video you want…  (type / to load a prompt)"}
-					className={cn("block w-full resize-none bg-transparent px-4 pt-3.5 pb-2 text-[15px] leading-relaxed outline-none placeholder:text-muted-foreground/80", size === "lg" ? "min-h-24" : "min-h-16")}
+					className={cn("block w-full resize-none bg-transparent px-3 pt-3 pb-2 text-sm leading-relaxed outline-none placeholder:text-muted-foreground/80", size === "lg" ? "min-h-24" : "min-h-16")}
 				/>
 				{type === "comparison" ? (
 					<div className="mx-4 mb-2 flex items-center gap-2 rounded-lg border border-dashed border-border px-2.5 py-1.5">
@@ -489,12 +489,12 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 						</span>
 						{busy ? (
 							<Tip label="Stop">
-								<Button size="icon" variant="outline" className="size-9 rounded-xl" onClick={abort.stop} aria-label="Stop">
+								<Button size="icon" variant="outline" className="size-8 rounded-lg" onClick={abort.stop} aria-label="Stop">
 									<Icon icon={StopIcon} size={16} className="fill-current" />
 								</Button>
 							</Tip>
 						) : (
-							<Button size="icon" className="size-9 rounded-xl" onClick={submit} aria-label="Review and create">
+							<Button size="icon" className="size-8 rounded-lg" onClick={submit} aria-label="Review and create">
 								<Icon icon={ArrowUp02Icon} size={18} />
 							</Button>
 						)}
@@ -505,7 +505,7 @@ export function Composer({ initialPromptId, initialPresetId, autoFocus, size = "
 			<Dialog open={pickerOpen} onOpenChange={setPickerOpen}>
 				<DialogContent title="Load a prompt" className="max-w-xl">
 					<Command loop>
-						<Command.Input autoFocus placeholder="Search the prompt library…" className="h-12 w-full border-b border-border bg-transparent px-4 text-sm outline-none placeholder:text-muted-foreground" />
+						<Command.Input autoFocus placeholder="Search the prompt library…" className="h-10 w-full border-b border-border bg-transparent px-3 text-[13px] outline-none placeholder:text-muted-foreground" />
 						<Command.List className="max-h-96 overflow-y-auto p-1.5">
 							<Command.Empty className="px-4 py-6 text-center text-sm text-muted-foreground">No prompts match.</Command.Empty>
 							{(["custom", "type", "tone", "film", "community"] as const).map((kind) => {

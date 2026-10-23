@@ -90,7 +90,7 @@ export function DashboardPage() {
 	return (
 		<div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
 			<section>
-				<h1 className="text-center text-2xl font-semibold tracking-tight sm:text-[28px]">What are we shipping today?</h1>
+				<h1 className="text-center text-xl font-semibold tracking-tight sm:text-2xl">What are we shipping today?</h1>
 				<p className="mx-auto mt-2 max-w-lg text-center text-sm text-muted-foreground">Paste a link, describe the ad or video, hit enter. Ads for Meta, TikTok and Google, made from your real brand or product.</p>
 				<div className="mx-auto mt-6 max-w-3xl">
 					<Composer autoFocus />
@@ -125,7 +125,7 @@ export function DashboardPage() {
 
 			{!product ? (
 				<section className="mt-8">
-					<h2 className="mb-3 text-base font-semibold tracking-tight">Get started</h2>
+					<h2 className="mb-3 text-sm font-semibold tracking-tight">Get started</h2>
 			<div className="grid gap-3 sm:grid-cols-3">
 				<Step n={1} icon={Key01Icon} title="Choose who writes the video" done={keyReady} to={keyReady ? "/settings" : "/claude"}>
 					{keyReady ? "OpenRouter key connected. Flip the Free switch to use free models instead of paid ones." : "Add an OpenRouter key in Settings, or skip it and make videos from Claude Code on your own subscription."}
@@ -143,7 +143,7 @@ export function DashboardPage() {
 
 			{running.length ? (
 				<section className="mt-10">
-					<h2 className="mb-3 text-base font-semibold tracking-tight">Running now</h2>
+					<h2 className="mb-3 text-sm font-semibold tracking-tight">Running now</h2>
 					<div className="space-y-2">
 						{running.map((v) => (
 							<div key={v.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface p-3">
@@ -163,7 +163,7 @@ export function DashboardPage() {
 				<section className="mt-12">
 					<div className="mb-3 flex items-end justify-between">
 						<div>
-							<h2 className="text-base font-semibold tracking-tight">Suggested for {product?.name}</h2>
+							<h2 className="text-sm font-semibold tracking-tight">Suggested for {product?.name}</h2>
 							<p className="text-xs text-muted-foreground">From your notes and what shipped recently. Nothing renders until you press Create.</p>
 						</div>
 						<Button variant="outline" size="sm" asChild>
@@ -190,7 +190,7 @@ export function DashboardPage() {
 			<section className="mt-12">
 				<div className="mb-3 flex items-end justify-between">
 					<div>
-						<h2 className="text-base font-semibold tracking-tight">Latest videos</h2>
+						<h2 className="text-sm font-semibold tracking-tight">Latest videos</h2>
 						<p className="text-xs text-muted-foreground">{product ? `For ${product.name}. ` : ""}Stored on this machine in data/videos.</p>
 					</div>
 					<Button variant="outline" size="sm" asChild>

@@ -20,7 +20,7 @@ export function AdShelf({ className }: { className?: string }) {
 	return (
 		<section className={className}>
 			<div className="mb-3">
-				<h2 className="flex items-center gap-1.5 text-base font-semibold tracking-tight">
+				<h2 className="flex items-center gap-1.5 text-sm font-semibold tracking-tight">
 					<Icon icon={Megaphone01Icon} size={16} className="text-muted-foreground" /> Ads for your brand
 				</h2>
 				<p className="text-xs text-muted-foreground">Video ads for Meta, TikTok and Google Ads, for online shops, local businesses, apps, creators and SaaS. Only your real offer, never an invented one.</p>
@@ -63,7 +63,7 @@ export function PromptShelf({ className }: { className?: string }) {
 		<section className={className}>
 			<div className="mb-3 flex flex-wrap items-end justify-between gap-2">
 				<div>
-					<h2 className="flex items-center gap-1.5 text-base font-semibold tracking-tight">
+					<h2 className="flex items-center gap-1.5 text-sm font-semibold tracking-tight">
 						<Icon icon={GridViewIcon} size={16} className="text-muted-foreground" /> Prompt gallery
 					</h2>
 					<p className="text-xs text-muted-foreground">
@@ -116,7 +116,7 @@ export function ClaudeCodeCard({ className }: { className?: string }) {
 						<Icon icon={ComputerTerminal01Icon} size={18} />
 					</span>
 					<div>
-						<h2 className="text-base font-semibold tracking-tight">Make videos from Claude Code, no API key</h2>
+						<h2 className="text-sm font-semibold tracking-tight">Make videos from Claude Code, no API key</h2>
 						<p className="mt-0.5 max-w-xl text-[13px] leading-relaxed text-muted-foreground">
 							Claude reads your blog or code and writes the storyboard on your own subscription. cizle renders it here, animated, with the storyboard saved so you can re-skin it for free.
 							{made ? ` ${made} video${made === 1 ? "" : "s"} made this way so far.` : ""}

@@ -147,7 +147,7 @@ export function OnboardingPage() {
 				<section className="mt-8">
 					<div className="mb-3 flex items-end justify-between gap-2">
 						<div>
-							<h2 className="text-base font-semibold tracking-tight">Suggested first videos</h2>
+							<h2 className="text-sm font-semibold tracking-tight">Suggested first videos</h2>
 							<p className="text-xs text-muted-foreground">Each one cites where its facts come from. Flip the switch to use a free model.</p>
 						</div>
 						<Button variant="outline" size="sm" onClick={() => navigate({ to: "/product" })}>

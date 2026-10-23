@@ -90,7 +90,7 @@ export function SuggestedPrompts({ slug, title, className }: { slug: string; tit
 		<section className={className}>
 			<div className="mb-3 flex flex-wrap items-end justify-between gap-2">
 				<div>
-				<h2 className="flex items-center gap-1.5 text-base font-semibold tracking-tight">
+				<h2 className="flex items-center gap-1.5 text-sm font-semibold tracking-tight">
 					<Icon icon={AiMagicIcon} size={16} className="text-brand" /> {title || `Prompts we'd use for ${product.data?.name || "your product"}`}
 				</h2>
 				<p className="text-xs text-muted-foreground">
