@@ -12,6 +12,13 @@ import { marked } from "marked";
 
 export const SITE_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const PROMPTS_DIR = path.resolve(SITE_DIR, "..", "prompts");
+/**
+ * Premium skill sources are not in the repository. They live in private/prompts/<dir>/<name>.md (git-ignored, on the machine that seeds Firestore).
+ * Without them a build still works: premium skills come from content/premium-skills.json, a snapshot of exactly what the site already publishes
+ * for a locked skill (summary, scene names and timing, never the scene text or the prompt). \`npm run private:split\` writes both.
+ */
+export const PRIVATE_PROMPTS_DIR = path.resolve(SITE_DIR, "..", "private", "prompts");
+export const SNAPSHOT_FILE = path.join(SITE_DIR, "content", "premium-skills.json");
 
 // Optional .env (VITE_SITE_URL etc.) so scripts and the Vite build agree on the domain.
 try {
@@ -67,8 +74,14 @@ function platformOf(fm) {
 const VIDEO_DEMOS = { launch: { video: "/videos/cizle-launch.mp4", poster: "/videos/cizle-launch-poster.jpg" } };
 
 export function loadSkills() {
+	const snapshot = fs.existsSync(SNAPSHOT_FILE) ? JSON.parse(fs.readFileSync(SNAPSHOT_FILE, "utf8")) : {};
 	return catalog.skills.map((entry, order) => {
-		const file = path.join(PROMPTS_DIR, entry.dir, `${entry.source}.md`);
+		const file = [PROMPTS_DIR, PRIVATE_PROMPTS_DIR].map((d) => path.join(d, entry.dir, `${entry.source}.md`)).find((f) => fs.existsSync(f));
+		if (!file) {
+			const snap = snapshot[`${entry.dir}/${entry.source}`];
+			if (entry.tier === "premium" && snap) return { ...snap, order, body: "" }; // the locked shape only: no prompt text on this machine
+			throw new Error(`Missing prompt source ${entry.dir}/${entry.source}.md (free skills are in prompts/, premium ones in private/prompts/)`);
+		}
 		const { data: fm, content } = matter(fs.readFileSync(file, "utf8"));
 		const body = content.trim();
 		const isFilm = entry.dir === "films";
@@ -166,6 +179,12 @@ Source: ${SITE_URL}/skills/${s.slug} Â· cizle skills marketplace${s.credit ? ` Â
 /** The text the "Copy prompt" button puts on the clipboard. */
 export function copyPrompt(s) {
 	return `Make a ${s.name} ${s.format === "Image" ? "banner set" : "video"} for [YOUR PRODUCT URL]. Follow this guide exactly, using only facts from the product's own pages.\n\n${guideBody(s)}`;
+}
+
+/** What a locked skill may keep in the committed snapshot: the same fields the site publishes, with the scene text blanked. */
+export function snapshotOf(s) {
+	const { body, ...rest } = s;
+	return { ...rest, scenes: s.scenes.map((x) => ({ ...x, text: "" })) };
 }
 
 export function publicSkill(s) {

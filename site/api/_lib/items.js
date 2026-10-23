@@ -22,7 +22,7 @@ export async function getDetail(row, who, origin) {
 	if (!open) return { ...base, access: "preview", note: who.problem ? `${who.problem} ${UPGRADE}` : UPGRADE };
 	let text = row.text;
 	if (!text) {
-		const strict = (process.env.GALLERY_TEXT || process.env.VITE_GALLERY_TEXT) === "firestore";
+		const strict = (process.env.GALLERY_TEXT || process.env.VITE_GALLERY_TEXT || "firestore") !== "public";
 		text = strict ? await store.galleryText(row.galleryId) : (await readJson(`gallery/text/${row.galleryId}.json`, origin)).text;
 	}
 	return text ? { ...base, access: "full", promptText: text } : { ...base, access: "preview", note: "The full text of this prompt has not been published yet." };

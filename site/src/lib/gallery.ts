@@ -55,7 +55,7 @@ export function usePromptText(item: GalleryItem | undefined, isPro: boolean) {
 		staleTime: 30 * 60_000,
 		queryFn: async (): Promise<string> => {
 			// Default: a small public file per prompt (soft gate, no Firebase read). VITE_GALLERY_TEXT=firestore: Firestore, subscribers only.
-			if (!DEV_UNLOCK && import.meta.env.VITE_GALLERY_TEXT !== "firestore") {
+			if (!DEV_UNLOCK && import.meta.env.VITE_GALLERY_TEXT === "public") {
 				const res = await fetch(`/gallery/text/${item!.id}.json`);
 				if (!res.ok) throw new Error("This prompt has not been published yet. Rebuild the site (npm run content).");
 				return (await res.json()).text;
