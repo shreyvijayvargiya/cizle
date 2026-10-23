@@ -9,18 +9,18 @@ export function MenuContent({ className, align = "start", ...p }: React.Componen
 			<M.Content
 				align={align}
 				sideOffset={6}
-				className={cn("z-50 min-w-44 overflow-hidden rounded-lg bg-surface p-1 text-base shadow-2xl shadow-black/20", className)}
+				className={cn("z-50 min-w-44 overflow-hidden rounded-lg bg-surface p-1 text-[13px] shadow-2xl shadow-black/20", className)}
 				{...p}
 			/>
 		</M.Portal>
 	);
 }
 export function MenuItem({ className, ...p }: React.ComponentProps<typeof M.Item>) {
-	return <M.Item className={cn("flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p} />;
+	return <M.Item className={cn("flex cursor-default items-center gap-2 rounded-md px-2 py-1 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p} />;
 }
 export function MenuRadioItem({ className, children, ...p }: React.ComponentProps<typeof M.RadioItem>) {
 	return (
-		<M.RadioItem className={cn("relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p}>
+		<M.RadioItem className={cn("relative flex cursor-default items-center gap-2 rounded-md py-1 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p}>
 			<M.ItemIndicator className="absolute left-2 flex size-3.5 items-center justify-center">
 				<span className="size-1.5 rounded-full bg-foreground" />
 			</M.ItemIndicator>

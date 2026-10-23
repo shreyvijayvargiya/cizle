@@ -12,14 +12,14 @@
 	--muted-foreground: #595959;
 	--border: transparent;
 	--input: #c9c9c9;
-	--primary: #1a4be0;
+	--primary: #18181b;
 	--primary-foreground: #ffffff;
 	--accent: #e8e8e8;
 	--accent-foreground: #111111;
-	--ring: #1a4be0;
-	--brand: #1a4be0;
-	--brand-ink: #1238b0;
-	--field-1: #1a4be0;
+	--ring: #71717a;
+	--brand: #18181b;
+	--brand-ink: #18181b;
+	--field-1: #18181b;
 	--field-1-ink: #ffffff;
 	--field-2: #111111;
 	--field-2-ink: #ffffff;
@@ -28,7 +28,7 @@
 	--success: #1d6b3a;
 	--warning: #8a4b00;
 	--danger: #b3261e;
-	--info: #1a4be0;
+	--info: #18181b;
 	--radius-tile: 8px;
 	--gap: 8px;
 	--margin: 16px;
