@@ -1,20 +1,20 @@
 {
- "generatedAt": "2026-10-22T19:57:23.885Z",
+ "generatedAt": "2026-10-22T22:02:45.984Z",
  "read": 4911,
  "unique": 3038,
- "kept": 1487,
- "pending": 526,
- "free": 396,
+ "kept": 1811,
+ "pending": 195,
+ "free": 532,
  "reasons": {
   "not English (Chinese), no translation yet": 343,
   "too short": 389,
   "not English (another language), no translation yet": 126,
   "not English (Japanese), no translation yet": 120,
-  "partial and short": 15,
+  "partial and short": 13,
   "not English (Arabic), no translation yet": 2,
   "not English (Korean), no translation yet": 4,
   "not English (Thai), no translation yet": 1,
-  "near-duplicate": 25
+  "near-duplicate": 34
  },
  "dropped": [
   {
@@ -222,19 +222,11 @@
    "reason": "too short"
   },
   {
-   "id": "x:2107547689819017555",
-   "reason": "partial and short"
-  },
-  {
    "id": "x:2107568904075706454",
    "reason": "partial and short"
   },
   {
    "id": "x:2107737607908249613",
-   "reason": "partial and short"
-  },
-  {
-   "id": "x:2107741413769347341",
    "reason": "partial and short"
   },
   {
@@ -4018,6 +4010,10 @@
    "reason": "too short"
   },
   {
+   "id": "x:2105570411870130294",
+   "reason": "near-duplicate"
+  },
+  {
    "id": "x:2105746669035733275",
    "reason": "near-duplicate"
   },
@@ -4066,6 +4062,10 @@
    "reason": "near-duplicate"
   },
   {
+   "id": "x:2103986528527765885",
+   "reason": "near-duplicate"
+  },
+  {
    "id": "x:2103441222375268605",
    "reason": "near-duplicate"
   },
@@ -4110,11 +4110,39 @@
    "reason": "near-duplicate"
   },
   {
+   "id": "x:2103631509773025717",
+   "reason": "near-duplicate"
+  },
+  {
    "id": "x:2104051167932355037",
    "reason": "near-duplicate"
   },
   {
    "id": "x:2104204318085931054",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104489806713553012",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104557402154549263",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2104827072283849181",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2108231764023861630",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2108717646157922687",
+   "reason": "near-duplicate"
+  },
+  {
+   "id": "x:2111129754254680272",
    "reason": "near-duplicate"
   }
  ]
