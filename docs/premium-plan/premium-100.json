@@ -1,0 +1,4194 @@
+{
+ "version": 1,
+ "count": 100,
+ "purpose": "100 original premium skills. Each entry is a brief for the generator: an agent expands it into a full skill prompt and renders one 6 to 20 second demo video.",
+ "originality_rules": [
+  "Write from the technique, never from any one gallery prompt: no sentence, name, brand or story from a source prompt may appear.",
+  "Every concept rests on at least 5 prompts by at least 3 different creators (see evidence), so it is a common pattern and not one person's work.",
+  "Run an overlap check before shipping: reject any skill sharing an 8-word run with a gallery prompt or with another skill.",
+  "Render the video yourself and keep only skills whose video looks good. The proof video is made and owned by you.",
+  "Record origin: original on every shipped skill. Evidence counts here are for planning only and must not be shown as sources."
+ ],
+ "render": {
+  "model": "Opus 5.5 via OpenRouter",
+  "min_sec": 6,
+  "max_sec": 20,
+  "formats": [
+   "16:9",
+   "9:16",
+   "1:1"
+  ]
+ },
+ "categories": {
+  "Product and SaaS motion": 9,
+  "Typography and titles": 9,
+  "Data and charts": 9,
+  "3D and WebGL scenes": 10,
+  "Physics and simulation": 8,
+  "Music and audio-reactive": 8,
+  "Cinematic storytelling": 9,
+  "Lifestyle and commerce": 10,
+  "Science and education": 9,
+  "Games and retro": 6,
+  "Social and marketing formats": 7,
+  "Ambient loops": 6
+ },
+ "skills": [
+  {
+   "id": "p001",
+   "slug": "phone-unboxing-reveal",
+   "name": "Phone Unboxing Reveal",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "9:16",
+   "concept": "A phone slides up from the bottom, tilts to face the viewer and its screen lights with the app's home view while a one-line promise types in above.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "phone rises and tilts into place"
+    },
+    {
+     "at_sec": 2,
+     "what": "screen wakes with the app view"
+    },
+    {
+     "at_sec": 6,
+     "what": "promise line types in, soft glow pulse"
+    }
+   ],
+   "params": [
+    "app name",
+    "promise line",
+    "screen colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "phone",
+     "product-ui"
+    ],
+    "prompts_seen": 115,
+    "creators": 98
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p002",
+   "slug": "notification-cascade",
+   "name": "Notification Cascade",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "Stacked notification cards drop in, each naming a chore the product removes, then collapse into a single calm checkmark.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "notifications drop in one by one"
+    },
+    {
+     "at_sec": 3,
+     "what": "cards stack and shake with urgency"
+    },
+    {
+     "at_sec": 7,
+     "what": "all collapse into one checkmark, brand line"
+    }
+   ],
+   "params": [
+    "list of 4 chores",
+    "brand name",
+    "closing line"
+   ],
+   "evidence": {
+    "keywords": [
+     "phone",
+     "app",
+     "ui"
+    ],
+    "prompts_seen": 251,
+    "creators": 211
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p003",
+   "slug": "command-palette-demo",
+   "name": "Command Palette Demo",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "canvas",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A keyboard shortcut opens a palette, a query is typed, results morph into the exact screen the user wanted.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "shortcut pressed, palette opens"
+    },
+    {
+     "at_sec": 3,
+     "what": "query types, results reorder live"
+    },
+    {
+     "at_sec": 7,
+     "what": "chosen result expands into the target screen"
+    }
+   ],
+   "params": [
+    "shortcut keys",
+    "query text",
+    "target screen name"
+   ],
+   "evidence": {
+    "keywords": [
+     "ui",
+     "app",
+     "product-ui"
+    ],
+    "prompts_seen": 216,
+    "creators": 185
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p004",
+   "slug": "before-and-after-wipe",
+   "name": "Before and After Wipe",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A vertical divider sweeps across one screen, revealing a cluttered old workflow on the left becoming a clean new one on the right.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "old cluttered screen holds"
+    },
+    {
+     "at_sec": 2,
+     "what": "divider sweeps, elements resolve"
+    },
+    {
+     "at_sec": 6,
+     "what": "clean state with one proof number"
+    }
+   ],
+   "params": [
+    "old state description",
+    "new state description",
+    "proof number"
+   ],
+   "evidence": {
+    "keywords": [
+     "comparison",
+     "product-ui"
+    ],
+    "prompts_seen": 156,
+    "creators": 113
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p005",
+   "slug": "metrics-counter-launch",
+   "name": "Metrics Counter Launch",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "canvas",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "Big numbers count up around a product card as it lands, ending on one headline metric and the release name.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "product card lands"
+    },
+    {
+     "at_sec": 3,
+     "what": "three metrics count up in turn"
+    },
+    {
+     "at_sec": 7,
+     "what": "headline metric holds with release name"
+    }
+   ],
+   "params": [
+    "three metrics",
+    "headline metric",
+    "release name"
+   ],
+   "evidence": {
+    "keywords": [
+     "launch",
+     "release",
+     "product"
+    ],
+    "prompts_seen": 238,
+    "creators": 202
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p006",
+   "slug": "screen-to-code-morph",
+   "name": "Screen to Code Morph",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A finished interface dissolves into the code that builds it, line by line, then snaps back to the interface with one detail changed.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "interface holds, then dissolves"
+    },
+    {
+     "at_sec": 4,
+     "what": "code lines type in with highlight"
+    },
+    {
+     "at_sec": 8,
+     "what": "interface returns with one change"
+    }
+   ],
+   "params": [
+    "UI description",
+    "code snippet",
+    "the changed detail"
+   ],
+   "evidence": {
+    "keywords": [
+     "code",
+     "product-ui",
+     "ui"
+    ],
+    "prompts_seen": 343,
+    "creators": 287
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p007",
+   "slug": "onboarding-checklist-tick",
+   "name": "Onboarding Checklist Tick",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "A checklist ticks itself off as small UI fragments slide in for each step, finishing on a progress ring reaching 100 percent.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "checklist appears with first step"
+    },
+    {
+     "at_sec": 2,
+     "what": "steps tick as fragments slide in"
+    },
+    {
+     "at_sec": 6,
+     "what": "ring completes, welcome line"
+    }
+   ],
+   "params": [
+    "4 onboarding steps",
+    "welcome line",
+    "accent colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "app",
+     "ui",
+     "product-ui"
+    ],
+    "prompts_seen": 216,
+    "creators": 185
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p008",
+   "slug": "pricing-card-flip",
+   "name": "Pricing Card Flip",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "Three plan cards sit face down, flip one after another to show their price and the single feature that matters, the middle one lifts.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "three cards face down"
+    },
+    {
+     "at_sec": 2,
+     "what": "flip in sequence with price"
+    },
+    {
+     "at_sec": 6,
+     "what": "middle card lifts, highlight feature"
+    }
+   ],
+   "params": [
+    "three plan names and prices",
+    "highlight feature",
+    "button text"
+   ],
+   "evidence": {
+    "keywords": [
+     "card",
+     "product",
+     "launch"
+    ],
+    "prompts_seen": 232,
+    "creators": 197
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p009",
+   "slug": "changelog-ticker-reel",
+   "name": "Changelog Ticker Reel",
+   "category": "Product and SaaS motion",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "Release notes scroll up like a live feed, each line stamping a version tag and a one-word verb in colour.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "feed starts with the oldest note"
+    },
+    {
+     "at_sec": 3,
+     "what": "lines scroll with version tags"
+    },
+    {
+     "at_sec": 7,
+     "what": "latest note highlights with big version number"
+    }
+   ],
+   "params": [
+    "5 changelog lines",
+    "version number",
+    "accent colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "release",
+     "timeline",
+     "launch"
+    ],
+    "prompts_seen": 156,
+    "creators": 135
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p010",
+   "slug": "headline-wave-type",
+   "name": "Headline Wave Type",
+   "category": "Typography and titles",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "Each letter of a headline rides a travelling sine wave that tightens on the beat and settles flat on the last word.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "letters wave loosely"
+    },
+    {
+     "at_sec": 2,
+     "what": "wave tightens and syncs to beat"
+    },
+    {
+     "at_sec": 6,
+     "what": "settles flat, subline fades in"
+    }
+   ],
+   "params": [
+    "headline",
+    "subline",
+    "accent colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "kinetic",
+     "beat"
+    ],
+    "prompts_seen": 160,
+    "creators": 138
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p011",
+   "slug": "masked-word-reveal",
+   "name": "Masked Word Reveal",
+   "category": "Typography and titles",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "Words are revealed through moving shape masks, a circle, a bar, a diagonal, one per word, ending on the brand word in full colour.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "first word wipes in through a circle"
+    },
+    {
+     "at_sec": 2,
+     "what": "next words through a bar and a diagonal"
+    },
+    {
+     "at_sec": 6,
+     "what": "brand word fills with colour"
+    }
+   ],
+   "params": [
+    "4 words",
+    "brand word",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "kinetic",
+     "title",
+     "reveal"
+    ],
+    "prompts_seen": 176,
+    "creators": 138
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p012",
+   "slug": "type-collision-stack",
+   "name": "Type Collision Stack",
+   "category": "Typography and titles",
+   "stack": [
+    "canvas",
+    "gsap"
+   ],
+   "duration_sec": 6,
+   "aspect": "9:16",
+   "concept": "Big words slam into frame from opposite sides, squash on impact and stack into a tight typographic block.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "words fly in from both sides"
+    },
+    {
+     "at_sec": 2,
+     "what": "impact squash and shake"
+    },
+    {
+     "at_sec": 4,
+     "what": "block settles, small caption slides in"
+    }
+   ],
+   "params": [
+    "3 to 5 words",
+    "caption",
+    "two colours"
+   ],
+   "evidence": {
+    "keywords": [
+     "kinetic",
+     "title"
+    ],
+    "prompts_seen": 146,
+    "creators": 117
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p013",
+   "slug": "logo-particle-assemble",
+   "name": "Logo Particle Assemble",
+   "category": "Typography and titles",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "Thousands of particles drift, then are pulled into the shape of a wordmark and flash once, leaving a faint trail.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "particles drift in noise"
+    },
+    {
+     "at_sec": 2,
+     "what": "converge into the wordmark"
+    },
+    {
+     "at_sec": 6,
+     "what": "flash, trail fades, tagline appears"
+    }
+   ],
+   "params": [
+    "wordmark text",
+    "tagline",
+    "particle colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "logo",
+     "particle",
+     "reveal"
+    ],
+    "prompts_seen": 108,
+    "creators": 87
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p014",
+   "slug": "product-team-credits-roll",
+   "name": "Product Team Credits Roll",
+   "category": "Typography and titles",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "End credits for the people and tools behind a launch, roles on the left, names on the right, ending on a thank-you card.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "black screen, title card"
+    },
+    {
+     "at_sec": 4,
+     "what": "credits roll with role and name pairs"
+    },
+    {
+     "at_sec": 10,
+     "what": "thank-you card with link"
+    }
+   ],
+   "params": [
+    "credit pairs",
+    "project title",
+    "link"
+   ],
+   "evidence": {
+    "keywords": [
+     "credits",
+     "title",
+     "film"
+    ],
+    "prompts_seen": 219,
+    "creators": 150
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p015",
+   "slug": "typewriter-quote-card",
+   "name": "Typewriter Quote Card",
+   "category": "Typography and titles",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "1:1",
+   "concept": "A quote types out on a paper-like card with a blinking caret, the key phrase gets a hand-drawn highlight, then the author line fades in.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "blank card, caret blinks"
+    },
+    {
+     "at_sec": 3,
+     "what": "quote types out with pauses"
+    },
+    {
+     "at_sec": 7,
+     "what": "highlight draws, author fades in"
+    }
+   ],
+   "params": [
+    "quote",
+    "highlight phrase",
+    "author"
+   ],
+   "evidence": {
+    "keywords": [
+     "story",
+     "title",
+     "kinetic"
+    ],
+    "prompts_seen": 211,
+    "creators": 172
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p016",
+   "slug": "split-flap-message-board",
+   "name": "Split-Flap Message Board",
+   "category": "Typography and titles",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A departures-style split-flap board flips through random characters before landing on the message, one row at a time.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "board of blank tiles"
+    },
+    {
+     "at_sec": 2,
+     "what": "rows flip through random letters"
+    },
+    {
+     "at_sec": 6,
+     "what": "message locks in, tick sound cue"
+    }
+   ],
+   "params": [
+    "3 message rows",
+    "board colour",
+    "highlight row"
+   ],
+   "evidence": {
+    "keywords": [
+     "kinetic",
+     "clock",
+     "title"
+    ],
+    "prompts_seen": 162,
+    "creators": 129
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p017",
+   "slug": "outline-to-fill-headline",
+   "name": "Outline to Fill Headline",
+   "category": "Typography and titles",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A headline is drawn as a single stroke outline, then filled with a moving gradient that wipes left to right.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "stroke draws the letters"
+    },
+    {
+     "at_sec": 2,
+     "what": "outline holds, gradient prepares"
+    },
+    {
+     "at_sec": 6,
+     "what": "gradient fills and shines once"
+    }
+   ],
+   "params": [
+    "headline",
+    "gradient colours",
+    "stroke width"
+   ],
+   "evidence": {
+    "keywords": [
+     "svg",
+     "title",
+     "kinetic"
+    ],
+    "prompts_seen": 290,
+    "creators": 253
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p018",
+   "slug": "hello-in-many-scripts",
+   "name": "Hello in Many Scripts",
+   "category": "Typography and titles",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "1:1",
+   "concept": "A greeting cycles through different writing systems in a tidy rhythm, then resolves to the product's own welcome line.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "greeting in first script"
+    },
+    {
+     "at_sec": 3,
+     "what": "cycle accelerates through scripts"
+    },
+    {
+     "at_sec": 7,
+     "what": "resolves to the welcome line"
+    }
+   ],
+   "params": [
+    "8 greetings",
+    "welcome line",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "title",
+     "kinetic",
+     "story"
+    ],
+    "prompts_seen": 211,
+    "creators": 172
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p019",
+   "slug": "race-bar-chart",
+   "name": "Race Bar Chart",
+   "category": "Data and charts",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "Horizontal bars race over time, overtaking one another while the year counter ticks, ending on the winner with a callout.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "bars start level at year one"
+    },
+    {
+     "at_sec": 4,
+     "what": "overtakes with year ticker"
+    },
+    {
+     "at_sec": 8,
+     "what": "winner holds with callout"
+    }
+   ],
+   "params": [
+    "data table",
+    "metric name",
+    "winner callout"
+   ],
+   "evidence": {
+    "keywords": [
+     "chart",
+     "timeline"
+    ],
+    "prompts_seen": 57,
+    "creators": 51
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p020",
+   "slug": "animated-line-story",
+   "name": "Animated Line Story",
+   "category": "Data and charts",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A single line chart draws itself, pausing at three points where annotation callouts explain what happened.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "axes appear, line starts"
+    },
+    {
+     "at_sec": 3,
+     "what": "line pauses at three events with callouts"
+    },
+    {
+     "at_sec": 7,
+     "what": "final value pulses"
+    }
+   ],
+   "params": [
+    "series data",
+    "3 annotations",
+    "final value label"
+   ],
+   "evidence": {
+    "keywords": [
+     "chart",
+     "svg",
+     "timeline"
+    ],
+    "prompts_seen": 221,
+    "creators": 208
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p021",
+   "slug": "radial-kpi-dashboard",
+   "name": "Radial KPI Dashboard",
+   "category": "Data and charts",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A wall of radial rings fills to different values with a quick stagger, each labelled with a small KPI and a trend arrow.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "empty rings appear"
+    },
+    {
+     "at_sec": 3,
+     "what": "rings fill with stagger"
+    },
+    {
+     "at_sec": 7,
+     "what": "one ring zooms to the headline KPI"
+    }
+   ],
+   "params": [
+    "6 KPIs with values",
+    "headline KPI",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "dashboard",
+     "chart",
+     "product-ui"
+    ],
+    "prompts_seen": 95,
+    "creators": 85
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p022",
+   "slug": "region-pulse-map",
+   "name": "Region Pulse Map",
+   "category": "Data and charts",
+   "stack": [
+    "svg",
+    "canvas"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A simplified world map where regions light up in sequence, each pulse sized by a value, ending on a ranked legend.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "blank map"
+    },
+    {
+     "at_sec": 3,
+     "what": "regions pulse in sequence"
+    },
+    {
+     "at_sec": 7,
+     "what": "legend ranks the top five"
+    }
+   ],
+   "params": [
+    "region values",
+    "metric name",
+    "legend size"
+   ],
+   "evidence": {
+    "keywords": [
+     "map",
+     "city",
+     "travel"
+    ],
+    "prompts_seen": 138,
+    "creators": 108
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p023",
+   "slug": "globe-route-arcs",
+   "name": "Globe Route Arcs",
+   "category": "Data and charts",
+   "stack": [
+    "canvas",
+    "threejs"
+   ],
+   "duration_sec": 12,
+   "aspect": "1:1",
+   "concept": "A slowly spinning globe draws glowing arcs between cities, each arc ending in a small label with the connection count.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "globe fades in and spins"
+    },
+    {
+     "at_sec": 4,
+     "what": "arcs draw between city pairs"
+    },
+    {
+     "at_sec": 8,
+     "what": "counter totals on the front face"
+    }
+   ],
+   "params": [
+    "city pairs",
+    "total label",
+    "arc colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "globe",
+     "map",
+     "three.js"
+    ],
+    "prompts_seen": 170,
+    "creators": 129
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p024",
+   "slug": "donut-to-treemap-morph",
+   "name": "Donut to Treemap Morph",
+   "category": "Data and charts",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A donut chart breaks into its slices which reshape smoothly into a treemap, so the same data reads two ways.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "donut draws with labels"
+    },
+    {
+     "at_sec": 3,
+     "what": "slices detach and reshape"
+    },
+    {
+     "at_sec": 7,
+     "what": "treemap settles with the biggest cell highlighted"
+    }
+   ],
+   "params": [
+    "categories with values",
+    "title",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "chart",
+     "geometry"
+    ],
+    "prompts_seen": 57,
+    "creators": 47
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p025",
+   "slug": "sparkline-wall",
+   "name": "Sparkline Wall",
+   "category": "Data and charts",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A grid of tiny charts updates in a ripple pattern, one tile at the centre grows to fill the frame to tell the story.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "grid of sparklines idles"
+    },
+    {
+     "at_sec": 2,
+     "what": "ripple update across tiles"
+    },
+    {
+     "at_sec": 6,
+     "what": "centre tile expands with takeaway"
+    }
+   ],
+   "params": [
+    "12 series",
+    "takeaway line",
+    "highlight tile"
+   ],
+   "evidence": {
+    "keywords": [
+     "dashboard",
+     "chart"
+    ],
+    "prompts_seen": 22,
+    "creators": 21
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p026",
+   "slug": "funnel-particle-flow",
+   "name": "Funnel Particle Flow",
+   "category": "Data and charts",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "9:16",
+   "concept": "Particles pour into a funnel, thinning at each stage with conversion percentages, the survivors exit as a glowing stream.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "particles enter the funnel"
+    },
+    {
+     "at_sec": 4,
+     "what": "each stage drops particles, percentages show"
+    },
+    {
+     "at_sec": 8,
+     "what": "survivors exit with final rate"
+    }
+   ],
+   "params": [
+    "4 stages with rates",
+    "final rate label",
+    "particle colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "chart",
+     "particle"
+    ],
+    "prompts_seen": 44,
+    "creators": 37
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p027",
+   "slug": "scrub-through-history",
+   "name": "Scrub Through History",
+   "category": "Data and charts",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "A horizontal timeline scrubs left, era cards slide into focus with a date and one fact, the last card is the present day.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "timeline appears with first era"
+    },
+    {
+     "at_sec": 4,
+     "what": "scrub through three eras"
+    },
+    {
+     "at_sec": 10,
+     "what": "present-day card with takeaway"
+    }
+   ],
+   "params": [
+    "5 eras with facts",
+    "title",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "history",
+     "timeline"
+    ],
+    "prompts_seen": 70,
+    "creators": 63
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p028",
+   "slug": "isometric-room-build",
+   "name": "Isometric Room Build",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "threejs"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "Furniture and props drop into an empty isometric room one by one with soft bounces, ending on a lit evening scene.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "empty room"
+    },
+    {
+     "at_sec": 4,
+     "what": "props drop with bounce"
+    },
+    {
+     "at_sec": 8,
+     "what": "lights switch on, camera eases back"
+    }
+   ],
+   "params": [
+    "room theme",
+    "5 props",
+    "accent colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "three.js",
+     "threejs",
+     "city"
+    ],
+    "prompts_seen": 311,
+    "creators": 249
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p029",
+   "slug": "contour-terrain-grow",
+   "name": "Contour Terrain Grow",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "Topographic contour lines grow outward from a single peak until a full terrain map fills the frame, then it tilts into 3D.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "single peak contour"
+    },
+    {
+     "at_sec": 3,
+     "what": "contours multiply outward"
+    },
+    {
+     "at_sec": 7,
+     "what": "map tilts into relief"
+    }
+   ],
+   "params": [
+    "terrain name",
+    "contour colour",
+    "label text"
+   ],
+   "evidence": {
+    "keywords": [
+     "map",
+     "geometry",
+     "three.js"
+    ],
+    "prompts_seen": 195,
+    "creators": 143
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p030",
+   "slug": "voxel-skyline-grow",
+   "name": "Voxel Skyline Grow",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "threejs"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A city of voxel towers grows from the ground in a wave, windows blink on and a slow orbit camera reveals the skyline.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "ground grid"
+    },
+    {
+     "at_sec": 3,
+     "what": "towers grow in a wave"
+    },
+    {
+     "at_sec": 7,
+     "what": "windows light, camera orbits"
+    }
+   ],
+   "params": [
+    "city name",
+    "palette",
+    "skyline mood"
+   ],
+   "evidence": {
+    "keywords": [
+     "voxel",
+     "city",
+     "three.js"
+    ],
+    "prompts_seen": 224,
+    "creators": 171
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p031",
+   "slug": "product-turntable-light-sweep",
+   "name": "Product Turntable Light Sweep",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "threejs"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "A stand-in product object rotates on a plinth while a strip of light sweeps across its surface, ending on a front-facing hero pose.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "plinth and object appear"
+    },
+    {
+     "at_sec": 2,
+     "what": "rotation with light sweep"
+    },
+    {
+     "at_sec": 6,
+     "what": "hero pose with product name"
+    }
+   ],
+   "params": [
+    "product shape",
+    "material colour",
+    "product name"
+   ],
+   "evidence": {
+    "keywords": [
+     "product",
+     "three.js",
+     "glass"
+    ],
+    "prompts_seen": 367,
+    "creators": 281
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p032",
+   "slug": "liquid-gradient-blob",
+   "name": "Liquid Gradient Blob",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "shader"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "A glossy blob of blended colours wobbles and flows to a slow pulse, text rides above and the colours shift with each phrase.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "blob forms from noise"
+    },
+    {
+     "at_sec": 3,
+     "what": "wobble and colour shift per phrase"
+    },
+    {
+     "at_sec": 7,
+     "what": "blob calms behind final line"
+    }
+   ],
+   "params": [
+    "3 phrases",
+    "colour set",
+    "final line"
+   ],
+   "evidence": {
+    "keywords": [
+     "shader",
+     "webgl",
+     "glass"
+    ],
+    "prompts_seen": 196,
+    "creators": 163
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p033",
+   "slug": "neon-grid-terrain-flight",
+   "name": "Neon Grid Terrain Flight",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "shader",
+    "threejs"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A flight over a glowing wireframe grid terrain toward a low sun, peaks scroll by and a title appears on the horizon.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "grid appears, camera lifts"
+    },
+    {
+     "at_sec": 4,
+     "what": "terrain scrolls toward the sun"
+    },
+    {
+     "at_sec": 8,
+     "what": "title on the horizon"
+    }
+   ],
+   "params": [
+    "title",
+    "sun colour",
+    "grid colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "neon",
+     "shader",
+     "three.js"
+    ],
+    "prompts_seen": 269,
+    "creators": 213
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p034",
+   "slug": "glass-prism-refraction",
+   "name": "Glass Prism Refraction",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "shader"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A beam of white light hits a rotating glass prism and splits into a spectrum that sweeps across the headline.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "beam crosses the frame"
+    },
+    {
+     "at_sec": 2,
+     "what": "prism rotates, spectrum fans out"
+    },
+    {
+     "at_sec": 6,
+     "what": "spectrum sweeps headline"
+    }
+   ],
+   "params": [
+    "headline",
+    "prism size",
+    "background colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "glass",
+     "shader",
+     "webgl"
+    ],
+    "prompts_seen": 196,
+    "creators": 163
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p035",
+   "slug": "particle-galaxy-swirl",
+   "name": "Particle Galaxy Swirl",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "canvas",
+    "threejs"
+   ],
+   "duration_sec": 12,
+   "aspect": "1:1",
+   "concept": "Two million-point looking galaxy of particles swirls around a bright core while a number counts the stars in your data.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "core ignites"
+    },
+    {
+     "at_sec": 4,
+     "what": "arms swirl outward"
+    },
+    {
+     "at_sec": 8,
+     "what": "counter settles on the number"
+    }
+   ],
+   "params": [
+    "number to count",
+    "core colour",
+    "label"
+   ],
+   "evidence": {
+    "keywords": [
+     "space",
+     "particle",
+     "webgl"
+    ],
+    "prompts_seen": 111,
+    "creators": 83
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p036",
+   "slug": "cube-mosaic-transition",
+   "name": "Cube Mosaic Transition",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "threejs"
+   ],
+   "duration_sec": 6,
+   "aspect": "16:9",
+   "concept": "A wall of cubes flips in a wave, front faces carry the old scene, back faces carry the new, ending as a clean full frame.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "wall of cubes with scene A"
+    },
+    {
+     "at_sec": 2,
+     "what": "wave flips cubes"
+    },
+    {
+     "at_sec": 4,
+     "what": "scene B resolves full frame"
+    }
+   ],
+   "params": [
+    "scene A text",
+    "scene B text",
+    "cube size"
+   ],
+   "evidence": {
+    "keywords": [
+     "three.js",
+     "threejs",
+     "reveal"
+    ],
+    "prompts_seen": 285,
+    "creators": 227
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p037",
+   "slug": "night-city-lights",
+   "name": "Night City Lights",
+   "category": "3D and WebGL scenes",
+   "stack": [
+    "canvas",
+    "threejs"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A dark city block with windows blinking on in clusters, traffic trails below, a neon sign flickers to life with the brand line.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "dark block"
+    },
+    {
+     "at_sec": 4,
+     "what": "windows blink, traffic trails"
+    },
+    {
+     "at_sec": 8,
+     "what": "neon sign flickers on"
+    }
+   ],
+   "params": [
+    "brand line",
+    "neon colour",
+    "city mood"
+   ],
+   "evidence": {
+    "keywords": [
+     "city",
+     "neon",
+     "cyberpunk"
+    ],
+    "prompts_seen": 116,
+    "creators": 89
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p038",
+   "slug": "domino-chain-reaction",
+   "name": "Domino Chain Reaction",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A long line of dominoes topples along a curved path, the last one triggers the product name to light up.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "set-up shot"
+    },
+    {
+     "at_sec": 4,
+     "what": "chain topples along the curve"
+    },
+    {
+     "at_sec": 8,
+     "what": "last domino lights the name"
+    }
+   ],
+   "params": [
+    "product name",
+    "domino colours",
+    "path shape"
+   ],
+   "evidence": {
+    "keywords": [
+     "physics",
+     "rigid"
+    ],
+    "prompts_seen": 117,
+    "creators": 82
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p039",
+   "slug": "ball-pit-logo",
+   "name": "Ball Pit Logo",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 10,
+   "aspect": "1:1",
+   "concept": "Hundreds of coloured balls rain down and settle, with the ones in place forming a logo shape while the rest roll away.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "balls rain in"
+    },
+    {
+     "at_sec": 3,
+     "what": "settle and sort into the shape"
+    },
+    {
+     "at_sec": 7,
+     "what": "extra balls roll off, logo remains"
+    }
+   ],
+   "params": [
+    "logo shape",
+    "ball colours",
+    "tagline"
+   ],
+   "evidence": {
+    "keywords": [
+     "physics",
+     "logo",
+     "particle"
+    ],
+    "prompts_seen": 179,
+    "creators": 132
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p040",
+   "slug": "liquid-fill-metric",
+   "name": "Liquid Fill Metric",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 8,
+   "aspect": "9:16",
+   "concept": "A glass vessel fills with liquid up to a level matching a percentage, waves sloshing, label rising with the surface.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "empty vessel"
+    },
+    {
+     "at_sec": 2,
+     "what": "liquid fills with slosh"
+    },
+    {
+     "at_sec": 6,
+     "what": "level settles on the label"
+    }
+   ],
+   "params": [
+    "percentage",
+    "liquid colour",
+    "label"
+   ],
+   "evidence": {
+    "keywords": [
+     "water",
+     "fluid",
+     "physics"
+    ],
+    "prompts_seen": 186,
+    "creators": 130
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p041",
+   "slug": "cloth-banner-in-wind",
+   "name": "Cloth Banner in Wind",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A cloth banner hangs from a pole and ripples in rising wind, folds distort the printed message which flattens when the wind drops.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "banner hangs still"
+    },
+    {
+     "at_sec": 3,
+     "what": "wind rises, folds ripple"
+    },
+    {
+     "at_sec": 7,
+     "what": "wind drops, message flat and readable"
+    }
+   ],
+   "params": [
+    "message",
+    "banner colours",
+    "wind strength"
+   ],
+   "evidence": {
+    "keywords": [
+     "physics",
+     "soft-body",
+     "soft body"
+    ],
+    "prompts_seen": 121,
+    "creators": 80
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p042",
+   "slug": "pendulum-wave-patterns",
+   "name": "Pendulum Wave Patterns",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "A row of pendulums with different lengths swings together and drifts into travelling wave patterns before realigning.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "pendulums start together"
+    },
+    {
+     "at_sec": 4,
+     "what": "phases drift into waves"
+    },
+    {
+     "at_sec": 10,
+     "what": "realign, title appears"
+    }
+   ],
+   "params": [
+    "pendulum count",
+    "colour gradient",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "physics",
+     "geometry",
+     "math"
+    ],
+    "prompts_seen": 150,
+    "creators": 110
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p043",
+   "slug": "mini-chain-machine-reveal",
+   "name": "Mini Chain Machine Reveal",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "A small chain of ramps, levers and rolling balls ends by pulling a curtain off the product name.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "ball drops on a ramp"
+    },
+    {
+     "at_sec": 4,
+     "what": "levers and see-saws chain"
+    },
+    {
+     "at_sec": 10,
+     "what": "curtain pulls, product revealed"
+    }
+   ],
+   "params": [
+    "product name",
+    "machine theme",
+    "curtain colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "physics",
+     "rigid",
+     "game"
+    ],
+    "prompts_seen": 230,
+    "creators": 182
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p044",
+   "slug": "ink-bloom-in-water",
+   "name": "Ink Bloom in Water",
+   "category": "Physics and simulation",
+   "stack": [
+    "shader",
+    "canvas"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "Drops of ink bloom in still water, curl into tendrils and settle into the shape of a word.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "drops fall in"
+    },
+    {
+     "at_sec": 3,
+     "what": "tendrils curl and spread"
+    },
+    {
+     "at_sec": 7,
+     "what": "settle into the word"
+    }
+   ],
+   "params": [
+    "word",
+    "ink colours",
+    "water tint"
+   ],
+   "evidence": {
+    "keywords": [
+     "smoke",
+     "ink",
+     "fluid"
+    ],
+    "prompts_seen": 65,
+    "creators": 58
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p045",
+   "slug": "magnetic-filings-field",
+   "name": "Magnetic Filings Field",
+   "category": "Physics and simulation",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "Hundreds of small filings align along an invisible field as a magnet moves under them, making ripples and a bright pole pattern.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "filings lie random"
+    },
+    {
+     "at_sec": 2,
+     "what": "magnet moves, filings align"
+    },
+    {
+     "at_sec": 6,
+     "what": "pattern holds with caption"
+    }
+   ],
+   "params": [
+    "caption",
+    "filing colour",
+    "magnet path"
+   ],
+   "evidence": {
+    "keywords": [
+     "physics",
+     "particle",
+     "geometry"
+    ],
+    "prompts_seen": 163,
+    "creators": 119
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p046",
+   "slug": "equalizer-skyline",
+   "name": "Equalizer Skyline",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "canvas",
+    "webaudio"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "Equalizer bars become skyscrapers of a city that pulses to the music, windows flashing on the highest bars.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "flat skyline"
+    },
+    {
+     "at_sec": 3,
+     "what": "bars rise to the beat"
+    },
+    {
+     "at_sec": 7,
+     "what": "title fades under the skyline"
+    }
+   ],
+   "params": [
+    "track mood",
+    "palette",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "audio",
+     "music",
+     "beat"
+    ],
+    "prompts_seen": 312,
+    "creators": 259
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p047",
+   "slug": "waveform-ribbon",
+   "name": "Waveform Ribbon",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "threejs",
+    "webaudio"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A glossy ribbon follows the audio waveform in 3D, twisting on loud sections and flattening when quiet.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "ribbon appears"
+    },
+    {
+     "at_sec": 3,
+     "what": "twists with the loud parts"
+    },
+    {
+     "at_sec": 7,
+     "what": "settles with the title"
+    }
+   ],
+   "params": [
+    "track mood",
+    "ribbon colours",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "audio",
+     "music",
+     "three.js"
+    ],
+    "prompts_seen": 399,
+    "creators": 311
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p048",
+   "slug": "beat-drop-flash-cuts",
+   "name": "Beat Drop Flash Cuts",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "9:16",
+   "concept": "Quick cuts of bold frames land exactly on the beat, building toward a drop where everything inverts for one frame.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "slow build"
+    },
+    {
+     "at_sec": 2,
+     "what": "cuts speed up on the beat"
+    },
+    {
+     "at_sec": 6,
+     "what": "drop frame inverts, title lands"
+    }
+   ],
+   "params": [
+    "BPM",
+    "5 frame texts",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "beat",
+     "music",
+     "kinetic"
+    ],
+    "prompts_seen": 297,
+    "creators": 242
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p049",
+   "slug": "vinyl-lyric-spin",
+   "name": "Vinyl Lyric Spin",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 12,
+   "aspect": "1:1",
+   "concept": "A vinyl record spins in close-up, the label shows the song title, lyric lines scroll around the groove one at a time.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "record drops, spin starts"
+    },
+    {
+     "at_sec": 4,
+     "what": "lyric lines orbit the groove"
+    },
+    {
+     "at_sec": 8,
+     "what": "tonearm lifts, title holds"
+    }
+   ],
+   "params": [
+    "song title",
+    "4 lyric lines",
+    "label colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "music",
+     "audio",
+     "story"
+    ],
+    "prompts_seen": 338,
+    "creators": 279
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p050",
+   "slug": "radial-spectrum-sunset",
+   "name": "Radial Spectrum Sunset",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A sun made of radial spectrum bars sinks toward the horizon on a warm gradient, bars reacting to a slow pad.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "sun rises full"
+    },
+    {
+     "at_sec": 4,
+     "what": "bars pulse as it sinks"
+    },
+    {
+     "at_sec": 8,
+     "what": "horizon glow, title"
+    }
+   ],
+   "params": [
+    "title",
+    "gradient colours",
+    "tempo"
+   ],
+   "evidence": {
+    "keywords": [
+     "music",
+     "neon",
+     "audio"
+    ],
+    "prompts_seen": 321,
+    "creators": 262
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p051",
+   "slug": "piano-roll-reveal",
+   "name": "Piano Roll Reveal",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "canvas",
+    "webaudio"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "Falling coloured notes land on a keyboard and, as they pile up, form the shape of the product icon.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "notes begin to fall"
+    },
+    {
+     "at_sec": 4,
+     "what": "notes land and stack"
+    },
+    {
+     "at_sec": 8,
+     "what": "stack resolves into the icon"
+    }
+   ],
+   "params": [
+    "icon shape",
+    "note colours",
+    "tempo"
+   ],
+   "evidence": {
+    "keywords": [
+     "music",
+     "audio",
+     "game"
+    ],
+    "prompts_seen": 379,
+    "creators": 317
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p052",
+   "slug": "audiogram-caption-clip",
+   "name": "Audiogram Caption Clip",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 15,
+   "aspect": "1:1",
+   "concept": "A podcast-style audiogram with a bouncing waveform and word-by-word captions that highlight as the voice speaks.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "waveform wakes"
+    },
+    {
+     "at_sec": 4,
+     "what": "captions highlight word by word"
+    },
+    {
+     "at_sec": 10,
+     "what": "episode card with link"
+    }
+   ],
+   "params": [
+    "caption text",
+    "episode title",
+    "waveform colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "audio",
+     "music",
+     "story"
+    ],
+    "prompts_seen": 338,
+    "creators": 279
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p053",
+   "slug": "step-sequencer-grid",
+   "name": "Step Sequencer Grid",
+   "category": "Music and audio-reactive",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A step sequencer grid lights up in a pattern, each lit step triggers a flash and a small icon, then the pattern becomes the logo.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "empty grid"
+    },
+    {
+     "at_sec": 3,
+     "what": "pattern builds step by step"
+    },
+    {
+     "at_sec": 7,
+     "what": "lit steps form the logo"
+    }
+   ],
+   "params": [
+    "pattern",
+    "step colours",
+    "logo shape"
+   ],
+   "evidence": {
+    "keywords": [
+     "beat",
+     "music",
+     "ui"
+    ],
+    "prompts_seen": 346,
+    "creators": 283
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p054",
+   "slug": "noir-rain-title",
+   "name": "Noir Rain Title",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "Rain streaks across a black and white street, blind shadows slide over a doorway and a title card cuts in with a saxophone-like pause.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "rain on the street"
+    },
+    {
+     "at_sec": 3,
+     "what": "blind shadows slide"
+    },
+    {
+     "at_sec": 7,
+     "what": "title card cuts in"
+    }
+   ],
+   "params": [
+    "title",
+    "subtitle",
+    "grain level"
+   ],
+   "evidence": {
+    "keywords": [
+     "film",
+     "story",
+     "rain"
+    ],
+    "prompts_seen": 262,
+    "creators": 197
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p055",
+   "slug": "showdown-countdown",
+   "name": "Showdown Countdown",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A dusty wide shot, a close-up on eyes, a clock ticking to noon, then a flash and the result text.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "wide dusty shot"
+    },
+    {
+     "at_sec": 2,
+     "what": "eyes, clock ticks"
+    },
+    {
+     "at_sec": 6,
+     "what": "flash and result text"
+    }
+   ],
+   "params": [
+    "result text",
+    "sun colour",
+    "time shown"
+   ],
+   "evidence": {
+    "keywords": [
+     "western",
+     "film",
+     "story"
+    ],
+    "prompts_seen": 240,
+    "creators": 176
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p056",
+   "slug": "anime-speed-line-intro",
+   "name": "Anime Speed Line Intro",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 6,
+   "aspect": "16:9",
+   "concept": "Speed lines burst from the centre, a hero shape punches through the frame and the title slams with a flash.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "lines burst"
+    },
+    {
+     "at_sec": 2,
+     "what": "shape punches through"
+    },
+    {
+     "at_sec": 4,
+     "what": "title slams with flash"
+    }
+   ],
+   "params": [
+    "title",
+    "accent colour",
+    "hero shape"
+   ],
+   "evidence": {
+    "keywords": [
+     "anime",
+     "cartoon",
+     "kinetic"
+    ],
+    "prompts_seen": 170,
+    "creators": 142
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p057",
+   "slug": "fantasy-map-journey",
+   "name": "Fantasy Map Journey",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "svg",
+    "canvas"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "A parchment map draws itself, a dotted route travels between three landmarks and the camera zooms to the last place.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "parchment unrolls"
+    },
+    {
+     "at_sec": 4,
+     "what": "route dots travel between landmarks"
+    },
+    {
+     "at_sec": 10,
+     "what": "zoom to final landmark and title"
+    }
+   ],
+   "params": [
+    "3 landmarks",
+    "map title",
+    "ink colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "fantasy",
+     "map",
+     "story"
+    ],
+    "prompts_seen": 153,
+    "creators": 124
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p058",
+   "slug": "horror-flicker-teaser",
+   "name": "Horror Flicker Teaser",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A dim corridor with a flickering light, shapes appear at the edge for single frames, and the title appears one letter at a time.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "corridor, light flickers"
+    },
+    {
+     "at_sec": 2,
+     "what": "shapes flash at the edge"
+    },
+    {
+     "at_sec": 6,
+     "what": "title types in with hum"
+    }
+   ],
+   "params": [
+    "title",
+    "release date",
+    "tint colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "horror",
+     "film",
+     "story"
+    ],
+    "prompts_seen": 247,
+    "creators": 180
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p059",
+   "slug": "sci-fi-hangar-boot",
+   "name": "Sci-Fi Hangar Boot",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A hangar bay powers up: lights run down the ceiling, a console boots with status lines and a ship name appears on a large display.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "dark bay, lights run"
+    },
+    {
+     "at_sec": 3,
+     "what": "console boots with status lines"
+    },
+    {
+     "at_sec": 7,
+     "what": "ship name on display"
+    }
+   ],
+   "params": [
+    "ship name",
+    "status lines",
+    "light colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "sci-fi",
+     "space",
+     "film"
+    ],
+    "prompts_seen": 224,
+    "creators": 162
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p060",
+   "slug": "illuminated-manuscript-page",
+   "name": "Illuminated Manuscript Page",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "svg",
+    "css"
+   ],
+   "duration_sec": 12,
+   "aspect": "9:16",
+   "concept": "A medieval page draws a decorated first letter, margin vines grow around the text and a final line is gilded.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "blank page, first letter draws"
+    },
+    {
+     "at_sec": 4,
+     "what": "vines grow in margins"
+    },
+    {
+     "at_sec": 8,
+     "what": "gold leaf on the last line"
+    }
+   ],
+   "params": [
+    "page text",
+    "first letter",
+    "gold colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "medieval",
+     "fantasy",
+     "story"
+    ],
+    "prompts_seen": 133,
+    "creators": 108
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p061",
+   "slug": "mission-briefing-hologram",
+   "name": "Mission Briefing Hologram",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A hologram table lights up, planet and route are drawn, a briefing text lists three objectives and a countdown starts.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "table lights up"
+    },
+    {
+     "at_sec": 4,
+     "what": "planet and route draw"
+    },
+    {
+     "at_sec": 8,
+     "what": "objectives list, countdown starts"
+    }
+   ],
+   "params": [
+    "mission name",
+    "3 objectives",
+    "countdown start"
+   ],
+   "evidence": {
+    "keywords": [
+     "space",
+     "planet",
+     "sci-fi"
+    ],
+    "prompts_seen": 77,
+    "creators": 63
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p062",
+   "slug": "dragon-silhouette-dawn",
+   "name": "Dragon Silhouette Dawn",
+   "category": "Cinematic storytelling",
+   "stack": [
+    "canvas",
+    "svg"
+   ],
+   "duration_sec": 10,
+   "aspect": "16:9",
+   "concept": "A mountain range at dawn, a dragon silhouette crosses the sun in slow wingbeats and the title rises from the clouds.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "dawn light on mountains"
+    },
+    {
+     "at_sec": 3,
+     "what": "dragon crosses the sun"
+    },
+    {
+     "at_sec": 7,
+     "what": "title rises from clouds"
+    }
+   ],
+   "params": [
+    "title",
+    "sky colours",
+    "dragon size"
+   ],
+   "evidence": {
+    "keywords": [
+     "dragon",
+     "fantasy",
+     "story"
+    ],
+    "prompts_seen": 138,
+    "creators": 111
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p063",
+   "slug": "coffee-pour-menu",
+   "name": "Coffee Pour Menu",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "A pour of coffee into a cup swirls with milk art while menu items and prices slide in beside it.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "pour begins"
+    },
+    {
+     "at_sec": 3,
+     "what": "milk swirls into art"
+    },
+    {
+     "at_sec": 7,
+     "what": "menu items slide in"
+    }
+   ],
+   "params": [
+    "menu items and prices",
+    "cafe name",
+    "cup colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "coffee",
+     "food",
+     "product"
+    ],
+    "prompts_seen": 213,
+    "creators": 178
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p064",
+   "slug": "recipe-steps-timelapse",
+   "name": "Recipe Steps Timelapse",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 15,
+   "aspect": "9:16",
+   "concept": "A recipe in illustrated steps, ingredients drop into a bowl, each step shows a timer and a tiny result, ending on the plated dish.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "ingredients drop in"
+    },
+    {
+     "at_sec": 4,
+     "what": "three steps with timers"
+    },
+    {
+     "at_sec": 10,
+     "what": "plated dish and recipe name"
+    }
+   ],
+   "params": [
+    "recipe name",
+    "5 ingredients",
+    "3 steps"
+   ],
+   "evidence": {
+    "keywords": [
+     "food",
+     "story",
+     "how to"
+    ],
+    "prompts_seen": 118,
+    "creators": 106
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p065",
+   "slug": "fashion-lookbook-flip",
+   "name": "Fashion Lookbook Flip",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "Lookbook pages flip fast, each showing a colour swatch, a silhouette outline and a name, then settle on the featured look.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "cover page"
+    },
+    {
+     "at_sec": 3,
+     "what": "pages flip with swatches"
+    },
+    {
+     "at_sec": 7,
+     "what": "featured look with name"
+    }
+   ],
+   "params": [
+    "collection name",
+    "4 looks",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "fashion",
+     "beauty",
+     "product"
+    ],
+    "prompts_seen": 231,
+    "creators": 179
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p066",
+   "slug": "perfume-mist-reveal",
+   "name": "Perfume Mist Reveal",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "canvas",
+    "shader"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "A bottle silhouette sits in soft light, a mist sprays across the frame in slow motion and clears to reveal the bottle label.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "silhouette and light"
+    },
+    {
+     "at_sec": 2,
+     "what": "mist sprays and drifts"
+    },
+    {
+     "at_sec": 6,
+     "what": "clears to the label"
+    }
+   ],
+   "params": [
+    "brand and scent name",
+    "mist colour",
+    "tagline"
+   ],
+   "evidence": {
+    "keywords": [
+     "beauty",
+     "smoke",
+     "product"
+    ],
+    "prompts_seen": 236,
+    "creators": 190
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p067",
+   "slug": "watch-dial-closeup",
+   "name": "Watch Dial Closeup",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "1:1",
+   "concept": "A watch dial in close-up, hands sweep, sub-dials animate, then the camera pulls back to show the full case and name.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "close on the dial"
+    },
+    {
+     "at_sec": 3,
+     "what": "hands sweep, sub-dials turn"
+    },
+    {
+     "at_sec": 7,
+     "what": "pull back to full watch"
+    }
+   ],
+   "params": [
+    "watch name",
+    "dial colour",
+    "time shown"
+   ],
+   "evidence": {
+    "keywords": [
+     "watch",
+     "clock",
+     "product"
+    ],
+    "prompts_seen": 219,
+    "creators": 184
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p068",
+   "slug": "jewelry-sparkle-showcase",
+   "name": "Jewelry Sparkle Showcase",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "A gem on velvet catches a moving light, four-point sparkles pop on the facets and the price tag swings into view.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "gem on velvet"
+    },
+    {
+     "at_sec": 2,
+     "what": "light moves, sparkles pop"
+    },
+    {
+     "at_sec": 6,
+     "what": "tag swings in"
+    }
+   ],
+   "params": [
+    "item name",
+    "price",
+    "gem colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "jewelry",
+     "beauty",
+     "glass"
+    ],
+    "prompts_seen": 119,
+    "creators": 87
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p069",
+   "slug": "itinerary-route-trace",
+   "name": "Itinerary Route Trace",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 15,
+   "aspect": "9:16",
+   "concept": "A trip route traces across a stylised map, stops pop up with icons, and a travel-time ribbon counts the days.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "map and start pin"
+    },
+    {
+     "at_sec": 4,
+     "what": "route traces with stop icons"
+    },
+    {
+     "at_sec": 10,
+     "what": "total days and cost ribbon"
+    }
+   ],
+   "params": [
+    "4 stops",
+    "days",
+    "total cost"
+   ],
+   "evidence": {
+    "keywords": [
+     "travel",
+     "map",
+     "city"
+    ],
+    "prompts_seen": 138,
+    "creators": 108
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p070",
+   "slug": "car-spec-sheet-reveal",
+   "name": "Car Spec Sheet Reveal",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "svg",
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A blueprint outline of a car draws itself while spec callouts for power, weight and range extend from it with leader lines.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "outline draws"
+    },
+    {
+     "at_sec": 4,
+     "what": "callouts extend with numbers"
+    },
+    {
+     "at_sec": 8,
+     "what": "full colour fill and model name"
+    }
+   ],
+   "params": [
+    "model name",
+    "4 specs",
+    "paint colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "car",
+     "product",
+     "architecture"
+    ],
+    "prompts_seen": 212,
+    "creators": 175
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p071",
+   "slug": "cocktail-build-sequence",
+   "name": "Cocktail Build Sequence",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "A cocktail builds layer by layer in a glass with ingredient labels, ice drops in and a garnish lands on top.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "empty glass"
+    },
+    {
+     "at_sec": 3,
+     "what": "layers pour with labels"
+    },
+    {
+     "at_sec": 7,
+     "what": "ice and garnish land"
+    }
+   ],
+   "params": [
+    "cocktail name",
+    "4 ingredients",
+    "garnish"
+   ],
+   "evidence": {
+    "keywords": [
+     "food",
+     "coffee",
+     "water"
+    ],
+    "prompts_seen": 122,
+    "creators": 95
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p072",
+   "slug": "rep-counter-workout",
+   "name": "Rep Counter Workout",
+   "category": "Lifestyle and commerce",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "9:16",
+   "concept": "A large rep counter ticks with a pulse, a simple stick figure repeats the move and the final set shows a streak badge.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "counter and figure start"
+    },
+    {
+     "at_sec": 2,
+     "what": "reps tick with pulse"
+    },
+    {
+     "at_sec": 6,
+     "what": "streak badge lands"
+    }
+   ],
+   "params": [
+    "exercise name",
+    "rep goal",
+    "streak number"
+   ],
+   "evidence": {
+    "keywords": [
+     "sports",
+     "breath",
+     "dance"
+    ],
+    "prompts_seen": 71,
+    "creators": 58
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p073",
+   "slug": "fractal-zoom-tour",
+   "name": "Fractal Zoom Tour",
+   "category": "Science and education",
+   "stack": [
+    "shader"
+   ],
+   "duration_sec": 15,
+   "aspect": "1:1",
+   "concept": "A zoom into a Mandelbrot-style fractal with colour cycling, labels at three depths name the scale of the zoom.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "full fractal"
+    },
+    {
+     "at_sec": 4,
+     "what": "zoom with colour cycle"
+    },
+    {
+     "at_sec": 10,
+     "what": "labels at three depths"
+    }
+   ],
+   "params": [
+    "colour palette",
+    "3 depth labels",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "math",
+     "geometry",
+     "shader"
+    ],
+    "prompts_seen": 142,
+    "creators": 123
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p074",
+   "slug": "sorting-algorithm-dance",
+   "name": "Sorting Algorithm Dance",
+   "category": "Science and education",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "Bars of different heights sort themselves, with comparisons flashing and a small counter of swaps, then a second algorithm races the first.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "shuffled bars"
+    },
+    {
+     "at_sec": 4,
+     "what": "first algorithm sorts, counters tick"
+    },
+    {
+     "at_sec": 8,
+     "what": "second algorithm races"
+    }
+   ],
+   "params": [
+    "two algorithm names",
+    "bar count",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "math",
+     "geometry",
+     "game"
+    ],
+    "prompts_seen": 173,
+    "creators": 153
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p075",
+   "slug": "atom-and-molecule-builder",
+   "name": "Atom and Molecule Builder",
+   "category": "Science and education",
+   "stack": [
+    "threejs"
+   ],
+   "duration_sec": 12,
+   "aspect": "1:1",
+   "concept": "Electrons orbit a nucleus, atoms drift together and bond into a molecule that rotates with its formula underneath.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "single atom with orbits"
+    },
+    {
+     "at_sec": 4,
+     "what": "atoms drift and bond"
+    },
+    {
+     "at_sec": 8,
+     "what": "molecule rotates with formula"
+    }
+   ],
+   "params": [
+    "molecule formula",
+    "atom colours",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "atom",
+     "cell",
+     "three.js"
+    ],
+    "prompts_seen": 158,
+    "creators": 116
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p076",
+   "slug": "solar-system-to-scale",
+   "name": "Solar System to Scale",
+   "category": "Science and education",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "A camera slides past the planets in order, each labelled with its size and distance, ending on how small Earth looks.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "sun and first planet"
+    },
+    {
+     "at_sec": 4,
+     "what": "pass the planets in order"
+    },
+    {
+     "at_sec": 10,
+     "what": "Earth at scale with caption"
+    }
+   ],
+   "params": [
+    "planet facts",
+    "caption",
+    "palette"
+   ],
+   "evidence": {
+    "keywords": [
+     "planet",
+     "space",
+     "geometry"
+    ],
+    "prompts_seen": 96,
+    "creators": 76
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p077",
+   "slug": "cell-division-explainer",
+   "name": "Cell Division Explainer",
+   "category": "Science and education",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A single cell grows, its chromosomes line up, the membrane pinches and two cells separate with stage labels.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "one cell grows"
+    },
+    {
+     "at_sec": 4,
+     "what": "chromosomes align, membrane pinches"
+    },
+    {
+     "at_sec": 8,
+     "what": "two cells with stage labels"
+    }
+   ],
+   "params": [
+    "stage names",
+    "cell colours",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "cell",
+     "brain",
+     "water"
+    ],
+    "prompts_seen": 88,
+    "creators": 70
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p078",
+   "slug": "neural-network-pulse",
+   "name": "Neural Network Pulse",
+   "category": "Science and education",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "Layers of nodes light up as a signal pulses left to right, connections thickening on the strongest path to a labelled output.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "layers of idle nodes"
+    },
+    {
+     "at_sec": 4,
+     "what": "signal pulses through"
+    },
+    {
+     "at_sec": 8,
+     "what": "strongest path to output label"
+    }
+   ],
+   "params": [
+    "layer sizes",
+    "output label",
+    "pulse colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "brain",
+     "network",
+     "graph"
+    ],
+    "prompts_seen": 25,
+    "creators": 19
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p079",
+   "slug": "weather-cycle-diagram",
+   "name": "Weather Cycle Diagram",
+   "category": "Science and education",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 15,
+   "aspect": "16:9",
+   "concept": "A diagram of the water cycle: sun heats water, vapour rises to a cloud, rain falls and snow settles on a peak, each step labelled.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "sun heats the lake"
+    },
+    {
+     "at_sec": 4,
+     "what": "vapour rises, cloud forms"
+    },
+    {
+     "at_sec": 10,
+     "what": "rain and snow fall, labels"
+    }
+   ],
+   "params": [
+    "step labels",
+    "palette",
+    "title"
+   ],
+   "evidence": {
+    "keywords": [
+     "weather",
+     "rain",
+     "snow"
+    ],
+    "prompts_seen": 65,
+    "creators": 57
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p080",
+   "slug": "geometry-proof-draw",
+   "name": "Geometry Proof Draw",
+   "category": "Science and education",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A chalkboard geometry proof is drawn step by step, lines extend, angles are marked and the conclusion is underlined.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "blank board, first figure"
+    },
+    {
+     "at_sec": 4,
+     "what": "construction lines and angle marks"
+    },
+    {
+     "at_sec": 8,
+     "what": "conclusion underlined"
+    }
+   ],
+   "params": [
+    "theorem",
+    "steps",
+    "chalk colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "geometry",
+     "math"
+    ],
+    "prompts_seen": 54,
+    "creators": 45
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p081",
+   "slug": "tide-and-moon-phases",
+   "name": "Tide and Moon Phases",
+   "category": "Science and education",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "1:1",
+   "concept": "The moon passes through its phases while a shoreline below rises and falls in step with it, each phase named.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "new moon, low tide"
+    },
+    {
+     "at_sec": 3,
+     "what": "phases advance, tide follows"
+    },
+    {
+     "at_sec": 7,
+     "what": "full moon, high tide, caption"
+    }
+   ],
+   "params": [
+    "caption",
+    "sky colours",
+    "phase names"
+   ],
+   "evidence": {
+    "keywords": [
+     "ocean",
+     "water",
+     "space"
+    ],
+    "prompts_seen": 135,
+    "creators": 98
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p082",
+   "slug": "retro-boot-sequence",
+   "name": "Retro Boot Sequence",
+   "category": "Games and retro",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A vintage computer boots with scrolling memory checks, a blinking prompt and the app's name printed in blocky letters.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "power on, memory check"
+    },
+    {
+     "at_sec": 2,
+     "what": "prompt blinks, command types"
+    },
+    {
+     "at_sec": 6,
+     "what": "app name prints"
+    }
+   ],
+   "params": [
+    "app name",
+    "boot lines",
+    "phosphor colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "terminal",
+     "retro",
+     "pixel"
+    ],
+    "prompts_seen": 56,
+    "creators": 55
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p083",
+   "slug": "arcade-attract-mode",
+   "name": "Arcade Attract Mode",
+   "category": "Games and retro",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "An arcade cabinet attract screen cycles a high-score table, flashing INSERT COIN and a character running along the bottom.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "title screen"
+    },
+    {
+     "at_sec": 3,
+     "what": "high-score table scrolls"
+    },
+    {
+     "at_sec": 7,
+     "what": "insert coin flashes, character runs"
+    }
+   ],
+   "params": [
+    "game name",
+    "5 scores",
+    "accent colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "arcade",
+     "game",
+     "retro"
+    ],
+    "prompts_seen": 129,
+    "creators": 118
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p084",
+   "slug": "chess-opening-replay",
+   "name": "Chess Opening Replay",
+   "category": "Games and retro",
+   "stack": [
+    "svg",
+    "gsap"
+   ],
+   "duration_sec": 12,
+   "aspect": "1:1",
+   "concept": "A chess board replays a short opening, each move leaves a trail and ends on a position with the idea written beside it.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "board set"
+    },
+    {
+     "at_sec": 4,
+     "what": "moves with trails"
+    },
+    {
+     "at_sec": 8,
+     "what": "final position with note"
+    }
+   ],
+   "params": [
+    "moves list",
+    "idea note",
+    "board colours"
+   ],
+   "evidence": {
+    "keywords": [
+     "game",
+     "geometry"
+    ],
+    "prompts_seen": 164,
+    "creators": 144
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p085",
+   "slug": "card-deal-fan",
+   "name": "Card Deal Fan",
+   "category": "Games and retro",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "16:9",
+   "concept": "A deck deals cards in an arc, they fan out and one flips to show the winning hand name.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "deck on the table"
+    },
+    {
+     "at_sec": 2,
+     "what": "cards deal in an arc"
+    },
+    {
+     "at_sec": 6,
+     "what": "one flips, hand name"
+    }
+   ],
+   "params": [
+    "hand name",
+    "card faces",
+    "table colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "card",
+     "game"
+    ],
+    "prompts_seen": 158,
+    "creators": 139
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p086",
+   "slug": "leaderboard-climb",
+   "name": "Leaderboard Climb",
+   "category": "Games and retro",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "A leaderboard reorders as scores update, one row climbs from last to first with a glow and a rank-change arrow.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "board in start order"
+    },
+    {
+     "at_sec": 3,
+     "what": "scores update, rows swap"
+    },
+    {
+     "at_sec": 7,
+     "what": "winner row glows"
+    }
+   ],
+   "params": [
+    "8 players with scores",
+    "climber name",
+    "accent colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "game",
+     "arcade",
+     "sports"
+    ],
+    "prompts_seen": 154,
+    "creators": 135
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p087",
+   "slug": "dice-probability-rolls",
+   "name": "Dice Probability Rolls",
+   "category": "Games and retro",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "Dice roll across a table, a histogram builds beside them and flattens into the bell curve that explains the odds.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "dice roll"
+    },
+    {
+     "at_sec": 4,
+     "what": "histogram builds"
+    },
+    {
+     "at_sec": 8,
+     "what": "curve overlay and caption"
+    }
+   ],
+   "params": [
+    "dice count",
+    "caption",
+    "bar colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "game",
+     "math",
+     "physics"
+    ],
+    "prompts_seen": 235,
+    "creators": 189
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p088",
+   "slug": "announcement-banner-burst",
+   "name": "Announcement Banner Burst",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 6,
+   "aspect": "1:1",
+   "concept": "A banner bursts in with confetti-like shapes, the announcement headline pops and a single call to action pulses.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "burst of shapes"
+    },
+    {
+     "at_sec": 2,
+     "what": "headline pops"
+    },
+    {
+     "at_sec": 4,
+     "what": "call to action pulses"
+    }
+   ],
+   "params": [
+    "headline",
+    "call to action",
+    "shape colours"
+   ],
+   "evidence": {
+    "keywords": [
+     "launch",
+     "release",
+     "promo"
+    ],
+    "prompts_seen": 152,
+    "creators": 135
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p089",
+   "slug": "event-countdown-invite",
+   "name": "Event Countdown Invite",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "A countdown ticks to an event, date, place and speaker names slide in on cards and the register button pulses.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "countdown starts"
+    },
+    {
+     "at_sec": 3,
+     "what": "cards slide in"
+    },
+    {
+     "at_sec": 7,
+     "what": "register pulses"
+    }
+   ],
+   "params": [
+    "event name",
+    "date and place",
+    "speakers"
+   ],
+   "evidence": {
+    "keywords": [
+     "event",
+     "promo",
+     "launch"
+    ],
+    "prompts_seen": 130,
+    "creators": 122
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p090",
+   "slug": "review-stars-cascade",
+   "name": "Review Stars Cascade",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "Five-star ratings cascade down the frame, one real quote lands on top and the average score counts up.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "stars cascade"
+    },
+    {
+     "at_sec": 2,
+     "what": "quote lands"
+    },
+    {
+     "at_sec": 6,
+     "what": "average counts up"
+    }
+   ],
+   "params": [
+    "quote",
+    "average score",
+    "customer name"
+   ],
+   "evidence": {
+    "keywords": [
+     "review",
+     "story",
+     "promo"
+    ],
+    "prompts_seen": 128,
+    "creators": 121
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p091",
+   "slug": "job-opening-poster",
+   "name": "Job Opening Poster",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "9:16",
+   "concept": "A bold poster animates the role title, three perks stamp in one by one and the apply link slides up.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "role title lands"
+    },
+    {
+     "at_sec": 2,
+     "what": "perks stamp in"
+    },
+    {
+     "at_sec": 6,
+     "what": "apply link slides up"
+    }
+   ],
+   "params": [
+    "role",
+    "3 perks",
+    "apply link"
+   ],
+   "evidence": {
+    "keywords": [
+     "promo",
+     "ad",
+     "title"
+    ],
+    "prompts_seen": 131,
+    "creators": 105
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p092",
+   "slug": "testimonial-wall-scroll",
+   "name": "Testimonial Wall Scroll",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 12,
+   "aspect": "16:9",
+   "concept": "A wall of short customer quotes scrolls in two directions, one quote stops and enlarges with the customer's name.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "two columns of quotes scroll"
+    },
+    {
+     "at_sec": 4,
+     "what": "one quote stops"
+    },
+    {
+     "at_sec": 8,
+     "what": "enlarges with name and logo"
+    }
+   ],
+   "params": [
+    "8 quotes",
+    "featured quote",
+    "customer name"
+   ],
+   "evidence": {
+    "keywords": [
+     "review",
+     "story",
+     "product"
+    ],
+    "prompts_seen": 245,
+    "creators": 211
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p093",
+   "slug": "newsletter-teaser-envelope",
+   "name": "Newsletter Teaser Envelope",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 8,
+   "aspect": "1:1",
+   "concept": "An envelope opens, issue cards pop out with headlines and slide into a stack, the subscribe line fades in.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "envelope closed"
+    },
+    {
+     "at_sec": 2,
+     "what": "opens, cards pop out"
+    },
+    {
+     "at_sec": 6,
+     "what": "stack and subscribe line"
+    }
+   ],
+   "params": [
+    "issue headlines",
+    "newsletter name",
+    "subscribe line"
+   ],
+   "evidence": {
+    "keywords": [
+     "promo",
+     "title",
+     "story"
+    ],
+    "prompts_seen": 172,
+    "creators": 141
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p094",
+   "slug": "poll-vote-duel",
+   "name": "Poll Vote Duel",
+   "category": "Social and marketing formats",
+   "stack": [
+    "css",
+    "gsap"
+   ],
+   "duration_sec": 10,
+   "aspect": "9:16",
+   "concept": "Two options duel as votes arrive, bars push against each other until one wins and a confetti of percentages marks the result.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "question and two options"
+    },
+    {
+     "at_sec": 3,
+     "what": "votes push the bars"
+    },
+    {
+     "at_sec": 7,
+     "what": "winner and percentage"
+    }
+   ],
+   "params": [
+    "question",
+    "two options",
+    "final split"
+   ],
+   "evidence": {
+    "keywords": [
+     "comparison",
+     "review"
+    ],
+    "prompts_seen": 93,
+    "creators": 57
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p095",
+   "slug": "aurora-sky-loop",
+   "name": "Aurora Sky Loop",
+   "category": "Ambient loops",
+   "stack": [
+    "shader"
+   ],
+   "duration_sec": 20,
+   "aspect": "16:9",
+   "concept": "Slow ribbons of aurora colour drift across a starfield in a seamless loop, with room for a title in the lower third.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "stars twinkle"
+    },
+    {
+     "at_sec": 6,
+     "what": "ribbons drift and fold"
+    },
+    {
+     "at_sec": 14,
+     "what": "loop returns to start"
+    }
+   ],
+   "params": [
+    "palette",
+    "title",
+    "star density"
+   ],
+   "evidence": {
+    "keywords": [
+     "space",
+     "shader",
+     "neon"
+    ],
+    "prompts_seen": 191,
+    "creators": 162
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p096",
+   "slug": "lava-lamp-blobs",
+   "name": "Lava Lamp Blobs",
+   "category": "Ambient loops",
+   "stack": [
+    "canvas",
+    "shader"
+   ],
+   "duration_sec": 20,
+   "aspect": "9:16",
+   "concept": "Warm blobs rise, merge and split in a tall glass shape in a seamless loop, soft light on the glass edges.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "blobs rest at the bottom"
+    },
+    {
+     "at_sec": 6,
+     "what": "rise, merge, split"
+    },
+    {
+     "at_sec": 14,
+     "what": "loop closes"
+    }
+   ],
+   "params": [
+    "colour pair",
+    "glass shape",
+    "speed"
+   ],
+   "evidence": {
+    "keywords": [
+     "glass",
+     "shader",
+     "fluid"
+    ],
+    "prompts_seen": 184,
+    "creators": 157
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p097",
+   "slug": "lofi-window-rain-room",
+   "name": "Lofi Window Rain Room",
+   "category": "Ambient loops",
+   "stack": [
+    "canvas",
+    "css"
+   ],
+   "duration_sec": 20,
+   "aspect": "16:9",
+   "concept": "A cosy room at night with a window, rain runs down the glass, a lamp flickers softly and a cup steams, in a seamless loop.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "room and lamp glow"
+    },
+    {
+     "at_sec": 6,
+     "what": "rain runs on the window"
+    },
+    {
+     "at_sec": 14,
+     "what": "steam curls, loop closes"
+    }
+   ],
+   "params": [
+    "room mood",
+    "lamp colour",
+    "time of day"
+   ],
+   "evidence": {
+    "keywords": [
+     "rain",
+     "city",
+     "coffee"
+    ],
+    "prompts_seen": 120,
+    "creators": 96
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p098",
+   "slug": "fireplace-ember-loop",
+   "name": "Fireplace Ember Loop",
+   "category": "Ambient loops",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 20,
+   "aspect": "16:9",
+   "concept": "Embers glow and fire licks upward in a stone hearth, sparks rise and fade, in a seamless loop.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "embers glow"
+    },
+    {
+     "at_sec": 6,
+     "what": "flames lick upward"
+    },
+    {
+     "at_sec": 14,
+     "what": "sparks rise, loop closes"
+    }
+   ],
+   "params": [
+    "flame colour",
+    "hearth style",
+    "spark density"
+   ],
+   "evidence": {
+    "keywords": [
+     "fire",
+     "particle",
+     "smoke"
+    ],
+    "prompts_seen": 88,
+    "creators": 73
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p099",
+   "slug": "ocean-line-waves",
+   "name": "Ocean Line Waves",
+   "category": "Ambient loops",
+   "stack": [
+    "svg",
+    "canvas"
+   ],
+   "duration_sec": 20,
+   "aspect": "16:9",
+   "concept": "Minimal line waves roll across the frame, layered in depth with a slow sun and a gull passing, in a seamless loop.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "horizon and sun"
+    },
+    {
+     "at_sec": 6,
+     "what": "line waves roll"
+    },
+    {
+     "at_sec": 14,
+     "what": "gull passes, loop closes"
+    }
+   ],
+   "params": [
+    "palette",
+    "wave height",
+    "time of day"
+   ],
+   "evidence": {
+    "keywords": [
+     "ocean",
+     "water",
+     "travel"
+    ],
+    "prompts_seen": 123,
+    "creators": 86
+   },
+   "status": "planned"
+  },
+  {
+   "id": "p100",
+   "slug": "snowfall-cabin-loop",
+   "name": "Snowfall Cabin Loop",
+   "category": "Ambient loops",
+   "stack": [
+    "canvas"
+   ],
+   "duration_sec": 20,
+   "aspect": "9:16",
+   "concept": "Snow falls softly past a cabin with a glowing window and a small chimney curl, in a seamless loop.",
+   "beats": [
+    {
+     "at_sec": 0,
+     "what": "cabin and window glow"
+    },
+    {
+     "at_sec": 6,
+     "what": "snow falls in layers"
+    },
+    {
+     "at_sec": 14,
+     "what": "smoke curls, loop closes"
+    }
+   ],
+   "params": [
+    "cabin colour",
+    "snow density",
+    "window colour"
+   ],
+   "evidence": {
+    "keywords": [
+     "snow",
+     "city",
+     "fantasy"
+    ],
+    "prompts_seen": 137,
+    "creators": 96
+   },
+   "status": "planned"
+  }
+ ]
+}
