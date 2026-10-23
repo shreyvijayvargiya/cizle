@@ -3,63 +3,63 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-	/* The well-kept board: bone ground, a tone step for tiles, chocolate ink, one green. Tiles are separated by tone, never by lines. */
-	--background: #e5e1d8;
-	--surface: #dad5ca;
-	--tile-2: #cfc8ba;
-	--foreground: #2a1d17;
-	--muted: #d3ccbf;
-	--muted-foreground: #4a3c33;
+	/* Sheet and biro: a white sheet, a pale grey step for tiles, black ink, one blue for the action. Tiles are separated by tone, never by lines. */
+	--background: #ffffff;
+	--surface: #f4f4f4;
+	--tile-2: #e8e8e8;
+	--foreground: #111111;
+	--muted: #ededed;
+	--muted-foreground: #595959;
 	--border: transparent;
-	--input: #a99f8f;
-	--primary: #2a1d17;
-	--primary-foreground: #f6f4f0;
-	--accent: #cfc8ba;
-	--accent-foreground: #2a1d17;
-	--ring: #456f3a;
-	--brand: #456f3a;
-	--brand-ink: #35582c;
-	--field-1: #456f3a;
+	--input: #c9c9c9;
+	--primary: #1a4be0;
+	--primary-foreground: #ffffff;
+	--accent: #e8e8e8;
+	--accent-foreground: #111111;
+	--ring: #1a4be0;
+	--brand: #1a4be0;
+	--brand-ink: #1238b0;
+	--field-1: #1a4be0;
 	--field-1-ink: #ffffff;
-	--field-2: #2a1d17;
-	--field-2-ink: #f6f4f0;
-	--field-3: #c9b58f;
-	--field-3-ink: #2a1d17;
-	--success: #2f6b2b;
+	--field-2: #111111;
+	--field-2-ink: #ffffff;
+	--field-3: #dcdcdc;
+	--field-3-ink: #111111;
+	--success: #1d6b3a;
 	--warning: #8a4b00;
-	--danger: #a32020;
-	--info: #1f4f8a;
+	--danger: #b3261e;
+	--info: #1a4be0;
 	--radius-tile: 8px;
 	--gap: 8px;
 	--margin: 16px;
 }
 
 .dark {
-	--background: #1a130f;
-	--surface: #261c16;
-	--tile-2: #32261e;
-	--foreground: #efe9dd;
-	--muted: #2d221b;
-	--muted-foreground: #b3a595;
+	--background: #0b0b0c;
+	--surface: #151516;
+	--tile-2: #212123;
+	--foreground: #f2f2f2;
+	--muted: #1b1b1d;
+	--muted-foreground: #a3a3a8;
 	--border: transparent;
-	--input: #5d4e42;
-	--primary: #efe9dd;
-	--primary-foreground: #1a130f;
-	--accent: #32261e;
-	--accent-foreground: #efe9dd;
-	--ring: #8fbd7d;
-	--brand: #8fbd7d;
-	--brand-ink: #8fbd7d;
-	--field-1: #8fbd7d;
-	--field-1-ink: #14200f;
-	--field-2: #efe9dd;
-	--field-2-ink: #1a130f;
-	--field-3: #6d5a3f;
-	--field-3-ink: #f4ecd9;
-	--success: #8fbd7d;
+	--input: #3b3b40;
+	--primary: #7c96ff;
+	--primary-foreground: #0b0b0c;
+	--accent: #212123;
+	--accent-foreground: #f2f2f2;
+	--ring: #7c96ff;
+	--brand: #8aa2ff;
+	--brand-ink: #8aa2ff;
+	--field-1: #7c96ff;
+	--field-1-ink: #0b0b0c;
+	--field-2: #f2f2f2;
+	--field-2-ink: #0b0b0c;
+	--field-3: #26262a;
+	--field-3-ink: #f2f2f2;
+	--success: #7ed49d;
 	--warning: #e0a44f;
 	--danger: #f08a80;
-	--info: #8db6e8;
+	--info: #8aa2ff;
 }
 
 @theme inline {
@@ -88,7 +88,8 @@
 	--color-warning: var(--warning);
 	--color-danger: var(--danger);
 	--color-info: var(--info);
-	--font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-sans: "Stack Sans Text", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+	--font-display: "Stack Sans Headline", "Stack Sans Text", ui-sans-serif, system-ui, sans-serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 	/* no text below 13px; body 17px */
 	--text-xs: 0.8125rem;
@@ -117,16 +118,16 @@ body {
 	line-height: 1.55;
 	-webkit-font-smoothing: antialiased;
 }
-h1, h2, h3 { font-weight: 600; letter-spacing: -0.035em; line-height: 1; text-wrap: balance; }
-.display { font-size: clamp(3.25rem, 11.5vw, 11.5rem); font-weight: 600; letter-spacing: -0.05em; line-height: 0.88; }
-.statement { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.022em; line-height: 1; text-wrap: balance; }
+.display { font-family: var(--font-display); font-size: clamp(3.25rem, 11.5vw, 11.5rem); font-weight: 300; letter-spacing: -0.04em; line-height: 0.92; }
+.statement { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; }
 .tile { background: var(--surface); border-radius: var(--radius-tile); }
 .tile-accent { background: var(--field-1); color: var(--field-1-ink); border-radius: var(--radius-tile); }
 .tile-ink { background: var(--field-2); color: var(--field-2-ink); border-radius: var(--radius-tile); }
 .tile-tan { background: var(--field-3); color: var(--field-3-ink); border-radius: var(--radius-tile); }
 .board { padding-inline: var(--margin); }
 .board-w { margin-inline: auto; width: 100%; max-width: 1600px; }
-@media (min-width: 640px) { .statement { font-size: 1.75rem; } }
+@media (min-width: 640px) { .statement { font-size: 1.625rem; } }
 .tabular { font-variant-numeric: tabular-nums; }
 
 .prose-cizle {
@@ -134,9 +135,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.035em; line-height: 1; text-wr
 	line-height: 1.6;
 	max-width: 68ch;
 }
-.prose-cizle h1 { font-size: 2rem; font-weight: 600; margin: 0 0 0.75rem; }
-.prose-cizle h2 { font-size: 1.5rem; font-weight: 600; margin: 2rem 0 0.6rem; }
-.prose-cizle h3 { font-size: 1.1875rem; font-weight: 600; margin: 1.4rem 0 0.4rem; letter-spacing: -0.02em; }
+.prose-cizle h1 { font-size: 2rem; font-weight: 400; margin: 0 0 0.75rem; }
+.prose-cizle h2 { font-size: 1.5rem; font-weight: 400; margin: 2rem 0 0.6rem; }
+.prose-cizle h3 { font-size: 1.1875rem; font-weight: 500; margin: 1.4rem 0 0.4rem; letter-spacing: -0.02em; }
 .prose-cizle p { margin: 0.7rem 0; }
 .prose-cizle ul, .prose-cizle ol { margin: 0.7rem 0; padding-left: 1.4rem; }
 .prose-cizle ul { list-style: disc; }

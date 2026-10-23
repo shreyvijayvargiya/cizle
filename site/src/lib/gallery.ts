@@ -55,7 +55,7 @@ export function usePromptText(item: GalleryItem | undefined, isPro: boolean) {
 		staleTime: 30 * 60_000,
 		queryFn: async (): Promise<string> => {
 			// Default: a small public file per prompt (soft gate, no Firebase read). VITE_GALLERY_TEXT=firestore: Firestore, subscribers only.
-			if (!DEV_UNLOCK && import.meta.env.VITE_GALLERY_TEXT !== "firestore") {
+			if (!DEV_UNLOCK && import.meta.env.VITE_GALLERY_TEXT === "public") {
 				const res = await fetch(`/gallery/text/${item!.id}.json`);
 				if (!res.ok) throw new Error("This prompt has not been published yet. Rebuild the site (npm run content).");
 				return (await res.json()).text;
@@ -81,9 +81,12 @@ export function useGalleryFuse(items: GalleryItem[] | undefined) {
 	);
 }
 
+/** Two spellings of one category (the harvest has productui and product-ui) count as one. */
+export const canonCategory = (c?: string | null) => (c === "productui" ? "product-ui" : c || "");
+
 export function filterGallery(items: GalleryItem[], fuse: Fuse<GalleryItem>, f: GalleryFilters) {
 	let list = f.q?.trim() ? fuse.search(f.q.trim()).map((r) => r.item) : [...items];
-	if (f.category) list = list.filter((g) => g.category === f.category);
+	if (f.category) list = list.filter((g) => canonCategory(g.category) === canonCategory(f.category));
 	if (f.access) list = list.filter((g) => g.tier === f.access);
 	if (!f.q?.trim()) {
 		if (f.sort === "az") list.sort((a, b) => a.title.localeCompare(b.title));

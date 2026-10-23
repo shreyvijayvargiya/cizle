@@ -9,28 +9,22 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { SITE_DIR } from "./skills-source.mjs";
-import { applyEnrichment } from "../../server/library/enrichment.js";
-import { LANG_NAME, assignTiers, capNearDuplicates, detectLang, junkReason, score } from "./gallery-quality.mjs";
+import { LANG_NAME } from "./gallery-quality.mjs";
 
 export const GALLERY_FILE = path.join(SITE_DIR, "content", "gallery.jsonl");
-export const TRANSLATIONS_FILE = path.join(SITE_DIR, "content", "gallery-translations.json"); // { "<entry id>": { title, text } }
-export const MEDIA_FILE = path.join(SITE_DIR, "content", "media-status.json"); // { "<url>": 200 | 404 | 0 ... } from npm run gallery:media
-export const REPORT_FILE = path.join(SITE_DIR, "content", "gallery-report.json");
+/**
+ * Premium prompts keep only a short opening in the committed gallery.jsonl (\`truncated: true\`, \`textLen\` = the real length). Their full text lives in
+ * private/site/content/gallery-premium-text.json ({ "<entry id>": "<text>" }), which is git-ignored and is only on the machine that seeds Firestore.
+ * A build without that file (Vercel, a fresh clone) shows previews only, which is all the public site ever needs.
+ */
+export const PRIVATE_DIR = path.resolve(SITE_DIR, "..", "private");
+export const PREMIUM_TEXT_FILE = path.join(PRIVATE_DIR, "site", "content", "gallery-premium-text.json");
 
-const clip = (s, n) => String(s ?? "").slice(0, n);
 const words = (s) => String(s ?? "").replace(/\s+/g, " ").trim();
 export const textKey = (s) => crypto.createHash("sha1").update(words(s).toLowerCase().slice(0, 500)).digest("hex").slice(0, 16);
 
 /** Doc id safe for URLs and Firestore: "x:2102853258582880547" → "x-2102853258582880547". */
 export const galleryId = (id) => String(id).replace(/[^A-Za-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
-
-export function titleFrom(rec) {
-	const t = words(rec.title);
-	if (t && !/^untitled$/i.test(t)) return clip(t, 90);
-	const first = words(rec.prompt?.text).replace(/^<[^>]+>\s*/, "").split(/(?<=[.!?])\s/)[0];
-	const cut = first.length > 70 ? `${first.slice(0, 67).replace(/\s+\S*$/, "")}…` : first;
-	return cut || "Video prompt";
-}
 
 /** Prompt preview that never cuts a word: used on cards and in public pages. */
 export function previewOf(text, n = 220) {
@@ -39,139 +33,28 @@ export function previewOf(text, n = 220) {
 	return `${t.slice(0, n).replace(/\s+\S*$/, "")}…`;
 }
 
-/** A harvester record → the compact gallery shape. Returns null when it has no usable prompt. */
-export function fromHarvest(rec) {
-	const text = String(rec?.prompt?.text ?? "").trim();
-	if (text.length < 20) return null;
-	return {
-		id: rec.id,
-		title: titleFrom(rec),
-		author: { handle: rec.author?.handle || null, name: rec.author?.name || null, url: rec.author?.url || null },
-		category: rec.category || null,
-		tags: [...new Set(rec.tags || [])].slice(0, 8),
-		model: rec.model_claim || null,
-		text,
-		partial: rec.prompt?.status === "partial",
-		postUrl: rec.post_url || null,
-		sourceUrl: rec.source_ref?.url || null,
-		poster: rec.media?.poster_url || null,
-		video: rec.media?.video_urls?.[0] || null,
-		sources: [rec.source],
-		added: rec.extra?.added || rec.extra?.posted || null,
-	};
+
+let overlay;
+function premiumText() {
+	if (overlay === undefined) overlay = fs.existsSync(PREMIUM_TEXT_FILE) ? JSON.parse(fs.readFileSync(PREMIUM_TEXT_FILE, "utf8")) : null;
+	return overlay;
 }
+export const hasFullPremiumText = () => Boolean(premiumText());
 
-/** Merge two entries for the same prompt: keep the fuller text, the union of tags and sources, any media. */
-export function mergeEntries(a, b) {
-	const best = (b.text.length > a.text.length && !b.partial) || (a.partial && !b.partial) ? b : a;
-	const other = best === a ? b : a;
-	return {
-		...best,
-		title: best.title.startsWith("Video prompt") ? other.title : best.title,
-		author: { handle: best.author.handle || other.author.handle, name: best.author.name || other.author.name, url: best.author.url || other.author.url },
-		category: best.category || other.category,
-		tags: [...new Set([...best.tags, ...other.tags])].slice(0, 8),
-		model: best.model || other.model,
-		postUrl: best.postUrl || other.postUrl,
-		sourceUrl: best.sourceUrl || other.sourceUrl,
-		poster: best.poster || other.poster,
-		video: best.video || other.video,
-		sources: [...new Set([...best.sources, ...other.sources])],
-		added: best.added || other.added,
-	};
-}
-
-/** Merge records from many sources: same X post id, or the same prompt text, is one entry. */
-export function mergeRecords(records) {
-	const byId = new Map();
-	const byText = new Map();
-	for (const r of records) {
-		const e = fromHarvest(r);
-		if (!e) continue;
-		const tk = textKey(e.text);
-		const key = byId.has(e.id) ? e.id : byText.get(tk);
-		if (key) {
-			const merged = mergeEntries(byId.get(key), e);
-			byId.set(key, merged);
-		} else {
-			byId.set(e.id, e);
-			byText.set(tk, e.id);
-		}
-	}
-	return [...byId.values()].sort((a, b) => String(b.added || "").localeCompare(String(a.added || "")) || a.id.localeCompare(b.id));
-}
-
-/**
- * The quality pass: apply enrichment (found videos and complete prompts), translate or drop non-English prompts, remove dead media, drop junk and near-duplicates, score, pick the free samples.
- * An entry without a working demo video is not shown: it waits in `pending` and is promoted as soon as enrichment finds a video.
- * @returns {{ kept: object[], pending: object[], dropped: { id: string, reason: string }[], needTranslation: object[] }}
- */
-export function curate(entries, { translations = {}, media = null, enrichment = {} } = {}) {
-	const dropped = [];
-	const pending = [];
-	const needTranslation = [];
-	const out = [];
-	const dead = (u) => media && u && media[u] !== undefined && !(media[u] >= 200 && media[u] < 400);
-	for (const raw of entries) {
-		const enriched = applyEnrichment(raw, enrichment[raw.id]);
-		const e = { ...enriched, lang: detectLang(enriched.text) };
-		if (e.lang !== "en") {
-			const t = translations[e.id];
-			if (!t?.text) {
-				needTranslation.push({ id: e.id, lang: e.lang, title: e.title, text: e.text });
-				dropped.push({ id: e.id, reason: `not English (${LANG_NAME[e.lang]}), no translation yet` });
-				continue;
-			}
-			e.translatedFrom = e.lang;
-			e.title = clip(words(t.title) || titleFrom({ prompt: { text: t.text } }), 90);
-			e.text = String(t.text).trim();
-			e.lang = "en";
-		}
-		if (detectLang(e.title) !== "en") e.title = titleFrom({ prompt: { text: e.text } }); // a foreign title from one source, English text from another
-		if (dead(e.video)) e.video = null;
-		if (dead(e.poster)) e.poster = null;
-		const junk = junkReason(e);
-		if (junk) {
-			dropped.push({ id: e.id, reason: junk });
-			continue;
-		}
-		if (!e.video) {
-			const { score: _s, tier: _t, dropped: _d, ...rest } = e;
-			pending.push({ ...rest, pending: true, videoState: enrichment[e.id]?.video_state || "not_visited" });
-			continue;
-		}
-		e.score = score(e);
-		out.push(e);
-	}
-	const kept = capNearDuplicates(out);
-	for (const e of out) if (e.dropped) dropped.push({ id: e.id, reason: e.dropped });
-	assignTiers(kept);
-	kept.sort((a, b) => String(b.added || "").localeCompare(String(a.added || "")) || a.id.localeCompare(b.id));
-	return { kept, pending, dropped, needTranslation };
-}
-
-/** Status of one media url: the HTTP status, 415 for a 2xx that is not media (an HTML error page), 0 for DNS, timeout or reset. */
-export async function checkUrl(url, fetchFn = fetch) {
-	try {
-		const res = await fetchFn(url, { headers: { range: "bytes=0-1023", "user-agent": "Mozilla/5.0 (compatible; cizle-media-check)" }, signal: AbortSignal.timeout(20_000), redirect: "follow" });
-		await res.body?.cancel().catch(() => {});
-		const type = res.headers.get("content-type") || "";
-		if (res.status >= 200 && res.status < 400 && !/^(image|video)\//.test(type) && !/octet-stream/.test(type)) return 415; // an HTML error page
-		return res.status;
-	} catch {
-		return 0; // DNS, timeout, reset
-	}
-}
-
-
+/** Every entry. Premium text is the full text when the private file is present, otherwise the short opening that is committed. */
 export function loadGallery(file = GALLERY_FILE) {
 	if (!fs.existsSync(file)) return [];
+	const full = file === GALLERY_FILE ? premiumText() : null;
 	return fs
 		.readFileSync(file, "utf8")
 		.split("\n")
 		.filter(Boolean)
 		.map((l) => JSON.parse(l))
-		.map((e) => ({ ...e, gid: galleryId(e.id), tier: e.tier === "free" ? "free" : "premium" }));
+		.map((e) => {
+			const tier = e.tier === "free" ? "free" : "premium";
+			const text = tier === "premium" && full?.[e.id] ? full[e.id] : e.text;
+			return { ...e, text, truncated: tier === "premium" && !full?.[e.id] && e.truncated ? true : undefined, gid: galleryId(e.id), tier };
+		});
 }
 
 /** SEO path segment for one prompt: readable title words plus a short id tail, e.g. engraving-style-claude-ad-0227823. The tail alone identifies it, so a reworded title keeps resolving. */
@@ -197,7 +80,7 @@ export function publicItem(e) {
 		model: e.model,
 		tier: e.tier,
 		preview: previewOf(e.text, free ? 320 : 200),
-		chars: e.text.length,
+		chars: e.textLen ?? e.text.length,
 		text: free ? e.text : undefined,
 		partial: e.partial || undefined,
 		translatedFrom: e.translatedFrom ? LANG_NAME[e.translatedFrom] || e.translatedFrom : undefined,

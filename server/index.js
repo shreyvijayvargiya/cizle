@@ -27,8 +27,6 @@ const { syncProduct, ideaVocab } = await import("./products/sync.js");
 const { reviewDraft } = await import("./review/index.js");
 const { logChat } = await import("./review/chatlog.js");
 const reverse = await import("./reverse/index.js");
-const harvest = await import("./harvest/engine.js");
-const enrich = await import("./enrich/engine.js");
 const browser = await import("./browser.js");
 const { scrape } = await import("./scrape.js");
 
@@ -75,99 +73,6 @@ api.put("/prompts/:id", async (c) => {
 	return c.json(await savePrompt({ ...body, id: c.req.param("id") }));
 });
 api.delete("/prompts/:id", async (c) => ((await deletePrompt(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Only custom prompts can be deleted" }, 400)));
-
-/*
- * harvest: the ONE endpoint of the prompt harvester. POST /api/harvest with { action }:
- *   "run"    (default) start or resume a run and stream progress as NDJSON; the run keeps going if the client disconnects
- *   "status" JSON: graph order, per-source status and counts, pointer, who holds the lock
- *   "stop"   finish the current batch, save, and stop
- * "run" also takes { sources: ["G01","G02"], parallel: 1-3, limit, batch_size, batch_pause_ms, source_pause_ms, retry, fresh, refresh,
- *   enrich (look up each new prompt's video and full prompt as its source finishes), import (update the prompt library), enrich_parallel: 1-10 }.
- * The CLI (npm run harvest) drives the same engine; only one of them can run at a time.
- */
-api.post("/harvest", async (c) => {
-	const b = await c.req.json().catch(() => ({}));
-	const action = b.action || "run";
-	if (action === "status") return c.json(await harvest.snapshot());
-	if (action === "stop") return c.json({ ok: harvest.stopManaged() });
-	if (action !== "run") return c.json({ error: `Unknown action "${action}". Use run, status or stop.` }, 400);
-	const sources = (Array.isArray(b.sources) ? b.sources : String(b.sources || "").split(",")).map((s) => String(s).trim()).filter(Boolean);
-	let run;
-	try {
-		run = await harvest.startManaged({ sources, parallel: b.parallel, limit: b.limit, batchSize: b.batch_size, batchPauseMs: b.batch_pause_ms, sourcePauseMs: b.source_pause_ms, retry: Boolean(b.retry), fresh: Boolean(b.fresh), refresh: Boolean(b.refresh), enrich: b.enrich ?? !process.env.HARVEST_DIR, import: b.import ?? !process.env.HARVEST_DIR, enrichParallel: b.enrich_parallel, xBrowser: Boolean(b.x_browser) });
-	} catch (e) {
-		if (e.code === "RUNNING" || e.code === "LOCKED") return c.json({ error: e.message, code: e.code, status: await harvest.snapshot().catch(() => null) }, 409);
-		throw e;
-	}
-	const enc = new TextEncoder();
-	let off = () => {};
-	const stream = new ReadableStream({
-		start(controller) {
-			const send = (e) => controller.enqueue(enc.encode(`${JSON.stringify(e)}\n`));
-			const close = () => {
-				off();
-				try {
-					controller.close();
-				} catch {
-					/* already closed */
-				}
-			};
-			for (const e of run.backlog) send(e);
-			off = run.subscribe((e) => (e === null ? close() : send(e)));
-			c.req.raw.signal.addEventListener("abort", close, { once: true }); // the run itself continues
-		},
-		cancel() {
-			off();
-		},
-	});
-	return new Response(stream, { headers: { "content-type": "application/x-ndjson; charset=utf-8", "cache-control": "no-cache" } });
-});
-
-/*
- * enrich: the ONE endpoint of the prompt-library enricher. POST /api/enrich with { action }:
- *   "run"    (default) visit the original source of each prompt (X embed endpoint, source page in Chrome) and fill in the video,
- *            poster and complete prompt; streams progress as NDJSON and keeps going if the client disconnects
- *   "status" JSON: library totals, enrichment counts, the library's update state, who holds the lock
- *   "stop"   finish the current batch, save, and stop
- * "run" takes { parallel: 1-10 (default 5), limit, ids, from, batch_pause_ms, loop, rest_min, max_passes, again, retry, force, x_browser, stale_days }.
- * The CLI (npm run enrich) drives the same engine; only one of them can run at a time.
- */
-api.post("/enrich", async (c) => {
-	const b = await c.req.json().catch(() => ({}));
-	const action = b.action || "run";
-	if (action === "status") return c.json(await enrich.snapshot());
-	if (action === "stop") return c.json({ ok: enrich.stopManaged() });
-	if (action !== "run") return c.json({ error: `Unknown action "${action}". Use run, status or stop.` }, 400);
-	let run;
-	try {
-		run = await enrich.startManaged({ sources: Array.isArray(b.sources) ? b.sources : [], noYtdlp: Boolean(b.no_ytdlp), parallel: b.parallel, limit: b.limit, ids: Array.isArray(b.ids) ? b.ids : [], from: b.from, batchPauseMs: b.batch_pause_ms, loop: Boolean(b.loop), restMs: b.rest_min != null ? Number(b.rest_min) * 60_000 : undefined, maxPasses: b.max_passes, again: Boolean(b.again), retry: Boolean(b.retry), force: Boolean(b.force), xBrowser: Boolean(b.x_browser), import: b.import !== false, staleDays: b.stale_days, noBrowser: Boolean(b.no_browser) });
-	} catch (e) {
-		if (e.code === "RUNNING" || e.code === "LOCKED") return c.json({ error: e.message, code: e.code, status: await enrich.snapshot().catch(() => null) }, 409);
-		throw e;
-	}
-	const enc = new TextEncoder();
-	let off = () => {};
-	const stream = new ReadableStream({
-		start(controller) {
-			const send = (e) => controller.enqueue(enc.encode(`${JSON.stringify(e)}\n`));
-			const close = () => {
-				off();
-				try {
-					controller.close();
-				} catch {
-					/* already closed */
-				}
-			};
-			for (const e of run.backlog) send(e);
-			off = run.subscribe((e) => (e === null ? close() : send(e)));
-			c.req.raw.signal.addEventListener("abort", close, { once: true }); // the run itself continues
-		},
-		cancel() {
-			off();
-		},
-	});
-	return new Response(stream, { headers: { "content-type": "application/x-ndjson; charset=utf-8", "cache-control": "no-cache" } });
-});
 
 /* reverse-engineer a video into per-scene image, video and audio prompts */
 api.get("/reverse", async (c) => c.json({ items: await reverse.listReverse(), max_seconds: reverse.MAX_VIDEO_SEC, max_mb: reverse.MAX_VIDEO_BYTES / 1024 / 1024 }));
@@ -405,6 +310,14 @@ api.get("/files/:id", (c) => {
 	const type = TYPES[path.extname(file).toLowerCase()] || "application/octet-stream";
 	return serveFile(c, file, type, c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {});
 });
+
+/* local-only tooling (harvester and enricher API): present only on the machine that collects the library, never in the public repository */
+try {
+	const { mountTools } = await import("./tools.js");
+	await mountTools(api);
+} catch (e) {
+	if (e.code !== "ERR_MODULE_NOT_FOUND") console.warn(`[cizle] tools not mounted: ${e.message}`);
+}
 
 app.route("/api", api);
 

@@ -16,3 +16,27 @@ harvest/logs/
 site/logs/
 .taste-skill/
 free-export/
+
+# Premium and local-only tooling: never committed. The premium text lives in private/ (see site/scripts/private-split.mjs); the harvester, enrich
+# and curation tools stay on the machine that collects the library.
+/private/
+/server/harvest/
+/server/enrich/
+/server/library/
+/server/tools.js
+/harvest/
+/tests/harvest/
+/tests/enrich/
+/docs/research/
+/site/scripts/import-harvest.mjs
+/site/scripts/check-media.mjs
+/site/scripts/translate-gallery.mjs
+/site/scripts/gallery-curate.mjs
+/site/tests/gallery.test.mjs
+/site/content/gallery-pending.jsonl
+/site/content/gallery-enrichment.json
+/site/content/gallery-translations.json
+/site/content/gallery-report.json
+/site/content/media-status.json
+/site/content/library-state.json
+/site/content/library-changelog.jsonl

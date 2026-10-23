@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
-import { Cancel01Icon, LockIcon, Search01Icon } from "@hugeicons/core-free-icons";
+import { Cancel01Icon, FilterHorizontalIcon, LockIcon, Search01Icon, SortByDown01Icon, Layers01Icon } from "@hugeicons/core-free-icons";
+import { CategoryChips, categoryLabel } from "@/components/CategoryChips";
 import { Icon } from "@/components/Icon";
 import { PromptCard } from "@/components/PromptCard";
 import { PromptDialog } from "@/components/PromptDialog";
@@ -11,7 +12,7 @@ import { Skeleton } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
-import { filterGallery, findPrompt, useGallery, useGalleryFuse, type GalleryFilters } from "@/lib/gallery";
+import { canonCategory, filterGallery, findPrompt, useGallery, useGalleryFuse, type GalleryFilters } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
 
 const PAGE = 48;
@@ -58,7 +59,13 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 		path: "/gallery",
 	});
 
-	const categories = (gallery.data?.categories || []).slice(0, 24);
+	const allCategories = useMemo(() => [...new Set((gallery.data?.categories || []).map(canonCategory))], [gallery.data?.categories]);
+	const categories = allCategories;
+	const counts = useMemo(() => {
+		const m: Record<string, number> = {};
+		for (const g of items || []) if (g.category) m[canonCategory(g.category)] = (m[canonCategory(g.category)] || 0) + 1;
+		return m;
+	}, [items]);
 
 	return (
 		<div className="board pt-6 pb-4">
@@ -78,9 +85,9 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
 							<Input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
 						</div>
-						<OptionSelect aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: c }))} className="w-[12.5rem]" />
-						<OptionSelect aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples" }, { value: "premium", label: "Premium" }]} className="w-[12rem]" />
-						<OptionSelect aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Newest" options={[{ value: "az", label: "A to Z" }, { value: "long", label: "Longest first" }]} className="w-[12rem]" />
+						<OptionSelect icon={Layers01Icon} aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: categoryLabel(c) }))} className="w-[12.5rem]" />
+						<OptionSelect icon={LockIcon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples" }, { value: "premium", label: "Premium" }]} className="w-[12rem]" />
+						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Newest" options={[{ value: "az", label: "A to Z" }, { value: "long", label: "Longest first" }]} className="w-[12rem]" />
 						{active ? (
 							<Button type="button" variant="secondary" onClick={() => (setQ(""), setShown(PAGE), navigate({ to: "/gallery", search: {}, replace: true }))}>
 								<Icon icon={Cancel01Icon} size={15} /> Clear
@@ -89,6 +96,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 						<VideoToggle />
 					</form>
 				</div>
+				{gallery.data ? <CategoryChips categories={allCategories} counts={counts} value={search.category || ""} onChange={(c) => setFilter({ category: c || undefined })} total={total} /> : null}
 
 				<p className="px-1 py-3 text-lg" aria-live="polite">
 					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? "prompt" : "prompts"}${active ? ` of ${total.toLocaleString()}` : ""}. `}

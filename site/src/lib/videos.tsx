@@ -16,12 +16,13 @@ export const useVideoPlayback = () => useContext(VideoCtx);
 type Entry = { el: HTMLVideoElement; priority: boolean };
 const visible = new Map<HTMLVideoElement, Entry>();
 let playingAll = true;
+let suspended = 0; // >0 while a dialog is open: the cards behind it stop loading and playing so the dialog's own video gets the connection
 
 function rebalance() {
 	const mid = window.innerHeight / 2;
 	const list = [...visible.values()].sort((a, b) => Number(b.priority) - Number(a.priority) || Math.abs(center(a.el) - mid) - Math.abs(center(b.el) - mid));
 	list.forEach((e, i) => {
-		if (playingAll && i < MAX_PLAYING) e.el.play().catch(() => {});
+		if (playingAll && !suspended && i < MAX_PLAYING) e.el.play().catch(() => {});
 		else e.el.pause();
 	});
 }
@@ -29,6 +30,19 @@ const center = (el: HTMLElement) => {
 	const r = el.getBoundingClientRect();
 	return r.top + r.height / 2;
 };
+
+/** While `active`, every card video pauses and stops asking for data. The prompt dialog uses it, so its player is not starved by 48 cards behind it. */
+export function useSuspendVideos(active: boolean) {
+	useEffect(() => {
+		if (!active) return;
+		suspended++;
+		rebalance();
+		return () => {
+			suspended--;
+			rebalance();
+		};
+	}, [active]);
+}
 
 export function VideoProvider({ children }: { children: ReactNode }) {
 	const [playing, setPlaying] = useState(() => {
@@ -63,34 +77,58 @@ export function VideoProvider({ children }: { children: ReactNode }) {
 	return <VideoCtx.Provider value={value}>{children}</VideoCtx.Provider>;
 }
 
-/** A muted looping demo that plays while it is on screen (and playback is on). `priority` videos (the first screen) always win a slot. */
+/**
+ * A muted looping demo that plays while it is on screen (and playback is on). `priority` videos (the first screen) always win a slot.
+ * The file is only requested once the card is near the screen (a page of 48 cards must not open 48 connections), a failed or stalled load is
+ * retried once before giving up, and on giving up the poster behind it stays (nothing is hidden for good because of one slow response).
+ */
 export function AutoVideo({ src, poster, className, priority = false, onFail, ...rest }: { src: string; poster?: string | null; className?: string; priority?: boolean; onFail?: () => void } & Omit<VideoHTMLAttributes<HTMLVideoElement>, "src" | "poster">) {
 	const ref = useRef<HTMLVideoElement>(null);
+	const [armed, setArmed] = useState(priority);
 	const [bad, setBad] = useState(false);
-	const fail = useCallback(() => (setBad(true), onFail?.()), [onFail]);
+	const tries = useRef(0);
+	const failRef = useRef(onFail);
+	failRef.current = onFail;
+
+	const giveUp = useCallback(() => (setBad(true), failRef.current?.()), []);
+	const retryOrGiveUp = useCallback(() => {
+		const el = ref.current;
+		if (!el || tries.current >= 1) return giveUp();
+		tries.current++;
+		window.setTimeout(() => el.isConnected && el.load(), 1200);
+	}, [giveUp]);
+
 	useEffect(() => {
+		tries.current = 0;
 		setBad(false);
-		const el = ref.current;
-		if (!el) return;
-		// a file that never starts loading (dead link, blocked host) falls back to the poster
-		const dead = window.setTimeout(() => el.readyState === 0 && fail(), 12000);
-		el.addEventListener("loadeddata", () => clearTimeout(dead), { once: true });
-		return () => clearTimeout(dead);
-	}, [src, fail]);
+	}, [src]);
+
 	useEffect(() => {
 		const el = ref.current;
-		if (!el || typeof IntersectionObserver === "undefined") return;
+		if (!el || typeof IntersectionObserver === "undefined") return setArmed(true);
 		const io = new IntersectionObserver(
 			([e]) => {
-				if (e.isIntersecting) visible.set(el, { el, priority });
-				else (visible.delete(el), el.pause());
+				if (e.isIntersecting) {
+					if (!suspended) setArmed(true);
+					visible.set(el, { el, priority });
+				} else (visible.delete(el), el.pause());
 				rebalance();
 			},
-			{ threshold: 0.35 },
+			{ threshold: 0.35, rootMargin: "200px 0px" },
 		);
 		io.observe(el);
 		return () => (io.disconnect(), visible.delete(el), rebalance());
 	}, [src, priority]);
+
+	// a request that never answers: look again after a while, then stop
+	useEffect(() => {
+		const el = ref.current;
+		if (!armed || !el) return;
+		const t = window.setTimeout(() => el.readyState < 2 && el.networkState !== 2 && retryOrGiveUp(), 20000);
+		el.addEventListener("loadeddata", () => clearTimeout(t), { once: true });
+		return () => clearTimeout(t);
+	}, [armed, src, retryOrGiveUp]);
+
 	if (bad) return null;
-	return <video ref={ref} src={src} poster={poster || undefined} muted loop playsInline preload="metadata" onError={fail} className={cn("bg-black", className)} {...rest} />;
+	return <video ref={ref} src={armed ? src : undefined} poster={poster || undefined} muted loop playsInline preload="metadata" onError={retryOrGiveUp} className={cn("bg-black", className)} {...rest} />;
 }

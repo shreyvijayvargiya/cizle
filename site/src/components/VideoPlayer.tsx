@@ -7,6 +7,8 @@ const clock = (s: number) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${Stri
 /** Our own player: play/pause bottom left, the whole timeline across the middle, volume at the end. Starts muted and loops, like every other video here. */
 export function VideoPlayer({ src, poster, label, onFail }: { src: string; poster?: string | null; label: string; onFail?: () => void }) {
 	const ref = useRef<HTMLVideoElement>(null);
+	const tries = useRef(0);
+	const [loading, setLoading] = useState(true);
 	const [playing, setPlaying] = useState(false);
 	const [muted, setMuted] = useState(true);
 	const [time, setTime] = useState(0);
@@ -15,12 +17,34 @@ export function VideoPlayer({ src, poster, label, onFail }: { src: string; poste
 	useEffect(() => {
 		const v = ref.current;
 		if (!v) return;
+		tries.current = 0;
+		setLoading(true);
 		const sync = () => (setTime(v.currentTime), setDur(v.duration || 0), setPlaying(!v.paused));
+		const ready = () => setLoading(false);
 		const evs = ["timeupdate", "loadedmetadata", "play", "pause", "durationchange"] as const;
 		evs.forEach((e) => v.addEventListener(e, sync));
+		["loadeddata", "canplay", "playing"].forEach((e) => v.addEventListener(e, ready));
+		v.addEventListener("waiting", () => setLoading(true));
 		v.play().catch(() => setPlaying(false));
-		return () => evs.forEach((e) => v.removeEventListener(e, sync));
+		// nothing arrived after a while: try once more, then hand over to the fallback (the post's own player)
+		const watch = window.setTimeout(() => v.readyState < 2 && retry(), 9000);
+		return () => (clearTimeout(watch), evs.forEach((e) => v.removeEventListener(e, sync)), ["loadeddata", "canplay", "playing"].forEach((e) => v.removeEventListener(e, ready)));
 	}, [src]);
+
+	/** A failed or stalled load: reload once (a dropped connection is common), then give up so the caller can show the fallback. */
+	const retry = useCallback(() => {
+		const v = ref.current;
+		if (!v || tries.current >= 1) return onFail?.();
+		tries.current++;
+		setLoading(true);
+		v.load();
+		v.play().catch(() => {});
+	}, [onFail]);
+
+	// React sets `muted` only when the element is created, so keep the property in step with the button
+	useEffect(() => {
+		if (ref.current) ref.current.muted = muted;
+	}, [muted]);
 
 	const toggle = useCallback(() => {
 		const v = ref.current;
@@ -34,7 +58,8 @@ export function VideoPlayer({ src, poster, label, onFail }: { src: string; poste
 
 	return (
 		<div className="group relative flex max-h-full max-w-full overflow-hidden rounded-xl bg-black">
-			<video ref={ref} key={src} src={src} poster={poster || undefined} muted={muted} loop playsInline autoPlay preload="auto" aria-label={label} onClick={toggle} onError={onFail} className="block max-h-full max-w-full min-h-[min(60dvh,420px)] min-w-[min(60vw,300px)] cursor-pointer object-contain" />
+			<video ref={ref} key={src} src={src} poster={poster || undefined} muted={muted} loop playsInline autoPlay preload="auto" aria-label={label} onClick={toggle} onError={retry} className="block max-h-full max-w-full min-h-[min(60dvh,420px)] min-w-[min(60vw,300px)] cursor-pointer object-contain" />
+			{loading ? <span role="status" className="pointer-events-none absolute inset-0 grid place-items-center text-sm text-white/80">Loading video…</span> : null}
 			<div className="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-gradient-to-t from-black/70 to-transparent px-4 pt-10 pb-3 text-white">
 				<button type="button" onClick={toggle} aria-label={playing ? "Pause" : "Play"} className="grid size-8 shrink-0 place-items-center rounded-full outline-none hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white">
 					<Icon icon={playing ? PauseIcon : PlayIcon} size={18} />
