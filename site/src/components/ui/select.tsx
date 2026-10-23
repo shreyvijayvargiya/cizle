@@ -16,7 +16,7 @@ export function SelectTrigger({ className, children, ...p }: React.ComponentProp
 			)}
 			{...p}
 		>
-			<span className="min-w-0 truncate">{children}</span>
+			<span className="flex min-w-0 items-center gap-2 truncate">{children}</span>
 			<S.Icon asChild>
 				<Icon icon={ArrowDown01Icon} size={14} className="text-muted-foreground" />
 			</S.Icon>
@@ -66,7 +66,9 @@ export function OptionSelect({
 	size,
 	"aria-label": ariaLabel,
 	id,
+	icon,
 }: {
+	icon?: import("@hugeicons/react").IconSvgElement;
 	value: string;
 	onValueChange: (v: string) => void;
 	options: { value: string; label: React.ReactNode }[];
@@ -82,6 +84,7 @@ export function OptionSelect({
 	return (
 		<Select value={value === "" && emptyLabel ? EMPTY : value} onValueChange={(v) => onValueChange(v === EMPTY ? "" : v)}>
 			<SelectTrigger id={id} aria-label={ariaLabel} data-size={size} className={className}>
+				{icon ? <Icon icon={icon} size={16} className="text-muted-foreground" /> : null}
 				<SelectValue />
 			</SelectTrigger>
 			<SelectContent>

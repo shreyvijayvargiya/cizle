@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { useAuth } from "@/lib/auth";
+import { useSuspendVideos } from "@/lib/videos";
 import { fromLabel } from "@/lib/billing";
 import { SITE } from "@/lib/config";
 import { usePromptText, type GalleryFilters, type GalleryItem } from "@/lib/gallery";
@@ -31,6 +32,8 @@ export function PromptDialog({ item, search, list = [] }: { item: GalleryItem; s
 	const [videoBad, setVideoBad] = useState(false);
 	const [posterBad, setPosterBad] = useState(false);
 	const [expanded, setExpanded] = useState(false);
+	useSuspendVideos(true);
+	const tweetId = /^x-(\d+)$/.exec(item.id)?.[1] || /status\/(\d+)/.exec(item.postUrl || "")?.[1] || null;
 	const locked = !text && !isPro;
 	const at = list.findIndex((g) => g.id === item.id);
 	const prev = at > 0 ? list[at - 1] : undefined;
@@ -70,12 +73,20 @@ export function PromptDialog({ item, search, list = [] }: { item: GalleryItem; s
 					<div className="relative flex h-[62dvh] w-full shrink-0 items-center justify-center bg-surface p-4 md:h-auto md:min-w-0 md:flex-1 md:p-8">
 						{item.video && !videoBad ? (
 							<VideoPlayer src={item.video} poster={item.poster} label={`Video: ${item.title}`} onFail={() => setVideoBad(true)} />
+						) : tweetId && !posterBad ? (
+							// the file would not play here: show the post's own player instead (it streams the video the way X does)
+							<iframe title={`Post by ${by}`} src={`https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&dnt=true&hideThread=true&theme=dark`} sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerPolicy="no-referrer" loading="lazy" className="h-full w-full max-w-[560px] rounded-xl border-0 bg-surface" onError={() => setPosterBad(true)} />
 						) : item.poster && !posterBad ? (
 							<img src={item.poster} alt="" referrerPolicy="no-referrer" onError={() => setPosterBad(true)} className="max-h-full max-w-full rounded-xl object-contain" />
 						) : (
 							<p className="max-w-xs text-center text-lg text-muted-foreground">No video here yet. Use View post to watch the original.</p>
 						)}
-						{item.video && videoBad ? <p className="absolute inset-x-6 bottom-4 text-center text-sm text-muted-foreground">The video did not load here. Use View post to watch it.</p> : null}
+						{item.video && videoBad ? (
+							<p className="absolute inset-x-6 bottom-3 flex items-center justify-center gap-3 text-center text-sm text-muted-foreground">
+								The file would not play here.
+								<button type="button" onClick={() => setVideoBad(false)} className="underline underline-offset-2">Try again</button>
+							</p>
+						) : null}
 					</div>
 
 					<div className="flex w-full min-w-0 shrink-0 flex-col p-6 md:w-[400px] md:overflow-y-auto md:p-7">

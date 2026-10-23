@@ -81,9 +81,12 @@ export function useGalleryFuse(items: GalleryItem[] | undefined) {
 	);
 }
 
+/** Two spellings of one category (the harvest has productui and product-ui) count as one. */
+export const canonCategory = (c?: string | null) => (c === "productui" ? "product-ui" : c || "");
+
 export function filterGallery(items: GalleryItem[], fuse: Fuse<GalleryItem>, f: GalleryFilters) {
 	let list = f.q?.trim() ? fuse.search(f.q.trim()).map((r) => r.item) : [...items];
-	if (f.category) list = list.filter((g) => g.category === f.category);
+	if (f.category) list = list.filter((g) => canonCategory(g.category) === canonCategory(f.category));
 	if (f.access) list = list.filter((g) => g.tier === f.access);
 	if (!f.q?.trim()) {
 		if (f.sort === "az") list.sort((a, b) => a.title.localeCompare(b.title));
