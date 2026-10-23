@@ -100,6 +100,18 @@ export function createApp() {
 		}
 	});
 
+	// Same-origin video proxy: the player falls back to it when the browser cannot load a tweet video directly (blocked or stripped by the CDN
+	// for a cross-site request, a bad referrer, a network that refuses twimg). Only video.twimg.com files, Range passed through so seeking works.
+	app.get("/api/vid", async (c) => {
+		const u = c.req.query("u") || "";
+		if (!/^https:\/\/video\.twimg\.com\/[\w./%~+-]+\.mp4(\?[\w=&%.-]*)?$/.test(u)) return c.json({ error: "Only video.twimg.com mp4 links." }, 400);
+		const range = c.req.header("range");
+		const up = await fetch(u, { headers: { "user-agent": "Mozilla/5.0 (compatible; cizle-video/1.0)", ...(range ? { range } : {}) }, signal: AbortSignal.timeout(25_000) }).catch(() => null);
+		if (!up || (up.status !== 200 && up.status !== 206)) return c.json({ error: "The video is not available." }, 502);
+		const h = new Headers({ "content-type": "video/mp4", "cache-control": "public, max-age=3600", "accept-ranges": "bytes", "x-content-type-options": "nosniff" });
+		for (const k of ["content-length", "content-range"]) if (up.headers.get(k)) h.set(k, up.headers.get(k));
+		return new Response(up.body, { status: up.status, headers: h });
+	});
 	app.get("/api/v1", (c) => c.json({ name: "cizle", mcp: `${SITE_URL}/mcp`, docs: `${SITE_URL}/docs` }));
 	app.notFound((c) => c.json({ error: "Not found" }, 404));
 	app.onError((e, c) => (console.error("[cizle api]", e), c.json({ error: "Something went wrong on our side." }, 500)));

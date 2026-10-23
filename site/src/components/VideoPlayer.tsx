@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PauseIcon, PlayIcon, VolumeHighIcon, VolumeMute01Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
+import { viaProxy } from "@/lib/videos";
 
 const clock = (s: number) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}` : "0:00");
 
@@ -8,6 +9,7 @@ const clock = (s: number) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${Stri
 export function VideoPlayer({ src, poster, label, onFail }: { src: string; poster?: string | null; label: string; onFail?: () => void }) {
 	const ref = useRef<HTMLVideoElement>(null);
 	const tries = useRef(0);
+	const [proxied, setProxied] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [playing, setPlaying] = useState(false);
 	const [muted, setMuted] = useState(true);
@@ -29,17 +31,21 @@ export function VideoPlayer({ src, poster, label, onFail }: { src: string; poste
 		// nothing arrived after a while: try once more, then hand over to the fallback (the post's own player)
 		const watch = window.setTimeout(() => v.readyState < 2 && retry(), 9000);
 		return () => (clearTimeout(watch), evs.forEach((e) => v.removeEventListener(e, sync)), ["loadeddata", "canplay", "playing"].forEach((e) => v.removeEventListener(e, ready)));
-	}, [src]);
+	}, [src, proxied]);
+
+	useEffect(() => setProxied(false), [src]);
 
 	/** A failed or stalled load: reload once (a dropped connection is common), then give up so the caller can show the fallback. */
 	const retry = useCallback(() => {
 		const v = ref.current;
-		if (!v || tries.current >= 1) return onFail?.();
+		if (!v) return onFail?.();
+		// second failure: the same file through our own server, then hand over to the post's player
+		if (tries.current >= 1) return !proxied && viaProxy(src) !== src ? (tries.current = 0, setProxied(true)) : onFail?.();
 		tries.current++;
 		setLoading(true);
 		v.load();
 		v.play().catch(() => {});
-	}, [onFail]);
+	}, [onFail, proxied, src]);
 
 	// React sets `muted` only when the element is created, so keep the property in step with the button
 	useEffect(() => {
@@ -58,7 +64,7 @@ export function VideoPlayer({ src, poster, label, onFail }: { src: string; poste
 
 	return (
 		<div className="group relative flex max-h-full max-w-full overflow-hidden rounded-xl bg-black">
-			<video ref={ref} key={src} src={src} poster={poster || undefined} muted={muted} loop playsInline autoPlay preload="auto" aria-label={label} onClick={toggle} onError={retry} className="block max-h-full max-w-full min-h-[min(60dvh,420px)] min-w-[min(60vw,300px)] cursor-pointer object-contain" />
+			<video ref={ref} key={src} src={proxied ? viaProxy(src) : src} poster={poster || undefined} muted={muted} loop playsInline autoPlay preload="auto" aria-label={label} onClick={toggle} onError={retry} className="block max-h-full max-w-full min-h-[min(60dvh,420px)] min-w-[min(60vw,300px)] cursor-pointer object-contain" />
 			{loading ? <span role="status" className="pointer-events-none absolute inset-0 grid place-items-center text-sm text-white/80">Loading video…</span> : null}
 			<div className="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-gradient-to-t from-black/70 to-transparent px-4 pt-10 pb-3 text-white">
 				<button type="button" onClick={toggle} aria-label={playing ? "Pause" : "Play"} className="grid size-8 shrink-0 place-items-center rounded-full outline-none hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-white">
