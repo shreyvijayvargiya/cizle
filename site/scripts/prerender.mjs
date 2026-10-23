@@ -157,6 +157,15 @@ for (const g of promptPages) {
 	}));
 }
 
+// connect (MCP)
+out("/connect", document({
+	title: "Use cizle inside Claude: the MCP server | cizle",
+	description: "Connect cizle to Claude with one command. Search every video skill and prompt from the chat, open the free ones, and unlock Premium with a token. Also a CLI for Claude Code.",
+	path: "/connect",
+	ld: [crumbs([["Skills", "/"], ["Use cizle in Claude", "/connect"]])],
+	body: `<h1>Use cizle inside Claude</h1><p>One command connects cizle to Claude. Claude can then search every skill and prompt, show you a table and open the one you pick. Free items need no sign-in; Premium opens with a token.</p><pre><code>claude mcp add --transport http cizle ${SITE_URL}/mcp</code></pre><h2>Tools</h2><ul><li><code>search</code>: find or browse skills and prompts, paged</li><li><code>get</code>: open one in full</li><li><code>categories</code>: what is in the library</li><li><code>whoami</code>: connection and plan</li></ul><p><a href="/docs">Read the docs</a> · <a href="/pricing">Premium</a></p>`,
+}));
+
 // launch films
 out("/films", document({
 	title: "Launch films: watch two, make one for your product | cizle",
@@ -193,12 +202,12 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
 
 const line = (s) => `- [${s.name}](${abs(`/skills/${s.slug}`)}): ${s.summary}`;
-fs.writeFileSync(path.join(DIST, "llms.txt"), `# cizle\n\n> ${siteConfig.description}\n\ncizle is a library of video skills and prompts for Claude Code. Each skill is a scene-by-scene guide for one kind of video (product launch, feature tour, FAQ, Meta/TikTok/Google ad, film style). The cizle MCP server renders the storyboard Claude writes into an MP4 on the user's own machine, with no model call and no API key. ${free.length} skills are free; ${premium.length} premium skills are $${price.usd} per month (₹${price.inr} in India).\n\n## Start here\n- [How to use cizle skills](${abs("/docs")}): install a skill, connect the MCP server, ask for a video\n- [Pricing](${abs("/pricing")})\n- [FAQ](${abs("/faq")})\n- [Full text for language models](${abs("/llms-full.txt")})\n\n## Free skills\n${free.map(line).join("\n")}\n\n## Premium skills (summary only; prompts require a subscription)\n${premium.map(line).join("\n")}\n\n## Blog\n${posts.map((p) => `- [${p.title}](${abs(`/blog/${p.slug}`)}): ${p.description}`).join("\n")}\n`);
+fs.writeFileSync(path.join(DIST, "llms.txt"), `# cizle\n\n> ${siteConfig.description}\n\ncizle is a library of video skills and prompts for Claude Code. Each skill is a scene-by-scene guide for one kind of video (product launch, feature tour, FAQ, Meta/TikTok/Google ad, film style). The cizle MCP server renders the storyboard Claude writes into an MP4 on the user's own machine, with no model call and no API key. ${free.length} skills are free; ${premium.length} premium skills are $${price.usd} per month (₹${price.inr} in India).\n\n## Start here\n- [How to use cizle skills](${abs("/docs")}): install a skill, connect the MCP server, ask for a video\n- [Use cizle inside Claude (remote MCP, free without sign-in): ${SITE_URL}/mcp](${abs("/connect")}): search and open every skill and prompt from Claude; Premium with a token\n- [Pricing](${abs("/pricing")})\n- [FAQ](${abs("/faq")})\n- [Full text for language models](${abs("/llms-full.txt")})\n\n## Free skills\n${free.map(line).join("\n")}\n\n## Premium skills (summary only; prompts require a subscription)\n${premium.map(line).join("\n")}\n\n## Blog\n${posts.map((p) => `- [${p.title}](${abs(`/blog/${p.slug}`)}): ${p.description}`).join("\n")}\n`);
 fs.writeFileSync(path.join(DIST, "llms-full.txt"), `# cizle: full text\n\n${siteConfig.description}\n\n---\n\n# Docs\n\n${pages.docs.html.replace(/<[^>]+>/g, "")}\n\n---\n\n# FAQ\n\n${faq.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}\n\n---\n\n# Free skills (full prompts)\n\n${free.map((s) => `## ${s.name}\n${abs(`/skills/${s.slug}`)}\n\n${s.promptText}`).join("\n\n---\n\n")}\n`);
 
 console.log(`prerender: ${skills.length} skill pages, ${promptPages.length} prompt pages, ${posts.length} posts, sitemap with ${urls.length} urls → dist/`);

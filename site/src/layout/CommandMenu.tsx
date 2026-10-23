@@ -35,6 +35,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 			{ id: "pricing", label: "Pricing", icon: CreditCardIcon, run: () => navigate({ to: "/pricing" }), keywords: "plans subscribe premium" },
 			{ id: "docs", label: "Docs: how to use skills", icon: BookOpen01Icon, run: () => navigate({ to: "/docs" }), keywords: "help guide install mcp" },
 			{ id: "blog", label: "Blog", icon: SparklesIcon, run: () => navigate({ to: "/blog" }), keywords: "articles examples" },
+			{ id: "mcp", label: "Use cizle in Claude (MCP)", icon: SparklesIcon, run: () => navigate({ to: "/connect" }), keywords: "claude connect mcp cli token" },
 			{ id: "faq", label: "FAQ", icon: BookOpen01Icon, run: () => navigate({ to: "/faq" }), keywords: "questions" },
 			{ id: "contact", label: "Contact", icon: Mail01Icon, run: () => navigate({ to: "/contact" }), keywords: "support email" },
 			...(user

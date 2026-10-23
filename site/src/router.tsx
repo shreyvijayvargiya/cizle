@@ -1,6 +1,7 @@
 import { Outlet, createRootRoute, createRoute, createRouter, useParams } from "@tanstack/react-router";
 import { Layout } from "@/layout/Layout";
 import { BlogPage, BlogPostPage } from "@/pages/Blog";
+import { ConnectPage } from "@/pages/Connect";
 import { ContactPage } from "@/pages/Contact";
 import { ContentPage } from "@/pages/Docs";
 import { ExplorerPage } from "@/pages/Explorer";
@@ -48,6 +49,7 @@ const tree = root.addChildren([
 	prompt,
 	launch,
 	r("/films", FilmsPage),
+	r("/connect", ConnectPage),
 	r("/pricing", PricingPage),
 	r("/faq", FaqPage),
 	r("/contact", ContactPage),

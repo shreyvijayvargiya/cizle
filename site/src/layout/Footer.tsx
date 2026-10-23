@@ -32,6 +32,7 @@ export function Footer() {
 						<p className="mb-2 text-lg font-semibold">Product</p>
 						<Link to="/" className={LINK}>Skills and prompts</Link>
 						<Link to="/gallery" className={LINK}>Prompt gallery</Link>
+						<Link to="/connect" className={LINK}>Use in Claude (MCP)</Link>
 						<Link to="/films" className={LINK}>Launch films</Link>
 						<Link to="/pricing" className={LINK}>Pricing</Link>
 						<Link to="/docs" className={LINK}>Docs</Link>

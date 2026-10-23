@@ -408,6 +408,15 @@ api.get("/files/:id", (c) => {
 
 app.route("/api", api);
 
+/* the remote MCP server and library API (site/api/_lib): the same app that runs as a Vercel function, served here too for local use and self-hosting */
+try {
+	const { createApp } = await import("../site/api/_lib/app.js");
+	const remote = createApp();
+	app.use(["/mcp", "/api/mcp", "/api/v1", "/api/v1/*"], (c) => remote.fetch(c.req.raw));
+} catch (e) {
+	console.warn(`[cizle] remote MCP not mounted (run npm install in site/): ${e.message}`);
+}
+
 /* keep products fresh while the app is open: once at start, then every 6 hours (Settings → auto sync) */
 async function autoSync() {
 	if (!loadSettings().auto_sync || !process.env.OPENROUTER_API_KEY?.trim()) return;

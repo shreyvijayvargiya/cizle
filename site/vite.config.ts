@@ -7,6 +7,20 @@ import path from "node:path";
  * Local testing of Premium without Firebase: with VITE_DEV_UNLOCK=1 the dev server answers /__premium/<slug>.json from the
  * prompt library. It exists only under `vite` (serve), never in a build, and premium text is never written to dist/.
  */
+/** Serves the remote API (/mcp, /api/v1/*) inside the dev server, so the Connect page and the CLI work locally. */
+function devApi(env: Record<string, string>): Plugin {
+	return {
+		name: "cizle-dev-api",
+		apply: "serve",
+		async configureServer(server) {
+			for (const [k, v] of Object.entries(env)) if (process.env[k] === undefined) process.env[k] = v; // the API reads FIREBASE_SERVICE_ACCOUNT, MCP_JWT_SECRET ... from .env
+			const [{ getRequestListener }, { createApp }] = await Promise.all([import("@hono/node-server"), import(/* @vite-ignore */ path.resolve(__dirname, "api/_lib/app.js"))]);
+			const listener = getRequestListener(createApp().fetch);
+			server.middlewares.use((req, res, next) => (/^\/(mcp|api\/(mcp|v1))(\/|\?|$)/.test(req.url || "") ? listener(req, res) : next()));
+		},
+	};
+}
+
 function devPremium(enabled: boolean): Plugin {
 	return {
 		name: "cizle-dev-premium",
@@ -42,7 +56,7 @@ function devPremium(enabled: boolean): Plugin {
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, __dirname, "VITE_");
 	return {
-		plugins: [react(), tailwindcss(), devPremium(env.VITE_DEV_UNLOCK === "1")],
+		plugins: [react(), tailwindcss(), devApi(loadEnv(mode, __dirname, "")), devPremium(env.VITE_DEV_UNLOCK === "1")],
 		resolve: { alias: { "@": path.resolve(__dirname, "src") } },
 		server: { port: 5174 },
 		build: { outDir: "dist", emptyOutDir: true, chunkSizeWarningLimit: 700 },

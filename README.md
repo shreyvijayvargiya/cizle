@@ -33,6 +33,18 @@ Runs on your machine. No database, no accounts. Drive it from the dashboard with
 
 Both use the same prompt library, the same animated styles and the same dashboard. Set up the second in two lines: see [Claude Code, no key](#use-it-from-claude-code-no-api-key).
 
+## Use the library inside Claude (remote MCP and CLI)
+
+The site serves the whole skills and prompts library as a remote MCP server at `https://cizle.dev/mcp`, built with Hono in `site/api/_lib` (it runs as a Vercel function, and `npm start` serves the same app locally).
+
+```bash
+claude mcp add --transport http cizle https://cizle.dev/mcp                       # free library, no sign-in
+claude mcp add --transport http cizle https://cizle.dev/mcp --header "Authorization: Bearer TOKEN"   # Premium
+node server/cli/cizle.js search "launch video" --all                              # the same library as a CLI
+```
+
+Tools: `search` (paged, returns a table), `get`, `categories`, `whoami`. Tokens are made on the site's **Connect** page from a Firebase sign-in (`MCP_JWT_SECRET`, `FIREBASE_PROJECT_ID`, `FIREBASE_SERVICE_ACCOUNT` in `site/.env.example`); the plan is read from `users/{uid}` on every request.
+
 ## Contents
 
 - [Why](#why) · [Quick start](#quick-start) · [A tour of the dashboard](#a-tour-of-the-dashboard) · [What you can do](#what-you-can-do)
