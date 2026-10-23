@@ -25,6 +25,18 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Newsletter sign-ups from the landing page: anyone can add their own address (the document id is the address), nobody can read, change or list them.
+    match /subscribers/{email} {
+      allow create: if request.resource.data.keys().hasOnly(['email', 'source', 'createdAt'])
+        && request.resource.data.email is string
+        && request.resource.data.email == email
+        && email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$')
+        && email.size() <= 254
+        && request.resource.data.source is string && request.resource.data.source.size() <= 40
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if false;
+    }
+
     // Webhook bookkeeping: never visible to clients.
     match /webhooks/{id} {
       allow read, write: if false;

@@ -11,7 +11,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { LAUNCH_FREE, SITE_DIR, SITE_URL, copyPrompt, loadSkills, siteConfig, skillMd } from "./skills-source.mjs";
+import { SITE_DIR, SITE_URL, copyPrompt, loadSkills, siteConfig, skillMd } from "./skills-source.mjs";
 import { loadGallery, promptSlug } from "./gallery-source.mjs";
 
 const arg = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
@@ -46,7 +46,7 @@ const readme = `# cizle: free video skills and prompts for Claude
 
 ${siteConfig.description}
 
-**${freeSkills.length} free skills** and **${promptRows.length} free community prompts** are in this repo, in full, and free to copy.${LAUNCH_FREE ? "" : ` **${premiumSkills.length} more skills** (ad formats for Meta, TikTok and Google, engineering formats, film styles) and the full text of **${premiumPrompts.length} more prompts** are in [Premium](${SITE_URL}/pricing).`}
+**${freeSkills.length} free skills** and **${promptRows.length} free community prompts** are in this repo, in full, and free to copy. **${premiumSkills.length} more skills** (ad formats for Meta, TikTok and Google, engineering formats, film styles) and the full text of **${premiumPrompts.length} more prompts** are in [Premium](${SITE_URL}/pricing).
 
 ## Use it in Claude
 
@@ -54,7 +54,7 @@ ${siteConfig.description}
 claude mcp add --transport http cizle ${SITE_URL}/mcp
 \`\`\`
 
-Then ask Claude to find a skill or prompt. Free items open in full.${LAUNCH_FREE ? "" : ` Premium opens with a token from [${SITE_URL}/connect](${SITE_URL}/connect).`} Browse everything, with demo videos, at [${SITE_URL}](${SITE_URL}).
+Then ask Claude to find a skill or prompt. Free items open in full. Premium opens with a token from [${SITE_URL}/connect](${SITE_URL}/connect). Browse everything, with demo videos, at [${SITE_URL}](${SITE_URL}).
 
 ## Install a free skill
 

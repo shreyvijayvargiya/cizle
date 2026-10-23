@@ -18,7 +18,7 @@ site/
 ```bash
 cd site
 npm install
-# optional: create site/.env (git-ignored). The site runs without any keys; VITE_LAUNCH_FREE_ONLY=1 hides Premium and pricing.
+# optional: create site/.env (git-ignored). The site runs without any keys.
 npm run dev              # http://localhost:5174
 VITE_DEV_UNLOCK=1 npm run dev   # pretend to be a Premium subscriber to see unlocked skills and the post-payment flow
 npm run build            # content → typecheck → vite build → prerender every route to dist/

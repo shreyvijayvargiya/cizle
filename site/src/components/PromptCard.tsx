@@ -16,23 +16,12 @@ function Poster({ item }: { item: GalleryItem }) {
 	);
 }
 
-export function PromptCard({ item, search, base = "/gallery" }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
+/** A card is the video and nothing else. Title, creator, access and the prompt are in the dialog it opens. */
+export function PromptCard({ item, search }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
 	return (
 		<article className="lift h-full">
-			<Link to="/prompts/$slug" params={{ slug: item.slug }} search={search as never} resetScroll={false} className="group flex h-full flex-col overflow-hidden rounded-lg bg-surface outline-none transition-colors hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring">
+			<Link to="/prompts/$slug" params={{ slug: item.slug }} search={search as never} resetScroll={false} aria-label={plain(item.title)} className="group block h-full overflow-hidden rounded-lg bg-surface outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring">
 				<Poster item={item} />
-				<div className="flex flex-1 flex-col p-4">
-					<h3 className="text-xl leading-tight tracking-[-0.03em] [overflow-wrap:anywhere]">{plain(item.title)}</h3>
-					<p className="mt-1 text-base text-muted-foreground">by {item.handle ? `@${item.handle}` : item.author || "the creator"}</p>
-					<p className="mt-3 line-clamp-3 text-base leading-snug">{plain(item.preview)}</p>
-					<p className="mt-auto pt-4 text-base">
-						<span className={item.tier === "premium" ? "font-semibold" : "font-semibold text-brand-ink"}>{item.tier === "premium" ? "Premium" : "Free"}</span>
-						<span className="text-muted-foreground">
-							{item.category ? ` · ${item.category}` : ""}
-							{item.translatedFrom ? " · translated" : ""}
-						</span>
-					</p>
-				</div>
 			</Link>
 		</article>
 	);
