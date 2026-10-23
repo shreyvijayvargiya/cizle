@@ -17,7 +17,7 @@ import { SITE_DIR } from "./skills-source.mjs";
 
 const dry = process.argv.includes("--dry");
 const runlog = createRunLog("seed", { dry });
-const items = loadGallery(undefined, { all: true }).filter((e) => e.tier === "premium");
+const items = loadGallery().filter((e) => e.tier === "premium");
 if (items.some((e) => e.truncated)) {
 	console.error("The full premium text is not on this machine (private/site/content/gallery-premium-text.json). Restore private/ first.");
 	process.exit(1);

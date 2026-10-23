@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { CopyButton } from "@/components/CopyButton";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth";
-import { LAUNCH_FREE, SITE } from "@/lib/config";
+import { SITE } from "@/lib/config";
 import { firebaseConfigured, loadFirebase } from "@/lib/firebase";
 import { useHead } from "@/lib/head";
 
@@ -41,7 +41,7 @@ export function ConnectPage() {
 
 	useHead({
 		title: "Use cizle inside Claude: the MCP server | cizle",
-		description: "Connect cizle to Claude with one command. Search every video skill and prompt from the chat, open the free ones. Also a CLI for Claude Code.",
+		description: "Connect cizle to Claude with one command. Search every video skill and prompt from the chat, open the free ones, and unlock Premium with a token. Also a CLI for Claude Code.",
 		path: "/connect",
 	});
 
@@ -95,11 +95,11 @@ export function ConnectPage() {
 					inside Claude
 				</h1>
 				<p className="reveal mt-6 max-w-[48ch] text-lg" style={{ ["--i" as string]: 1 }}>
-					One command, and Claude can search every skill and prompt in the library, show you a table, and open the one you pick. Free items need no sign-in.{LAUNCH_FREE ? "" : " Premium opens with a token."}
+					One command, and Claude can search every skill and prompt in the library, show you a table, and open the one you pick. Free items need no sign-in. Premium opens with a token.
 				</p>
 
 				<div className="mt-8 grid gap-2 md:grid-cols-12">
-					<section className={`tile reveal p-6 sm:p-8 ${LAUNCH_FREE ? "md:col-span-12" : "md:col-span-7"}`} aria-labelledby="c1">
+					<section className="tile reveal p-6 sm:p-8 md:col-span-7" aria-labelledby="c1">
 						<h2 id="c1" className="statement">1. Connect, free</h2>
 						<div role="tablist" aria-label="Where you use Claude" className="mt-4 flex flex-wrap gap-2">
 							{([["code", "Claude Code"], ["desktop", "Claude Desktop"], ["cli", "Terminal CLI"]] as const).map(([k, l]) => (
@@ -125,8 +125,7 @@ export function ConnectPage() {
 						)}
 					</section>
 
-					{LAUNCH_FREE ? null : (
-<section className="tile-accent reveal p-6 sm:p-8 md:col-span-5" style={{ ["--i" as string]: 1 }} aria-labelledby="c2">
+					<section className="tile-accent reveal p-6 sm:p-8 md:col-span-5" style={{ ["--i" as string]: 1 }} aria-labelledby="c2">
 						<h2 id="c2" className="statement">2. Premium, with a token</h2>
 						{!ready ? null : !user ? (
 							<>
@@ -152,7 +151,6 @@ export function ConnectPage() {
 						)}
 						<p className="mt-4 text-base">Your plan is checked on every request, so if Premium lapses the token goes back to the free library by itself.</p>
 					</section>
-)}
 				</div>
 
 				<div className="mt-2 grid gap-2 md:grid-cols-12">

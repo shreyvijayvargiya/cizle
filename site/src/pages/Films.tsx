@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { CopyButton } from "@/components/CopyButton";
 import { Input } from "@/components/ui/input";
 import { OptionSelect } from "@/components/ui/select";
-import { LAUNCH_FREE } from "@/lib/config";
 import { useHead } from "@/lib/head";
 
 const LOOKS = ["CG render", "hand-drawn", "clay", "glass", "isometric", "terminal"];
@@ -101,7 +100,7 @@ export function FilmsPage() {
 							<li><strong>2. Paste</strong> it into Claude Code, with the cizle tools <Link to="/docs" className="underline underline-offset-4">connected</Link>.</li>
 							<li><strong>3. Open</strong> the MP4 it renders on your machine.</li>
 						</ol>
-						<p className="mt-4 text-base">It works with the free skills. {LAUNCH_FREE ? null : <><Link to="/pricing" className="underline underline-offset-4">Premium</Link> opens the rest, and </>}the <Link to="/gallery" className="underline underline-offset-4">prompt gallery</Link> has free prompts to start from.</p>
+						<p className="mt-4 text-base">It works with the free skills. <Link to="/pricing" className="underline underline-offset-4">Premium</Link> opens the rest, and the <Link to="/gallery" className="underline underline-offset-4">prompt gallery</Link> has 396 free prompts to start from.</p>
 					</div>
 				</section>
 			</div>

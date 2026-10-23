@@ -13,7 +13,7 @@ import { FieldValue, getFirestore } from "firebase-admin/firestore";
 import { SITE_DIR, copyPrompt, loadSkills, skillMd } from "./skills-source.mjs";
 
 const dry = process.argv.includes("--dry");
-const skills = loadSkills({ all: true }).filter((s) => s.tier === "premium");
+const skills = loadSkills().filter((s) => s.tier === "premium");
 if (skills.some((s) => !s.body)) {
 	console.error("The premium skill sources are not on this machine (private/prompts). Restore private/ first.");
 	process.exit(1);

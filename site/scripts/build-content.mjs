@@ -8,7 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { loadGallery, promptSlug, publicItem } from "./gallery-source.mjs";
-import { CATEGORIES, LAUNCH_FREE, SITE_DIR, SITE_URL, loadSkills, md, publicSkill, siteConfig, skillDetail } from "./skills-source.mjs";
+import { CATEGORIES, SITE_DIR, SITE_URL, loadSkills, md, publicSkill, siteConfig, skillDetail } from "./skills-source.mjs";
 
 const PUB = path.join(SITE_DIR, "public");
 const write = (rel, data) => {
@@ -88,19 +88,10 @@ for (const name of ["docs", "terms", "privacy", "refund"]) {
 	const { html, toc } = withIds(finish(md(body)));
 	write(`content/${name}.json`, { title, html, toc });
 }
-const faqAll = JSON.parse(fs.readFileSync(path.join(SITE_DIR, "content", "faq.json"), "utf8"));
-// free-only launch: leave out the answers about plans, billing and refunds, and say plainly that everything is free
-const faq = LAUNCH_FREE
-	? [
-			...faqAll.filter((f) => !/premium|billing|refund|subscri|pric|cancel|payment/i.test(`${f.q} ${f.a}`)),
-			{ q: "Is it free?", a: `Yes. Every skill and every prompt in the gallery is free to read, copy and use, and the whole library is open source on GitHub (${siteConfig.github}).` },
-		]
-	: faqAll;
+const faq = JSON.parse(fs.readFileSync(path.join(SITE_DIR, "content", "faq.json"), "utf8"));
 write("content/faq.json", faq);
 
 /* blog */
-// free-only launch: a post about a skill that is left out (the ad formats, say) is left out with it
-const hiddenSlugs = LAUNCH_FREE ? new Set(loadSkills({ all: true }).map((x) => x.slug).filter((x) => !skills.some((k) => k.slug === x))) : new Set();
 const posts = fs
 	.readdirSync(path.join(SITE_DIR, "content", "blog"))
 	.filter((f) => f.endsWith(".md"))
@@ -109,12 +100,10 @@ const posts = fs
 		const slug = f.replace(/\.md$/, "");
 		const { html, toc } = withIds(finish(md(content.replaceAll("https://cizle.dev", SITE_URL))));
 		const words = content.split(/\s+/).length;
-		if ((data.skill && hiddenSlugs.has(data.skill)) || [...content.matchAll(/\]\(\/skills\/([a-z0-9-]+)\)/g)].some((m) => hiddenSlugs.has(m[1]))) return null;
 		if (data.skill && !bySlug.has(data.skill)) throw new Error(`blog ${slug}: unknown skill "${data.skill}"`);
 		for (const m of content.matchAll(/\]\(\/skills\/([a-z0-9-]+)\)/g)) if (!bySlug.has(m[1])) throw new Error(`blog ${slug}: link to unknown skill "${m[1]}"`);
 		return { slug, title: data.title, description: data.description, date: new Date(data.date).toISOString().slice(0, 10), tags: data.tags || [], skill: data.skill || null, minutes: Math.max(1, Math.round(words / 220)), html, toc };
 	})
-	.filter(Boolean)
 	.sort((a, b) => b.date.localeCompare(a.date));
 for (const p of posts) write(`blog/${p.slug}.json`, p);
 write("blog.json", posts.map(({ html, toc, ...p }) => p));
