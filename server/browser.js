@@ -7,6 +7,7 @@
  */
 import { CancelledError, currentSignal, throwIfCancelled } from "./pipeline/cancel.js";
 import puppeteer from "puppeteer";
+import { VIRTUAL_CLOCK } from "./premium/clock.js";
 
 const MAX_PAGES = Number(process.env.CIZLE_MAX_PAGES) || 3;
 const VIEWPORTS = {
@@ -22,6 +23,12 @@ const HIDE_CSS = `[id*="cookie" i],[class*="cookie" i],[id*="consent" i],[class*
 [id*="intercom" i],[class*="intercom" i],[id*="crisp" i],[class*="drift" i],[id*="hubspot-messages" i],
 iframe[src*="chat" i],[aria-label*="cookie" i]{display:none!important}`;
 
+const launchOptions = () => ({
+	headless: true,
+	executablePath: process.env.CHROME_PATH?.trim() || process.env.PUPPETEER_EXECUTABLE_PATH?.trim() || undefined,
+	args: ["--no-sandbox", "--disable-dev-shm-usage", "--hide-scrollbars", "--font-render-hinting=none", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist"],
+});
+
 let browserPromise = null;
 let active = 0;
 const waiting = [];
@@ -29,11 +36,7 @@ const waiting = [];
 async function getBrowser() {
 	if (!browserPromise) {
 		browserPromise = puppeteer
-			.launch({
-				headless: true,
-				executablePath: process.env.CHROME_PATH?.trim() || process.env.PUPPETEER_EXECUTABLE_PATH?.trim() || undefined,
-				args: ["--no-sandbox", "--disable-dev-shm-usage", "--hide-scrollbars", "--font-render-hinting=none"],
-			})
+			.launch(launchOptions())
 			.then((b) => {
 				b.on("disconnected", () => (browserPromise = null));
 				return b;
@@ -162,6 +165,54 @@ export async function renderSequence(html, { width, height }, { fps = 15, durati
 		const still = Buffer.from(await page.screenshot({ type: "png", clip }));
 		return { frames, fps, seconds, still };
 	});
+}
+
+/**
+ * Deterministic frame capture for scripted animations (canvas, three.js, GSAP, CSS). A virtual clock replaces the page's own timing
+ * (premium/clock.js), so frame N is exactly N / fps seconds in, whatever the machine speed. Writes dir/00000.jpg… and returns the
+ * frame count plus any script errors the page raised.
+ */
+export async function captureTimeline(html, { width, height }, { fps = 30, durationSec, dir, quality = 92 }) {
+	throwIfCancelled();
+	// One Chrome per capture: tabs of a single Chrome starve each other of frames when several are captured at once.
+	const browser = await puppeteer.launch(launchOptions()).catch((e) => {
+		throw new Error(`Could not start Chrome (${e.message}). Run "npx puppeteer browsers install chrome" or set CHROME_PATH.`);
+	});
+	const signal = currentSignal();
+	const onAbort = () => browser.close().catch(() => {});
+	signal?.addEventListener("abort", onAbort, { once: true });
+	try {
+		const page = await browser.newPage();
+		const errors = [];
+		page.on("pageerror", (e) => errors.push(String(e?.message || e).slice(0, 300)));
+		page.on("console", (m) => m.type() === "error" && errors.push(m.text().slice(0, 300)));
+		await page.setViewport({ width, height, deviceScaleFactor: 1 });
+		await page.evaluateOnNewDocument(VIRTUAL_CLOCK);
+		// setContent reuses the blank document, so the clock would never be installed; navigate to a URL that we answer ourselves instead
+		await page.setRequestInterception(true);
+		page.on("request", (req) => {
+			const u = req.url();
+			if (u === "https://scene.cizle.local/") req.respond({ status: 200, contentType: "text/html; charset=utf-8", body: html });
+			else if (u.startsWith("https://scene.cizle.local/")) req.respond({ status: 204, body: "" }); // favicon and the like
+			else req.continue();
+		});
+		await page.goto("https://scene.cizle.local/", { waitUntil: "networkidle0", timeout: 45_000 }).catch(() => page.goto("https://scene.cizle.local/", { waitUntil: "load", timeout: 45_000 }));
+		if (!(await page.evaluate(() => typeof window.__advance === "function"))) throw new Error("the capture clock was not installed in the page");
+		await Promise.race([page.evaluate(() => document.fonts.ready), new Promise((r) => setTimeout(r, 3000))]).catch(() => {});
+		const frames = Math.max(2, Math.round(durationSec * fps));
+		const clip = { x: 0, y: 0, width, height };
+		for (let i = 0; i < frames; i++) {
+			throwIfCancelled();
+			await page.evaluate((ms) => window.__advance(ms), i === 0 ? 0 : 1000 / fps);
+			await page.screenshot({ type: "jpeg", quality, clip, path: `${dir}/${String(i).padStart(5, "0")}.jpg` });
+		}
+		return { frames, fps, errors: [...new Set(errors)].slice(0, 8) };
+	} catch (e) {
+		throw signal?.aborted ? new CancelledError() : e;
+	} finally {
+		signal?.removeEventListener("abort", onAbort);
+		await browser.close().catch(() => {});
+	}
 }
 
 /** Rendered page HTML — used by the scraper for JavaScript-heavy sites. */

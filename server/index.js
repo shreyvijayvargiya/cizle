@@ -325,6 +325,65 @@ api.get("/files/:id", (c) => {
 	return serveFile(c, file, type, c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {});
 });
 
+/* premium skill generator: the same runner as `npm run premium` (docs/premium-plan/premium-100.json → data/premium/) */
+const premiumPlan = await import("./premium/plan.js");
+const premiumRunner = await import("./premium/runner.js");
+/** @type {{ ctl: AbortController, startedAt: number, log: object[], summary: object | null } | null} */
+let premiumRun = null;
+const premiumCounts = (rows) => rows.reduce((o, r) => ((o[r.status] = (o[r.status] || 0) + 1), o), {});
+api.get("/premium/plan", (c) => {
+	const plan = premiumPlan.loadPlan();
+	const state = new Map(premiumPlan.statusOf(plan).map((r) => [r.id, r]));
+	return c.json({ count: plan.count, categories: plan.categories, originality_rules: plan.originality_rules, render: plan.render, skills: plan.skills.map((sp) => ({ ...sp, local: state.get(sp.id) })) });
+});
+api.get("/premium/status", (c) => {
+	const rows = premiumPlan.statusOf(premiumPlan.loadPlan());
+	return c.json({ running: Boolean(premiumRun && !premiumRun.summary), counts: premiumCounts(rows), spent_usd: rows.reduce((a, r) => a + (r.cost || 0), 0), run: premiumRun && { started_at: premiumRun.startedAt, summary: premiumRun.summary, log: premiumRun.log.slice(-80) }, skills: rows });
+});
+api.post("/premium/run", async (c) => {
+	if (premiumRun && !premiumRun.summary) return c.json({ error: "A batch is already running. Stop it first." }, 409);
+	if (!process.env.OPENROUTER_API_KEY?.trim()) return c.json({ error: "Add your OpenRouter API key in Settings first.", code: "MISSING_API_KEY" }, 400);
+	const b = await c.req.json().catch(() => ({}));
+	let specs;
+	try {
+		specs = premiumPlan.select(premiumPlan.loadPlan(), { ids: Array.isArray(b.ids) ? b.ids : undefined, category: b.category, aspect: b.aspect, limit: b.limit, pending: !b.force });
+	} catch (e) {
+		return c.json({ error: e.message }, 400);
+	}
+	if (!specs.length) return c.json({ error: "Nothing to do: every selected skill is done. Send force: true to redo." }, 400);
+	const run = { ctl: new AbortController(), startedAt: Date.now(), log: [], summary: null };
+	premiumRun = run;
+	premiumRunner
+		.runBatch(specs, {
+			concurrency: Math.min(5, Math.max(1, Number(b.concurrency) || 3)),
+			gapSec: b.gap_sec !== undefined ? Number(b.gap_sec) : 20,
+			model: b.model || premiumRunner.DEFAULT_MODEL,
+			draft: Boolean(b.draft),
+			force: Boolean(b.force),
+			promptOnly: Boolean(b.prompt_only),
+			signal: run.ctl.signal,
+			onEvent: (e) => (run.log.push(e), run.log.length > 400 && run.log.splice(0, 100)),
+		})
+		.then((sum) => (run.summary = sum))
+		.catch((e) => (run.summary = { error: String(e.message || e) }));
+	return c.json({ started: true, count: specs.length, ids: specs.map((x) => x.id) }, 202);
+});
+api.post("/premium/stop", (c) => {
+	if (!premiumRun || premiumRun.summary) return c.json({ error: "Nothing is running." }, 404);
+	premiumRun.ctl.abort();
+	return c.json({ stopping: true });
+});
+api.get("/premium/:id/:file", (c) => {
+	const spec = premiumPlan.loadPlan().skills.find((x) => x.id === c.req.param("id") || x.slug === c.req.param("id"));
+	const name = { prompt: "prompt.md", scene: "scene.html", video: "video.mp4", poster: "poster.jpg", meta: "meta.json" }[c.req.param("file")];
+	if (!spec || !name) return c.json({ error: "Not found" }, 404);
+	const file = path.join(premiumPlan.skillDir(spec), name);
+	if (!fs.existsSync(file)) return c.json({ error: "Not generated yet" }, 404);
+	const html = path.extname(file) === ".html";
+	// a generated page is untrusted code: let it run, but in a sandbox with no access to this origin
+	return serveFile(c, file, { ".md": "text/markdown; charset=utf-8", ".html": "text/html; charset=utf-8", ...TYPES }[path.extname(file)] || "application/octet-stream", html ? { "Content-Security-Policy": "sandbox allow-scripts" } : {});
+});
+
 /* local-only tooling (harvester and enricher API): present only on the machine that collects the library, never in the public repository */
 try {
 	const { mountTools } = await import("./tools.js");
