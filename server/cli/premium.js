@@ -11,7 +11,7 @@
  *   npm run premium -- check                         re-run the originality check on every generated prompt
  *
  * run flags: --concurrency 3 (max 5)  --gap 20 (seconds between starts)  --model anthropic/claude-opus-5.5  --draft (smaller, 24 fps)
- *            --fps 30  --force (redo finished skills)  --keep-frames  --dry (show the plan and the cost, call nothing)  --yes (confirm the spend)
+ *            --fps 30  --force (redo finished skills from the model)  --rerender (capture and encode again from the prompt and scene on disk, no model)  --keep-frames  --dry (show the plan and the cost, call nothing)  --yes (confirm the spend)
  * Needs OPENROUTER_API_KEY (in .env, the environment or Settings) and Chrome (installed by npm install).
  */
 import fs from "node:fs";
@@ -66,7 +66,7 @@ if (cmd === "plan") {
 	const { warmModels } = await import("../models.js");
 	const model = opt("model") || DEFAULT_MODEL;
 	const promptOnly = flag("prompt-only");
-	const specs = select(plan, { ids: opt("only")?.split(","), category: opt("category"), aspect: opt("aspect"), limit: opt("limit"), pending: !flag("force") });
+	const specs = select(plan, { ids: opt("only")?.split(","), category: opt("category"), aspect: opt("aspect"), limit: opt("limit"), pending: !flag("force") && !flag("rerender") });
 	if (!specs.length) { console.log("Nothing to do: every selected skill is done. Use --force to redo."); process.exit(0); }
 	const concurrency = Math.min(5, Math.max(1, Number(opt("concurrency")) || 3));
 	const gapSec = opt("gap") !== undefined ? Number(opt("gap")) : 20;
@@ -76,14 +76,18 @@ if (cmd === "plan") {
 	console.log(`${specs.length} skills · ${promptOnly ? "prompts only" : "prompt + video"} · model ${model} · ${concurrency} at a time, a new one every ${gapSec}s`);
 	console.log(est == null ? "Cost: unknown (model price not found); watch the first few." : `Estimated cost: about $${est.toFixed(2)} (rough, includes 30% for retries)`);
 	if (flag("dry")) { for (const s of specs) console.log(`  ${s.id} ${s.name}`); process.exit(0); }
-	if (!process.env.OPENROUTER_API_KEY?.trim()) { console.error("OPENROUTER_API_KEY is not set (add it to .env or the Settings page)."); process.exit(2); }
-	if (!flag("yes")) { console.error("This spends money on OpenRouter. Run again with --yes to start."); process.exit(2); }
+	// a skill whose prompt and scene are already on disk (written by hand or by Claude Code) is only rendered: no model call, no key, no cost
+	const have = (s, f) => fs.existsSync(path.join(skillDir(s), f));
+	const needsModel = flag("force") || specs.some((s) => !have(s, "prompt.json") || (!promptOnly && !have(s, "scene.html")));
+	if (!needsModel) console.log("Prompt and scene already exist for every selected skill: rendering only, no model call.");
+	if (needsModel && !process.env.OPENROUTER_API_KEY?.trim()) { console.error("OPENROUTER_API_KEY is not set (add it to .env or the Settings page)."); process.exit(2); }
+	if (needsModel && !flag("yes")) { console.error("This spends money on OpenRouter. Run again with --yes to start."); process.exit(2); }
 	const ctl = new AbortController();
 	process.on("SIGINT", () => { console.error("\nStopping after the current steps…"); ctl.abort(); });
 	const t0 = Date.now();
 	const { closeBrowser } = await import("../browser.js");
 	const summary = await runBatch(specs, {
-		concurrency, gapSec, model, draft: flag("draft"), fps: opt("fps") ? Number(opt("fps")) : undefined, force: flag("force"), promptOnly, keepFrames: flag("keep-frames"), signal: ctl.signal,
+		concurrency, gapSec, model, draft: flag("draft"), fps: opt("fps") ? Number(opt("fps")) : undefined, force: flag("force"), rerender: flag("rerender"), promptOnly, keepFrames: flag("keep-frames"), signal: ctl.signal,
 		onEvent: (e) => {
 			const t = `${String(Math.round((Date.now() - t0) / 1000)).padStart(4)}s`;
 			if (e.type === "start") console.log(`${t}  ${e.id} start  ${e.name}`);

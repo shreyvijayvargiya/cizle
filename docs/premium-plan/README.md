@@ -36,3 +36,9 @@ How a skill is made: the model writes the prompt from the brief; the prompt is c
 The same runner is available over HTTP when `npm start` is running: `GET /api/premium/plan`, `GET /api/premium/status`, `POST /api/premium/run` (`ids`, `category`, `limit`, `concurrency`, `gap_sec`, `model`, `draft`, `force`, `prompt_only`), `POST /api/premium/stop`, `GET /api/premium/<id>/{prompt,scene,video,poster,meta}`.
 
 Not covered by the capture: audio. The videos are silent; music and audio-reactive skills show their motion from generated data, and a track can be added at the encode step later.
+
+## Writing a skill by hand (or with Claude Code), rendering with the CLI
+
+The CLI only calls a model for the stages whose files are missing. Put `prompt.json` and `scene.html` in `data/premium/<id>-<slug>/` and run `npm run premium -- run --only <id> --gap 0`: it renders and encodes with no model call, no OpenRouter key and no cost. `--rerender` captures again from the files on disk after you edit the scene.
+
+`samples/p001-phone-unboxing-reveal/` is the first one, written by Claude Code: copy that folder into `data/premium/` and run `npm run premium -- run --only p001 --gap 0` to get the video (about 30 seconds).

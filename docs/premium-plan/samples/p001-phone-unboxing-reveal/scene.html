@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Phone Unboxing Reveal</title>
+<style>
+  html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0b0d12; }
+  body { font-family: ui-sans-serif, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif; color: #f4f6fb; position: relative; }
+  .bg { position: absolute; inset: 0; background: radial-gradient(900px 900px at 50% 62%, #16303a 0%, #0b0d12 70%); }
+  .glow { position: absolute; left: 50%; top: 1060px; width: 1100px; height: 1100px; margin: -550px 0 0 -550px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(52, 214, 190, .55), rgba(52, 214, 190, 0)); opacity: 0; }
+  .speck { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #9fe9dc; opacity: 0; }
+  .brand { position: absolute; left: 0; right: 0; top: 150px; text-align: center; letter-spacing: .5em; font-size: 30px; font-weight: 600; color: #7fd8c8; opacity: 0; text-transform: uppercase; }
+  .line { position: absolute; left: 80px; right: 80px; top: 230px; height: 260px; text-align: center; font-size: 104px; line-height: 1.04; font-weight: 800; letter-spacing: -.035em; }
+  .caret { display: inline-block; width: 8px; height: .8em; margin-left: 8px; background: #34d6be; vertical-align: -.06em; }
+  .stage { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; perspective: 2200px; perspective-origin: 50% 60%; }
+  .phone { position: absolute; left: 50%; top: 560px; width: 600px; height: 1240px; margin-left: -300px; border-radius: 96px;
+           background: linear-gradient(145deg, #2c3340, #12151c 55%, #232a36); padding: 18px; box-sizing: border-box;
+           box-shadow: 0 0 0 3px #3b4455 inset, 0 60px 120px rgba(0,0,0,.65), 0 0 0 2px #0a0c11; transform-origin: 50% 80%; will-change: transform; }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 80px; overflow: hidden; background: #000; }
+  .view { position: absolute; inset: 0; background: linear-gradient(170deg, #0f4b52 0%, #0a2c35 60%, #08181f 100%); opacity: 0; padding: 140px 44px 40px; box-sizing: border-box; }
+  .island { position: absolute; left: 50%; top: 26px; width: 150px; height: 44px; margin-left: -75px; border-radius: 30px; background: #000; z-index: 5; }
+  .hello { font-size: 30px; color: #8fd7cb; font-weight: 600; }
+  .title { font-size: 64px; font-weight: 800; letter-spacing: -.03em; margin-top: 6px; }
+  .ringwrap { position: relative; width: 300px; height: 300px; margin: 44px auto 36px; }
+  .ringwrap svg { position: absolute; inset: 0; }
+  .pct { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 78px; font-weight: 800; letter-spacing: -.04em; }
+  .pct small { font-size: 24px; font-weight: 600; color: #8fd7cb; letter-spacing: 0; margin-top: -4px; }
+  .row { display: flex; align-items: center; gap: 22px; height: 112px; margin-bottom: 18px; padding: 0 28px; border-radius: 34px; background: rgba(255,255,255,.08); font-size: 34px; font-weight: 600; opacity: 0; }
+  .tick { width: 50px; height: 50px; border-radius: 50%; border: 4px solid rgba(255,255,255,.35); flex: none; position: relative; box-sizing: border-box; }
+  .tick svg { position: absolute; inset: 0; }
+  .tabbar { position: absolute; left: 44px; right: 44px; bottom: 40px; height: 96px; border-radius: 48px; background: rgba(255,255,255,.1); display: flex; justify-content: space-around; align-items: center; }
+  .tabbar i { width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.35); display: block; }
+  .tabbar i.on { background: #34d6be; }
+  .sheen { position: absolute; inset: 0; border-radius: 80px; background: linear-gradient(115deg, rgba(255,255,255,0) 35%, rgba(255,255,255,.14) 50%, rgba(255,255,255,0) 65%); transform: translateX(-120%); pointer-events: none; z-index: 6; }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="glow" id="glow"></div>
+<div id="specks"></div>
+<div class="brand" id="brand">Lumen</div>
+<div class="line" id="line"><span id="typed"></span><span class="caret" id="caret"></span></div>
+<div class="stage">
+  <div class="phone" id="phone">
+    <div class="screen">
+      <div class="island"></div>
+      <div class="view" id="view">
+        <div class="hello">Good morning</div>
+        <div class="title">Today</div>
+        <div class="ringwrap">
+          <svg viewBox="0 0 300 300" width="300" height="300">
+            <circle cx="150" cy="150" r="124" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="26"/>
+            <circle id="ring" cx="150" cy="150" r="124" fill="none" stroke="#34d6be" stroke-width="26" stroke-linecap="round" stroke-dasharray="779.1" stroke-dashoffset="779.1" transform="rotate(-90 150 150)"/>
+          </svg>
+          <div class="pct"><span id="pct">0%</span><small>planned</small></div>
+        </div>
+        <div class="row" id="r0"><span class="tick"><svg viewBox="0 0 50 50"><path class="ck" d="M13 26 L22 35 L38 16" fill="none" stroke="#34d6be" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></span>Block deep work</div>
+        <div class="row" id="r1"><span class="tick"><svg viewBox="0 0 50 50"><path class="ck" d="M13 26 L22 35 L38 16" fill="none" stroke="#34d6be" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></span>Send the update</div>
+        <div class="row" id="r2"><span class="tick"><svg viewBox="0 0 50 50"><path class="ck" d="M13 26 L22 35 L38 16" fill="none" stroke="#34d6be" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"/></svg></span>Plan Friday review</div>
+        <div class="tabbar"><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="sheen" id="sheen"></div>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const D = 8, TEXT = "Plan your week in one tap.";
+  const $ = (id) => document.getElementById(id);
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+  const outCubic = (x) => 1 - Math.pow(1 - x, 3);
+  const inOutCubic = (x) => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const outQuint = (x) => 1 - Math.pow(1 - x, 5);
+  const lerp = (a, b, x) => a + (b - a) * x;
+
+  // specks: fixed positions and speeds so every frame is the same on every run
+  const specks = [];
+  for (let i = 0; i < 16; i++) {
+    const el = document.createElement("div");
+    el.className = "speck";
+    $("specks").appendChild(el);
+    specks.push({ el, x: (i * 137.5) % 1080, y: 400 + ((i * 211) % 1500), v: 20 + (i % 5) * 9, s: 5 + (i % 4) * 3, ph: i * .7 });
+  }
+
+  let t0 = null;
+  function frame(ts) {
+    if (t0 === null) t0 = ts;
+    const t = Math.min((ts - t0) / 1000, D);
+
+    // phone: rises and turns to face the viewer, settled at 2.4 s
+    const rise = outQuint(seg(t, 0.15, 2.4));
+    const y = lerp(1500, 0, rise), rx = lerp(62, 0, rise), rz = lerp(-9, 0, rise), sc = lerp(.86, 1, rise);
+    $("phone").style.transform = `translateY(${y}px) rotateX(${rx}deg) rotateZ(${rz}deg) scale(${sc})`;
+
+    // screen wakes, then the content arrives
+    const wake = outCubic(seg(t, 2.4, 3.3));
+    $("view").style.opacity = wake;
+    $("view").style.filter = `brightness(${lerp(.4, 1, wake)})`;
+    const ring = inOutCubic(seg(t, 3.1, 4.9)) * .74;
+    $("ring").style.strokeDashoffset = 779.1 * (1 - ring);
+    $("pct").textContent = Math.round(ring * 100) + "%";
+    [3.5, 4.1, 4.7].forEach((a, i) => {
+      const p = outCubic(seg(t, a, a + .55));
+      const row = $("r" + i);
+      row.style.opacity = p;
+      row.style.transform = `translateX(${lerp(90, 0, p)}px)`;
+      row.querySelector(".ck").style.strokeDashoffset = 40 * (1 - outCubic(seg(t, a + .55, a + .95)));
+      row.querySelector(".tick").style.background = `rgba(52,214,190,${.16 * outCubic(seg(t, a + .55, a + .95))})`;
+    });
+    $("sheen").style.transform = `translateX(${lerp(-120, 120, inOutCubic(seg(t, 2.6, 4.2)))}%)`;
+
+    // brand, then the promise line typing in
+    $("brand").style.opacity = outCubic(seg(t, 5.2, 5.9));
+    const n = Math.floor(TEXT.length * clamp((t - 5.6) / 1.5));
+    $("typed").textContent = TEXT.slice(0, n);
+    const done = n >= TEXT.length;
+    $("caret").style.opacity = t < 5.5 || (done && t > 7.4) ? 0 : (Math.floor(t * 2.4) % 2 === 0 ? 1 : 0);
+
+    // glow behind the phone: slow breathing, one pulse at 7 s
+    const pulse = Math.sin(Math.PI * seg(t, 6.9, 7.8));
+    $("glow").style.opacity = .18 + .22 * outCubic(seg(t, 2.2, 3.4)) + .45 * pulse;
+    $("glow").style.transform = `scale(${1 + .12 * pulse})`;
+
+    // drifting specks
+    specks.forEach((s) => {
+      const yy = s.y - t * s.v;
+      s.el.style.transform = `translate(${s.x + Math.sin(t * .6 + s.ph) * 18}px, ${((yy % 1700) + 1700) % 1700 + 120}px)`;
+      s.el.style.width = s.el.style.height = s.s + "px";
+      s.el.style.opacity = (.18 + .22 * Math.sin(t * 1.1 + s.ph) ** 2).toFixed(3);
+    });
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

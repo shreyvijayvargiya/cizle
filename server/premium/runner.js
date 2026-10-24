@@ -49,10 +49,10 @@ function looksStatic(frameDir, frames) {
 }
 
 async function generateOne(spec, ctx) {
-	const { model, fps, draft, force, promptOnly, corpus, signal, emit, keepFrames } = ctx;
+	const { model, fps, draft, force, rerender, promptOnly, corpus, signal, emit, keepFrames } = ctx;
 	const dir = skillDir(spec);
 	const prior = readMeta(spec);
-	if (!force && prior?.status === "done") return emit({ type: "skip", id: spec.id, reason: "already done" });
+	if (!force && !rerender && prior?.status === "done") return emit({ type: "skip", id: spec.id, reason: "already done" });
 	const meta = { id: spec.id, slug: spec.slug, name: spec.name, category: spec.category, status: "running", stage: "prompt", origin: "original", model, startedAt: new Date().toISOString(), warnings: [], usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0, cost: 0, cost_details: null } };
 	const log = (msg) => emit({ type: "log", id: spec.id, msg });
 	const spend = (u) => (meta.usage = mergeOpenRouterUsage(meta.usage, u));
@@ -158,10 +158,10 @@ async function generateOne(spec, ctx) {
 
 /**
  * @param {object[]} specs
- * @param {{ concurrency?: number, gapSec?: number, model?: string, fps?: number, draft?: boolean, force?: boolean, promptOnly?: boolean, keepFrames?: boolean, signal?: AbortSignal, onEvent?: (e: object) => void }} opts
+ * @param {{ concurrency?: number, gapSec?: number, model?: string, fps?: number, draft?: boolean, force?: boolean, rerender?: boolean, promptOnly?: boolean, keepFrames?: boolean, signal?: AbortSignal, onEvent?: (e: object) => void }} opts
  */
 export async function runBatch(specs, opts = {}) {
-	const { concurrency = 3, gapSec = 20, model = DEFAULT_MODEL, draft = false, fps = draft ? 24 : 30, force = false, promptOnly = false, keepFrames = false, signal, onEvent = () => {} } = opts;
+	const { concurrency = 3, gapSec = 20, model = DEFAULT_MODEL, draft = false, fps = draft ? 24 : 30, force = false, promptOnly = false, rerender = false, keepFrames = false, signal, onEvent = () => {} } = opts;
 	const emit = (e) => onEvent({ at: Date.now(), ...e });
 	const corpus = buildCorpus();
 	// skills already generated count as sources too, so no two of the 100 can say the same thing
@@ -173,7 +173,7 @@ export async function runBatch(specs, opts = {}) {
 	const summary = { total: specs.length, done: 0, failed: 0, skipped: 0, cost: 0 };
 	let nextStart = 0;
 	const gap = Math.max(0, gapSec) * 1000;
-	const ctx = { model, fps, draft, force, promptOnly, keepFrames, corpus, signal, emit: (e) => { emit(e); if (e.type === "done") (summary.done++, (summary.cost += e.cost || 0)); if (e.type === "error") summary.failed++; if (e.type === "skip") summary.skipped++; } };
+	const ctx = { model, fps, draft, force, rerender, promptOnly, keepFrames, corpus, signal, emit: (e) => { emit(e); if (e.type === "done") (summary.done++, (summary.cost += e.cost || 0)); if (e.type === "error") summary.failed++; if (e.type === "skip") summary.skipped++; } };
 	emit({ type: "batch", total: specs.length, concurrency, gapSec, model });
 	async function worker() {
 		while (queue.length && !signal?.aborted) {
