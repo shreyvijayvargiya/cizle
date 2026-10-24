@@ -172,7 +172,7 @@ export async function renderSequence(html, { width, height }, { fps = 15, durati
  * (premium/clock.js), so frame N is exactly N / fps seconds in, whatever the machine speed. Writes dir/00000.jpg… and returns the
  * frame count plus any script errors the page raised.
  */
-export async function captureTimeline(html, { width, height }, { fps = 30, durationSec, dir, quality = 92 }) {
+export async function captureTimeline(html, { width, height }, { fps = 30, durationSec, dir, quality = 92, shots, scale = 1 }) {
 	throwIfCancelled();
 	// One Chrome per capture: tabs of a single Chrome starve each other of frames when several are captured at once.
 	const browser = await puppeteer.launch(launchOptions()).catch((e) => {
@@ -186,7 +186,8 @@ export async function captureTimeline(html, { width, height }, { fps = 30, durat
 		const errors = [];
 		page.on("pageerror", (e) => errors.push(String(e?.message || e).slice(0, 300)));
 		page.on("console", (m) => m.type() === "error" && errors.push(m.text().slice(0, 300)));
-		await page.setViewport({ width, height, deviceScaleFactor: 1 });
+		// the page is laid out at its design size; `scale` only shrinks the picture (previews and drafts)
+		await page.setViewport({ width, height, deviceScaleFactor: scale });
 		await page.evaluateOnNewDocument(VIRTUAL_CLOCK);
 		// setContent reuses the blank document, so the clock would never be installed; navigate to a URL that we answer ourselves instead
 		await page.setRequestInterception(true);
@@ -201,12 +202,34 @@ export async function captureTimeline(html, { width, height }, { fps = 30, durat
 		await Promise.race([page.evaluate(() => document.fonts.ready), new Promise((r) => setTimeout(r, 3000))]).catch(() => {});
 		const frames = Math.max(2, Math.round(durationSec * fps));
 		const clip = { x: 0, y: 0, width, height };
+		// `shots` (fractions of the clip) keeps only a few keyframes, shot00.jpg…: the clock still runs every frame, so they are exact
+		const shotAt = shots ? shots.map((f) => Math.min(frames - 1, Math.round(f * (frames - 1)))) : null;
 		for (let i = 0; i < frames; i++) {
 			throwIfCancelled();
 			await page.evaluate((ms) => window.__advance(ms), i === 0 ? 0 : 1000 / fps);
-			await page.screenshot({ type: "jpeg", quality, clip, path: `${dir}/${String(i).padStart(5, "0")}.jpg` });
+			if (!shotAt) await page.screenshot({ type: "jpeg", quality, clip, path: `${dir}/${String(i).padStart(5, "0")}.jpg` });
+			else if (shotAt.includes(i)) await page.screenshot({ type: "jpeg", quality, clip, path: `${dir}/shot${String(shotAt.indexOf(i)).padStart(2, "0")}.jpg` });
 		}
-		return { frames, fps, errors: [...new Set(errors)].slice(0, 8) };
+		// layout check on the last frame: text outside the frame, or cut off by the box it sits in
+		const lint = await page.evaluate(() => {
+			const issues = [], vw = innerWidth, vh = innerHeight;
+			for (const el of document.querySelectorAll("body *")) {
+				const cs = getComputedStyle(el);
+				if (cs.display === "none" || cs.visibility === "hidden" || Number(cs.opacity) === 0) continue;
+				if (![...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim())) continue;
+				const r = el.getBoundingClientRect();
+				if (!r.width || !r.height) continue;
+				const label = el.textContent.trim().replace(/\s+/g, " ").slice(0, 28);
+				if (r.left < -2 || r.top < -2 || r.right > vw + 2 || r.bottom > vh + 2) issues.push(`text "${label}" runs outside the frame`);
+				for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+					if (!/(hidden|clip)/.test(getComputedStyle(p).overflow)) continue;
+					const q = p.getBoundingClientRect();
+					if (r.left < q.left - 2 || r.right > q.right + 2 || r.top < q.top - 2 || r.bottom > q.bottom + 2) { issues.push(`text "${label}" is cut off by its container`); break; }
+				}
+			}
+			return [...new Set(issues)].slice(0, 8);
+		}).catch(() => []);
+		return { frames, fps, errors: [...new Set(errors)].slice(0, 8), lint, shotAt };
 	} catch (e) {
 		throw signal?.aborted ? new CancelledError() : e;
 	} finally {

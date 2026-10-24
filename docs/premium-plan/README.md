@@ -42,3 +42,29 @@ Not covered by the capture: audio. The videos are silent; music and audio-reacti
 The CLI only calls a model for the stages whose files are missing. Put `prompt.json` and `scene.html` in `data/premium/<id>-<slug>/` and run `npm run premium -- run --only <id> --gap 0`: it renders and encodes with no model call, no OpenRouter key and no cost. `--rerender` captures again from the files on disk after you edit the scene.
 
 `samples/p001-phone-unboxing-reveal/` is the first one, written by Claude Code: copy that folder into `data/premium/` and run `npm run premium -- run --only p001 --gap 0` to get the video (about 30 seconds).
+
+## The harness: improve the prompts, not just render them
+
+`npm run harness` is the quality loop. It improves each skill's **prompt** by looking at what the prompt produces, and renders the full video only once, at the end.
+
+```bash
+npm run harness -- run --only p001 --keep-scene --yes   # judge the scene already on disk (p001), improve the prompt, re-render
+npm run harness -- run --limit 3 --yes                  # try three new ones first and read the cost
+npm run harness -- run --yes                            # all of them, resume-safe
+npm run harness -- report                               # scores per skill and round
+npm run harness -- lessons                              # what has been learned so far
+```
+
+Per skill, up to `--rounds 3`:
+
+1. **Scene**: a page is written from the prompt alone, so the prompt is what is tested.
+2. **Keyframes**: six frames (6%, 20%, 38%, 55%, 75% and 100% of the clip), not a video, laid out at the design size and shrunk for review. Automatic checks run on the last frame: script errors, no motion between frames, text outside the frame or cut off by its box.
+3. **Review**: a vision model acts as a strict art director and scores brief fit, composition, motion, legibility and polish out of 10 (total /100), lists defects with fixes, and lists changes to the prompt. The total is computed from the five scores; automatic findings lower it whatever the reviewer said.
+4. **Revise**: the model rewrites the prompt to remove the defects (more exact colours, sizes, timings, easing, fit rules), the originality check runs again, and the next round starts.
+5. The loop stops at `--threshold 80` or after the last round. The best round is kept, written to `prompt.md`, `scene.html` and `harness.json`, and rendered to a full video.
+
+The batch also learns: every review's defects are collected and, every 8 skills and at the end, merged into at most 14 short lessons in `data/premium/lessons.md`. Every later prompt and scene is shown those lessons, plus `exemplar.md` (a finished prompt, p001, as the level of detail to match) and `server/premium/craft.md` (the craft rules). Skills that finish below the bar are marked `needs review` in `report` and in `meta.json`.
+
+Use a cheaper vision model for the review with `--critic-model <id>`. Rough cost per skill: the prompt, then per round a scene (about 12k tokens out), a review and a revision. Try `--limit 3` first.
+
+Why HTML keyframes and not video: a round costs seconds of capture and one image, and a full video is rendered once. Why the prompt and not the scene is revised: the prompt is what is sold, so the loop changes it, and each round's scene is rebuilt from the prompt alone to prove it.

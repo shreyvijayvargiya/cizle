@@ -16,7 +16,8 @@
 		"render": "node server/cli/render.js",
 		"guide": "node server/cli/guide.js",
 		"cizle": "node server/cli/cizle.js",
-		"premium": "node server/cli/premium.js"
+		"premium": "node server/cli/premium.js",
+		"harness": "node server/cli/harness.js"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.5",

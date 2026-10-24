@@ -12,17 +12,18 @@ import { openRouterChat } from "../pipeline/openrouter.js";
 import { mergeOpenRouterUsage } from "../pipeline/openRouterUsage.js";
 import { buildCorpus } from "./overlap.js";
 import { DRAFT_SIZES, SIZES, readMeta, skillDir } from "./plan.js";
+import { guidance } from "./guidance.js";
 import { extractHtml, extractJson, fillParams, scenePromptMessages, sceneProblems, skillPromptMessages } from "./prompts.js";
 
 export const DEFAULT_MODEL = process.env.PREMIUM_MODEL?.trim() || "anthropic/claude-opus-5.5";
-const sleep = (ms, signal) => new Promise((res, rej) => {
+export const sleep = (ms, signal) => new Promise((res, rej) => {
 	const t = setTimeout(res, ms);
 	signal?.addEventListener("abort", () => (clearTimeout(t), rej(new CancelledError())), { once: true });
 });
 
 /** A rate limit, a timeout or a 5xx is worth waiting for; anything else is a real failure. */
 const transient = (e) => e?.code === "RATE_LIMIT" || /timed out|timeout|aborted due to|fetch failed|HTTP 5\d\d|overloaded|temporarily/i.test(String(e?.message || ""));
-async function withRetry(fn, signal, log) {
+export async function withRetry(fn, signal, log) {
 	for (let attempt = 0; ; attempt++) {
 		try {
 			return await fn();
@@ -35,17 +36,56 @@ async function withRetry(fn, signal, log) {
 	}
 }
 
-async function writeMeta(dir, meta) {
+export async function writeMeta(dir, meta) {
 	await fsp.mkdir(dir, { recursive: true });
 	await fsp.writeFile(path.join(dir, "meta.json"), `${JSON.stringify(meta, null, 1)}\n`);
 }
 
 /** Frame sizes in the middle of the clip: if they are all the same, nothing moved. */
-function looksStatic(frameDir, frames) {
+export function looksStatic(frameDir, frames) {
 	const at = (f) => fs.statSync(path.join(frameDir, `${String(Math.min(frames - 1, f)).padStart(5, "0")}.jpg`)).size;
 	const sizes = [0.1, 0.3, 0.5, 0.7, 0.9].map((p) => at(Math.floor(frames * p)));
 	const mean = sizes.reduce((a, b) => a + b, 0) / sizes.length;
 	return Math.max(...sizes) - Math.min(...sizes) < mean * 0.004;
+}
+
+
+/**
+ * The buyer-facing prompt for one brief: written by the model, checked for copied wording (up to two rewrites), validated for length and placeholders.
+ * `chat(messages, opts)` is the caller's model call (it handles retries and cost); `extra` can add `exemplar` or `lessons` overrides.
+ */
+export async function draftSkillPrompt(spec, { chat, corpus, warnings = [], extra = {} }) {
+	let avoid = [], note;
+	for (let round = 0; round < 3; round++) {
+		const r = await chat(skillPromptMessages(spec, { avoid, example: note, ...guidance(), ...extra }), { temperature: 0.9, maxTokens: 3500, jsonMode: true, timeoutMs: 180_000 });
+		let j;
+		try {
+			j = extractJson(r.content);
+		} catch (e) {
+			note = e.message;
+			continue;
+		}
+		const text = String(j.prompt || "");
+		const placeholders = new Set([...text.matchAll(/\{\{\s*([^}]+?)\s*\}\}/g)].map((m) => m[1].toLowerCase()));
+		const words = text.split(/\s+/).length;
+		if (words < 150 || words > 380) { note = `the prompt had ${words} words, it must have 190 to 300`; continue; }
+		if (placeholders.size < Math.min(2, spec.params.length)) { note = "the prompt does not use {{placeholders}} for its parameters"; continue; }
+		const check = corpus.check(text, `gen:${spec.id}`);
+		if (!check.ok) {
+			avoid = check.phrases.slice(0, 5).map((p) => p.text);
+			note = "it shares wording with existing prompts";
+			if (round === 2) warnings.push(`overlap: ${check.phrases.length} shared phrase(s), longest ${Math.max(...check.phrases.map((p) => p.words))} words (needs review)`);
+			else continue;
+		}
+		return { title: String(j.title || spec.name).slice(0, 120), prompt: text.trim(), example_params: j.example_params || {}, overlap: { ok: check.ok, phrases: check.phrases.length } };
+	}
+	throw new Error(`could not get a usable prompt: ${note}`);
+}
+
+/** One scene page written from a (filled-in) prompt; with `problem` and `previous` it repairs an earlier attempt. */
+export async function draftScene(spec, filledPrompt, chat, { problem, previous } = {}) {
+	const r = await chat(scenePromptMessages(spec, filledPrompt, { problem, previous, lessons: guidance().lessons }), { temperature: 0.6, maxTokens: 20_000, timeoutMs: 300_000 });
+	return extractHtml(r.content);
 }
 
 async function generateOne(spec, ctx) {
@@ -63,32 +103,7 @@ async function generateOne(spec, ctx) {
 		let draftPrompt = !force && fs.existsSync(path.join(dir, "prompt.json")) ? JSON.parse(fs.readFileSync(path.join(dir, "prompt.json"), "utf8")) : null;
 		if (!draftPrompt) {
 			emit({ type: "stage", id: spec.id, stage: "prompt" });
-			let avoid = [], note;
-			for (let round = 0; round < 3; round++) {
-				const r = await chat(skillPromptMessages(spec, { avoid, example: note }), { temperature: 0.9, maxTokens: 3000, jsonMode: true, timeoutMs: 180_000 });
-				let j;
-				try {
-					j = extractJson(r.content);
-				} catch (e) {
-					note = e.message;
-					continue;
-				}
-				const text = String(j.prompt || "");
-				const placeholders = new Set([...text.matchAll(/\{\{\s*([^}]+?)\s*\}\}/g)].map((m) => m[1].toLowerCase()));
-				const words = text.split(/\s+/).length;
-				if (words < 90 || words > 380) { note = `the prompt had ${words} words, it must have 140 to 260`; continue; }
-				if (placeholders.size < Math.min(2, spec.params.length)) { note = "the prompt does not use {{placeholders}} for its parameters"; continue; }
-				const check = corpus.check(text, `gen:${spec.id}`);
-				if (!check.ok) {
-					avoid = check.phrases.slice(0, 5).map((p) => p.text);
-					note = "it shares wording with existing prompts";
-					if (round === 2) meta.warnings.push(`overlap: ${check.phrases.length} shared phrase(s), longest ${Math.max(...check.phrases.map((p) => p.words))} words (needs review)`);
-					else continue;
-				}
-				draftPrompt = { title: String(j.title || spec.name).slice(0, 120), prompt: text.trim(), example_params: j.example_params || {}, overlap: { ok: check.ok, phrases: check.phrases.length } };
-				break;
-			}
-			if (!draftPrompt) throw new Error(`could not get a usable prompt: ${note}`);
+			draftPrompt = await draftSkillPrompt(spec, { chat, corpus, warnings: meta.warnings });
 			await fsp.writeFile(path.join(dir, "prompt.json"), JSON.stringify(draftPrompt, null, 1));
 		}
 		corpus.add(`gen:${spec.id}`, draftPrompt.prompt);
@@ -105,10 +120,7 @@ async function generateOne(spec, ctx) {
 		/* 2. the scene page, written from the prompt alone */
 		const filled = fillParams(draftPrompt.prompt, draftPrompt.example_params);
 		let html = !force && fs.existsSync(path.join(dir, "scene.html")) ? fs.readFileSync(path.join(dir, "scene.html"), "utf8") : null;
-		const makeScene = async (problem, previous) => {
-			const r = await chat(scenePromptMessages(spec, filled, { problem, previous }), { temperature: 0.6, maxTokens: 20_000, timeoutMs: 300_000 });
-			return extractHtml(r.content);
-		};
+		const makeScene = (problem, previous) => draftScene(spec, filled, chat, { problem, previous });
 		if (!html) {
 			emit({ type: "stage", id: spec.id, stage: "scene" });
 			html = await makeScene();
@@ -119,13 +131,15 @@ async function generateOne(spec, ctx) {
 
 		/* 3. capture, with one repair round when the page throws or does not move */
 		const { captureTimeline } = await import("../browser.js");
-		const [w, h] = (draft ? DRAFT_SIZES : SIZES)[spec.aspect];
+		const [fw, fh] = SIZES[spec.aspect];
+		const scale = draft ? DRAFT_SIZES[spec.aspect][0] / fw : 1;
+		const [w, h] = [Math.round(fw * scale), Math.round(fh * scale)];
 		const framesDir = path.join(dir, "frames");
 		const capture = async () => {
 			await fsp.rm(framesDir, { recursive: true, force: true });
 			await fsp.mkdir(framesDir, { recursive: true });
 			emit({ type: "stage", id: spec.id, stage: "capture" });
-			const cap = await captureTimeline(html, { width: w, height: h }, { fps, durationSec: spec.duration_sec, dir: framesDir });
+			const cap = await captureTimeline(html, { width: fw, height: fh }, { fps, durationSec: spec.duration_sec, dir: framesDir, scale });
 			return { ...cap, still: looksStatic(framesDir, cap.frames) };
 		};
 		let cap = await capture();
