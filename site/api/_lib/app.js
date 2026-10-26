@@ -141,6 +141,23 @@ export function createApp() {
 		}
 		return c.json({ error: "The post has no playable video any more." }, 404);
 	});
+	/* ---- /search?q=<query>: plain HTML (or ?format=json / ?format=md) so a bot or an AI agent can build its own query URL ---- */
+	app.get("/api/search", async (c) => {
+		const esc = (v) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+		const q = (c.req.query("q") || "").slice(0, 200);
+		const limit = Math.min(50, Math.max(1, Number(c.req.query("limit")) || 30));
+		const kind = c.req.query("kind") === "skill" || c.req.query("kind") === "prompt" ? c.req.query("kind") : undefined;
+		const index = await loadIndex(originOf(c));
+		const res = search(index, { q, kind, category: c.req.query("category") || undefined, limit });
+		const url = (r) => `${SITE_URL}${r.kind === "skill" ? "/skills/" : "/prompts/"}${r.ref}`;
+		const format = c.req.query("format");
+		c.header("Cache-Control", "public, max-age=300, s-maxage=3600");
+		if (format === "json") return c.json({ query: q, total: res.total, results: res.items.map((r) => ({ type: r.kind, title: r.title, summary: r.summary, category: r.category, access: r.tier, url: url(r) })) });
+		if (format === "md") return c.text(`# Search: ${q || "everything"}\n\n${res.total} results on cizle.\n\n${res.items.map((r) => `- [${r.title}](${url(r)}) (${r.kind}, ${r.category || "uncategorised"}): ${String(r.summary || "").replace(/\s+/g, " ").slice(0, 140)}`).join("\n")}\n`, 200, { "Content-Type": "text/markdown; charset=utf-8" });
+		const li = res.items.map((r) => `<li><a href="${esc(url(r))}">${esc(r.title)}</a> <small>(${esc(r.kind)}${r.category ? `, ${esc(r.category)}` : ""})</small><br><small>${esc(String(r.summary || "").slice(0, 170))}</small></li>`).join("");
+		const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${q ? `Search: ${esc(q)} | cizle` : "Search | cizle"}</title><meta name="robots" content="noindex, follow"><link rel="canonical" href="${SITE_URL}/search${q ? `?q=${encodeURIComponent(q)}` : ""}"></head><body style="font:16px/1.6 system-ui,sans-serif;max-width:48rem;margin:2rem auto;padding:0 1rem"><nav><a href="${SITE_URL}/">cizle</a> · <a href="${SITE_URL}/for">Use cases</a> · <a href="${SITE_URL}/styles">Styles</a> · <a href="${SITE_URL}/best">Best-of</a> · <a href="${SITE_URL}/how-to">How-to</a> · <a href="${SITE_URL}/glossary">Glossary</a></nav><h1>${q ? `Results for "${esc(q)}"` : "Search the cizle library"}</h1><form method="get" action="/search"><input type="search" name="q" value="${esc(q)}" placeholder="video prompt for a product launch" style="width:70%"> <button>Search</button></form><p>${res.total} ${res.total === 1 ? "result" : "results"}. Build your own query: <code>${SITE_URL}/search?q=your+words</code>. Add <code>&format=json</code> or <code>&format=md</code> for other formats.</p><ul>${li}</ul></body></html>`;
+		return c.html(html);
+	});
 	app.get("/api/v1", (c) => c.json({ name: "cizle", mcp: `${SITE_URL}/mcp`, docs: `${SITE_URL}/docs` }));
 	app.notFound((c) => c.json({ error: "Not found" }, 404));
 	app.onError((e, c) => (console.error("[cizle api]", e), c.json({ error: "Something went wrong on our side." }, 500)));

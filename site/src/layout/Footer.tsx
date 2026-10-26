@@ -38,6 +38,12 @@ export function Footer() {
 						{PREMIUM ? <Link to="/pricing" className={LINK}>Pricing</Link> : null}
 						<Link to="/docs" className={LINK}>Docs</Link>
 						<Link to="/learn" className={LINK}>Learn</Link>
+						<a href="/for" className={LINK}>Use cases</a>
+						<a href="/styles" className={LINK}>Styles</a>
+						<a href="/best" className={LINK}>Best-of lists</a>
+						<a href="/how-to" className={LINK}>How-to guides</a>
+						<a href="/glossary" className={LINK}>Glossary</a>
+						<a href="/templates" className={LINK}>Templates</a>
 						{BLOG ? <Link to="/blog" className={LINK}>Blog</Link> : null}
 					</nav>
 					<nav aria-label="Company" className="reveal md:col-span-4 lg:col-span-2" style={{ ["--i" as string]: 2 }}>

@@ -88,6 +88,10 @@
 		{
 			"source": "/mcp",
 			"destination": "/api/mcp"
+		},
+		{
+			"source": "/search",
+			"destination": "/api/search"
 		}
 	]
 }
