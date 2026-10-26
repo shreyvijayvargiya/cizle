@@ -201,7 +201,38 @@ out("/docs", document({ title: "Docs: how to use cizle skills with Claude Code |
 for (const [name, title, description] of [["terms", "Terms of service | cizle", "The terms for using the cizle skills library and Premium subscription."], ["privacy", "Privacy policy | cizle", "What cizle collects, who processes it and how to ask us to delete it."], ["refund", "Refund policy | cizle", "Refunds for cizle Premium: 7 days from your first payment, no questions asked."], ["rights", "Credits, licences and removal | cizle", "How cizle credits creators, which content is shown in full, and how to have yours changed or removed."]])
 	out(`/${name}`, document({ title, description, path: `/${name}`, body: `<article><h1>${esc(pages[name].title)}</h1>${pages[name].html}</article>` }));
 
-out("/learn", document({ title: "Learn: short videos about cizle prompts, skills and pricing | cizle", description: "Ten short videos on how cizle works: finding a prompt, copying a film look, Claude Code skills, creator credit, pricing and FAQ.", path: "/learn", body: `<h1>Learn</h1><ul>${learn.map((c) => `<li><h2>${esc(c.title)}</h2><p>${esc(c.description)}</p><p><a href="${esc(abs(c.video))}">Watch the video</a></p></li>`).join("")}</ul>`, ld: [{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: learn.map((c, i) => ({ "@type": "VideoObject", position: i + 1, name: c.title, description: c.description, thumbnailUrl: abs(c.poster), contentUrl: abs(c.video), uploadDate: today })) }] }));
+out("/learn", document({ title: "Learn: short videos about cizle prompts, skills and pricing | cizle", description: "Short films on how cizle works and what it makes: finding a prompt, film looks, Claude Code skills, creator credit, pricing and FAQ.", path: "/learn", body: `<h1>Learn</h1><ul>${learn.map((c) => `<li><h2>${esc(c.title)}</h2><p>${esc(c.description)}</p><p><a href="${esc(abs(c.video))}">Watch the video</a></p></li>`).join("")}</ul>`, ld: [{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: learn.map((c, i) => ({ "@type": "VideoObject", position: i + 1, name: c.title, description: c.description, thumbnailUrl: abs(c.poster), contentUrl: abs(c.video), uploadDate: today })) }] }));
+out("/subscribe", document({ title: "Subscribe: new cizle prompts and skills in your inbox | cizle", description: "Get each new video prompt, image prompt and Claude Code skill by email the day it lands. Free, and every prompt credits its creator.", path: "/subscribe", body: `<h1>New prompts, in your inbox</h1><p>Each new video prompt, image prompt and Claude Code skill, the day it lands. Free.</p><p><a href="/">Browse what is there now</a></p>` }));
+
+/* one crawlable page per filter option: /explore/<facet>/<value> lists what matches, as plain links */
+const facetPages = [];
+{
+	const canon = (c) => String(c || "").toLowerCase();
+	const sk = skills;
+	const gi = gallery ? gallery.items : [];
+	const defs = [
+		["kind", "Type", () => [["skills", "Skills"], ["prompts", "Community prompts"]], (v) => ({ s: v === "skills" ? sk : [], g: v === "prompts" ? gi : [] })],
+		["lang", "Language", () => [...new Set([...sk.map((x) => x.lang || "en"), ...gi.map((x) => x.lang || "en")])].map((v) => [v, v]), (v) => ({ s: sk.filter((x) => (x.lang || "en") === v), g: gi.filter((x) => (x.lang || "en") === v) })],
+		["version", "Collection", () => [...new Set(gi.map((x) => x.version).filter(Boolean))].map((v) => [v, `Collection ${v}`]), (v) => ({ s: sk.filter((x) => x.version === v), g: gi.filter((x) => x.version === v) })],
+		["category", "Category", () => [...new Set([...sk.map((x) => x.category), ...gi.map((x) => x.category)].filter(Boolean))].map((v) => [v, v]), (v) => ({ s: sk.filter((x) => canon(x.category) === canon(v)), g: gi.filter((x) => canon(x.category) === canon(v)) })],
+		["platform", "Platform", () => [...new Set(sk.map((x) => x.platform).filter((p) => p && p !== "Any"))].map((v) => [v, v]), (v) => ({ s: sk.filter((x) => x.platform === v), g: [] })],
+		["format", "Format", () => [...new Set(sk.map((x) => x.format).filter(Boolean))].map((v) => [v, v]), (v) => ({ s: sk.filter((x) => x.format === v), g: [] })],
+		["aspect", "Aspect ratio", () => [...new Set(sk.map((x) => x.aspect).filter(Boolean))].map((v) => [v, v]), (v) => ({ s: sk.filter((x) => x.aspect === v), g: [] })],
+	];
+	for (const [key, label, values, match] of defs) {
+		for (const [v, name] of values()) {
+			const { s: ss, g: gg } = match(v);
+			if (!ss.length && !gg.length) continue;
+			const route = `/explore/${key}/${encodeURIComponent(v)}`;
+			const title = `${label}: ${name} (${(ss.length + gg.length).toLocaleString()} prompts and skills) | cizle`;
+			const desc = `${(ss.length + gg.length).toLocaleString()} cizle video prompts, image prompts and Claude Code skills filtered by ${label.toLowerCase()} ${name}. Every prompt credits its creator.`;
+			const li = [...ss.slice(0, 40).map((x) => `<li><a href="${esc(abs(`/skills/${x.slug}`))}">${esc(x.name)}</a>: ${esc(x.summary || "")}</li>`), ...gg.filter((x) => x.slug).slice(0, 60).map((x) => `<li><a href="${esc(abs(`/prompts/${x.slug}`))}">${esc(x.title)}</a> by ${esc(x.author || "a creator")}</li>`)].join("");
+			out(route, document({ title, description: desc, path: route, body: `<h1>${esc(label)}: ${esc(name)}</h1><p>${esc(desc)}</p><ul>${li}</ul><p><a href="/#library">Open the full library</a></p>` }));
+			facetPages.push(route);
+		}
+	}
+}
+
 out("/contact", document({ title: "Contact cizle: questions, billing and refunds", description: `Email ${siteConfig.email} for questions about cizle skills, Premium access, billing or refunds. We reply within one working day.`, path: "/contact", ld: [{ "@context": "https://schema.org", "@type": "ContactPage", name: "Contact cizle", url: abs("/contact"), mainEntity: { "@type": "Organization", name: siteConfig.name, email: siteConfig.email } }], body: `<h1>Contact us</h1><p>A real person reads every message, usually within one working day. Email <a href="mailto:${esc(siteConfig.email)}">${esc(siteConfig.email)}</a>. For payment issues include the email you paid with.</p>` }));
 
 if (BLOG) out("/blog", document({ title: "Blog: video prompts, Claude Code skills and ad formats | cizle", description: "Guides and examples for making product, launch and ad videos with Claude Code: video types every SaaS needs, ad formats for Meta, TikTok and Google, and how skills work.", path: "/blog", ld: [crumbs([["Home", "/"], ["Blog", "/blog"]])], body: `<h1>Blog</h1><ul>${posts.map((p) => `<li><article><h2><a href="/blog/${p.slug}">${esc(p.title)}</a></h2><p><time datetime="${p.date}">${p.date}</time> · ${p.minutes} min read</p><p>${esc(p.description)}</p></article></li>`).join("")}</ul>` }));
@@ -213,7 +244,7 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/learn", 0.7], ["/creators", 0.5], ...(BLOG ? [["/blog", 0.7]] : []), ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2], ["/rights", 0.3]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/learn", 0.7], ["/subscribe", 0.4], ["/creators", 0.5], ...facetPages.map((r) => [r, 0.5]), ...(BLOG ? [["/blog", 0.7]] : []), ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2], ["/rights", 0.3]];
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# Feed: ${SITE_URL}/feed.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
 

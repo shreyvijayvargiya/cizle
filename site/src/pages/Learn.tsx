@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import learn from "../../content/learn.json";
 import { useHead } from "@/lib/head";
 
-type Clip = { slug: string; title: string; description: string; video: string; poster: string };
+type Clip = { slug: string; title: string; description: string; video: string; poster: string; aspect?: string };
 const CLIPS = learn as Clip[];
 
 function ClipCard({ c, index }: { c: Clip; index: number }) {
@@ -16,8 +16,8 @@ function ClipCard({ c, index }: { c: Clip; index: number }) {
 		else v.pause();
 	};
 	return (
-		<article className="reveal flex flex-col gap-3" style={{ ["--i" as string]: index % 4 }}>
-			<button type="button" onClick={toggle} aria-label={`${playing ? "Pause" : "Play"}: ${c.title}`} className="press group relative block aspect-[9/16] w-full overflow-hidden rounded-xl bg-field-2">
+		<article className={`reveal flex flex-col gap-3 ${c.aspect === "16:9" ? "min-[480px]:col-span-2" : ""}`} style={{ ["--i" as string]: index % 4 }}>
+			<button type="button" onClick={toggle} aria-label={`${playing ? "Pause" : "Play"}: ${c.title}`} className={`press group relative block w-full overflow-hidden rounded-xl bg-field-2 ${c.aspect === "16:9" ? "aspect-video" : "aspect-[9/16]"}`}>
 				<video ref={ref} src={c.video} poster={c.poster} preload="none" playsInline loop controls={playing} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} className="absolute inset-0 h-full w-full object-cover" />
 				{playing ? null : (
 					<span className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors group-hover:bg-black/25">
@@ -38,7 +38,7 @@ function ClipCard({ c, index }: { c: Clip; index: number }) {
 export function LearnPage() {
 	useHead({
 		title: "Learn: short videos about cizle prompts, skills and pricing",
-		description: "Ten short videos on how cizle works: finding a prompt, copying a film look, Claude Code skills, creator credit, pricing and FAQ.",
+		description: "Short films on how cizle works and what it makes: finding a prompt, film looks, Claude Code skills, creator credit, pricing and FAQ.",
 		path: "/learn",
 		jsonLd: {
 			"@context": "https://schema.org",
@@ -51,7 +51,7 @@ export function LearnPage() {
 			<div className="board-w">
 				<h1 className="display reveal" style={{ fontSize: "clamp(2.75rem, 7vw, 6.5rem)" }}>Learn</h1>
 				<p className="reveal mt-5 max-w-[48ch] text-lg" style={{ ["--i" as string]: 1 }}>
-					Short videos on how cizle works. Pick a topic, press play. Ready to try it? <Link to="/gallery" className="underline decoration-field-1 decoration-2 underline-offset-4">Open the gallery</Link>.
+					Short films made with cizle prompts and skills. Pick a topic, press play. Ready to try it? <Link to="/gallery" className="underline decoration-field-1 decoration-2 underline-offset-4">Open the gallery</Link>.
 				</p>
 				<div className="mt-10 grid grid-cols-1 gap-x-5 gap-y-10 min-[480px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
 					{CLIPS.map((c, i) => <ClipCard key={c.slug} c={c} index={i} />)}

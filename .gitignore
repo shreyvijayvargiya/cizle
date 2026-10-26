@@ -59,3 +59,9 @@ marketing/x/nature/out/
 marketing/x/nature/final/
 marketing/x/*.wav
 marketing/x/nature/*.wav
+marketing/x/real/out/
+marketing/x/real/card.png
+
+# generated from ../marketing/learn by scripts/build-content.mjs
+site/public/learn/
+site/content/learn.json

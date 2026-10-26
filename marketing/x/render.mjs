@@ -32,5 +32,17 @@ for (const v of VIDEOS.filter((x) => !only || only.includes(x.id))) {
 	await fsp.copyFile(path.join(dir, "frames", `${String(Math.floor(cap.frames * 0.5)).padStart(5, "0")}.jpg`), path.join(dir, "poster.jpg"));
 	await fsp.rm(path.join(dir, "frames"), { recursive: true, force: true });
 	fs.writeFileSync(path.join(dir, "post.txt"), `${v.post}\n`);
+	// music under the film, when a track exists (node marketing/x/music.py writes it)
+	const track = path.join(here, "music.wav");
+	if (fs.existsSync(track)) {
+		await fsp.copyFile(path.join(dir, "video.mp4"), path.join(dir, "video-silent.mp4"));
+		await ffmpeg(["-i", path.join(dir, "video-silent.mp4"), "-i", track, "-filter_complex", `[1:a]atrim=0:${v.duration},aecho=0.8:0.6:240:0.25,afade=t=in:d=1,afade=t=out:st=${Math.max(0, v.duration - 1.6)}:d=1.6,loudnorm=I=-16:TP=-1.5[a]`, "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", path.join(dir, "video.mp4")], `music ${v.id}`);
+	}
+	// every render is published to the Learn page: marketing/learn/<slug>/ (the site build picks it up). A title and description you wrote there are kept.
+	const learn = path.join(here, "..", "learn", v.slug);
+	await fsp.mkdir(learn, { recursive: true });
+	await fsp.copyFile(path.join(dir, "video.mp4"), path.join(learn, "video.mp4"));
+	await fsp.copyFile(path.join(dir, "poster.jpg"), path.join(learn, "poster.jpg"));
+	if (!fs.existsSync(path.join(learn, "meta.json"))) fs.writeFileSync(path.join(learn, "meta.json"), `${JSON.stringify({ title: v.slug.replace(/-/g, " "), description: String(v.post).split("\n")[0], order: 500 }, null, 1)}\n`);
 	console.log(`${v.id} ${v.slug}  ${v.duration}s  -> ${path.relative(process.cwd(), path.join(dir, "video.mp4"))}`);
 }

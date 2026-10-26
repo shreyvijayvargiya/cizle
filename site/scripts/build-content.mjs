@@ -108,6 +108,25 @@ for (const name of ["docs", "terms", "privacy", "refund", "rights"]) {
 const faq = JSON.parse(fs.readFileSync(path.join(SITE_DIR, "content", "faq.json"), "utf8"));
 write("content/faq.json", faq);
 
+/* learn: every film under ../marketing/learn/<slug>/{video.mp4,poster.jpg,meta.json} is on the Learn page. The render script puts new ones there. */
+{
+	const LEARN = path.resolve(SITE_DIR, "..", "marketing", "learn");
+	fs.rmSync(path.join(PUB, "learn"), { recursive: true, force: true });
+	fs.mkdirSync(path.join(PUB, "learn"), { recursive: true });
+	const clips = fs.existsSync(LEARN)
+		? fs.readdirSync(LEARN, { withFileTypes: true }).filter((d) => d.isDirectory() && fs.existsSync(path.join(LEARN, d.name, "video.mp4"))).map((d) => {
+			const meta = fs.existsSync(path.join(LEARN, d.name, "meta.json")) ? JSON.parse(fs.readFileSync(path.join(LEARN, d.name, "meta.json"), "utf8")) : {};
+			fs.copyFileSync(path.join(LEARN, d.name, "video.mp4"), path.join(PUB, "learn", `${d.name}.mp4`));
+			const hasPoster = fs.existsSync(path.join(LEARN, d.name, "poster.jpg"));
+			if (hasPoster) fs.copyFileSync(path.join(LEARN, d.name, "poster.jpg"), path.join(PUB, "learn", `${d.name}.jpg`));
+			return { slug: d.name, title: meta.title || d.name.replace(/-/g, " "), description: meta.description || "", order: meta.order ?? 999, aspect: meta.aspect || "9:16", video: `/learn/${d.name}.mp4`, poster: hasPoster ? `/learn/${d.name}.jpg` : "" };
+		})
+		: [];
+	clips.sort((a, b) => a.order - b.order || a.slug.localeCompare(b.slug));
+	fs.writeFileSync(path.join(SITE_DIR, "content", "learn.json"), `${JSON.stringify(clips.map(({ order, ...c }) => c), null, 1)}\n`);
+	console.log(`learn: ${clips.length} films from marketing/learn`);
+}
+
 /* blog */
 const posts = fs
 	.readdirSync(path.join(SITE_DIR, "content", "blog"))

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, MenuContent, MenuItem, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/lib/auth";
+import { requestShuffle } from "@/lib/gallery";
 import { NAV, PREMIUM } from "@/lib/config";
 import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
@@ -79,7 +80,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 	return (
 		<header className="board sticky top-0 z-40 bg-background pt-3 pb-2">
 			<div className="board-w flex h-[60px] items-stretch gap-2">
-				<Link to="/" aria-label="cizle home" className="press reveal flex shrink-0 items-center rounded-lg bg-surface px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-4">
+				<Link to="/" aria-label="cizle home: shuffle the videos" onClick={() => (requestShuffle(), window.scrollTo({ top: 0, behavior: "smooth" }))} className="press reveal flex shrink-0 items-center rounded-lg bg-surface px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-4">
 					<Logo className="[&_svg]:h-[28px]" />
 				</Link>
 				<nav aria-label="Main" className="reveal hidden min-w-0 flex-1 items-center gap-1 overflow-hidden rounded-lg bg-surface px-2 lg:flex" style={{ ["--i" as string]: 1 }}>
@@ -122,9 +123,9 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 									Get Premium
 								</Link>
 							) : (
-								<a href="/#subscribe" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
+								<Link to="/subscribe" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
 									Subscribe
-								</a>
+								</Link>
 							)}
 						</>
 					)}
@@ -184,7 +185,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 								{!PREMIUM && !user ? (
 									<SheetClose asChild>
 										<Button variant="brand" size="lg" asChild>
-											<a href="/#subscribe">Subscribe</a>
+											<Link to="/subscribe">Subscribe</Link>
 										</Button>
 									</SheetClose>
 								) : null}

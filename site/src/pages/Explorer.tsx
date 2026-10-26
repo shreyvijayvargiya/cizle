@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
-import { Cancel01Icon, Globe02Icon, Layers01Icon, Search01Icon, ShuffleIcon, Video01Icon } from "@hugeicons/core-free-icons";
+import { Cancel01Icon, FilterHorizontalIcon, Globe02Icon, Layers01Icon, Search01Icon, ShuffleIcon, SidebarLeftIcon, Video01Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { SkillCard } from "@/components/SkillCard";
 import { SkillDialog } from "@/components/SkillDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { OptionSelect } from "@/components/ui/select";
-import { LanguageSelect } from "@/components/LanguageSelect";
+import { FilterPanel, FilterRail, type Facet } from "@/components/FilterSidebar";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { languageOf } from "@/lib/languages";
 import { Skeleton } from "@/components/ui/misc";
 import { Hero } from "@/components/Hero";
 import { VideoToggle } from "@/components/VideoToggle";
@@ -106,7 +107,45 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 		jsonLd: [orgJsonLd(), siteJsonLd()],
 	});
 
-	const options = (items: string[] = [], label: (s: string) => string = (s) => s) => items.map((v) => ({ value: v, label: label(v) }));
+	const [side, setSide] = useState(() => {
+		try {
+			return localStorage.getItem("cizle-filters") !== "0";
+		} catch {
+			return true;
+		}
+	});
+	const toggleSide = (v: boolean) => {
+		setSide(v);
+		try {
+			localStorage.setItem("cizle-filters", v ? "1" : "0");
+		} catch {
+			/* private mode */
+		}
+	};
+	const [drawer, setDrawer] = useState(false);
+	const catCounts = useMemo(() => {
+		const m: Record<string, number> = {};
+		for (const x of skills.data?.skills ?? []) { const c = x.category || ""; m[c] = (m[c] || 0) + 1; }
+		for (const g of gallery.data?.items ?? []) { const c = g.category || ""; m[c] = (m[c] || 0) + 1; }
+		return m;
+	}, [skills.data, gallery.data]);
+	const facets: Facet[] = useMemo(
+		() => [
+			{ key: "kind", label: "Show", icon: Layers01Icon, options: [{ value: "skills", label: "Skills only", icon: KIND_ICON.skills, count: skills.data?.skills.length }, { value: "prompts", label: "Community prompts", icon: KIND_ICON.prompts, count: gallery.data?.total }] },
+			{ key: "lang", label: "Language", icon: Globe02Icon, limit: 6, options: Object.entries(langCounts).sort((a, b) => b[1] - a[1]).map(([code, n]) => ({ value: code, label: languageOf(code).native, flag: languageOf(code).flag, count: n })) },
+			{ key: "version", label: "Collection", icon: Layers01Icon, limit: 6, options: gallery.data?.versions.length ? [{ value: CLASSIC, label: "Classic (v1 to v3)", icon: Video01Icon }, ...gallery.data.versions.map((v) => ({ value: v.version, label: `${v.version} · ${Object.keys(v.languages).length} languages`, icon: Globe02Icon }))] : [] },
+			{ key: "category", label: "Category", icon: Layers01Icon, limit: 8, options: categories.map((c) => ({ value: c, label: c, icon: categoryIcon(c), count: catCounts[c] })) },
+			{ key: "platform", label: "Platform", icon: platformIcon("Any"), open: false, options: (skills.data?.platforms.filter((p) => p !== "Any") ?? []).map((p) => ({ value: p, label: p, icon: platformIcon(p) })) },
+			{ key: "format", label: "Format", icon: Layers01Icon, open: false, options: (skills.data?.formats ?? []).map((f) => ({ value: f, label: f, icon: FORMAT_ICON[f] })) },
+			{ key: "aspect", label: "Aspect ratio", icon: ASPECT_ICON.Other, open: false, options: (skills.data?.aspects ?? []).map((a) => ({ value: a, label: a, icon: ASPECT_ICON[a] })) },
+			...(PREMIUM ? [{ key: "access", label: "Access", icon: Layers01Icon, open: false, options: [{ value: "free", label: "Free", icon: ACCESS_ICON.free }, { value: "premium", label: "Premium", icon: ACCESS_ICON.premium }] }] : []),
+			{ key: "sort", label: "Sort", icon: SORT_ICON.random, open: false, options: [{ value: "new", label: "Newest", icon: SORT_ICON.new }, { value: "az", label: "A to Z", icon: SORT_ICON.az }, { value: "short", label: "Shortest first", icon: SORT_ICON.short }] },
+		],
+		[skills.data, gallery.data, langCounts, categories, catCounts],
+	);
+	const selected = search as Record<string, string | undefined>;
+	const pick = (key: string, value: string) => setFilter({ [key]: selected[key] === value ? undefined : value } as Partial<Filters>);
+	const activeCount = facets.filter((f) => selected[f.key]).length;
 
 	return (
 		<div>
@@ -120,27 +159,30 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</h2>
 						<p className="max-w-[44ch] text-lg leading-snug" aria-live="polite">
 							{skills.isLoading ? "Loading…" : `${skillList.length} skills and ${promptList.length.toLocaleString()} prompts${active ? ` match, of ${total} and ${promptTotal.toLocaleString()}` : ""}.`}{" "}
-							{PREMIUM ? (!isPro ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock {lockedPrompts > 0 ? lockedPrompts.toLocaleString() : "all"} full prompts and {total - freeCount || 36} premium skills.</Link> : <span>Premium is unlocked.</span>) : <span>All free. <a href="#subscribe" className="underline decoration-field-1 decoration-2 underline-offset-4">Subscribe</a> for new ones.</span>}
+							{PREMIUM ? (!isPro ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock {lockedPrompts > 0 ? lockedPrompts.toLocaleString() : "all"} full prompts and {total - freeCount || 36} premium skills.</Link> : <span>Premium is unlocked.</span>) : <span>All free. <Link to="/subscribe" className="underline decoration-field-1 decoration-2 underline-offset-4">Subscribe</Link> for new ones.</span>}
 						</p>
 					</div>
 
-					<div className="mt-8">
-						<form role="search" aria-label="Filter skills and prompts" className="flex flex-wrap items-center gap-2 rounded-lg bg-surface p-2" onSubmit={(e) => e.preventDefault()}>
-							<div className="relative w-full sm:w-80">
-								<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
-								<Input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${(total + promptTotal).toLocaleString()} skills and prompts`} className="pl-10" aria-label="Search skills and prompts" />
-							</div>
-							<OptionSelect aria-label="Show" value={search.kind || ""} onValueChange={(v) => setFilter({ kind: v })} emptyLabel="Skills and prompts" emptyIcon={KIND_ICON[""]} options={[{ value: "skills", label: "Skills only", icon: KIND_ICON.skills }, { value: "prompts", label: "Community prompts", icon: KIND_ICON.prompts }]} className="w-[13.5rem]" />
-							<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={langCounts} className="w-[12.5rem]" />
-							{gallery.data?.versions.length ? (
-								<OptionSelect aria-label="Collection" value={search.version || ""} onValueChange={(v) => setFilter({ version: v })} emptyLabel="All collections" emptyIcon={Layers01Icon} options={[{ value: CLASSIC, label: "Classic (v1 to v3)", icon: Video01Icon }, ...gallery.data.versions.map((v) => ({ value: v.version, label: `${v.version} · ${Object.keys(v.languages).length} languages`, icon: Globe02Icon }))]} className="w-[13rem]" />
-							) : null}
-							<OptionSelect aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" emptyIcon={Layers01Icon} options={categories.map((c) => ({ value: c, label: c, icon: categoryIcon(c) }))} className="w-[12rem]" />
-							<OptionSelect aria-label="Platform" value={search.platform || ""} onValueChange={(v) => setFilter({ platform: v })} emptyLabel="Any platform" emptyIcon={platformIcon("Any")} options={(skills.data?.platforms.filter((p) => p !== "Any") ?? []).map((p) => ({ value: p, label: p, icon: platformIcon(p) }))} className="w-[11rem]" />
-							<OptionSelect aria-label="Format" value={search.format || ""} onValueChange={(v) => setFilter({ format: v })} emptyLabel="Any format" emptyIcon={Layers01Icon} options={(skills.data?.formats ?? []).map((f) => ({ value: f, label: f, icon: FORMAT_ICON[f] }))} className="w-[11rem]" />
-							<OptionSelect aria-label="Aspect ratio" value={search.aspect || ""} onValueChange={(v) => setFilter({ aspect: v })} emptyLabel="Any ratio" emptyIcon={ASPECT_ICON.Other} options={(skills.data?.aspects ?? []).map((a) => ({ value: a, label: a, icon: ASPECT_ICON[a] }))} className="w-[10rem]" />
-							{PREMIUM ? <OptionSelect aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" emptyIcon={Layers01Icon} options={[{ value: "free", label: "Free", icon: ACCESS_ICON.free }, { value: "premium", label: "Premium", icon: ACCESS_ICON.premium }]} className="w-[10.5rem]" /> : null}
-							<OptionSelect aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Random" emptyIcon={SORT_ICON.random} options={[{ value: "new", label: "Newest", icon: SORT_ICON.new }, { value: "az", label: "A to Z", icon: SORT_ICON.az }, { value: "short", label: "Shortest first", icon: SORT_ICON.short }]} className="w-[12rem]" />
+					<div className="mt-8 flex flex-wrap items-center gap-2 rounded-lg bg-surface p-2">
+						<button type="button" onClick={() => toggleSide(!side)} aria-label={side ? "Hide filters" : "Show filters"} aria-pressed={side} className="press hidden h-10 items-center gap-2 rounded-md bg-background px-3.5 text-base font-medium outline-none hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring lg:flex">
+						<Icon icon={SidebarLeftIcon} size={18} /> Filters{activeCount ? <span className="grid min-w-5 place-items-center rounded-full bg-field-1 px-1.5 text-xs text-field-1-ink">{activeCount}</span> : null}
+						</button>
+						<Sheet open={drawer} onOpenChange={setDrawer}>
+							<SheetTrigger asChild>
+								<button type="button" className="press flex h-10 items-center gap-2 rounded-md bg-background px-3.5 text-base font-medium outline-none hover:bg-tile-2 lg:hidden">
+									<Icon icon={FilterHorizontalIcon} size={18} /> Filters{activeCount ? <span className="grid min-w-5 place-items-center rounded-full bg-field-1 px-1.5 text-xs text-field-1-ink">{activeCount}</span> : null}
+								</button>
+							</SheetTrigger>
+							<SheetContent title="Filters" side="left" className="w-[min(22rem,92vw)] overflow-y-auto">
+								<p className="px-1 pb-1 text-lg font-semibold">Filters</p>
+								<FilterPanel facets={facets} selected={selected} onSelect={pick} />
+							</SheetContent>
+						</Sheet>
+						<form role="search" aria-label="Search skills and prompts" className="relative min-w-[12rem] flex-1 sm:max-w-md" onSubmit={(e) => e.preventDefault()}>
+							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
+							<Input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${(total + promptTotal).toLocaleString()} skills and prompts`} className="pl-10" aria-label="Search skills and prompts" />
+						</form>
+						<div className="ml-auto flex flex-wrap items-center gap-2">
 							{active ? (
 								<Button type="button" variant="secondary" onClick={() => (setQ(""), navigate(slug ? { to: "/skills/$slug", params: { slug }, search: {}, replace: true } : { to: "/", search: {}, replace: true }))}>
 									<Icon icon={Cancel01Icon} size={15} /> Clear
@@ -150,11 +192,16 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 								<Icon icon={ShuffleIcon} size={15} /> Shuffle
 							</Button>
 							<VideoToggle />
-						</form>
+						</div>
 					</div>
 
+					<div className={`mt-2 lg:grid lg:items-start lg:gap-2 ${side ? "lg:grid-cols-[300px_minmax(0,1fr)]" : "lg:grid-cols-[60px_minmax(0,1fr)]"}`}>
+						<aside aria-label="Filters" className="sticky top-[84px] hidden max-h-[calc(100dvh-100px)] overflow-y-auto rounded-lg bg-surface p-2 lg:block">
+							{side ? <FilterPanel facets={facets} selected={selected} onSelect={pick} /> : <FilterRail facets={facets} selected={selected} onOpen={() => toggleSide(true)} />}
+						</aside>
+						<div className="min-w-0">
 					{skills.isLoading ? (
-						<div className="mt-2 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+						<div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 							{Array.from({ length: 8 }).map((_, i) => (
 								<Skeleton key={i} className="h-80" />
 							))}
@@ -169,7 +216,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</div>
 					) : mixed.length ? (
 						<>
-							<ul className="mt-2 grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+							<ul className="grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
 								{mixed.slice(0, shown).map((e, k) =>
 									e.type === "skill" ? (
 										<li key={`s-${e.skill.slug}`} className="reveal" style={{ ["--i" as string]: k % 4 }}>
@@ -199,6 +246,9 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 							</Button>
 						</div>
 					)}
+
+						</div>
+					</div>
 
 					{PREMIUM && !user && skills.data && !slug ? (
 						<section aria-labelledby="cta-h" className="mt-2 grid gap-2 md:grid-cols-12">
@@ -230,7 +280,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</h2>
 						<p className="max-w-[52ch] text-lg">Everything here is free. Sign in and subscribe and we send each new prompt and skill the day it lands.</p>
 						<div className="flex flex-wrap gap-2">
-							<a href="#subscribe" className="press inline-flex h-12 items-center rounded-lg bg-field-2 px-6 text-base font-medium text-field-2-ink hover:opacity-90">Subscribe</a>
+							<Link to="/subscribe" className="press inline-flex h-12 items-center rounded-lg bg-field-2 px-6 text-base font-medium text-field-2-ink hover:opacity-90">Subscribe</Link>
 							<Link to="/login" search={{}} className="press inline-flex h-12 items-center rounded-lg bg-tile-2 px-6 text-base text-foreground hover:bg-muted">Sign in</Link>
 						</div>
 					</div>

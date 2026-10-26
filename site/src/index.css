@@ -126,7 +126,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .tile-ink { background: var(--field-2); color: var(--field-2-ink); border-radius: var(--radius-tile); }
 .tile-tan { background: var(--field-3); color: var(--field-3-ink); border-radius: var(--radius-tile); }
 .board { padding-inline: var(--margin); }
-.board-w { margin-inline: auto; width: 100%; max-width: 1600px; }
+.board-w { margin-inline: auto; width: 100%; max-width: none; }
 @media (min-width: 640px) { .statement { font-size: 1.625rem; } }
 .tabular { font-variant-numeric: tabular-nums; }
 

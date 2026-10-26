@@ -14,6 +14,8 @@ import { NotFound } from "@/pages/NotFound";
 import { PricingPage } from "@/pages/Pricing";
 import { BLOG } from "@/lib/config";
 import { LearnPage } from "@/pages/Learn";
+import { SubscribePage } from "@/pages/Subscribe";
+import { ExploreRoute } from "@/pages/Explore";
 import { SavedPage } from "@/pages/Saved";
 import { SettingsPage } from "@/pages/Settings";
 import type { Filters } from "@/lib/data";
@@ -41,6 +43,7 @@ const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", vali
 const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
 
 /** The film is a static page (public/launch.html). The dev server and hosts without clean URLs reach it through this route. */
+const explore = createRoute({ getParentRoute: () => root, path: "/explore/$facet/$value", component: ExploreRoute });
 const launch = createRoute({ getParentRoute: () => root, path: "/launch", component: function LaunchRoute() { window.location.replace("/launch.html"); return null; } });
 
 const login = createRoute({ getParentRoute: () => root, path: "/login", component: LoginPage, validateSearch: (s: Record<string, unknown>): { next?: string } => ({ next: str(s.next) }) });
@@ -55,6 +58,8 @@ const tree = root.addChildren([
 	r("/creators", CreatorsPage),
 	r("/saved", SavedPage),
 	r("/learn", LearnPage),
+	r("/subscribe", SubscribePage),
+	explore,
 	r("/films", FilmsPage),
 	r("/connect", ConnectPage),
 	r("/pricing", PricingPage),

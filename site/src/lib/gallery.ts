@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Fuse from "fuse.js";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { DEV_UNLOCK } from "./config";
 import { firebaseConfigured, loadFirebase } from "./firebase";
 
@@ -164,7 +164,22 @@ export function useShuffle() {
 		}
 		setSeed(n);
 	}, []);
+	// the logo (and anything else) can ask for a new order without knowing about this hook
+	useEffect(() => {
+		window.addEventListener(SHUFFLE_EVENT, reshuffle);
+		return () => window.removeEventListener(SHUFFLE_EVENT, reshuffle);
+	}, [reshuffle]);
 	return { seed, reshuffle };
+}
+export const SHUFFLE_EVENT = "cizle:shuffle";
+/** A new order for every list now on screen, and for the one that opens next. */
+export function requestShuffle() {
+	try {
+		sessionStorage.removeItem(SEED_KEY);
+	} catch {
+		/* private mode */
+	}
+	window.dispatchEvent(new Event(SHUFFLE_EVENT));
 }
 /** Order by a hash of id + seed: the same seed gives the same order, a new seed a new one. */
 export function shuffled<T extends { id: string }>(list: T[], seed: number): T[] {
