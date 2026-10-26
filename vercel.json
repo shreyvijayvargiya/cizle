@@ -89,5 +89,7 @@
 			"source": "/mcp",
 			"destination": "/api/mcp"
 		}
-	]
+	],
+	"source": "site",
+	"destination": "https://www.cizle.dev"
 }
