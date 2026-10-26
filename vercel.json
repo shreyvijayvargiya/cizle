@@ -8,7 +8,7 @@
 	"trailingSlash": false,
 	"headers": [
 		{
-			"source": "/api/(?!vid)(.*)",
+			"source": "/api/((?!vid).*)",
 			"headers": [
 				{
 					"key": "Cache-Control",
@@ -89,7 +89,5 @@
 			"source": "/mcp",
 			"destination": "/api/mcp"
 		}
-	],
-	"source": "site",
-	"destination": "https://www.cizle.dev"
+	]
 }
