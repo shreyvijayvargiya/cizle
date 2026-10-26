@@ -22,7 +22,7 @@ const Ctx = createContext<AuthState | null>(null);
 
 export class AuthNotConfigured extends Error {
 	constructor() {
-		super("Sign-in is not set up on this deployment yet. Add the Firebase keys from .env.example.");
+		super("Sign-in is temporarily unavailable. Please try again soon.");
 	}
 }
 

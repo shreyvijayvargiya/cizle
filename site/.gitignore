@@ -10,3 +10,9 @@ service-account.json
 public/gallery.json
 logs
 public/gallery/
+
+# no env files or examples in the repo: set values in the host environment
+.env.*
+*.env
+*.env.example
+.env.example

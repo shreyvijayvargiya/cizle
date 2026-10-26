@@ -70,7 +70,7 @@ export function LoginPage() {
 			<h1 className="display" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>{mode === "in" ? "Welcome back" : "Create your account"}</h1>
 			<p className="mt-1 text-sm text-muted-foreground">{mode === "in" ? "Sign in to unlock your Premium skills." : "Free to join. Upgrade whenever you like."}</p>
 			{!configured ? (
-				<p className="mt-4 flex gap-2 rounded-lg border border-warning/30 bg-warning/10 p-3 text-xs text-warning"><Icon icon={Alert02Icon} size={15} className="mt-0.5" />Sign-in is not set up on this deployment yet. The site owner needs to add the Firebase keys (see .env.example).</p>
+				<p className="mt-4 flex gap-2 rounded-lg border border-warning/30 bg-warning/10 p-3 text-xs text-warning"><Icon icon={Alert02Icon} size={15} className="mt-0.5" />{import.meta.env.DEV ? "Local build: add the Firebase keys to site/.env to enable sign-in." : "Sign-in is temporarily unavailable. Please try again soon."}</p>
 			) : null}
 			<Tabs value={mode} onValueChange={(v) => { setMode(v as "in" | "up"); setError(""); }} className="mt-6">
 				<TabsList className="w-full"><TabsTrigger value="in" className="flex-1 justify-center">Sign in</TabsTrigger><TabsTrigger value="up" className="flex-1 justify-center">Create account</TabsTrigger></TabsList>

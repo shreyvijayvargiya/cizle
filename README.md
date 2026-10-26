@@ -45,7 +45,7 @@ claude mcp add --transport http cizle https://cizle.dev/mcp --header "Authorizat
 node server/cli/cizle.js search "launch video" --all                              # the same library as a CLI
 ```
 
-Tools: `search` (paged, returns a table), `get`, `categories`, `whoami`. Tokens are made on the site's **Connect** page from a Firebase sign-in (`MCP_JWT_SECRET`, `FIREBASE_PROJECT_ID`, `FIREBASE_SERVICE_ACCOUNT` in `site/.env.example`); the plan is read from `users/{uid}` on every request.
+Tools: `search` (paged, returns a table), `get`, `categories`, `whoami`. Tokens are made on the site's **Connect** page from a Firebase sign-in (`MCP_JWT_SECRET`, `FIREBASE_PROJECT_ID`, `FIREBASE_SERVICE_ACCOUNT` in the host environment); the plan is read from `users/{uid}` on every request.
 
 ## Contents
 

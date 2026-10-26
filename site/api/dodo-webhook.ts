@@ -2,7 +2,7 @@
  * The only server code in the project: Dodo Payments calls this when a subscription changes, and it flips users/{uid} in Firestore.
  * Firestore rules let a signed-in user read their own users/{uid} but never write it, so only this function can grant Premium.
  *
- * Deploy: Vercel picks up api/*.ts automatically. Set DODO_WEBHOOK_SECRET and FIREBASE_SERVICE_ACCOUNT (see .env.example), then add
+ * Deploy: Vercel picks up api/*.ts automatically. Set DODO_WEBHOOK_SECRET and FIREBASE_SERVICE_ACCOUNT in the host environment, then add
  * https://YOUR-DOMAIN/api/dodo-webhook in Dodo > Developer > Webhooks for the subscription and payment events.
  */
 import { createHmac, timingSafeEqual } from "node:crypto";

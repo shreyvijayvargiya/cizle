@@ -65,3 +65,9 @@ marketing/x/real/card.png
 # generated from ../marketing/learn by scripts/build-content.mjs
 site/public/learn/
 site/content/learn.json
+
+# no env files or examples in the repo: set values in the host environment
+.env.*
+*.env
+*.env.example
+.env.example
