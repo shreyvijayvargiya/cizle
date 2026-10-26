@@ -2,6 +2,8 @@
 
 # cizle
 
+**[Free prompts and skills: `library/`](library/README.md)**: 20 free skills and 532 free community prompts, one markdown file each, named after the prompt.
+
 **Ads for brands, SaaS founders and content creators. Animated video ads and banners for Meta, TikTok and Google Ads, made from your real product.**
 
 Add your website and GitHub repos once. cizle reads them, remembers them as markdown, notices what you ship, and suggests the next video or ad. **9 video ad formats for Meta, TikTok and Google Ads plus 2 static banner sets**, for online shops, beauty and fashion, food, fitness, local businesses, apps, creators and SaaS; and 21 video types for founders, five animated styles (hand-drawn, clay, glass, isometric, ASCII), 52 ready formats and 43 Opus film styles, in landscape, portrait or square, made from your real product.
@@ -10,7 +12,7 @@ Runs on your machine. No database, no accounts. Drive it from the dashboard with
 
 <a href="docs/demo.mp4"><img src="docs/demo.gif" alt="cizle demo: paste a link, get product videos" width="880" /></a>
 
-**[▶ Watch "cizle explained" (51 s, made with cizle)](web/public/videos/cizle-explainer.mp4)** · **[▶ Launch teaser (9:16)](web/public/videos/cizle-launch.mp4)** · [▶ 50-second demo with sound](docs/demo.mp4)**
+**[▶ Watch "cizle explained" (51 s, made with cizle)](docs/media/cizle-explainer.mp4)** · **[▶ Launch teaser (9:16)](site/public/videos/cizle-launch.mp4)** · [▶ 50-second demo with sound](docs/demo.mp4)**
 
 **[▶ Watch the 5-minute walkthrough](docs/overview.mp4)** · [captions (.srt)](docs/overview.srt) _(recorded early on: it predates animated styles, the review card, the founder types and Claude Code, all described below)_
 
@@ -32,6 +34,18 @@ Runs on your machine. No database, no accounts. Drive it from the dashboard with
 | Result | An MP4 (or banner PNGs) in your dashboard | An MP4 or banner PNGs in your dashboard, marked "Made with Claude Code", re-skinnable for free |
 
 Both use the same prompt library, the same animated styles and the same dashboard. Set up the second in two lines: see [Claude Code, no key](#use-it-from-claude-code-no-api-key).
+
+## Use the library inside Claude (remote MCP and CLI)
+
+The site serves the whole skills and prompts library as a remote MCP server at `https://cizle.dev/mcp`, built with Hono in `site/api/_lib` (it runs as a Vercel function, and `npm start` serves the same app locally).
+
+```bash
+claude mcp add --transport http cizle https://cizle.dev/mcp                       # free library, no sign-in
+claude mcp add --transport http cizle https://cizle.dev/mcp --header "Authorization: Bearer TOKEN"   # Premium
+node server/cli/cizle.js search "launch video" --all                              # the same library as a CLI
+```
+
+Tools: `search` (paged, returns a table), `get`, `categories`, `whoami`. Tokens are made on the site's **Connect** page from a Firebase sign-in (`MCP_JWT_SECRET`, `FIREBASE_PROJECT_ID`, `FIREBASE_SERVICE_ACCOUNT` in `site/.env.example`); the plan is read from `users/{uid}` on every request.
 
 ## Contents
 
@@ -98,7 +112,6 @@ To run the dashboard as a single server: `npm run build && npm start`, then open
 
 ## A tour of the dashboard
 
-The dashboard also has a **Docs** page (`/docs`) with the full getting-started guide and everything below in more detail. It is rendered from [`web/src/content/guide.md`](web/src/content/guide.md), so you can edit it like any other file.
 
 **Dashboard.** Pick who writes the video, add your product, and use the composer. Below it: prompts picked for your product and kind of founder, the **prompt gallery** (one animated tile per style, with counts), the **Claude Code** card (install command and a ready prompt), your latest videos and the ideas waiting.
 
@@ -484,7 +497,7 @@ Settings live in `data/settings.json` (git-ignored). Environment variables also 
 | `CIZLE_DASHBOARD_URL` | optional: where video links from Claude Code point (default `http://localhost:3737`; use `http://localhost:5173` with `npm run dev`) |
 | `CIZLE_ANIM_FPS` | optional: frames per second captured for animated styles (default `15`) |
 
-Copy `.env.example` to `.env` to set them in a file.
+Put them in a `.env` file at the repo root (it is git-ignored) to set them in a file.
 
 **Settings page:** OpenRouter key, UploadThing token, default aspect ratio, audio, voice and length, the script, vision and voice models, the free script and vision models (`auto` by default), caption burn-in, and **Keep products fresh** (auto-sync at start and every 6 hours).
 
@@ -508,11 +521,6 @@ cizle/
 │   ├── local.js             shared boot for the CLI and the MCP server
 │   └── pipeline/            context → frames → brief → script → render (FFmpeg), cancel.js,
 │                            styles.js (the five animated styles), pack.js (article → pack)
-├── web/src/
-│   ├── pages/               Dashboard, Create, Videos, VideoDetail, Gallery, ClaudeCode, Product,
-│   │                        Onboarding, Prompts, PromptEditor, Settings
-│   └── components/          AppShell, Composer, IdeaCard, ProductSwitcher, SyncBadge, ModelToggle,
-│                            PromptPreview, SuggestedPrompts, DashboardShelves, CopyBox, ReviewCard, RouteError, ui/ (shadcn-style: Button, Select, Menu, Dialog, Tabs, Switch…)
 ├── data/                    videos and settings (git-ignored)
 └── docs/                    screenshots and the demo video
 ```
@@ -550,7 +558,6 @@ Scripts: `npm run dev` (API + dashboard with hot reload), `npm run build`, `npm 
   ```
 
   `type` and `tone` must match a file in `prompts/`. `style` is one of `default`, `sketch`, `clay`, `glass`, `isometric`, `ascii`. `founders` are `solo`, `devtool`, `b2b`, `ai`, `fundraising`. Categories: `devtools`, `analytics`, `crm`, `ai-agents`, `project-management`, `fintech`, `marketing-seo`, `security`.
-- **Dashboard:** components follow the shadcn pattern on Radix (`web/src/components/ui/`). Please use them instead of native form controls.
 
 ## Credits
 

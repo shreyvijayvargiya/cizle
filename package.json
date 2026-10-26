@@ -5,17 +5,19 @@
 	"license": "MIT",
 	"type": "module",
 	"private": true,
-	"engines": { "node": ">=20.12" },
+	"engines": {
+		"node": ">=20.12"
+	},
 	"scripts": {
-		"dev": "concurrently -k -n api,web -c cyan,magenta \"node --watch-path=server server/index.js\" \"vite --config web/vite.config.ts\"",
-		"build": "vite build --config web/vite.config.ts",
 		"start": "node server/index.js",
-		"typecheck": "tsc --noEmit -p web",
 		"mcp": "node server/mcp/stdio.js",
 		"mcp:install": "node server/mcp/install.js",
 		"mcp:doctor": "node server/mcp/doctor.js",
 		"render": "node server/cli/render.js",
-		"guide": "node server/cli/guide.js"
+		"guide": "node server/cli/guide.js",
+		"cizle": "node server/cli/cizle.js",
+		"premium": "node server/cli/premium.js",
+		"harness": "node server/cli/harness.js"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.19.5",
@@ -23,6 +25,7 @@
 		"cheerio": "^1.1.2",
 		"ffmpeg-static": "^5.2.0",
 		"gray-matter": "^4.0.3",
+		"js-yaml": "^3.14.1",
 		"hono": "^4.8.5",
 		"marked": "^17.0.3",
 		"puppeteer": "^24.17.0",
@@ -55,5 +58,8 @@
 		"tailwindcss": "^4.1.12",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.3"
+	},
+	"bin": {
+		"cizle": "server/cli/cizle.js"
 	}
 }

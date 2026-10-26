@@ -54,6 +54,20 @@ api.post("/settings/test", async (c) => {
 	return c.json(await testOpenRouterKey(body.openrouter_api_key));
 });
 
+/* x.com scraper: tweet → video, poster, text, author */
+const { scrapeX, scrapeXMany } = await import("./x/scrape.js");
+api.post("/x/scrape", async (c) => {
+	const { url } = await c.req.json().catch(() => ({}));
+	if (!url) return c.json({ error: "Send { url } with an x.com post link." }, 400);
+	return c.json(await scrapeX(url));
+});
+api.post("/x/scrape-multiple", async (c) => {
+	const { urls, concurrency } = await c.req.json().catch(() => ({}));
+	if (!Array.isArray(urls) || !urls.length) return c.json({ error: "Send { urls: [...] } with x.com post links." }, 400);
+	if (urls.length > 100) return c.json({ error: "At most 100 links per call." }, 400);
+	return c.json({ results: await scrapeXMany(urls, { concurrency: Math.min(Number(concurrency) || 4, 6) }) });
+});
+
 /* prompt library */
 api.get("/prompts", async (c) => c.json({ prompts: await listPrompts() }));
 api.get("/prompts/:id", async (c) => {
@@ -311,18 +325,82 @@ api.get("/files/:id", (c) => {
 	return serveFile(c, file, type, c.req.query("download") ? { "Content-Disposition": `attachment; filename="${path.basename(file)}"` } : {});
 });
 
+/* premium skill generator: the same runner as `npm run premium` (docs/premium-plan/premium-100.json → data/premium/) */
+const premiumPlan = await import("./premium/plan.js");
+const premiumRunner = await import("./premium/runner.js");
+/** @type {{ ctl: AbortController, startedAt: number, log: object[], summary: object | null } | null} */
+let premiumRun = null;
+const premiumCounts = (rows) => rows.reduce((o, r) => ((o[r.status] = (o[r.status] || 0) + 1), o), {});
+api.get("/premium/plan", (c) => {
+	const plan = premiumPlan.loadPlan();
+	const state = new Map(premiumPlan.statusOf(plan).map((r) => [r.id, r]));
+	return c.json({ count: plan.count, categories: plan.categories, originality_rules: plan.originality_rules, render: plan.render, skills: plan.skills.map((sp) => ({ ...sp, local: state.get(sp.id) })) });
+});
+api.get("/premium/status", (c) => {
+	const rows = premiumPlan.statusOf(premiumPlan.loadPlan());
+	return c.json({ running: Boolean(premiumRun && !premiumRun.summary), counts: premiumCounts(rows), spent_usd: rows.reduce((a, r) => a + (r.cost || 0), 0), run: premiumRun && { started_at: premiumRun.startedAt, summary: premiumRun.summary, log: premiumRun.log.slice(-80) }, skills: rows });
+});
+api.post("/premium/run", async (c) => {
+	if (premiumRun && !premiumRun.summary) return c.json({ error: "A batch is already running. Stop it first." }, 409);
+	if (!process.env.OPENROUTER_API_KEY?.trim()) return c.json({ error: "Add your OpenRouter API key in Settings first.", code: "MISSING_API_KEY" }, 400);
+	const b = await c.req.json().catch(() => ({}));
+	let specs;
+	try {
+		specs = premiumPlan.select(premiumPlan.loadPlan(), { ids: Array.isArray(b.ids) ? b.ids : undefined, category: b.category, aspect: b.aspect, limit: b.limit, pending: !b.force });
+	} catch (e) {
+		return c.json({ error: e.message }, 400);
+	}
+	if (!specs.length) return c.json({ error: "Nothing to do: every selected skill is done. Send force: true to redo." }, 400);
+	const run = { ctl: new AbortController(), startedAt: Date.now(), log: [], summary: null };
+	premiumRun = run;
+	premiumRunner
+		.runBatch(specs, {
+			concurrency: Math.min(5, Math.max(1, Number(b.concurrency) || 3)),
+			gapSec: b.gap_sec !== undefined ? Number(b.gap_sec) : 20,
+			model: b.model || premiumRunner.DEFAULT_MODEL,
+			draft: Boolean(b.draft),
+			force: Boolean(b.force),
+			promptOnly: Boolean(b.prompt_only),
+			signal: run.ctl.signal,
+			onEvent: (e) => (run.log.push(e), run.log.length > 400 && run.log.splice(0, 100)),
+		})
+		.then((sum) => (run.summary = sum))
+		.catch((e) => (run.summary = { error: String(e.message || e) }));
+	return c.json({ started: true, count: specs.length, ids: specs.map((x) => x.id) }, 202);
+});
+api.post("/premium/stop", (c) => {
+	if (!premiumRun || premiumRun.summary) return c.json({ error: "Nothing is running." }, 404);
+	premiumRun.ctl.abort();
+	return c.json({ stopping: true });
+});
+api.get("/premium/:id/:file", (c) => {
+	const spec = premiumPlan.loadPlan().skills.find((x) => x.id === c.req.param("id") || x.slug === c.req.param("id"));
+	const name = { prompt: "prompt.md", scene: "scene.html", video: "video.mp4", poster: "poster.jpg", meta: "meta.json" }[c.req.param("file")];
+	if (!spec || !name) return c.json({ error: "Not found" }, 404);
+	const file = path.join(premiumPlan.skillDir(spec), name);
+	if (!fs.existsSync(file)) return c.json({ error: "Not generated yet" }, 404);
+	const html = path.extname(file) === ".html";
+	// a generated page is untrusted code: let it run, but in a sandbox with no access to this origin
+	return serveFile(c, file, { ".md": "text/markdown; charset=utf-8", ".html": "text/html; charset=utf-8", ...TYPES }[path.extname(file)] || "application/octet-stream", html ? { "Content-Security-Policy": "sandbox allow-scripts" } : {});
+});
+
+/* local-only tooling (harvester and enricher API): present only on the machine that collects the library, never in the public repository */
+try {
+	const { mountTools } = await import("./tools.js");
+	await mountTools(api);
+} catch (e) {
+	if (e.code !== "ERR_MODULE_NOT_FOUND") console.warn(`[cizle] tools not mounted: ${e.message}`);
+}
+
 app.route("/api", api);
 
-/* production: serve the built dashboard */
-const DIST = path.join(ROOT, "web", "dist");
-if (fs.existsSync(DIST)) {
-	const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".woff2": "font/woff2", ".json": "application/json", ".jpg": "image/jpeg" };
-	app.get("*", (c) => {
-		const p = path.resolve(DIST, `.${decodeURIComponent(new URL(c.req.url).pathname)}`);
-		const file = p.startsWith(DIST) && fs.existsSync(p) && fs.statSync(p).isFile() ? p : path.join(DIST, "index.html");
-		if (path.extname(file) === ".mp4") return serveFile(c, file, "video/mp4");
-		return c.body(fs.readFileSync(file), 200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream" });
-	});
+/* the remote MCP server and library API (site/api/_lib): the same app that runs as a Vercel function, served here too for local use and self-hosting */
+try {
+	const { createApp } = await import("../site/api/_lib/app.js");
+	const remote = createApp();
+	app.use(["/mcp", "/api/mcp", "/api/v1", "/api/v1/*"], (c) => remote.fetch(c.req.raw));
+} catch (e) {
+	console.warn(`[cizle] remote MCP not mounted (run npm install in site/): ${e.message}`);
 }
 
 /* keep products fresh while the app is open: once at start, then every 6 hours (Settings → auto sync) */
@@ -339,7 +417,6 @@ setInterval(autoSync, 6 * 3600_000).unref();
 const port = Number(process.env.PORT) || 3737;
 serve({ fetch: app.fetch, port }, () => {
 	console.log(`\n  cizle API  →  http://localhost:${port}/api`);
-	if (fs.existsSync(DIST)) console.log(`  dashboard  →  http://localhost:${port}\n`);
 });
 
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, async () => (await browser.closeBrowser(), process.exit(0)));

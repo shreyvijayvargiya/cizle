@@ -1,0 +1,42 @@
+{
+	"name": "cizle",
+	"url": "https://cizle.dev",
+	"tagline": "Video skills for Claude Code",
+	"title": "cizle skills: video prompts and Claude Code skills for product, ad and launch videos",
+	"description": "A library of video skills and prompts for Claude Code, plus a gallery of 1,000+ credited Opus 5.5 video prompts from the community. Copy a prompt or install a skill, give it your product link, and render an animated MP4 on your own machine. 20 free skills, premium ad and film-style skills and the full gallery from $10 a month.",
+	"email": "hello@cizle.dev",
+	"x": "",
+	"github": "https://github.com/shreyvijayvargiya/cizle",
+	"repo": "shreyvijayvargiya/cizle",
+	"price": {
+		"usd": 20,
+		"inr": 1599
+	},
+	"freeCount": 20,
+	"plans": [
+		{
+			"id": "month",
+			"name": "1 month",
+			"months": 1,
+			"discount": 0,
+			"usd": 20,
+			"inr": 1599
+		},
+		{
+			"id": "half",
+			"name": "6 months",
+			"months": 6,
+			"discount": 25,
+			"usd": 15,
+			"inr": 1199
+		},
+		{
+			"id": "year",
+			"name": "12 months",
+			"months": 12,
+			"discount": 50,
+			"usd": 10,
+			"inr": 799
+		}
+	]
+}

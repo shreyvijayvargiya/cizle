@@ -1,0 +1,3905 @@
+{
+ "types/meta-reels-hook": {
+  "slug": "meta-reels-hook",
+  "source": "types/meta-reels-hook",
+  "sourceSlug": "meta-reels-hook",
+  "order": 20,
+  "name": "Meta Reels hook ad",
+  "summary": "A 15-second vertical ad for Instagram and Facebook Reels and Stories. A hook, the product in action, one offer and one action.",
+  "goal": "a Meta (Instagram and Facebook) video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "Meta",
+  "format": "Video",
+  "aspect": "9:16",
+  "duration": 15,
+  "tier": "premium",
+  "featured": true,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "meta"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Hook",
+    "time": "0-2 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Product in use",
+    "time": "3-8 s",
+    "visual": "screenshot",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Proof or offer",
+    "time": "2-3 s",
+    "visual": "stats",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-meta-reels-hook/SKILL.md https://cizle.dev/skills/meta-reels-hook/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Meta Reels hook ad skill?",
+    "a": "Meta Reels hook ad is a premium cizle skill for Claude Code. A 15-second vertical ad for Instagram and Facebook Reels and Stories. A hook, the product in action, one offer and one action."
+   },
+   {
+    "q": "How long is a Meta Reels hook ad video?",
+    "a": "It targets about 15 seconds in 9:16 format, with a scene-by-scene structure: Hook, Product in use, Proof or offer, Close."
+   },
+   {
+    "q": "How do I use the Meta Reels hook ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a meta reels hook ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/meta-feed-offer": {
+  "slug": "meta-feed-offer",
+  "source": "types/meta-feed-offer",
+  "sourceSlug": "meta-feed-offer",
+  "order": 21,
+  "name": "Meta feed offer ad",
+  "summary": "A 15-second 4:5 ad for the Instagram and Facebook feed. Shows the product, states the offer and asks for one action.",
+  "goal": "a Meta (Instagram and Facebook) video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "Meta",
+  "format": "Video",
+  "aspect": "4:5",
+  "duration": 15,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "meta"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Hook",
+    "time": "0-2 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Product",
+    "time": "4-5 s",
+    "visual": "screenshot",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Offer",
+    "time": "3 s",
+    "visual": "stats",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-meta-feed-offer/SKILL.md https://cizle.dev/skills/meta-feed-offer/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Meta feed offer ad skill?",
+    "a": "Meta feed offer ad is a premium cizle skill for Claude Code. A 15-second 4:5 ad for the Instagram and Facebook feed. Shows the product, states the offer and asks for one action."
+   },
+   {
+    "q": "How long is a Meta feed offer ad video?",
+    "a": "It targets about 15 seconds in 4:5 format, with a scene-by-scene structure: Hook, Product, Offer, Close."
+   },
+   {
+    "q": "How do I use the Meta feed offer ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a meta feed offer ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/meta-problem-solution": {
+  "slug": "meta-problem-solution",
+  "source": "types/meta-problem-solution",
+  "sourceSlug": "meta-problem-solution",
+  "order": 22,
+  "name": "Meta problem and solution ad",
+  "summary": "A 20-second ad that names a problem the audience feels, then shows the product as the fix. Hand-drawn by default.",
+  "goal": "a Meta (Instagram and Facebook) video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "Meta",
+  "format": "Video",
+  "aspect": "4:5",
+  "duration": 20,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "meta"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Problem",
+    "time": "0-3 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Why it hurts",
+    "time": "3-6 s",
+    "visual": "bullets",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "The fix",
+    "time": "6-14 s",
+    "visual": "screenshot",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-meta-problem-solution/SKILL.md https://cizle.dev/skills/meta-problem-solution/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Meta problem and solution ad skill?",
+    "a": "Meta problem and solution ad is a premium cizle skill for Claude Code. A 20-second ad that names a problem the audience feels, then shows the product as the fix. Hand-drawn by default."
+   },
+   {
+    "q": "How long is a Meta problem and solution ad video?",
+    "a": "It targets about 20 seconds in 4:5 format, with a scene-by-scene structure: Problem, Why it hurts, The fix, Close."
+   },
+   {
+    "q": "How do I use the Meta problem and solution ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a meta problem and solution ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/meta-feed-banners": {
+  "slug": "meta-feed-banners",
+  "source": "types/meta-feed-banners",
+  "sourceSlug": "meta-feed-banners",
+  "order": 23,
+  "name": "Meta feed image set",
+  "summary": "Static Instagram and Facebook feed and Stories images in 4:5, 1:1 and 9:16, from one set of copy. Rendered as PNGs.",
+  "goal": "a set of static Meta feed and Stories banners for any brand: an online shop, a local business, an app, a creator or a SaaS. These are images, not a video. Write the banner copy; cizle draws every size in the chosen style.",
+  "category": "Ads",
+  "platform": "Meta",
+  "format": "Image",
+  "aspect": "4:5",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "meta"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Format",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Banner copy (write one to three variants)",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "By brand",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Rules",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-meta-feed-banners/SKILL.md https://cizle.dev/skills/meta-feed-banners/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Meta feed image set skill?",
+    "a": "Meta feed image set is a premium cizle skill for Claude Code. Static Instagram and Facebook feed and Stories images in 4:5, 1:1 and 9:16, from one set of copy. Rendered as PNGs."
+   },
+   {
+    "q": "How long is a Meta feed image set banner set?",
+    "a": "It produces static images, not a timed video, in the sizes ad platforms need."
+   },
+   {
+    "q": "How do I use the Meta feed image set skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a meta feed image set for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/tiktok-ugc-hook": {
+  "slug": "tiktok-ugc-hook",
+  "source": "types/tiktok-ugc-hook",
+  "sourceSlug": "tiktok-ugc-hook",
+  "order": 24,
+  "name": "TikTok creator-style hook ad",
+  "summary": "A 15-second TikTok In-Feed ad in a creator voice: a hook line, the product in use, a single action.",
+  "goal": "a TikTok video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "TikTok",
+  "format": "Video",
+  "aspect": "9:16",
+  "duration": 15,
+  "tier": "premium",
+  "featured": true,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "tiktok"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Hook",
+    "time": "0-2 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Show",
+    "time": "3-8 s",
+    "visual": "screenshot",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Reaction beat",
+    "time": "2 s",
+    "visual": "quote",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-tiktok-ugc-hook/SKILL.md https://cizle.dev/skills/tiktok-ugc-hook/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the TikTok creator-style hook ad skill?",
+    "a": "TikTok creator-style hook ad is a premium cizle skill for Claude Code. A 15-second TikTok In-Feed ad in a creator voice: a hook line, the product in use, a single action."
+   },
+   {
+    "q": "How long is a TikTok creator-style hook ad video?",
+    "a": "It targets about 15 seconds in 9:16 format, with a scene-by-scene structure: Hook, Show, Reaction beat, Close."
+   },
+   {
+    "q": "How do I use the TikTok creator-style hook ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a tiktok creator-style hook ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/tiktok-offer-drop": {
+  "slug": "tiktok-offer-drop",
+  "source": "types/tiktok-offer-drop",
+  "sourceSlug": "tiktok-offer-drop",
+  "order": 25,
+  "name": "TikTok offer drop ad",
+  "summary": "A 12-second TikTok ad for a launch, a restock or a real offer. Big type, a countdown feel, one action.",
+  "goal": "a TikTok video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "TikTok",
+  "format": "Video",
+  "aspect": "9:16",
+  "duration": 12,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "tiktok"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Drop",
+    "time": "0-2 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Product",
+    "time": "3-6 s",
+    "visual": "image",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Offer",
+    "time": "2-3 s",
+    "visual": "stats",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-tiktok-offer-drop/SKILL.md https://cizle.dev/skills/tiktok-offer-drop/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the TikTok offer drop ad skill?",
+    "a": "TikTok offer drop ad is a premium cizle skill for Claude Code. A 12-second TikTok ad for a launch, a restock or a real offer. Big type, a countdown feel, one action."
+   },
+   {
+    "q": "How long is a TikTok offer drop ad video?",
+    "a": "It targets about 12 seconds in 9:16 format, with a scene-by-scene structure: Drop, Product, Offer, Close."
+   },
+   {
+    "q": "How do I use the TikTok offer drop ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a tiktok offer drop ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/tiktok-demo-listicle": {
+  "slug": "tiktok-demo-listicle",
+  "source": "types/tiktok-demo-listicle",
+  "sourceSlug": "tiktok-demo-listicle",
+  "order": 26,
+  "name": "TikTok 3 reasons demo ad",
+  "summary": "A 20-second TikTok ad that lists three real reasons to try the product, each shown on screen.",
+  "goal": "a TikTok video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "TikTok",
+  "format": "Video",
+  "aspect": "9:16",
+  "duration": 20,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "tiktok"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Hook",
+    "time": "0-2 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Three reasons",
+    "time": "3 x 4 s",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-tiktok-demo-listicle/SKILL.md https://cizle.dev/skills/tiktok-demo-listicle/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the TikTok 3 reasons demo ad skill?",
+    "a": "TikTok 3 reasons demo ad is a premium cizle skill for Claude Code. A 20-second TikTok ad that lists three real reasons to try the product, each shown on screen."
+   },
+   {
+    "q": "How long is a TikTok 3 reasons demo ad video?",
+    "a": "It targets about 20 seconds in 9:16 format, with a scene-by-scene structure: Hook, Three reasons, Close."
+   },
+   {
+    "q": "How do I use the TikTok 3 reasons demo ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a tiktok 3 reasons demo ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/google-bumper-6s": {
+  "slug": "google-bumper-6s",
+  "source": "types/google-bumper-6s",
+  "sourceSlug": "google-bumper-6s",
+  "order": 27,
+  "name": "Google 6-second bumper ad",
+  "summary": "A 6-second non-skippable YouTube bumper: one message, the brand and one action.",
+  "goal": "a Google Ads (YouTube) video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "Google",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": 6,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "google"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Message",
+    "time": "0-3 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-google-bumper-6s/SKILL.md https://cizle.dev/skills/google-bumper-6s/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Google 6-second bumper ad skill?",
+    "a": "Google 6-second bumper ad is a premium cizle skill for Claude Code. A 6-second non-skippable YouTube bumper: one message, the brand and one action."
+   },
+   {
+    "q": "How long is a Google 6-second bumper ad video?",
+    "a": "It targets about 6 seconds in 16:9 format, with a scene-by-scene structure: Message, Close."
+   },
+   {
+    "q": "How do I use the Google 6-second bumper ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a google 6-second bumper ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/google-instream-15s": {
+  "slug": "google-instream-15s",
+  "source": "types/google-instream-15s",
+  "sourceSlug": "google-instream-15s",
+  "order": 28,
+  "name": "Google 15-second YouTube ad",
+  "summary": "A 15-second YouTube in-stream ad: the brand and the promise in the first five seconds, then proof and one action.",
+  "goal": "a Google Ads (YouTube) video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "Google",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": 15,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "google"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Brand and promise",
+    "time": "0-4 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Proof",
+    "time": "4-11 s",
+    "visual": "screenshot",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Close",
+    "time": "4 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-google-instream-15s/SKILL.md https://cizle.dev/skills/google-instream-15s/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Google 15-second YouTube ad skill?",
+    "a": "Google 15-second YouTube ad is a premium cizle skill for Claude Code. A 15-second YouTube in-stream ad: the brand and the promise in the first five seconds, then proof and one action."
+   },
+   {
+    "q": "How long is a Google 15-second YouTube ad video?",
+    "a": "It targets about 15 seconds in 16:9 format, with a scene-by-scene structure: Brand and promise, Proof, Close."
+   },
+   {
+    "q": "How do I use the Google 15-second YouTube ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a google 15-second youtube ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/google-shorts-ad": {
+  "slug": "google-shorts-ad",
+  "source": "types/google-shorts-ad",
+  "sourceSlug": "google-shorts-ad",
+  "order": 29,
+  "name": "Google YouTube Shorts ad",
+  "summary": "A 20-second vertical ad for YouTube Shorts and Google's vertical video placements.",
+  "goal": "a Google Ads (YouTube) video ad for any brand: an online shop, a local business, an app, a creator or a SaaS. It sells one thing to one audience and ends on one action.",
+  "category": "Ads",
+  "platform": "Google",
+  "format": "Video",
+  "aspect": "9:16",
+  "duration": 20,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "google"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Hook",
+    "time": "0-2 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Show",
+    "time": "3-12 s",
+    "visual": "screenshot",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Proof",
+    "time": "2-3 s",
+    "visual": "stats",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Close",
+    "time": "3 s",
+    "visual": "outro",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-google-shorts-ad/SKILL.md https://cizle.dev/skills/google-shorts-ad/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Google YouTube Shorts ad skill?",
+    "a": "Google YouTube Shorts ad is a premium cizle skill for Claude Code. A 20-second vertical ad for YouTube Shorts and Google's vertical video placements."
+   },
+   {
+    "q": "How long is a Google YouTube Shorts ad video?",
+    "a": "It targets about 20 seconds in 9:16 format, with a scene-by-scene structure: Hook, Show, Proof, Close."
+   },
+   {
+    "q": "How do I use the Google YouTube Shorts ad skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a google youtube shorts ad for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/google-display-banners": {
+  "slug": "google-display-banners",
+  "source": "types/google-display-banners",
+  "sourceSlug": "google-display-banners",
+  "order": 30,
+  "name": "Google display banner set",
+  "summary": "Static Google Ads display banners in the common sizes, from one set of copy. Rendered as PNGs.",
+  "goal": "a set of static Google Ads display banners for any brand: an online shop, a local business, an app, a creator or a SaaS. These are images, not a video. Write the banner copy; cizle draws every size in the chosen style.",
+  "category": "Ads",
+  "platform": "Google",
+  "format": "Image",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "ads",
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "google"
+  ],
+  "bestFor": [
+   "online shops",
+   "beauty and fashion",
+   "food and drink",
+   "health and fitness",
+   "local businesses",
+   "apps and games",
+   "creators and agencies",
+   "solo founders",
+   "B2B SaaS",
+   "AI products",
+   "developer tools"
+  ],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Format",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Banner copy (write one to three variants)",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "By brand",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Rules",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-google-display-banners/SKILL.md https://cizle.dev/skills/google-display-banners/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Google display banner set skill?",
+    "a": "Google display banner set is a premium cizle skill for Claude Code. Static Google Ads display banners in the common sizes, from one set of copy. Rendered as PNGs."
+   },
+   {
+    "q": "How long is a Google display banner set banner set?",
+    "a": "It produces static images, not a timed video, in the sizes ad platforms need."
+   },
+   {
+    "q": "How do I use the Google display banner set skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a google display banner set for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/engineering-explainer": {
+  "slug": "engineering-explainer",
+  "source": "types/engineering-explainer",
+  "sourceSlug": "engineering-explainer",
+  "order": 31,
+  "name": "Engineering Explainer",
+  "summary": "Turns a technical blog, tutorial or architecture article into a structured visual lesson with diagrams, code highlights and step-by-step narration.",
+  "goal": "a technical reader understands how one system works after one watch. Example: \"How React Server Components Actually Work\".",
+  "category": "Engineering",
+  "platform": "YouTube",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": 60,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "engineering",
+   "developer tools",
+   "AI products",
+   "B2B SaaS",
+   "solo founders",
+   "youtube"
+  ],
+  "bestFor": [
+   "developer tools",
+   "AI products",
+   "B2B SaaS",
+   "solo founders"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "The question",
+    "time": "4-5 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "The mental model",
+    "time": "8-10 s",
+    "visual": "sketch",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "How it works, step by step",
+    "time": "3-5 steps, 8-10 s each",
+    "visual": "sketch",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "The gotcha",
+    "time": "6 s",
+    "visual": "bullets",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Recap and outro",
+    "time": "5 s",
+    "visual": "bullets",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-engineering-explainer/SKILL.md https://cizle.dev/skills/engineering-explainer/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Engineering Explainer skill?",
+    "a": "Engineering Explainer is a premium cizle skill for Claude Code. Turns a technical blog, tutorial or architecture article into a structured visual lesson with diagrams, code highlights and step-by-step narration."
+   },
+   {
+    "q": "How long is a Engineering Explainer video?",
+    "a": "It targets about 60 seconds in 16:9 format, with a scene-by-scene structure: The question, The mental model, How it works, step by step, The gotcha, Recap and outro."
+   },
+   {
+    "q": "How do I use the Engineering Explainer skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a engineering explainer for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/engineering-podcast": {
+  "slug": "engineering-podcast",
+  "source": "types/engineering-podcast",
+  "sourceSlug": "engineering-podcast",
+  "order": 32,
+  "name": "Engineering Podcast",
+  "summary": "Converts a long technical article into a natural two-host conversation (host and sceptic) with waveform, topic cards and occasional code and diagram cutaways.",
+  "goal": "turn one article into a conversation an engineer would listen to on a commute. Example: \"Why We Replaced Our Backend With Hono\".",
+  "category": "Engineering",
+  "platform": "YouTube",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": 90,
+  "tier": "premium",
+  "featured": true,
+  "tags": [
+   "engineering",
+   "developer tools",
+   "AI products",
+   "B2B SaaS",
+   "solo founders",
+   "youtube"
+  ],
+  "bestFor": [
+   "developer tools",
+   "AI products",
+   "B2B SaaS",
+   "solo founders"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "Cold open (5-8 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "The problem (10-15 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "3-5 topic segments (15-20 s each):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "The trade-offs (10-15 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Takeaways and outro (8 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-engineering-podcast/SKILL.md https://cizle.dev/skills/engineering-podcast/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Engineering Podcast skill?",
+    "a": "Engineering Podcast is a premium cizle skill for Claude Code. Converts a long technical article into a natural two-host conversation (host and sceptic) with waveform, topic cards and occasional code and diagram cutaways."
+   },
+   {
+    "q": "How long is a Engineering Podcast video?",
+    "a": "It targets about 90 seconds in 16:9 format, with a scene-by-scene structure: Cold open (5-8 s):, The problem (10-15 s):, 3-5 topic segments (15-20 s each):, The trade-offs (10-15 s):, Takeaways and outro (8 s):."
+   },
+   {
+    "q": "How do I use the Engineering Podcast skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a engineering podcast for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/system-design-breakdown": {
+  "slug": "system-design-breakdown",
+  "source": "types/system-design-breakdown",
+  "sourceSlug": "system-design-breakdown",
+  "order": 33,
+  "name": "System Design Breakdown",
+  "summary": "Turns architecture, scalability and infrastructure content into a visual journey of a request through services, databases, queues, caches and external APIs.",
+  "goal": "the viewer can redraw the architecture from memory. Example: \"How to Design a Job Queue for a SaaS Product\".",
+  "category": "Engineering",
+  "platform": "YouTube",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": 75,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "engineering",
+   "developer tools",
+   "B2B SaaS",
+   "AI products",
+   "solo founders",
+   "youtube"
+  ],
+  "bestFor": [
+   "developer tools",
+   "B2B SaaS",
+   "AI products",
+   "solo founders"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "The requirement",
+    "time": "5 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "The big picture",
+    "time": "8-10 s",
+    "visual": "sketch",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Follow one request (4-6 numbered stages, 8 s each):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Bottlenecks (8 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Trade-offs",
+    "time": "8 s",
+    "visual": "bullets",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Outro (4 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-system-design-breakdown/SKILL.md https://cizle.dev/skills/system-design-breakdown/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the System Design Breakdown skill?",
+    "a": "System Design Breakdown is a premium cizle skill for Claude Code. Turns architecture, scalability and infrastructure content into a visual journey of a request through services, databases, queues, caches and external APIs."
+   },
+   {
+    "q": "How long is a System Design Breakdown video?",
+    "a": "It targets about 75 seconds in 16:9 format, with a scene-by-scene structure: The requirement, The big picture, Follow one request (4-6 numbered stages, 8 s each):, Bottlenecks (8 s):, Trade-offs."
+   },
+   {
+    "q": "How do I use the System Design Breakdown skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a system design breakdown for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/technical-deep-dive": {
+  "slug": "technical-deep-dive",
+  "source": "types/technical-deep-dive",
+  "sourceSlug": "technical-deep-dive",
+  "order": 34,
+  "name": "Technical Deep Dive / Case Study",
+  "summary": "Turns an engineering postmortem, benchmark, migration or founder story into a narrative - problem, constraints, failed approaches, solution, trade-offs and lessons.",
+  "goal": "the viewer follows the full story and trusts the result because the evidence is on screen. Example: \"How We Reduced API Costs by 60%\".",
+  "category": "Engineering",
+  "platform": "YouTube",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": 90,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "engineering",
+   "developer tools",
+   "B2B SaaS",
+   "AI products",
+   "solo founders",
+   "youtube"
+  ],
+  "bestFor": [
+   "developer tools",
+   "B2B SaaS",
+   "AI products",
+   "solo founders",
+   "fundraising"
+  ],
+  "needs": [],
+  "scenes": [
+   {
+    "n": 1,
+    "name": "The result first",
+    "time": "5 s",
+    "visual": "title",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "The problem (10 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Constraints",
+    "time": "8 s",
+    "visual": "bullets",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "What did not work (2 attempts, 8-10 s each):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "The solution (12-15 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "The numbers (10 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Trade-offs and lessons",
+    "time": "10 s",
+    "visual": "bullets",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Outro (4 s):",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "anatomy": [],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-technical-deep-dive/SKILL.md https://cizle.dev/skills/technical-deep-dive/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Technical Deep Dive / Case Study skill?",
+    "a": "Technical Deep Dive / Case Study is a premium cizle skill for Claude Code. Turns an engineering postmortem, benchmark, migration or founder story into a narrative - problem, constraints, failed approaches, solution, trade-offs and lessons."
+   },
+   {
+    "q": "How long is a Technical Deep Dive / Case Study video?",
+    "a": "It targets about 90 seconds in 16:9 format, with a scene-by-scene structure: The result first, The problem (10 s):, Constraints, What did not work (2 attempts, 8-10 s each):, The solution (12-15 s):."
+   },
+   {
+    "q": "How do I use the Technical Deep Dive / Case Study skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a technical deep dive / case study for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "types/sketch-explainer": {
+  "slug": "sketch-explainer",
+  "source": "types/sketch-explainer",
+  "sourceSlug": "sketch-explainer",
+  "order": 35,
+  "name": "Sketch Explainer",
+  "summary": "Turns a technical blog post or tutorial into a hand-drawn explainer video, plus a prompt pack for video models (narration, storyboard, per-scene prompts).",
+  "goal": "convert a technical article into a clear, visually engaging explainer for developers. cizle renders a sketch-style video from the storyboard (paper background, hand-drawn boxes and arrows, narration, captions, music) and also returns the full prompt pack, so an AI video model or an agent can render each scene as a generated clip.",
+  "category": "Engineering",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "9:16",
+  "duration": 30,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "engineering",
+   "developer tools",
+   "AI products",
+   "solo founders"
+  ],
+  "bestFor": [
+   "developer tools",
+   "AI products",
+   "solo founders"
+  ],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Inputs",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Instructions",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Visual prompt template",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Required output sections",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": null,
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-sketch-explainer/SKILL.md https://cizle.dev/skills/sketch-explainer/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Sketch Explainer skill?",
+    "a": "Sketch Explainer is a premium cizle skill for Claude Code. Turns a technical blog post or tutorial into a hand-drawn explainer video, plus a prompt pack for video models (narration, storyboard, per-scene prompts)."
+   },
+   {
+    "q": "How long is a Sketch Explainer video?",
+    "a": "It targets about 30 seconds in 9:16 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Sketch Explainer skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a sketch explainer for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/watercolor": {
+  "slug": "watercolor-film-style",
+  "source": "films/watercolor",
+  "sourceSlug": "watercolor",
+  "order": 36,
+  "name": "Watercolor Brush",
+  "summary": "A hand-painted journal page that paints itself: translucent brush strokes with dry-brush flying white on warm cotton paper, hand-written notes beside what is painted, nothing drawn with a vector line.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": true,
+  "tags": [
+   "film styles",
+   "Nature documentary",
+   "Travel",
+   "Science explainers"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/watercolor/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-watercolor-film-style/SKILL.md https://cizle.dev/skills/watercolor-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Watercolor Brush skill?",
+    "a": "Watercolor Brush is a premium cizle skill for Claude Code. A hand-painted journal page that paints itself: translucent brush strokes with dry-brush flying white on warm cotton paper, hand-written notes beside what is painted, nothing drawn with a vector line."
+   },
+   {
+    "q": "How long is a Watercolor Brush video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Watercolor Brush skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a watercolor brush for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/dark-keynote": {
+  "slug": "dark-keynote-film-style",
+  "source": "films/dark-keynote",
+  "sourceSlug": "dark-keynote",
+  "order": 37,
+  "name": "Dark Tech Keynote",
+  "summary": "A software launch film where the interface itself is the star: near-black gradient, hairline grid, soft light, one brand accent, and UI that moves with snap-grid precision. Light reveals, one giant number, and a sound design that is as ordered as the pixels.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": true,
+  "tags": [
+   "film styles",
+   "Product launches",
+   "SaaS",
+   "Keynotes"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/dark-keynote/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-dark-keynote-film-style/SKILL.md https://cizle.dev/skills/dark-keynote-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Dark Tech Keynote skill?",
+    "a": "Dark Tech Keynote is a premium cizle skill for Claude Code. A software launch film where the interface itself is the star: near-black gradient, hairline grid, soft light, one brand accent, and UI that moves with snap-grid precision. Light reveals, one giant number, and a sound design that is as ordered as the pixels."
+   },
+   {
+    "q": "How long is a Dark Tech Keynote video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Dark Tech Keynote skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a dark tech keynote for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/blueprint": {
+  "slug": "blueprint-film-style",
+  "source": "films/blueprint",
+  "sourceSlug": "blueprint",
+  "order": 38,
+  "name": "Blueprint",
+  "summary": "Engineering drawings that come alive on a sheet of cyanotype paper: white technical line work on Prussian blue, drawn in drafting order, with annotations that move.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Engineering",
+   "Hardware launches",
+   "Tech explainers"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/blueprint/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-blueprint-film-style/SKILL.md https://cizle.dev/skills/blueprint-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Blueprint skill?",
+    "a": "Blueprint is a premium cizle skill for Claude Code. Engineering drawings that come alive on a sheet of cyanotype paper: white technical line work on Prussian blue, drawn in drafting order, with annotations that move."
+   },
+   {
+    "q": "How long is a Blueprint video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Blueprint skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a blueprint for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/glass-product": {
+  "slug": "glass-product-film-style",
+  "source": "films/glass-product",
+  "sourceSlug": "glass-product",
+  "order": 39,
+  "name": "Glass Product Render",
+  "summary": "Launch-film product rendering in transparent and frosted glass: a dark-field studio, strip-light sweeps, dispersion, caustics, light travelling inside the object, slow exploded views that snap shut on a downbeat.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Product launches",
+   "Consumer tech",
+   "Beauty"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/glass-product/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-glass-product-film-style/SKILL.md https://cizle.dev/skills/glass-product-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Glass Product Render skill?",
+    "a": "Glass Product Render is a premium cizle skill for Claude Code. Launch-film product rendering in transparent and frosted glass: a dark-field studio, strip-light sweeps, dispersion, caustics, light travelling inside the object, slow exploded views that snap shut on a downbeat."
+   },
+   {
+    "q": "How long is a Glass Product Render video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Glass Product Render skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a glass product render for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/swiss-motion": {
+  "slug": "swiss-motion-film-style",
+  "source": "films/swiss-motion",
+  "sourceSlug": "swiss-motion",
+  "order": 40,
+  "name": "Swiss Motion Graphics",
+  "summary": "International Typographic Style in motion: a modular grid, one typeface, one signal colour, and movement as exact as a printing press.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Brand identity",
+   "Events",
+   "Design education"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/swiss-motion/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-swiss-motion-film-style/SKILL.md https://cizle.dev/skills/swiss-motion-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Swiss Motion Graphics skill?",
+    "a": "Swiss Motion Graphics is a premium cizle skill for Claude Code. International Typographic Style in motion: a modular grid, one typeface, one signal colour, and movement as exact as a printing press."
+   },
+   {
+    "q": "How long is a Swiss Motion Graphics video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Swiss Motion Graphics skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a swiss motion graphics for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/whiteboard": {
+  "slug": "whiteboard-film-style",
+  "source": "films/whiteboard",
+  "sourceSlug": "whiteboard",
+  "order": 41,
+  "name": "Whiteboard Explainer",
+  "summary": "An explainer drawn live on one glossy dry-erase board: single-line handwriting that is actually written stroke by stroke, floating markers with no hand, magnets that can move, an eraser that can rewind, and a camera that travels across the board instead of cutting.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Explainers",
+   "Online courses",
+   "Science"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/whiteboard/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-whiteboard-film-style/SKILL.md https://cizle.dev/skills/whiteboard-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Whiteboard Explainer skill?",
+    "a": "Whiteboard Explainer is a premium cizle skill for Claude Code. An explainer drawn live on one glossy dry-erase board: single-line handwriting that is actually written stroke by stroke, floating markers with no hand, magnets that can move, an eraser that can rewind, and a camera that travels across the board instead of cutting."
+   },
+   {
+    "q": "How long is a Whiteboard Explainer video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Whiteboard Explainer skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a whiteboard explainer for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/paper-popup": {
+  "slug": "paper-popup-film-style",
+  "source": "films/paper-popup",
+  "sourceSlug": "paper-popup",
+  "order": 42,
+  "name": "Paper Pop-up Book",
+  "summary": "A pop-up book on a real desk becomes a stage: flat cut-paper actors with white borders perform in front of paper sets that spring up from the page, under real lamp light and a real macro lens.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Children's books",
+   "Game trailers",
+   "Story films"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/paper-popup/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-paper-popup-film-style/SKILL.md https://cizle.dev/skills/paper-popup-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Paper Pop-up Book skill?",
+    "a": "Paper Pop-up Book is a premium cizle skill for Claude Code. A pop-up book on a real desk becomes a stage: flat cut-paper actors with white borders perform in front of paper sets that spring up from the page, under real lamp light and a real macro lens."
+   },
+   {
+    "q": "How long is a Paper Pop-up Book video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Paper Pop-up Book skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a paper pop-up book for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/risograph": {
+  "slug": "risograph-film-style",
+  "source": "films/risograph",
+  "sourceSlug": "risograph",
+  "order": 43,
+  "name": "Risograph Print",
+  "summary": "Animation that looks printed, frame by frame, on a stencil duplicator: two or three translucent spot inks overprinted on warm paper, halftone dots, ink grain, and plates that never quite line up.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Indie brands",
+   "Zines",
+   "Lifestyle"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/risograph/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-risograph-film-style/SKILL.md https://cizle.dev/skills/risograph-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Risograph Print skill?",
+    "a": "Risograph Print is a premium cizle skill for Claude Code. Animation that looks printed, frame by frame, on a stencil duplicator: two or three translucent spot inks overprinted on warm paper, halftone dots, ink grain, and plates that never quite line up."
+   },
+   {
+    "q": "How long is a Risograph Print video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Risograph Print skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a risograph print for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/ink-wash": {
+  "slug": "ink-wash-film-style",
+  "source": "films/ink-wash",
+  "sourceSlug": "ink-wash",
+  "order": 44,
+  "name": "Chinese Ink Wash",
+  "summary": "Xieyi ink painting on rice paper, animated: blank paper is space, one brushstroke is a mountain, a wave, a gesture or a cut.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Wuxia",
+   "Cultural brands",
+   "Poetry"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/ink-wash/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-ink-wash-film-style/SKILL.md https://cizle.dev/skills/ink-wash-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Chinese Ink Wash skill?",
+    "a": "Chinese Ink Wash is a premium cizle skill for Claude Code. Xieyi ink painting on rice paper, animated: blank paper is space, one brushstroke is a mountain, a wave, a gesture or a cut."
+   },
+   {
+    "q": "How long is a Chinese Ink Wash video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Chinese Ink Wash skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a chinese ink wash for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/iso-infographic": {
+  "slug": "iso-infographic-film-style",
+  "source": "films/iso-infographic",
+  "sourceSlug": "iso-infographic",
+  "order": 45,
+  "name": "Isometric Infographic",
+  "summary": "A system diagram comes alive: an isometric diorama of flat three-tone blocks, thin ink labels and Isotype numbers, where things open up to show their insides and the numbers are drawn, not stated.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Process explainers",
+   "Supply chains",
+   "Annual reports"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/iso-infographic/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-iso-infographic-film-style/SKILL.md https://cizle.dev/skills/iso-infographic-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Isometric Infographic skill?",
+    "a": "Isometric Infographic is a premium cizle skill for Claude Code. A system diagram comes alive: an isometric diorama of flat three-tone blocks, thin ink labels and Isotype numbers, where things open up to show their insides and the numbers are drawn, not stated."
+   },
+   {
+    "q": "How long is a Isometric Infographic video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Isometric Infographic skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a isometric infographic for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/living-screencast": {
+  "slug": "living-screencast-film-style",
+  "source": "films/living-screencast",
+  "sourceSlug": "living-screencast",
+  "order": 46,
+  "name": "Living Screencast",
+  "summary": "A product walkthrough that looks like a real screen recording, where a low-resolution mascot lives inside a high-resolution interface and acts out what the software is doing.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Product tutorials",
+   "Feature launches",
+   "Onboarding"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/living-screencast/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-living-screencast-film-style/SKILL.md https://cizle.dev/skills/living-screencast-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Living Screencast skill?",
+    "a": "Living Screencast is a premium cizle skill for Claude Code. A product walkthrough that looks like a real screen recording, where a low-resolution mascot lives inside a high-resolution interface and acts out what the software is doing."
+   },
+   {
+    "q": "How long is a Living Screencast video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Living Screencast skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a living screencast for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/silent-film": {
+  "slug": "silent-film-film-style",
+  "source": "films/silent-film",
+  "sourceSlug": "silent-film",
+  "order": 47,
+  "name": "1920s Silent Film",
+  "summary": "An engraved-illustration silent film projected in a picture house: ink line and silver wash, a 4:3 print that flickers and weaves between velvet curtains, intertitles instead of voices, and a cinema pianist who plays every beat.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Comedy",
+   "Retro brands",
+   "Silent storytelling"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/silent-film/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-silent-film-film-style/SKILL.md https://cizle.dev/skills/silent-film-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the 1920s Silent Film skill?",
+    "a": "1920s Silent Film is a premium cizle skill for Claude Code. An engraved-illustration silent film projected in a picture house: ink line and silver wash, a 4:3 print that flickers and weaves between velvet curtains, intertitles instead of voices, and a cinema pianist who plays every beat."
+   },
+   {
+    "q": "How long is a 1920s Silent Film video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the 1920s Silent Film skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a 1920s silent film for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/engraving": {
+  "slug": "engraving-film-style",
+  "source": "films/engraving",
+  "sourceSlug": "engraving",
+  "order": 48,
+  "name": "Copperplate Engraving",
+  "summary": "An intaglio plate that engraves itself: a burin cuts swelling lines into copper, a proof is pulled, and the figure builds up — outline, hatching, cross-hatching — until engraved lettering, magnified details and a hand-laid wash make a finished plate.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Museum labels",
+   "Science explainers",
+   "Brand heritage"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/engraving/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-engraving-film-style/SKILL.md https://cizle.dev/skills/engraving-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Copperplate Engraving skill?",
+    "a": "Copperplate Engraving is a premium cizle skill for Claude Code. An intaglio plate that engraves itself: a burin cuts swelling lines into copper, a proof is pulled, and the figure builds up — outline, hatching, cross-hatching — until engraved lettering, magnified details and a hand-laid wash make a finished plate."
+   },
+   {
+    "q": "How long is a Copperplate Engraving video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Copperplate Engraving skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a copperplate engraving for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/hologram-hud": {
+  "slug": "hologram-hud-film-style",
+  "source": "films/hologram-hud",
+  "sourceSlug": "hologram-hud",
+  "order": 49,
+  "name": "Sci-fi Hologram HUD",
+  "summary": "An object is scanned into a glowing wireframe. Target boxes lock onto its parts; each opens in a local exploded view, a leader pulls out, and its number rolls from garbage glyphs into the real value. It may light up, once, into a solid hologram.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Product spec walkthroughs",
+   "Launch & crowdfunding videos",
+   "Trade-show screens"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/hologram-hud/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-hologram-hud-film-style/SKILL.md https://cizle.dev/skills/hologram-hud-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Sci-fi Hologram HUD skill?",
+    "a": "Sci-fi Hologram HUD is a premium cizle skill for Claude Code. An object is scanned into a glowing wireframe. Target boxes lock onto its parts; each opens in a local exploded view, a leader pulls out, and its number rolls from garbage glyphs into the real value. It may light up, once, into a solid hologram."
+   },
+   {
+    "q": "How long is a Sci-fi Hologram HUD video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Sci-fi Hologram HUD skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a sci-fi hologram hud for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/pictogram-motion": {
+  "slug": "pictogram-motion-film-style",
+  "source": "films/pictogram-motion",
+  "sourceSlug": "pictogram-motion",
+  "order": 50,
+  "name": "Pictogram Motion",
+  "summary": "A beat-locked flash-card film built from three things only: a square-grid \"core graphic\" of circles, half-discs and tiny patterned cells whose rows slide past each other; geometric pictograms made of round-capped bars and a disc head; and bold bilingual type that slides up out of masks. Every cut...",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Sports events",
+   "Visual identity",
+   "Event openers"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/pictogram-motion/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-pictogram-motion-film-style/SKILL.md https://cizle.dev/skills/pictogram-motion-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Pictogram Motion skill?",
+    "a": "Pictogram Motion is a premium cizle skill for Claude Code. A beat-locked flash-card film built from three things only: a square-grid \"core graphic\" of circles, half-discs and tiny patterned cells whose rows slide past each other; geometric pictograms made of round-capped bars and a disc head; and bold bilingual type that slides up out of masks. Every cut..."
+   },
+   {
+    "q": "How long is a Pictogram Motion video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Pictogram Motion skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a pictogram motion for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/woodcut": {
+  "slug": "woodcut-film-style",
+  "source": "films/woodcut",
+  "sourceSlug": "woodcut",
+  "order": 51,
+  "name": "Woodcut Print",
+  "summary": "A relief print that carves itself: every frame is a black wood block, and light only exists where a knife has cut it away. One colour at most, and only for the thing that burns.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Folk tales",
+   "Craft brands",
+   "Book trailers"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/woodcut/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-woodcut-film-style/SKILL.md https://cizle.dev/skills/woodcut-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Woodcut Print skill?",
+    "a": "Woodcut Print is a premium cizle skill for Claude Code. A relief print that carves itself: every frame is a black wood block, and light only exists where a knife has cut it away. One colour at most, and only for the thing that burns."
+   },
+   {
+    "q": "How long is a Woodcut Print video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Woodcut Print skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a woodcut print for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/art-deco": {
+  "slug": "art-deco-film-style",
+  "source": "films/art-deco",
+  "sourceSlug": "art-deco",
+  "order": 52,
+  "name": "Art Deco",
+  "summary": "Black lacquer, engraved gold line and airbrushed geometry: a 1930s poster that moves. Every composition has a centre axis, transitions open or close along it, and light arrives as bulbs switching on one by one.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Luxury & hospitality",
+   "Galas",
+   "Invitations"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/art-deco/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-art-deco-film-style/SKILL.md https://cizle.dev/skills/art-deco-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Art Deco skill?",
+    "a": "Art Deco is a premium cizle skill for Claude Code. Black lacquer, engraved gold line and airbrushed geometry: a 1930s poster that moves. Every composition has a centre axis, transitions open or close along it, and light arrives as bulbs switching on one by one."
+   },
+   {
+    "q": "How long is a Art Deco video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Art Deco skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a art deco for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/cel-anime-80s": {
+  "slug": "cel-anime-80s-film-style",
+  "source": "films/cel-anime-80s",
+  "sourceSlug": "cel-anime-80s",
+  "order": 53,
+  "name": "80s Cel Anime",
+  "summary": "Hand-painted cel animation from the golden age of Japanese OVAs, re-created in code: flat two-tone cels over airbrushed backgrounds, backlit neon, limited-animation timing, played back as a late-80s videotape on a CRT television.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Music videos",
+   "Game trailers",
+   "Nostalgia"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/cel-anime-80s/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-cel-anime-80s-film-style/SKILL.md https://cizle.dev/skills/cel-anime-80s-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the 80s Cel Anime skill?",
+    "a": "80s Cel Anime is a premium cizle skill for Claude Code. Hand-painted cel animation from the golden age of Japanese OVAs, re-created in code: flat two-tone cels over airbrushed backgrounds, backlit neon, limited-animation timing, played back as a late-80s videotape on a CRT television."
+   },
+   {
+    "q": "How long is a 80s Cel Anime video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the 80s Cel Anime skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a 80s cel anime for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/paper-lantern": {
+  "slug": "paper-lantern-film-style",
+  "source": "films/paper-lantern",
+  "sourceSlug": "paper-lantern",
+  "order": 54,
+  "name": "Paper-cut Lightbox",
+  "summary": "A layered paper-cut shadow box (纸雕灯) lit from behind: 6–9 sheets of cut card stacked in a shallow box, a warm light glowing through the paper, windows and moons burning through holes, soft shadows falling from each layer onto the next. The frame is the box; the camera is a macro lens inside a lamp.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Festivals",
+   "Gift brands",
+   "Cultural stories"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/paper-lantern/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-paper-lantern-film-style/SKILL.md https://cizle.dev/skills/paper-lantern-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Paper-cut Lightbox skill?",
+    "a": "Paper-cut Lightbox is a premium cizle skill for Claude Code. A layered paper-cut shadow box (纸雕灯) lit from behind: 6–9 sheets of cut card stacked in a shallow box, a warm light glowing through the paper, windows and moons burning through holes, soft shadows falling from each layer onto the next. The frame is the box; the camera is a macro lens inside a lamp."
+   },
+   {
+    "q": "How long is a Paper-cut Lightbox video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Paper-cut Lightbox skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a paper-cut lightbox for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ },
+ "films/dataviz": {
+  "slug": "dataviz-film-style",
+  "source": "films/dataviz",
+  "sourceSlug": "dataviz",
+  "order": 55,
+  "name": "Data Storytelling",
+  "summary": "A chart that tells a story: real data, drawn mark by mark on cream paper by a red–blue pencil, with handwritten notes pinned to the numbers. The chart itself is the camera, the rhythm and the plot.",
+  "goal": "",
+  "category": "Film styles",
+  "platform": "Any",
+  "format": "Video",
+  "aspect": "16:9",
+  "duration": null,
+  "tier": "premium",
+  "featured": false,
+  "tags": [
+   "film styles",
+   "Data journalism",
+   "Reports",
+   "Climate & science"
+  ],
+  "bestFor": [],
+  "needs": [],
+  "scenes": [],
+  "anatomy": [
+   {
+    "n": 1,
+    "name": "Essence, and what it is not",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 2,
+    "name": "Materials & rendering",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 3,
+    "name": "Colour logic",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 4,
+    "name": "Type & subtitles",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 5,
+    "name": "Motion quality",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 6,
+    "name": "Camera grammar",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 7,
+    "name": "Sound palette",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 8,
+    "name": "Native moves",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 9,
+    "name": "Pitfalls of the medium",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 10,
+    "name": "Engine",
+    "time": "",
+    "visual": "",
+    "text": ""
+   },
+   {
+    "n": 11,
+    "name": "Variation space",
+    "time": "",
+    "visual": "",
+    "text": ""
+   }
+  ],
+  "video": null,
+  "poster": null,
+  "credit": {
+   "author": "LemoLab",
+   "license": "MIT",
+   "source": "https://github.com/lemomo-ai/lemo-opuscar/blob/fdc46d7f0e20cc953a71d56241a92d1b4cb7298e/styles/dataviz/STYLE.md"
+  },
+  "cli": "curl -fsSL --create-dirs -o .claude/skills/cizle-dataviz-film-style/SKILL.md https://cizle.dev/skills/dataviz-film-style/SKILL.md",
+  "faq": [
+   {
+    "q": "What is the Data Storytelling skill?",
+    "a": "Data Storytelling is a premium cizle skill for Claude Code. A chart that tells a story: real data, drawn mark by mark on cream paper by a red–blue pencil, with handwritten notes pinned to the numbers. The chart itself is the camera, the rhythm and the plot."
+   },
+   {
+    "q": "How long is a Data Storytelling video?",
+    "a": "It targets a short length in 16:9 format, with a scene-by-scene structure: see the guide."
+   },
+   {
+    "q": "How do I use the Data Storytelling skill with Claude Code?",
+    "a": "Run the install command on this page to add it to .claude/skills, connect the cizle MCP server, then ask Claude Code to make a data storytelling for your product link. Claude follows the guide and cizle renders the MP4 on your machine."
+   }
+  ]
+ }
+}

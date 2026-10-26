@@ -1,8 +1,0 @@
-{
-	"mcpServers": {
-		"cizle": {
-			"command": "node",
-			"args": ["server/mcp/stdio.js"]
-		}
-	}
-}
