@@ -88,16 +88,19 @@
 		{
 			"source": "/mcp",
 			"destination": "/api/mcp"
-		},
+		}
+	],
+	"redirects": [
 		{
 			"source": "/search",
-			"destination": "/api/search",
 			"has": [
 				{
 					"type": "query",
 					"key": "format"
 				}
-			]
+			],
+			"destination": "/api/search",
+			"permanent": false
 		}
 	]
 }
