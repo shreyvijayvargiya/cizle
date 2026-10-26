@@ -1,0 +1,16 @@
+{
+ "title": "math-concept-film",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "liangdabiao/math-concept-film",
+ "path": "SKILL.md",
+ "url": "https://github.com/liangdabiao/math-concept-film/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "把一个数学概念变成一部带中文旁白的 Manim 动画短片:纸墨质感舞台、六幕教学叙事、TTS 先行的字幕驱动时间轴、静帧自检循环。当用户想要\"把 XX 概念讲清楚/可视化/做成视频\",提到数学解释视频、概念动画、微积分/线性代数/概率/物理概念讲解、泰勒展开、傅里叶、带配音的数学短片时,必须使用本技能。产出:final.mp4(画面+语音+烧录字幕)。",
+ "domains": [
+  "math",
+  "entertainment",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.115Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "using-superpowers",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/using-superpowers/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/using-superpowers/SKILL.md",
+ "license": "MIT",
+ "description": "在开始任何对话时使用——确立如何查找和使用技能，要求在任何响应（包括澄清性问题）之前调用 Skill 工具",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

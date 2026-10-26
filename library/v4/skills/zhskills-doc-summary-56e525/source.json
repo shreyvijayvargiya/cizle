@@ -1,0 +1,12 @@
+{
+ "title": "doc-summary",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/doc-summary/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/doc-summary/SKILL.md",
+ "license": "MIT",
+ "description": "把长文档（报告、方案、制度、论文、合同条款说明、会议材料等）浓缩成决策者视角的一页摘要（一句话结论、关键发现带原文位置、影响与风险、建议行动、待确认事项）。当用户提供长文档文本并要求摘要、速读、给领导汇报或快速决策时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

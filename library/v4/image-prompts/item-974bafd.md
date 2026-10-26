@@ -1,0 +1,14 @@
+# 水手服女孩
+
+Community prompt · 涂鸦影子
+Language: en · Domains: entertainment, health · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2080864766856503636.jpg
+
+```
+Preserve the uploaded reference character exactly as shown, including face identity, facial proportions, eye shape, nose, lips, skin tone, hairstyle, hair color, visible hair accessories, outfit, styling, and overall recognizable vibe. Do not invent or hardcode any appearance details that are not present in the reference image; infer all identity, clothing, hairstyle, and accessories directly from it. Create a high-quality vertical (4:5 or 9:16) mixed-style portrait featuring a realistic full-body (or nearly full-body) version of the character standing on one side of a clean wall, with a black hand-drawn doodle-shadow of the same character sketched directly onto the wall beside them. The doodle-shadow must be black sketch line-art only (not a real shadow, not a second realistic person, and not a full-color anime character) while clearly matching the character's hairstyle silhouette, accessories, outfit silhouette, and overall identity. The real person should remain photorealistic, stylish, and naturally posed, wearing the exact outfit and key styling details from the reference, with a cute, slightly confused, mildly embarrassed, playful expression as if wondering, "Why am I doing this with my shadow?" The doodle-shadow should be much more energetic, exaggerated, mischievous, and chaotic, surrounded by manga-style motion lines, hearts, stars, sparkles, and comic effects. For every generation, invent a completely new playful mischievous pose instead of repeating previous ones—avoid pointing poses, finger guns, repetitive standing poses, or simply having both figures point at each other. The real person should perform a believable, softer version of the pose while the doodle-shadow performs an over-the-top cartoon version of the same idea. Choose a fresh concept each time such as a playful idol pose, silly dance, leaning sideways with one arm overhead, giant heart pose, cheeky wink, hands near cheeks, dramatic ta-da, mock surprise, running in place, mischievous tiptoe, arms stretched apart, sneaking away, cute troublemaker, dramatic overreaction, goofy victory, playful balance, peekaboo, shy-but-mischievous, or overconfident pose, while always creating a unique variation rather than copying these examples. Keep enough space around both figures so the full pose is visible, with the doodle-shadow roughly the same height or slightly taller than the real person, resulting in a cute, playful, stylish, funny, mischievous, and social-media-friendly composition.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

@@ -1,0 +1,13 @@
+{
+ "title": "Playwright Browser Automation",
+ "source": "K07",
+ "lang": "en",
+ "repo": "lackeyjb/playwright-skill",
+ "url": "https://github.com/lackeyjb/playwright-skill/blob/HEAD/skills/playwright-skill/SKILL.md",
+ "license": null,
+ "description": "Complete browser automation with Playwright. Auto-detects dev servers, writes reusable test scripts, and supports screenshots, responsive checks, UX validation, login flows, link checks, and arbitrary browser automation. Use when the user wants to test a website, automate browser interactions, validate web functionality, or perform browser-based testing.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

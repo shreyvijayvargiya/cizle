@@ -1,0 +1,14 @@
+{
+ "title": "llm-benchmark",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "llm-benchmark/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/llm-benchmark/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to test, compare, or choose local Ollama models for their machine. Checks Ollama/GPU state, recommends model sizes from available VRAM, preserves existing benchmark records, pulls only approved models, runs repeatable benchmarks, restores stopped services, and writes a markdown comparison report. NOT for hosted API model evaluation or subjective chat-quality judging without local benchmark commands.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.769Z"
+}

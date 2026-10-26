@@ -1,0 +1,14 @@
+{
+ "title": "awesome-claude-skills-zh-TW",
+ "source": "K07",
+ "lang": "en",
+ "repo": "ammosu/awesome-claude-skills-zh-TW",
+ "url": "https://github.com/ammosu/awesome-claude-skills-zh-TW/blob/HEAD/mcp-builder/SKILL.md",
+ "license": null,
+ "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+ "domains": [
+  "education",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "setup-matt-pocock-skills",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/setup-matt-pocock-skills/SKILL.md",
+ "license": "MIT",
+ "description": "为此仓库配置 engineering skills：设置其 issue tracker、triage labels 词汇与 domain docs 布局。在首次使用其他 engineering skills 前运行一次。",
+ "domains": [
+  "engineering",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

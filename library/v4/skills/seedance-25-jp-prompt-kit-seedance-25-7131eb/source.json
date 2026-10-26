@@ -1,0 +1,16 @@
+{
+ "title": "seedance-25",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "beloveddogjp-creator/seedance-25-jp-prompt-kit",
+ "path": "SKILL.md",
+ "url": "https://github.com/beloveddogjp-creator/seedance-25-jp-prompt-kit/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Seedance 2.5向けの日本語動画プロンプトを作成・改善・検査する。テキスト、画像、動画、音声、複数参照、編集、延長、ワンテイク、複数ショットを扱い、Dreamina/Jimeng等のSeedance 2.5利用や生成前の品質確認に使用する。他モデルへ2.5の上限や機能を流用しない。",
+ "domains": [
+  "math",
+  "nature",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.800Z"
+}

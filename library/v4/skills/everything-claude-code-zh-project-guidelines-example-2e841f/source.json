@@ -1,0 +1,14 @@
+{
+ "title": "project-guidelines-example",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/project-guidelines-example/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/project-guidelines-example/SKILL.md",
+ "license": "MIT",
+ "description": "基于真实生产应用程序的项目特定技能（Skill）模板示例。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.715Z"
+}

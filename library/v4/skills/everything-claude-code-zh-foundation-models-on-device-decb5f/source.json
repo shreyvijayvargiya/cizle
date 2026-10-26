@@ -1,0 +1,15 @@
+{
+ "title": "foundation-models-on-device",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/foundation-models-on-device/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/foundation-models-on-device/SKILL.md",
+ "license": "MIT",
+ "description": "苹果FoundationModels框架用于设备上的LLM——文本生成、使用@Generable进行引导生成、工具调用，以及在iOS 26+中的快照流。",
+ "domains": [
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.683Z"
+}

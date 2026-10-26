@@ -1,0 +1,14 @@
+# 女性胶片梦幻户外氛围感
+
+Community prompt · 随手拍
+Language: en · Domains: entertainment · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2039775193259036722.jpg
+
+```
+{"subject":{"description":"Asian female in floral sundress, sitting on curb, profile view","mirror_rules":"","age":"early 20s","expression":{"eyes":{"look":"downward","energy":"pensive","direction":"away"},"mouth":{"position":"closed","energy":"quiet"},"overall":"dreamy, still"},"face":{"preserve_original":true,"makeup":"natural dewy style"},"hair":{"color":"brown","style":"short bob, bangs","effect":"smooth, silky"},"body":{"frame":"slender","waist":"hidden","chest":"visible cleavage","legs":"tucked","skin":{"visible_areas":"shoulder, neck, deep cleavage, arms","tone":"fair","texture":"dewy, warm and velvety","lighting_effect":"natural overcast light, soft highlights"}},"pose":{"position":"crouched","base":"sitting on curb","overall":"hugging knees, profile angle"},"clothing":{"top":{"type":"sundress","color":"light blue","details":"floral print, thin straps","effect":"loose, falling off shoulder"},"bottom":{"type":"maxi skirt","color":"light blue","details":"matching floral pattern"}}},"accessories":{"prop":"none"},"photography":{"camera_style":"candid smartphone photo","angle":"high angle side view","shot_type":"medium shot","aspect_ratio":"3:4","texture":"clear, natural film grain","lighting":"overcast daylight, soft outdoor","depth_of_field":"medium"},"background":{"setting":"roadside curb","wall_color":"grey asphalt","elements":["concrete curb","green bushes","dirt path"],"atmosphere":"quiet, suburban","lighting":"diffused"},"the_vibe":{"energy":"still","mood":"melancholic","aesthetic":"summer nostalgia","authenticity":"high, casual snapshot","intimacy":"medium","story":"waiting by the road","caption_energy":"pensive"},"constraints":{"must_keep":["blue floral dress","sitting on curb","shoulder strap falling","short brown bob"],"avoid":["studio lighting","eye contact","heavy makeup"]},"negative_prompt":["looking at camera","smiling","bright sun","vivid colors","professional lighting","jewelry"],"prompt":"Candid smartphone photo, high angle side profile. Young Asian woman, early 20s, short silky brown bob with bangs. Fair skin feeling dewy, warm and velvety to touch, visible on bare shoulder, neck, and deep cleavage. Pensive downward gaze, quiet expression, natural dewy-style makeup. Crouched sitting on a concrete curb, hugging knees. Wearing a light blue floral print sundress, thin strap falling off one shoulder. Background of grey asphalt road, concrete curb, and lush green bushes. Natural overcast daylight, soft diffused lighting, summer nostalgia aesthetic, amateur unpolished composition, quiet suburban atmosphere."} -ar 3:4
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

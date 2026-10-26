@@ -1,0 +1,15 @@
+{
+ "title": "xiaohongshu-profile",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-profile/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-profile/SKILL.md",
+ "license": "MIT",
+ "description": "主页体检与简介改写：判断访客点进你的主页/个人档案后，3 秒内能否看懂「你是谁、帮谁、解决什么、为什么可信、下一步做什么」，按 7 个维度做诊断并输出 4 版简介改写（清晰专业版 / 亲近人话版 / 转化引导版 / 个人 IP 版）。适用于 LinkedIn 档案、微信签名、知乎个人介绍、小红书主页等中文职场个人简介场景。当用户要求\"改简介 / 写个人介绍 / 主页优化 / 头像昵称简介怎么搭 / 主页没人关注怎么改\"时使用。",
+ "domains": [
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

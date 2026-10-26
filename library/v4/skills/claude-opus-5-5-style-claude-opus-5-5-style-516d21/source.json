@@ -1,0 +1,16 @@
+{
+ "title": "claude-opus-5-5-style",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "GODGOD126/claude-opus-5-5-style",
+ "path": "SKILL.md",
+ "url": "https://github.com/GODGOD126/claude-opus-5-5-style/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": null,
+ "domains": [
+  "data",
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.115Z"
+}

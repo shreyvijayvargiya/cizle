@@ -1,0 +1,14 @@
+{
+ "title": "rewrite-tw",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "rewrite-tw/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/rewrite-tw/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants a Traditional Chinese (Taiwan) language review of Markdown or plain-text files — flagging genuinely comprehension-breaking grammar faults (missing subject, broken predicate, wrong measure word, misused connectives, inconsistent naming) and non-Taiwanese wording (mainland-Chinese terms, translationese) with replacement suggestions. High bar on grammar: only reports what actually misleads the reader; pure style preferences, punctuation nits and unavoidable loanwords are let through. Phase 1 is a read-only report; Phase 2 (applying edits) only runs after the user explicitly approves. NOT for changing tone or voice (that is rewrite-tone), NOT for rewriting content, adding facts, or translating between languages.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.771Z"
+}

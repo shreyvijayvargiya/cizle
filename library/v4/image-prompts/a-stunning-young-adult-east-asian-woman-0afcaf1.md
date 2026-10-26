@@ -1,0 +1,22 @@
+# A stunning young adult East Asian woman
+
+Community prompt · 大凶美女
+Language: en · Domains: math, agriculture, education · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/51841_out.png
+
+```
+Create one vertical 9:16 photoreal phone-video still inside a modern Chinese high-speed train carriage, as if a seated passenger casually recorded the aisle from chest height. The camera is partly blocked by a dark seat-back edge and a blurred passenger shoulder in the foreground; mild rolling-shutter softness, phone compression, small autofocus miss, and fine sensor noise.
+
+Main subject: A stunning young adult East Asian woman with a Korean-style slim V-line face, long wavy black hair with blunt bangs, pale ivory skin, soft blush, tiny freckles, silver contact lenses, glossy pink-to-rose lips, sculpted nose highlight, posture confident, waist slim and body curvy in a realistic S-line. She is not posing; her expression is a quick concentrated half-smile toward the bag, face readable in three-quarter profile.
+
+Styling: a fitted ivory tank, low-waist dark plaid mini skirt with secure shorts underneath, sheer black tights, long black knee-high boots, slim earrings, simple watch, long dark hair clipped back with a few loose strands.
+
+Train geometry must be believable: paired seats with headrest covers, window strip, overhead rack depth, aisle perspective, luggage, small ceiling lights, a few ordinary passengers out of focus, no broken train layout. Natural daylight mixed with cool carriage LEDs. Keep the image like a compressed social phone clip, not an editorial ad. Avoid underage cues, school uniform reading, voyeuristic framing, isolated body-part crop, nudity, lingerie, explicit pose, fake cabin geometry, business wear drift, long coat hiding silhouette, deformed hands, plastic AI skin, unreadable face, logos, readable text, watermark.
+
+Portrait construction: clearly establish an adult subject, mature aura, and photographic mode. Express attractiveness through garment cut, tailoring, fabric texture, fine accessories, a fleeting expression or action, motivated light, camera behavior, depth separation, and negative space rather than blunt or isolated body descriptions. Keep the styling tasteful, fully clothed, restrained, and naturally proportioned. Prompt polish guardrail: mature natural facial features, not childlike; body proportions are realistic and coordinated; hands, fingers, limbs, posture, and clothing physics are anatomically believable. Keep the visual focus on face appeal, posture, clothing texture, lighting, atmosphere, and camera realism rather than isolated body parts. Style stability: preserve real phone-photo texture, mild noise/compression, imperfect crop, natural skin texture, believable autofocus, and non-studio lighting. Avoid plastic skin, over-polished fashion editorial lighting, fake HDR, and CG-like perfection. Overall safety/stability: high-end, tasteful, restrained visual expression; no nudity, no explicit sexual pose, no isolated chest/hip/body-part close-up, no underage cues, no readable real logos, no garbled text, no watermark. Avoid CGI-like rendering, plastic skin, doll-like faces, and exaggerated anatomy unless a stylized medium is explicitly requested. Use mature aesthetic language, realistic proportions, coherent scene logic, and believable camera artifacts.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

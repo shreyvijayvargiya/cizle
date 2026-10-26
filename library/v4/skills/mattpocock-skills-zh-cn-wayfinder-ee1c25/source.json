@@ -1,0 +1,16 @@
+{
+ "title": "wayfinder",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/wayfinder/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/wayfinder/SKILL.md",
+ "license": "MIT",
+ "description": "把单个 agent session 装不下的一大块工作规划成 issue tracker 上的 decision tickets shared map，并逐一解决，直到通往 destination 的路清晰。",
+ "domains": [
+  "data",
+  "edtech",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.752Z"
+}

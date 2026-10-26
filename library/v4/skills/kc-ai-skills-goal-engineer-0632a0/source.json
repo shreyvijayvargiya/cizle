@@ -1,0 +1,14 @@
+{
+ "title": "goal-engineer",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "goal-engineer/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/goal-engineer/SKILL.md",
+ "license": "MIT",
+ "description": "Author a self-contained unattended dispatch for a generate-and-select loop (generate candidates, grade, iterate, keep the best for human selection), or for a build whose spec is already frozen with approved scope and machine-checkable AC. Frozen builds hand off implementation / checks, doc-qa:qa, align, and the final task report. Fill execution and notification gaps without reopening approved product decisions. This is the dispatch author, not the runtime: a separate agent or headless session executes it. Not for writing a build spec or PRD from raw input, scheduling recurring work, or running the task itself.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.768Z"
+}

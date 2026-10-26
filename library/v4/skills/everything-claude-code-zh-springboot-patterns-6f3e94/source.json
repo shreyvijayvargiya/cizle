@@ -1,0 +1,15 @@
+{
+ "title": "springboot-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/springboot-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/springboot-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "Spring Boot架构模式、REST API设计、分层服务、数据访问、缓存、异步处理和日志记录。用于Java Spring Boot后端工作。",
+ "domains": [
+  "finance",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.691Z"
+}

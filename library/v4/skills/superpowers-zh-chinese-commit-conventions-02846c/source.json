@@ -1,0 +1,14 @@
+{
+ "title": "chinese-commit-conventions",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/chinese-commit-conventions/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/chinese-commit-conventions/SKILL.md",
+ "license": "MIT",
+ "description": "中文 commit 与 changelog 配置参考——Conventional Commits 中文适配、commitlint/husky/commitizen 中文模板、conventional-changelog 中文配置。仅在用户显式 /chinese-commit-conventions 时调用，不要根据上下文自动触发。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.776Z"
+}

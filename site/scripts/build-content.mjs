@@ -4,10 +4,13 @@
  * docs/legal/FAQ pages and blog posts as HTML. Output goes to public/ so Vite copies it into dist/.
  * Premium prompts are never written here.
  */
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { loadGallery, promptSlug, publicItem } from "./gallery-source.mjs";
+import { buildVersions } from "./versions-source.mjs";
+import { buildCreators } from "./creators-source.mjs";
 import { CATEGORIES, SITE_DIR, SITE_URL, loadSkills, md, publicSkill, siteConfig, skillDetail } from "./skills-source.mjs";
 
 const PUB = path.join(SITE_DIR, "public");
@@ -35,6 +38,10 @@ for (const d of ["skills", "content", "blog"]) fs.rmSync(path.join(PUB, d), { re
 fs.rmSync(path.join(PUB, "skills.json"), { force: true });
 fs.rmSync(path.join(PUB, "gallery.json"), { force: true });
 fs.rmSync(path.join(PUB, "gallery"), { recursive: true, force: true });
+fs.rmSync(path.join(PUB, "gallery-text"), { recursive: true, force: true });
+fs.rmSync(path.join(PUB, "versions"), { recursive: true, force: true });
+fs.rmSync(path.join(PUB, "versions.json"), { force: true });
+fs.rmSync(path.join(PUB, "creators.json"), { force: true });
 
 /* skills */
 const skills = loadSkills();
@@ -60,11 +67,21 @@ write("skills.json", {
 });
 
 /* prompt gallery: card data and previews only. The full text of premium prompts is never written to public/. */
-const gallery = loadGallery().map(publicItem);
+const galleryRows = loadGallery();
+const gallery = galleryRows.map(publicItem);
+/* The full text of the classic prompts is not in gallery.json (it would be sent to everyone on every page load): it lives in 256 small shards,
+   public/gallery-text/<xx>.json ({ id: text }), and the dialog (or the home tile) reads the one shard it needs. Prerender reads them back for the static pages. */
+{
+	const shardOf = (id) => crypto.createHash("sha1").update(id).digest("hex").slice(0, 2);
+	const shards = {};
+	for (const g of gallery) if (g.text) (shards[shardOf(g.id)] ||= {})[g.id] = g.text;
+	for (const [sh, obj] of Object.entries(shards)) write(`gallery-text/${sh}.json`, obj);
+	for (const g of gallery) if (g.text) g.hasText = true;
+}
 { const seen = new Set(); for (const g of gallery) { for (let n = 8; seen.has(g.slug) && n < 24; n++) g.slug = promptSlug(g.title, g.id, g.category, n); seen.add(g.slug); } }
 const count = (key) => Object.entries(gallery.reduce((m, g) => ((g[key] ? (m[g[key]] = (m[g[key]] || 0) + 1) : 0), m), {})).sort((a, b) => b[1] - a[1]);
 if (gallery.length)
-	write("gallery.json", { generatedAt: new Date().toISOString(), total: gallery.length, free: gallery.filter((g) => g.tier === "free").length, categories: count("category").map(([c]) => c), items: gallery });
+	write("gallery.json", { generatedAt: new Date().toISOString(), total: gallery.length, free: gallery.filter((g) => g.tier === "free").length, categories: count("category").map(([c]) => c), items: gallery.map(({ text, ...g }) => g) });
 
 /* Full text of premium prompts. Default ("firestore"): never written to public/; subscribers read it from Firestore (npm run seed:gallery, which reads
    private/). VITE_GALLERY_TEXT=public is a soft gate for testing: one small file per prompt, and only possible on a machine that has the full text. */
@@ -81,7 +98,7 @@ if (textMode === "public") {
 console.log(`gallery text: ${textMode !== "public" ? "kept out of public/ (Firestore)" : `${textFiles} premium prompts as public/gallery/text/*.json (soft gate)`}`);
 
 /* pages */
-for (const name of ["docs", "terms", "privacy", "refund"]) {
+for (const name of ["docs", "terms", "privacy", "refund", "rights"]) {
 	const raw = fs.readFileSync(path.join(SITE_DIR, "content", "pages", `${name}.md`), "utf8").replaceAll("https://cizle.dev", SITE_URL);
 	const title = (/^# (.+)$/m.exec(raw) || [])[1] || name;
 	const body = raw.replace(/^# .+\n+/, "");
@@ -108,5 +125,10 @@ const posts = fs
 for (const p of posts) write(`blog/${p.slug}.json`, p);
 write("blog.json", posts.map(({ html, toc, ...p }) => p));
 
+const versions = buildVersions(write);
+const creators = buildCreators();
+write("creators.json", { generatedAt: new Date().toISOString(), total: creators.length, platforms: creators.reduce((m, c) => ((m[c.platform] = (m[c.platform] || 0) + 1), m), {}), creators });
+console.log(`creators: ${creators.length} unique (${creators.filter((c) => c.platform === "x").length} on X, ${creators.filter((c) => c.platform === "github").length} on GitHub) · ${creators[0]?.handle} leads with ${creators[0]?.total}`);
+for (const v of versions) console.log(`${v.version}: ${v.counts.prompts} prompts (${v.counts.with_video} with video) + ${v.counts.skills} skills in ${Object.keys(v.languages).length} languages · folder ${v.folder}`);
 console.log(`gallery: ${gallery.length} prompts (${gallery.filter((g) => g.tier === "free").length} free)`);
 console.log(`content: ${skills.length} skills (${skills.filter((s) => s.tier === "free").length} free), ${posts.length} posts → public/ for ${siteConfig.name} at ${SITE_URL}`);

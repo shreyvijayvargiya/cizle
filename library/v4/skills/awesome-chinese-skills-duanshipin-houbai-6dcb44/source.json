@@ -1,0 +1,16 @@
+{
+ "title": "duanshipin-houbai",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "duanshipin-houbai/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/duanshipin-houbai/SKILL.md",
+ "license": null,
+ "description": "创作短视频口播脚本，包括黄金三秒钩子、悬念结构、逐字稿和分镜提示。当用户提到\"口播\"、\"短视频脚本\"、\"抖音/视频号文案\"、\"开头留不住人\"，或给出主题要求生成视频讲稿时使用。",
+ "domains": [
+  "entertainment",
+  "math",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

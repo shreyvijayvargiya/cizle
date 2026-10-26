@@ -1,0 +1,15 @@
+{
+ "title": "onboard",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/automation/onboard/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/automation/onboard/SKILL.md",
+ "license": "MIT",
+ "description": "新手引导流程。了解你的基本偏好、定第一个目标、指引下一步。\"disable-model-invocation: true",
+ "domains": [
+  "edtech",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

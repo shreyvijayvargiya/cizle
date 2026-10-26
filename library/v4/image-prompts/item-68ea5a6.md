@@ -1,0 +1,14 @@
+# 猫动漫海报未来冷调可爱
+
+Community prompt · 角色板or三视图
+Language: zh · Domains: entertainment, data, gaming · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/16652.jpg
+
+```
+{"type":"柔和动漫风格性格信息图海报","topic":"用户画像信息图","theme":"一个温和、内向、深思熟虑的人，形象为坐在薰衣草色房间里的可爱黑发猫耳动漫男孩","style":{"aesthetic":"柔和的薰衣草色与灰色调，简洁的日式信息图设计，精致的线条图标，圆角白色面板，通透的间距，微妙的爪印图案","rendering":"高质量动漫插画，带有柔和的阴影，舒适的生活化氛围","background":"米白色背景，带有淡淡的薰衣草色水彩圆圈和细小的装饰点"},"subject":{"character":{"presentation":"中性风动漫男孩头像","hair":{"color":"{argument name=\"hair color\" default=\"黑色\"}","style":"凌乱的短层叠发，留着长刘海"},"accessories":["头顶黑色猫耳","耳部佩戴大型头戴式耳机"],"outfit":["黑色宽松连帽衫，胸前有微妙的螺旋标志","深灰色慢跑裤","黑色运动鞋","前臂和小腿缠有白色绷带"],"pose":"舒适地坐在大型薰衣草色懒人沙发中，单膝抬起，手持印有爪印的深色马克杯","expression":"冷静、害羞、温柔"},"companion":{"count":1,"description":"一只灰色的猫蜷缩在角色脚边的小圆形薰衣草色坐垫上睡觉"},"props":{"count":6,"items":["手中拿着印有爪印的深色马克杯","地板上的智能手机，屏幕显示音符","地板上打开的笔记本","笔记本旁的钢笔","地板附近的一小束薰衣草","右下角花瓶里的茶杯和薰衣草"]}},"layout":{"format":"垂直海报","sections":[{"title":"用户画像信息图","position":"左上角标题","count":1,"labels":["珍视共情与安心，温柔而细腻的人"]},{"title":"珍视的事物","position":"右上角","count":3,"labels":["与值得信赖的人建立舒适的联系","专注于自己喜欢的事物的时间","平静且安心的日常生活"]},{"title":"思考方式","position":"左上方","count":4,"labels":["深思熟虑，行事谨慎","有时会过于追求完美","一旦决定了的事情，就想坚持到底","珍视自己的世界观和个人坚持","对他人的情绪敏感，观察入微"]},{"title":"优势","position":"右上方","count":5,"labels":["具备持续力","观察力与共情能力强","富有创造力","认真且诚实","具备灵活性"]},{"title":"情绪","position":"左中部","count":4,"labels":["安心・快乐","平静・满足","不安・易疲劳","易低落"]},{"title":"相处要点","position":"右中部","count":5,"labels":["不要否定，请先倾听我的诉说","不要催促，请尊重我的节奏","请称赞我的细微变化与努力","珍视能带来安心感的言语与氛围","希望能分享彼此共同享受的时间"]},{"title":"人际关系","position":"左下上方框","count":4,"labels":["只珍视少数值得信赖的人的类型","能站在对方立场考虑问题","容易被温柔的言语与关怀打动","希望保持在一起时能自然流露真实自我的关系"]},{"title":"日常片段","position":"中下部条带","count":5,"labels":["听音乐放松","享受喜欢的饮品，度过悠闲时光","将想法与感悟记录在笔记本上","与猫咪慵懒地待在一起","沉浸在游戏或爱好中","早点休息，调整心态"]},{"title":"疲惫或不安时","position":"左下角","count":5,"labels":["因为过于顾虑他人而感到精疲力竭","有时会失去自信","因为过度思考未来而感到不安","担心是否给他人添了麻烦","有时会因为太努力而导致内心跟不上节奏"]},{"title":"此时寻求的支持","position":"底部中心箭头","count":1,"labels":["此时寻求的支持"]},{"title":"支持列表","position":"右下角","count":5,"labels":["希望能听到让我安心的话语","希望能慢慢地倾听我的心声","希望能尊重我想要独处的时间","想一起享受喜欢的事物","请不要勉强我，尊重我的节奏"]},{"title":"一句话总结","position":"底部全宽页脚","count":1,"labels":["温柔而细腻，将心灵的连接看得比什么都重要。在有安心之地与安心之人的陪伴下，会更加闪耀。"]}],"centerpiece":"中心处大型坐姿全身动漫角色，覆盖多个文本面板","decorative_elements":{"count":8,"items":["标题附近的爪印图标","角色附近的音符对话气泡","左侧的小云朵涂鸦","右侧面板附近带有 Zzz 的小睡猫涂鸦","薰衣草色水彩斑点","细小的漂浮点","带有灰色轮廓的圆角矩形面板","章节标题与要点旁的小型单色图标"]}},"text_language":"简体中文","customization":{"headline":"{argument name=\"headline text\" default=\"用户画像信息图\"}","subtitle":"{argument name=\"subtitle text\" default=\"珍视共情与安心，温柔而细腻的人\"}","character archetype":"{argument name=\"character type\" default=\"温柔细腻的人\"}","accent color":"{argument name=\"accent color\" default=\"柔和薰衣草色\"}"}}
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

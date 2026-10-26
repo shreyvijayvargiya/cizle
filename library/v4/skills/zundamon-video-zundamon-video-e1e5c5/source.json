@@ -1,0 +1,16 @@
+{
+ "title": "zundamon-video",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "dikmri/zundamon-video",
+ "path": "skill/zundamon-video/SKILL.md",
+ "url": "https://github.com/dikmri/zundamon-video/blob/HEAD/skill/zundamon-video/SKILL.md",
+ "license": null,
+ "description": "ずんだもん（＋四国めたん）の掛け合い解説動画を、VOICEVOX音声・坂本アヒル氏の立ち絵（口パク・目パチ・表情・腕ポーズ）・HTMLボードで作り mp4 に書き出す。「ずんだもん解説動画を作って」「ずんだもんとめたんで〇〇を解説する動画」「VOICEVOXで解説動画」「ゆっくり解説風の動画」「この記事/ツール/ニュースを解説動画にして」など、キャラクターが話して図解する解説・紹介・まとめ動画の依頼では、ずんだもんの名前が出なくても必ずこのスキルを使う。台本作成、ボード（スライド）作成、音声合成、口パク、字幕、BGM・効果音、動画書き出しまで一式を扱う。AIで実写風の映像そのものを生成する依頼（MiniMax H3 等のプロンプト作成）や既存動画の編集だけの依頼には使わない。",
+ "domains": [
+  "education",
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.801Z"
+}

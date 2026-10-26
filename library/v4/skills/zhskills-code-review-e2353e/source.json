@@ -1,0 +1,15 @@
+{
+ "title": "code-review",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/code-review/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/code-review/SKILL.md",
+ "license": "MIT",
+ "description": "对代码改动做双轴审查——Standards（是否符合成文规范 + Fowler 12 条坏味道基线）与 Spec（是否忠实实现需求文档），两轴分头审查后并排汇总、不跨轴排序。当用户粘贴代码 diff / 新旧对照，要求\"审查这段改动 / code review / 看看这次提交有没有问题\"时使用。",
+ "domains": [
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

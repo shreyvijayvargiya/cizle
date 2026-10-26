@@ -1,0 +1,15 @@
+{
+ "title": "wong-kar-wai-emotion",
+ "source": "K05",
+ "lang": "en",
+ "repo": "fanchengchen1-collab/super-director",
+ "path": "skills/wong-kar-wai-emotion/SKILL.md",
+ "url": "https://github.com/fanchengchen1-collab/super-director/blob/HEAD/skills/wong-kar-wai-emotion/SKILL.md",
+ "license": null,
+ "description": "Use this skill when the user wants Wong Kar-wai-inspired emotional atmosphere, urban longing, memory, time distortion, restrained romance, voiceover, fragmented narrative, mood-first scene treatment, or lyrical AI short drama style. Apply public-source-backed principles; do not impersonate Wong Kar-wai or copy iconic dialogue.",
+ "domains": [
+  "music",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.106Z"
+}

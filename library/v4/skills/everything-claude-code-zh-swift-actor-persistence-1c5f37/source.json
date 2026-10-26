@@ -1,0 +1,15 @@
+{
+ "title": "swift-actor-persistence",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/swift-actor-persistence/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/swift-actor-persistence/SKILL.md",
+ "license": "MIT",
+ "description": "Swift 中使用 actor 实现的线程安全数据持久化 —— 结合内存缓存与文件存储，从设计上消除数据竞争。",
+ "domains": [
+  "data",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.716Z"
+}

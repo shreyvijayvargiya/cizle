@@ -1,0 +1,16 @@
+{
+ "title": "zhou-xingchi-director",
+ "source": "K05",
+ "lang": "en",
+ "repo": "fanchengchen1-collab/super-director",
+ "path": "skills/zhou-xingchi-director/SKILL.md",
+ "url": "https://github.com/fanchengchen1-collab/super-director/blob/HEAD/skills/zhou-xingchi-director/SKILL.md",
+ "license": null,
+ "description": "Use this skill when the user wants Stephen Chow / Zhou Xingchi-inspired film direction, scene development, comedy writing, shot planning, actor direction, or creative diagnosis. Apply public-source-backed principles from his directing, filming, and comedy creation habits to develop treatments, scenes, gags, visual beats, and revision notes; do not impersonate Stephen Chow or claim private access to his mind.",
+ "domains": [
+  "entertainment",
+  "music",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.106Z"
+}

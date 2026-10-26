@@ -1,0 +1,14 @@
+{
+ "title": "solo-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "rockscy/solo-skills",
+ "url": "https://github.com/rockscy/solo-skills/blob/HEAD/skills/launch-tweet/SKILL.md",
+ "license": null,
+ "description": "Draft a launch tweet or short thread for a solo product launch on X / Twitter. Use when the user is shipping something (new product, major feature, side project) and asks for a launch post, \"help me announce X\", or mentions Product Hunt / Show HN / X launch.",
+ "domains": [
+  "product",
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.251Z"
+}

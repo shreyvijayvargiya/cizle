@@ -1,0 +1,16 @@
+{
+ "title": "cinema-director-en",
+ "source": "K05",
+ "lang": "en",
+ "repo": "fanchengchen1-collab/super-director",
+ "path": "skills/cinema-director-en/SKILL.md",
+ "url": "https://github.com/fanchengchen1-collab/super-director/blob/HEAD/skills/cinema-director-en/SKILL.md",
+ "license": null,
+ "description": "Super Director System (English edition) — a film-craft knowledge base and director workflow for AI video creation. Use when the user wants storyboards, AI video generation prompts (Sora/Kling/Veo/Seedance/Runway), cinematography design (lighting, composition, camera moves, blocking), short-drama or film development, aesthetic style bibles, fight choreography, or narrative pacing — and communicates in English. Outputs production-ready Six-Block prompts in English. For Chinese-speaking users, prefer the cinema-director skill.",
+ "domains": [
+  "entertainment",
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.096Z"
+}

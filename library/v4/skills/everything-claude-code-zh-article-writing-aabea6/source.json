@@ -1,0 +1,15 @@
+{
+ "title": "article-writing",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/article-writing/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/article-writing/SKILL.md",
+ "license": "MIT",
+ "description": "编写文章、指南、博客帖子、教程、新闻通讯（newsletter）以及其他长篇内容。这些内容具有从提供的示例或品牌指南中提取出的独特语气。当用户需要比段落更长的精美文案，且对语气一致性、结构和可信度有要求时，请使用此技能（Skill）。",
+ "domains": [
+  "product",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.702Z"
+}

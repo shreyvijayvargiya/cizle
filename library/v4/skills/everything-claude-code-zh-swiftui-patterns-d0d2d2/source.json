@@ -1,0 +1,14 @@
+{
+ "title": "swiftui-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/swiftui-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/swiftui-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftUI 架构模式，使用 @Observable 进行状态管理，视图组合，导航，性能优化，以及现代 iOS/macOS UI 最佳实践。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.695Z"
+}

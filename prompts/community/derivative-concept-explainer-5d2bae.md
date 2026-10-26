@@ -26,4 +26,4 @@ posted: '2026-09-24'
 
 ## Prompt
 
-请用Manim给我制作一个导数概念学习的视频，要求通俗易懂，并且有例子，引人思考。配音使用edge-tts
+Please use Manim to make me a video for learning the concept of the derivative. It must be easy to understand, include examples and make people think. Use edge-tts for the voice-over.

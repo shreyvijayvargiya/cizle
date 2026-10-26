@@ -1,0 +1,15 @@
+{
+ "title": "product-demo-video",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "kzkhykw/product-demo-video",
+ "path": "SKILL.md",
+ "url": "https://github.com/kzkhykw/product-demo-video/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "高クラフトなキネティック・プロダクトデモ/プロモ動画を、実プロダクト(コードベース＋公開サイト)のデザインを1:1で取り込みつつ再現性高く制作するためのハウススタイル・テンプレート。プロダクト紹介/デモ/プロモ動画の新規制作・モーション設計・動画構成・ローカライズ(英語版など)・レンダリング・検品を頼まれたときに使う。どのサービス/プロダクトにも汎用。起動時はまず最低限をヒアリングする。",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.801Z"
+}

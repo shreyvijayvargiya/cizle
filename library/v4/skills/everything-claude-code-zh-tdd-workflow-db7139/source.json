@@ -1,0 +1,12 @@
+{
+ "title": "tdd-workflow",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/tdd-workflow/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/tdd-workflow/SKILL.md",
+ "license": "MIT",
+ "description": "Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ coverage including unit, integration, and E2E tests.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.702Z"
+}

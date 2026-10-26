@@ -1,0 +1,15 @@
+{
+ "title": "prose-audit",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "codex-skills-pack/skills/prose-audit/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/codex-skills-pack/skills/prose-audit/SKILL.md",
+ "license": "MIT",
+ "description": "审稿诊断，只审不改。检查 AI 味、套话、翻译腔、重复、逻辑断裂和改写失真，按原文给修改优先级。",
+ "domains": [
+  "product",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

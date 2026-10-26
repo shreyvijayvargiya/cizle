@@ -1,0 +1,14 @@
+{
+ "title": "golang-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/golang-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/golang-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "用于构建健壮、高效且可维护的Go应用程序的惯用Go模式、最佳实践和约定。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.689Z"
+}

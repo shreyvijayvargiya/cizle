@@ -1,0 +1,14 @@
+{
+ "title": "data-storytelling",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/data-storytelling/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/data-storytelling/SKILL.md",
+ "license": "MIT",
+ "description": "把一堆零散的数据/指标/分析结果组织成有叙事结构的汇报报告——先定一句话核心信息（\"数字在说什么\"），再从问题-解决方案/趋势/对比三种故事框架里选一个，再按框架组织数据支撑与洞察，最后落到建议。当用户提供数据清单、指标表、看板截图解读、经营分析素材，并要求做经营分析汇报、月度/季度数据复盘、看板解读、投放效果汇报、市场分析报告，或说\"帮我把这些数据整理成报告/汇报材料\"时使用。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

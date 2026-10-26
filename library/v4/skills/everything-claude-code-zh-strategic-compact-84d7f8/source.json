@@ -1,0 +1,12 @@
+{
+ "title": "strategic-compact",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/strategic-compact/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/strategic-compact/SKILL.md",
+ "license": "MIT",
+ "description": "Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary auto-compaction.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.701Z"
+}

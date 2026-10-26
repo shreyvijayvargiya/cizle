@@ -1,0 +1,15 @@
+{
+ "title": "xiaohongshu-comment-reply",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-comment-reply/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-comment-reply/SKILL.md",
+ "license": "MIT",
+ "description": "评论区回复生成：把一条或多条评论（小红书 / 微博 / 社群 / 电商差评）变成像真人、有边界、能延续对话的回复，输出友好 / 专业 / 评论区口吻 / 引导私信四个版本加一个\"不建议这样回\"反例，并给恶意评论的不争辩处理建议。用户要求\"回评论 / 回复评论 / 差评怎么回 / 置顶评论写什么 / 评论区维护人设\"时使用。",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

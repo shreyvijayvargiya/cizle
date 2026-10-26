@@ -1,0 +1,16 @@
+{
+ "title": "migrate-to-builds",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/dev-env/migrate-to-builds/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/dev-env/migrate-to-builds/SKILL.md",
+ "license": "MIT",
+ "description": "迁移到预构建环境。测试云端 agent 环境是否兼容预构建镜像并给出改造建议。\"environments:",
+ "domains": [
+  "education",
+  "health",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.727Z"
+}

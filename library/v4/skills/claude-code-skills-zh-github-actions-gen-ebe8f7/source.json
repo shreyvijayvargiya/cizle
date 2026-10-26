@@ -1,0 +1,15 @@
+{
+ "title": "github-actions-gen",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/github-actions-gen/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/github-actions-gen/SKILL.md",
+ "license": "MIT",
+ "description": "分析真实项目并生成或修订安全、可验证的 GitHub Actions workflow；当用户要求创建 CI、测试矩阵、构建、Release、部署、缓存、Secrets、OIDC、PR 自动化或排查 workflow 配置时使用",
+ "domains": [
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

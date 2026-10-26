@@ -1,0 +1,12 @@
+{
+ "title": "implement",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/implement/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/implement/SKILL.md",
+ "license": "MIT",
+ "description": "基于 spec 或 ticket 集合实现一段工作。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.746Z"
+}

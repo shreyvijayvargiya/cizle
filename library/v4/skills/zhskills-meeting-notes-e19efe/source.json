@@ -1,0 +1,12 @@
+{
+ "title": "meeting-notes",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/meeting-notes/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/meeting-notes/SKILL.md",
+ "license": "MIT",
+ "description": "把会议、访谈、播客的转写稿整理成可直接交付的结构化会议纪要（含摘要、讨论要点、决议、行动项、遗留问题与风险提示）。当用户提供会议记录、录音转写稿，并希望得到纪要、会议总结或行动清单时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

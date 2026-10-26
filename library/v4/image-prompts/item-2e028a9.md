@@ -1,0 +1,14 @@
+# 女性城市樱花可爱
+
+Community prompt · 随手拍
+Language: en · Domains: nature · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2039752567010574671.jpg
+
+```
+{"subject":{"description":"Asian female in blue floral dress, puffed cheeks, sitting cross-legged outdoors","mirror_rules":"","age":"early 20s","expression":{"eyes":{"look":"sideways","energy":"playful","direction":"right"},"mouth":{"position":"puffed cheeks","energy":"whimsical"},"overall":"cute, pouting"},"face":{"preserve_original":true,"makeup":"natural peach style"},"hair":{"color":"brown","style":"short bob, see-through bangs","effect":"neat, silky"},"body":{"frame":"slender","waist":"slim","chest":"small","legs":"crossed","skin":{"visible_areas":"chest, shoulders, arms, legs","tone":"fair","texture":"dewy, warm and velvety","lighting_effect":"bright diffused sunlight, high key"}},"pose":{"position":"sitting cross-legged","base":"wooden bench","overall":"relaxed, playful posture"},"clothing":{"top":{"type":"sundress","color":"light blue","details":"white floral print, spaghetti straps","effect":"airy"},"bottom":{"type":"skirt","color":"light blue","details":"flared, mini length"}}},"accessories":{"prop":"blue teardrop earrings, white sneakers"},"photography":{"camera_style":"digital portrait","angle":"eye level","shot_type":"full shot","aspect_ratio":"2:3","texture":"clean, sharp","lighting":"natural golden hour sun, soft backlight","depth_of_field":"shallow"},"background":{"setting":"park with cherry blossoms","wall_color":"none","elements":["cherry blossom trees","distant hills","wildflowers","wooden bench"],"atmosphere":"dreamy","lighting":"bright, sunny"},"the_vibe":{"energy":"youthful","mood":"cheerful","aesthetic":"spring core","authenticity":"high, lifestyle photography","intimacy":"medium","story":"spring afternoon outing","caption_energy":"blooming"},"constraints":{"must_keep":["puffed cheeks","blue floral sundress","cherry blossoms","short bob"],"avoid":["dark shadows","urban setting","heavy makeup"]},"negative_prompt":["dark","gloomy","urban","indoor","heavy makeup","messy hair","angry","serious"],"prompt":"Digital portrait, bright natural sunlight. Young Asian woman, early 20s, short brown bob with see-through bangs. Fair skin feeling dewy, warm and velvety to touch, visible on shoulders, arms, and crossed legs. Playful puffed cheeks, eyes looking sideways, natural peach-style makeup. Wearing a light blue spaghetti strap sundress with white floral print and white sneakers. Sitting cross-legged on a wooden bench. Background of blooming cherry blossom trees, distant soft hills, and green grass with wildflowers. High-key lighting, dreamy spring aesthetic, shallow depth of field, soft golden hour glow."}
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

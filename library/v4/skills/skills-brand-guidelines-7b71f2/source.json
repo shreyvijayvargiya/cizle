@@ -1,0 +1,13 @@
+{
+ "title": "brand-guidelines",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/skills",
+ "url": "https://github.com/anthropics/blob/skills/main/skills/brand-guidelines/SKILL.md",
+ "license": null,
+ "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

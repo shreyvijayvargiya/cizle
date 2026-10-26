@@ -1,0 +1,14 @@
+{
+ "title": "log-analyzer",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/log-analyzer/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/log-analyzer/SKILL.md",
+ "license": "MIT",
+ "description": "日志分析助手 — 智能解析日志文件，识别异常模式，定位问题根因",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.785Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "chinese-web-themes",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "sanhuang520-ship-it/awesome-chinese-ai-tools/skills/chinese-web-themes",
+ "url": "https://github.com/sanhuang520-ship-it/awesome-chinese-ai-tools/blob/HEAD/skills/chinese-web-themes/SKILL.md",
+ "license": null,
+ "description": "中式网页主题库。当用户要\"中国风网页\"\"国风网站样式\"\"古风博客主题\"\"中式配色 CSS\"\"水墨风页面\"\"新中式网页\"\"给网站换个中国风皮肤\"时使用。提供 8 套可直接引入的 CSS 主题，内置中文排版规范。",
+ "domains": [
+  "product",
+  "music",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.248Z"
+}

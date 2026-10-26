@@ -1,0 +1,11 @@
+{
+ "title": "wechatdownload",
+ "source": "K07",
+ "lang": "en",
+ "repo": "qiye45/wechatdownload",
+ "url": "https://github.com/qiye45/wechatdownload/blob/HEAD/skills/wechat-article-downloader/SKILL.md",
+ "license": null,
+ "description": "Download WeChat official account articles in multiple formats (HTML, PDF, Word, Markdown, TXT, MHTML), including single article download, collection (appmsgalbum) download, local bulk workflows, and metadata export. Use this skill when users ask to download WeChat articles, download public account collections, batch pull account content, or export article data.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.260Z"
+}

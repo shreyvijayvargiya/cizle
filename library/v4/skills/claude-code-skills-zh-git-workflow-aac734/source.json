@@ -1,0 +1,15 @@
+{
+ "title": "git-workflow",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/git-workflow/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/git-workflow/SKILL.md",
+ "license": "MIT",
+ "description": "安全处理 Git 状态检查、提交信息、commit、分支、push、PR 和 rebase。用于用户要求检查改动、生成或创建提交、管理分支、推送、发起 PR 或整理历史时；严格区分每个动作的授权，并保护工作树中已有和无关的修改。",
+ "domains": [
+  "history",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

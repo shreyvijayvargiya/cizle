@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PauseIcon, PlayIcon, VolumeHighIcon, VolumeMute01Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
-import { viaProxy } from "@/lib/videos";
+import { isDirectBlocked, markDirectBlocked, viaProxy } from "@/lib/videos";
 
 const clock = (s: number) => (Number.isFinite(s) ? `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}` : "0:00");
 
 /** Our own player: play/pause bottom left, the whole timeline across the middle, volume at the end. Starts muted and loops, like every other video here. */
-export function VideoPlayer({ src, poster, label, onFail }: { src: string; poster?: string | null; label: string; onFail?: () => void }) {
+export function VideoPlayer({ src: first, poster, label, onFail, postUrl }: { src: string; poster?: string | null; label: string; onFail?: () => void; postUrl?: string | null }) {
+	const [src, setSrc] = useState(first);
+	const resolved = useRef(false);
 	const ref = useRef<HTMLVideoElement>(null);
 	const tries = useRef(0);
-	const [proxied, setProxied] = useState(false);
+	const [proxied, setProxied] = useState(() => isDirectBlocked() && viaProxy(first) !== first);
 	const [loading, setLoading] = useState(true);
 	const [playing, setPlaying] = useState(false);
 	const [muted, setMuted] = useState(true);
@@ -33,19 +35,35 @@ export function VideoPlayer({ src, poster, label, onFail }: { src: string; poste
 		return () => (clearTimeout(watch), evs.forEach((e) => v.removeEventListener(e, sync)), ["loadeddata", "canplay", "playing"].forEach((e) => v.removeEventListener(e, ready)));
 	}, [src, proxied]);
 
-	useEffect(() => setProxied(false), [src]);
+	useEffect(() => {
+		setSrc(first);
+		resolved.current = false;
+	}, [first]);
+	useEffect(() => setProxied(isDirectBlocked() && viaProxy(src) !== src), [src]);
 
 	/** A failed or stalled load: reload once (a dropped connection is common), then give up so the caller can show the fallback. */
 	const retry = useCallback(() => {
 		const v = ref.current;
 		if (!v) return onFail?.();
 		// second failure: the same file through our own server, then hand over to the post's player
-		if (tries.current >= 1) return !proxied && viaProxy(src) !== src ? (tries.current = 0, setProxied(true)) : onFail?.();
+		if (tries.current >= 1) {
+			if (!proxied && viaProxy(src) !== src) return (tries.current = 0, markDirectBlocked(), setProxied(true));
+			// still nothing: ask the server to read the post again for a working mp4 (one try), then hand over to the post's own player
+			if (postUrl && !resolved.current) {
+				resolved.current = true;
+				fetch(`/api/vid/resolve?post=${encodeURIComponent(postUrl)}`)
+					.then((r) => (r.ok ? r.json() : Promise.reject()))
+					.then((j: { video?: string }) => (j.video && j.video !== src ? (tries.current = 0, setLoading(true), setProxied(isDirectBlocked()), setSrc(j.video)) : onFail?.()))
+					.catch(() => onFail?.());
+				return;
+			}
+			return onFail?.();
+		}
 		tries.current++;
 		setLoading(true);
 		v.load();
 		v.play().catch(() => {});
-	}, [onFail, proxied, src]);
+	}, [onFail, postUrl, proxied, src]);
 
 	// React sets `muted` only when the element is created, so keep the property in step with the button
 	useEffect(() => {

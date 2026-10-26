@@ -1,0 +1,14 @@
+# 女孩插画水彩宇宙夜景可爱
+
+Community prompt · 动漫插画
+Language: en · Domains: science, entertainment · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/18194.jpg
+
+```
+Create a whimsical children’s storybook illustration of a small young girl peacefully sleeping on her side atop a floating broken slab of pale yellow moon rock in outer space. The character has black hair in a high ponytail tied with a red scrunchie, with straight bangs, closed eyes, rosy cheeks, and a gentle smile, resting her head on folded arms. She wears a black-and-yellow striped short-sleeve shirt under blue denim overalls and yellow sneakers with white soles. Behind her, show a huge warm golden crescent moon with visible craters, shaped as if a bite or chunk has been taken from its inner edge, matching the rocky platform beneath her. The background is a deep navy star-filled night sky with many tiny white stars, a few brighter sparkling stars, and soft purple clouds near the edges. Use a charming hand-painted digital illustration style, soft watercolor-like textures, rounded cute proportions, warm moonlight, dreamy bedtime atmosphere, gentle shading, clean composition, and vertical portrait framing.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

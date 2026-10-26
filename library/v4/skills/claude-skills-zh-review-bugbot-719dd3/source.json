@@ -1,0 +1,12 @@
+{
+ "title": "review-bugbot",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/code-review/review-bugbot/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/code-review/review-bugbot/SKILL.md",
+ "license": "MIT",
+ "description": "缺陷导向代码审查。用 Bugbot 子代理找 bug。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.726Z"
+}

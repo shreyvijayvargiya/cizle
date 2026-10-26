@@ -1,0 +1,14 @@
+{
+ "title": "bento",
+ "source": "K07",
+ "lang": "en",
+ "repo": "nyblnet/bento",
+ "url": "https://github.com/nyblnet/bento/blob/HEAD/plugins/bento-slides/skills/bento-slides/SKILL.md",
+ "license": null,
+ "description": ">-",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

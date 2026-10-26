@@ -1,0 +1,16 @@
+{
+ "title": "seedance-product-360",
+ "source": "K05",
+ "lang": "en",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/09-product-360/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/09-product-360/SKILL.md",
+ "license": null,
+ "description": "Generate product 360° turntable, multi-angle showcase, and product reveal video prompts for Seedance 2.0 on Higgsfield. Use whenever the user wants a product rotation video, turntable showcase, product reveal, 360 view, multi-angle product display, product beauty shot, hero product video, or unboxing reveal. Triggers on: product 360, turntable, product rotation, multi-angle, product reveal, product showcase, hero shot, beauty shot, product spin, unboxing, or any request to showcase a physical product from multiple angles. Use even for \"show my product from all sides\" or \"make a product video.",
+ "domains": [
+  "product",
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.073Z"
+}

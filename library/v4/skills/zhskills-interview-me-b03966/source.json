@@ -1,0 +1,15 @@
+{
+ "title": "interview-me",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/interview-me/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/interview-me/SKILL.md",
+ "license": "MIT",
+ "description": "把模糊、一句话式的需求委托（\"领导说做个东西\"\"客户要个方案\"\"老板让我优化一下\"）收敛成一份可确认的结构化需求说明。当用户给出的需求缺\"为谁、为什么现在要、成功长什么样、硬约束是什么\"中至少一项，或明确要求\"帮我把需求捋一捋／开工前先对齐／访谈我\"时使用。",
+ "domains": [
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.758Z"
+}

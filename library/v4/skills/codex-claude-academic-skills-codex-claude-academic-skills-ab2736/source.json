@@ -1,0 +1,15 @@
+{
+ "title": "codex-claude-academic-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "zLanqing/codex-claude-academic-skills",
+ "url": "https://github.com/zLanqing/codex-claude-academic-skills/blob/HEAD/office-academic-skill/SKILL.md",
+ "license": null,
+ "description": "Chinese-first academic Word and PowerPoint workflow for paper reading reports, thesis or group-meeting PPTs, editable DOCX/PPTX generation, Office file inspection, template matching, speaker notes, and layout quality checks. Use when the user asks to read papers into Word reports, create or polish PPT/PPTX, convert paper/thesis materials into slides, edit DOCX/PPTX, inspect Office files, or produce Chinese academic presentation/report deliverables. Preserve English paper titles, formulas, variable names, software commands, and references.",
+ "domains": [
+  "math",
+  "data",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

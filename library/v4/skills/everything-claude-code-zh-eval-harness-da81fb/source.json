@@ -1,0 +1,15 @@
+{
+ "title": "eval-harness",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/eval-harness/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/eval-harness/SKILL.md",
+ "license": "MIT",
+ "description": "Claude Code 会话的正式评测框架，实现了评测驱动开发（EDD）原则",
+ "domains": [
+  "product",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.666Z"
+}

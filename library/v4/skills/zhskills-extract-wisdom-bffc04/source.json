@@ -1,0 +1,16 @@
+{
+ "title": "extract-wisdom",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/extract-wisdom/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/extract-wisdom/SKILL.md",
+ "license": "MIT",
+ "description": "把长内容（播客转写、文章、书籍章节、深度报告、访谈实录）提炼成多维度智慧摘要——核心观点、关键洞察、重要引用、术语概念、适用场景、可疑待核实处、行动建议。当用户需要读书笔记、播客/课程提炼、行业报告速读、访谈实录精华提取、竞品分析材料沉淀，或说\"帮我提炼这段长文的精华/把这篇文章的智慧挖出来/做个深度摘要\"时使用。区别于一页纸决策者摘要（doc-summary），本技能面向学习吸收，保留观点/洞察/金句的多维结构，不压成单一结论。",
+ "domains": [
+  "education",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.758Z"
+}

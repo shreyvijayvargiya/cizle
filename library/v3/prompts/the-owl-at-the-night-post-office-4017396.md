@@ -1,0 +1,15 @@
+# The Owl at the Night Post Office
+
+By @SidMenonTM · Opus 5.5 · 叙事短片
+Language: ? · Domains: music, engineering · Source: V01
+
+Original post: https://x.com/SidMenonTM/status/2103169764244017396
+
+```
+Last night I asked Opus 5.5 to make a short claymation in Blender, and told it the story should be about itself.
+It came back with an owl who works the night shift at a post office, answering letters from everyone. Then one letter asks about him.
+Claude wrote it, designed the set and the clerk, rigged and animated him entirely through code, rendered it frame by frame on a tiny cloud machine, and synthesised the music box score. My notes were: more clay, darker lighting, put the text over the picture, slow fade at the end. The rest was me typing "continue."
+The Night Post. Written and directed by Claude.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

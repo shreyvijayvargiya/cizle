@@ -1,0 +1,15 @@
+{
+ "title": "ppt-agent-skills",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "sunbigfly/ppt-agent-skills",
+ "url": "https://github.com/sunbigfly/blob/ppt-agent-skills/HEAD/SKILL.md",
+ "license": null,
+ "description": "专业 PPT 演示文稿全流程 AI 生成助手。模拟顶级 PPT 设计公司的完整工作流（需求调研到资料搜集到大纲策划到策划稿到设计稿），输出高质量 HTML 格式演示文稿。当用户提到制作 PPT、做演示文稿、做 slides、做幻灯片、做汇报材料、做培训课件、做路演 deck、做产品介绍页面时触发此技能。即使用户只说\"帮我做个关于 X 的介绍\"或\"我要给老板汇报 Y\"，只要暗示需要结构化的多页演示内容，都应该触发。也适用于用户说\"帮我把这篇文档做成 PPT\"、\"把这个主题做成演示\"等需要将内容转化为演示格式的场景。英文场景同样适用：\"make a presentation about...\"、\"create slides for...\"、\"build a pitch deck\"、\"I need a keynote for...\"。隐式意图也应触发：\"帮我把这个数据可视化一下给老板看\"、\"我需要一份能拿去路演的东西\"、\"把这个报告做得好看点能展示\"、\"beautify my existing PPT\"、\"redesign these slides\"。改善或美化现有 PPT 也属于此技能范畴。",
+ "domains": [
+  "product",
+  "data",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.271Z"
+}

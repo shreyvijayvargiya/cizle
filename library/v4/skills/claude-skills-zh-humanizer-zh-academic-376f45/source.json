@@ -1,0 +1,16 @@
+{
+ "title": "humanizer-zh-academic",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "codex-skills-pack/skills/humanizer-zh-academic/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/codex-skills-pack/skills/humanizer-zh-academic/SKILL.md",
+ "license": "MIT",
+ "description": "中文学术语言润色。润色论文、毕业设计、实验报告的语言，减少学术套话与机械句法，不动数据、引用和结论强度。",
+ "domains": [
+  "science",
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

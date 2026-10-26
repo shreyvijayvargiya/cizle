@@ -1,0 +1,14 @@
+# 温馨女性
+
+Community prompt · 不漏诱惑
+Language: en · Domains: general · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2082320800213037207.jpg
+
+```
+Black diffusion filter, masked effect, soft-light CCD portrait photography, thoughtful 🤔 expression, 9:16 vertical format.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

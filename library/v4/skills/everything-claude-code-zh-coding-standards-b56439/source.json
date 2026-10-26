@@ -1,0 +1,15 @@
+{
+ "title": "coding-standards",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/coding-standards/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/coding-standards/SKILL.md",
+ "license": "MIT",
+ "description": "Universal coding standards, best practices, and patterns for TypeScript, JavaScript, React, and Node.js development.",
+ "domains": [
+  "finance",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.696Z"
+}

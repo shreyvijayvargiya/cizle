@@ -1,0 +1,16 @@
+{
+ "title": "video-mascot",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "shostako/video-studio",
+ "path": "skills/video-mascot/SKILL.md",
+ "url": "https://github.com/shostako/video-studio/blob/HEAD/skills/video-mascot/SKILL.md",
+ "license": null,
+ "description": "解説の台詞とマスコットの絵1枚から、口パク・身振り・姿勢の切り替えを「パラパラ」で1コマずつ組み立てた喋るマスコットの動画を作り、別に用意した主動画（解説の画面・金型の動画など）の上に重ねて1本にする。声は手元の Irodori-TTS、絵は /img（ChatGPT の枠）なので、動画生成サービスへの追加料金はかからない。「マスコットに解説を喋らせたい」「立ち絵が口パクで話す動画」「この動画に喋るキャラを重ねて」「ゆっくり解説風」「身振り手振りつきの解説キャラ」「Hedra や Veo を使わずに」で発動。主動画の用意、台詞の中身の確認、字幕の重ねは別（字幕・見出しは video-scene の compose）。キャラの寸劇やなめらかな実写風の動きは対象外（video-scene の Veo）。",
+ "domains": [
+  "education",
+  "entertainment",
+  "music"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.800Z"
+}

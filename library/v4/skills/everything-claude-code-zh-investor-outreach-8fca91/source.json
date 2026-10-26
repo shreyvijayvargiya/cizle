@@ -1,0 +1,16 @@
+{
+ "title": "investor-outreach",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": ".cursor/skills/investor-outreach/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/.cursor/skills/investor-outreach/SKILL.md",
+ "license": "MIT",
+ "description": "起草用于融资的冷启动邮件（Cold Emails）、引荐语（Warm Intro Blurbs）、后续跟进邮件、进展更新邮件以及其他投资人沟通内容。适用于用户需要向天使投资人、风险投资（VC）、战略投资人或加速器发送简洁、个性化且面向投资者的消息。",
+ "domains": [
+  "math",
+  "entertainment",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.665Z"
+}

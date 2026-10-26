@@ -1,0 +1,12 @@
+{
+ "title": "setup-ts-deep-modules",
+ "source": "K04",
+ "lang": "en",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/in-progress/setup-ts-deep-modules/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/in-progress/setup-ts-deep-modules/SKILL.md",
+ "license": "MIT",
+ "description": "在 TypeScript repo 中接入 dependency-cruiser，让每个 package 成为 deep module：implementation 隐藏在 subfolders 中，只能通过 entry-point files 访问。User-invoked。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "refactor-advisor",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/refactor-advisor/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/refactor-advisor/SKILL.md",
+ "license": "MIT",
+ "description": "重构顾问 - 识别代码坏味道并提供重构方案",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.785Z"
+}

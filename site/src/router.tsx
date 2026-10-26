@@ -4,6 +4,7 @@ import { BlogPage, BlogPostPage } from "@/pages/Blog";
 import { ConnectPage } from "@/pages/Connect";
 import { ContactPage } from "@/pages/Contact";
 import { ContentPage } from "@/pages/Docs";
+import { CreatorsPage } from "@/pages/Creators";
 import { ExplorerPage } from "@/pages/Explorer";
 import { FaqPage } from "@/pages/Faq";
 import { FilmsPage } from "@/pages/Films";
@@ -11,12 +12,15 @@ import { GalleryPage } from "@/pages/Gallery";
 import { LoginPage } from "@/pages/Login";
 import { NotFound } from "@/pages/NotFound";
 import { PricingPage } from "@/pages/Pricing";
+import { BLOG } from "@/lib/config";
+import { LearnPage } from "@/pages/Learn";
+import { SavedPage } from "@/pages/Saved";
 import { SettingsPage } from "@/pages/Settings";
 import type { Filters } from "@/lib/data";
 import type { GalleryFilters } from "@/lib/gallery";
 
 const str = (v: unknown) => (typeof v === "string" && v ? v : undefined);
-const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p) });
+const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p), lang: str(s.lang), version: str(s.version) });
 
 const root = createRootRoute({ component: Layout, notFoundComponent: NotFound });
 function r<const P extends string>(path: P, component: () => React.ReactNode) {
@@ -31,7 +35,7 @@ function SkillRoute() {
 }
 const post = createRoute({ getParentRoute: () => root, path: "/blog/$slug", component: function PostRoute() { const { slug } = useParams({ from: "/blog/$slug" }); return <BlogPostPage slug={slug} />; } });
 
-const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p) });
+const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version) });
 const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", validateSearch: galleryFilters, component: GalleryPage });
 
 const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
@@ -48,16 +52,19 @@ const tree = root.addChildren([
 	gallery,
 	prompt,
 	launch,
+	r("/creators", CreatorsPage),
+	r("/saved", SavedPage),
+	r("/learn", LearnPage),
 	r("/films", FilmsPage),
 	r("/connect", ConnectPage),
 	r("/pricing", PricingPage),
 	r("/faq", FaqPage),
 	r("/contact", ContactPage),
-	r("/blog", BlogPage),
-	post,
+	...(BLOG ? [r("/blog", BlogPage), post] : []),
 	r("/docs", () => <ContentPage name="docs" path="/docs" toc title="Docs: how to use cizle skills with Claude Code | cizle" description="Step-by-step: install a cizle skill, connect the MCP server to Claude Code, ask for a video and open the MP4. Includes search, free vs premium and troubleshooting." />),
 	r("/terms", () => <ContentPage name="terms" path="/terms" title="Terms of service | cizle" description="The terms for using the cizle skills library and Premium subscription." />),
 	r("/privacy", () => <ContentPage name="privacy" path="/privacy" title="Privacy policy | cizle" description="What cizle collects, who processes it and how to ask us to delete it." />),
+	r("/rights", () => <ContentPage name="rights" path="/rights" title="Credits, licences and removal | cizle" description="How cizle credits creators, which content is shown in full, and how to have yours changed or removed." />),
 	r("/refund", () => <ContentPage name="refund" path="/refund" title="Refund policy | cizle" description="Refunds for cizle Premium: 7 days from your first payment, no questions asked." />),
 	login,
 	settings,

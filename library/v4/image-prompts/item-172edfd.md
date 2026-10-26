@@ -1,0 +1,26 @@
+# 食物手绘
+
+Community prompt · 角色板or三视图
+Language: zh · Domains: engineering · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/22405.jpg
+
+```
+以提供的参考图像为主题，将玛德琳蛋糕转换为清晰的工程蓝图绘图，而非照片。在深蓝色网格背景上创建垂直工程图纸布局，使用细白线条、双边框、测量箭头、标签和示意轮廓，以保留玛德琳蛋糕的贝壳状椭圆形外观。
+
+目标：制作一张标题为 MADELEINE、副标题为 TECHNICAL BLUEPRINT 的蓝图。
+
+布局：包含 4 个源自参考糕点的技术绘图面板：右上角为 1 个大型顶视图，下方居中为 1 个侧视图，左下角为 1 个前视图，右下角为 1 个带框的细节插图，展示贝壳肋纹图案。使用白色轮廓线和虚线内部肋纹线。
+
+技术文本：在左上角添加一个规格说明块，包含 4 行内容：类型：Small Shell Cake，产地：France，形状：卵形 / 贝壳状，单位：毫米。
+
+测量：添加符合蓝图规范的尺寸线和数字标签：顶视图宽度 75、高度 45，侧视图高度 22，前视图宽度 45、高度 22。在左下角添加一个标有 SCALE 的比例尺，刻度为 0、10、20、30、40、50 毫米。
+
+附加元素：添加插图标签“DETAIL A”和“SHELL RIB PATTERN”。在右下角添加一个注释框，包含 2 条注释：“1. 所有尺寸均为近似值。”以及“2. 玛德琳蛋糕的典型比例可能会有所不同。”
+
+风格限制：请勿将糕点渲染为逼真的食物照片；将其完全转换为蓝底白线的技术示意图。保持蓝图清晰、精确，轮廓边缘带有轻微的手绘感，且不包含多余物体、阴影或水印。
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

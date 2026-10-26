@@ -1,0 +1,15 @@
+{
+ "title": "wechat-writing-style",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "yaoleifly/wechat-writing-style",
+ "url": "https://github.com/yaoleifly/wechat-writing-style/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "微信公众号中文写作风格指南。适用于为微信公众号撰写面向中国大陆读者的中文文章，主题涵盖海外金融基础设施、AI 工具、跨境科技等领域。当用户要求写公众号文章、按照特定风格写中文内容、撰写面向大陆传播的科技/金融类文章、或提到\"按我的风格写\"时，请使用此 skill。也适用于文章润色、改写、敏感性审查、标题优化、SEO 优化等环节。",
+ "domains": [
+  "finance",
+  "data",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.260Z"
+}

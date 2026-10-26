@@ -1,0 +1,16 @@
+{
+ "title": "motion-design-prompt-generator",
+ "source": "K05",
+ "lang": "en",
+ "repo": "8533502-dev/deepseek-opus-motion-skill",
+ "path": "motion-design-prompt-generator/SKILL.md",
+ "url": "https://github.com/8533502-dev/deepseek-opus-motion-skill/blob/HEAD/motion-design-prompt-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Make DeepSeek (or any model) produce motion-design videos that match what Claude Opus 5.5 makes from the same prompt, for any request in any style — brand films, showreels, kinetic typography, explainers and data stories, product and UI promos, character stories and music videos, abstract loops, title sequences. It reads the prompt like Opus, derives an art direction from it, plans before coding, builds a Remotion (React + SVG) project on a tested starter with generated sound, and reviews its own work with a five-juror critique. Triggers on 动效, 动态设计, 视频, 短片, 动画, 复刻 opus 效果, 扩写提示词, Remotion, motion graphics, showreel, MV.",
+ "domains": [
+  "entertainment",
+  "music",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.116Z"
+}

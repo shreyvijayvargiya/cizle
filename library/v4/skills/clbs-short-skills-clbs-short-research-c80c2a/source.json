@@ -1,0 +1,14 @@
+{
+ "title": "clbs-short-research",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "conlab-clbs/clbs-short-skills",
+ "path": "clbs-short-research/SKILL.md",
+ "url": "https://github.com/conlab-clbs/clbs-short-skills/blob/HEAD/clbs-short-research/SKILL.md",
+ "license": null,
+ "description": "ショート動画（YouTube Shorts / TikTok / Instagram Reels）の異常値（バズ動画）を媒体横断でリサーチし、特に「冒頭1〜2秒のフック（何が写り・何を喋り・どんなテロップか）」を最重視して解剖・モデリングする汎用スキル。YouTube/TikTokはチャンネルURLだけで自動取得（自己セットアップでyt-dlp/ffmpegを用意→異常値ランク・冒頭フレーム・字幕・コメントを自動収集→Claudeがvision解析）、Instagramは手動スクショ。報告書は媒体別に分けて出力する。「ショートリサーチ」「ショート動画リサーチ」「TikTokリサーチ」「リールリサーチ」「Shortsリサーチ」「ショート競合分析」「バズショート分析」「フック分析」「冒頭2秒分析」「ショートの異常値を見つけて」などのキーワードで必ず使用すること。長尺YouTube本編のリサーチは `clbs-youtube-research`、ショート台本作成は `clbs-short-script`、Takumi量子論専用のショート台本は `clbs-video-script-short` を使う。後段の `clbs-short-script` に `04_short_research_summary.yaml` を渡して企画・台本の精度を上げる前段スキル。",
+ "domains": [
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.798Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "tdd-workflow",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/tdd-workflow/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/tdd-workflow/SKILL.md",
+ "license": "MIT",
+ "description": "在编写新功能、修复 Bug 或重构代码时使用此技能。强制执行测试驱动开发（TDD），包括单元测试、集成测试和 E2E 测试，且覆盖率需达到 80% 以上。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.721Z"
+}

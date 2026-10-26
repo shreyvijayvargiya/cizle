@@ -1,0 +1,14 @@
+{
+ "title": "iterative-retrieval",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/iterative-retrieval/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/iterative-retrieval/SKILL.md",
+ "license": "MIT",
+ "description": "为了解决子智能体（Sub-agent）的上下文问题，逐步优化上下文获取的模式",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.667Z"
+}

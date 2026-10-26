@@ -1,0 +1,12 @@
+{
+ "title": "python-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/python-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/python-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "构建健壮、高效且易于维护的 Python 应用程序的 Python 惯用法（Pythonic idioms）、PEP 8 标准、类型提示（Type hints）以及最佳实践。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.715Z"
+}

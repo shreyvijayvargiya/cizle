@@ -1,0 +1,13 @@
+{
+ "title": "wshobson-agents",
+ "source": "K07",
+ "lang": "en",
+ "repo": "wshobson/agents",
+ "url": "https://github.com/wshobson/agents/blob/HEAD/plugins/ship-mate/skills/scan/SKILL.md",
+ "license": null,
+ "description": "Scans the codebase to generate project-doc.md and AGENTS.md. Use when bootstrapping a new agent-driven repo, refreshing project documentation after architectural changes, or running a delta scan to detect drift. Runs a full scan on first use and a smart delta scan on subsequent runs. Uses understand-anything + context-mode when available, falls back to native tools otherwise. Only updates AGENTS.md on detected architectural changes with human confirmation.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

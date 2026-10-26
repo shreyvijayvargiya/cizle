@@ -1,0 +1,15 @@
+{
+ "title": "img2obj",
+ "source": "K07",
+ "lang": "en",
+ "repo": "vinhhien112/img2obj",
+ "url": "https://github.com/vinhhien112/img2obj/blob/HEAD/skills/object-to-threejs-procedural/SKILL.md",
+ "license": null,
+ "description": "Use when the user provides or references an object image and wants Codex to validate, reconstruct, review, or refine it as an editable procedural Three.js asset.",
+ "domains": [
+  "math",
+  "agriculture",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.249Z"
+}

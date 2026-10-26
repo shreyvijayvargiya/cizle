@@ -1,0 +1,11 @@
+{
+ "title": "NotebookLM Integration",
+ "source": "K07",
+ "lang": "en",
+ "repo": "PleasePrompto/notebooklm-skill",
+ "url": "https://github.com/PleasePrompto/blob/notebooklm-skill/HEAD/SKILL.md",
+ "license": null,
+ "description": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

@@ -23,11 +23,19 @@ const price = siteConfig.price;
 
 const index = read("skills.json");
 const skills = index.skills.map((s) => ({ ...s, ...read(`skills/${s.slug}.json`) }));
-const posts = read("blog.json").map((p) => read(`blog/${p.slug}.json`));
+const BLOG = Boolean(siteConfig.blogLive);
+const posts = !BLOG ? [] : read("blog.json").map((p) => read(`blog/${p.slug}.json`));
 const faq = read("content/faq.json");
-const pages = Object.fromEntries(["docs", "terms", "privacy", "refund"].map((n) => [n, read(`content/${n}.json`)]));
+const pages = Object.fromEntries(["docs", "terms", "privacy", "refund", "rights"].map((n) => [n, read(`content/${n}.json`)]));
 const galleryFile = path.join(DIST, "gallery.json");
 const gallery = fs.existsSync(galleryFile) ? read("gallery.json") : null;
+if (gallery) {
+	// the full text of the classic prompts is in public/gallery-text/<xx>.json shards (see build-content): put it back for the static pages
+	const dir = path.join(DIST, "gallery-text");
+	const text = {};
+	if (fs.existsSync(dir)) for (const f of fs.readdirSync(dir)) Object.assign(text, JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")));
+	for (const g of gallery.items) if (text[g.id]) g.text = text[g.id];
+}
 const free = skills.filter((s) => s.tier === "free");
 const premium = skills.filter((s) => s.tier === "premium");
 
@@ -46,7 +54,7 @@ const skillLd = (s) => [
 
 /* ------------------------------------------------------------------ page shell */
 const STYLE = `<style>.ssr{max-width:62rem;margin:0 auto;padding:1rem 1.25rem 3rem;font:15px/1.65 Inter,ui-sans-serif,system-ui,sans-serif;color:#0a0a0a}.ssr a{color:inherit}.ssr nav ul{display:flex;gap:1rem;list-style:none;padding:0;flex-wrap:wrap}.ssr pre{white-space:pre-wrap;word-break:break-word;background:#f4f4f5;border:1px solid #e4e4e7;border-radius:8px;padding:.8rem;font-size:12.5px}.ssr code{font-family:ui-monospace,Menlo,monospace}.ssr ul.cards{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.75rem}.ssr ul.cards li{border:1px solid #e4e4e7;border-radius:10px;padding:.75rem}@media (prefers-color-scheme:dark){.ssr{color:#fafafa}.ssr pre{background:#1c1c1f;border-color:#27272a}.ssr ul.cards li{border-color:#27272a}}</style>`;
-const NAV = [["Skills", "/"], ["Gallery", "/gallery"], ["Pricing", "/pricing"], ["Docs", "/docs"], ["Blog", "/blog"], ["FAQ", "/faq"], ["Contact", "/contact"]];
+const NAV = [["Skills", "/"], ["Gallery", "/gallery"], ["Pricing", "/pricing"], ["Docs", "/docs"], ["Learn", "/learn"], ...(BLOG ? [["Blog", "/blog"]] : []), ["FAQ", "/faq"], ["Contact", "/contact"]];
 const header = `<header><nav aria-label="Main"><ul><li><a href="/"><strong>cizle</strong></a></li>${NAV.map(([n, p]) => `<li><a href="${p}">${n}</a></li>`).join("")}<li><a href="/login">Sign in</a></li></ul></nav></header>`;
 const footer = `<footer><nav aria-label="Legal"><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refund">Refunds</a></li><li><a href="${esc(siteConfig.github)}">GitHub</a></li></ul></nav><p>© ${new Date().getFullYear()} cizle. Payments by Dodo Payments.</p></footer>`;
 
@@ -65,12 +73,14 @@ function document({ title, description, path: p, body, ld = [], noindex = false,
 		`<meta name="twitter:title" content="${esc(title)}" />`,
 		`<meta name="twitter:description" content="${esc(description)}" />`,
 		...ld.map((o) => `<script type="application/ld+json" data-head-ld="1">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`),
+		`<link rel="alternate" type="application/rss+xml" title="cizle: latest prompts" href="${abs("/feed.xml")}" />`,
 	].join("\n\t\t");
 	let html = shell.replace(/<title>.*?<\/title>/s, `<title>${esc(title)}</title>`).replace(/\s*<meta name="description"[^>]*>/, "").replace("</head>", `\t${head}\n\t</head>`);
 	html = html.replace('<div id="root"></div>', `<div id="root"><div class="ssr">${STYLE}${header}<main id="main">${body}</main>${footer}</div></div>`);
 	return { html, status };
 }
 
+const learn = JSON.parse(fs.readFileSync(path.join(SITE_DIR, "content", "learn.json"), "utf8"));
 const out = (route, doc) => {
 	const file = route === "/" ? path.join(DIST, "index.html") : route === "/404" ? path.join(DIST, "404.html") : path.join(DIST, route, "index.html");
 	fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -188,12 +198,13 @@ out("/faq", document({ title: "FAQ: cizle skills, pricing and how it works", des
 
 out("/docs", document({ title: "Docs: how to use cizle skills with Claude Code | cizle", description: "Step-by-step: install a cizle skill, connect the MCP server to Claude Code, ask for a video and open the MP4. Includes search, free vs premium and troubleshooting.", path: "/docs", ld: [{ "@context": "https://schema.org", "@type": "TechArticle", headline: pages.docs.title, description: "How to install and use cizle skills with Claude Code.", url: abs("/docs"), publisher: { "@type": "Organization", name: siteConfig.name } }, crumbs([["Home", "/"], ["Docs", "/docs"]])], body: `<article><h1>${esc(pages.docs.title)}</h1>${pages.docs.html}</article>` }));
 
-for (const [name, title, description] of [["terms", "Terms of service | cizle", "The terms for using the cizle skills library and Premium subscription."], ["privacy", "Privacy policy | cizle", "What cizle collects, who processes it and how to ask us to delete it."], ["refund", "Refund policy | cizle", "Refunds for cizle Premium: 7 days from your first payment, no questions asked."]])
+for (const [name, title, description] of [["terms", "Terms of service | cizle", "The terms for using the cizle skills library and Premium subscription."], ["privacy", "Privacy policy | cizle", "What cizle collects, who processes it and how to ask us to delete it."], ["refund", "Refund policy | cizle", "Refunds for cizle Premium: 7 days from your first payment, no questions asked."], ["rights", "Credits, licences and removal | cizle", "How cizle credits creators, which content is shown in full, and how to have yours changed or removed."]])
 	out(`/${name}`, document({ title, description, path: `/${name}`, body: `<article><h1>${esc(pages[name].title)}</h1>${pages[name].html}</article>` }));
 
+out("/learn", document({ title: "Learn: short videos about cizle prompts, skills and pricing | cizle", description: "Ten short videos on how cizle works: finding a prompt, copying a film look, Claude Code skills, creator credit, pricing and FAQ.", path: "/learn", body: `<h1>Learn</h1><ul>${learn.map((c) => `<li><h2>${esc(c.title)}</h2><p>${esc(c.description)}</p><p><a href="${esc(abs(c.video))}">Watch the video</a></p></li>`).join("")}</ul>`, ld: [{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: learn.map((c, i) => ({ "@type": "VideoObject", position: i + 1, name: c.title, description: c.description, thumbnailUrl: abs(c.poster), contentUrl: abs(c.video), uploadDate: today })) }] }));
 out("/contact", document({ title: "Contact cizle: questions, billing and refunds", description: `Email ${siteConfig.email} for questions about cizle skills, Premium access, billing or refunds. We reply within one working day.`, path: "/contact", ld: [{ "@context": "https://schema.org", "@type": "ContactPage", name: "Contact cizle", url: abs("/contact"), mainEntity: { "@type": "Organization", name: siteConfig.name, email: siteConfig.email } }], body: `<h1>Contact us</h1><p>A real person reads every message, usually within one working day. Email <a href="mailto:${esc(siteConfig.email)}">${esc(siteConfig.email)}</a>. For payment issues include the email you paid with.</p>` }));
 
-out("/blog", document({ title: "Blog: video prompts, Claude Code skills and ad formats | cizle", description: "Guides and examples for making product, launch and ad videos with Claude Code: video types every SaaS needs, ad formats for Meta, TikTok and Google, and how skills work.", path: "/blog", ld: [crumbs([["Home", "/"], ["Blog", "/blog"]])], body: `<h1>Blog</h1><ul>${posts.map((p) => `<li><article><h2><a href="/blog/${p.slug}">${esc(p.title)}</a></h2><p><time datetime="${p.date}">${p.date}</time> · ${p.minutes} min read</p><p>${esc(p.description)}</p></article></li>`).join("")}</ul>` }));
+if (BLOG) out("/blog", document({ title: "Blog: video prompts, Claude Code skills and ad formats | cizle", description: "Guides and examples for making product, launch and ad videos with Claude Code: video types every SaaS needs, ad formats for Meta, TikTok and Google, and how skills work.", path: "/blog", ld: [crumbs([["Home", "/"], ["Blog", "/blog"]])], body: `<h1>Blog</h1><ul>${posts.map((p) => `<li><article><h2><a href="/blog/${p.slug}">${esc(p.title)}</a></h2><p><time datetime="${p.date}">${p.date}</time> · ${p.minutes} min read</p><p>${esc(p.description)}</p></article></li>`).join("")}</ul>` }));
 for (const p of posts)
 	out(`/blog/${p.slug}`, document({ title: `${p.title} | cizle`, description: p.description, path: `/blog/${p.slug}`, type: "article", ld: [{ "@context": "https://schema.org", "@type": "Article", headline: p.title, description: p.description, datePublished: p.date, dateModified: p.date, mainEntityOfPage: abs(`/blog/${p.slug}`), author: { "@type": "Organization", name: siteConfig.name }, publisher: { "@type": "Organization", name: siteConfig.name, logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.svg` } } }, crumbs([["Home", "/"], ["Blog", "/blog"], [p.title, `/blog/${p.slug}`]])], body: `<nav aria-label="Breadcrumb"><a href="/blog">Blog</a> / ${esc(p.title)}</nav><article><h1>${esc(p.title)}</h1><p>${esc(p.description)}</p><p><time datetime="${p.date}">${p.date}</time> · ${p.minutes} min read</p>${p.html}</article>` }));
 
@@ -202,12 +213,20 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/blog", 0.7], ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/learn", 0.7], ["/creators", 0.5], ...(BLOG ? [["/blog", 0.7]] : []), ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2], ["/rights", 0.3]];
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
-fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
+fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# Feed: ${SITE_URL}/feed.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);
+
+/* RSS 2.0: the newest prompts (title, credit and link only: premium text is never in a feed) and, once the blog is live, the posts */
+const rfc = (d) => new Date(/^\d{4}-\d{2}-\d{2}$/.test(String(d)) ? `${d}T00:00:00Z` : d || Date.now()).toUTCString();
+const feedItems = [
+	...(BLOG ? posts.map((p) => ({ title: p.title, link: abs(`/blog/${p.slug}`), date: p.date, desc: p.description, cat: "Blog" })) : []),
+	...promptPages.map((g) => ({ title: g.title, link: abs(`/prompts/${g.slug}`), date: g.added, desc: `${g.title} by ${g.author || "a creator"}: a ${g.category || "video"} prompt${g.hasVideo ? " with a demo video" : ""}. Credited to its creator.`, cat: g.category || "Prompt" })),
+].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 60);
+fs.writeFileSync(path.join(DIST, "feed.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cizle: latest prompts</title><link>${SITE_URL}</link><description>${esc(siteConfig.description)}</description><language>en</language><lastBuildDate>${rfc(Date.now())}</lastBuildDate><atom:link href="${abs("/feed.xml")}" rel="self" type="application/rss+xml"/>\n${feedItems.map((i) => `<item><title>${esc(i.title)}</title><link>${esc(i.link)}</link><guid isPermaLink="true">${esc(i.link)}</guid><pubDate>${rfc(i.date)}</pubDate><category>${esc(i.cat)}</category><description>${esc(i.desc)}</description></item>`).join("\n")}\n</channel></rss>\n`);
 
 const line = (s) => `- [${s.name}](${abs(`/skills/${s.slug}`)}): ${s.summary}`;
-fs.writeFileSync(path.join(DIST, "llms.txt"), `# cizle\n\n> ${siteConfig.description}\n\ncizle is a library of video skills and prompts for Claude Code. Each skill is a scene-by-scene guide for one kind of video (product launch, feature tour, FAQ, Meta/TikTok/Google ad, film style). The cizle MCP server renders the storyboard Claude writes into an MP4 on the user's own machine, with no model call and no API key. ${free.length} skills are free; ${premium.length} premium skills are $${price.usd} per month (₹${price.inr} in India).\n\n## Start here\n- [How to use cizle skills](${abs("/docs")}): install a skill, connect the MCP server, ask for a video\n- [Use cizle inside Claude (remote MCP, free without sign-in): ${SITE_URL}/mcp](${abs("/connect")}): search and open every skill and prompt from Claude; Premium with a token\n- [Pricing](${abs("/pricing")})\n- [FAQ](${abs("/faq")})\n- [Full text for language models](${abs("/llms-full.txt")})\n\n## Free skills\n${free.map(line).join("\n")}\n\n## Premium skills (summary only; prompts require a subscription)\n${premium.map(line).join("\n")}\n\n## Blog\n${posts.map((p) => `- [${p.title}](${abs(`/blog/${p.slug}`)}): ${p.description}`).join("\n")}\n`);
+fs.writeFileSync(path.join(DIST, "llms.txt"), `# cizle\n\n> ${siteConfig.description}\n\ncizle is a library of video skills and prompts for Claude Code. Each skill is a scene-by-scene guide for one kind of video (product launch, feature tour, FAQ, Meta/TikTok/Google ad, film style). The cizle MCP server renders the storyboard Claude writes into an MP4 on the user's own machine, with no model call and no API key. ${free.length} skills are free; ${premium.length} premium skills are $${price.usd} per month (₹${price.inr} in India).\n\n## Start here\n- [How to use cizle skills](${abs("/docs")}): install a skill, connect the MCP server, ask for a video\n- [Use cizle inside Claude (remote MCP, free without sign-in): ${SITE_URL}/mcp](${abs("/connect")}): search and open every skill and prompt from Claude; Premium with a token\n- [Pricing](${abs("/pricing")})\n- [FAQ](${abs("/faq")})\n- [Full text for language models](${abs("/llms-full.txt")})\n\n## Free skills\n${free.map(line).join("\n")}\n\n## Premium skills (summary only; prompts require a subscription)\n${premium.map(line).join("\n")}${BLOG ? `\n\n## Blog\n${posts.map((p) => `- [${p.title}](${abs(`/blog/${p.slug}`)}): ${p.description}`).join("\n")}\n` : ""}`);
 fs.writeFileSync(path.join(DIST, "llms-full.txt"), `# cizle: full text\n\n${siteConfig.description}\n\n---\n\n# Docs\n\n${pages.docs.html.replace(/<[^>]+>/g, "")}\n\n---\n\n# FAQ\n\n${faq.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}\n\n---\n\n# Free skills (full prompts)\n\n${free.map((s) => `## ${s.name}\n${abs(`/skills/${s.slug}`)}\n\n${s.promptText}`).join("\n\n---\n\n")}\n`);
 
 console.log(`prerender: ${skills.length} skill pages, ${promptPages.length} prompt pages, ${posts.length} posts, sitemap with ${urls.length} urls → dist/`);

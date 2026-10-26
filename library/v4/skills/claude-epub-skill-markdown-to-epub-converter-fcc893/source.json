@@ -1,0 +1,15 @@
+{
+ "title": "Markdown to EPUB Converter",
+ "source": "K07",
+ "lang": "en",
+ "repo": "smerchek/claude-epub-skill",
+ "url": "https://github.com/smerchek/claude-epub-skill/blob/HEAD/markdown-to-epub/SKILL.md",
+ "license": null,
+ "description": "Convert markdown documents and chat summaries into formatted EPUB ebook files that can be read on any device or uploaded to Kindle.",
+ "domains": [
+  "education",
+  "scifi",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

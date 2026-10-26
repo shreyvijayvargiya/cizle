@@ -155,7 +155,7 @@ async function generateOne(spec, ctx) {
 
 		/* 4. encode */
 		emit({ type: "stage", id: spec.id, stage: "encode" });
-		await ffmpeg(["-framerate", String(fps), "-i", path.join(framesDir, "%05d.jpg"), "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-vf", "pad=ceil(iw/2)*2:ceil(ih/2)*2", "-movflags", "+faststart", path.join(dir, "video.mp4")], `encode ${spec.id}`);
+		await ffmpeg(["-framerate", String(fps), "-i", path.join(framesDir, "%05d.jpg"), "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-profile:v", "high", "-pix_fmt", "yuv420p", "-vf", "scale=in_range=full:out_range=tv:out_color_matrix=bt709,format=yuv420p,pad=ceil(iw/2)*2:ceil(ih/2)*2", "-color_range", "tv", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", "-movflags", "+faststart", path.join(dir, "video.mp4")], `encode ${spec.id}`);
 		await fsp.copyFile(path.join(framesDir, `${String(Math.floor(cap.frames * 0.4)).padStart(5, "0")}.jpg`), path.join(dir, "poster.jpg"));
 		if (!keepFrames) await fsp.rm(framesDir, { recursive: true, force: true });
 		await writeMeta(dir, { ...meta, status: "done", stage: "done", size: [w, h], fps, frames: cap.frames, finishedAt: new Date().toISOString(), cost: meta.usage.cost });

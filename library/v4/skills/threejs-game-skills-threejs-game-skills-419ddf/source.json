@@ -1,0 +1,14 @@
+{
+ "title": "threejs-game-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "majidmanzarpour/threejs-game-skills",
+ "url": "https://github.com/majidmanzarpour/threejs-game-skills/blob/HEAD/skills/threejs-qa-release/SKILL.md",
+ "license": null,
+ "description": "Verify and release Three.js browser games: playtest QA, automated bot playtests, mobile and responsive checks, production builds, static-hosting base paths, debug gating, bundle review, screenshots, visual regression baselines, canvas-pixel inspection with measured metrics, and release risk reports.",
+ "domains": [
+  "gaming",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.249Z"
+}

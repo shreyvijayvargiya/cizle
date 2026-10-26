@@ -1,0 +1,14 @@
+{
+ "title": "wechat-article",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/wechat-article/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/wechat-article/SKILL.md",
+ "license": "MIT",
+ "description": "公众号长文写作流水线：按 brief→claims→draft→review 分阶段校验流程，产出核心主张清单、文章初稿、五项标准自审报告与定稿建议。当用户要写公众号长文、微信推文、深度文章，并需要\"先立主张、再写初稿、然后编辑审稿\"的流程时使用；本技能只产出正文与审稿报告，不发布、不配图排版。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

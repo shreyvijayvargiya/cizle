@@ -4,12 +4,14 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Dialog as D } from "radix-ui";
 import { ArrowLeft01Icon, ArrowRight01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
+import { SaveButtons } from "@/components/SaveButtons";
 import { SkillActions, SkillContent } from "@/components/SkillContent";
 import { Button } from "@/components/ui/button";
 import { Skeleton, Tip } from "@/components/ui/misc";
 import { skillQuery, useSkill, type Filters, type SkillMeta } from "@/lib/data";
 import { SITE } from "@/lib/config";
 import { useHead } from "@/lib/head";
+import { statsKey, useRecordView } from "@/lib/stats";
 import { skillJsonLd } from "@/lib/seo";
 
 /**
@@ -20,6 +22,8 @@ export function SkillDialog({ slug, list, search }: { slug: string; list: SkillM
 	const navigate = useNavigate();
 	const qc = useQueryClient();
 	const q = useSkill(slug);
+	const recordView = useRecordView();
+	useEffect(() => recordView(statsKey(`s:${slug}`)), [slug]); // eslint-disable-line react-hooks/exhaustive-deps
 	const idx = list.findIndex((s) => s.slug === slug);
 	const prev = idx > 0 ? list[idx - 1] : null;
 	const next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
@@ -54,7 +58,7 @@ export function SkillDialog({ slug, list, search }: { slug: string; list: SkillM
 			<D.Portal>
 				<D.Overlay className="fixed inset-0 z-50 bg-black/45  data-[state=open]:animate-[fade-in_.15s_ease-out]" />
 				<D.Content
-					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-lg sm:[animation:pop-in_.18s_ease-out]"
+					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-lg sm:[animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)]"
 					aria-describedby="skill-desc"
 					onOpenAutoFocus={(e) => {
 						// Land on the dialog itself, not on the first arrow (which would pop its tooltip open).
@@ -88,6 +92,7 @@ export function SkillDialog({ slug, list, search }: { slug: string; list: SkillM
 									<Icon icon={ArrowRight01Icon} size={16} />
 								</Button>
 							</Tip>
+							<SaveButtons id={`s:${slug}`} className="mr-1" />
 							<D.Close asChild>
 								<Button variant="ghost" size="icon" aria-label="Close and go back to all skills">
 									<Icon icon={Cancel01Icon} size={16} />

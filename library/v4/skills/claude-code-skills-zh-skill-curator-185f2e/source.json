@@ -1,0 +1,15 @@
+{
+ "title": "skill-curator",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/skill-curator/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/skill-curator/SKILL.md",
+ "license": "MIT",
+ "description": "中文 Skill 收录评估器。用于核验 GitHub 上的 Claude Code、Codex、Agent Skills、Plugin、MCP、CLI 或 Agent 工作流是否值得加入精选列表；检查真实资产、安装方式、活跃度、重复项和安全边界，并生成分类、中文描述与可追溯证据。",
+ "domains": [
+  "nature",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.785Z"
+}

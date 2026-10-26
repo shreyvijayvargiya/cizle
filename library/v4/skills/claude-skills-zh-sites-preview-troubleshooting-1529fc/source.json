@@ -1,0 +1,14 @@
+{
+ "title": "sites-preview-troubleshooting",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/docs-office/sites-preview-troubleshooting/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/docs-office/sites-preview-troubleshooting/SKILL.md",
+ "license": "MIT",
+ "description": "预览故障诊断。诊断并恢复失败的 Sites 预览会话（仅托管 Linux 环境）。",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.734Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "database-migrations",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/database-migrations/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/database-migrations/SKILL.md",
+ "license": "MIT",
+ "description": "跨 PostgreSQL、MySQL 及常用 ORM（Prisma、Drizzle、Django、TypeORM、golang-migrate）的模式变更（schema changes）、数据迁移、回滚及零停机部署（zero-downtime deployments）的数据库迁移最佳实践。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.709Z"
+}

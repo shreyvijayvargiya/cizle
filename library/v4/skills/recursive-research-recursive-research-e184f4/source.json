@@ -1,0 +1,11 @@
+{
+ "title": "recursive-research",
+ "source": "K07",
+ "lang": "en",
+ "repo": "Anjos2/recursive-research",
+ "url": "https://github.com/Anjos2/recursive-research/blob/HEAD/plugins/recursive-research/skills/recursive-research/SKILL.md",
+ "license": null,
+ "description": "Investigación recursiva profunda con loop auto-regulado hasta nivel PhD. Aplicable a cualquier dominio (ciencia, tecnología, negocio, arte, humanidades). Usa WDM + Inversión Munger para decisiones autónomas, tiering de fuentes confiables, y checkpointing a disco para sobrevivir límites de contexto.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.260Z"
+}

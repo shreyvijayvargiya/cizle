@@ -1,0 +1,13 @@
+{
+ "title": "youtube-transcript",
+ "source": "K07",
+ "lang": "en",
+ "repo": "michalparkola/tapestry-skills-for-claude-code",
+ "url": "https://github.com/michalparkola/blob/tapestry-skills-for-claude-code/main/youtube-transcript/SKILL.md",
+ "license": null,
+ "description": "Download YouTube video transcripts when user provides a YouTube URL or asks to download/get/fetch a transcript from YouTube. Also use when user wants to transcribe or get captions/subtitles from a YouTube video.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

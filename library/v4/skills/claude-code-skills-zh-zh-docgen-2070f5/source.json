@@ -1,0 +1,12 @@
+{
+ "title": "zh-docgen",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/zh-docgen/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/zh-docgen/SKILL.md",
+ "license": "MIT",
+ "description": "中文文档生成器 - 从代码库自动生成中文技术文档",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

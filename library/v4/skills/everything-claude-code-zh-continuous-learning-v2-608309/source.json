@@ -1,0 +1,16 @@
+{
+ "title": "continuous-learning-v2",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/continuous-learning-v2/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/continuous-learning-v2/SKILL.md",
+ "license": "MIT",
+ "description": "一种基于本能（Instinct）的训练系统，通过钩子（Hooks）观察会话，创建带有置信度评分的原子化本能，并将其进化为技能（Skills）、命令（Commands）或智能体（Agents）。",
+ "domains": [
+  "education",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.666Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "last30days-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "mvanhorn/last30days-skill",
+ "url": "https://github.com/mvanhorn/last30days-skill/blob/HEAD/skills/last30days/SKILL.md",
+ "license": null,
+ "description": "Research what people actually say about any topic in the last 30 days. Pulls posts and engagement from Reddit, X, YouTube, TikTok, Hacker News, Polymarket, GitHub, and the web. Includes a doctor health check to diagnose broken or missing sources.",
+ "domains": [
+  "engineering",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.251Z"
+}

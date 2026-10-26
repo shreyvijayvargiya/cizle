@@ -1,0 +1,15 @@
+{
+ "title": "goal",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/automation/goal/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/automation/goal/SKILL.md",
+ "license": "MIT",
+ "description": "设定长期目标。让 Codex 持续推进一个目标直到完成。",
+ "domains": [
+  "finance",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

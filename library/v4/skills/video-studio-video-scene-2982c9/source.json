@@ -1,0 +1,16 @@
+{
+ "title": "video-scene",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "shostako/video-studio",
+ "path": "skills/video-scene/SKILL.md",
+ "url": "https://github.com/shostako/video-studio/blob/HEAD/skills/video-scene/SKILL.md",
+ "license": null,
+ "description": "1場面の短い動画（数秒〜十数秒）を作って MP4 に仕上げる。素材の動画を Veo（Gemini API。有料・なめらか・日本語のセリフ付き）か、この PC の MiniMax H3（ComfyUI。無料・日本語のセリフ付き・480p・1本6分半）か、/img の差分を切り替えるパラパラ（無料・動きを完全に指定）で作るか、手持ちの動画を受け取り、HyperFrames でターミナル・吹き出し・字幕・文字・赤い光・揺れ・寄り・記号を重ねる。終わりの崩れの止め絵、セリフの一部消し、口元の細い線の消し残り直しと、1コマずつの確認手順を含む。キャラの寸劇にも風景・出来事にも使う。「動画作って」「短い動画」「Veoで動画」「H3で動画」「無料で動画」「ローカルで動画」「パラパラで動画」「キャラが〜する動画」「この動画に字幕/吹き出し/ターミナルを重ねて」で発動。静止画だけなら img、透かし除去は watermark-remover。数カット（Veo 8秒×4など）をつないだ30秒前後の解説や寸劇まで扱う（sequence と SVG の工程図）。それより長い解説動画、曲に合わせた動画、撮影済み動画の本格編集は対象外。",
+ "domains": [
+  "nature",
+  "education",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.800Z"
+}

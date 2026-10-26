@@ -1,0 +1,16 @@
+{
+ "title": "xiaohongshu-magazine",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-magazine/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-magazine/SKILL.md",
+ "license": "MIT",
+ "description": "把账号当一本杂志来办：定「刊魂」母题、判断围绕业务还是个人 IP、从 8 个通用栏目（4 攒信任 / 4 攒喜欢）里挑 4-6 个、用 9 个角度公式批量长出 3-6 篇选题，搭出可持续更新的选题库骨架。当用户提到「刊魂 / 母题 / 栏目 / 杂志感 / 内容定位体系 / 选题库 / 开枝散叶 / 账号办成一本杂志」，或需要搭建可长期复用的选题库时使用。默认小红书语境，方法论同样可平移到公众号、知乎、视频号等平台。",
+ "domains": [
+  "math",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

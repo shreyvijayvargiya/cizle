@@ -1,0 +1,15 @@
+{
+ "title": "xiaohongshu-title",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-title/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-title/SKILL.md",
+ "license": "MIT",
+ "description": "小红书标题生成与优化：把笔记素材 / 产品卖点 / 选题方向 / 已有标题变成 12 风格 24 个候选标题，或做标题方向诊断与已有标题优化改写。用户要求\"起标题 / 想标题 / 改标题 / 标题诊断 / 封面写什么\"时使用。",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

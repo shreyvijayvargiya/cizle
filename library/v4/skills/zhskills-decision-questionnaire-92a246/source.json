@@ -1,0 +1,14 @@
+{
+ "title": "decision-questionnaire",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/decision-questionnaire/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/decision-questionnaire/SKILL.md",
+ "license": "MIT",
+ "description": "把\"用户自己拍不了板、必须向某个特定的人确认\"的决策，转成一份可异步填写的中文 Markdown 问卷——只访谈用户本人问清收件人与信息缺口，再针对\"对方知道而用户不知道\"的 gap 出题。当用户需要跨部门信息收集、需求调研、访谈提纲、供应商问询、汇报前材料核实，或说\"帮我列个问卷 / 我需要向 XX 确认几件事 / 把要问的问题整理一下\"时使用。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

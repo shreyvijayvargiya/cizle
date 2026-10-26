@@ -1,0 +1,14 @@
+{
+ "title": "pr",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/pr/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/pr/SKILL.md",
+ "license": "MIT",
+ "description": "用于撰写 PR 正文。适用于用户要求起草、改写或改进 PR 正文，或希望 PR 更便于审阅时。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.747Z"
+}

@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>cizle - mountain dawn</title>
+<style>
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#05070b}
+canvas{position:absolute;left:0;top:0}
+.end{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff6e8;font-family:ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;opacity:0}
+.brand{font-size:220px;font-weight:800;letter-spacing:-.05em;line-height:1}
+.desc{margin-top:34px;font-size:44px;font-weight:500;letter-spacing:.01em;opacity:.92;max-width:1300px;line-height:1.3}
+.url{margin-top:50px;font-size:34px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ffcf8a}
+</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div class="end" id="end"><div class="brand">cizle</div><div class="desc">Video prompts, image prompts and Claude Code skills, credited to their creators.</div><div class="url">cizle.dev</div></div>
+<script>
+const W=1920,H=1080,D=15,c=document.getElementById("c"),x=c.getContext("2d");
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),seg=(t,a,b)=>clamp((t-a)/(b-a));
+const ease=v=>v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2,outC=v=>1-Math.pow(1-v,3),lerp=(a,b,v)=>a+(b-a)*v;
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const LAKE=H*0.74,CX=W/2,CY=H*0.5;
+/* ridge layers: far to near. base = baseline y, amp = height, rough = detail, depth = parallax weight */
+const LAYERS=[
+ {base:.50,amp:.20,rough:.82,col:[196,176,200],depth:.15,snow:true},
+ {base:.55,amp:.20,rough:.8,col:[160,142,176],depth:.28,snow:true},
+ {base:.62,amp:.17,rough:.7,col:[110,104,142],depth:.45},
+ {base:.69,amp:.14,rough:.8,col:[66,76,104],depth:.65},
+ {base:.76,amp:.11,rough:.9,col:[30,42,58],depth:.9,trees:true},
+];
+const STEP=6,PAD=500,N=Math.ceil((W+PAD*2)/STEP);
+LAYERS.forEach((L,li)=>{
+ const ph=[],fr=[];for(let k=0;k<6;k++){ph.push(rnd()*6.28);fr.push(1+k*(1.6+rnd()*.6));}
+ L.pts=[];for(let i=0;i<N;i++){const u=i/N*3.2+li*1.7;let v=0,a=1,tot=0;
+  for(let k=0;k<6;k++){const w=Math.sin(u*fr[k]+ph[k]);v+=(L.rough>.65?1-Math.abs(w)*1.2:w)*a;tot+=a;a*=L.rough;}
+  L.pts.push(v/tot);}
+ L.trees=L.trees?Array.from({length:150},()=>({i:Math.floor(rnd()*N),h:28+rnd()*52,w:10+rnd()*14})):null;
+});
+const mist=Array.from({length:7},(_,i)=>({y:.50+i*.04,s:6+i*3,o:.10+rnd()*.08,ph:rnd()*6}));
+const birds=Array.from({length:7},(_,i)=>({x:200+i*140+rnd()*80,y:240+rnd()*150+i*8,s:.7+rnd()*.5,ph:rnd()*6}));
+const motes=Array.from({length:40},()=>({x:rnd()*W,y:rnd()*H*.75,v:6+rnd()*14,r:1+rnd()*2.5,ph:rnd()*6}));
+const rgb=(a,al=1)=>`rgba(${a[0]|0},${a[1]|0},${a[2]|0},${al})`;
+function ridgePath(L,z,t,tint){
+ const k=1+(z-1)*L.depth,ox=-t*2*L.depth; /* a little lateral drift: the drone glides */
+ x.beginPath();x.moveTo(-PAD,H+200);
+ for(let i=0;i<N;i++){
+  const px=(-PAD+i*STEP+ox-CX)*k+CX, py=(L.base*H-L.pts[i]*L.amp*H-CY)*k+CY+ (z-1)*H*.18*L.depth;
+  x.lineTo(px,py);}
+ x.lineTo(W+PAD*2,H+200);x.closePath();
+}
+function drawLand(z,t,mirror,warm){
+ LAYERS.forEach((L,li)=>{
+  ridgePath(L,z,t);
+  const g=x.createLinearGradient(0,L.base*H-L.amp*H,0,L.base*H+H*.12);
+  const m=warm,top=[L.col[0]+40*m,L.col[1]+22*m,L.col[2]+4*m],bot=L.col;
+  g.addColorStop(0,rgb(top));g.addColorStop(1,rgb(bot));x.fillStyle=g;x.fill();
+  if(L.snow){x.save();ridgePath(L,z,t);x.clip();const sg=x.createLinearGradient(0,(L.base-L.amp)*H,0,(L.base-L.amp*.45)*H);sg.addColorStop(0,"rgba(255,236,214,.85)");sg.addColorStop(1,"rgba(255,236,214,0)");x.fillStyle=sg;x.fillRect(-PAD,0,W+PAD*3,H);x.restore();}
+  if(L.trees){const k=1+(z-1)*L.depth,ox=-t*2*L.depth;x.fillStyle=rgb([18,28,36]);
+   L.trees.forEach(tr=>{const px=(-PAD+tr.i*STEP+ox-CX)*k+CX,py=(L.base*H-L.pts[tr.i]*L.amp*H-CY)*k+CY+(z-1)*H*.18*L.depth,s=k;
+    x.beginPath();x.moveTo(px-tr.w*s,py+6*s);x.lineTo(px,py-tr.h*s);x.lineTo(px+tr.w*s,py+6*s);x.closePath();x.fill();});}
+  /* mist between layers */
+  const my=L.base*H*1.0;const mg=x.createLinearGradient(0,my-90,0,my+80);mg.addColorStop(0,"rgba(255,224,200,0)");mg.addColorStop(.5,`rgba(255,226,206,${.16+.06*Math.sin(t*.4+li)})`);mg.addColorStop(1,"rgba(255,224,200,0)");
+  x.fillStyle=mg;x.fillRect(0,my-90+Math.sin(t*.3+li)*10,W,170);
+ });
+}
+function frame(ts){
+ if(frame.t0==null)frame.t0=ts;const t=Math.min((ts-frame.t0)/1000,D);
+ const z=1+.34*ease(seg(t,0,12.5))*(1-.0)+ .02*seg(t,12.5,15); /* slow drone push in */
+ const dawn=outC(seg(t,0,4)); /* sun comes up the sky */
+ /* sky */
+ const sg=x.createLinearGradient(0,0,0,LAKE);sg.addColorStop(0,rgb([lerp(20,74,dawn),lerp(28,72,dawn),lerp(58,128,dawn)]));sg.addColorStop(.55,rgb([lerp(60,226,dawn),lerp(56,144,dawn),lerp(90,130,dawn)]));sg.addColorStop(1,rgb([lerp(110,255,dawn),lerp(90,198,dawn),lerp(100,142,dawn)]));
+ x.fillStyle=sg;x.fillRect(0,0,W,H);
+ /* sun */
+ const sx=CX+120,sy=H*lerp(.55,.42,dawn);const sgl=x.createRadialGradient(sx,sy,10,sx,sy,820);sgl.addColorStop(0,"rgba(255,244,214,.95)");sgl.addColorStop(.12,"rgba(255,206,140,.55)");sgl.addColorStop(1,"rgba(255,160,100,0)");x.fillStyle=sgl;x.fillRect(0,0,W,H);
+ /* high cloud streaks */
+ for(let i=0;i<5;i++){const cy=130+i*70,cx=((i*517+t*(8+i*3))%(W+800))-400;const cg=x.createLinearGradient(cx-380,0,cx+380,0);cg.addColorStop(0,"rgba(255,220,190,0)");cg.addColorStop(.5,`rgba(255,226,200,${.16-i*.02})`);cg.addColorStop(1,"rgba(255,220,190,0)");x.fillStyle=cg;x.fillRect(cx-380,cy,760,14+i*4);}
+ /* land */
+ x.save();x.beginPath();x.rect(0,0,W,LAKE);x.clip();drawLand(z,t,false,dawn);x.restore();
+ /* lake with reflection */
+ x.save();x.beginPath();x.rect(0,LAKE,W,H-LAKE);x.clip();
+ x.translate(0,2*LAKE);x.scale(1,-1);x.globalAlpha=.62;drawLand(z,t,true,dawn);x.restore();
+ const wg=x.createLinearGradient(0,LAKE,0,H);wg.addColorStop(0,"rgba(255,206,160,.28)");wg.addColorStop(1,"rgba(14,26,40,.78)");x.fillStyle=wg;x.fillRect(0,LAKE,W,H-LAKE);
+ /* ripples and sun glitter */
+ for(let i=0;i<46;i++){const ry=LAKE+8+Math.pow(i/46,1.6)*(H-LAKE-10),amp=2+i*.22,rx=(i*331)%W;const wob=Math.sin(t*1.2+i*1.7)*amp*6;
+  x.fillStyle=`rgba(255,224,180,${.05+.07*(Math.sin(t*1.6+i)*.5+.5)})`;x.fillRect((rx+wob+W)%W-160,ry,320+i*5,1.5+i*.03);}
+ const gl=x.createLinearGradient(CX+120-200,0,CX+120+200,0);gl.addColorStop(0,"rgba(255,220,160,0)");gl.addColorStop(.5,"rgba(255,230,180,.22)");gl.addColorStop(1,"rgba(255,220,160,0)");x.fillStyle=gl;x.fillRect(CX+120-200,LAKE,400,H-LAKE);
+ /* shoreline mist */
+ const sm=x.createLinearGradient(0,LAKE-60,0,LAKE+50);sm.addColorStop(0,"rgba(255,230,210,0)");sm.addColorStop(.5,"rgba(255,230,210,.22)");sm.addColorStop(1,"rgba(255,230,210,0)");x.fillStyle=sm;x.fillRect(0,LAKE-60,W,110);
+ /* birds */
+ x.strokeStyle="rgba(30,30,44,.8)";x.lineWidth=2.4;
+ birds.forEach(b=>{const bx=(b.x+t*42*b.s)%(W+200)-100,by=b.y+Math.sin(t*.8+b.ph)*18,fl=Math.sin(t*7+b.ph)*7*b.s;x.beginPath();x.moveTo(bx-16*b.s,by-fl);x.quadraticCurveTo(bx-6*b.s,by-4,bx,by);x.quadraticCurveTo(bx+6*b.s,by-4,bx+16*b.s,by-fl);x.stroke();});
+ /* floating motes (pollen / dust in the light) */
+ motes.forEach(m=>{const mx=(m.x+Math.sin(t*.5+m.ph)*30+t*m.v*.4)%W,my2=(m.y-t*m.v*.6+H)%(H*.75);x.fillStyle=`rgba(255,236,200,${.2+.2*Math.sin(t*1.3+m.ph)})`;x.beginPath();x.arc(mx,my2,m.r,0,6.28);x.fill();});
+ /* grade: vignette, letterbox, grain, fades */
+ const vg=x.createRadialGradient(CX,CY,H*.35,CX,CY,W*.7);vg.addColorStop(0,"rgba(0,0,0,0)");vg.addColorStop(1,"rgba(0,0,0,.55)");x.fillStyle=vg;x.fillRect(0,0,W,H);
+ for(let i=0;i<260;i++){x.fillStyle=`rgba(255,255,255,${.02+((i*7919+Math.floor(t*30)*131)%97)/97*.05})`;x.fillRect(((i*7919+Math.floor(t*30)*104729)%W),((i*104729+Math.floor(t*30)*7919)%H),2,2);}
+ x.fillStyle="#000";x.fillRect(0,0,W,70);x.fillRect(0,H-70,W,70);
+ const dark=outC(seg(t,10.6,12.4))*.62; /* darken for the end card */
+ x.fillStyle=`rgba(6,8,14,${dark})`;x.fillRect(0,0,W,H);
+ const fin=1-outC(seg(t,0,1.4));x.fillStyle=`rgba(0,0,0,${fin})`;x.fillRect(0,0,W,H);
+ const end=document.getElementById("end"),e=outC(seg(t,11.6,13.2));end.style.opacity=e;end.style.transform=`translateY(${lerp(30,0,e)}px) scale(${lerp(.97,1,e)})`;
+ const bs=end.children;bs[1].style.opacity=.92*outC(seg(t,12.2,13.6));bs[2].style.opacity=outC(seg(t,12.8,14.2));
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script></body></html>

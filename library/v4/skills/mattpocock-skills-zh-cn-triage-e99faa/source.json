@@ -1,0 +1,15 @@
+{
+ "title": "triage",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/triage/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/triage/SKILL.md",
+ "license": "MIT",
+ "description": "让 issues 和 external PRs 通过一组 triage roles 状态机，分类、验证、必要时 grilling，并写出 agent-ready briefs。",
+ "domains": [
+  "engineering",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

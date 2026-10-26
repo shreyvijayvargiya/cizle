@@ -1,0 +1,14 @@
+{
+ "title": "natural-fiction",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "codex-skills-pack/skills/natural-fiction/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/codex-skills-pack/skills/natural-fiction/SKILL.md",
+ "license": "MIT",
+ "description": "中文小说创作与润色。写、改、续中文小说与网文章节（含玄幻、系统流），抓情节因果、视角、人物声音和连续性。",
+ "domains": [
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

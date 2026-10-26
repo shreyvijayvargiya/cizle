@@ -1,0 +1,13 @@
+{
+ "title": "baoyu-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "jimliu/baoyu-skills",
+ "url": "https://github.com/jimliu/baoyu-skills/blob/HEAD/skills/baoyu-comic/SKILL.md",
+ "license": null,
+ "description": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知识漫画\", \"教育漫画\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

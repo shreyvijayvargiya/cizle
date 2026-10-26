@@ -1,3 +1,4 @@
+import { BLOG, PREMIUM } from "@/lib/config";
 import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/config";
 
@@ -34,9 +35,10 @@ export function Footer() {
 						<Link to="/gallery" className={LINK}>Prompt gallery</Link>
 						<Link to="/connect" className={LINK}>Use in Claude (MCP)</Link>
 						<Link to="/films" className={LINK}>Launch films</Link>
-						<Link to="/pricing" className={LINK}>Pricing</Link>
+						{PREMIUM ? <Link to="/pricing" className={LINK}>Pricing</Link> : null}
 						<Link to="/docs" className={LINK}>Docs</Link>
-						<Link to="/blog" className={LINK}>Blog</Link>
+						<Link to="/learn" className={LINK}>Learn</Link>
+						{BLOG ? <Link to="/blog" className={LINK}>Blog</Link> : null}
 					</nav>
 					<nav aria-label="Company" className="reveal md:col-span-4 lg:col-span-2" style={{ ["--i" as string]: 2 }}>
 						<p className="mb-2 text-lg font-semibold">Company</p>
@@ -50,6 +52,7 @@ export function Footer() {
 						<Link to="/terms" className={LINK}>Terms</Link>
 						<Link to="/privacy" className={LINK}>Privacy</Link>
 						<Link to="/refund" className={LINK}>Refunds</Link>
+						<Link to="/rights" className={LINK}>Credits and removal</Link>
 					</nav>
 				</div>
 

@@ -78,7 +78,7 @@ The camera moves *over* prints and between them; it never rotates in 3D space in
 | Pull-back from one sheet to many | The series seen whole | a summary; a timeline; a collection |
 | Crash-zoom into the texture (grain, specks, fibres) | The medium itself becomes the image | a dream; a breakdown; a memory dissolving |
 | Pan across a triptych (three sheets side by side) | One scene too wide for one sheet | a procession; a battle; a festival |
-| Hard cut to a blank sheet | Ma (間), a held breath | aftermath; a pause before a decision |
+| Hard cut to a blank sheet | Ma, a held breath | aftermath; a pause before a decision |
 
 Framing: bold cropping and extreme foreground elements (a branch, a post, a lantern crossing the frame) are native; depth by stacking, never by perspective. Allowed transitions: scroll slides, printing reveals, a wash back to paper, a cut to blank. No cross-dissolves, no 3D flips.
 

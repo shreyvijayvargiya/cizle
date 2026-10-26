@@ -1,0 +1,15 @@
+{
+ "title": "resume-jd-optimizer-cn",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "coinluu/resume-jd-optimizer-cn",
+ "url": "https://github.com/coinluu/blob/resume-jd-optimizer-cn/HEAD/SKILL.md",
+ "license": null,
+ "description": "基于目标岗位 JD、中文简历和用户确认的真实经历，完成中国大陆求职场景下的 JD 解析、证据映射、缺口诊断、素材追问、定制简历重写、ATS/HR/面试官审查及投递沟通材料生成。用于应届、社招、转行及互联网、AI、产品、运营、销售、技术、数据、设计等岗位；当用户要求针对 JD 优化中文简历、提高匹配度、生成 Boss 直聘或猎头话术、检查面试自洽性时使用。",
+ "domains": [
+  "product",
+  "data",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.257Z"
+}

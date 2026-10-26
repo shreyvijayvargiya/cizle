@@ -1,0 +1,14 @@
+{
+ "title": "conference-report",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "conference-report/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/conference-report/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user attended one or more sessions of a conference (with audio recordings + slide photos) and needs help building (1) faithful per-session reconstructions in markdown (slide visuals + speaker transcript with Whisper hallucination annotations), and (2) a downstream report deliverable whose scope and format are decided interactively with the user. Pipeline phase (raw → mlx_whisper Chinese SRT → per-slide multimodal reconstruction → official agenda cross-check via Playwright if available) is deterministic. Report phase is interactive — always quiz user on scope (single-session / single-day / multi-day synthesis), format (existing template / free-form fallback), recipient (formal / informal), and any business workstream mapping before drafting.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.763Z"
+}

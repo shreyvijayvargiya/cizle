@@ -1,0 +1,14 @@
+{
+ "title": "Claude-Code-Game-Studios",
+ "source": "K07",
+ "lang": "en",
+ "repo": "Donchitos/Claude-Code-Game-Studios",
+ "url": "https://github.com/Donchitos/Claude-Code-Game-Studios/blob/HEAD/.claude/skills/help/SKILL.md",
+ "license": null,
+ "description": "What should I do next? Use when stuck or you don't know what to do.",
+ "domains": [
+  "gaming",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "mianshi-moni",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "mianshi-moni/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/mianshi-moni/SKILL.md",
+ "license": null,
+ "description": "模拟真实求职面试，按目标岗位出题、追问、评分并给出回答改进框架。当用户提到\"面试模拟\"、\"面试练习\"、\"怎么回答\"、\"结构化面试\"、\"压力面\"，或告知了具体公司与岗位准备面试时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "kaoyan-fushi",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "kaoyan-fushi/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/kaoyan-fushi/SKILL.md",
+ "license": null,
+ "description": "模拟考研复试全流程，包括中英文自我介绍、专业课问答、导师常规问题与综合素质考察，并逐项点评。当用户提到\"考研复试\"、\"复试模拟\"、\"调剂面试\"、\"中英文自我介绍\"，或给出目标院校与专业时使用。",
+ "domains": [
+  "data",
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

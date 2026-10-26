@@ -1,0 +1,15 @@
+{
+ "title": "autonomous-loops",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/autonomous-loops/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/autonomous-loops/SKILL.md",
+ "license": "MIT",
+ "description": "自主运行 Claude Code 循环的模式与架构 —— 从简单的顺序流水线到 RFC 驱动的多智能体 DAG 系统。",
+ "domains": [
+  "history",
+  "music"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.702Z"
+}

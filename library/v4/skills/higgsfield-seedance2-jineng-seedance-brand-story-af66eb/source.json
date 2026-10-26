@@ -1,0 +1,15 @@
+{
+ "title": "seedance-brand-story",
+ "source": "K05",
+ "lang": "en",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/12-brand-story/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/12-brand-story/SKILL.md",
+ "license": null,
+ "description": "Generate brand storytelling and narrative video prompts for Seedance 2.0 on Higgsfield. Use whenever the user wants to create a brand story video, company origin story, mission video, about us video, brand film, corporate narrative, founder story, brand anthem, company culture video, or emotional brand content. Triggers on: brand story, brand video, company story, origin story, about us, mission video, brand film, brand anthem, corporate video, company culture, founder story, brand narrative, or any request for brand/company storytelling video. Use even for \"tell our company story\" or \"make a video about our mission.",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.092Z"
+}

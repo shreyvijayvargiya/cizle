@@ -1,0 +1,15 @@
+{
+ "title": "claude-skill-web-clone",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "Jane-xiaoer/claude-skill-web-clone",
+ "url": "https://github.com/Jane-xiaoer/blob/claude-skill-web-clone/HEAD/SKILL.md",
+ "license": null,
+ "description": ">",
+ "domains": [
+  "engineering",
+  "education",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

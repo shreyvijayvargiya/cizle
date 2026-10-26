@@ -1,0 +1,15 @@
+{
+ "title": "shuorenhua",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "MrGeDiao/shuorenhua",
+ "url": "https://github.com/MrGeDiao/shuorenhua/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "按用户要求审稿或去 AI 味，支持中英文；保留事实、术语与责任主体，支持只标问题。",
+ "domains": [
+  "product",
+  "data",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.257Z"
+}

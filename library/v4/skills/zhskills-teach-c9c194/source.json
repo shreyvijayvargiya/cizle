@@ -1,0 +1,16 @@
+{
+ "title": "teach",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/teach/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/teach/SKILL.md",
+ "license": "MIT",
+ "description": "把一个培训主题（新人入职培训、技能带教 SOP、产品/合规/销售培训、技能内训、课程设计）设计成一份可直接执行的单轮培训教案大纲——MISSION 驱动定目标、贴着学员最近发展区排内容、把提取练习/间隔重复/交错练习三种学习科学方法落到具体练习题，当用户说\"帮我写个培训教案/做个带教计划/设计一门内训课\"时使用。",
+ "domains": [
+  "education",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

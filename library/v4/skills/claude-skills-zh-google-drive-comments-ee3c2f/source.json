@@ -1,0 +1,16 @@
+{
+ "title": "google-drive-comments",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/docs-office/google-drive-comments/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/docs-office/google-drive-comments/SKILL.md",
+ "license": "MIT",
+ "description": "Drive 评论管理。撰写、回复、解决 Docs/Sheets/Slides 上的评论 thread。",
+ "domains": [
+  "science",
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.736Z"
+}

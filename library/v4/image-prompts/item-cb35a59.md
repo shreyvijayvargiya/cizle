@@ -1,0 +1,14 @@
+# 女性动漫插画暗黑高级
+
+Community prompt · 动漫or二次元
+Language: ja · Domains: entertainment, nature · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/18167.jpg
+
+```
+Create a square anime-style CD jacket illustration with a dramatic Japanese ink-wash and watercolor aesthetic on aged cream paper. The central subject is a young woman named シナ子, an elegant saxophone player with very long wind-swept violet-purple hair, purple eyes, and a large dark purple flower hair ornament. She wears a gothic black dress with layered ruffles, lace sleeves, violet ribbons, a purple waist sash, thigh-high dark stockings, and a slightly melancholic but confident expression while playing a large polished brass saxophone angled downward across her body. The composition should feel like a fusion of traditional Japanese art and modern rock album cover design: splattered sumi ink, watercolor blooms, red maple leaves, purple hydrangea-like flowers, bare tree branches, distant shrine torii gates, a hazy pagoda silhouette, a large muted red sun near the top, and dynamic blue-black waves swirling at the lower left. Use textured paper grain, ink splashes, rough brush edges, and layered transparent washes; keep the palette dominated by purple, black, indigo, antique gold, muted crimson, and ivory. Include exactly 7 visible text elements integrated like album cover typography: a dark vertical brush-stroke name strip on the upper left containing large Japanese text シナ子, small vertical roman text "SHINAKO" beside it, a huge black calligraphic Japanese album title on the right reading 言訳魂, small centered roman text beneath it reading "IWAKE DAMASHII", bottom-left Japanese genre text 和ロック×サックス, tiny English subtitle below it reading "WAGASHI ROCK × SAXOPHONE", and a red rectangular seal stamp on the lower right reading 魂ノ叫ビ. Make the lettering look hand-brushed, asymmetrical, and slightly weathered, with no modern clean vector look. The final image should be a polished square album-cover illustration, highly detailed, atmospheric, and print-ready.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

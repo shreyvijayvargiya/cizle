@@ -1,0 +1,11 @@
+{
+ "title": "agent-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "vercel-labs/agent-skills",
+ "url": "https://github.com/vercel-labs/agent-skills/blob/HEAD/skills/vercel-optimize/SKILL.md",
+ "license": null,
+ "description": "Use for Vercel cost and performance optimization on deployed projects, especially Next.js, SvelteKit, Nuxt, and limited Astro apps. Collect Vercel metrics, usage, project config, and code scan results first; investigate only metric-backed candidates; produce ranked recommendations grounded in verified files and version-aware Vercel/framework docs. Trigger for Vercel bill reduction, slow or expensive routes, caching opportunities, Function Invocations, Build Minutes, Fast Data Transfer, Core Web Vitals, Bot Management, Fluid compute, or cost breakdown requests.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

@@ -1,0 +1,56 @@
+{
+ "version": 4,
+ "updated_at": "2026-10-26T10:24:58.600Z",
+ "total": 6064,
+ "prompts": 200,
+ "image_prompts": 5194,
+ "skills": 670,
+ "sources": {
+  "K01": 5194,
+  "K02": 150,
+  "K03": 50,
+  "K04": 389,
+  "K05": 80,
+  "K06": 12,
+  "K07": 189
+ },
+ "languages": {
+  "zh": 4733,
+  "en": 1094,
+  "ja": 216,
+  "ko": 12,
+  "cs": 1,
+  "hi": 1,
+  "de": 1,
+  "ru": 2,
+  "id": 1,
+  "fr": 1,
+  "it": 1,
+  "es": 1
+ },
+ "domains": {
+  "entertainment": 3077,
+  "nature": 2065,
+  "product": 1324,
+  "general": 772,
+  "data": 456,
+  "science": 376,
+  "scifi": 374,
+  "engineering": 374,
+  "math": 359,
+  "education": 314,
+  "gaming": 291,
+  "health": 259,
+  "history": 232,
+  "music": 181,
+  "agriculture": 105,
+  "finance": 90,
+  "edtech": 19
+ },
+ "skipped": {
+  "already_in_library": 0,
+  "duplicates": 143,
+  "too_short": 105,
+  "skill_index_only": 19
+ }
+}

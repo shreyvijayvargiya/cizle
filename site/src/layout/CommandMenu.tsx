@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, Kbd } from "@/components/ui/command";
 import { Dialog, DialogContent } from "@/components/ui/menu";
 import { useAuth } from "@/lib/auth";
-import { SITE } from "@/lib/config";
+import { SITE, PREMIUM, BLOG } from "@/lib/config";
 import { usePosts, useSkills, useFuse } from "@/lib/data";
 import { useTheme } from "@/lib/theme";
 
@@ -32,9 +32,10 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 		() => [
 			{ id: "skills", label: "Browse all skills", icon: Search01Icon, run: () => navigate({ to: "/" }), keywords: "home library" },
 			{ id: "gallery", label: "Prompt gallery", icon: SparklesIcon, run: () => navigate({ to: "/gallery" }), keywords: "community prompts opus motion video" },
-			{ id: "pricing", label: "Pricing", icon: CreditCardIcon, run: () => navigate({ to: "/pricing" }), keywords: "plans subscribe premium" },
+			...(PREMIUM ? [{ id: "pricing", label: "Pricing", icon: CreditCardIcon, run: () => navigate({ to: "/pricing" }), keywords: "plans subscribe premium" }] : []),
 			{ id: "docs", label: "Docs: how to use skills", icon: BookOpen01Icon, run: () => navigate({ to: "/docs" }), keywords: "help guide install mcp" },
-			{ id: "blog", label: "Blog", icon: SparklesIcon, run: () => navigate({ to: "/blog" }), keywords: "articles examples" },
+			{ id: "learn", label: "Learn: short videos", icon: BookOpen01Icon, run: () => navigate({ to: "/learn" }), keywords: "videos tutorials topics" },
+			...(BLOG ? [{ id: "blog", label: "Blog", icon: SparklesIcon, run: () => navigate({ to: "/blog" }), keywords: "articles examples" }] : []),
 			{ id: "mcp", label: "Use cizle in Claude (MCP)", icon: SparklesIcon, run: () => navigate({ to: "/connect" }), keywords: "claude connect mcp cli token" },
 			{ id: "faq", label: "FAQ", icon: BookOpen01Icon, run: () => navigate({ to: "/faq" }), keywords: "questions" },
 			{ id: "contact", label: "Contact", icon: Mail01Icon, run: () => navigate({ to: "/contact" }), keywords: "support email" },
@@ -44,7 +45,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 						{ id: "out", label: "Sign out", icon: Logout01Icon, run: () => void signOut().then(() => toast.success("Signed out")).catch(() => {}) },
 					]
 				: [{ id: "in", label: "Sign in", icon: UserIcon, run: () => navigate({ to: "/login", search: {} }), keywords: "login account" }]),
-			...(isPro ? [] : [{ id: "upgrade", label: `Get Premium · from $${Math.min(...SITE.plans.map((p) => p.usd))}/month`, icon: LockIcon, run: () => navigate({ to: "/pricing" }), keywords: "upgrade unlock pay" }]),
+			...(isPro || !PREMIUM ? [] : [{ id: "upgrade", label: `Get Premium · from $${Math.min(...SITE.plans.map((p) => p.usd))}/month`, icon: LockIcon, run: () => navigate({ to: "/pricing" }), keywords: "upgrade unlock pay" }]),
 			{ id: "theme", label: resolved === "dark" ? "Switch to light theme" : "Switch to dark theme", icon: resolved === "dark" ? Sun03Icon : Moon02Icon, run: () => setTheme(resolved === "dark" ? "light" : "dark"), keywords: "dark light mode" },
 			{ id: "gh", label: "cizle on GitHub", icon: GithubIcon, run: () => window.open(SITE.github, "_blank", "noopener"), keywords: "source code" },
 		],
@@ -54,7 +55,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
 	const term = q.trim().toLowerCase();
 	const shownActions = term ? actions.filter((a) => `${a.label} ${a.keywords || ""}`.toLowerCase().includes(term)) : actions.slice(0, 6);
 	const shownSkills = term ? fuse.search(term).slice(0, 8).map((r) => r.item) : (skills.data?.skills || []).filter((s) => s.featured).slice(0, 6);
-	const shownPosts = term ? (posts.data || []).filter((p) => `${p.title} ${p.description} ${p.tags.join(" ")}`.toLowerCase().includes(term)).slice(0, 3) : [];
+	const shownPosts = BLOG && term ? (posts.data || []).filter((p) => `${p.title} ${p.description} ${p.tags.join(" ")}`.toLowerCase().includes(term)).slice(0, 3) : [];
 
 	return (
 		<Dialog

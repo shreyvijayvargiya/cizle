@@ -1,0 +1,12 @@
+{
+ "title": "zh-code-reviewer",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/zh-code-reviewer/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/zh-code-reviewer/SKILL.md",
+ "license": "MIT",
+ "description": "中文代码审查专家 - 生成详细的中文代码审查报告",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

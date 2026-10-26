@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
-import { Cancel01Icon, FilterHorizontalIcon, LockIcon, Search01Icon, SortByDown01Icon, Layers01Icon } from "@hugeicons/core-free-icons";
+import { Cancel01Icon, Globe02Icon, Layers01Icon, Search01Icon, ShuffleIcon, SortByDown01Icon, Video01Icon } from "@hugeicons/core-free-icons";
 import { CategoryChips, categoryLabel } from "@/components/CategoryChips";
 import { Icon } from "@/components/Icon";
 import { PromptCard } from "@/components/PromptCard";
@@ -8,15 +8,19 @@ import { PromptDialog } from "@/components/PromptDialog";
 import { Button } from "@/components/ui/button";
 import { VideoToggle } from "@/components/VideoToggle";
 import { Input } from "@/components/ui/input";
+import { LanguageSelect } from "@/components/LanguageSelect";
 import { Skeleton } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
-import { canonCategory, filterGallery, findPrompt, useGallery, useGalleryFuse, type GalleryFilters } from "@/lib/gallery";
+import { CLASSIC, canonCategory, filterGallery, findPrompt, useGallery, useGalleryFuse, useShuffle, type GalleryFilters } from "@/lib/gallery";
+import { ACCESS_ICON, SORT_ICON, categoryIcon } from "@/lib/filterIcons";
+import { PREMIUM } from "@/lib/config";
 import { useHead } from "@/lib/head";
+import { isLatinLabel } from "@/lib/utils";
 
 const PAGE = 48;
-const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort"];
+const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort", "lang", "version"];
 
 /** Community video prompts, each credited and linked to the original. A free sample in full; the rest open to subscribers. */
 export function GalleryPage({ slug }: { slug?: string } = {}) {
@@ -28,6 +32,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 	const fuse = useGalleryFuse(items);
 	const [q, setQ] = useState(search.q || "");
 	const [shown, setShown] = useState(PAGE);
+	const { seed, reshuffle } = useShuffle();
 
 	const setFilter = (patch: Partial<GalleryFilters>) => {
 		const next = { ...search, ...patch };
@@ -42,7 +47,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 	});
 	useEffect(() => setQ(search.q || ""), [search.q]);
 
-	const list = useMemo(() => (items ? filterGallery(items, fuse, search) : []), [items, fuse, search]);
+	const list = useMemo(() => (items ? filterGallery(items, fuse, search, seed) : []), [items, fuse, search, seed]);
 	const active = KEYS.some((k) => k !== "sort" && search[k]);
 	const total = gallery.data?.total ?? 0;
 	const open = slug ? findPrompt(items, slug) : undefined;
@@ -54,12 +59,13 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 
 	useHead({
 		enabled: !open && !legacy,
-		title: `Prompt gallery: ${total ? total.toLocaleString() : "1,000+"} Opus 5.5 video prompts, with credit | cizle`,
+		title: `Prompt gallery: ${total ? total.toLocaleString() : "1,000+"} prompts in ${Object.keys(gallery.data?.languages ?? {}).length || 1} languages, with credit | cizle`,
 		description: "Browse real video prompts people made with Claude Opus 5.5: motion graphics, explainers, product videos and 3D. Each one credits its creator and links to the original post. Read a free sample, unlock the rest with Premium.",
 		path: "/gallery",
 	});
 
-	const allCategories = useMemo(() => [...new Set((gallery.data?.categories || []).map(canonCategory))], [gallery.data?.categories]);
+	// only English (Latin-script) categories are listed for now; prompts in other languages stay visible, they just do not add their own category labels
+	const allCategories = useMemo(() => [...new Set((gallery.data?.categories || []).map(canonCategory))].filter(isLatinLabel), [gallery.data?.categories]);
 	const categories = allCategories;
 	const counts = useMemo(() => {
 		const m: Record<string, number> = {};
@@ -75,7 +81,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 						Prompt gallery
 					</h1>
 					<p className="max-w-[46ch] pb-2 text-lg leading-snug">
-						{total ? `${total.toLocaleString()} real video prompts` : "Real video prompts"} people made with Claude Opus 5.5. Every card credits its creator and links to the original post. {gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.
+						{total ? `${total.toLocaleString()} real prompts` : "Real prompts"} in {Object.keys(gallery.data?.languages ?? {}).length || 1} languages: video prompts, image prompts and skills from creators around the world. Every card credits its creator and links to the original. {PREMIUM ? `${gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.` : "All of them are free to read and copy."}
 					</p>
 				</div>
 
@@ -85,22 +91,29 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
 							<Input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
 						</div>
-						<OptionSelect icon={Layers01Icon} aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: categoryLabel(c) }))} className="w-[12.5rem]" />
-						<OptionSelect icon={LockIcon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples" }, { value: "premium", label: "Premium" }]} className="w-[12rem]" />
-						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Newest" options={[{ value: "az", label: "A to Z" }, { value: "long", label: "Longest first" }]} className="w-[12rem]" />
+						<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={gallery.data?.languages ?? {}} className="w-[12.5rem]" />
+						{gallery.data?.versions.length ? (
+							<OptionSelect aria-label="Collection" value={search.version || ""} onValueChange={(v) => setFilter({ version: v })} emptyLabel="All collections" emptyIcon={Layers01Icon} options={[{ value: CLASSIC, label: "Classic (v1 to v3)", icon: Video01Icon }, ...gallery.data.versions.map((v) => ({ value: v.version, label: `${v.version} · ${Object.keys(v.languages).length} languages`, icon: Globe02Icon }))]} className="w-[13rem]" />
+						) : null}
+						<OptionSelect icon={Layers01Icon} aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: categoryLabel(c), icon: categoryIcon(c) }))} className="w-[12.5rem]" />
+						{PREMIUM ? <OptionSelect icon={Layers01Icon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples", icon: ACCESS_ICON.free }, { value: "premium", label: "Premium", icon: ACCESS_ICON.premium }]} className="w-[12rem]" /> : null}
+						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Random" emptyIcon={SORT_ICON.random} options={[{ value: "new", label: "Newest", icon: SORT_ICON.new }, { value: "az", label: "A to Z", icon: SORT_ICON.az }, { value: "long", label: "Longest first", icon: SORT_ICON.long }]} className="w-[12rem]" />
 						{active ? (
 							<Button type="button" variant="secondary" onClick={() => (setQ(""), setShown(PAGE), navigate({ to: "/gallery", search: {}, replace: true }))}>
 								<Icon icon={Cancel01Icon} size={15} /> Clear
 							</Button>
 						) : null}
+						<Button type="button" variant="secondary" onClick={() => (reshuffle(), setShown(PAGE))} aria-label="Shuffle the order">
+							<Icon icon={ShuffleIcon} size={15} /> Shuffle
+						</Button>
 						<VideoToggle />
 					</form>
 				</div>
-				{gallery.data ? <CategoryChips categories={allCategories} counts={counts} value={search.category || ""} onChange={(c) => setFilter({ category: c || undefined })} total={total} /> : null}
+				{gallery.data ? <CategoryChips categories={[...allCategories].sort((a, b) => (counts[b] ?? 0) - (counts[a] ?? 0)).slice(0, 24)} counts={counts} value={search.category || ""} onChange={(c) => setFilter({ category: c || undefined })} total={total} /> : null}
 
 				<p className="px-1 py-3 text-lg" aria-live="polite">
 					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? "prompt" : "prompts"}${active ? ` of ${total.toLocaleString()}` : ""}. `}
-					{!isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : isPro ? "Premium is unlocked." : null}
+					{PREMIUM && !isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : PREMIUM && isPro ? "Premium is unlocked." : null}
 				</p>
 
 				{gallery.isLoading ? (

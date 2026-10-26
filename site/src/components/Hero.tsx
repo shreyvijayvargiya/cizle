@@ -6,7 +6,10 @@ import { copyText } from "@/components/CopyButton";
 import { Icon } from "@/components/Icon";
 import { SubscribeForm } from "@/components/SubscribeForm";
 import { fromLabel } from "@/lib/billing";
-import { useGallery, type GalleryItem } from "@/lib/gallery";
+import { PREMIUM } from "@/lib/config";
+import { useSkills } from "@/lib/data";
+import { languageOf } from "@/lib/languages";
+import { shuffled, useGallery, usePromptText, useShuffle, type GalleryItem } from "@/lib/gallery";
 import { plain } from "@/lib/utils";
 import { AutoVideo } from "@/lib/videos";
 
@@ -16,60 +19,46 @@ import { AutoVideo } from "@/lib/videos";
  */
 export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 	const gallery = useGallery();
+	const skillsQ = useSkills();
+	const { seed } = useShuffle();
+	// how many prompts and skills, and in how many languages: counted from the data, so every new harvest version shows up here by itself
+	const langs = useMemo(() => {
+		const m: Record<string, number> = { ...(gallery.data?.languages || {}) };
+		for (const sk of skillsQ.data?.skills ?? []) m[sk.lang || "en"] = (m[sk.lang || "en"] || 0) + 1;
+		return Object.entries(m).sort((a, b) => b[1] - a[1]);
+	}, [gallery.data, skillsQ.data]);
+
 	const picks = useMemo(() => {
-		const free = (gallery.data?.items || []).filter((g) => g.tier === "free" && g.video && g.text && g.chars >= 200 && g.chars <= 1400);
+		// a different set of demos on every visit: the library is shuffled, then one of each category comes first
+		const free = shuffled((gallery.data?.items || []).filter((g) => g.tier === "free" && g.video && g.preview && g.chars >= 200 && g.chars <= 1400), seed);
 		// A spread of the library, not eight of one kind: take one per category first.
 		const seen = new Set<string>();
 		const out: GalleryItem[] = [];
 		for (const g of free) if (!seen.has(g.category || "")) (seen.add(g.category || ""), out.push(g));
 		for (const g of free) if (out.length < 8 && !out.includes(g)) out.push(g);
 		return out.slice(0, 8);
-	}, [gallery.data]);
+	}, [gallery.data, seed]);
 	const [i, setI] = useState(0);
 	const [copied, setCopied] = useState(false);
 	const [videoBad, setVideoBad] = useState(false);
 	const cur = picks[i % Math.max(1, picks.length)];
+	const fullText = usePromptText(cur, false).data; // the home tile shows the whole prompt once its shard has loaded, the preview until then
+	const curText = cur?.text ?? fullText ?? cur?.preview ?? "";
 	const total = gallery.data?.total ?? 0;
+	const items = total + (skillsQ.data?.skills.length ?? 0);
 	useEffect(() => setVideoBad(false), [cur?.id]);
 
 	return (
 		<section aria-label="cizle" className="board pb-2">
-			<div className="board-w grid min-h-[calc(100dvh-84px)] grid-cols-1 gap-2 md:grid-cols-12 lg:grid-rows-2">
-				<div className="tile reveal flex min-h-[260px] flex-col justify-end p-5 sm:p-6 md:col-span-6">
-					<h1 className="display" style={{ fontSize: "clamp(2.75rem, 7.4vw, 7.5rem)" }}>
-						Prompts with their videos
+			{/* Desktop board: headline and video on the top row (video on the right), the subscribe and browse tiles on the bottom left, the prompt under the video. */}
+			<div className="board-w grid min-h-[calc(100dvh-84px)] grid-cols-1 gap-2 lg:grid-cols-12 lg:grid-rows-2">
+				<div className="tile reveal flex min-h-[260px] flex-col justify-end p-5 sm:p-6 lg:col-span-6 lg:col-start-1 lg:row-start-1">
+					<h1 className="display" style={{ fontSize: "clamp(2.5rem, 5.4vw, 6rem)" }}>
+						Prompts with their videos and images
 					</h1>
-					<SubscribeForm className="relative mt-6 max-w-xl" />
 				</div>
 
-				<div className="tile reveal relative flex min-h-[320px] flex-col p-5 sm:p-6 md:col-span-6" style={{ ["--i" as string]: 1 }}>
-					{cur ? (
-						<>
-							<p className="max-w-[60ch] flex-1 overflow-hidden text-base leading-relaxed whitespace-pre-line [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:7]">{plain(cur.text)}</p>
-							<div className="mt-4 flex flex-wrap items-center gap-2">
-								<button
-									type="button"
-									onClick={async () => {
-										if (await copyText(cur.text || "")) (setCopied(true), toast.success("Prompt copied"), setTimeout(() => setCopied(false), 1800));
-									}}
-									className="press inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-base font-medium text-primary-foreground hover:bg-primary/85"
-								>
-									<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
-								</button>
-								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
-									Open it
-								</Link>
-								<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next prompt" className="press ml-auto inline-flex h-11 items-center gap-2 rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
-									Next <Icon icon={ArrowRight01Icon} size={16} />
-								</button>
-							</div>
-						</>
-					) : (
-						<p className="statement">The prompt that made the video shows here.</p>
-					)}
-				</div>
-
-				<div className="shutter relative min-h-[260px] overflow-hidden rounded-lg bg-field-2 md:col-span-12 lg:col-span-6" style={{ animationDelay: ".1s" }}>
+				<div className="shutter relative min-h-[300px] overflow-hidden rounded-lg bg-field-2 lg:col-span-6 lg:col-start-7 lg:row-start-1" style={{ animationDelay: ".1s" }}>
 					{cur && !(videoBad && !cur.poster) ? (
 						<>
 							{cur.video && !videoBad ? (
@@ -86,17 +75,57 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 					)}
 				</div>
 
-				<div className="tile-ink reveal flex min-h-[200px] flex-col justify-between p-5 sm:p-6 md:col-span-6 lg:col-span-3" style={{ ["--i" as string]: 2 }}>
-					<p className="statement">
-						{total ? `${total.toLocaleString()} real prompts` : "Real prompts"}, each with the video it made. Copy one or open it.
-					</p>
+				<div id="subscribe" className="tile-ink reveal flex min-h-[260px] scroll-mt-24 flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-3 lg:col-start-1 lg:row-start-2" style={{ ["--i" as string]: 2 }}>
+					<p className="statement">{items ? `${items.toLocaleString()} video prompts, image prompts and skills` : "Video prompts, image prompts and skills"} from creators around the world. Every one is credited and free to copy.</p>
+					<SubscribeForm stacked cta="Subscribe" className="relative" />
 				</div>
 
-				<div className="tile-accent reveal flex min-h-[200px] flex-col justify-between gap-6 p-5 sm:p-6 md:col-span-6 lg:col-span-3" style={{ ["--i" as string]: 3 }}>
-					<p className="statement">Free samples open in full. Premium opens the rest, from {fromLabel("USD")} a month.</p>
+				<div className="tile-accent reveal flex min-h-[200px] flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-3 lg:col-start-4 lg:row-start-2" style={{ ["--i" as string]: 3 }}>
+					<div>
+						<p className="statement">{langs.length > 1 ? `In ${langs.length} languages, and growing.` : PREMIUM ? `Free samples open in full. Premium opens the rest, from ${fromLabel("USD")} a month.` : "Every prompt and skill here is free."}</p>
+						{langs.length > 1 ? (
+							<ul aria-label="Languages" className="mt-3 flex flex-wrap gap-1.5">
+								{langs.slice(0, 8).map(([code, n]) => (
+									<li key={code}>
+										<Link to="/" search={{ lang: code }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-field-2 px-3 py-1 text-sm text-field-2-ink hover:opacity-90" title={`${n.toLocaleString()} prompts and skills`}>
+											<span aria-hidden>{languageOf(code).flag}</span> {languageOf(code).native}
+										</Link>
+									</li>
+								))}
+								{langs.length > 8 ? <li className="inline-flex items-center px-1 text-sm opacity-80">+{langs.length - 8} more</li> : null}
+							</ul>
+						) : null}
+					</div>
 					<a href="#library" className="press inline-flex h-12 w-fit items-center gap-2 rounded-lg bg-field-2 px-5 text-base font-medium text-field-2-ink hover:opacity-90">
 						Browse the library <Icon icon={ArrowRight01Icon} size={16} />
 					</a>
+				</div>
+
+				<div className="tile reveal relative flex min-h-[320px] flex-col p-5 sm:p-6 lg:col-span-6 lg:col-start-7 lg:row-start-2" style={{ ["--i" as string]: 1 }}>
+					{cur ? (
+						<>
+							<p className="max-w-[60ch] flex-1 overflow-hidden text-base leading-relaxed whitespace-pre-line [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:7]">{plain(curText)}</p>
+							<div className="mt-4 flex flex-wrap items-center gap-2">
+								<button
+									type="button"
+									onClick={async () => {
+										if (await copyText(curText)) (setCopied(true), toast.success("Prompt copied"), setTimeout(() => setCopied(false), 1800));
+									}}
+									className="press inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-base font-medium text-primary-foreground hover:bg-primary/85"
+								>
+									<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
+								</button>
+								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
+									Open it
+								</Link>
+								<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next prompt" className="press ml-auto inline-flex h-11 items-center gap-2 rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
+									Next <Icon icon={ArrowRight01Icon} size={16} />
+								</button>
+							</div>
+						</>
+					) : (
+						<p className="statement">The prompt that made the video shows here.</p>
+					)}
 				</div>
 			</div>
 		</section>

@@ -28,3 +28,6 @@ export const usd = (n?: number | null, digits = 3) => (n == null ? "—" : `$${n
 
 /** Emoji out of text we display as our own typography (card previews, titles). The prompt itself is shown untouched in its dialog. */
 export const plain = (s: string | null | undefined) => String(s ?? "").replace(/[\p{Extended_Pictographic}️‍]/gu, "").replace(/[ \t]{2,}/g, " ").trim();
+
+/** True when a label is written in Latin script (English and the other Latin-script languages): letters of any other script, such as Chinese or Japanese, make it false. Used to show only English tags and categories for now. */
+export const isLatinLabel = (s: string | null | undefined) => !s || /^[\p{Script=Latin}\p{N}\p{P}\p{S}\p{Z}\p{M}]*$/u.test(s);

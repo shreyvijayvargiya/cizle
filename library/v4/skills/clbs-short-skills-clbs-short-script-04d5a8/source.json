@@ -1,0 +1,16 @@
+{
+ "title": "clbs-short-script",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "conlab-clbs/clbs-short-skills",
+ "path": "clbs-short-script/SKILL.md",
+ "url": "https://github.com/conlab-clbs/clbs-short-skills/blob/HEAD/clbs-short-script/SKILL.md",
+ "license": null,
+ "description": "汎用ショート動画（YouTube Shorts / TikTok / Instagram Reels）の企画立案〜台本執筆を一気通貫で行うスキル。ジャンルを問わず全クライアント対応。ショート動画講義資料の方法論（順算思考＝冒頭2秒フックから先に作る／台本4要素「タイトル・興味づけ・本題・CTA」／冒頭2秒フック5型／視聴維持率基準／守破離モデリング）と常識破壊パターン集（フレーム8種＋「不」起点＋心理トリガー8種）に忠実に、企画5案→構成骨子→完成台本を出力する。台本本体はナレーション＋V41互換タグ（[ピクチャーN] / [スライドN] / [BロールN] / [カムリターン]）＋<#0.8#>沈黙マーカー＋縦型素材注記（1:1スクエア / 4:3ピクチャー / 9:16全画面Bロール）で仕上げる（ショートは画面内の見出しテロップを焼かない方針）。「ショート台本」「ショート動画台本」「ショート企画」「TikTok台本」「Reels台本」「Shorts台本」「リール台本」「ショート動画作って」「60秒台本」「縦型動画台本」などのキーワードで必ず使用すること。Takumi量子論専用は `clbs-video-script-short`、前段の競合リサーチは `clbs-short-research`、長尺YouTube本編は `clbs-youtube-script-pro` / `clbs-sns` を使う。",
+ "domains": [
+  "science",
+  "education",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.799Z"
+}

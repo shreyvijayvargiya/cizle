@@ -1,0 +1,16 @@
+{
+ "title": "market-research",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/market-research/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/market-research/SKILL.md",
+ "license": "MIT",
+ "description": "执行市场研究（market research）、竞争分析、投资者尽职调查和行业情报，提供来源引用及面向决策的摘要。当用户需要市场规模估算、竞品对比、基金研究、技术扫描或为业务决策提供支持的研究时，请使用此技能。",
+ "domains": [
+  "finance",
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.715Z"
+}

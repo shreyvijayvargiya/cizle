@@ -1,0 +1,16 @@
+{
+ "title": "seedance-music-video",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/10-music-video/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/10-music-video/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成音乐视频和节拍同步视觉内容提示。在用户想要创建音乐视频、歌词视频、节拍同步视觉、表演视频、音乐会视觉、专辑艺术动画或音乐驱动的视觉内容时使用。触发条件：音乐视频、歌词视频、节拍同步、音乐可视化、表演视频、音乐会视觉、专辑视觉、歌曲视频、音乐剪辑、节拍下降视觉、节奏同步，或任何音乐驱动的视频请求。即使是\"为我的歌曲制作视觉\"或\"这首曲目的视频\"。",
+ "domains": [
+  "music",
+  "math",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.077Z"
+}

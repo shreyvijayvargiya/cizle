@@ -1,0 +1,15 @@
+{
+ "title": "django-verification",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/django-verification/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/django-verification/SKILL.md",
+ "license": "MIT",
+ "description": "Verification loop for Django projects: migrations, linting, tests with coverage, security scans, and deployment readiness checks before release or PR.",
+ "domains": [
+  "data",
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.666Z"
+}

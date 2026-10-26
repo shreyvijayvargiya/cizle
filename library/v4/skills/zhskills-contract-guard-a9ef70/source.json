@@ -1,0 +1,12 @@
+{
+ "title": "contract-guard",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/contract-guard/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/contract-guard/SKILL.md",
+ "license": "MIT",
+ "description": "把一份合同文本（或条款摘要）按审查方立场（我方是甲方/乙方/中立）做结构化审查——条款四分类（红旗/警告/保护/缺失保护）、A+~F 公平评分、中国法强制规定逐项对照、可直接用的修改建议。当用户需要合同签署前自查、采购/销售/劳动合同/合作协议审查、条款谈判准备，或说\"帮我看看这份合同有没有坑/审查一下合同/这个条款能不能签\"时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

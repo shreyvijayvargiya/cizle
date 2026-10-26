@@ -1,0 +1,14 @@
+{
+ "title": "deep-research",
+ "source": "K07",
+ "lang": "en",
+ "repo": "sanjay3290/ai-skills",
+ "url": "https://github.com/sanjay3290/blob/ai-skills/main/skills/deep-research/SKILL.md",
+ "license": null,
+ "description": "Execute autonomous multi-step research using Google Gemini Deep Research Agent. Use for: market analysis, competitive landscaping, literature reviews, technical research, due diligence. Takes 2-10 minutes but produces detailed, cited reports. Costs $2-5 per task.",
+ "domains": [
+  "finance",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.260Z"
+}

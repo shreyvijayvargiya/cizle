@@ -1,0 +1,14 @@
+{
+ "title": "ai-video-editing-lite",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "fuuuuuuma/ai-video-editing-lite",
+ "path": "plugins/ai-video-editing-lite/skills/ai-video-editing-lite/SKILL.md",
+ "url": "https://github.com/fuuuuuuma/ai-video-editing-lite/blob/HEAD/plugins/ai-video-editing-lite/skills/ai-video-editing-lite/SKILL.md",
+ "license": "MIT",
+ "description": "自分の YouTube チャンネルの編集の作風（字幕・強調テロップ・カットの詰め方）を、チャンネルの URL・Premiere の prproj・完成した MP4 から学んで覚え、撮影素材からカット・字幕・強調入りの MP4 を作る。できた動画は確認サイト MIRU で見てもらい、修正指示を取り込んで直す。「このチャンネルの編集を覚えて」「この動画を編集して」「前に覚えた作風で編集して」「MIRU の修正を反映して」で使う。Premiere は開かない。",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.797Z"
+}

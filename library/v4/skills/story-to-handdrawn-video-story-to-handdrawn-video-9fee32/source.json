@@ -1,0 +1,13 @@
+{
+ "title": "story-to-handdrawn-video",
+ "source": "K07",
+ "lang": "en",
+ "repo": "gnipbao/story-to-handdrawn-video",
+ "url": "https://github.com/gnipbao/blob/story-to-handdrawn-video/main/skill-package/story-to-handdrawn-video/SKILL.md",
+ "license": null,
+ "description": "Convert Chinese stories or ordered local images into silent hand-drawn Remotion videos, with generated hand lettering, 327 built-in assets (297 style recipes and 30 theme palettes), a curated 30-style menu, and automatic reference-image style analysis with optional private reuse. Use when users ask to generate, import, restyle, preview or render hand-drawn story videos; browse or classify styles; imitate the visual grammar of a reference image; or save a reference-derived style. Preserve the approved colored-pencil diary default when no other style is requested.",
+ "domains": [
+  "music"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.258Z"
+}

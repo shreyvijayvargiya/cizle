@@ -1,0 +1,15 @@
+{
+ "title": "xiaohongshu-conversion-path",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-conversion-path/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-conversion-path/SKILL.md",
+ "license": "MIT",
+ "description": "把账号定位、产品/服务、客单价、用户顾虑与当前内容串成一条\"从刷到你到愿意进一步了解\"的成交路径：6 段路径拆解、4 类内容分工（每类 3 个选题）、主页承接、置顶内容、评论区动作与私信筛选问题。当用户想做转化路径设计、销售漏斗梳理、私域承接、落地页/销售邮件序列，或问\"怎么让人从看内容到私信/咨询/体验\"时使用。",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "configure-ecc",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/configure-ecc/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/configure-ecc/SKILL.md",
+ "license": "MIT",
+ "description": "Everything Claude Code 的交互式安装程序 —— 引导用户将技能（Skills）和规则（Rules）安装到用户级或项目级目录，验证路径，并在需要时优化已安装的文件。",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.665Z"
+}

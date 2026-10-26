@@ -126,8 +126,17 @@ async function harnessOne(spec, ctx) {
 		emit({ type: "stage", id: spec.id, stage: `round ${round}: review` });
 		const times = SHOT_FRACTIONS.map((f) => f * spec.duration_sec);
 		const dataUrl = `data:image/jpeg;base64,${fs.readFileSync(sheet).toString("base64")}`;
-		const r = await criticChat(criticMessages(spec, current.prompt, { sheetDataUrl: dataUrl, times, det }), { temperature: 0.2, maxTokens: 2500, jsonMode: true, timeoutMs: 240_000 });
-		const crit = applyChecks(normalizeCritique(extractJson(r.content)), det);
+		// The reviewer sometimes returns malformed JSON; ask again (up to 3 tries) instead of losing the rounds already paid for.
+		let crit = null, reviewError = null;
+		for (let t = 0; t < 3 && !crit; t++) {
+			const r = await criticChat(criticMessages(spec, current.prompt, { sheetDataUrl: dataUrl, times, det }), { temperature: t ? 0 : 0.2, maxTokens: 3500, jsonMode: true, timeoutMs: 240_000 });
+			try { crit = applyChecks(normalizeCritique(extractJson(r.content)), det); } catch (e) { reviewError = e; log(`review returned invalid JSON, retrying (${t + 1}/3)`); }
+		}
+		if (!crit) {
+			if (!best) throw reviewError;
+			warnings.push(`round ${round}: the review could not be parsed, kept the best earlier round`);
+			break;
+		}
 		await fsp.writeFile(path.join(rdir, "prompt.json"), JSON.stringify(current, null, 1));
 		await fsp.writeFile(path.join(rdir, "scene.html"), html);
 		await fsp.writeFile(path.join(rdir, "critique.json"), JSON.stringify({ ...crit, det }, null, 1));

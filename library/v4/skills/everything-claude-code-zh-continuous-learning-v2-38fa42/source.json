@@ -1,0 +1,16 @@
+{
+ "title": "continuous-learning-v2",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/continuous-learning-v2/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/continuous-learning-v2/SKILL.md",
+ "license": "MIT",
+ "description": "Instinct-based learning system that observes sessions via hooks, creates atomic instincts with confidence scoring, and evolves them into skills/commands/agents.",
+ "domains": [
+  "education",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.696Z"
+}

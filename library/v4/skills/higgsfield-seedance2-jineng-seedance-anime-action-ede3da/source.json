@@ -1,0 +1,16 @@
+{
+ "title": "seedance-anime-action",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/08-anime-action/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/08-anime-action/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成动漫风格视频提示。在用户想要动漫、日本动画风格、少年漫画动作、青年漫画戏剧、魔法少女、机甲、异世界、日常生活动漫或任何日本动画美学时使用。触发条件：动漫、日本动画、少年漫画、青年漫画、漫画风格视频、动漫格斗、动漫片头、动漫片尾、樱花、迷你人物、可爱风格、机甲、异世界，或任何动漫风格请求。即使是\"让它看起来像动漫\"或\"日本卡通风格\"。",
+ "domains": [
+  "entertainment",
+  "science",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.073Z"
+}

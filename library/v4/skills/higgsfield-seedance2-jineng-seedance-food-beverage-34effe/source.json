@@ -1,0 +1,16 @@
+{
+ "title": "seedance-food-beverage",
+ "source": "K05",
+ "lang": "en",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/14-food-beverage/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/14-food-beverage/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成食品和饮料视频提示。在用户想要食品视频、食谱内容、餐厅宣传、饮料广告、烹饪视频、食品 ASMR、菜单展示、食品配送广告、咖啡馆内容或任何食品/饮料视频时使用。在以下情况下触发：食品视频、食谱、烹饪、餐厅、饮料、食品广告、食品 ASMR、菜单、咖啡馆、鸡尾酒、食品摄影视频、开胃吸引力、食品造型、美食直播或任何食品/饮料视频请求。即使是\"让我的食物看起来美味\"或\"餐厅宣传视频\"也适用。",
+ "domains": [
+  "product",
+  "science",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.094Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "scholar-wendao-skill",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "tizzy916/scholar-wendao-skill",
+ "url": "https://github.com/tizzy916/scholar-wendao-skill/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "|",
+ "domains": [
+  "data",
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.257Z"
+}

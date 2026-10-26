@@ -1,0 +1,11 @@
+{
+ "title": "web-artifacts-builder",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/skills",
+ "url": "https://github.com/anthropics/blob/skills/main/skills/web-artifacts-builder/SKILL.md",
+ "license": null,
+ "description": "Suite of tools for creating elaborate, multi-component claude.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

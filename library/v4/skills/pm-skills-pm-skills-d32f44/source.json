@@ -1,0 +1,14 @@
+{
+ "title": "pm-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "phuryn/pm-skills",
+ "url": "https://github.com/phuryn/pm-skills/blob/HEAD/pm-execution/skills/wwas/SKILL.md",
+ "license": null,
+ "description": "Create product backlog items in Why-What-Acceptance format — independent, valuable, testable items with strategic context. Use when writing structured backlog items, breaking features into work items, or using the WWA format.",
+ "domains": [
+  "finance",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.251Z"
+}

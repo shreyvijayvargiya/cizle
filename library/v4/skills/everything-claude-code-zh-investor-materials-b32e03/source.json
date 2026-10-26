@@ -1,0 +1,14 @@
+{
+ "title": "investor-materials",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": ".cursor/skills/investor-materials/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/.cursor/skills/investor-materials/SKILL.md",
+ "license": "MIT",
+ "description": "创建并更新融资演示文稿（pitch decks）、单页简介（one-pagers）、投资备忘录（investor memos）、加速器申请、财务模型和募资材料。适用于用户需要面向投资者的文档、预测、资金用途表、里程碑计划，或需要保持多个募资资产内部一致性的场景。",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.665Z"
+}

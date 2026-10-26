@@ -1,0 +1,16 @@
+{
+ "title": "improve-codebase-architecture",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/improve-codebase-architecture/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/improve-codebase-architecture/SKILL.md",
+ "license": "MIT",
+ "description": "扫描代码库中的深化机会，生成可视化 HTML 报告，然后围绕你选中的候选项继续追问。",
+ "domains": [
+  "data",
+  "history",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.747Z"
+}

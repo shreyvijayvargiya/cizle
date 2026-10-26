@@ -1,0 +1,15 @@
+{
+ "title": "springboot-tdd",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/springboot-tdd/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/springboot-tdd/SKILL.md",
+ "license": "MIT",
+ "description": "使用JUnit 5、Mockito、MockMvc、Testcontainers和JaCoCo进行Spring Boot的测试驱动开发。适用于添加功能、修复错误或重构时。",
+ "domains": [
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.695Z"
+}

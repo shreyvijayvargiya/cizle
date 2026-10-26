@@ -1,0 +1,15 @@
+{
+ "title": "great_cto",
+ "source": "K07",
+ "lang": "en",
+ "repo": "avelikiy/great_cto",
+ "url": "https://github.com/avelikiy/great_cto/blob/HEAD/skills/great_cto/SKILL.md",
+ "license": null,
+ "description": "Use when the CTO describes a feature, task, or project goal. Orchestrates the full SDLC pipeline automatically based on project type.",
+ "domains": [
+  "product",
+  "scifi",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

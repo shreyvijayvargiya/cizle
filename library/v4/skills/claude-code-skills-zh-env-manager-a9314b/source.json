@@ -1,0 +1,14 @@
+{
+ "title": "env-manager",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/env-manager/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/env-manager/SKILL.md",
+ "license": "MIT",
+ "description": "环境变量管理器：扫描、校验、同步 .env 文件，生成安全配置模板",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

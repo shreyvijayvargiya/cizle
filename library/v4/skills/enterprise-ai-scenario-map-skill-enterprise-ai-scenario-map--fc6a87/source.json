@@ -1,0 +1,15 @@
+{
+ "title": "Enterprise-ai-scenario-map-skill",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "MetaInFLow/Enterprise-ai-scenario-map-skill",
+ "url": "https://github.com/MetaInFLow/blob/Enterprise-ai-scenario-map-skill/HEAD/SKILL.md",
+ "license": null,
+ "description": "企业AI场景地图生成报告工具。通过 web-search 深度调研企业信息，按照V2.1标准模板生成结构化AI应用场景地图报告，包含企业画像、业务诊断、行业实践、AI场景全量表、实施路径等完整内容。",
+ "domains": [
+  "data",
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.255Z"
+}

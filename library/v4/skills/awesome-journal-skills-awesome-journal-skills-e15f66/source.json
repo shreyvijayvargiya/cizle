@@ -1,0 +1,15 @@
+{
+ "title": "Awesome-Journal-Skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "brycewang-stanford/Awesome-Journal-Skills",
+ "url": "https://github.com/brycewang-stanford/Awesome-Journal-Skills/blob/HEAD/Cell-Skills/skills/cell-fit/SKILL.md",
+ "license": null,
+ "description": "Use when triaging a study before any writing — stress-tests whether it clears Cell's bar (a complete, mechanistic, hypothesis-driven story with multiple converging lines of evidence) or belongs at a sibling. Use this first to decide Cell vs Molecular Cell vs Cell Reports vs Cell Reports Medicine before investing in framing or figures.",
+ "domains": [
+  "science",
+  "engineering",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

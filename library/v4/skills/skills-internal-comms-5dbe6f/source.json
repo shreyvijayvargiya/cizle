@@ -1,0 +1,11 @@
+{
+ "title": "internal-comms",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/skills",
+ "url": "https://github.com/anthropics/blob/skills/main/skills/internal-comms/SKILL.md",
+ "license": null,
+ "description": "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.251Z"
+}

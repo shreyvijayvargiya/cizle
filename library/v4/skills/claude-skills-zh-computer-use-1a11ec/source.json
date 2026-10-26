@@ -1,0 +1,12 @@
+{
+ "title": "computer-use",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/docs-office/computer-use/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/docs-office/computer-use/SKILL.md",
+ "license": "MIT",
+ "description": "在 ChatGPT 里操控 Windows 应用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.727Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "academic-polishing",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/academic-polishing/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/academic-polishing/SKILL.md",
+ "license": "MIT",
+ "description": "把论文、技术报告、方案、制度、申报材料等专业文稿按「类型×章节×语言×目标场合」四轴路由做结构化润色——先内容后语言：第一轮只改结构与证据表达（主张—证据对应、术语一致性、逻辑衔接），第二轮才动语言细节；并逐条做证据边界检查（事实/推断/建议不越界）。当用户要求论文/课题润色、技术方案打磨、制度文件规范、申报材料自查、对外技术文档定稿时使用。",
+ "domains": [
+  "data",
+  "nature",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

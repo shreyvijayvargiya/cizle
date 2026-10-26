@@ -1,0 +1,12 @@
+{
+ "title": "golang-testing",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/golang-testing/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/golang-testing/SKILL.md",
+ "license": "MIT",
+ "description": "Go testing patterns including table-driven tests, subtests, benchmarks, fuzzing, and test coverage. Follows TDD methodology with idiomatic Go practices.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.696Z"
+}

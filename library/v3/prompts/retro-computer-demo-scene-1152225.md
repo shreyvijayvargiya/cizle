@@ -1,0 +1,12 @@
+# Retro Computer Demo Scene
+
+By @cromwellian · Opus 5.5 · 像素与角色
+Language: ? · Domains: music, entertainment · Source: V01
+
+Original post: https://x.com/cromwellian/status/2103028027861152225
+
+```
+I'm Upping My P(doom) C64 Demoscene version. I asked Opus 5.5 to make SID/VIC version in the style of C64 demos using rasterbars, scrollers, sprites, FLD, etc.  It wrote a VIC and SID emulator using Javascript, and proceeding to code up the demo using the lyrics. It failed fetching the music video, so the SID music doesn't really correspond, but not bad for a first try.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

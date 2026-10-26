@@ -1,0 +1,12 @@
+{
+ "title": "statusline",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/dev-env/statusline/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/dev-env/statusline/SKILL.md",
+ "license": "MIT",
+ "description": "状态栏配置。配置 Codex 或兼容 CLI 的状态栏。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.727Z"
+}

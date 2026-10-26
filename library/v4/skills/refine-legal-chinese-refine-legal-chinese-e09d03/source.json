@@ -1,0 +1,15 @@
+{
+ "title": "refine-legal-chinese",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "katejianglaw/refine-legal-chinese",
+ "url": "https://github.com/katejianglaw/refine-legal-chinese/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "面向中国大陆多领域及交叉领域律师的法律中文表达工作台。用于润色、改写、严格审校或通俗转译法律文本，也用于单独进行结构诊断和多份关联文书一致性核对；用户第一次使用、不确定如何开始或明确要求引导时，可先通过简短问答确定工作产品、沟通关系和处理动作。按文本要完成的工作识别记录、请求、回应、分析建议、约定、决定或解释传播型工作产品，再结合律师、客户、对方、法院仲裁机构、监管机关或公众等沟通关系处理合同、函件、诉讼仲裁材料、法律意见、调查记录、客户沟通和普法文本。保持原有事实、立场、证据状态、法律效果和不确定性；不提供法律意见，不替代现行法研究、事实核查或专业判断。",
+ "domains": [
+  "product",
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.257Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "proposal-writer",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/proposal-writer/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/proposal-writer/SKILL.md",
+ "license": "MIT",
+ "description": "把\"想做的项目/课题/活动\"按「证据表→论证图→章节契约→四层QA」的写作状态机，整理成一份完整的中文立项报告草稿。当用户需要写项目立项申请、课题开题报告、活动方案申报、预算申请材料、内部创新提案，或说\"帮我写个立项报告 / 项目申报书 / 开题报告 / 立项申请\"时使用。",
+ "domains": [
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.763Z"
+}

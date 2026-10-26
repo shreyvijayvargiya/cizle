@@ -1,0 +1,15 @@
+{
+ "title": "investor-outreach",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/investor-outreach/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/investor-outreach/SKILL.md",
+ "license": "MIT",
+ "description": "草拟冷邮件、热情介绍简介、跟进邮件、更新邮件和投资者沟通以筹集资金。当用户需要向天使投资人、风险投资公司、战略投资者或加速器进行推广，并需要简洁、个性化的面向投资者的消息时使用。",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.689Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "prompt-designer",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/prompt-designer/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/prompt-designer/SKILL.md",
+ "license": "MIT",
+ "description": "当用户说\"我想让 AI 帮我写东西但不知道怎么跟它说\"\"帮我写个提示词\"\"这个提示词效果不好帮我改\"时使用——把一个模糊的愿望（写工作邮件/会议纪要、让 AI 审合同摘要、做周报数据整理、给小红书文案起标题等）变成一份复制粘贴就能用的结构化提示词。",
+ "domains": [
+  "data",
+  "scifi",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

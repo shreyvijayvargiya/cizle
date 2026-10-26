@@ -37,6 +37,21 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    // Public counters per prompt or skill (document id "p-<prompt id>" or "s-<skill slug>"): likes, bookmarks, views. Anyone can read.
+    // A client may only move a counter by ONE per write (an increment of +1 or -1, never below zero) and may store nothing else.
+    // Likes and bookmarks need a signed-in member; a view does not.
+    function oldCount(f) { return resource == null ? 0 : resource.data.get(f, 0); }
+    function newCount(f) { return request.resource.data.get(f, 0); }
+    function stepOk(f) { return newCount(f) is int && newCount(f) >= 0 && math.abs(newCount(f) - oldCount(f)) <= 1; }
+    function memberOk(f) { return newCount(f) == oldCount(f) || signedIn(); }
+    match /stats/{id} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasOnly(['likes', 'bookmarks', 'views', 'updatedAt'])
+        && stepOk('likes') && stepOk('bookmarks') && stepOk('views')
+        && memberOk('likes') && memberOk('bookmarks');
+      allow delete: if false;
+    }
+
     // Webhook bookkeeping: never visible to clients.
     match /webhooks/{id} {
       allow read, write: if false;

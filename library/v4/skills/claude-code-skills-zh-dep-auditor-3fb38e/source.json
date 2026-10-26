@@ -1,0 +1,16 @@
+{
+ "title": "dep-auditor",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/dep-auditor/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/dep-auditor/SKILL.md",
+ "license": "MIT",
+ "description": "审计 Node.js、Python、Go、Rust、JVM、Ruby 项目的依赖漏洞、版本健康度与许可证事实；当用户要求检查 package.json、lockfile、requirements、go.mod、Cargo.toml、pom.xml、Gemfile.lock，或生成不改依赖的中文审计报告时使用",
+ "domains": [
+  "health",
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.783Z"
+}

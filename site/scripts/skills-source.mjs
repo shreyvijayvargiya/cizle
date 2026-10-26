@@ -95,7 +95,8 @@ export function loadSkills() {
 		const platform = isFilm ? "Any" : platformOf(fm);
 		const tags = [...new Set([entry.category.toLowerCase(), ...(fm.founders || fm.for || []).map((f) => FOUNDER[f]).filter(Boolean).slice(0, 4), ...(fm.uses || []).map(String).slice(0, 3), platform !== "Any" ? platform.toLowerCase() : null].filter(Boolean))];
 		const bestFor = (fm.for || []).map((f) => FOUNDER[f]).filter(Boolean);
-		const demo = VIDEO_DEMOS[entry.source] || null;
+		const generated = fs.existsSync(path.join(SITE_DIR, "public", "videos", "premium", `${entry.source}.mp4`)); // demos made by `npm run premium` (see server/premium/publish-site.mjs)
+		const demo = VIDEO_DEMOS[entry.source] || (generated ? { video: `/videos/premium/${entry.source}.mp4`, poster: `/videos/premium/${entry.source}.jpg` } : null);
 		const skill = {
 			slug,
 			source: `${entry.dir}/${entry.source}`,

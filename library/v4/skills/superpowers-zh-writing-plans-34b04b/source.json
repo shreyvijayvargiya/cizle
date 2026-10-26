@@ -1,0 +1,16 @@
+{
+ "title": "writing-plans",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/writing-plans/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/writing-plans/SKILL.md",
+ "license": "MIT",
+ "description": "当你有规格说明或需求用于多步骤任务时使用，在动手写代码之前",
+ "domains": [
+  "product",
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.783Z"
+}

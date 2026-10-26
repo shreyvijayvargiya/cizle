@@ -1,0 +1,15 @@
+{
+ "title": "backend-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/backend-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/backend-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "后端架构模式、API设计、数据库优化以及适用于Node.js、Express和Next.js API路由的服务器端最佳实践。",
+ "domains": [
+  "finance",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.674Z"
+}

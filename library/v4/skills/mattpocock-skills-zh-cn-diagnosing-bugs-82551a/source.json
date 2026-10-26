@@ -1,0 +1,16 @@
+{
+ "title": "diagnosing-bugs",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/diagnosing-bugs/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/diagnosing-bugs/SKILL.md",
+ "license": "MIT",
+ "description": "面向棘手缺陷和性能回退的诊断循环。适用于用户说 “diagnose” / “debug this”，或报告某些东西 broken、throwing、failing、slow 时。",
+ "domains": [
+  "agriculture",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.747Z"
+}

@@ -6,7 +6,8 @@
   "Social proof",
   "Ads",
   "Engineering",
-  "Film styles"
+  "Film styles",
+  "Product and SaaS motion"
  ],
  "skills": [
   {
@@ -399,6 +400,41 @@
    "source": "dataviz",
    "tier": "premium",
    "category": "Film styles",
+   "featured": false
+  },
+  {
+   "dir": "motion",
+   "source": "phone-unboxing-reveal",
+   "tier": "free",
+   "category": "Product and SaaS motion",
+   "featured": false
+  },
+  {
+   "dir": "motion",
+   "source": "notification-cascade",
+   "tier": "free",
+   "category": "Product and SaaS motion",
+   "featured": false
+  },
+  {
+   "dir": "motion",
+   "source": "command-palette-demo",
+   "tier": "free",
+   "category": "Product and SaaS motion",
+   "featured": false
+  },
+  {
+   "dir": "motion",
+   "source": "before-and-after-wipe",
+   "tier": "free",
+   "category": "Product and SaaS motion",
+   "featured": false
+  },
+  {
+   "dir": "motion",
+   "source": "metrics-counter-launch",
+   "tier": "free",
+   "category": "Product and SaaS motion",
    "featured": false
   }
  ]

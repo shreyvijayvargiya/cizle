@@ -1,0 +1,14 @@
+{
+ "title": "excel-live-control",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/docs-office/excel-live-control/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/docs-office/excel-live-control/SKILL.md",
+ "license": "MIT",
+ "description": "实时操控 Excel 应用。通过 ChatGPT 插件直接操作已打开的 Excel 工作簿。",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.732Z"
+}

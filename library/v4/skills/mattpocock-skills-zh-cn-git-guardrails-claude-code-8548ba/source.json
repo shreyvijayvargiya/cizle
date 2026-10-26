@@ -1,0 +1,12 @@
+{
+ "title": "git-guardrails-claude-code",
+ "source": "K04",
+ "lang": "en",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/misc/git-guardrails-claude-code/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/misc/git-guardrails-claude-code/SKILL.md",
+ "license": "MIT",
+ "description": "设置 Claude Code hooks，在危险 git commands（push、reset --hard、clean、branch -D 等）执行前阻止它们。适用于用户想防止破坏性 git 操作、添加 git safety hooks，或在 Claude Code 中阻止 git push/reset 时。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

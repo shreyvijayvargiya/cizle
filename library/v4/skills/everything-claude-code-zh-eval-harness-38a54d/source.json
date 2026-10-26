@@ -1,0 +1,14 @@
+{
+ "title": "eval-harness",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/eval-harness/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/eval-harness/SKILL.md",
+ "license": "MIT",
+ "description": "Formal evaluation framework for Claude Code sessions implementing eval-driven development (EDD) principles",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.697Z"
+}

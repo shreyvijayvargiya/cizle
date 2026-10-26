@@ -1,0 +1,15 @@
+{
+ "title": "skills_collection",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "wwwzhouhui/skills_collection",
+ "url": "https://github.com/wwwzhouhui/skills_collection/blob/HEAD/voice-to-video/SKILL.md",
+ "license": null,
+ "description": "口播文字稿一键成片：TTS 配音（edge-tts，带逐句/逐词时间戳）→ HTML 动画合成（场景由时间戳驱动，画面跟着声音走）→ Playwright 逐帧确定性渲染合成 MP4。Use whenever the user wants to 把口播稿/文字稿/文案/文章做成视频、配音视频、解说视频、知识类短视频、口播视频、文字转视频、TTS video、voice-over video、画音同步、字幕驱动画面，or mentions HyperFrames 式的 HTML 渲视频流程 — even if they just say \"帮我做个视频\" 并附了一段稿子.",
+ "domains": [
+  "data",
+  "engineering",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.258Z"
+}

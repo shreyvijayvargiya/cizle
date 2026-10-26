@@ -1,0 +1,14 @@
+{
+ "title": "eslint-fix",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/eslint-fix/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/eslint-fix/SKILL.md",
+ "license": "MIT",
+ "description": "安全诊断并修复 ESLint error、warning 和配置兼容问题。用于用户要求运行 lint、解释 ESLint 报错、限定范围自动修复或迁移 ESLint 配置时；优先使用项目锁定的包管理器与版本，先预检再修改，不自动下载最新版或批量改写无关源码。",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "springboot-verification",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/springboot-verification/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/springboot-verification/SKILL.md",
+ "license": "MIT",
+ "description": "Spring Boot 项目验证循环：包含构建、静态分析、带覆盖率的测试、安全扫描，以及发布或 PR 前的差异审查。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.716Z"
+}

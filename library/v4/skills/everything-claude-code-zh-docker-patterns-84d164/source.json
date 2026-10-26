@@ -1,0 +1,14 @@
+{
+ "title": "docker-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/docker-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/docker-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "用于本地开发、容器安全、网络、卷策略和多服务编排的 Docker 与 Docker Compose 模式。",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.710Z"
+}

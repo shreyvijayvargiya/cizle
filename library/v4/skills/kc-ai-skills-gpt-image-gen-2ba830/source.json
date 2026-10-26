@@ -1,0 +1,15 @@
+{
+ "title": "gpt-image-gen",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "gpt-image-gen/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/gpt-image-gen/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user asks to generate OR edit an image via GPT/Codex (e.g. 「叫 gpt 生圖」「幫我用 gpt 生圖」「gpt 畫一個 X」「幫我去背」「把這張圖的背景去掉」). The skill drafts a Chinese + English prompt pair and waits for explicit approval. After approval it uses the host-native executor: Codex calls its built-in image_gen tool directly, while Claude Code keeps the Codex CLI background workflow. Supports text-to-image, img2img, and precise EDIT mode with preservation constraints and verification where local artifacts are available.",
+ "domains": [
+  "product",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.770Z"
+}

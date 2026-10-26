@@ -1,0 +1,12 @@
+{
+ "title": "liquid-glass-design",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/liquid-glass-design/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/liquid-glass-design/SKILL.md",
+ "license": "MIT",
+ "description": "iOS 26 灵动玻璃（Liquid Glass）设计系统 — 适用于 SwiftUI、UIKit 和 WidgetKit 的具有模糊、反射和交互式变形效果的动态玻璃材质。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.715Z"
+}

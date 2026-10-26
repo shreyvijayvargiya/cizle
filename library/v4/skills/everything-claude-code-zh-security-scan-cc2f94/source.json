@@ -1,0 +1,15 @@
+{
+ "title": "security-scan",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/security-scan/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/security-scan/SKILL.md",
+ "license": "MIT",
+ "description": "使用 AgentShield 扫描 Claude Code 配置（.claude/ 目录）中的安全漏洞、配置错误和注入风险。检查 CLAUDE.md、settings.json、MCP 服务端、钩子（Hooks）和智能体（Agents）定义。",
+ "domains": [
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.674Z"
+}

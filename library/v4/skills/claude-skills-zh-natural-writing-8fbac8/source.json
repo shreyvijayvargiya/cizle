@@ -1,0 +1,16 @@
+{
+ "title": "natural-writing",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "codex-skills-pack/skills/natural-writing/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/codex-skills-pack/skills/natural-writing/SKILL.md",
+ "license": "MIT",
+ "description": "通用中文写作总控。起草或润色各类中文文章（兼顾英文），保留事实、立场和作者声音，弱化套话与机械表达。",
+ "domains": [
+  "nature",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

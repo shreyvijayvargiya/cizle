@@ -1,0 +1,13 @@
+{
+ "title": "oh-my-mermaid",
+ "source": "K07",
+ "lang": "en",
+ "repo": "oh-my-mermaid/oh-my-mermaid",
+ "url": "https://github.com/oh-my-mermaid/oh-my-mermaid/blob/HEAD/skills/omm-push/SKILL.md",
+ "license": null,
+ "description": "Push architecture docs to oh-my-mermaid cloud. Handles login, link, and push workflow with error guidance. Use when the user says \"omm push\", \"push to cloud\", \"deploy architecture\", or \"share architecture\".",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

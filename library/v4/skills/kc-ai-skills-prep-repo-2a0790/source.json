@@ -1,0 +1,16 @@
+{
+ "title": "prep-repo",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "prep-repo/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/prep-repo/SKILL.md",
+ "license": "MIT",
+ "description": "Prepare an existing project for GitHub or public release with scope-appropriate checks for sensitive data, documentation, installation, tests and release artifacts. Separate release blockers from polish, preserve existing authorization, and verify the published result only when publishing is requested. Not for designing new features or publishing private operational material.",
+ "domains": [
+  "engineering",
+  "health",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.770Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "gongzhonghao-deaiwen",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "gongzhonghao-deaiwen/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/gongzhonghao-deaiwen/SKILL.md",
+ "license": null,
+ "description": "将 AI 生成或带明显 AI 腔的中文文章改写为自然的人话风格公众号文章，消除套话、排比堆砌和空洞表达。当用户提到\"去AI味\"、\"改得像人写的\"、\"公众号润色\"，或要求改写 AI 生成稿件的开头结尾与段落时使用。",
+ "domains": [
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

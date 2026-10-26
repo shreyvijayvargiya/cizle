@@ -1,0 +1,15 @@
+{
+ "title": "systematic-debugging",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/systematic-debugging/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/systematic-debugging/SKILL.md",
+ "license": "MIT",
+ "description": "遇到任何 bug、测试失败或异常行为时使用，在提出修复方案之前执行",
+ "domains": [
+  "data",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

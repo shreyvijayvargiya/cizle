@@ -1,0 +1,14 @@
+{
+ "title": "ai-video-creator",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "Frank-oll/ai-video-creator",
+ "url": "https://github.com/Frank-oll/ai-video-creator/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "端到端制作竖屏 AI 妙招短视频(默认 3 镜 × 5 秒 = 15 秒,9:16)。题材通用:三农园艺、阳台种菜、美食、家居清洁收纳、宠物、育儿等都行,开场先问用户选题方向,不预设。工作流:方向确认 → 热门检索/对标视频拆解 → 双锚定(视觉一致 + 叙事承接)→ 全中文分镜 prompt → 一致性生图(火山 Seedream)→ 图生视频 + 原生 AI 配音(火山 Seedance 1.5 pro)→ ffmpeg 自动拼接成片。单网关单 key(火山 ARK,ark- 开头)。支持标准/快速/托管三档确认模式,生成物 agent 先做多模态自检再交付。当用户说\"做 AI 视频\"\"做一条妙招短视频\"\"三农/阳台种菜/园艺短视频\"\"美食/清洁/收纳妙招视频\"\"复刻这种短视频\"\"按这个对标拍一条\",或上传带\"内容由 AI 生成\"标识的妙招类短视频做对标时,触发这个 skill。不要跟 script-washing(洗稿)、prompt-polish(单条提示词打磨)混用——这个是从选题到成片的端到端视频生产。",
+ "domains": [
+  "entertainment",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

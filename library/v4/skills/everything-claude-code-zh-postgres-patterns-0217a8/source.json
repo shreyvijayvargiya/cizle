@@ -1,0 +1,14 @@
+{
+ "title": "postgres-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/postgres-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/postgres-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "用于查询优化、模式设计、索引和安全性的PostgreSQL数据库模式。基于Supabase最佳实践。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.690Z"
+}

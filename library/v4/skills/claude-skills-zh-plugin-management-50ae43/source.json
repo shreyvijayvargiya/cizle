@@ -1,0 +1,15 @@
+{
+ "title": "plugin-management",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/ecosystem/plugin-management/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/ecosystem/plugin-management/SKILL.md",
+ "license": "MIT",
+ "description": "插件发现与管理。推荐相关插件、查看权限依赖、管理插件连接与卸载。",
+ "domains": [
+  "education",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.736Z"
+}

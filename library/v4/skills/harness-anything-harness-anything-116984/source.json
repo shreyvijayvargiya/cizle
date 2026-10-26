@@ -1,0 +1,15 @@
+{
+ "title": "harness-anything",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "yb2460/harness-anything",
+ "url": "https://github.com/yb2460/harness-anything/blob/HEAD/cli_anything/wps/skills/SKILL.md",
+ "license": null,
+ "description": "WPS Office CLI — JSON数据驱动PPT自动生成 + 命令行操控WPS文字/表格/演示文稿",
+ "domains": [
+  "data",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

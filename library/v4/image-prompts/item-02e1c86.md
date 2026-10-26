@@ -1,0 +1,14 @@
+# 女性未来冷调
+
+Community prompt · 高端女性杂志
+Language: zh · Domains: science, health, engineering · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/28261.jpg
+
+```
+以参考图中的成年女性作为人物一致性参考，保留她精致清冷的五官、深邃眼神、纤细脸型和长黑发特征。将人物置于一间充满未来感的诡异医疗实验室中：青蓝色冷光、白色软包墙面、多个悬挂的黑色显示器、检查床、金属器械架、输液瓶、滚轮座椅、电线与工业金属设备，空间干净却带有轻微失控感。
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

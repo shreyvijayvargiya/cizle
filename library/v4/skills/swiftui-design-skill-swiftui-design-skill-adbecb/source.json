@@ -1,0 +1,13 @@
+{
+ "title": "swiftui-design-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "wholiver/swiftui-design-skill",
+ "url": "https://github.com/wholiver/blob/swiftui-design-skill/HEAD/SKILL.md",
+ "license": null,
+ "description": "SwiftUI frontend visual design skill. Creates beautiful, distinctive iOS/macOS interfaces that avoid generic AI slop patterns. Covers design direction, layout systems, typography, color, spacing, brand integration, and design review. Use when designing new SwiftUI views, reviewing UI quality, creating iOS prototypes, choosing visual styles, improving app aesthetics, or when the UI looks generic or AI-generated.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "research",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/research/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/research/SKILL.md",
+ "license": "MIT",
+ "description": "对照高可信一手来源调研问题，并把发现保存为仓库中的 Markdown 文件。适用于用户想调研主题、收集文档或 API 事实，或把阅读工作委托给后台代理时。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

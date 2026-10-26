@@ -13,12 +13,20 @@ export const DEV_UNLOCK = import.meta.env.DEV && import.meta.env.VITE_DEV_UNLOCK
 
 export const env = (k: string) => ((import.meta.env as Record<string, string | undefined>)[k] || "").trim();
 
-export const NAV = [
+/** Premium (paid skills, film styles, pricing) is not on sale yet: everything shown is free, and the call to action is to sign in and subscribe. Flip "premiumLaunched" in content/site.json to bring it back. */
+export const PREMIUM = Boolean((site as { premiumLaunched?: boolean }).premiumLaunched);
+/** The blog is written but not ready: hidden from the nav, footer, search, sitemap and routes until "blogLive" is true in content/site.json. */
+export const BLOG = Boolean((site as { blogLive?: boolean }).blogLive);
+
+const ALL_NAV = [
 	{ to: "/", label: "Skills" },
 	{ to: "/gallery", label: "Gallery" },
+	{ to: "/creators", label: "Creators" },
 	{ to: "/films", label: "Films" },
 	{ to: "/connect", label: "MCP" },
 	{ to: "/pricing", label: "Pricing" },
 	{ to: "/docs", label: "Docs" },
+	{ to: "/learn", label: "Learn" },
 	{ to: "/blog", label: "Blog" },
 ] as const;
+export const NAV = ALL_NAV.filter((n) => (PREMIUM || (n.to !== "/pricing" && n.to !== "/films")) && (BLOG || n.to !== "/blog"));

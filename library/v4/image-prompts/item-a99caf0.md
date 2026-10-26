@@ -1,0 +1,14 @@
+# 电影感女性
+
+Community prompt · 动漫个人海报
+Language: en · Domains: entertainment · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/19488_out.png
+
+```
+Rebecca Chambers from Resident Evil, rendered in an Kubo tite-style thick paint illustration. Side-profile, half-body close-up with the character faithfully matching the original design, gaze directed to the left. Minimalist beige background with extensive negative space, composition weighted to the right. Clean, premium aesthetic with soft, cinematic lighting, rim light, high contrast but low saturation color palette, with subtle accent colors reflecting the character’s main tones. Geometric, faceted painting style with detailed skin texture and hair strands. Commercial poster layout with bold headline typography design. Vertical 9:16 format.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

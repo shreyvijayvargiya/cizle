@@ -1,0 +1,15 @@
+{
+ "title": "repo-scan",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "repo-scan/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/repo-scan/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to evaluate a GitHub repository before installing, running, forking, or depending on it. Takes a GitHub repo URL, cleans tracking params, shallow-clones to /tmp, inspects dependency/supply-chain risk, static vulnerability patterns, issue-reported security problems, maintainer health, and produces a risk summary. NOT for reviewing the user's own PR diff or for running untrusted code.",
+ "domains": [
+  "health",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.770Z"
+}

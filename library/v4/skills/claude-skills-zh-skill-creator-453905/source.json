@@ -1,0 +1,14 @@
+{
+ "title": "skill-creator",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/ecosystem/skill-creator/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/ecosystem/skill-creator/SKILL.md",
+ "license": "MIT",
+ "description": "创建与更新 skill。写作用域合理的 skill 指令及配套资源。",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.736Z"
+}

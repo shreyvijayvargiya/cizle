@@ -1,0 +1,15 @@
+{
+ "title": "db-migrator",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/db-migrator/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/db-migrator/SKILL.md",
+ "license": "MIT",
+ "description": "数据库迁移助手 - Schema 对比、迁移脚本生成",
+ "domains": [
+  "data",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.783Z"
+}

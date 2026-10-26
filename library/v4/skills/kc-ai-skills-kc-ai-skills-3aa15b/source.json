@@ -1,0 +1,14 @@
+{
+ "title": "kc_ai_skills",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/adr/SKILL.md",
+ "license": null,
+ "description": "Use when a durable technical decision was just made in conversation and should be recorded, or when user asks to write/record an ADR (開 ADR / 記個決策 / 這要不要 ADR). Runs a three-gate check FIRST and actively talks the user out of writing one when the decision doesn't qualify — then writes a lightweight (title + 1-3 sentences) ADR following the repo's own ADR conventions if any exist. Repo conventions always override this skill's defaults. NOT for requirement specs (spec / prd-create) or rewriting historical decisions; preserve their text, allow evidence-backed current-state notes, and record changed decisions in a new ADR.",
+ "domains": [
+  "history",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.256Z"
+}

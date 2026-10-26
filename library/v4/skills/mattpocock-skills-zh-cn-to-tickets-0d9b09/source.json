@@ -1,0 +1,14 @@
+{
+ "title": "to-tickets",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/to-tickets/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/to-tickets/SKILL.md",
+ "license": "MIT",
+ "description": "把 plan、spec 或当前对话拆成一组 tracer-bullet tickets，每个 ticket 声明 blocking edges，并发布到已配置的 tracker；本地用每 ticket 一个文件中的文本 edge，真实 tracker 用 native blocking links。",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

@@ -1,0 +1,13 @@
+{
+ "title": "test-driven-development",
+ "source": "K07",
+ "lang": "en",
+ "repo": "obra/superpowers",
+ "url": "https://github.com/obra/blob/superpowers/main/skills/test-driven-development/SKILL.md",
+ "license": null,
+ "description": "Use when implementing any feature or bugfix, before writing implementation code",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

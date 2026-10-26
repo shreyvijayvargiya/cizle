@@ -1,0 +1,14 @@
+{
+ "title": "cost-aware-llm-pipeline",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/cost-aware-llm-pipeline/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/cost-aware-llm-pipeline/SKILL.md",
+ "license": "MIT",
+ "description": "LLM API 使用成本优化模式 —— 基于任务复杂度的模型路由、预算跟踪、重试逻辑和提示缓存。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.681Z"
+}

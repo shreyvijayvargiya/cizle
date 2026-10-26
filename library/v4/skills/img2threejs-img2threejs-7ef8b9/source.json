@@ -1,0 +1,13 @@
+{
+ "title": "img2threejs",
+ "source": "K07",
+ "lang": "en",
+ "repo": "img2threejs/img2threejs",
+ "url": "https://github.com/img2threejs/blob/img2threejs/HEAD/SKILL.md",
+ "license": null,
+ "description": "Turn an object or character reference image into a quality-gated, animation-ready procedural Three.js model built in code. Use for image-to-3D reconstruction, detail-accurate object rebuilds, stylized/likeness-maximized human characters, sculpt specs, and staged code generation.",
+ "domains": [
+  "gaming"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.249Z"
+}

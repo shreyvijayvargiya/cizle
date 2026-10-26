@@ -1,0 +1,14 @@
+# 女性电影感胶片夜景梦幻氛围感
+
+Community prompt · 随手拍
+Language: en · Domains: entertainment · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2039758018888503694.jpg
+
+```
+{"subject":{"description":"Asian female in oversized blue hoodie and denim shorts on a balcony at night","mirror_rules":"","age":"early 20s","expression":{"eyes":{"look":"pensive","energy":"dreamy","direction":"away"},"mouth":{"position":"slightly parted","energy":"soft"},"overall":"alluring, melancholic"},"face":{"preserve_original":true,"makeup":"natural dewy style"},"hair":{"color":"black","style":"long wavy, middle part","effect":"windblown, damp"},"body":{"frame":"slender","waist":"slim","chest":"large","legs":"toned","skin":{"visible_areas":"deep cleavage, thighs, face","tone":"pale","texture":"dewy, warm and velvety","lighting_effect":"cool city glow, hard highlights"}},"pose":{"position":"standing","base":"leaning against doorframe","overall":"relaxed, candid"},"clothing":{"top":{"type":"distressed zip-up hoodie","color":"faded navy blue","details":"open front, no bra, graphic logo","effect":"oversized"},"bottom":{"type":"denim cut-offs","color":"light wash blue","details":"heavily frayed, ripped"}}},"accessories":{"prop":"none"},"photography":{"camera_style":"35mm film street photography","angle":"eye level","shot_type":"full body","aspect_ratio":"2:3","texture":"heavy film grain, dust scratches","lighting":"ambient city lights, cool street lamps","depth_of_field":"medium"},"background":{"setting":"urban balcony at night","wall_color":"glass and steel","elements":["city skyline bokeh","balcony railing","outdoor chairs","glass door"],"atmosphere":"cinematic, lonely","lighting":"dark, high contrast"},"the_vibe":{"energy":"still","mood":"pensive","aesthetic":"urban noir","authenticity":"high, candid film","intimacy":"magnetic","story":"midnight on the terrace","caption_energy":"city lights"},"constraints":{"must_keep":["open blue hoodie","deep cleavage","distressed denim shorts","city bokeh"],"avoid":["studio lighting","flat texture","smiling"]},"negative_prompt":["bright","daylight","studio","clean skin","smiling","bra","shirt under hoodie","neat hair"],"prompt":"35mm film street photography, heavy grain and dust. Young Asian woman, early 20s, long damp wavy black hair. Pale skin feeling dewy and warm to touch, visible on deep cleavage and toned thighs. Pensive dreamy gaze looking away, slightly parted lips, natural dewy makeup. Wearing oversized faded navy blue distressed zip-up hoodie, open front, no bra, paired with heavily frayed light wash denim cut-offs. Standing on an urban balcony at night, leaning against a glass doorframe. Background of city skyline bokeh, balcony railing, and cool ambient street lamps. Cinematic urban noir aesthetic, high contrast, soft cool highlights, magnetic and lonely mood."}
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

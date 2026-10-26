@@ -1,0 +1,16 @@
+{
+ "title": "ask-matt",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/ask-matt/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/ask-matt/SKILL.md",
+ "license": "MIT",
+ "description": "询问当前情境适合哪个技能或流程；它是本仓库所有 skills 的路由器。",
+ "domains": [
+  "product",
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.746Z"
+}

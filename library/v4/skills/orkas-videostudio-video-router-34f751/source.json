@@ -1,0 +1,15 @@
+{
+ "title": "video-router",
+ "source": "K07",
+ "lang": "en",
+ "repo": "Orkas-AI/Orkas-VideoStudio",
+ "url": "https://github.com/Orkas-AI/blob/Orkas-VideoStudio/main/packages/skills/video-router/SKILL.md",
+ "license": null,
+ "description": "Read this FIRST on any video-production request to pick and lock the line — generate (AI footage), compose (designed HTML), edit (cut real footage), or AUTO end-to-end. Trigger when classifying a brief and committing to a primary path; do NOT trigger for authoring compositions, generating assets, or rendering output (those have their own stage skills).",
+ "domains": [
+  "education",
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

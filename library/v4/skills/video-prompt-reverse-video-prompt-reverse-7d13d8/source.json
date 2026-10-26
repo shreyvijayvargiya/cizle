@@ -1,0 +1,16 @@
+{
+ "title": "video-prompt-reverse",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "luozhilzh/video-prompt-reverse",
+ "path": "SKILL.md",
+ "url": "https://github.com/luozhilzh/video-prompt-reverse/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "视频反推提示词工程师：把一段视频（或粗糙意图）反推出专业、可复现、电影感的 AI 视频提示词，运动设计为一等维度，叠惊艳增强层+视频专属负向+一致性锚点+迭代优化回路。覆盖可灵/即梦/海螺/通义万相/Sora/Runway/Veo3 等。触发：反推这段视频 / reverse this video / 写惊艳视频提示词 / 分镜脚本转提示词。",
+ "domains": [
+  "entertainment",
+  "engineering",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.115Z"
+}

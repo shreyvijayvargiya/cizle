@@ -1,0 +1,15 @@
+{
+ "title": "continuous-learning",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/continuous-learning/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/continuous-learning/SKILL.md",
+ "license": "MIT",
+ "description": "自动从 Claude Code 会话（Session）中提取可重用的模式（Pattern），并将其作为已学习的技能（Skill）保存以备将来使用。",
+ "domains": [
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.666Z"
+}

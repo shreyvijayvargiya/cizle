@@ -1,0 +1,15 @@
+{
+ "title": "imagegen",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/ecosystem/imagegen/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/ecosystem/imagegen/SKILL.md",
+ "license": "MIT",
+ "description": "图像生成与编辑。生成或改图：照片、插画、mockup、位图素材；矢量/SVG 走原生编辑。",
+ "domains": [
+  "gaming",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.734Z"
+}

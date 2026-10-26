@@ -1,0 +1,161 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>cizle - alpine dawn drone</title>
+<style>
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#05070b}
+canvas{position:absolute;left:0;top:0}
+.lb{position:absolute;left:0;right:0;background:#000;height:70px}
+.fade{position:absolute;inset:0;background:#05070b;opacity:1}
+.end{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff6e8;font-family:ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;opacity:0;text-shadow:0 4px 40px rgba(0,0,0,.45)}
+.brand{font-size:220px;font-weight:800;letter-spacing:-.05em;line-height:1}
+.desc{margin-top:34px;font-size:44px;font-weight:500;max-width:1300px;line-height:1.3;opacity:0}
+.url{margin-top:50px;font-size:34px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#ffcf8a;opacity:0}
+</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<div class="fade" id="fade"></div>
+<div class="lb" style="top:0"></div><div class="lb" style="bottom:0"></div>
+<div class="end" id="end"><div class="brand">cizle</div><div class="desc">Video prompts, image prompts and Claude Code skills, credited to their creators.</div><div class="url">cizle.dev</div></div>
+<script>
+const W=1920,H=1080,D=15;
+const gl=document.getElementById("c").getContext("webgl",{antialias:true,preserveDrawingBuffer:true});
+gl.getExtension("OES_element_index_uint");
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),seg=(t,a,b)=>clamp((t-a)/(b-a));
+const ease=v=>v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2,outC=v=>1-Math.pow(1-v,3),lerp=(a,b,v)=>a+(b-a)*v,sm=(a,b,v)=>{v=clamp((v-a)/(b-a));return v*v*(3-2*v);};
+/* ---------- terrain height (CPU), shared by mesh, normals and sun shadows ---------- */
+const hash=(x,z)=>{const s=Math.sin(x*127.1+z*311.7)*43758.5453;return s-Math.floor(s);};
+const vnoise=(x,z)=>{const ix=Math.floor(x),iz=Math.floor(z),fx=x-ix,fz=z-iz,u=fx*fx*(3-2*fx),v=fz*fz*(3-2*fz);
+ return lerp(lerp(hash(ix,iz),hash(ix+1,iz),u),lerp(hash(ix,iz+1),hash(ix+1,iz+1),u),v);};
+const LAKE=0.0;
+function height(x,z){
+ let r=0,a=1,f=.055,w=1;
+ for(let i=0;i<7;i++){const n=1-Math.abs(vnoise(x*f+i*17.3,z*f+i*5.1)*2-1);r+=a*n*n*w;w=clamp(n*1.6);a*=.5;f*=2.07;}
+ const rise=sm(14,78,z)*.9+.1*sm(-4,10,z);
+ let h=r*11.5*(.05+rise)+Math.abs(x)*.045*sm(-4,10,z);
+ const basin=Math.exp(-(Math.pow(x/13,2)+Math.pow((z-3)/12,2)));
+ h=lerp(h,-.85,clamp(basin*1.35));
+ return h;
+}
+/* mesh: x in [-34,34], z in [-6,86] */
+const NX=300,NZ=430,X0=-34,X1=34,Z0=-6,Z1=130;
+const sunDir=(()=>{const v=[-.62,.30,.72],l=Math.hypot(...v);return v.map(c=>c/l);})();
+const pos=new Float32Array(NX*NZ*3),nrm=new Float32Array(NX*NZ*3),shd=new Float32Array(NX*NZ);
+for(let j=0;j<NZ;j++)for(let i=0;i<NX;i++){
+ const x=lerp(X0,X1,i/(NX-1)),z=lerp(Z0,Z1,j/(NZ-1)),y=height(x,z),k=j*NX+i;
+ pos[k*3]=x;pos[k*3+1]=y;pos[k*3+2]=z;
+ const e=.25,dx=height(x+e,z)-height(x-e,z),dz=height(x,z+e)-height(x,z-e);
+ const n=[-dx,2*e,-dz],l=Math.hypot(...n);nrm[k*3]=n[0]/l;nrm[k*3+1]=n[1]/l;nrm[k*3+2]=n[2]/l;
+ /* cast shadow: march toward the sun over the height field */
+ let s=1;for(let m=1;m<=26;m++){const d=m*.95,hh=height(x+sunDir[0]*d,z+sunDir[2]*d),ry=y+.05+sunDir[1]*d;if(hh>ry){s=Math.max(0,1-(hh-ry)*1.6);break;}}
+ shd[k]=s;
+}
+const idx=new Uint32Array((NX-1)*(NZ-1)*6);let q=0;
+for(let j=0;j<NZ-1;j++)for(let i=0;i<NX-1;i++){const a=j*NX+i,b=a+1,c=a+NX,d=c+1;idx[q++]=a;idx[q++]=c;idx[q++]=b;idx[q++]=b;idx[q++]=c;idx[q++]=d;}
+/* ---------- shaders ---------- */
+const GLSLN=`
+float h21(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h21(i),h21(i+vec2(1,0)),f.x),mix(h21(i+vec2(0,1)),h21(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<4;i++){s+=a*vn(p);p=p*2.03+7.1;a*=.5;}return s;}
+vec3 skyCol(vec3 d,vec3 sd){
+ float h=clamp(d.y,0.,1.);
+ vec3 zen=vec3(.20,.34,.62),mid=vec3(.62,.62,.74),hor=vec3(1.,.74,.52);
+ vec3 c=mix(hor,mid,smoothstep(0.,.18,h));c=mix(c,zen,smoothstep(.12,.75,h));
+ float sun=max(dot(d,sd),0.);
+ c+=vec3(1.,.62,.32)*pow(sun,6.)*.55+vec3(1.,.82,.55)*pow(sun,64.)*.55+vec3(1.,.95,.8)*pow(sun,1500.)*2.5;
+ vec2 cp=d.xz/(d.y+.15)*1.3+vec2(u_t*.01,0.);
+ float cl=smoothstep(.45,.85,fbm(cp*vec2(1.,2.4)));
+ c=mix(c,mix(vec3(1.,.78,.62),vec3(1.),pow(sun,3.)*.6),cl*.55*smoothstep(0.,.1,h));
+ return c;
+}`;
+const VS=`attribute vec3 a_p;attribute vec3 a_n;attribute float a_s;uniform mat4 u_vp;varying vec3 v_p;varying vec3 v_n;varying float v_s;
+void main(){v_p=a_p;v_n=a_n;v_s=a_s;gl_Position=u_vp*vec4(a_p,1.);}`;
+const FS=`precision highp float;varying vec3 v_p;varying vec3 v_n;varying float v_s;uniform vec3 u_cam;uniform vec3 u_sun;uniform float u_t;
+${GLSLN}
+void main(){
+ vec3 V=v_p-u_cam;float dist=length(V);V/=dist;
+ vec2 q=v_p.xz;
+ float nz=fbm(q*1.7)*.5+fbm(q*7.)*.35+fbm(q*28.)*.15;
+ vec3 n=normalize(v_n+vec3(fbm(q*9.)-.5,0.,fbm(q*9.+31.)-.5)*.55);
+ float slope=1.-n.y,alt=v_p.y;
+ vec3 grass=vec3(.26,.30,.14)*(.8+.4*nz),forest=vec3(.07,.13,.08)*(.7+.6*nz),rock=mix(vec3(.30,.27,.25),vec3(.50,.44,.38),nz),snow=vec3(.94,.95,1.);
+ float tree=smoothstep(-.1,.8,alt)*(1.-smoothstep(4.6,6.6,alt+nz*1.6))*(1.-smoothstep(.34,.62,slope));
+ vec3 col=mix(grass,forest,tree);
+ col=mix(col,rock,clamp(smoothstep(.30,.55,slope+nz*.12)+smoothstep(5.2,7.2,alt)*.5,0.,1.));
+ float sn=smoothstep(7.6,9.6,alt+(nz-.5)*2.2)*(1.-smoothstep(.50,.78,slope));
+ col=mix(col,snow,sn);
+ float diff=max(dot(n,u_sun),0.)*v_s;
+ vec3 amb=mix(vec3(.30,.36,.52),vec3(.50,.44,.42),n.y*.5+.5)*.9;
+ vec3 lit=col*(amb+vec3(1.9,1.45,1.0)*diff);
+ /* aerial perspective: height-aware haze that warms toward the sun */
+ float fogA=1.-exp(-dist*.017*exp(-max(v_p.y,0.)*.07));
+ float sunAmt=pow(max(dot(V,u_sun),0.),6.);
+ vec3 fogC=mix(vec3(.58,.64,.80),vec3(1.,.72,.50),sunAmt);
+ lit=mix(lit,fogC,clamp(fogA,0.,1.));
+ gl_FragColor=vec4(lit,1.);
+}`;
+const SKY_VS=`attribute vec2 a_q;varying vec2 v_q;void main(){v_q=a_q;gl_Position=vec4(a_q,.9999,1.);}`;
+const SKY_FS=`precision highp float;varying vec2 v_q;uniform vec3 u_f,u_r,u_u,u_sun;uniform float u_t,u_tan;
+${GLSLN}
+void main(){vec3 d=normalize(u_f+u_r*v_q.x*u_tan*1.7778+u_u*v_q.y*u_tan);gl_FragColor=vec4(skyCol(d,u_sun),1.);}`;
+const WVS=`attribute vec3 a_p;uniform mat4 u_vp;varying vec3 v_p;void main(){v_p=a_p;gl_Position=u_vp*vec4(a_p,1.);}`;
+const WFS=`precision highp float;varying vec3 v_p;uniform vec3 u_cam;uniform vec3 u_sun;uniform float u_t;
+${GLSLN}
+void main(){
+ vec3 V=v_p-u_cam;float dist=length(V);V/=dist;
+ vec2 p=v_p.xz;
+ vec3 n=normalize(vec3((fbm(p*.9+vec2(u_t*.08,0.))-.5)*.16+(vn(p*5.+u_t*.4)-.5)*.05,1.,(fbm(p*.9+vec2(0.,u_t*.07)+9.)-.5)*.16+(vn(p*5.-u_t*.35)-.5)*.05));
+ vec3 R=reflect(V,n);R.y=abs(R.y);
+ float fr=.03+.97*pow(1.-clamp(dot(-V,n),0.,1.),5.);
+ vec3 refl=skyCol(R,u_sun);
+ vec3 deep=vec3(.05,.12,.15);
+ vec3 col=mix(deep,refl,clamp(fr*1.1+.12,0.,1.));
+ float sp=pow(max(dot(R,u_sun),0.),420.);col+=vec3(1.,.85,.6)*sp*5.;
+ float fogA=1.-exp(-dist*.017);vec3 fogC=mix(vec3(.58,.64,.80),vec3(1.,.72,.50),pow(max(dot(V,u_sun),0.),6.));
+ col=mix(col,fogC,clamp(fogA*.9,0.,1.));
+ gl_FragColor=vec4(col,1.);
+}`;
+const prog=(vs,fs)=>{const mk=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(o));return o;};const p=gl.createProgram();gl.attachShader(p,mk(gl.VERTEX_SHADER,vs));gl.attachShader(p,mk(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);return p;};
+const pT=prog(VS,FS),pS=prog(SKY_VS,SKY_FS),pW=prog(WVS,WFS);
+const buf=(arr,type=gl.ARRAY_BUFFER)=>{const b=gl.createBuffer();gl.bindBuffer(type,b);gl.bufferData(type,arr,gl.STATIC_DRAW);return b;};
+const bP=buf(pos),bN=buf(nrm),bS=buf(shd),bI=buf(idx,gl.ELEMENT_ARRAY_BUFFER);
+const bQ=buf(new Float32Array([-1,-1,1,-1,-1,1,1,1]));
+const WY=LAKE,bW=buf(new Float32Array([-90,WY,-30,90,WY,-30,-90,WY,120,90,WY,120]));
+/* ---------- camera ---------- */
+const sub=(a,b)=>a.map((v,i)=>v-b[i]),nor=a=>{const l=Math.hypot(...a);return a.map(v=>v/l);},cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+const FOV=46*Math.PI/180,TAN=Math.tan(FOV/2),AR=W/H,NEAR=.1,FAR=260;
+function camera(t){
+ const k=ease(seg(t,0,13));
+ const cam=[lerp(-3.5,3.0,k)+Math.sin(t*.35)*.18,lerp(4.2,5.2,k)+Math.sin(t*.5)*.05,lerp(-4.5,12,k)];
+ const tgt=[lerp(2,-1,k),lerp(5.6,6.4,k),cam[2]+34];
+ const f=nor(sub(tgt,cam)),r=nor(cross(f,[0,1,0])),u=cross(r,f);
+ const vm=[r[0],u[0],-f[0],0,r[1],u[1],-f[1],0,r[2],u[2],-f[2],0,-dot(r,cam),-dot(u,cam),dot(f,cam),1];
+ const a=1/TAN,pm=[a/AR,0,0,0,0,a,0,0,0,0,(FAR+NEAR)/(NEAR-FAR),-1,0,0,2*FAR*NEAR/(NEAR-FAR),0];
+ const m=new Float32Array(16);for(let c=0;c<4;c++)for(let rr=0;rr<4;rr++){let s=0;for(let i=0;i<4;i++)s+=pm[i*4+rr]*vm[c*4+i];m[c*4+rr]=s;}
+ return{cam,f,r,u,vp:m};
+}
+gl.viewport(0,0,W,H);gl.enable(gl.DEPTH_TEST);
+const att=(p,n,b,sz)=>{const l=gl.getAttribLocation(p,n);gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.enableVertexAttribArray(l);gl.vertexAttribPointer(l,sz,gl.FLOAT,false,0,0);return l;};
+const U=(p,n)=>gl.getUniformLocation(p,n);
+function frame(ts){
+ if(frame.t0==null)frame.t0=ts;const t=Math.min((ts-frame.t0)/1000,D);
+ const c=camera(t);
+ gl.clearColor(.5,.6,.8,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ /* sky */
+ gl.useProgram(pS);gl.disable(gl.DEPTH_TEST);const lq=att(pS,"a_q",bQ,2);
+ gl.uniform3fv(U(pS,"u_f"),c.f);gl.uniform3fv(U(pS,"u_r"),c.r);gl.uniform3fv(U(pS,"u_u"),c.u);gl.uniform3fv(U(pS,"u_sun"),sunDir);gl.uniform1f(U(pS,"u_t"),t);gl.uniform1f(U(pS,"u_tan"),TAN);
+ gl.drawArrays(gl.TRIANGLE_STRIP,0,4);gl.disableVertexAttribArray(lq);
+ gl.enable(gl.DEPTH_TEST);
+ /* terrain */
+ gl.useProgram(pT);const l1=att(pT,"a_p",bP,3),l2=att(pT,"a_n",bN,3),l3=att(pT,"a_s",bS,1);
+ gl.uniformMatrix4fv(U(pT,"u_vp"),false,c.vp);gl.uniform3fv(U(pT,"u_cam"),c.cam);gl.uniform3fv(U(pT,"u_sun"),sunDir);gl.uniform1f(U(pT,"u_t"),t);
+ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,bI);gl.drawElements(gl.TRIANGLES,idx.length,gl.UNSIGNED_INT,0);
+ gl.disableVertexAttribArray(l1);gl.disableVertexAttribArray(l2);gl.disableVertexAttribArray(l3);
+ /* lake */
+ gl.useProgram(pW);const lw=att(pW,"a_p",bW,3);
+ gl.uniformMatrix4fv(U(pW,"u_vp"),false,c.vp);gl.uniform3fv(U(pW,"u_cam"),c.cam);gl.uniform3fv(U(pW,"u_sun"),sunDir);gl.uniform1f(U(pW,"u_t"),t);
+ gl.drawArrays(gl.TRIANGLE_STRIP,0,4);gl.disableVertexAttribArray(lw);
+ /* overlays: fade in, end card */
+ document.getElementById("fade").style.opacity=Math.max(1-outC(seg(t,0,1.6)),outC(seg(t,10.8,12.6))*.72);
+ const end=document.getElementById("end"),e=outC(seg(t,11.6,13.2));end.style.opacity=e;end.style.transform=`translateY(${lerp(30,0,e)}px) scale(${lerp(.97,1,e)})`;
+ end.children[1].style.opacity=.92*outC(seg(t,12.2,13.6));end.children[2].style.opacity=outC(seg(t,12.8,14.2));
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script></body></html>

@@ -1,0 +1,16 @@
+{
+ "title": "a-lie-scriptgen",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "fererro313-del/alie-skills",
+ "path": "a-lie-scriptgen/SKILL.md",
+ "url": "https://github.com/fererro313-del/alie-skills/blob/HEAD/a-lie-scriptgen/SKILL.md",
+ "license": "MIT",
+ "description": ">",
+ "domains": [
+  "science",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

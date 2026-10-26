@@ -1,0 +1,16 @@
+{
+ "title": "teach",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/productivity/teach/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/productivity/teach/SKILL.md",
+ "license": "MIT",
+ "description": "在这个工作区中教用户一个新技能或概念。",
+ "domains": [
+  "education",
+  "health",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.756Z"
+}

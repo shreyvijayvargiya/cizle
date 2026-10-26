@@ -1,0 +1,16 @@
+{
+ "title": "seedance-motion-design-ad",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/06-motion-design-ad/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/06-motion-design-ad/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为软件和技术公司使用 Seedance 2.0（Higgsfield）生成运动设计广告视频提示。在用户想要创建软件产品广告、SaaS推广、应用启动视频、技术演示、UI展示、启动视频或技术公司的运动图形时使用。触发条件：软件广告、SaaS视频、产品发布、应用推广、技术商业广告、UI动画、运动设计广告、启动视频、产品演示视频、功能展示，或任何软件/技术推广视频请求。即使是\"为我的应用制作视频\"或\"推广我们的平台\"。",
+ "domains": [
+  "product",
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.070Z"
+}

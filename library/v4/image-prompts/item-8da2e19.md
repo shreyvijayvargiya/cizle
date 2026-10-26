@@ -1,0 +1,14 @@
+# 女性极简梦幻室内氛围感
+
+Community prompt · 随手拍
+Language: en · Domains: education · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2039755722037289083.jpg
+
+```
+{"subject":{"description":"Asian female in grey camisole sitting on floor in cluttered room","mirror_rules":"","age":"early 20s","expression":{"eyes":{"look":"direct","energy":"dreamy","direction":"camera"},"mouth":{"position":"closed","energy":"neutral"},"overall":"alluring, pensive"},"face":{"preserve_original":true,"makeup":"natural dewy style"},"hair":{"color":"black","style":"short bob, wispy bangs","effect":"neat, silky"},"body":{"frame":"slender","waist":"slim","chest":"moderate","legs":"partially visible","skin":{"visible_areas":"shoulders, chest, arms, thighs","tone":"fair","texture":"dewy, warm and velvety","lighting_effect":"soft overhead light, natural shadows"}},"pose":{"position":"kneeling","base":"floor","overall":"leaning slightly forward"},"clothing":{"top":{"type":"camisole","color":"grey","details":"lace trim, 'OLD SCHOOL' text","effect":"casual"},"bottom":{"type":"skirt","color":"white","details":"sheer, polka dot pattern"}}},"accessories":{"prop":"laptop on desk, red chair"},"photography":{"camera_style":"smartphone photo","angle":"eye level","shot_type":"full body","aspect_ratio":"3:4","texture":"slight digital noise, sharp focus","lighting":"indoor fluorescent, window daylight","depth_of_field":"deep"},"background":{"setting":"cluttered bedroom","wall_color":"white","elements":["bookshelf","trash can","clothes rack","kotatsu desk","pink bedding"],"atmosphere":"lived-in","lighting":"bright"},"the_vibe":{"energy":"still","mood":"quiet","aesthetic":"everyday realism","authenticity":"high, messy room","intimacy":"medium","story":"afternoon at home","caption_energy":"relaxed"},"constraints":{"must_keep":["grey camisole","short bob with bangs","cluttered background","white skirt"],"avoid":["studio lighting","clean background","heavy makeup"]},"negative_prompt":["professional","studio","clean room","minimalist","heavy makeup","smiling","bokeh"],"prompt":"Smartphone photo, everyday realism. Young Asian woman, early 20s, short black bob hair with wispy bangs. Fair skin feeling dewy, warm and velvety to touch, visible on shoulders, chest, and thighs. Direct dreamy gaze, neutral expression, natural dewy style makeup. Wearing a grey lace-trim camisole with 'OLD SCHOOL' text and a sheer white polka dot skirt. Sitting on the floor of a cluttered bedroom. Background features a bookshelf, red chair, overflowing trash can, clothes rack, and a kotatsu desk with a laptop. Bright indoor fluorescent lighting mixed with soft window daylight, high authenticity, messy lived-in atmosphere."} --ar 3:4
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

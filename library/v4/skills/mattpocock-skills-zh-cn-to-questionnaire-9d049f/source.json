@@ -1,0 +1,12 @@
+{
+ "title": "to-questionnaire",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/productivity/to-questionnaire/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/productivity/to-questionnaire/SKILL.md",
+ "license": "MIT",
+ "description": "把你无法完整回答的 decision 转成一份交给他人填写的 questionnaire。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.757Z"
+}

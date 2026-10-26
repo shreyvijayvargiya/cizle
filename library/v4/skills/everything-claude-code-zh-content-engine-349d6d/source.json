@@ -1,0 +1,16 @@
+{
+ "title": "content-engine",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/content-engine/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/content-engine/SKILL.md",
+ "license": "MIT",
+ "description": "为 X、LinkedIn、TikTok、YouTube、时事通讯（Newsletters）以及跨平台重用活动创建平台原生（platform-native）的内容系统。当用户需要社交帖子、推文串（threads）、脚本、内容日历，或将单一资源资产清晰地适配到多个平台时使用。",
+ "domains": [
+  "engineering",
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.702Z"
+}

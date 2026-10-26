@@ -1,0 +1,12 @@
+{
+ "title": "plankton-code-quality",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/plankton-code-quality/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/plankton-code-quality/SKILL.md",
+ "license": "MIT",
+ "description": "使用 Plankton 实现编写时代码质量强制执行 —— 通过钩子在每次文件编辑时进行自动格式化、代码检查，并由 Claude 驱动自动修复。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.716Z"
+}

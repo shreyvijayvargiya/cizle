@@ -1,0 +1,15 @@
+{
+ "title": "scaffold-exercises",
+ "source": "K04",
+ "lang": "en",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/misc/scaffold-exercises/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/misc/scaffold-exercises/SKILL.md",
+ "license": "MIT",
+ "description": "创建包含章节、题目、答案和讲解的练习目录结构，并确保通过 linting。适用于用户想 scaffold exercises、创建 exercise stubs，或设置新的课程章节时。",
+ "domains": [
+  "education",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.752Z"
+}

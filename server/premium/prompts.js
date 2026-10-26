@@ -44,7 +44,29 @@ export function extractJson(text) {
 	const start = raw.indexOf("{");
 	const end = raw.lastIndexOf("}");
 	if (start < 0 || end <= start) throw new Error("The model did not return JSON");
-	return JSON.parse(raw.slice(start, end + 1));
+	const body = raw.slice(start, end + 1);
+	try {
+		return JSON.parse(body);
+	} catch (first) {
+		// Models often leave trailing commas or raw line breaks inside strings; repair those before giving up.
+		let inString = false, escaped = false, fixed = "";
+		for (const ch of body) {
+			if (inString) {
+				if (escaped) { escaped = false; fixed += ch; continue; }
+				if (ch === "\\") { escaped = true; fixed += ch; continue; }
+				if (ch === '"') { inString = false; fixed += ch; continue; }
+				fixed += ch === "\n" ? "\\n" : ch === "\r" ? "" : ch === "\t" ? "\\t" : ch;
+			} else {
+				if (ch === '"') inString = true;
+				fixed += ch;
+			}
+		}
+		try {
+			return JSON.parse(fixed.replace(/,\s*([}\]])/g, "$1"));
+		} catch {
+			throw first;
+		}
+	}
 }
 
 export function extractHtml(text) {

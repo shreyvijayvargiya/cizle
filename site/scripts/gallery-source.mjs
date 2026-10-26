@@ -10,6 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { SITE_DIR } from "./skills-source.mjs";
 import { LANG_NAME } from "./gallery-quality.mjs";
+import { isRemoved } from "./rights.mjs";
 
 export const GALLERY_FILE = path.join(SITE_DIR, "content", "gallery.jsonl");
 /**
@@ -50,6 +51,7 @@ export function loadGallery(file = GALLERY_FILE) {
 		.split("\n")
 		.filter(Boolean)
 		.map((l) => JSON.parse(l))
+		.filter((e) => !isRemoved({ id: e.id, handle: e.author?.handle })) // content/takedown.json
 		.map((e) => {
 			const tier = e.tier === "free" ? "free" : "premium";
 			const text = tier === "premium" && full?.[e.id] ? full[e.id] : e.text;

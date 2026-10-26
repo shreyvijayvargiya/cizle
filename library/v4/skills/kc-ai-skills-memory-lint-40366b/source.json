@@ -1,0 +1,16 @@
+{
+ "title": "memory-lint",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "memory-lint/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/memory-lint/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to lint a Claude Code memory directory (~/.claude/memory or custom path) for index inconsistency, broken cross-links, stale project state, duplicate / conflicting feedback rules, naming violations, frontmatter gaps, and oversized files. Phase 1 is a read-only scan and report. Phase 2 applies fixes only for findings the user explicitly picks. Phase 3 verifies with an independent process and rolls back if it fails.",
+ "domains": [
+  "product",
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.769Z"
+}

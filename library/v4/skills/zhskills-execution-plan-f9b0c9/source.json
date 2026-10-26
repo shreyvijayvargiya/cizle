@@ -1,0 +1,14 @@
+{
+ "title": "execution-plan",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/execution-plan/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/execution-plan/SKILL.md",
+ "license": "MIT",
+ "description": "给定一份需求/规格，写出一份对零上下文执行者也友好的分步执行计划书 Markdown（含目标、范围、全局约束、关键检查点、交付物责任结构图、逐任务分步动作与验收标准）。当用户需要项目排期、工作计划、活动执行方案、任务拆解，并希望产出可直接交付的分步计划时使用。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.758Z"
+}

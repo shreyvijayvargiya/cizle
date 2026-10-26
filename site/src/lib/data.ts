@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import Fuse from "fuse.js";
 import { useMemo } from "react";
-import { DEV_UNLOCK } from "./config";
+import { DEV_UNLOCK, PREMIUM } from "./config";
 import { firebaseConfigured, loadFirebase } from "./firebase";
+import { CLASSIC, fetchVersions } from "./gallery";
 
 export type Tier = "free" | "premium";
 export type SkillMeta = {
@@ -26,6 +27,13 @@ export type SkillMeta = {
 	video: string | null;
 	poster: string | null;
 	credit: { author: string; license: string; source: string | null } | null;
+	/** language code of the skill ("en" for the classic skills), the harvest version it came from ("classic" for the first 25), where it was scraped from and when */
+	lang?: string;
+	version?: string;
+	folder?: string;
+	fetchedAt?: string | null;
+	/** no open licence: only a preview is published, the full skill stays at the source */
+	restricted?: boolean;
 };
 export type SkillsIndex = { categories: string[]; platforms: string[]; formats: string[]; aspects: string[]; skills: SkillMeta[] };
 export type Scene = { n: number; name: string; time: string; visual: string; text: string };
@@ -54,12 +62,32 @@ async function getJson<T>(url: string): Promise<T> {
 }
 
 const STATIC = { staleTime: 10 * 60_000, gcTime: 60 * 60_000 };
-export const useSkills = () => useQuery({ queryKey: ["skills"], queryFn: () => getJson<SkillsIndex>("/skills.json"), ...STATIC });
+/** The classic skills (/skills.json) plus the skills of every harvest version (/versions/<v>/skills.json), joined in memory only. */
+export const useSkills = () =>
+	useQuery({
+		queryKey: ["skills"],
+		queryFn: async (): Promise<SkillsIndex> => {
+			const [base, versions] = await Promise.all([getJson<SkillsIndex>("/skills.json"), fetchVersions()]);
+			const extra = await Promise.all(versions.map((v) => getJson<{ skills: SkillMeta[]; categories: string[] }>(v.skills).catch(() => ({ skills: [], categories: [] }))));
+			const skills = [...base.skills.map((s) => ({ ...s, lang: s.lang || "en", version: s.version || CLASSIC })), ...extra.flatMap((e) => e.skills)];
+			const add = (list: string[], more: string[]) => [...new Set([...list, ...more])];
+			return { ...base, skills, categories: add(base.categories, extra.flatMap((e) => e.categories)), formats: add(base.formats, extra.length ? ["Skill"] : []), aspects: add(base.aspects, extra.some((e) => e.skills.length) ? ["Other"] : []) };
+		},
+		// until Premium is on sale only free skills are listed
+		select: (d: SkillsIndex): SkillsIndex => {
+			if (PREMIUM) return d;
+			const skills = d.skills.filter((s) => s.tier === "free");
+			const has = new Set(skills.map((s) => s.category));
+			const platforms = new Set(skills.map((s) => s.platform));
+			return { ...d, skills, categories: d.categories.filter((c) => has.has(c)), platforms: d.platforms.filter((p) => platforms.has(p)) };
+		},
+		...STATIC,
+	});
 export const skillQuery = (slug: string) => ({ queryKey: ["skill", slug], queryFn: () => getJson<SkillDetail>(`/skills/${slug}.json`), ...STATIC });
 export const useSkill = (slug?: string) => useQuery({ ...skillQuery(slug || ""), enabled: Boolean(slug) });
 export const usePosts = () => useQuery({ queryKey: ["posts"], queryFn: () => getJson<Post[]>("/blog.json"), ...STATIC });
 export const usePost = (slug: string) => useQuery({ queryKey: ["post", slug], queryFn: () => getJson<Post>(`/blog/${slug}.json`), ...STATIC });
-export const usePage = (name: "docs" | "terms" | "privacy" | "refund") => useQuery({ queryKey: ["page", name], queryFn: () => getJson<Page>(`/content/${name}.json`), ...STATIC });
+export const usePage = (name: "docs" | "terms" | "privacy" | "refund" | "rights") => useQuery({ queryKey: ["page", name], queryFn: () => getJson<Page>(`/content/${name}.json`), ...STATIC });
 export const useFaq = () => useQuery({ queryKey: ["faq"], queryFn: () => getJson<Faq>("/content/faq.json"), ...STATIC });
 
 /** The locked half of a premium skill: Firestore (rules only let subscribers read it), or the dev server when testing. */
@@ -80,7 +108,7 @@ export function usePremiumBody(slug: string | undefined, isPro: boolean) {
 	});
 }
 
-export type Filters = { q?: string; category?: string; platform?: string; format?: string; aspect?: string; access?: string; sort?: string; kind?: string; p?: string };
+export type Filters = { q?: string; category?: string; platform?: string; format?: string; aspect?: string; access?: string; sort?: string; kind?: string; p?: string; lang?: string; version?: string };
 
 export function useFuse(skills: SkillMeta[] | undefined) {
 	return useMemo(() => new Fuse(skills || [], { keys: [{ name: "name", weight: 3 }, { name: "summary", weight: 1.5 }, { name: "tags", weight: 1.5 }, { name: "category", weight: 1 }, { name: "platform", weight: 1 }, { name: "scenes", weight: 0.7 }], threshold: 0.34, ignoreLocation: true, minMatchCharLength: 2 }), [skills]);
@@ -93,6 +121,8 @@ export function filterSkills(skills: SkillMeta[], fuse: Fuse<SkillMeta>, f: Filt
 	if (f.format) list = list.filter((s) => s.format === f.format);
 	if (f.aspect) list = list.filter((s) => s.aspect === f.aspect);
 	if (f.access) list = list.filter((s) => s.tier === f.access);
+	if (f.lang) list = list.filter((s) => (s.lang || "en") === f.lang);
+	if (f.version) list = list.filter((s) => (s.version || CLASSIC) === f.version);
 	if (!f.q?.trim()) {
 		if (f.sort === "az") list.sort((a, b) => a.name.localeCompare(b.name));
 		else if (f.sort === "short") list.sort((a, b) => (a.duration ?? 999) - (b.duration ?? 999));

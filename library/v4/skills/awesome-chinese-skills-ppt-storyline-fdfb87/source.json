@@ -1,0 +1,14 @@
+{
+ "title": "ppt-storyline",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "ppt-storyline/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/ppt-storyline/SKILL.md",
+ "license": null,
+ "description": "为工作汇报、方案提案、路演材料生成咨询风格的 PPT 故事线与逐页大纲，先搭逻辑再写页面。当用户提到\"做PPT\"、\"汇报大纲\"、\"方案框架\"、\"述职\"、\"商业计划书结构\"，或给出目标听众要求组织材料时使用。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

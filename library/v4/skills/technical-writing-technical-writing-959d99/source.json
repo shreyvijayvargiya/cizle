@@ -1,0 +1,15 @@
+{
+ "title": "technical-writing",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "luoling8192/technical-writing",
+ "url": "https://github.com/luoling8192/technical-writing/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "Use when drafting or revising internal technical design docs, review notes, architecture writeups, or sharing posts in Chinese, especially when the tone should stay evidence-backed, calm, and suitable for peers or leaders rather than marketing or literary writing.",
+ "domains": [
+  "product",
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.258Z"
+}

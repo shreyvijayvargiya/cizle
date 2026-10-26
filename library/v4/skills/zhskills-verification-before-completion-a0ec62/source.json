@@ -1,0 +1,14 @@
+{
+ "title": "verification-before-completion",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/verification-before-completion/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/verification-before-completion/SKILL.md",
+ "license": "MIT",
+ "description": "当用户要交付报告、周报、公文、代码、文案等成果前进行自查核验时使用——铁律是\"没有新鲜的验证证据，不得声称完成\"，把交付物里的每条声明逐条对照验证状态，输出可交付/待验证的核验报告。适用于周报数据核实、公文发出前核对、汇报材料自检、交付前检查清单、发布前门禁。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

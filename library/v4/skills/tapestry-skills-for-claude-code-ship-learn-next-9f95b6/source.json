@@ -1,0 +1,13 @@
+{
+ "title": "ship-learn-next",
+ "source": "K07",
+ "lang": "en",
+ "repo": "michalparkola/tapestry-skills-for-claude-code",
+ "url": "https://github.com/michalparkola/blob/tapestry-skills-for-claude-code/main/ship-learn-next/SKILL.md",
+ "license": null,
+ "description": "Transform learning content (like YouTube transcripts, articles, tutorials) into actionable implementation plans using the Ship-Learn-Next framework. Use when user wants to turn advice, lessons, or educational content into concrete action steps, reps, or a learning quest.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.251Z"
+}

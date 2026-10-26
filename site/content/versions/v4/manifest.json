@@ -1,0 +1,48 @@
+{
+ "version": "v4",
+ "folder": "library/v4",
+ "store": "site/content/versions/v4",
+ "built_at": "2026-10-26T13:48:19.172Z",
+ "fetched_at": {
+  "first": "2026-10-26T10:17:15.847Z",
+  "last": "2026-10-26T13:21:06.570Z"
+ },
+ "sources": {
+  "K01": 5186,
+  "K02": 150,
+  "K03": 50,
+  "K04": 389,
+  "K05": 80,
+  "K06": 12,
+  "K07": 189
+ },
+ "languages": {
+  "zh": 4725,
+  "en": 1094,
+  "ja": 216,
+  "ko": 12,
+  "ru": 2,
+  "cs": 1,
+  "hi": 1,
+  "de": 1,
+  "id": 1,
+  "fr": 1,
+  "it": 1,
+  "es": 1
+ },
+ "counts": {
+  "gallery": 5386,
+  "skills": 670,
+  "with_video": 150,
+  "with_picture": 5336
+ },
+ "restricted": 5642,
+ "skipped": {
+  "removed": 0,
+  "duplicates": 143,
+  "too_short": 105,
+  "skill_index_only": 19,
+  "image_prompt_without_picture": 8
+ },
+ "graph": "harvest/sources.v4.graph.json"
+}

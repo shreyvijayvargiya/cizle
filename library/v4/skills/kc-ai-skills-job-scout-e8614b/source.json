@@ -1,0 +1,16 @@
+{
+ "title": "job-scout",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "job-scout/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/job-scout/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user is considering applying to, interviewing with, or accepting an offer from a company and wants due diligence on the company and optionally a specific role. Requires a company name, optionally a job title, then researches current public data, employee reviews, salary signals, product/tech quality, and red flags before giving a grounded recommendation. NOT for generic career coaching or resume editing.",
+ "domains": [
+  "engineering",
+  "finance",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.769Z"
+}

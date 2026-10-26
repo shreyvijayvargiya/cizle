@@ -1,0 +1,13 @@
+{
+ "title": "claude-api",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/skills",
+ "url": "https://github.com/anthropics/blob/skills/main/skills/claude-api/SKILL.md",
+ "license": null,
+ "description": "|-",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "idea-refine",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/idea-refine/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/idea-refine/SKILL.md",
+ "license": "MIT",
+ "description": "把一个粗糙、未经推敲的想法（选题、点子、活动创意、立项想法），通过发散—收敛—交付三阶段打磨成一份可执行的一页纸方案（含方向四维对比、隐藏假设、Not Doing 清单与下一步行动）。当用户说\"帮我打磨这个想法\"\"我有个点子但没想清楚\"\"帮我评估下这个选题/立项\"\"活动策划先筛一筛\"\"stress-test 我的计划\"时使用。",
+ "domains": [
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.758Z"
+}

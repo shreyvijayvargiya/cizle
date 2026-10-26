@@ -1,0 +1,15 @@
+{
+ "title": "github-readme-cn",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "sanhuang520-ship-it/awesome-chinese-ai-tools",
+ "url": "https://github.com/sanhuang520-ship-it/blob/awesome-chinese-ai-tools/main/skills/github-readme-cn/SKILL.md",
+ "license": null,
+ "description": "中文开源项目的 README 与仓库门面优化。当用户说\"我的开源项目没人看\"\"README 怎么写\"\"GitHub 仓库怎么优化\"\"帮我写 README\"\"项目主页太丑\"\"怎么让别人愿意 star\"时使用。基于对 15 个近期高增长仓库的实测数据给出可执行建议，同时明确说明哪些是相关性、哪些无法验证——不承诺涨星。",
+ "domains": [
+  "data",
+  "science",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.248Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "handoff",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/productivity/handoff/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/productivity/handoff/SKILL.md",
+ "license": "MIT",
+ "description": "把当前对话压缩成交接文档，让另一个代理接手。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.756Z"
+}

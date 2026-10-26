@@ -1,0 +1,14 @@
+# 3D女性
+
+Community prompt · 随手拍
+Language: en · Domains: general · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/6b762f81-a720-4231-97da-2af5bd1b5cd1_0.jpg
+
+```
+Ultra-realistic smartphone portrait, looks genuinely captured with a mobile phone, not a DSLR or AI render. A beautiful young East Asian woman with fair porcelain skin, large soft brown eyes, light brown hair styled in two loose braids with wispy straight bangs framing her face. She wears a black zip-up hoodie slightly unzipped over a white lace camisole and a black leather choker with a silver bell pendant. Calm, slightly serious expression while looking directly into the phone camera. Casual indoor setting with a plain beige wall and warm ambient room lighting. Slight handheld framing, natural phone HDR, realistic skin texture, authentic hair strands, subtle digital noise, soft shadows, candid lifestyle aesthetic, Instagram-style portrait, high detail, photorealistic, looks like an unedited iPhone/mobile camera photo, no studio lighting, no watermark, no text, no logos.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

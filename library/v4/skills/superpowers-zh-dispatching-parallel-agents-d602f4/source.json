@@ -1,0 +1,14 @@
+{
+ "title": "dispatching-parallel-agents",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/dispatching-parallel-agents/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/dispatching-parallel-agents/SKILL.md",
+ "license": "MIT",
+ "description": "当面对 2 个以上可以独立进行、无共享状态或顺序依赖的任务时使用",
+ "domains": [
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.776Z"
+}

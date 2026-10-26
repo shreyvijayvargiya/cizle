@@ -1,0 +1,16 @@
+{
+ "title": "alie-ppt",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "fererro313-del/alie-skills",
+ "path": "alie-ppt/SKILL.md",
+ "url": "https://github.com/fererro313-del/alie-skills/blob/HEAD/alie-ppt/SKILL.md",
+ "license": "MIT",
+ "description": "阿烈的原生可编辑中文课件 PPTX 生成引擎。当用户点名\"alie-ppt\"\"阿烈PPT\"\"阿烈课件\"\"用阿烈的方法做PPT\"，或要求做\"原生可编辑、文字框色块都能改\"的中文培训/讲课/招商课件，且偏好午夜玻璃或暖白讲堂风格时使用。产出 .pptx（python-pptx 原生构建，非图片版、非 HTML 转制），内置两套签名风格、九种页型、Keynote PDF 校验闭环，纯本地零成本。",
+ "domains": [
+  "product",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "pdf",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/docs-office/pdf/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/docs-office/pdf/SKILL.md",
+ "license": "MIT",
+ "description": "PDF 读取、生成与验真。处理版式敏感的 PDF，支持可填写表单（AcroForms），用渲染做视觉校验。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.734Z"
+}

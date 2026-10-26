@@ -1,0 +1,14 @@
+{
+ "title": "align",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "align/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/align/SKILL.md",
+ "license": "MIT",
+ "description": "Reconcile existing repository documentation with the current implementation, especially after verified hotfixes or after QA in an unattended task. A manual run first asks whether to align only the docs a specific change touched (trigger scope) or rescan the whole repo; unattended runs use the scope the dispatch states and default to the whole repo. Follow cross-repo references for evidence; edit only documentation in the authorized repo, annotating conflicting historical records. Not for fixing code, deploying, inventing requirements, or building a new documentation suite.",
+ "domains": [
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.763Z"
+}

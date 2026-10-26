@@ -13,7 +13,7 @@ poster: >-
   https://media.prompt-motion.com/majin-appsheet-claude-code-opus-5-5-pv-ai/poster.74ef4022.webp
 source: 'https://prompt-motion.com/majin-appsheet-2d3c1a'
 source_post: 'https://x.com/Majin_AppSheet/status/2103497319899693327'
-author: まじん (@Majin_AppSheet)
+author: @Majin_AppSheet
 license: >-
   Prompt and video © the creator. Listed here with attribution for reference;
   follow the links for the original.
@@ -25,4 +25,4 @@ posted: '2026-09-25'
 
 ## Prompt
 
-シンまじん式のPV作って
+Make a promo video (PV) in the style of 'Shin Majin-shiki'.

@@ -1,0 +1,15 @@
+{
+ "title": "lean-ctx",
+ "source": "K07",
+ "lang": "en",
+ "repo": "yvgude/lean-ctx",
+ "url": "https://github.com/yvgude/lean-ctx/blob/HEAD/skills/lean-ctx/SKILL.md",
+ "license": null,
+ "description": "Use LeanCTX Context Gateway tools to select task-relevant code context, apply supported controls, reuse local knowledge and inspect recorded evidence. Use when lean-ctx MCP tools (ctx_*) are available or file, search or command output needs a focused view.",
+ "domains": [
+  "education",
+  "music",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "nutrient-document-processing",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/nutrient-document-processing/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/nutrient-document-processing/SKILL.md",
+ "license": "MIT",
+ "description": "使用 Nutrient DWS API 处理、转换、OCR、提取、脱敏、签名和填充文档。支持 PDF、DOCX、XLSX、PPTX、HTML 和图像。",
+ "domains": [
+  "data",
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.715Z"
+}

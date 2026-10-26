@@ -1,0 +1,15 @@
+{
+ "title": "higgsfield-seedance2-jineng",
+ "source": "K07",
+ "lang": "en",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/02-3d-cgi/SKILL.md",
+ "license": null,
+ "description": "Generate 3D CGI and rendered video prompts for Seedance 2.0 on Higgsfield. Use whenever the user wants 3D rendered, CGI, Pixar-style, Unreal Engine, photorealistic 3D, computer-generated, or digitally rendered video content. Triggers on: 3D animation, CGI, rendered, Blender, Unreal Engine, octane render, ray tracing, volumetric, subsurface scattering, physically based rendering, or any 3D/CG video request. Always use even if the user just says \"make it look 3D\" or describes a rendered aesthetic.",
+ "domains": [
+  "engineering",
+  "data",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.255Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "seedance-cinematic",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/01-cinematic/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/01-cinematic/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成电影级胶片风格视频提示词。在用户想要电影级、胶片感、电影质量、好莱坞风格、戏剧性或专业胶片质量的AI视频时使用。触发词：电影级、胶片感、电影场景、戏剧性打光、景深、镜头光晕、变形、信箱式、黑色电影、史诗、稳定摄像机、推车镜头、吊臂镜头或任何电影级视频生成请求。即使用户没有明确说\"电影级\"但描述了胶片美学，也要使用此技能。",
+ "domains": [
+  "entertainment",
+  "scifi",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.066Z"
+}

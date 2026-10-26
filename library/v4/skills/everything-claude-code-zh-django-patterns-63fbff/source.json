@@ -1,0 +1,14 @@
+{
+ "title": "django-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/django-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/django-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "Django 架构模式、使用 DRF 的 REST API 设计、ORM 最佳实践、缓存、信号（Signals）、中间件（Middleware）以及生产级 Django 应用。",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.709Z"
+}

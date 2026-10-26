@@ -1,0 +1,15 @@
+{
+ "title": "perf-profiler",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/perf-profiler/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/perf-profiler/SKILL.md",
+ "license": "MIT",
+ "description": "基于可复现基线和 profiler 证据分析性能问题。用于用户要求定位慢接口、慢任务、慢查询、内存或网络瓶颈，制定优化方案，或验证优化收益时；区分实测结论与静态推断，不虚构耗时和提升比例，生产环境操作需明确授权。",
+ "domains": [
+  "data",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "hetong-shencha",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "hetong-shencha/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/hetong-shencha/SKILL.md",
+ "license": null,
+ "description": "对常见合同（劳动、租赁、借贷、合作、服务）做风险预审，逐条标记高风险条款、缺失条款并给出修改建议话术。当用户提到\"看合同\"、\"合同风险\"、\"有没有坑\"、\"劳动合同/租房协议/合作协议\"，或粘贴合同条款要求审查时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

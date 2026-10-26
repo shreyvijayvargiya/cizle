@@ -1,0 +1,15 @@
+{
+ "title": "Auto-CV",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "flamingoTOM/Auto-CV",
+ "url": "https://github.com/flamingoTOM/Auto-CV/blob/HEAD/.claude/skills/Auto-CV/SKILL.md",
+ "license": null,
+ "description": null,
+ "domains": [
+  "education",
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

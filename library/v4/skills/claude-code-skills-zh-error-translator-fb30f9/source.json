@@ -1,0 +1,14 @@
+{
+ "title": "error-translator",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/error-translator/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/error-translator/SKILL.md",
+ "license": "MIT",
+ "description": "编程错误消息翻译专家 — 将英文错误消息翻译成中文，解释原因并提供修复方案",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

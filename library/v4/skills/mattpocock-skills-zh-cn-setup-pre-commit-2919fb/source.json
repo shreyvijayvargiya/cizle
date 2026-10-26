@@ -1,0 +1,12 @@
+{
+ "title": "setup-pre-commit",
+ "source": "K04",
+ "lang": "en",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/misc/setup-pre-commit/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/misc/setup-pre-commit/SKILL.md",
+ "license": "MIT",
+ "description": "在当前仓库设置 Husky pre-commit hooks，集成 lint-staged (Prettier)、类型检查和测试。适用于用户想添加 pre-commit hooks、设置 Husky、配置 lint-staged，或在提交时运行格式化、类型检查和测试时。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.752Z"
+}

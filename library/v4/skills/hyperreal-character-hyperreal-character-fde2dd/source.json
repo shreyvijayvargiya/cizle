@@ -1,0 +1,16 @@
+{
+ "title": "hyperreal-character",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "huangbai-AI/hyperreal-character",
+ "path": "SKILL.md",
+ "url": "https://github.com/huangbai-AI/hyperreal-character/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "超写实人像生图 + 生视频提示词工作流：按十层图片模板与八段视频模板撰写超写实人像（hyper-realistic portrait）提示词，配合支持文生图 / 图生视频的命令行生成工具完成 text_to_image 生首帧、image_to_video 生情绪视频的两段式生成。触发词：超写实人像、写实质感、皮肤质感、情绪视频、分秒拆解、首帧一致、AI 僵硬感、hyperreal、photorealistic portrait。",
+ "domains": [
+  "nature",
+  "education",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.115Z"
+}

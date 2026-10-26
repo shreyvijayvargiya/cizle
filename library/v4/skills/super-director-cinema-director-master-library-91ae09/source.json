@@ -1,0 +1,16 @@
+{
+ "title": "cinema-director-master-library",
+ "source": "K05",
+ "lang": "en",
+ "repo": "fanchengchen1-collab/super-director",
+ "path": "skills/cinema-director-master-library/SKILL.md",
+ "url": "https://github.com/fanchengchen1-collab/super-director/blob/HEAD/skills/cinema-director-master-library/SKILL.md",
+ "license": null,
+ "description": "Use this skill when the user wants a large director-craft knowledge library for AI short drama, asks to choose or combine professional directors, or needs director references for fantasy, magic, Chinese/eastern aesthetics, western genre style, romance, fighting/action, costume period, friendship, freedom, rhythm, or narrative structure. Routes selectively across 50 director profiles and links to existing focused skills.",
+ "domains": [
+  "entertainment",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.096Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "strategic-compact",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/strategic-compact/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/strategic-compact/SKILL.md",
+ "license": "MIT",
+ "description": "建议在逻辑间隔处进行手动压缩（Manual Compaction），以在整个任务阶段保持上下文（Context），而非随意的自动压缩。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.674Z"
+}

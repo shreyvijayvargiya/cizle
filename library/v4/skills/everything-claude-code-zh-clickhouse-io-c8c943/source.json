@@ -1,0 +1,15 @@
+{
+ "title": "clickhouse-io",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/clickhouse-io/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/clickhouse-io/SKILL.md",
+ "license": "MIT",
+ "description": "ClickHouse database patterns, query optimization, analytics, and data engineering best practices for high-performance analytical workloads.",
+ "domains": [
+  "engineering",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.696Z"
+}

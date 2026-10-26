@@ -1,0 +1,14 @@
+# 人像电影感极简工作室高级
+
+Community prompt · 随手拍
+Language: en · Domains: entertainment, product, engineering · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2040018563650769184.jpg
+
+```
+{"subject":{"description":"Elegant woman in profile, high-contrast beauty portrait","mirror_rules":"profile view, facing right","age":"early 20s","expression":{"eyes":{"look":"downward","energy":"pensive","direction":"away"},"mouth":{"position":"closed","energy":"soft"},"overall":"melancholic, serene"},"face":{"preserve_original":true,"makeup":"natural dewy skin, rosebud lips"},"hair":{"color":"chestnut brown","style":"long voluminous waves","effect":"high-gloss, shimmering highlights"},"body":{"frame":"slender","waist":"n/a","chest":"n/a","legs":"n/a","skin":{"visible_areas":"face, neck, shoulder","tone":"fair, porcelain","texture":"flawless, luminous, retouched","lighting_effect":"harsh top-down highlight, deep shadows"}},"pose":{"position":"profile tilt","base":"standing","overall":"head angled down, shoulder forward"},"clothing":{"top":{"type":"minimalist top","color":"white","details":"thin strap","effect":"clean"},"bottom":{"type":"n/a","color":"n/a","details":"n/a"}}},"accessories":{"prop":"none"},"photography":{"camera_style":"DSLR, 105mm f/2.8 macro lens","angle":"eye level, profile","shot_type":"extreme close-up","aspect_ratio":"9:16","texture":"ultra-sharp, hyper-detailed, 16K resolution","lighting":"chiaroscuro studio lighting, harsh top-down key light, deep black shadows","depth_of_field":"shallow, sharp focus on hair texture"},"background":{"setting":"studio","wall_color":"pitch black","elements":["void"],"atmosphere":"intimate, moody","lighting":"dramatic spotlighting"},"the_vibe":{"energy":"quiet, elegant","mood":"dramatic, cinematic","aesthetic":"luxury beauty editorial","authenticity":"highly produced studio shot","intimacy":"high, personal","story":"inner reflection"},"constraints":{"must_keep":["high hair shine","profile view","black background","dramatic shadows"],"avoid":["bright background","direct eye contact","flat lighting"]},"negative_prompt":["blurry","low resolution","flat lighting","bright background","messy hair","smiling","casual"],"prompt":"Professional studio portrait, 105mm f/2.8, ultra-sharp 16K. East Asian woman, early 20s, long voluminous chestnut brown hair with high-gloss shimmering highlights. Fair porcelain skin, luminous, natural dewy makeup with rosebud lips. Profile view, head tilted downward in pensive expression, eyes looking away. Bare shoulder visible. Pitch black studio background. Chiaroscuro lighting, harsh top-down key light creating dramatic highlights on hair and nose bridge, deep black shadows. Luxury beauty editorial aesthetic, hyper-detailed hair texture, photorealistic, cinematic post-processing."} -ar 3:4
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

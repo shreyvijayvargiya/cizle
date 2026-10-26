@@ -1,0 +1,14 @@
+{
+ "title": "implement-spec",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/implement-spec/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/implement-spec/SKILL.md",
+ "license": "MIT",
+ "description": "在代码中实现 /to-spec 和 /to-tickets 的产出。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.746Z"
+}

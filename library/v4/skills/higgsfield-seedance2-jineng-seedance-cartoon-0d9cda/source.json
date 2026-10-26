@@ -1,0 +1,16 @@
+{
+ "title": "seedance-cartoon",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/03-cartoon/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/03-cartoon/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成卡通和动画风格视频提示词。在用户想要卡通、2D动画、赛璐珞着色、手绘、插画、平面动画或运动图形动画风格视频时使用。触发词：卡通、动画、赛璐珞着色、手绘、插画、平面设计动画、矢量动画、复古卡通、橡皮软管、运动图形或任何卡通/动画风格请求。即使用户含糊地说\"使其看起来像动画\"或\"有趣多彩的风格\"也要使用。",
+ "domains": [
+  "entertainment",
+  "product",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.067Z"
+}

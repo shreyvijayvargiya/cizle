@@ -1,0 +1,15 @@
+{
+ "title": "autopilot",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/automation/autopilot/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/automation/autopilot/SKILL.md",
+ "license": "MIT",
+ "description": "PR 自动跟进。循环处理 PR 评论、解决冲突、修 CI，直到可合并。",
+ "domains": [
+  "education",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

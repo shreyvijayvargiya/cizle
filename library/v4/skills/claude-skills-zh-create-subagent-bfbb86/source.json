@@ -1,0 +1,14 @@
+{
+ "title": "create-subagent",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/automation/create-subagent/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/automation/create-subagent/SKILL.md",
+ "license": "MIT",
+ "description": "创建自定义子代理。为专门任务定制子代理（代码审查、调试、领域助手等）。\"disable-model-invocation: true",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

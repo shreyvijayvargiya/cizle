@@ -1,0 +1,13 @@
+{
+ "title": "anbeime-skill-store",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anbeime/skill",
+ "url": "https://github.com/anbeime/skill/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "小跃虚拟伴侣 - 使用智谱 AI 提供温暖的对话陪伴和静态图片分享",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "investor-materials",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/investor-materials/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/investor-materials/SKILL.md",
+ "license": "MIT",
+ "description": "创建和更新宣传文稿、一页简介、投资者备忘录、加速器申请、财务模型和融资材料。当用户需要面向投资者的文件、预测、资金用途表、里程碑计划或必须在多个融资资产中保持内部一致性的材料时使用。",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.689Z"
+}

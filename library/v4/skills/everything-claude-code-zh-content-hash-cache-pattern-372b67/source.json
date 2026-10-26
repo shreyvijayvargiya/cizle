@@ -1,0 +1,14 @@
+{
+ "title": "content-hash-cache-pattern",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/content-hash-cache-pattern/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/content-hash-cache-pattern/SKILL.md",
+ "license": "MIT",
+ "description": "使用SHA-256内容哈希缓存昂贵的文件处理结果——路径无关、自动失效、服务层分离。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.681Z"
+}

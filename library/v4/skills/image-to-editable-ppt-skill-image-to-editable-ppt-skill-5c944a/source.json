@@ -1,0 +1,11 @@
+{
+ "title": "image-to-editable-ppt-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "ningzimu/image-to-editable-ppt-skill",
+ "url": "https://github.com/ningzimu/image-to-editable-ppt-skill/blob/HEAD/skills/image-to-editable-ppt/SKILL.md",
+ "license": null,
+ "description": "Rebuild slide images, scanned or image-based PPT/PPTX files, and PDF decks into object-level editable PowerPoint (.pptx), preserving speaker notes when supplied. Use for making visual slides editable or reconstructing slides from screenshots; not for authoring new presentations from scratch.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

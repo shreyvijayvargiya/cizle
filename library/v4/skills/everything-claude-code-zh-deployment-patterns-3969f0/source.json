@@ -1,0 +1,16 @@
+{
+ "title": "deployment-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/deployment-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/deployment-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "Deployment workflows, CI/CD pipeline patterns, Docker containerization, health checks, rollback strategies, and production readiness checklists for web applications.",
+ "domains": [
+  "health",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.709Z"
+}

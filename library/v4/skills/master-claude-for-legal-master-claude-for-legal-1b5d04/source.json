@@ -1,0 +1,14 @@
+{
+ "title": "Master Claude for Legal",
+ "source": "K07",
+ "lang": "en",
+ "repo": "sboghossian/master-claude-for-legal",
+ "url": "https://github.com/sboghossian/blob/master-claude-for-legal/HEAD/SKILL.md",
+ "license": null,
+ "description": "Master skill for legal teams using Claude. Loads the right reference for the user's question (privilege configuration, MCP hardening, MCP connector catalog, practice-area plugins, Microsoft 365 surfaces, managed agents, cold-start interview, verification, long documents, practice-area patterns, skill authoring) and routes to specialized starter skills (NDA triage, version diff, tabular review, meeting brief, citation verification, status synthesis). Auto-invokes when the user mentions legal work, contracts, redlines, NDAs, deal-room diligence, privilege, attorney-client, court filings, depositions, regulatory compliance, M&A diligence, Claude in Word/Excel/PowerPoint/Outlook, managed legal agents, or asks how to set up Claude for a law firm or in-house legal team.",
+ "domains": [
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

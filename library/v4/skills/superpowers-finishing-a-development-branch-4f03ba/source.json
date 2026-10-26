@@ -1,0 +1,14 @@
+{
+ "title": "finishing-a-development-branch",
+ "source": "K07",
+ "lang": "en",
+ "repo": "obra/superpowers",
+ "url": "https://github.com/obra/blob/superpowers/main/skills/finishing-a-development-branch/SKILL.md",
+ "license": null,
+ "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work",
+ "domains": [
+  "education",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "requesting-code-review",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/requesting-code-review/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/requesting-code-review/SKILL.md",
+ "license": "MIT",
+ "description": "完成任务、实现重要功能或合并前使用，用于验证工作成果是否符合要求",
+ "domains": [
+  "history",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "searxng",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "searxng/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/searxng/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants privacy-respecting web, image, news, or video search through a configured local SearXNG instance instead of external search APIs. Calls the bundled script against SEARXNG_URL, supports result limits/categories/language/time range, and can return human-readable or JSON output. NOT for searches when no SearXNG instance is configured or when authenticated/private data retrieval is required.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.771Z"
+}

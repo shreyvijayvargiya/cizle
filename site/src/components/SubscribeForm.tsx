@@ -15,7 +15,7 @@ const remembered = () => {
 };
 
 /** Collects an email into Firestore (`subscribers/<email>`, create-only: see firestore.rules). Asking twice with the same address counts as done. */
-export function SubscribeForm({ source = "landing", className }: { source?: string; className?: string }) {
+export function SubscribeForm({ source = "landing", className, stacked = false, cta = "Get new prompts" }: { source?: string; className?: string; stacked?: boolean; cta?: string }) {
 	const [email, setEmail] = useState("");
 	const [trap, setTrap] = useState("");
 	const [busy, setBusy] = useState(false);
@@ -49,12 +49,12 @@ export function SubscribeForm({ source = "landing", className }: { source?: stri
 	if (done) return <p className={className} role="status">You are on the list. New prompts land in your inbox.</p>;
 	return (
 		<form onSubmit={submit} className={className} aria-label="Get new prompts by email">
-			<div className="flex flex-col gap-2 sm:flex-row">
-				<Input type="email" inputMode="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" aria-label="Email address" className="sm:max-w-xs" />
+			<div className={stacked ? "flex flex-col gap-2" : "flex flex-col gap-2 sm:flex-row"}>
+				<Input type="email" inputMode="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" aria-label="Email address" className={stacked ? "" : "sm:max-w-xs"} />
 				{/* bots fill every field; people never see this one */}
 				<input type="text" tabIndex={-1} autoComplete="off" aria-hidden value={trap} onChange={(e) => setTrap(e.target.value)} className="absolute -left-[9999px] size-0 opacity-0" />
 				<Button type="submit" size="lg" disabled={busy}>
-					{busy ? "Adding…" : "Get new prompts"}
+					{busy ? "Adding…" : cta}
 				</Button>
 			</div>
 			<p className="mt-2 text-sm text-muted-foreground">One email when new prompts land. No spam, leave any time.</p>

@@ -1,0 +1,14 @@
+{
+ "title": "miru-setup",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "fuuuuuuma/ai-video-editing-lite",
+ "path": "plugins/ai-video-editing-lite/skills/miru-setup/SKILL.md",
+ "url": "https://github.com/fuuuuuuma/ai-video-editing-lite/blob/HEAD/plugins/ai-video-editing-lite/skills/miru-setup/SKILL.md",
+ "license": "MIT",
+ "description": "動画の確認サイト MIRU ライトを、利用者自身の Cloudflare アカウントに立てる・確かめる・つなぐ・新しい版にする・自分用に直す。「MIRU を立てて」「MIRU をセットアップして」「自分の MIRU を作りたい」「MIRU を確かめて」「MIRU にログインできない」「MIRU を Claude Code / Codex とつないで」「MIRU を新しい版にして」「AI動画編集 lite と MIRU を新しい版にして」「MIRU の〇〇を直して」「MIRU の容量の上限を上げて」「MIRU の控えを取って」で使う。Claude Code は /ai-video-editing-lite:miru-setup、Codex は $miru-setup。",
+ "domains": [
+  "edtech"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.797Z"
+}

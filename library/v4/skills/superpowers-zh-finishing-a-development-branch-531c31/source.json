@@ -1,0 +1,14 @@
+{
+ "title": "finishing-a-development-branch",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/finishing-a-development-branch/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/finishing-a-development-branch/SKILL.md",
+ "license": "MIT",
+ "description": "当实现完成、所有测试通过、需要决定如何集成这份工作时使用",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

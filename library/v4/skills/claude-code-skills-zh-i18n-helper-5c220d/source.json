@@ -1,0 +1,12 @@
+{
+ "title": "i18n-helper",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/i18n-helper/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/i18n-helper/SKILL.md",
+ "license": "MIT",
+ "description": "国际化/本地化助手 — 扫描代码中的硬编码文本、生成 i18n 配置、批量翻译",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.785Z"
+}

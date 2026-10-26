@@ -1,0 +1,14 @@
+{
+ "title": "oneskill",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": ".claude/skills/oneskill/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/.claude/skills/oneskill/SKILL.md",
+ "license": "MIT",
+ "description": "发现技能（Skill），迭代查询，并在任何环境中自动安装技能。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.658Z"
+}

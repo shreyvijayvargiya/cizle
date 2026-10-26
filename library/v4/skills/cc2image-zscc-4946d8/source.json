@@ -1,0 +1,14 @@
+{
+ "title": "zscc配图生成器",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "izscc/cc2image",
+ "url": "https://github.com/izscc/blob/cc2image/HEAD/SKILL.md",
+ "license": null,
+ "description": "zscc配图生成器；当用户提到封面、正文配图、配图、知识图解、内容拆图、批量生图、文章配图、手绘知识卡片、小红书、公众号配图，或说“生成一个 logo / 图标 / 小图标 / app icon”，或指定内置 49 套内容风格与 8 套 logo/图标风格时使用。将中文主题、文章、段落、知识点或产品概念拆解为封面、正文图、logo/图标与批量生图方案；用户未明确指定有效风格时，必须先进入 Visualize:visualize 可视化交互选择，完成选择后才可调用 image_gen。",
+ "domains": [
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

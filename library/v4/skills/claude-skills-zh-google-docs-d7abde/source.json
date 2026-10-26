@@ -1,0 +1,12 @@
+{
+ "title": "google-docs",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/docs-office/google-docs/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/docs-office/google-docs/SKILL.md",
+ "license": "MIT",
+ "description": "Google Docs 内容编辑。创建、编辑、总结、改写在线文档，保留样式与结构。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.732Z"
+}

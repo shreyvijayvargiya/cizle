@@ -1,0 +1,12 @@
+{
+ "title": "grill",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "grill/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/grill/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user says 先討論 / wants to align on a fuzzy idea before building, or before any non-trivial implementation whose requirements are still ambiguous — interviews the user until shared understanding is confirmed, one question at a time, each with a suggested answer; facts answerable from the filesystem/code are looked up, never asked. Optionally maintains the repo's CONTEXT.md glossary when vocabulary settles during discussion. Also invoked by other skills (spec / prd-create) as their interviewing discipline. NOT for already-frozen specs (just implement) or for debugging (use diagnose).",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.769Z"
+}

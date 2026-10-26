@@ -1,0 +1,25 @@
+# 电影感女性
+
+Community prompt · 高端女性杂志
+Language: en · Domains: entertainment, health, agriculture · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2360_out.png
+
+```
+Cinematic luxury fitness editorial, industrial concrete gym setting with raw textured walls, dramatic directional lighting creating strong shadows, high-end sports campaign aesthetic
+top main image:
+athletic woman in white fitted t-shirt and white sports shorts, toned physique, confident pose leaning against a giant rugged tractor tire, one leg bent resting on the tire, white crew socks and chunky trainers, glossy skin highlights, strong jawline, focused expression
+bold typography on left side:
+“STRENGTH IS EARNED. DISCIPLINE KEEPS IT.” in large modern sans-serif, off-white/beige color, minimal branding logo below with small text “BUILT ON DISCIPLINE. DRIVEN TO DOMINATE.”
+bottom split layout:
+left panel:
+dynamic action pose using heavy battle ropes, low squat stance, intense expression, rope motion blur, text “FOCUS. FUEL. FINISH.” minimal branding
+right panel:
+relaxed standing pose holding a matte black medicine ball, slightly leaning on one leg, confident look away from camera, text “DISCIPLINE DRIVES DOMINANCE.”
+overall style:
+ultra-clean composition, premium editorial fitness campaign, high contrast lighting, sharp details, subtle reflections on floor, cohesive neutral color palette (white, beige, concrete gray, black), 1:1 aspect ratio, magazine-quality layout
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

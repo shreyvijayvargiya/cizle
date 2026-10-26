@@ -1,0 +1,20 @@
+# Chatgpt image 2
+
+Community prompt · 纯人物摄影
+Language: en · Domains: entertainment, health · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2076143107532304615.jpg
+
+```
+Luxury golden-hour selfie portrait of a beautiful young woman sitting inside a modern car, long silky dark brown hair cascading over her shoulders, luminous fair skin, soft glam makeup, glossy pink lips, defined lashes, and expressive hazel-green eyes. Wearing an elegant white asymmetrical one-shoulder dress with a stylish cutout detail, accessorized with a sparkling heart-shaped pendant necklace, silver rings, stud earrings, and a delicate bracelet. Resting her hand gracefully beneath her chin while smiling softly at the camera. Warm sunset sunlight streams through the car window, creating flattering highlights and natural shadows across her face. Premium lifestyle aesthetic, luxury fashion influencer vibe, shallow depth of field, ultra-realistic skin texture, cinematic lighting, professional beauty photography, photorealistic, masterpiece quality, 8K, HDR, 85mm lens.
+Enhanced AI Generation
+High-end beauty portrait, elegant young woman in a luxury car during golden hour, flawless glowing skin, long glossy brunette hair, radiant hazel eyes, soft romantic smile, chic white designer dress, sparkling jewelry details, natural sunlight illuminating her face, luxury lifestyle influencer aesthetic, modern elegance, premium fashion campaign, rich textures, highly detailed eyes and skin, warm cinematic color grading, shallow depth of field, Instagram luxury photography, editorial beauty shoot, photorealistic, ultra-detailed, award-winning portrait, HDR, 8K.
+Negative
+low quality, blurry, bad anatomy, extra fingers, deformed hands, distorted face, asymmetrical eyes, plastic skin, excessive makeup, overexposed highlights, harsh shadows, oversaturated colors, noise, grain, watermark, text, logo, motion blur, cartoon, anime, CGI, unrealistic proportions, low resolution, artifacts, duplicate features.
+Style Keywords:
+luxury beauty portrait, golden-hour selfie, influencer aesthetic, elegant fashion, glowing skin, luxury car interior, soft glam makeup, cinematic sunlight, high-end editorial photography, feminine elegance, premium lifestyle, photorealistic realism
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

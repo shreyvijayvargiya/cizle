@@ -1,0 +1,14 @@
+{
+ "title": "wait-what",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/productivity/wait-what/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/productivity/wait-what/SKILL.md",
+ "license": "MIT",
+ "description": "停一下：刚才那条消息没有说清楚，重新表述一遍。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.759Z"
+}

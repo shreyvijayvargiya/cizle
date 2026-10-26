@@ -1,0 +1,14 @@
+{
+ "title": "subscribe",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/automation/subscribe/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/automation/subscribe/SKILL.md",
+ "license": "MIT",
+ "description": "订阅外部事件。用订阅代替轮询，等 GitHub CI 结果、PR 动态、Slack 消息、Linear issue。\"environments:",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.726Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "brainstorm-spec",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/brainstorm-spec/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/brainstorm-spec/SKILL.md",
+ "license": "MIT",
+ "description": "方案头脑风暴——通过协作对话或命令行单轮收敛，把一个模糊的业务想法收敛成可审批的设计规格书。当用户提出新产品想法、活动立项、方案选型、需求梳理、会议对齐方向，但目标还模糊、需要先理清问题、比较候选方案、形成可评审的设计文档时使用。任何创造性方案工作开始前，先用本技能把想法变成规格，再进入交付动作。",
+ "domains": [
+  "product",
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.756Z"
+}

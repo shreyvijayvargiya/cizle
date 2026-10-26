@@ -1,0 +1,14 @@
+{
+ "title": "jianli-zhenduan",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "jianli-zhenduan/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/jianli-zhenduan/SKILL.md",
+ "license": null,
+ "description": "诊断现有简历的问题并按目标岗位重写，包括量化改写、关键词匹配、结构重排和 ATS 友好格式化。当用户提到\"改简历\"、\"简历诊断\"、\"投了没回音\"、\"目标岗位匹配\"，或粘贴简历内容要求优化时使用。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

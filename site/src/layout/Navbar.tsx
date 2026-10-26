@@ -1,5 +1,5 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Logout01Icon, Menu01Icon, Moon02Icon, Search01Icon, Settings01Icon, Sun03Icon } from "@hugeicons/core-free-icons";
+import { ComputerIcon, Bookmark01Icon, Logout01Icon, Menu01Icon, Moon02Icon, Search01Icon, Settings01Icon, Sun03Icon } from "@hugeicons/core-free-icons";
 import { Icon } from "@/components/Icon";
 import { Logo } from "@/components/Logo";
 import { Kbd } from "@/components/ui/command";
@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, MenuContent, MenuItem, MenuLabel, MenuRadioGroup, MenuRadioItem, MenuSeparator, MenuTrigger } from "@/components/ui/menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/lib/auth";
-import { NAV } from "@/lib/config";
+import { NAV, PREMIUM } from "@/lib/config";
 import { useTheme } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -24,9 +24,9 @@ export function ThemeMenu() {
 			<MenuContent align="end">
 				<MenuLabel>Theme</MenuLabel>
 				<MenuRadioGroup value={theme} onValueChange={(v) => setTheme(v as "light" | "dark" | "system")}>
-					<MenuRadioItem value="light">Light</MenuRadioItem>
-					<MenuRadioItem value="dark">Dark</MenuRadioItem>
-					<MenuRadioItem value="system">System</MenuRadioItem>
+					<MenuRadioItem value="light" icon={Sun03Icon}>Light</MenuRadioItem>
+					<MenuRadioItem value="dark" icon={Moon02Icon}>Dark</MenuRadioItem>
+					<MenuRadioItem value="system" icon={ComputerIcon}>System</MenuRadioItem>
 				</MenuRadioGroup>
 			</MenuContent>
 		</Menu>
@@ -51,6 +51,9 @@ function UserMenu() {
 					<p className="truncate text-xs text-muted-foreground">{user.email}</p>
 				</div>
 				<MenuSeparator />
+				<MenuItem onSelect={() => navigate({ to: "/saved" })}>
+					<Icon icon={Bookmark01Icon} size={15} /> Saved
+				</MenuItem>
 				<MenuItem onSelect={() => navigate({ to: "/settings" })}>
 					<Icon icon={Settings01Icon} size={15} /> Settings {isPro ? <span className="ml-auto text-sm font-semibold text-brand">Premium</span> : null}
 				</MenuItem>
@@ -76,11 +79,8 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 	return (
 		<header className="board sticky top-0 z-40 bg-background pt-3 pb-2">
 			<div className="board-w flex h-[60px] items-stretch gap-2">
-				<Link to="/" aria-label="cizle home" className="press reveal flex w-[60px] shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring lg:w-auto lg:px-5">
-					<svg width="26" height="26" viewBox="0 0 32 32" aria-hidden className="lg:hidden">
-						<path d="M12.5 9.8v12.4a1 1 0 0 0 1.5.86l10.2-6.2a1 1 0 0 0 0-1.72L14 8.94a1 1 0 0 0-1.5.86Z" fill="currentColor" />
-					</svg>
-					<span className="hidden text-xl font-semibold tracking-[-0.04em] lg:inline">cizle</span>
+				<Link to="/" aria-label="cizle home" className="press reveal flex shrink-0 items-center rounded-lg bg-surface px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-4">
+					<Logo className="[&_svg]:h-[28px]" />
 				</Link>
 				<nav aria-label="Main" className="reveal hidden min-w-0 flex-1 items-center gap-1 overflow-hidden rounded-lg bg-surface px-2 lg:flex" style={{ ["--i" as string]: 1 }}>
 					{NAV.map((n) => (
@@ -100,7 +100,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 					</div>
 					{!ready ? null : user ? (
 						<>
-							{!isPro ? (
+							{!isPro && PREMIUM ? (
 								<Link to="/pricing" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
 									Get Premium
 								</Link>
@@ -111,12 +111,21 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 						</>
 					) : (
 						<>
+							<Link to="/saved" aria-label="Saved" title="Saved" className="press hidden items-center rounded-lg bg-surface px-4 text-foreground transition-colors hover:bg-tile-2 lg:flex">
+								<Icon icon={Bookmark01Icon} size={18} />
+							</Link>
 							<Link to="/login" search={{}} className="press hidden items-center rounded-lg bg-surface px-5 text-base text-foreground transition-colors hover:bg-tile-2 lg:flex">
 								Sign in
 							</Link>
-							<Link to="/pricing" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
-								Get Premium
-							</Link>
+							{PREMIUM ? (
+								<Link to="/pricing" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
+									Get Premium
+								</Link>
+							) : (
+								<a href="/#subscribe" className="press hidden items-center rounded-lg bg-field-1 px-5 text-base font-medium text-field-1-ink transition-colors hover:bg-field-1/85 sm:flex">
+									Subscribe
+								</a>
+							)}
 						</>
 					)}
 					<Sheet>
@@ -139,6 +148,11 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 									</SheetClose>
 								))}
 								<SheetClose asChild>
+									<Link to="/saved" className="rounded-lg bg-surface px-4 py-3 text-lg text-foreground">
+										Saved
+									</Link>
+								</SheetClose>
+								<SheetClose asChild>
 									<Link to="/contact" className="rounded-lg bg-surface px-4 py-3 text-lg text-foreground">
 										Contact
 									</Link>
@@ -160,10 +174,17 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 										</Button>
 									</SheetClose>
 								)}
-								{!isPro ? (
+								{!isPro && PREMIUM ? (
 									<SheetClose asChild>
 										<Button variant="brand" size="lg" asChild>
 											<Link to="/pricing">Get Premium</Link>
+										</Button>
+									</SheetClose>
+								) : null}
+								{!PREMIUM && !user ? (
+									<SheetClose asChild>
+										<Button variant="brand" size="lg" asChild>
+											<a href="/#subscribe">Subscribe</a>
 										</Button>
 									</SheetClose>
 								) : null}

@@ -1,0 +1,14 @@
+{
+ "title": "swift-concurrency-6-2",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/swift-concurrency-6-2/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/swift-concurrency-6-2/SKILL.md",
+ "license": "MIT",
+ "description": "Swift 6.2 易用的并发（Approachable Concurrency）—— 默认单线程，使用 @concurrent 进行显式后台卸载，针对主执行角色（Main Actor）类型的隔离一致性。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.716Z"
+}

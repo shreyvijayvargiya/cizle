@@ -1,0 +1,15 @@
+{
+ "title": "cpp-testing",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/cpp-testing/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/cpp-testing/SKILL.md",
+ "license": "MIT",
+ "description": "仅在编写/更新/修复 C++ 测试、配置 GoogleTest/CTest、诊断失败或不稳定的测试、或添加覆盖率/检测器（Sanitizers）时使用。",
+ "domains": [
+  "agriculture",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.709Z"
+}

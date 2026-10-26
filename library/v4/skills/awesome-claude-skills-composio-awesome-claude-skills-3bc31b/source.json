@@ -1,0 +1,14 @@
+{
+ "title": "composio-awesome-claude-skills",
+ "source": "K07",
+ "lang": "en",
+ "repo": "composiohq/awesome-claude-skills",
+ "url": "https://github.com/composiohq/awesome-claude-skills/blob/HEAD/connect/SKILL.md",
+ "license": null,
+ "description": "Connect Claude to any app. Send emails, create issues, post messages, update databases - take real actions across Gmail, Slack, GitHub, Notion, and 1000+ services.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

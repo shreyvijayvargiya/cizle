@@ -1,0 +1,12 @@
+{
+ "title": "writing-for-agents",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/productivity/writing-for-agents/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/productivity/writing-for-agents/SKILL.md",
+ "license": "MIT",
+ "description": "为 agent 编写文档。适用于创建或编辑 skills，或修改 AGENTS.md 或 CLAUDE.md 时。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.756Z"
+}

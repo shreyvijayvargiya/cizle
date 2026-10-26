@@ -1,0 +1,15 @@
+{
+ "title": "reverse-skill",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "zhaoxuya520/reverse-skill",
+ "url": "https://github.com/zhaoxuya520/reverse-skill/blob/HEAD/skills/SKILL.md",
+ "license": null,
+ "description": "Routes reverse engineering, exploitation, penetration testing, malware, mobile, firmware, browser automation, documentation, and security tasks to the appropriate specialist skill. Use when a task spans modules or the correct reverse-skill entrypoint is unclear.",
+ "domains": [
+  "data",
+  "engineering",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.271Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "test-driven-development",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/test-driven-development/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/test-driven-development/SKILL.md",
+ "license": "MIT",
+ "description": "在实现任何功能或修复 bug 时使用，在编写实现代码之前",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

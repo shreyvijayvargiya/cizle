@@ -1,0 +1,11 @@
+{
+ "title": "dbskill",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "dontbesilent2025/dbskill",
+ "url": "https://github.com/dontbesilent2025/dbskill/blob/HEAD/skills/dbs/SKILL.md",
+ "license": null,
+ "description": "dontbesilent 商业工具箱的技能调度台，根据当前问题和反馈选择下一步，在对话中直接执行、澄清、组合或对照尝试 Skill。用户不知道从哪里开始、需要调整处理方法、第一次使用 dbskill、输入三位编号或查询隐藏款目录时使用；仅需推荐或可复制提示词时按请求交付。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.255Z"
+}

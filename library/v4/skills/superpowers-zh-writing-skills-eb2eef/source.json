@@ -1,0 +1,14 @@
+{
+ "title": "writing-skills",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/writing-skills/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/writing-skills/SKILL.md",
+ "license": "MIT",
+ "description": "当创建新技能、编辑现有技能或在部署前验证技能是否有效时使用",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.783Z"
+}

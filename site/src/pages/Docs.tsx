@@ -4,7 +4,7 @@ import { usePage } from "@/lib/data";
 import { useHead } from "@/lib/head";
 
 /** Long-form markdown pages (docs and legal): prerendered at build, so crawlers and AI assistants get the text without running JS. */
-export function ContentPage({ name, path, title, description, toc = false, noindex }: { name: "docs" | "terms" | "privacy" | "refund"; path: string; title: string; description: string; toc?: boolean; noindex?: boolean }) {
+export function ContentPage({ name, path, title, description, toc = false, noindex }: { name: "docs" | "terms" | "privacy" | "refund" | "rights"; path: string; title: string; description: string; toc?: boolean; noindex?: boolean }) {
 	const page = usePage(name);
 	useHead({ title, description, path, noindex });
 	return (

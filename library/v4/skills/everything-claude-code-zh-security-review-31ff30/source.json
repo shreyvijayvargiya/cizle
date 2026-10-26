@@ -1,0 +1,14 @@
+{
+ "title": "security-review",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/security-review/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/security-review/SKILL.md",
+ "license": "MIT",
+ "description": "Use this skill when adding authentication, handling user input, working with secrets, creating API endpoints, or implementing payment/sensitive features. Provides comprehensive security checklist and patterns.",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.703Z"
+}

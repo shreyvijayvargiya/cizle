@@ -1,0 +1,11 @@
+{
+ "title": "subagent-driven-development",
+ "source": "K07",
+ "lang": "en",
+ "repo": "NeoLabHQ/context-engineering-kit",
+ "url": "https://github.com/NeoLabHQ/blob/context-engineering-kit/master/plugins/sadd/skills/subagent-driven-development/SKILL.md",
+ "license": null,
+ "description": "Use when executing implementation plans with independent tasks in the current session or facing 3+ independent issues that can be investigated without shared state or dependencies - dispatches fresh subagent for each task with code review between tasks, enabling fast iteration with quality gates",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "writing-fragments",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/in-progress/writing-fragments/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/in-progress/writing-fragments/SKILL.md",
+ "license": "MIT",
+ "description": "Writing, explore：挖掘原始 fragments，暂不施加任何结构。",
+ "domains": [
+  "music"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

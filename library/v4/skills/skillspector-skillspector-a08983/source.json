@@ -1,0 +1,11 @@
+{
+ "title": "skillspector",
+ "source": "K07",
+ "lang": "en",
+ "repo": "nvidia/skillspector",
+ "url": "https://github.com/nvidia/skillspector/blob/HEAD/skills/skill-inspector/SKILL.md",
+ "license": null,
+ "description": "Review AI agent skills before installation using NVIDIA SkillSpector and source-aware semantic review. Use when asked whether a skill or downloaded skill folder is safe, trustworthy, installable, over-permissioned, or malicious.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.271Z"
+}

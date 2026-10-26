@@ -1,0 +1,15 @@
+{
+ "title": "seedance-ecommerce-ad",
+ "source": "K05",
+ "lang": "en",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/07-ecommerce-ad/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/07-ecommerce-ad/SKILL.md",
+ "license": null,
+ "description": "Generate e-commerce product advertisement video prompts for Seedance 2.0 on Higgsfield. Use whenever the user wants product ads, e-commerce videos, product showcases, unboxing, product demos, shopping ads, fashion ads, beauty ads, food ads, or any commercial product video for online selling. Triggers on: product ad, e-commerce, product showcase, Amazon video, Shopify ad, Instagram shop, TikTok shop, product commercial, fashion video, beauty ad, food ad, product demo, dropshipping video, or any product promotional video request. Use even for \"make a video for my product\" or \"product promo.",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.071Z"
+}

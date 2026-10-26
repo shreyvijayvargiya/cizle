@@ -1,0 +1,15 @@
+{
+ "title": "prompt-engineering",
+ "source": "K07",
+ "lang": "en",
+ "repo": "NeoLabHQ/context-engineering-kit",
+ "url": "https://github.com/NeoLabHQ/blob/context-engineering-kit/master/plugins/customaize-agent/skills/prompt-engineering/SKILL.md",
+ "license": null,
+ "description": "Use this skill when you writing commands, hooks, skills for Agent, or prompts for sub agents or any other LLM interaction, including optimizing prompts, improving LLM outputs, or designing production prompt templates.",
+ "domains": [
+  "engineering",
+  "education",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

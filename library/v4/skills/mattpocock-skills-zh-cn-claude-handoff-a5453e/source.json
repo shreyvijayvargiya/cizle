@@ -1,0 +1,12 @@
+{
+ "title": "claude-handoff",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/in-progress/claude-handoff/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/in-progress/claude-handoff/SKILL.md",
+ "license": "MIT",
+ "description": "把当前对话交接给一个全新的 background agent，让它立即接手工作。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

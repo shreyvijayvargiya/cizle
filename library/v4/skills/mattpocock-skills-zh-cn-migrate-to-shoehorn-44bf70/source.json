@@ -1,0 +1,14 @@
+{
+ "title": "migrate-to-shoehorn",
+ "source": "K04",
+ "lang": "en",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/misc/migrate-to-shoehorn/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/misc/migrate-to-shoehorn/SKILL.md",
+ "license": "MIT",
+ "description": "将测试文件从 `as` 类型断言迁移到 @total-typescript/shoehorn。适用于用户提到 shoehorn、想替换测试中的 `as`，或需要局部测试数据时。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

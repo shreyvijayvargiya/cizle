@@ -1,0 +1,16 @@
+{
+ "title": "workflow-router",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "workflow-router/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/workflow-router/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user is unsure which kc_ai_skills workflow skill to use, or describes work involving PRD, SD/software design, FR, AC/acceptance criteria, ADR, tickets, implementation, debugging, existing-project documentation, documentation drift after verified changes, post-QA documentation alignment in unattended tasks, release checks, or unattended agent execution. Triage the request with at most one clarifying question when needed, explain the route in plain language, then hand off to the right specialist skill. This is an entry router only: it does not write PRDs, specs, ADRs, tickets, or dispatches itself.",
+ "domains": [
+  "engineering",
+  "education",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.776Z"
+}

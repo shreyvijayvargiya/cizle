@@ -1,0 +1,12 @@
+{
+ "title": "python-testing",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/python-testing/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/python-testing/SKILL.md",
+ "license": "MIT",
+ "description": "使用pytest的Python测试策略，包括TDD方法、夹具、模拟、参数化和覆盖率要求。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.691Z"
+}

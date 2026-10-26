@@ -1,0 +1,11 @@
+{
+ "title": "Skill Seekers",
+ "source": "K07",
+ "lang": "en",
+ "repo": "yusufkaraaslan/Skill_Seekers",
+ "url": "https://github.com/yusufkaraaslan/Skill_Seekers/blob/HEAD/skills/skill-seekers/SKILL.md",
+ "license": null,
+ "description": "Automatically detect source types and build AI skills using Skill Seekers. Use when the user wants to create skills from documentation, repos, PDFs, videos, or other knowledge sources.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

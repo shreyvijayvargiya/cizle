@@ -1,0 +1,16 @@
+{
+ "title": "xiaohongshu-copy",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-copy/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-copy/SKILL.md",
+ "license": "MIT",
+ "description": "把素材（口播转写 / 产品资料 / 使用体验 / 灵感碎片）改写成小红书风格、可直接发布的文案：标题（≤20 字 + 钩子）、封面文案、分点正文、话题标签、合规自查。用户给出素材并要求\"写小红书文案 / 种草笔记 / 发一篇小红书\"时使用。",
+ "domains": [
+  "product",
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

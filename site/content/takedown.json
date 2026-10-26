@@ -1,0 +1,8 @@
+{
+	"note": "Removal list. Anything matching an entry is left out of every build (gallery, skills, creators, sitemap). To remove something: add its X/GitHub handle, its id or its source here, rebuild (cd site && npm run content), redeploy, and write one line in `log`.",
+	"handles": [],
+	"ids": [],
+	"sources": [],
+	"repos": [],
+	"log": []
+}

@@ -1,0 +1,15 @@
+{
+ "title": "gpt-image2-ppt-skills",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "JuneYaooo/gpt-image2-ppt-skills",
+ "url": "https://github.com/JuneYaooo/blob/gpt-image2-ppt-skills/HEAD/SKILL.md",
+ "license": null,
+ "description": "Generate visually striking PPT slides via OpenAI's gpt-image-2 -- use any style in styles/<collection>/STYLE_ID.md or mimic a user-supplied .pptx template; outputs high-res slide PNGs and a 16:9 .pptx. Use when the user asks to make a presentation, slides, deck, pitch deck, investor PPT, magazine-style PPT, or 做一份 PPT / 生成幻灯片 / 用 gpt-image 生成 PPT / 按这个模板生成 PPT.",
+ "domains": [
+  "product",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

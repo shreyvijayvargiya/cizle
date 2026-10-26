@@ -1,0 +1,13 @@
+{
+ "title": "claude-plugins-official",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/claude-plugins-official",
+ "url": "https://github.com/anthropics/claude-plugins-official/blob/HEAD/plugins/math-proof/skills/solo/SKILL.md",
+ "license": null,
+ "description": "Work on one hard mathematics problem in this session yourself, with no sub-agents: reason in stages, record each settled step in a notes file so that nothing written is lost if a response is cut off, and end with a self-contained proof.md. Usage: /math-proof:solo <the problem, stated in full, or the path of a file holding it>.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

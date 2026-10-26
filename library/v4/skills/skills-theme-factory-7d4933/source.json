@@ -1,0 +1,15 @@
+{
+ "title": "theme-factory",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/skills",
+ "url": "https://github.com/anthropics/blob/skills/main/skills/theme-factory/SKILL.md",
+ "license": null,
+ "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+ "domains": [
+  "nature",
+  "engineering",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}

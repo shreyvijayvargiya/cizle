@@ -1,0 +1,15 @@
+{
+ "title": "seedance-brand-story",
+ "source": "K05",
+ "lang": "en",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/12-brand-story/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/12-brand-story/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成品牌叙事和叙述视频提示。在用户想要创建品牌故事视频、公司起源故事、使命视频、关于我们视频、品牌电影、企业叙事、创始人故事、品牌颂歌、公司文化视频或情感品牌内容时使用。在以下情况下触发：品牌故事、品牌视频、公司故事、起源故事、关于我们、使命视频、品牌电影、品牌颂歌、企业视频、公司文化、创始人故事、品牌叙事或任何品牌/公司叙事视频请求。即使是\"讲述我们的公司故事\"或\"为我们的使命制作视频\"也适用。",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.097Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "xiaohongshu-topic-planner",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/xiaohongshu-topic-planner/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/xiaohongshu-topic-planner/SKILL.md",
+ "license": "MIT",
+ "description": "把账号定位与运营目标拆成 6 类功能选题（吸引/共鸣/信任/教育/转化/互动），产出选题池 + 优先级排序 + 发布日历 + 系列选题建议。当用户需要做月度选题规划、账号冷启动选题、内容排期、小红书/公众号/知乎选题日历、系列内容策划，或说\"帮我排一下接下来两周发什么\"\"给我出一批选题\"\"做个内容日历\"时使用。",
+ "domains": [
+  "education",
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

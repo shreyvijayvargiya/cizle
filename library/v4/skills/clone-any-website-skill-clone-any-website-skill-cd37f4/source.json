@@ -1,0 +1,14 @@
+{
+ "title": "clone-any-website-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "promptwhisper/clone-any-website-skill",
+ "url": "https://github.com/promptwhisper/clone-any-website-skill/blob/HEAD/clone-any-website/SKILL.md",
+ "license": null,
+ "description": "Rebuild public websites as clean, maintainable local projects, then verify the result with reproducible visual, interaction, media, console, and network evidence. Use when the user asks to clone, replicate, reproduce, port, or study a public website, including DOM pages, video-led experiences, Three.js/WebGL/R3F scenes, Pixi.js or Canvas2D toys, and public realtime or multiplayer experiences.",
+ "domains": [
+  "education",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

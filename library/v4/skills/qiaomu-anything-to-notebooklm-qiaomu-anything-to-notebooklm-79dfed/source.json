@@ -1,0 +1,15 @@
+{
+ "title": "qiaomu-anything-to-notebooklm",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "joeseesun/qiaomu-anything-to-notebooklm",
+ "url": "https://github.com/joeseesun/blob/qiaomu-anything-to-notebooklm/HEAD/SKILL.md",
+ "license": null,
+ "description": "多源内容智能处理器：支持微信公众号、网页、YouTube、播客（小宇宙/喜马拉雅）、PDF、Markdown等，自动上传到NotebookLM并生成播客/PPT/思维导图等多种格式。支持深度分析模式和飞书文档自动创建",
+ "domains": [
+  "science",
+  "data",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.271Z"
+}

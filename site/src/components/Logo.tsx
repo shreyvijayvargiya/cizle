@@ -1,16 +1,29 @@
 import { cn } from "@/lib/utils";
 
-/** The mark is the product: a play triangle on a flat ink tile. */
+/** The wordmark is the footer's: five rounded blocks of different heights on one baseline, each carrying a letter of cizle. Colours follow the theme. */
 export function Logo({ className, mark = true }: { className?: string; mark?: boolean }) {
 	return (
-		<span className={cn("inline-flex items-center gap-2.5 font-semibold tracking-tight", className)}>
+		<span className={cn("inline-flex items-center font-semibold tracking-tight", className)}>
 			{mark ? (
-				<svg width="28" height="28" viewBox="0 0 32 32" aria-hidden>
-					<rect width="32" height="32" rx="8" className="fill-primary" />
-					<path d="M12.5 9.8v12.4a1 1 0 0 0 1.5.86l10.2-6.2a1 1 0 0 0 0-1.72L14 8.94a1 1 0 0 0-1.5.86Z" className="fill-primary-foreground" />
-				</svg>
-			) : null}
-			<span className="text-xl tracking-[-0.04em]">cizle</span>
+				<>
+					<svg height="30" viewBox="0 0 136 48" aria-hidden className="h-[30px] w-auto">
+				<rect x={0} y={10.6} width={24} height={37.4} rx={6} className="fill-field-1" />
+				<path d="M16.6 29.2A6.6 6.6 0 1 0 16.6 38.2" fill="none" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round" className="stroke-field-1-ink" />
+				<rect x={28} y={0.0} width={24} height={48.0} rx={6} className="fill-field-2" />
+				<path d="M40.0 31V41" fill="none" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round" className="stroke-field-2-ink" />
+				<circle cx={40.0} cy={26.2} r={2} className="fill-field-2-ink" />
+				<rect x={56} y={17.3} width={24} height={30.7} rx={6} className="fill-field-3" />
+				<path d="M63.0 28.5H73.0L63.0 40.5H73.0" fill="none" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round" className="stroke-field-3-ink" />
+				<rect x={84} y={4.8} width={24} height={43.2} rx={6} className="fill-field-1" />
+				<path d="M96.0 24V41" fill="none" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round" className="stroke-field-1-ink" />
+				<rect x={112} y={13.4} width={24} height={34.6} rx={6} className="fill-field-2" />
+				<path d="M117.8 34.6H130.2A6.2 6.2 0 1 0 128.4 39" fill="none" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round" className="stroke-field-2-ink" />
+					</svg>
+					<span className="sr-only">cizle</span>
+				</>
+			) : (
+				<span className="text-xl tracking-[-0.04em]">cizle</span>
+			)}
 		</span>
 	);
 }

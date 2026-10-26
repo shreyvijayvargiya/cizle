@@ -1,0 +1,15 @@
+{
+ "title": "codebase-design",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/codebase-design/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/codebase-design/SKILL.md",
+ "license": "MIT",
+ "description": "用于设计深模块的共享词汇。适用于用户想设计或改进模块接口、寻找深化机会、决定 seam 放在哪里、让代码更容易测试或更适合 AI 导航，或其他技能需要深模块词汇时。",
+ "domains": [
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.747Z"
+}

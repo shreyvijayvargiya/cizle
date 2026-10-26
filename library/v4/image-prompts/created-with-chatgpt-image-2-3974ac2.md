@@ -1,0 +1,18 @@
+# Created with chatgpt image 2
+
+Community prompt · 纯人物摄影
+Language: en · Domains: entertainment, health · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/2076917564060627397.jpg
+
+```
+Ultra-realistic fashion beauty portrait of a stylish young woman with long silky dark-brown hair and soft curtain bangs, wearing an oversized chunky black knit sweater. She poses elegantly against a deep black studio background, partially covering one eye with her hand while gazing confidently into the camera. Soft fair skin, natural matte makeup, warm blush, defined brows, subtle eyeliner, and rich velvet-red lips. Calm, mysterious, high-fashion expression with a modern editorial aesthetic.
+Professional studio lighting creates dramatic contrast between light and shadow, emphasizing facial structure, hair texture, and the cozy knit fabric. Minimalist composition, luxury fashion campaign mood, sophisticated monochrome styling, clean black-on-black palette with subtle skin-tone highlights. Sharp focus on the visible eye, premium beauty photography, elegant and timeless atmosphere.
+Shot on a full-frame camera, 85mm lens, f/1.8, shallow depth of field, ultra-detailed skin texture, soft directional key light, cinematic contrast, high-end magazine editorial, luxury fashion advertisement, photorealistic, HDR, 8K resolution, masterpiece quality.
+Negative
+blurry, low resolution, low quality, bad anatomy, extra fingers, deformed hands, duplicate limbs, asymmetrical eyes, distorted face, cartoon, anime, CGI, painting, plastic skin, excessive retouching, overexposed highlights, underexposed shadows, noise, grain, watermark, logo, text, cluttered background, motion blur, unrealistic proportions, oversaturated colors.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

@@ -1,0 +1,15 @@
+{
+ "title": "homework-tutor-cn",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "sanhuang520-ship-it/awesome-chinese-ai-tools/skills/homework-tutor-cn",
+ "url": "https://github.com/sanhuang520-ship-it/awesome-chinese-ai-tools/blob/HEAD/skills/homework-tutor-cn/SKILL.md",
+ "license": null,
+ "description": "辅导中国中小学生作业的家长助手。当用户要\"辅导作业\"\"孩子这题不会\"\"怎么给孩子讲\"\"检查作业\"\"孩子不想写作业\"时使用。重点是教家长怎么引导，而不是直接给答案。",
+ "domains": [
+  "education",
+  "edtech",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.248Z"
+}

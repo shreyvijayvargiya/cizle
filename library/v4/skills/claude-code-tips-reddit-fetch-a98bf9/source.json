@@ -1,0 +1,13 @@
+{
+ "title": "reddit-fetch",
+ "source": "K07",
+ "lang": "en",
+ "repo": "ykdojo/claude-code-tips",
+ "url": "https://github.com/ykdojo/blob/claude-code-tips/main/skills/reddit-fetch/SKILL.md",
+ "license": null,
+ "description": "Fetch content from Reddit via its JSON API using a browser session (DuckDuckGo-hop unlock). Use when accessing Reddit URLs, researching topics on Reddit, or when Reddit returns 403/blocked errors.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

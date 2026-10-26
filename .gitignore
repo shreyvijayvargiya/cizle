@@ -52,3 +52,10 @@ site/content/gallery.jsonl.bak
 skills-lock.json
 .mcp.json
 docs/snapcn-comparison.md
+
+# marketing renders (large; the web copies live in site/public/learn)
+marketing/x/out/
+marketing/x/nature/out/
+marketing/x/nature/final/
+marketing/x/*.wav
+marketing/x/nature/*.wav

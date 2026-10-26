@@ -1,0 +1,12 @@
+{
+ "title": "django-security",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-CN/skills/django-security/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-CN/skills/django-security/SKILL.md",
+ "license": "MIT",
+ "description": "Django 安全最佳实践、认证、授权、CSRF 防护、SQL 注入预防、XSS 预防和安全部署配置。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.682Z"
+}

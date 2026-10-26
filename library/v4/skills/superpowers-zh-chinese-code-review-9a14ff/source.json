@@ -1,0 +1,15 @@
+{
+ "title": "chinese-code-review",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/chinese-code-review/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/chinese-code-review/SKILL.md",
+ "license": "MIT",
+ "description": "中文 review 沟通参考——话术模板、分级标注（必须修复/建议修改/仅供参考）、国内团队常见反模式应对。仅在用户显式 /chinese-code-review 时调用，不要根据上下文自动触发。",
+ "domains": [
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

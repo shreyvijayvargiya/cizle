@@ -1,0 +1,16 @@
+{
+ "title": "to-spec",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/to-spec/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/to-spec/SKILL.md",
+ "license": "MIT",
+ "description": "把当前对话转成 spec 并发布到项目 issue tracker：不做访谈，只综合已经讨论的内容。",
+ "domains": [
+  "product",
+  "finance",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

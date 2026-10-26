@@ -1,0 +1,14 @@
+{
+ "title": "seedance-comic-to-video",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/04-comic-to-video/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/04-comic-to-video/zh-CN/SKILL.md",
+ "license": null,
+ "description": "使用 Seedance 2.0（Higgsfield）将漫画书面板、漫画页面、网络漫画和插画故事板转换为动画视频。在用户想要动画漫画、使插画栩栩如生、将漫画转换为视频、动画化故事板或从静态连环艺术创建运动时使用。触发词：漫画变视频、漫画动画、面板动画、故事板变视频、网络漫画动画、漫画书运动、连环艺术、图形小说动画或任何插画转动画请求。即使用户说\"使这个画动起来\"或\"动画化这一页\"也要使用。",
+ "domains": [
+  "music"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.067Z"
+}

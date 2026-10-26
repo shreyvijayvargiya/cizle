@@ -1,0 +1,15 @@
+{
+ "title": "security-review",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": ".agents/skills/security-review/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/.agents/skills/security-review/SKILL.md",
+ "license": "MIT",
+ "description": "当涉及添加身份验证（Authentication）、处理用户输入、操作机密（Secrets）、创建 API 终端节点或实现支付/敏感功能时，请使用此技能。提供全面的安全检查清单和模式。",
+ "domains": [
+  "data",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.658Z"
+}

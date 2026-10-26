@@ -1,0 +1,16 @@
+{
+ "title": "ai-short-drama-director-kit",
+ "source": "K05",
+ "lang": "en",
+ "repo": "fanchengchen1-collab/super-director",
+ "path": "skills/ai-short-drama-director-kit/SKILL.md",
+ "url": "https://github.com/fanchengchen1-collab/super-director/blob/HEAD/skills/ai-short-drama-director-kit/SKILL.md",
+ "license": null,
+ "description": "Use this skill when the user wants an AI short-drama director tool library, wants Codex to choose among director/cinematography/commercial/story skills, or asks for screenplay, shot design, visual style, hooks, comedy, action, emotional polish, or multi-skill creative direction. It routes selectively across the installed skills: zhou-xingchi-director, peter-pau-cinematography, johnnie-to-staging, wong-kar-wai-emotion, tsui-hark-fantasy-action, ning-hao-black-comedy, wong-jing-commercial-hooks, zhang-yimou-visual-ritual, and ang-lee-emotional-realism.",
+ "domains": [
+  "entertainment",
+  "math",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.097Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "ppt-outline",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/ppt-outline/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/ppt-outline/SKILL.md",
+ "license": "MIT",
+ "description": "把用户提供的材料（会议纪要、方案文档、要点列表、或一个主题+几条要点）整理成可直接做 PPT 的分页大纲，含每页标题、口语化讲稿要点与视觉排版建议。当用户需要做 PPT、写演示大纲、准备汇报讲稿时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

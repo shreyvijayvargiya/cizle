@@ -1,0 +1,11 @@
+{
+ "title": "computer-forensics",
+ "source": "K07",
+ "lang": "en",
+ "repo": "mhattingpete/claude-skills-marketplace",
+ "url": "https://github.com/mhattingpete/claude-skills-marketplace/blob/HEAD/code-operations-plugin/skills/code-refactor/SKILL.md",
+ "license": null,
+ "description": "Perform bulk code refactoring operations like renaming variables/functions across files, replacing patterns, and updating API calls. Use when users request renaming identifiers, replacing deprecated code patterns, updating method calls, or making consistent changes across multiple locations.",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.271Z"
+}

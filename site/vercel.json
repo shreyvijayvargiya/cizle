@@ -35,6 +35,42 @@
 			]
 		},
 		{
+			"source": "/(gallery|creators|skills)\\.json",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+				}
+			]
+		},
+		{
+			"source": "/versions\\.json",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+				}
+			]
+		},
+		{
+			"source": "/versions/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+				}
+			]
+		},
+		{
+			"source": "/gallery-text/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400"
+				}
+			]
+		},
+		{
 			"source": "/(.*)",
 			"headers": [
 				{

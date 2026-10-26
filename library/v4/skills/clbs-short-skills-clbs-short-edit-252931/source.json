@@ -1,0 +1,16 @@
+{
+ "title": "clbs-short-edit",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "conlab-clbs/clbs-short-skills",
+ "path": "clbs-short-edit/SKILL.md",
+ "url": "https://github.com/conlab-clbs/clbs-short-skills/blob/HEAD/clbs-short-edit/SKILL.md",
+ "license": null,
+ "description": "縦型ショート動画（9:16）の自動編集スキル。顔出しアバター動画（avatar.mp4・音声入り）＋台本（script.txt のV41タグ）＋縦型素材（1:1スクエア画像スライド / 4:3ピクチャー / 9:16全画面Bロール動画）から、素材の自動差し込みと焼き込みテロップ付与を行い、完成MP4（1080x1920）を書き出す。テロップは既定で「顔の下・胸元上（位置B）／2行／大きめ／白＋黄キーワード／太い黒フチ」。v3でtakumi-youtube-editのテロップ精度機構（フレーム量子化ジェットカット・BudouX階層分割＋禁則辞書・stable-ts整合）を移植。前段は `clbs-short-script`（台本＝script.txt）と素材生成（Higgsfield: Nano Banana 画像 / Veo 動画）。「ショート編集」「ショート動画編集」「縦型動画編集」「リール編集」「Shorts編集」「ショートを編集して」「テロップ焼き込み（縦型）」「short-edit」などのキーワードで使用。16:9のYouTube本編編集は `clbs-youtube-edit`、台本作成は `clbs-short-script` を使う。",
+ "domains": [
+  "science",
+  "gaming",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.801Z"
+}

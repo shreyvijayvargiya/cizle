@@ -1,0 +1,16 @@
+{
+ "title": "sdk",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/dev-env/sdk/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/dev-env/sdk/SKILL.md",
+ "license": "MIT",
+ "description": "Codex SDK 集成开发。用 TypeScript/Python SDK 做 agent 生命周期、流式输出、本地/云端执行等集成。",
+ "domains": [
+  "math",
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.727Z"
+}

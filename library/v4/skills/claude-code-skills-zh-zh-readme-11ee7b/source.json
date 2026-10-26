@@ -1,0 +1,16 @@
+{
+ "title": "zh-readme",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/zh-readme/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/zh-readme/SKILL.md",
+ "license": "MIT",
+ "description": "中文 README 生成器 - 先分析项目，再生成面向中文开发者的高质量 README",
+ "domains": [
+  "data",
+  "product",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

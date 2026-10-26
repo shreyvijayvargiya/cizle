@@ -108,9 +108,38 @@ export function createApp() {
 		const range = c.req.header("range");
 		const up = await fetch(u, { headers: { "user-agent": "Mozilla/5.0 (compatible; cizle-video/1.0)", ...(range ? { range } : {}) }, signal: AbortSignal.timeout(25_000) }).catch(() => null);
 		if (!up || (up.status !== 200 && up.status !== 206)) return c.json({ error: "The video is not available." }, 502);
-		const h = new Headers({ "content-type": "video/mp4", "cache-control": "public, max-age=3600", "accept-ranges": "bytes", "x-content-type-options": "nosniff" });
+		const h = new Headers({ "content-type": "video/mp4", "cache-control": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800", "accept-ranges": "bytes", "x-content-type-options": "nosniff" });
 		for (const k of ["content-length", "content-range"]) if (up.headers.get(k)) h.set(k, up.headers.get(k));
 		return new Response(up.body, { status: up.status, headers: h });
+	});
+	// A fresh mp4 for a post whose stored video url stopped working (deleted, rotated or refused). We read the post the way the harvest does:
+	// vxTwitter first, then X's own embed endpoint. Only x.com / twitter.com status links, nothing else is fetched.
+	app.get("/api/vid/resolve", async (c) => {
+		const m = /^https:\/\/(?:x|twitter)\.com\/([A-Za-z0-9_]{1,30})\/status\/(\d{10,25})/.exec(c.req.query("post") || "");
+		if (!m) return c.json({ error: "Give a post link like https://x.com/<user>/status/<id>." }, 400);
+		const [, handle, id] = m;
+		const mp4 = (list = []) => list.filter((v) => /\.mp4/.test(v.url || v)).map((v) => v.url || v);
+		const tries = [
+			async () => {
+				const j = await (await fetch(`https://api.vxtwitter.com/${handle}/status/${id}`, { headers: { "user-agent": "Mozilla/5.0" }, signal: AbortSignal.timeout(12_000) })).json();
+				return mp4((j.media_extended || []).filter((x) => x.type === "video" || x.type === "gif")).concat(mp4(j.mediaURLs || []))[0];
+			},
+			async () => {
+				const token = ((Number(id) / 1e15) * Math.PI).toString(36).replace(/(0+|\.)/g, "");
+				const j = await (await fetch(`https://cdn.syndication.twimg.com/tweet-result?id=${id}&token=${token}&lang=en`, { signal: AbortSignal.timeout(12_000) })).json();
+				const variants = (j.mediaDetails || []).flatMap((d) => d.video_info?.variants || []).filter((v) => /video\/mp4/.test(v.content_type || ""));
+				return variants.sort((a, b) => (b.bitrate || 0) - (a.bitrate || 0))[0]?.url;
+			},
+		];
+		for (const t of tries) {
+			try {
+				const url = await t();
+				if (url && /^https:\/\/video\.twimg\.com\//.test(url)) return c.json({ video: url }, 200, { "cache-control": "public, max-age=600" });
+			} catch {
+				/* next service */
+			}
+		}
+		return c.json({ error: "The post has no playable video any more." }, 404);
 	});
 	app.get("/api/v1", (c) => c.json({ name: "cizle", mcp: `${SITE_URL}/mcp`, docs: `${SITE_URL}/docs` }));
 	app.notFound((c) => c.json({ error: "Not found" }, 404));

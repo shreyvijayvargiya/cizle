@@ -1,0 +1,15 @@
+{
+ "title": "yupi-skill",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "liyupi/yupi-skill",
+ "url": "https://github.com/liyupi/yupi-skill/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": ">",
+ "domains": [
+  "product",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.260Z"
+}

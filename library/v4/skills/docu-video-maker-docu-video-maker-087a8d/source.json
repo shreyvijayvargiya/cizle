@@ -1,0 +1,16 @@
+{
+ "title": "docu-video-maker",
+ "source": "K06",
+ "lang": "ja",
+ "repo": "fuuuuuuma/docu-video-maker",
+ "path": "plugins/docu-video-maker/skills/docu-video-maker/SKILL.md",
+ "url": "https://github.com/fuuuuuuma/docu-video-maker/blob/HEAD/plugins/docu-video-maker/skills/docu-video-maker/SKILL.md",
+ "license": "MIT",
+ "description": "参考にしたい YouTube チャンネルや動画の URL から作風を読み取り、名画（パブリックドメイン）・AI 画像と動画・地図・ナレーション・BGM・テロップで組んだドキュメンタリー風の解説動画や PV を、After Effects なしで MP4 まで作る。「このチャンネルみたいな動画を作りたい」「この参考動画の感じで PV を作って」「歴史や人物の解説動画を作って」「〇〇のその後を動画にして」「ナレーション付きの解説動画を AI で量産したい」など、参考の URL や題材を渡されて長めの解説動画・紹介映像を作る依頼では、明示されていなくても必ず使う。",
+ "domains": [
+  "education",
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:48.798Z"
+}

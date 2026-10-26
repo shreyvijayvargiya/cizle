@@ -1,0 +1,16 @@
+{
+ "title": "humanize-writing",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/humanize-writing/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/humanize-writing/SKILL.md",
+ "license": "MIT",
+ "description": "识别并去除中文文章、评论、文档里的 AI 写作痕迹（空话铺垫、公式化节奏、拔高借权威、装饰性排版、聊天草稿残留、中式套话），在完整保留事实、确定程度和作者声音的前提下把文字改自然。当用户要求润色、改稿、去 AI 味、改得更像人写的，或审阅已有中文文本时使用。",
+ "domains": [
+  "data",
+  "math",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.758Z"
+}

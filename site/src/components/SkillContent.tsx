@@ -6,6 +6,7 @@ import { SkillThumb } from "@/components/SkillThumb";
 import { StoryboardDemo } from "@/components/StoryboardDemo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { languageOf } from "@/lib/languages";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
 import { useAuth } from "@/lib/auth";
@@ -25,7 +26,7 @@ export function useUnlock(skill: SkillDetail | undefined) {
 		loading: Boolean(skill?.locked) && isPro && body.isLoading,
 		error: body.error as Error | null,
 		promptText: skill?.promptText ?? body.data?.promptText ?? null,
-		skillMd: skill?.skillMd ?? body.data?.skillMd ?? null,
+		skillMd: skill?.skillMd ?? body.data?.skillMd ?? (skill?.version && skill.version !== "classic" ? skill.promptText : null), // collection skills keep their text only once
 	};
 }
 
@@ -42,6 +43,16 @@ export function SkillActions({ skill, className }: { skill: SkillDetail; classNa
 				<Button variant="outline" asChild>
 					<Link to="/pricing">See what's included</Link>
 				</Button>
+			</div>
+		);
+	if (skill.restricted)
+		return (
+			<div className={className}>
+				{skill.credit?.source ? (
+					<Button asChild>
+						<a href={skill.credit.source} target="_blank" rel="noopener noreferrer">Open the full skill at the source</a>
+					</Button>
+				) : null}
 			</div>
 		);
 	return (
@@ -105,7 +116,8 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 					<Badge tone={skill.tier === "free" ? "success" : "warning"}>{skill.tier === "free" ? "Free" : "Premium"}</Badge>
 					<Badge tone="outline">{skill.category}</Badge>
 					{skill.duration ? <Badge tone="outline">{skill.duration} seconds</Badge> : null}
-					<Badge tone="outline">{skill.aspect}</Badge>
+					{skill.format !== "Skill" ? <Badge tone="outline">{skill.aspect}</Badge> : null}
+					{skill.lang && skill.lang !== "en" ? <Badge tone="outline">{languageOf(skill.lang).flag} {languageOf(skill.lang).native}</Badge> : null}
 					{skill.platform !== "Any" ? <Badge tone="outline">{skill.platform}</Badge> : null}
 					<Badge tone="outline">{skill.format}</Badge>
 				</div>
@@ -113,6 +125,13 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 				<SkillActions skill={skill} className="mt-4 flex flex-wrap gap-2" />
 			</header>
 
+			{skill.version && skill.version !== "classic" ? (
+				<p className="-mt-4 text-xs text-muted-foreground">
+					Collection {skill.version} · scraped {skill.fetchedAt ? new Date(skill.fetchedAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "recently"}{skill.folder ? ` · ${skill.folder}` : ""}{skill.credit?.source ? <> · <a className="underline underline-offset-2" href={skill.credit.source} target="_blank" rel="noopener noreferrer">source</a></> : null}{skill.credit?.license ? ` · licence: ${skill.credit.license}` : ""}
+				</p>
+			) : null}
+
+			{skill.format !== "Skill" ? (
 			<section aria-labelledby="demo-h">
 				<h2 id="demo-h" className="mb-3 text-sm font-semibold">
 					Demo
@@ -126,6 +145,7 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 					<SkillThumb skill={{ ...skill, scenes: [], anatomy: [] }} className="max-w-md" />
 				)}
 			</section>
+			) : null}
 
 			<section aria-labelledby="prompt-h">
 				<h2 id="prompt-h" className="mb-3 text-sm font-semibold">
@@ -138,12 +158,13 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 				) : u.error ? (
 					<p className="rounded-lg border border-danger/30 bg-danger/5 p-3 text-sm text-danger">{u.error.message}</p>
 				) : (
-					<CodeBlock title="Paste this into Claude Code with your product link" copy={{ text: u.promptText || "", label: "Copy prompt" }}>
+					<CodeBlock title={skill.restricted ? "Preview (the full skill is at the source)" : "Paste this into Claude Code with your product link"} copy={skill.restricted ? undefined : { text: u.promptText || "", label: "Copy prompt" }}>
 						{u.promptText || ""}
 					</CodeBlock>
 				)}
 			</section>
 
+			{!skill.restricted ? (
 			<section aria-labelledby="cli-h">
 				<h2 id="cli-h" className="mb-3 text-sm font-semibold">
 					Install as a Claude Code skill
@@ -167,6 +188,7 @@ export function SkillContent({ skill }: { skill: SkillDetail }) {
 					<Icon icon={ComputerTerminal01Icon} size={13} /> New to skills? The <Link to="/docs" className="underline underline-offset-2">docs</Link> take you from zero to a rendered video in five steps.
 				</p>
 			</section>
+			) : null}
 
 			<section aria-labelledby="explain-h" className="grid gap-6 md:grid-cols-2">
 				<div>

@@ -1,0 +1,15 @@
+{
+ "title": "auteur",
+ "source": "K07",
+ "lang": "en",
+ "repo": "agiwhitelist/auteur",
+ "url": "https://github.com/agiwhitelist/blob/auteur/HEAD/SKILL.md",
+ "license": null,
+ "description": "Design and build complete web experiences from scratch — award-level product and marketing pages, cinematic scroll-directed sites where the page is directed like a film, and multi-screen products (app, dashboard, admin, settings, onboarding, docs site) built as one design system with every component, state and route in one style. Use whenever the user wants to create or redesign a landing page, website, hero section, portfolio, promo or product page; wants scroll animations, storytelling pages, or a site that feels like a movie; or says \"make it beautiful\", \"make it wow\", \"cinematic\", or \"design system\" — even if they name no technique. Generates its own assets via local CLIs (images, video frames, depth maps, 3D), and gates every ship with an executable anti-slop linter and a screenshot verification loop. Not for polishing a UI someone else built, and not for backend-only work.",
+ "domains": [
+  "entertainment",
+  "product",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.248Z"
+}

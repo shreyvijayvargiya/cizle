@@ -1,0 +1,12 @@
+{
+ "title": "retro",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/retro/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/retro/SKILL.md",
+ "license": "MIT",
+ "description": "对一次 coding session 做 retrospective。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

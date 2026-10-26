@@ -1,0 +1,16 @@
+{
+ "title": "sd-2-5-retro-vfx",
+ "source": "K05",
+ "lang": "en",
+ "repo": "huangbai-AI/post-production-skill",
+ "path": "post-production-skill/SKILL.md",
+ "url": "https://github.com/huangbai-AI/post-production-skill/blob/HEAD/post-production-skill/SKILL.md",
+ "license": null,
+ "description": "Create or adapt Seedance 2.5 prompts for cinematic retro-office creator videos where a stable live-action presenter physically manipulates cameras, CRT-generated glass interfaces, grading curves, preview panels, and other post-production tools. Use for this specific warm 1990s studio, invisible-VFX, impossible-camera style; do not use for unrelated video aesthetics.",
+ "domains": [
+  "math",
+  "scifi",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.115Z"
+}

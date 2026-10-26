@@ -1,0 +1,14 @@
+# 龙海报信息图城市山优雅
+
+Community prompt · 旅游攻略
+Language: zh · Domains: history, nature, math · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/14644.jpg
+
+```
+{"type":"中国旅游信息图海报","topic":"{argument name=\"city name\" default=\"南京\"} 代表性经典旅游图谱","style":"优雅的编辑类信息图，融合江南文化美学，干净的米色宣纸背景，细腻的水墨质感，精致的金灰色排版，柔和的自然光影，考究的旅游杂志布局","format":"横向宽幅海报","header":{"title":"{argument name=\"headline text\" default=\"南京代表性旅游经典图谱\"}","subtitle":"六朝古都 · 十朝都会 · 山水城林","decorations":{"top_left":"淡青色与象牙白相间的云纹浮雕","top_right":"5 个圆形色卡，包含柔和鼠尾草绿、浅灰绿、淡灰、暖米色、陶土色"}},"layout":{"main_cards_count":8,"main_cards":[{"position":"最左侧","title":"中山陵景区","subtitle":"石阶拱殿","description_lines":["看点：历史建筑","适合：历史巡思"],"image":"宏伟的祭祀台阶与纪念拱门/建筑在森林山丘中升起，对称的俯视视角，雾气缭绕的氛围","badge":"圆形内嵌图，展示雕刻石浮雕细节"},{"position":"左二","title":"明城墙","subtitle":"城砖肌理","description_lines":["看点：城垣雄伟","适合：漫步骑行"],"image":"古老的城墙与城门斜向延伸穿过绿树，高处视角","badge":"圆形内嵌图，展示风化的灰色砖块质感"},{"position":"左三","title":"玄武湖景区","subtitle":"瓦当纹样","description_lines":["看点：湖光山色","适合：休闲散步"],"image":"水上的湖畔凉亭与游船，远处的林木山丘，柔和的薄雾","badge":"圆形内嵌图，展示深色传统瓦片"},{"position":"左四","title":"鸡鸣寺","subtitle":"龙纹石刻","description_lines":["看点：古刹禅意","适合：祈福静心"],"image":"秋树掩映下的金顶佛寺庭院，略微仰视的角度","badge":"圆形内嵌图，展示雕刻龙纹石刻图案"},{"position":"中右一","title":"南京博物院","subtitle":"青铜纹饰","description_lines":["看点：文物荟萃","适合：文化探访"],"image":"倒映在平静水池中的正式博物馆建筑，正面均衡的构图","badge":"圆形内嵌图，展示深绿色青铜纹饰质感"},{"position":"中右二","title":"夫子庙秦淮风光带","subtitle":"花窗纹样","description_lines":["看点：夜景璀璨","适合：夜游赏景"],"image":"运河沿岸的传统水乡建筑与长廊，白墙黑瓦","badge":"圆形内嵌图，展示几何中式花窗图案"},{"position":"右二","title":"总统府景区","subtitle":"民国柱式","description_lines":["看点：近代史迹","适合：亲子研学"],"image":"通往新古典主义历史政府建筑的林荫大道，金色的秋叶","badge":"圆形内嵌图，展示古典柱头细节"},{"position":"最右侧","title":"南京眼步行桥","subtitle":"几何肌理","description_lines":["看点：现代地标","适合：拍照打卡"],"image":"横跨河流的现代白色眼状步行桥，城市景观航拍视角","badge":"圆形内嵌图，展示多面几何钢结构或玻璃结构"}],"bottom_sections_count":4,"bottom_sections":[{"title":"目的地速览","position":"左下","count":1,"content":"南京，六朝古都，山水城林交融的历史文化名城。","visual":"小型单色水墨山水画，带有小船与山丘"},{"title":"游览建议","position":"左下中","count":3,"items":["春秋最佳出行季","地铁公交便捷游","夜游秦淮赏灯景"]},{"title":"文化冷知识","position":"底部中央","count":2,"items":["南京曾为六朝和十朝的都城。","明城墙是世界上现存最长的古代城垣之一。"]},{"title":"历史时间线","position":"右下","count":5,"items":[{"year":"公元前 333 年","label":"楚威王 金陵邑建城"},{"year":"229 年","label":"东吴 建都建业"},{"year":"317 年","label":"东晋 建康兴盛"},{"year":"1366 年","label":"明初 南京为都"},{"year":"1912 年","label":"民国 定都南京"}]}]},"card_design":{"shape":"圆角竖向面板，带有柔和阴影和细金米色边框","count_per_card_elements":4,"elements":["主要风景图","标题上方的小副标题","重叠在图像下方的圆形材质细节内嵌图","两条简短的推荐语"]},"color_palette":{"background":"暖象牙白与浅羊皮纸色","text":"深青色与柔和棕色","accents":"石灰色、鼠尾草绿、古金色、秋黄色"},"rendering":"高细节半写实拼贴，统一的氛围色调，高级旅游手册质感，平衡的间距，清晰的中文排版"}
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

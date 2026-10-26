@@ -1,0 +1,15 @@
+{
+ "title": "character-lora",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "character-lora/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/character-lora/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to build a consistent-identity LoRA for an original character — defining the character, generating a face/body-consistent multi-angle dataset (via the gpt-image-gen skill for codex image generation), captioning it, doing base-specific homework, training on a chosen base (Pony / Z-Image / others) on a local GPU, and producing a usable LoRA. This skill ORCHESTRATES the end-to-end pipeline and gates every expensive/irreversible step; it delegates actual image generation to gpt-image-gen and never improvises training settings from memory.",
+ "domains": [
+  "education",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.763Z"
+}

@@ -1,0 +1,13 @@
+{
+ "title": "doc-coauthoring",
+ "source": "K07",
+ "lang": "en",
+ "repo": "anthropics/skills",
+ "url": "https://github.com/anthropics/blob/skills/main/skills/doc-coauthoring/SKILL.md",
+ "license": null,
+ "description": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

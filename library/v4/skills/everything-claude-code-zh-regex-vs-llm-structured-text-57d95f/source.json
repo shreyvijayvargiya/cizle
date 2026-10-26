@@ -1,0 +1,12 @@
+{
+ "title": "regex-vs-llm-structured-text",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/regex-vs-llm-structured-text/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/regex-vs-llm-structured-text/SKILL.md",
+ "license": "MIT",
+ "description": "在解析结构化文本时，用于在正则表达式（Regex）和大型语言模型（LLM）之间进行选择的决策框架——优先使用正则表达式，仅针对低置信度的边界情况引入 LLM。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.715Z"
+}

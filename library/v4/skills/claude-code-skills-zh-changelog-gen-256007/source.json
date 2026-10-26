@@ -1,0 +1,15 @@
+{
+ "title": "changelog-gen",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/changelog-gen/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/changelog-gen/SKILL.md",
+ "license": "MIT",
+ "description": "Changelog 生成器 - 从 Git 历史自动生成 CHANGELOG",
+ "domains": [
+  "history",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.783Z"
+}

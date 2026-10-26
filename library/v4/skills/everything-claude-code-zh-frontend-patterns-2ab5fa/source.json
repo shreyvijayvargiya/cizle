@@ -1,0 +1,14 @@
+{
+ "title": "frontend-patterns",
+ "source": "K04",
+ "lang": "en",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/zh-TW/skills/frontend-patterns/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/zh-TW/skills/frontend-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "Frontend development patterns for React, Next.js, state management, performance optimization, and UI best practices.",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.696Z"
+}

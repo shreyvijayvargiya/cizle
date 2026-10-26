@@ -1,0 +1,16 @@
+{
+ "title": "seedance-product-360",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "beshuaxian/higgsfield-seedance2-jineng",
+ "path": "skills/09-product-360/zh-CN/SKILL.md",
+ "url": "https://github.com/beshuaxian/higgsfield-seedance2-jineng/blob/HEAD/skills/09-product-360/zh-CN/SKILL.md",
+ "license": null,
+ "description": "为 Seedance 2.0（Higgsfield）生成产品360°转盘、多角度展示和产品揭示视频提示。在用户想要产品旋转视频、转盘展示、产品揭示、360度视图、多角度产品展示、产品美妆镜头、主产品视频或开箱揭示时使用。触发条件：产品360、转盘、产品旋转、多角度、产品揭示、产品展示、主镜头、美妆镜头、产品旋转、开箱，或任何请求从多个角度展示物理产品。即使是\"从所有侧面显示我的产品\"或\"制作产品视频\"。",
+ "domains": [
+  "product",
+  "engineering",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.074Z"
+}

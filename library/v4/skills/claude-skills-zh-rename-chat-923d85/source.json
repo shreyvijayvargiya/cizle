@@ -1,0 +1,12 @@
+{
+ "title": "rename-chat",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/dev-env/rename-chat/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/dev-env/rename-chat/SKILL.md",
+ "license": "MIT",
+ "description": "重命名当前聊天。按聊天内容改标题。\"disable-model-invocation: true",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.727Z"
+}

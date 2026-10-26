@@ -1,0 +1,16 @@
+{
+ "title": "fengchuan-jiancha",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "renwhitepeng/awesome-chinese-skills",
+ "path": "fengchuan-jiancha/SKILL.md",
+ "url": "https://github.com/renwhitepeng/awesome-chinese-skills/blob/HEAD/fengchuan-jiancha/SKILL.md",
+ "license": null,
+ "description": "用《疯传》(Contagious, Jonah Berger) 的 STEPPS 六原则为内容做疯传性打分、诊断短板并给出改写方案，提高内容被转发分享的概率。当用户提到\"疯传\"、\"为什么会火\"、\"内容会不会爆\"、\"传播量低\"、\"转发少\"，或贴出文案/选题要求评估传播潜力时使用。",
+ "domains": [
+  "product",
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.788Z"
+}

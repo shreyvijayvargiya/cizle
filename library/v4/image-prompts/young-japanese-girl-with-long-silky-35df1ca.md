@@ -1,0 +1,14 @@
+# Young Japanese girl with long silky…
+
+Community prompt · 大凶美女
+Language: en · Domains: entertainment · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/twitter/33161_out.png
+
+```
+Young Japanese girl with long silky black hair, soft wispy bangs, fair glowing skin, and large expressive eyes, sitting casually at a cozy modern café. Wearing a sleeveless cream-white dress with delicate floral details, hands resting naturally in front of her, looking directly at the camera with a calm and slightly shy expression. A bright yellow fruit drink with a straw sits on the wooden table in the foreground. Cute Hello Kitty keychain hanging from her bag beside her chair. Warm café interior with hanging plants, large windows, decorative lighting, and soft ambient atmosphere in the background. Captured as a casual smartphone photo, handheld iPhone camera shot, natural indoor lighting, realistic skin texture, authentic mobile HDR processing, slight phone-camera softness, candid social media aesthetic, unedited everyday snapshot, natural colors, realistic shadows, ordinary café outing vibe, no professional photography setup, no studio lighting, no cinematic color grading, photorealistic, spontaneous lifestyle moment, high-quality mobile photography, cozy and charming everyday atmosphere.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

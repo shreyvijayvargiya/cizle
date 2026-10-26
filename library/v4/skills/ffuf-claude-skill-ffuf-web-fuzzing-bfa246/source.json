@@ -1,0 +1,11 @@
+{
+ "title": "FFUF Web Fuzzing",
+ "source": "K07",
+ "lang": "en",
+ "repo": "jthack/ffuf_claude_skill",
+ "url": "https://github.com/jthack/ffuf_claude_skill/blob/HEAD/ffuf-skill/SKILL.md",
+ "license": null,
+ "description": "Expert guidance for ffuf web fuzzing during penetration testing, including authenticated fuzzing with raw requests, auto-calibration, and result analysis",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:57.271Z"
+}

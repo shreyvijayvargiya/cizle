@@ -1,0 +1,72 @@
+[
+ {
+  "slug": "hero-30s",
+  "title": "cizle in 30 seconds",
+  "description": "What cizle is, what is in the library and how to start, in one short film.",
+  "video": "/learn/hero-30s.mp4",
+  "poster": "/learn/hero-30s.jpg"
+ },
+ {
+  "slug": "prompt-reveal-papercut",
+  "title": "A prompt behind a film look",
+  "description": "See how one paragraph describes a whole papercut film style.",
+  "video": "/learn/prompt-reveal-papercut.mp4",
+  "poster": "/learn/prompt-reveal-papercut.jpg"
+ },
+ {
+  "slug": "before-after",
+  "title": "Plain prompt vs a cizle prompt",
+  "description": "The same idea, with a vague prompt and with one that names size, light and timing.",
+  "video": "/learn/before-after.mp4",
+  "poster": "/learn/before-after.jpg"
+ },
+ {
+  "slug": "features-search",
+  "title": "Find a prompt with search",
+  "description": "Press ⌘K and search by what you are making, not what the prompt is called.",
+  "video": "/learn/features-search.mp4",
+  "poster": "/learn/features-search.jpg"
+ },
+ {
+  "slug": "collection-films",
+  "title": "Film looks, ready to copy",
+  "description": "A collection of film styles: papercut, shadow puppet, ukiyo-e, backrooms, pixel RPG.",
+  "video": "/learn/collection-films.mp4",
+  "poster": "/learn/collection-films.jpg"
+ },
+ {
+  "slug": "pricing-15s",
+  "title": "Pricing in 15 seconds",
+  "description": "What is free and what Premium costs on monthly, 6 month and 12 month plans.",
+  "video": "/learn/pricing-15s.mp4",
+  "poster": "/learn/pricing-15s.jpg"
+ },
+ {
+  "slug": "faq-20s",
+  "title": "Three questions in 20 seconds",
+  "description": "Is it free, whose prompts are they, and which tools does it work with.",
+  "video": "/learn/faq-20s.mp4",
+  "poster": "/learn/faq-20s.jpg"
+ },
+ {
+  "slug": "claude-code-skills",
+  "title": "Claude Code skills",
+  "description": "Install a skill once and let Claude Code make a launch video for your app.",
+  "video": "/learn/claude-code-skills.mp4",
+  "poster": "/learn/claude-code-skills.jpg"
+ },
+ {
+  "slug": "creators-credited",
+  "title": "Every prompt has a name",
+  "description": "How cizle credits creators and links back to the source.",
+  "video": "/learn/creators-credited.mp4",
+  "poster": "/learn/creators-credited.jpg"
+ },
+ {
+  "slug": "build-in-public",
+  "title": "What we shipped",
+  "description": "Rights and takedown pages, version history and video demos for premium skills.",
+  "video": "/learn/build-in-public.mp4",
+  "poster": "/learn/build-in-public.jpg"
+ }
+]

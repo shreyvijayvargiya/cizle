@@ -1,0 +1,16 @@
+{
+ "title": "investor-outreach",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/investor-outreach/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/investor-outreach/SKILL.md",
+ "license": "MIT",
+ "description": "Draft cold emails, warm intro blurbs, follow-ups, update emails, and investor communications for fundraising. Use when the user wants outreach to angels, VCs, strategic investors, or accelerators and needs concise, personalized, investor-facing messaging.",
+ "domains": [
+  "data",
+  "entertainment",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.710Z"
+}

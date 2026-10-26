@@ -1,0 +1,13 @@
+{
+ "title": "postgres",
+ "source": "K07",
+ "lang": "en",
+ "repo": "sanjay3290/ai-skills",
+ "url": "https://github.com/sanjay3290/blob/ai-skills/main/skills/postgres/SKILL.md",
+ "license": null,
+ "description": "Execute read-only SQL queries against multiple PostgreSQL databases. Use when: (1) querying PostgreSQL databases, (2) exploring database schemas/tables, (3) running SELECT queries for data analysis, (4) checking database contents. Supports multiple database connections with descriptions for intelligent auto-selection. Blocks all write operations (INSERT, UPDATE, DELETE, DROP, etc.) for safety.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.260Z"
+}

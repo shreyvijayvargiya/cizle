@@ -1,0 +1,12 @@
+{
+ "title": "resume-review",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/resume-review/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/resume-review/SKILL.md",
+ "license": "MIT",
+ "description": "简历诊断：把简历（文本/Markdown）转成结构化诊断报告——总体评价、亮点、分级问题清单、逐条改写建议、岗位匹配度与行动清单。用户上传/粘贴简历并询问\"看看简历怎么样 / 帮我改简历 / 简历诊断\"时使用。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.762Z"
+}

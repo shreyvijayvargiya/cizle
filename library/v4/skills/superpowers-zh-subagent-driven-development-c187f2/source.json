@@ -1,0 +1,14 @@
+{
+ "title": "subagent-driven-development",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "jnMetaCode/superpowers-zh",
+ "path": "skills/subagent-driven-development/SKILL.md",
+ "url": "https://github.com/jnMetaCode/superpowers-zh/blob/HEAD/skills/subagent-driven-development/SKILL.md",
+ "license": "MIT",
+ "description": "当在当前会话中执行包含独立任务的实现计划时使用",
+ "domains": [
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.777Z"
+}

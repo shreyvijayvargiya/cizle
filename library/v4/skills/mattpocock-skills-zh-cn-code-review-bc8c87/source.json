@@ -1,0 +1,16 @@
+{
+ "title": "code-review",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/code-review/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/code-review/SKILL.md",
+ "license": "MIT",
+ "description": "从固定点（commit、branch、tag 或 merge-base）开始，按 Standards（代码是否符合本仓库记录的编码标准？）和 Spec（代码是否符合来源 issue/spec 的要求？）两个轴线审查变更。两个审查会在并行子代理中运行，并并排报告。适用于用户想审查 branch、PR、进行中的变更，或要求“review since X”时。",
+ "domains": [
+  "product",
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.746Z"
+}

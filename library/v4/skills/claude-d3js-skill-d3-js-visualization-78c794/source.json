@@ -1,0 +1,13 @@
+{
+ "title": "D3.js Visualization",
+ "source": "K07",
+ "lang": "en",
+ "repo": "chrisvoncsefalvay/claude-d3js-skill",
+ "url": "https://github.com/chrisvoncsefalvay/blob/claude-d3js-skill/HEAD/SKILL.md",
+ "license": null,
+ "description": "Creating interactive data visualisations using d3.js. This skill should be used when creating custom charts, graphs, network diagrams, geographic visualisations, or any complex SVG-based data visualisation that requires fine-grained control over visual elements, transitions, or interactions. Use this for bespoke visualisations beyond standard charting libraries, whether in React, Vue, Svelte, vanilla JavaScript, or any other environment.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.264Z"
+}

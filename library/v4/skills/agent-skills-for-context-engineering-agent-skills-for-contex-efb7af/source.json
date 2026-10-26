@@ -1,0 +1,15 @@
+{
+ "title": "agent-skills-for-context-engineering",
+ "source": "K07",
+ "lang": "en",
+ "repo": "muratcankoylan/agent-skills-for-context-engineering",
+ "url": "https://github.com/muratcankoylan/agent-skills-for-context-engineering/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "A comprehensive collection of Agent Skills for context engineering, harness engineering, multi-agent architectures, and production agent systems. Use when building, optimizing, evaluating, or debugging agent systems that require effective context management and reliable operating loops.",
+ "domains": [
+  "engineering",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.249Z"
+}

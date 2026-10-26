@@ -1,0 +1,14 @@
+# 角色插画氛围感
+
+Community prompt · 动漫or二次元
+Language: zh · Domains: entertainment, nature · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/19810.jpg
+
+```
+生成一张你想象中“我”的插画。特征包括 日式插画风格、鲜明的角色特征、自然的表情流露、半身构图、动态姿势、精致的服装细节、手绘涂鸦风格、水墨飞溅笔触、流畅的线条、柔和色彩与水墨的融合、漫画素描质感、极简白色背景、周围的象征性元素、强烈的氛围感、高细节以及高质量。
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

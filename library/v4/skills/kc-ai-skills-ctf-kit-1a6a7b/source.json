@@ -1,0 +1,16 @@
+{
+ "title": "ctf-kit",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "ctf-kit/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/ctf-kit/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user is solving an authorized CTF / lab reverse-engineering challenge focused on Windows application authentication or license-check bypass. Guides triage → static analysis → dynamic experiment planning → bypass verification, with strong evidence discipline and VM safety boundaries. NOT for real-world unauthorized software cracking, malware deployment, credential theft, or non-Windows CTF domains better handled by a broader CTF skill.",
+ "domains": [
+  "finance",
+  "engineering",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.768Z"
+}

@@ -1,0 +1,14 @@
+# 女孩动漫插画室内暗黑优雅
+
+Community prompt · 可爱动漫
+Language: en · Domains: entertainment, education · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/18202.jpg
+
+```
+Create a square anime-style illustration of a dynamic young female tennis player, unnamed teenage tennis girl, standing in an indoor tennis court or glass-walled gym after an intense impact. She has light chestnut brown with blonde highlights medium-length hair tied into a high side ponytail, wind-swept with loose bangs, and her face is intentionally obscured by a soft rectangular blur. She wears a sporty school-uniform-inspired tennis outfit: a dark fitted athletic top with a high collar, a white cropped windbreaker jacket slipping off one shoulder, a pleated navy plaid mini skirt, a purple sleeve wrap on one forearm, a pink wristband on the other, and light athletic accessories. She holds one purple tennis racket in her left hand, angled downward at the lower left of the composition, while her right arm extends outward in a graceful action pose. The background is a moody indoor court with tiled flooring, dark ceiling panels, metal-framed glass walls, and dramatic cracked or shattered glass with white impact splashes and floating debris, suggesting a powerful serve or collision. Use cinematic lighting, cool gray tones, high contrast, glossy reflections on the floor, detailed fabric folds, energetic motion, and polished modern Japanese anime rendering with semi-realistic shading. The overall mood should be intense, dramatic, and athletic, with the character centered in a three-quarter view and the camera slightly below chest height for a heroic sports illustration.
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

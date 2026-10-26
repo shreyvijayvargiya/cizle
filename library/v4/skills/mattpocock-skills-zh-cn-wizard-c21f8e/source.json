@@ -1,0 +1,15 @@
+{
+ "title": "wizard",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/engineering/wizard/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/engineering/wizard/SKILL.md",
+ "license": "MIT",
+ "description": "生成一个交互式 bash wizard，逐步引导人完成只有他们能执行的手动流程。用于 provisioning 基础设施、设置 credentials 或 CI secrets、走查不熟悉的第三方 dashboard，或运行一次性 migration 或 cutover。对于 agent 自己就能执行的步骤，不要调用它。",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

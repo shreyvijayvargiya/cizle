@@ -1,0 +1,16 @@
+{
+ "title": "frontend-slides",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": ".cursor/skills/frontend-slides/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/.cursor/skills/frontend-slides/SKILL.md",
+ "license": "MIT",
+ "description": "从零开始或通过转换 PowerPoint 文件创建令人惊叹、动画丰富的 HTML 演示文稿（Presentations）。适用于用户想要构建演示文稿、将 PPT/PPTX 转换为 Web 页面或为演讲/路演创建幻灯片（Slides）的场景。通过视觉探索而非抽象选择，帮助非设计师发掘其审美偏好。",
+ "domains": [
+  "education",
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.659Z"
+}

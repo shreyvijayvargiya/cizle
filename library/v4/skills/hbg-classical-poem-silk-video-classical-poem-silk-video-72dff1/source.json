@@ -1,0 +1,15 @@
+{
+ "title": "classical-poem-silk-video",
+ "source": "K07",
+ "lang": "en",
+ "repo": "Mr-funny/hbg-classical-poem-silk-video",
+ "url": "https://github.com/Mr-funny/blob/hbg-classical-poem-silk-video/main/skill/classical-poem-silk-video/SKILL.md",
+ "license": null,
+ "description": "Turn Chinese classical poems and ci into coherent vertical Chinese-art videos with poem-driven scene grouping, GPT ImageGen stills, Docker-only Gemini I2V, retained model-generated ambience, Gemini sparkle-watermark cleanup, brush-calligraphy captions revealed character by character, optional local BGM mixing, stitching, and final-frame QA. Supports verse-driven variation across ink landscape, gongbi bird-and-flower, colored figure-and-horse painting, blue-green landscape, xuan paper, silk, and related Chinese visual languages. Use when users ask for 古诗词动态视频、诗词逐句或两句一景、国风视频、毛笔字逐字出现、整首诗拼接成片，or want the established 月落乌啼霜满天 workflow applied to another poem.",
+ "domains": [
+  "nature",
+  "science",
+  "health"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.253Z"
+}

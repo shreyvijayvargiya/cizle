@@ -1,0 +1,15 @@
+{
+ "title": "rewrite-tone",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "rewrite-tone/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/rewrite-tone/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to rewrite Markdown prose into a conversational, humorous, self-deprecating engineering tone while preserving technical accuracy and document structure. Rewrites prose sections only, keeps code blocks, diagrams, tables, English summary blocks, and factual claims intact. NOT for changing requirements, adding new technical content, or editing non-Markdown artifacts.",
+ "domains": [
+  "engineering",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.771Z"
+}

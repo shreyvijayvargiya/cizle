@@ -1,0 +1,16 @@
+{
+ "title": "diagnose",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "diagnose/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/diagnose/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user reports misbehaving software to investigate — a bug, crash, wrong output, flaky behavior, or '為什麼壞掉/不會動/查一下' — and the root cause is not yet established. Enforces building a red-capable reproduction command BEFORE any hypothesis is allowed, then 3-5 ranked falsifiable hypotheses before testing any single one. NOT for conceptual questions, code reading requests, or feature work. When a failing command already exists, Step 1 is pre-satisfied — still apply, jumping straight to the hypothesis discipline.",
+ "domains": [
+  "product",
+  "nature",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.769Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "ds-mapper",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "laolaoshiren/claude-code-skills-zh",
+ "path": "skills/ds-mapper/SKILL.md",
+ "url": "https://github.com/laolaoshiren/claude-code-skills-zh/blob/HEAD/skills/ds-mapper/SKILL.md",
+ "license": "MIT",
+ "description": "项目目录结构地图 - 生成带说明的可视化目录树，快速理解任意代码库",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.784Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "codex-ppt-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "ningzimu/codex-ppt-skill",
+ "url": "https://github.com/ningzimu/codex-ppt-skill/blob/HEAD/skills/codex-ppt/SKILL.md",
+ "license": null,
+ "description": "Generate visually unified image-based PPT/PPTX decks from articles, reports, papers, notes, or outlines.",
+ "domains": [
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

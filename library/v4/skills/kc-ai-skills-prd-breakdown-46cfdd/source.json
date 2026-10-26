@@ -1,0 +1,16 @@
+{
+ "title": "prd-breakdown",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "prd-breakdown/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/prd-breakdown/SKILL.md",
+ "license": "MIT",
+ "description": "Use when user wants to break a PRD into Azure DevOps work items via vertical-slice plan. Workflow: read PRD → quiz user to lock durable decisions → draft slices with HITL/AFK + blocked_by → call az CLI directly via Bash to create items + Predecessor relations. Idempotent re-runs via fingerprint markers embedded in description. Pure prompt-driven — Claude is the runtime, no Python helper, no install ceremony. Trigger phrases: prd-breakdown / 拆 PRD / 切 vertical slice / 推 slice 到 ADO.",
+ "domains": [
+  "education",
+  "history",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.770Z"
+}

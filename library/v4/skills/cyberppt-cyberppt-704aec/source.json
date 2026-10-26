@@ -1,0 +1,13 @@
+{
+ "title": "CyberPPT",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "crazyykhllc-bit/CyberPPT",
+ "url": "https://github.com/crazyykhllc-bit/blob/CyberPPT/HEAD/SKILL.md",
+ "license": null,
+ "description": "当用户需要把 DOCX、PDF、TXT、XLSX、研究报告、业务材料或原始数据转成高密度、可编辑、咨询风格 PPTX 时使用；也适用于需要 SCR 论证、视觉风格探索、详细图表和渲染质检的 PPT。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.269Z"
+}

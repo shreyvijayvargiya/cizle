@@ -1,0 +1,15 @@
+{
+ "title": "SecSkills",
+ "source": "K07",
+ "lang": "zh",
+ "repo": "Arenbai/SecSkills",
+ "url": "https://github.com/Arenbai/SecSkills/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": ">",
+ "domains": [
+  "data",
+  "science",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.257Z"
+}

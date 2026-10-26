@@ -1,0 +1,16 @@
+{
+ "title": "seedance-2-5-video-director",
+ "source": "K05",
+ "lang": "en",
+ "repo": "liyue-aigc/seedance-2-5-video-director",
+ "path": "SKILL.md",
+ "url": "https://github.com/liyue-aigc/seedance-2-5-video-director/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Design, derive, optimize, diagnose, and rewrite scripts or copy-ready prompts specifically for Dreamina/即梦 Seedance 2.5. Use for new text/image/video/audio-to-video concepts, exact-timeline videos, 30-180-second Long Video, extension, video editing, Clay Renderer, seamless transitions, multi-grid storyboards, realistic acted dialogue, relationship drama, sports or variety-show live camera grammar, character and wardrobe locking, example-structure adaptation, voice/timbre reference, BGM removal, creative transfer, perspective reconstruction, and green-screen compositing. Produce only the requested deliverable—director brief, video script, diagnosis, revision, or final Seedance 2.5 prompt—and never submit a paid video-generation job.",
+ "domains": [
+  "edtech",
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.115Z"
+}

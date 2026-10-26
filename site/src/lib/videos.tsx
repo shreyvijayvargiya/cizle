@@ -85,12 +85,39 @@ export function VideoProvider({ children }: { children: ReactNode }) {
 /** Same-origin copy of a tweet video, used when the direct load fails. Anything else is returned unchanged. */
 export const viaProxy = (src: string) => (/^https:\/\/video\.twimg\.com\//.test(src) ? `/api/vid?u=${encodeURIComponent(src)}` : src);
 
+/**
+ * Some browsers and networks never get a tweet video straight from twimg (the CDN refuses the request). The first time a direct load fails and the
+ * proxy works, we remember it for the visit and send every later tweet video through the proxy at once: no two failed tries before each one plays.
+ */
+const BLOCKED_KEY = "cizle-twimg-direct";
+let directBlocked: boolean | null = null;
+export function isDirectBlocked() {
+	if (directBlocked === null) {
+		try {
+			directBlocked = sessionStorage.getItem(BLOCKED_KEY) === "blocked";
+		} catch {
+			directBlocked = false;
+		}
+	}
+	return directBlocked;
+}
+export function markDirectBlocked() {
+	directBlocked = true;
+	try {
+		sessionStorage.setItem(BLOCKED_KEY, "blocked");
+	} catch {
+		/* private mode */
+	}
+}
+/** The address to try first: the proxy when direct loads are known to fail here. */
+export const firstSrc = (src: string) => (isDirectBlocked() ? viaProxy(src) : src);
+
 export function AutoVideo({ src, poster, className, priority = false, onFail, ...rest }: { src: string; poster?: string | null; className?: string; priority?: boolean; onFail?: () => void } & Omit<VideoHTMLAttributes<HTMLVideoElement>, "src" | "poster">) {
 	const ref = useRef<HTMLVideoElement>(null);
 	const [armed, setArmed] = useState(priority);
 	const [bad, setBad] = useState(false);
 	const tries = useRef(0);
-	const [proxied, setProxied] = useState(false);
+	const [proxied, setProxied] = useState(() => isDirectBlocked() && viaProxy(src) !== src);
 	const failRef = useRef(onFail);
 	failRef.current = onFail;
 
@@ -99,7 +126,7 @@ export function AutoVideo({ src, poster, className, priority = false, onFail, ..
 		const el = ref.current;
 		if (!el) return giveUp();
 		// first failure: the same file through our own server (a cross-site request is what the CDN tends to refuse); then give up
-		if (tries.current >= 1) return !proxied && viaProxy(src) !== src ? (tries.current = 0, setProxied(true)) : giveUp();
+		if (tries.current >= 1) return !proxied && viaProxy(src) !== src ? (tries.current = 0, markDirectBlocked(), setProxied(true)) : giveUp();
 		tries.current++;
 		window.setTimeout(() => el.isConnected && el.load(), 1200);
 	}, [giveUp, proxied, src]);
@@ -107,7 +134,7 @@ export function AutoVideo({ src, poster, className, priority = false, onFail, ..
 	useEffect(() => {
 		tries.current = 0;
 		setBad(false);
-		setProxied(false);
+		setProxied(isDirectBlocked() && viaProxy(src) !== src);
 	}, [src]);
 
 	useEffect(() => {

@@ -1,0 +1,13 @@
+{
+ "title": "llm-intern-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "wanyichen06/LLMInternSkill",
+ "url": "https://github.com/wanyichen06/blob/LLMInternSkill/HEAD/SKILL.md",
+ "license": null,
+ "description": "Use when polishing, diagnosing, tailoring, or exporting resumes for LLM, RAG, Agent, Agentic RL, post-training, pretraining, AIGC, search/ranking, multimodal, AI backend, or LLM algorithm internships from raw resume text, a materials folder, and/or a target job description. Audits evidence, maps JD fit, enforces truth boundaries, writes polished and targeted resumes, generates interviewer-style grilling questions, answer cards, evidence-upgrade plans, and optional open-source project recommendations without fabricating experience.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.256Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "software-architecture",
+ "source": "K07",
+ "lang": "en",
+ "repo": "NeoLabHQ/context-engineering-kit",
+ "url": "https://github.com/NeoLabHQ/context-engineering-kit/blob/HEAD/skills/why/SKILL.md",
+ "license": null,
+ "description": "Iterative Five Whys root cause analysis drilling from symptoms to fundamentals",
+ "domains": [
+  "agriculture",
+  "product",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

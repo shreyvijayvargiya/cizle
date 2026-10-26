@@ -1,0 +1,14 @@
+{
+ "title": "cpp-coding-standards",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/cpp-coding-standards/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/cpp-coding-standards/SKILL.md",
+ "license": "MIT",
+ "description": "基于 C++ 核心指南 (isocpp.github.io) 的 C++ 编码规范。在编写、评审或重构 C++ 代码时使用，以强制执行现代、安全且地道的实践。",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.703Z"
+}

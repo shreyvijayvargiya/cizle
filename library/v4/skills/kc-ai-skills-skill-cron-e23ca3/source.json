@@ -1,0 +1,14 @@
+{
+ "title": "skill-cron",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "skill-cron/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/skill-cron/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to register, inspect, manually run, or remove scheduled Claude skills with Telegram push notifications. Presents a menu, discovers schedulable skills with headless-prompt frontmatter, converts natural-language schedules into cron entries with conflict confirmation, writes managed config, and verifies notification delivery. NOT for one-off task execution without scheduling or for running skills that lack a headless prompt.",
+ "domains": [
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.771Z"
+}

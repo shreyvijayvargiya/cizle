@@ -1,0 +1,12 @@
+{
+ "title": "review-agent",
+ "source": "K04",
+ "lang": "en",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "skills/code-review/review-agent/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/skills/code-review/review-agent/SKILL.md",
+ "license": "MIT",
+ "description": "只读深度审查。对指定改动做只读的、缺陷优先的审查，返回所有可落地的发现。",
+ "domains": [],
+ "fetched_at": "2026-10-26T10:17:49.727Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "analyze-claims",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "zieang88888/zhskills",
+ "path": "skills/analyze-claims/SKILL.md",
+ "url": "https://github.com/zieang88888/zhskills/blob/HEAD/skills/analyze-claims/SKILL.md",
+ "license": "MIT",
+ "description": "对一条或多条声明 / 说法 / 文章论断做结构化可信度核查——拆成可单独检验的条目，逐条评估证据、来源与可信度，输出核查报告与需核实清单。当用户需要甄别新闻/消息、把关营销文案、汇报材料事前核查、辨析谣言，或说\"帮我看看这段话能不能信 / 这句话有几分真 / 核查一下这些说法\"时使用。",
+ "domains": [
+  "data",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.756Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "cinema-director",
+ "source": "K05",
+ "lang": "zh",
+ "repo": "fanchengchen1-collab/super-director",
+ "path": "skills/cinema-director/SKILL.md",
+ "url": "https://github.com/fanchengchen1-collab/super-director/blob/HEAD/skills/cinema-director/SKILL.md",
+ "license": null,
+ "description": "超级导演系统(开源版)——AI影视创作的导演工艺知识库与工作流。当用户要做分镜、写视频生成提示词、设计光影/构图/运镜/调度、开发短剧/电影/动画项目、构建美学风格、设计打斗戏或叙事节奏时使用。覆盖写实/2D动漫/3DCG三大渲染域,输出电影级六段式分镜提示词。Use when the user wants storyboards, AI video prompts, cinematography design (lighting/composition/camera/blocking), short-drama or film development, aesthetic style bibles, fight choreography, or narrative pacing.",
+ "domains": [
+  "entertainment",
+  "engineering",
+  "science"
+ ],
+ "fetched_at": "2026-10-26T10:18:33.096Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "voice-profile",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "0mlkrizzz655335v/claude-skills-zh",
+ "path": "codex-skills-pack/skills/voice-profile/SKILL.md",
+ "url": "https://github.com/0mlkrizzz655335v/claude-skills-zh/blob/HEAD/codex-skills-pack/skills/voice-profile/SKILL.md",
+ "license": "MIT",
+ "description": "文风提炼与匹配。从你的样文提炼文风特征，用于新稿或改写，保持你自己的节奏和用词习惯。",
+ "domains": [
+  "education",
+  "nature",
+  "history"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

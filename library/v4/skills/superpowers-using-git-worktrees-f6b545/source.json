@@ -1,0 +1,13 @@
+{
+ "title": "using-git-worktrees",
+ "source": "K07",
+ "lang": "en",
+ "repo": "obra/superpowers",
+ "url": "https://github.com/obra/blob/superpowers/main/skills/using-git-worktrees/SKILL.md",
+ "license": null,
+ "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.267Z"
+}

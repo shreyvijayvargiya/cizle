@@ -1,0 +1,15 @@
+{
+ "title": "java-coding-standards",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "docs/ja-JP/skills/java-coding-standards/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/docs/ja-JP/skills/java-coding-standards/SKILL.md",
+ "license": "MIT",
+ "description": "适用于 Spring Boot 服务的 Java 编码规范：命名、不可变性、Optional 使用、流（Stream）、异常、泛型及项目布局。",
+ "domains": [
+  "finance",
+  "data"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.667Z"
+}

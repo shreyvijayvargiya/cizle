@@ -1,0 +1,15 @@
+{
+ "title": "md2ppt",
+ "source": "K04",
+ "lang": "en",
+ "repo": "KerberosClaw/kc_ai_skills",
+ "path": "md2ppt/SKILL.md",
+ "url": "https://github.com/KerberosClaw/kc_ai_skills/blob/HEAD/md2ppt/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to turn a Markdown report into a presentation-quality .pptx via interactive design decisions and a reusable hand-coded build script. Drives pre-analysis, global style choices, optional per-slide layout dialogue, python-pptx composition, and optional LibreOffice render self-check. NOT a generic auto-converter, NOT for PDF output, and NOT a fixed brand-template pipeline — brand integration is handled ad hoc through helper primitives.",
+ "domains": [
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.769Z"
+}

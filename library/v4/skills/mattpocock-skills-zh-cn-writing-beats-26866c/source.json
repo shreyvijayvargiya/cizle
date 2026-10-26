@@ -1,0 +1,15 @@
+{
+ "title": "writing-beats",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "vinvcn/mattpocock-skills-zh-CN",
+ "path": "skills/in-progress/writing-beats/SKILL.md",
+ "url": "https://github.com/vinvcn/mattpocock-skills-zh-CN/blob/HEAD/skills/in-progress/writing-beats/SKILL.md",
+ "license": "MIT",
+ "description": "Writing, exploit——把原始素材组装成一段节拍旅程，在某个 beat 依赖一个术语之前先把它 grounded。",
+ "domains": [
+  "music",
+  "nature"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.751Z"
+}

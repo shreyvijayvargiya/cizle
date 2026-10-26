@@ -1,0 +1,13 @@
+{
+ "title": "colleague-skill",
+ "source": "K07",
+ "lang": "en",
+ "repo": "titanwings/colleague-skill",
+ "url": "https://github.com/titanwings/colleague-skill/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "Set up the owner profile so a personal agent knows who it works for (first-run setup, \\\"get to know me\\\"), or distill colleague, relationship, or celebrity source material into reusable Person Profiles for agents.",
+ "domains": [
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.255Z"
+}

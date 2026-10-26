@@ -1,0 +1,14 @@
+# 建筑海报信息图夜景城市优雅
+
+Community prompt · 旅游攻略
+Language: zh · Domains: nature, data, math · Source: K01
+
+Source page: https://github.com/BaYue-SYJ/shuixian-prompts
+
+Picture: https://r2.qqsrc.com/images/originals/14643.jpg
+
+```
+{"type":"中式旅游信息图海报","topic":"杭州代表性旅游经典图谱","style":"优雅的中式编辑风格信息图，采用淡雅水墨美学，象牙白纸张背景，左上角饰有精致的浮雕传统云纹，搭配高级的深绿色与黑色排版，点缀金色与米色，呈现高端旅游手册设计感","text":{"headline":"{argument name=\"headline text\" default=\"杭州代表性旅游经典图谱\"}","subheadline":"{argument name=\"subtitle text\" default=\"人间天堂・诗画江南\"}"},"layout":{"orientation":"横向海报","top_icons_count":5,"top_icons_description":"右上角排列 5 个小圆形色块，分别为柔和的鼠尾草绿、淡青瓷色、浅灰色、暖米色和赤陶红","main_cards":{"count":8,"arrangement":"单行居中排列，间距均匀的圆角矩形目的地卡片，带有柔和阴影和细边框"},"bottom_panels":{"count":4,"arrangement":"一条长圆角信息带，划分为 4 个带标签的板块"}},"cards":[{"index":1,"title":"西湖","image":"宁静的西湖景色，白色的拱桥横跨平静湖面，垂柳依依，远山层叠，绿意盎然，小船点缀在诗意的江南风景中","medallion":"银色圆形浮雕钱币图案，叠加在图像右下角","caption_lines_count":2,"caption":["看点：湖光山色","适合：休闲度假"]},{"index":2,"title":"雷峰塔","image":"雷峰塔矗立在青山绿树之上，天空云层柔和，远处的城市轮廓隐约可见","medallion":"银色圆形浮雕钱币图案，叠加在图像右下角","caption_lines_count":2,"caption":["看点：传奇古塔","适合：亲子祈福"]},{"index":3,"title":"灵隐寺","image":"灵隐寺入口，黄墙黑瓦，挂着牌匾，背景是森林覆盖的山坡，充满传统寺庙氛围","medallion":"银色圆形浮雕钱币图案，叠加在图像右下角","caption_lines_count":2,"caption":["看点：千年古刹","适合：静心礼佛"]},{"index":4,"title":"西溪湿地","image":"西溪湿地水乡风貌，白墙黑瓦，狭窄的河道，小木船，茂密的植被，远处山峦朦胧","medallion":"银色圆形浮雕钱币图案，叠加在图像右下角","caption_lines_count":2,"caption":["看点：湿地生态","适合：自然爱好"]},{"index":5,"title":"宋城景区","image":"宋代主题大门及传统建筑，阳光明媚，景观前景，文化公园氛围","medallion":"装饰性圆形内嵌图案，带有深色窗棂纹样，叠加在图像右下角","caption_lines_count":2,"caption":["看点：宋韵文化","适合：文化体验"]},{"index":6,"title":"河坊街","image":"河坊街夜景，灯笼照亮运河两岸的店面，水面映出倒影，充满繁华的古街氛围","medallion":"装饰性圆形内嵌图案，带有木窗或雕花屏风纹样，叠加在图像右下角","caption_lines_count":2,"caption":["看点：老街风情","适合：夜游美食"]},{"index":7,"title":"城市阳台","image":"现代化的钱塘江滨水天际线，高楼林立，江面开阔，前景有一座醒目的金色球形建筑","medallion":"装饰性圆形内嵌图案，展示几何圆顶纹理，叠加在图像右下角","caption_lines_count":2,"caption":["看点：钱塘江景","适合：拍照打卡"]},{"index":8,"title":"良渚博物院","image":"良渚博物院现代简约建筑，坐落于平静的水面旁，极简石材立面，远处有山丘","medallion":"银色圆形浮雕钱币图案，叠加在图像右下角","caption_lines_count":2,"caption":["看点：文明探源","适合：文化研学"]}],"bottom_sections":[{"title":"目的地速览","position":"左下","count":1,"content":"杭州，千年古都，山水相依，人文荟萃的江南名城。","background_detail":"淡雅水墨山水，包含桥梁、树木和小船"},{"title":"游览建议","position":"底部中左","count":3,"labels":["春赏西湖花海","夏游西溪湿地","夜逛河坊夜景"]},{"title":"文化冷知识","position":"底部中右","count":3,"labels":["西湖十景始于南宋，流传至今。","杭州曾是南宋临安，至今遗韵悠长。","良渚文化距今 5300-4300 年，中华文明重要源头。"]},{"title":"历史时间线","position":"右下","count":6,"labels":["吴越国 公元 907 年 吴越建都杭州","南宋 公元 1127 年 临安升建都","元代 1276 年 杭州路治所","明清 1368-1911 年 江南重镇","现代 1978 年后 城市快速发展","新时代 G20 峰会 数字之城"]}],"rendering":"每张卡片内采用高细节绘画式拼贴，柔和的大气透视，细腻的纹理，精致的印刷排版，平衡的留白，展现中国博物馆海报的优雅感","aspect_ratio":"21:9"}
+```
+
+Creator's prompt, collected for private study. Ask before republishing.

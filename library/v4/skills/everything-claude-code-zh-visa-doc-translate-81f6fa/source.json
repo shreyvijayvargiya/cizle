@@ -1,0 +1,15 @@
+{
+ "title": "visa-doc-translate",
+ "source": "K04",
+ "lang": "zh",
+ "repo": "xu-xiang/everything-claude-code-zh",
+ "path": "skills/visa-doc-translate/SKILL.md",
+ "url": "https://github.com/xu-xiang/everything-claude-code-zh/blob/HEAD/skills/visa-doc-translate/SKILL.md",
+ "license": "MIT",
+ "description": "将签证申请文件（图像）翻译成英文，并创建包含原文和译文的双语 PDF。",
+ "domains": [
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:49.722Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "anydesign",
+ "source": "K07",
+ "lang": "en",
+ "repo": "uxKero/anydesign",
+ "url": "https://github.com/uxKero/blob/anydesign/HEAD/SKILL.md",
+ "license": null,
+ "description": "Extract the design of a screenshot, website URL or Figma file into a design.md with tokens, components, layout and brand rules, or copy one element (navbar, card, illustration) into an element.md with a rebuild or image-generation prompt. Use when the user wants to document, replicate, audit or reverse-engineer a visual design: its design system, palette, typography or style.",
+ "domains": [
+  "product",
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-26T10:17:57.262Z"
+}
