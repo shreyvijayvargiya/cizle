@@ -13,6 +13,20 @@ import { shuffled, useGallery, usePromptText, useShuffle, type GalleryItem } fro
 import { plain } from "@/lib/utils";
 import { AutoVideo } from "@/lib/videos";
 
+const TAGS = ["AI video prompts", "image prompts", "Claude Code skills", "Opus 5.5 prompts", "prompt library", "film styles", "motion graphics prompts", "creator inspiration"];
+const LINES = ["Never start from a blank prompt.", "Copy a prompt that already worked.", "Inspiration for creators and builders.", "Every prompt credits its creator."];
+
+/** One line that changes every few seconds; the first is in the page from the start, and motion-sensitive visitors keep it. */
+function Tagline() {
+	const [n, setN] = useState(0);
+	useEffect(() => {
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		const t = setInterval(() => setN((v) => (v + 1) % LINES.length), 3400);
+		return () => clearInterval(t);
+	}, []);
+	return <span key={n} className="inline-block animate-[fade-in_.4s_ease-out]">{LINES[n]}</span>;
+}
+
 /**
  * The first screen is a board of four tiles. The live thing: the video tile plays a real demo, the tile under it shows the prompt that made
  * it (free samples, in full), and the arrow moves to the next one. Every tile holds something real from the library.
@@ -54,9 +68,18 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 			{/* Desktop board: headline and video on the top row (video on the right), the subscribe and browse tiles on the bottom left, the prompt under the video. */}
 			<div className="board-w grid min-h-[calc(100dvh-84px)] grid-cols-1 gap-2 lg:grid-cols-12 lg:grid-rows-2">
 				<div className="tile reveal flex min-h-[260px] flex-col justify-end p-5 sm:p-6 lg:col-span-6 lg:col-start-1 lg:row-start-1">
-					<h1 className="display" style={{ fontSize: "clamp(2.5rem, 5.4vw, 6rem)" }}>
-						Prompts with their videos and images
+					<p className="text-lg font-medium text-muted-foreground" aria-live="off"><Tagline /></p>
+					<h1 className="display mt-3" style={{ fontSize: "clamp(2.25rem, 4.6vw, 5.25rem)" }}>
+						The prompt library for creators and builders
 					</h1>
+					<p className="mt-4 max-w-[60ch] text-lg leading-snug">
+						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages. Every prompt plays its demo and credits its creator. Copy one, make it yours.
+					</p>
+					<ul aria-label="Popular searches" className="mt-4 flex flex-wrap gap-1.5">
+						{TAGS.map((t) => (
+							<li key={t}><Link to="/" search={{ q: t }} hash="library" className="press inline-flex rounded-full bg-tile-2 px-3 py-1 text-sm text-foreground hover:bg-muted">{t}</Link></li>
+						))}
+					</ul>
 				</div>
 
 				<div className="shutter relative min-h-[300px] overflow-hidden rounded-lg bg-field-2 lg:col-span-6 lg:col-start-7 lg:row-start-1" style={{ animationDelay: ".1s" }}>

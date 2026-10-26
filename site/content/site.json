@@ -1,9 +1,9 @@
 {
 	"name": "cizle",
 	"url": "https://cizle.dev",
-	"tagline": "Video and image prompts, and skills for Claude Code",
-	"title": "cizle: video prompts, image prompts and Claude Code skills, in many languages",
-	"description": "A free library of video prompts, image prompts and Claude Code skills from creators around the world, in many languages. Every prompt credits its creator: video prompts play their demo and image prompts show their pictures. Copy a prompt or install a skill and make it yours.",
+	"tagline": "The prompt library for creators and builders",
+	"title": "Prompt library for creators and builders: AI video prompts, image prompts and Claude Code skills | cizle",
+	"description": "cizle is a free library of 8,000+ AI video prompts, image prompts and Claude Code skills in 12 languages. Every prompt plays its demo and credits its creator. Copy one, make it yours.",
 	"email": "hello@cizle.dev",
 	"x": "",
 	"github": "https://github.com/shreyvijayvargiya/cizle",

@@ -7,6 +7,7 @@ import { SkillDialog } from "@/components/SkillDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FilterPanel, FilterRail, type Facet } from "@/components/FilterSidebar";
+import { BrowseBy } from "@/components/BrowseBy";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { languageOf } from "@/lib/languages";
 import { Skeleton } from "@/components/ui/misc";
@@ -101,7 +102,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 
 	useHead({
 		enabled: !slug && !openPrompt,
-		title: "cizle: video prompts, image prompts and Claude Code skills, in many languages",
+		title: SITE.title,
 		description: SITE.description,
 		path: "/",
 		jsonLd: [orgJsonLd(), siteJsonLd()],
@@ -150,6 +151,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 	return (
 		<div>
 			{!slug && !openPrompt ? <Hero skillCount={total} /> : null}
+			{!slug && !openPrompt && skills.data ? <BrowseBy formats={skills.data.formats} categories={categories} counts={catCounts} /> : null}
 
 			<section id="library" aria-labelledby="lib-h" className="board scroll-mt-16 pt-20 pb-4 sm:pt-28">
 				<div className="board-w">

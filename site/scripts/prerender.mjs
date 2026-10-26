@@ -90,13 +90,16 @@ const out = (route, doc) => {
 /* ------------------------------------------------------------------ pages */
 const li = (s) => `<li><article><h3><a href="/skills/${s.slug}">${esc(s.name)}</a></h3><p>${esc(s.summary)}</p><p><small>${s.tier === "free" ? "Free" : "Premium"} · ${s.duration ? `${s.duration}s · ` : ""}${esc(s.aspect)}${s.platform !== "Any" ? ` · ${esc(s.platform)}` : ""}</small></p></article></li>`;
 
+// "Browse by format" and "Browse by style": plain links to the filter pages
+const browseHtml = `<section><h2>Browse by format</h2><ul><li><a href="/explore/kind/prompts">Video and image prompts</a></li><li><a href="/explore/kind/skills">Claude Code skills</a></li>${[...new Set(skills.map((x) => x.format).filter(Boolean))].map((f) => `<li><a href="/explore/format/${encodeURIComponent(f)}">${esc(f)}</a></li>`).join("")}</ul></section><section><h2>Browse by style</h2><ul>${index.categories.map((c) => `<li><a href="/explore/category/${encodeURIComponent(c)}">${esc(c)}</a></li>`).join("")}</ul></section>`;
+
 // home: the whole library, grouped by category
 out("/", document({
 	title: siteConfig.title,
 	description: siteConfig.description,
 	path: "/",
 	ld: [org, website, { "@context": "https://schema.org", "@type": "ItemList", name: "cizle video skills", numberOfItems: skills.length, itemListElement: skills.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: abs(`/skills/${s.slug}`), name: s.name })) }],
-	body: `<h1>Video skills for Claude Code</h1><p>${esc(siteConfig.description)}</p><p>${free.length} skills are free. ${premium.length} premium skills (ad formats, engineering formats and film styles) are $${price.usd} a month. <a href="/pricing">See pricing</a> or read <a href="/docs">how to use skills</a>.</p>` +
+	body: `<h1>The prompt library for creators and builders</h1><p>${esc(siteConfig.description)}</p><ul>${["AI video prompts", "image prompts", "Claude Code skills", "Opus 5.5 prompts", "prompt library", "film styles", "motion graphics prompts", "creator inspiration"].map((t) => `<li>${t}</li>`).join("")}</ul>` + browseHtml + `<p>${free.length} skills are free. ${premium.length} premium skills (ad formats, engineering formats and film styles) are $${price.usd} a month. <a href="/pricing">See pricing</a> or read <a href="/docs">how to use skills</a>.</p>` +
 		index.categories.map((c) => { const items = skills.filter((s) => s.category === c); return items.length ? `<section><h2>${esc(c)}</h2><ul class="cards">${items.map(li).join("")}</ul></section>` : ""; }).join(""),
 }));
 
