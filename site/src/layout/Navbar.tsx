@@ -83,7 +83,7 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 				<Link to="/" aria-label="cizle home: shuffle the videos" onClick={() => (requestShuffle(), window.scrollTo({ top: 0, behavior: "smooth" }))} className="press reveal flex shrink-0 items-center rounded-lg bg-surface px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-4">
 					<Logo className="[&_svg]:h-[28px]" />
 				</Link>
-				<nav aria-label="Main" className="reveal hidden min-w-0 flex-1 items-center gap-1 overflow-hidden rounded-lg bg-surface px-2 lg:flex" style={{ ["--i" as string]: 1 }}>
+				<nav aria-label="Main" className="reveal hidden min-w-0 flex-1 items-center gap-1 overflow-x-auto rounded-lg bg-surface px-2 [scrollbar-width:none] lg:flex [&::-webkit-scrollbar]:hidden" style={{ ["--i" as string]: 1 }}>
 					{NAV.map((n) => (
 						<Link key={n.to} to={n.to} className={cn("press rounded-md px-3.5 py-2 text-base text-foreground transition-colors hover:bg-tile-2", isActive(n.to) && "bg-field-1 font-medium text-field-1-ink hover:bg-field-1")}>
 							{n.label}

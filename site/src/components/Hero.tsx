@@ -39,6 +39,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 		return out.slice(0, 8);
 	}, [gallery.data, seed]);
 	const [i, setI] = useState(0);
+	useEffect(() => setI(0), [seed]); // a new order starts from its first demo
 	const [copied, setCopied] = useState(false);
 	const [videoBad, setVideoBad] = useState(false);
 	const cur = picks[i % Math.max(1, picks.length)];
