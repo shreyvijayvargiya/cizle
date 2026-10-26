@@ -27,10 +27,12 @@ function Poster({ item }: { item: GalleryItem }) {
 }
 
 /** A card is the video and nothing else. Title, creator, access and the prompt are in the dialog it opens. */
-export function PromptCard({ item, search }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery" }) {
+export function PromptCard({ item, search, inSearch }: { item: GalleryItem; search: GalleryFilters; base?: "/" | "/gallery"; inSearch?: string }) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const lp: any = inSearch !== undefined ? { to: "/search", search: { q: inSearch || undefined, p: item.slug } } : { to: "/prompts/$slug", params: { slug: item.slug }, search };
 	return (
 		<article className="lift group/card relative h-full">
-			<Link to="/prompts/$slug" params={{ slug: item.slug }} search={search as never} resetScroll={false} aria-label={plain(item.title)} className="group block h-full overflow-hidden rounded-lg bg-surface outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring">
+			<Link {...lp} resetScroll={false} aria-label={plain(item.title)} className="group block h-full overflow-hidden rounded-lg bg-surface outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring">
 				<Poster item={item} />
 			</Link>
 			<SaveButtons id={`p:${item.id}`} overlay />

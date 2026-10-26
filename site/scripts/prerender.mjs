@@ -70,7 +70,13 @@ function document({ title, description, path: p, body, ld = [], noindex = false,
 		`<meta property="og:title" content="${esc(title)}" />`,
 		`<meta property="og:description" content="${esc(description)}" />`,
 		`<meta property="og:url" content="${url}" />`,
-		`<meta name="twitter:card" content="summary" />`,
+		`<meta property="og:image" content="${abs("/api/og")}" />`,
+		`<meta property="og:image:width" content="1200" />`,
+		`<meta property="og:image:height" content="630" />`,
+		`<meta property="og:image:alt" content="cizle: the prompt library for creators and builders" />`,
+		`<meta name="twitter:card" content="summary_large_image" />`,
+		`<meta name="twitter:image" content="${abs("/api/og")}" />`,
+		`<meta name="twitter:image:alt" content="cizle: the prompt library for creators and builders" />`,
 		`<meta name="twitter:title" content="${esc(title)}" />`,
 		`<meta name="twitter:description" content="${esc(description)}" />`,
 		...ld.map((o) => `<script type="application/ld+json" data-head-ld="1">${JSON.stringify(o).replace(/</g, "\\u003c")}</script>`),
@@ -87,6 +93,16 @@ const out = (route, doc) => {
 	fs.mkdirSync(path.dirname(file), { recursive: true });
 	fs.writeFileSync(file, doc.html);
 };
+
+// Tier 10 programmatic pages (use cases, styles, models, languages, creators, best-of, how-to, alternatives, glossary, templates) + their sitemaps
+const prog = buildProgrammatic({ skills, items: gallery ? gallery.items : [], dist: DIST, abs, esc, document, out, today, siteConfig });
+console.log(`programmatic: ${prog.total} pages in ${Object.keys(prog.made).length} families; skipped by the quality guard: ${prog.skipped.length}${prog.skipped.length ? ` (${prog.skipped.slice(0, 6).join("; ")})` : ""}`);
+
+// every page of every family, for the Gallery page (static links here, and /collections.json for the app)
+const FAMILY_LABEL = { for: "Use cases", styles: "Styles", models: "Models and tools", languages: "Languages", creators: "Creators", best: "Best-of lists", "how-to": "How-to guides", alternatives: "Alternatives", glossary: "Glossary", templates: "Prompt templates" };
+const collections = Object.entries(prog.made).map(([family, pages]) => ({ family, name: FAMILY_LABEL[family] || family, total: pages.length, pages: pages.slice(0, family === "creators" ? 24 : 60).map((x) => ({ route: x.route, name: x.name })) }));
+fs.writeFileSync(path.join(DIST, "collections.json"), JSON.stringify(collections));
+const collectionsHtml = `<h2>Collections</h2>${collections.map((c) => `<h3>${esc(c.name)} (${c.total})</h3><ul>${c.pages.map((x) => `<li><a href="${esc(x.route)}">${esc(x.name)}</a></li>`).join("")}</ul>`).join("")}`;
 
 /* ------------------------------------------------------------------ pages */
 const li = (s) => `<li><article><h3><a href="/skills/${s.slug}">${esc(s.name)}</a></h3><p>${esc(s.summary)}</p><p><small>${s.tier === "free" ? "Free" : "Premium"} · ${s.duration ? `${s.duration}s · ` : ""}${esc(s.aspect)}${s.platform !== "Any" ? ` · ${esc(s.platform)}` : ""}</small></p></article></li>`;
@@ -141,6 +157,7 @@ if (gallery) {
 		path: "/gallery",
 		ld: [crumbs([["Skills", "/"], ["Prompt gallery", "/gallery"]]), { "@context": "https://schema.org", "@type": "CollectionPage", name: "cizle prompt gallery", url: abs("/gallery"), description: "Community video prompts for Claude Opus 5.5, credited and linked to the original posts.", mainEntity: { "@type": "ItemList", numberOfItems: gallery.total, itemListElement: top.map((g, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "CreativeWork", name: g.title, author: { "@type": "Person", name: by(g) }, ...(g.postUrl ? { sameAs: g.postUrl } : {}), isAccessibleForFree: g.tier === "free" } })) } }],
 		body: `<h1>Prompt gallery</h1><p>${gallery.total.toLocaleString()} real video prompts that people made with Claude Opus 5.5, each credited to its creator and linked to the original post. ${gallery.free} are free to read in full. <a href="/pricing">Premium</a> opens the full text of the rest.</p>` +
+			collectionsHtml +
 			`<h2>Categories</h2><ul>${gallery.categories.slice(0, 24).map((c) => `<li>${esc(c)}</li>`).join("")}</ul>` +
 			`<h2>Latest prompts</h2><ul class="cards">${top.map((g) => `<li><article><h3>${esc(g.title)}</h3><p><small>by ${esc(by(g))}${g.tier === "free" ? " · free sample" : " · Premium"}${g.category ? ` · ${esc(g.category)}` : ""}</small></p><p>${esc(g.preview)}</p>${g.postUrl ? `<p><a href="${esc(g.postUrl)}" rel="noopener noreferrer">Original post</a></p>` : ""}</article></li>`).join("")}</ul>` +
 			`<p><small>Prompts belong to their creators. Email ${esc(siteConfig.email)} to have one corrected or removed.</small></p>`,
@@ -237,6 +254,7 @@ const facetPages = [];
 	}
 }
 
+out("/search", document({ title: "Search the cizle prompt library | cizle", description: "Search thousands of AI video prompts, image prompts and Claude Code skills. Add ?q=your+words to the address to search from a link.", path: "/search", noindex: true, body: `<h1>Search the library</h1><p>Open <code>/search?q=your+words</code> to search in the browser, or add <code>&amp;format=md</code> or <code>&amp;format=json</code> for plain text that a script or an AI agent can read. Example: <a href="/search?q=product+launch&amp;format=md">/search?q=product+launch&amp;format=md</a>.</p><p><a href="/for">Use cases</a> · <a href="/styles">Styles</a> · <a href="/best">Best-of lists</a></p>` }));
 out("/contact", document({ title: "Contact cizle: questions, billing and refunds", description: `Email ${siteConfig.email} for questions about cizle skills, Premium access, billing or refunds. We reply within one working day.`, path: "/contact", ld: [{ "@context": "https://schema.org", "@type": "ContactPage", name: "Contact cizle", url: abs("/contact"), mainEntity: { "@type": "Organization", name: siteConfig.name, email: siteConfig.email } }], body: `<h1>Contact us</h1><p>A real person reads every message, usually within one working day. Email <a href="mailto:${esc(siteConfig.email)}">${esc(siteConfig.email)}</a>. For payment issues include the email you paid with.</p>` }));
 
 if (BLOG) out("/blog", document({ title: "Blog: video prompts, Claude Code skills and ad formats | cizle", description: "Guides and examples for making product, launch and ad videos with Claude Code: video types every SaaS needs, ad formats for Meta, TikTok and Google, and how skills work.", path: "/blog", ld: [crumbs([["Home", "/"], ["Blog", "/blog"]])], body: `<h1>Blog</h1><ul>${posts.map((p) => `<li><article><h2><a href="/blog/${p.slug}">${esc(p.title)}</a></h2><p><time datetime="${p.date}">${p.date}</time> · ${p.minutes} min read</p><p>${esc(p.description)}</p></article></li>`).join("")}</ul>` }));
@@ -248,10 +266,6 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-// Tier 10 programmatic pages (use cases, styles, models, languages, creators, best-of, how-to, alternatives, glossary, templates) + their sitemaps
-const prog = buildProgrammatic({ skills, items: gallery ? gallery.items : [], dist: DIST, abs, esc, document, out, today, siteConfig });
-console.log(`programmatic: ${prog.total} pages in ${Object.keys(prog.made).length} families; skipped by the quality guard: ${prog.skipped.length}${prog.skipped.length ? ` (${prog.skipped.slice(0, 6).join("; ")})` : ""}`);
-
 const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/learn", 0.7], ["/subscribe", 0.4], ["/creators", 0.5], ...facetPages.map((r) => [r, 0.5]), ...(BLOG ? [["/blog", 0.7]] : []), ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2], ["/rights", 0.3]];
 fs.writeFileSync(path.join(DIST, "sitemap-pages.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${["sitemap-pages.xml", ...prog.files].map((f) => `<sitemap><loc>${abs(`/${f}`)}</loc><lastmod>${today}</lastmod></sitemap>`).join("\n")}\n</sitemapindex>\n`);

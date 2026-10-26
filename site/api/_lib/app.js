@@ -142,6 +142,19 @@ export function createApp() {
 		return c.json({ error: "The post has no playable video any more." }, 404);
 	});
 	/* ---- /search?q=<query>: plain HTML (or ?format=json / ?format=md) so a bot or an AI agent can build its own query URL ---- */
+	/* ---- /api/og: the share image. One of four cards at random on every fetch, so a link pasted into X or LinkedIn can look different each time. ---- */
+	app.get("/api/og", async (c) => {
+		const n = 1 + Math.floor(Math.random() * 4);
+		c.header("Cache-Control", "no-store, max-age=0");
+		try {
+			const r = await fetch(`${originOf(c)}/og/og-${n}.png`);
+			if (r.ok) return new Response(r.body, { status: 200, headers: { "Content-Type": "image/png", "Cache-Control": "no-store, max-age=0", "Access-Control-Allow-Origin": "*" } });
+		} catch {
+			/* fall through to the redirect */
+		}
+		return c.redirect(`/og/og-${n}.png`, 302);
+	});
+
 	const searchPage = async (c) => {
 		const esc = (v) => String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 		const q = (c.req.query("q") || "").slice(0, 200);

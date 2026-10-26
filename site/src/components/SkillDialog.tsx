@@ -18,7 +18,7 @@ import { skillJsonLd } from "@/lib/seo";
  * A single skill as a modal over the list. The URL is /skills/<slug>, so it can be shared, opened in a new tab (where it is a
  * full prerendered page) and closed back to the same filtered list. Arrow keys and the top-right arrows walk the list.
  */
-export function SkillDialog({ slug, list, search }: { slug: string; list: SkillMeta[]; search: Filters }) {
+export function SkillDialog({ slug, list, search, onClose, onGo }: { slug: string; list: SkillMeta[]; search: Filters; onClose?: () => void; onGo?: (s: SkillMeta) => void }) {
 	const navigate = useNavigate();
 	const qc = useQueryClient();
 	const q = useSkill(slug);
@@ -27,8 +27,8 @@ export function SkillDialog({ slug, list, search }: { slug: string; list: SkillM
 	const idx = list.findIndex((s) => s.slug === slug);
 	const prev = idx > 0 ? list[idx - 1] : null;
 	const next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
-	const close = () => navigate({ to: "/", search, resetScroll: false });
-	const go = (s: SkillMeta | null) => s && navigate({ to: "/skills/$slug", params: { slug: s.slug }, search, replace: true, resetScroll: false });
+	const close = () => (onClose ? onClose() : navigate({ to: "/", search, resetScroll: false }));
+	const go = (s: SkillMeta | null) => s && (onGo ? onGo(s) : navigate({ to: "/skills/$slug", params: { slug: s.slug }, search, replace: true, resetScroll: false }));
 
 	// Warm the neighbours so the arrows feel instant.
 	useEffect(() => {

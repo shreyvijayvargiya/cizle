@@ -91,7 +91,13 @@
 		},
 		{
 			"source": "/search",
-			"destination": "/api/search"
+			"destination": "/api/search",
+			"has": [
+				{
+					"type": "query",
+					"key": "format"
+				}
+			]
 		}
 	]
 }

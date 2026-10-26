@@ -56,7 +56,7 @@ const round = "grid size-9 place-items-center rounded-full border border-input o
  * Free samples show in full. For the rest everyone sees the credit, the links to the original post and a preview; the full text
  * and copy button belong to subscribers.
  */
-export function PromptDialog({ item, search, list = [] }: { item: GalleryItem; search: GalleryFilters; list?: GalleryItem[] }) {
+export function PromptDialog({ item, search, list = [], onClose, onGo }: { item: GalleryItem; search: GalleryFilters; list?: GalleryItem[]; onClose?: () => void; onGo?: (g: GalleryItem) => void }) {
 	const navigate = useNavigate();
 	const router = useRouter();
 	const canGoBack = useCanGoBack();
@@ -80,8 +80,8 @@ export function PromptDialog({ item, search, list = [] }: { item: GalleryItem; s
 
 	useEffect(() => (setVideoBad(false), setPosterBad(false), setExpanded(false)), [item.id]);
 
-	const close = () => (canGoBack ? router.history.back() : navigate({ to: "/gallery", search: { ...search, p: undefined } as never, resetScroll: false }));
-	const go = (g?: GalleryItem) => g && navigate({ to: "/prompts/$slug", params: { slug: g.slug }, search: search as never, replace: true, resetScroll: false });
+	const close = () => (onClose ? onClose() : canGoBack ? router.history.back() : navigate({ to: "/gallery", search: { ...search, p: undefined } as never, resetScroll: false }));
+	const go = (g?: GalleryItem) => g && (onGo ? onGo(g) : navigate({ to: "/prompts/$slug", params: { slug: g.slug }, search: search as never, replace: true, resetScroll: false }));
 	useEffect(() => {
 		const onKey = (e: KeyboardEvent) => {
 			if (e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;

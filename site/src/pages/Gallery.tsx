@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { Cancel01Icon, Globe02Icon, Layers01Icon, Search01Icon, ShuffleIcon, SortByDown01Icon, Video01Icon } from "@hugeicons/core-free-icons";
@@ -20,6 +21,28 @@ import { useHead } from "@/lib/head";
 import { isLatinLabel } from "@/lib/utils";
 
 const PAGE = 48;
+type Collection = { family: string; name: string; total: number; pages: { route: string; name: string }[] };
+/** Every programmatic page (use cases, styles, best-of lists, how-tos, glossary, templates and more), as plain links. The list is written at build time. */
+function Collections() {
+	const q = useQuery({ queryKey: ["collections"], queryFn: async (): Promise<Collection[]> => { const r = await fetch("/collections.json"); if (!r.ok) throw new Error("no collections"); return r.json(); }, staleTime: 30 * 60_000 });
+	if (!q.data?.length) return null;
+	return (
+		<section aria-labelledby="col-h" className="mt-12">
+			<h2 id="col-h" className="text-3xl tracking-[-0.03em]">Collections</h2>
+			<p className="mt-2 max-w-[60ch] text-base text-muted-foreground">Every guide, style and use-case page in the library, each with its own address.</p>
+			<div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+				{q.data.map((c) => (
+					<div key={c.family}>
+						<h3 className="mb-2 text-lg font-semibold"><a href={c.family === "creators" ? "/creators" : `/${c.family}`} className="hover:underline">{c.name}</a> <span className="text-muted-foreground">({c.total})</span></h3>
+						<ul className="flex flex-wrap gap-1.5">
+							{c.pages.map((x) => <li key={x.route}><a href={x.route} className="press inline-flex rounded-full bg-surface px-3 py-1.5 text-sm text-foreground hover:bg-tile-2">{x.name}</a></li>)}
+						</ul>
+					</div>
+				))}
+			</div>
+		</section>
+	);
+}
 const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort", "lang", "version"];
 
 /** Community video prompts, each credited and linked to the original. A free sample in full; the rest open to subscribers. */
@@ -153,6 +176,8 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 						</Button>
 					</div>
 				)}
+
+				<Collections />
 
 				<p className="mx-auto mt-10 max-w-[60ch] px-1 text-center text-base">Prompts belong to the people who wrote them. We link to every original and remove a prompt on request. Email us from the contact page.</p>
 			</div>

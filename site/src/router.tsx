@@ -15,6 +15,7 @@ import { PricingPage } from "@/pages/Pricing";
 import { BLOG } from "@/lib/config";
 import { LearnPage } from "@/pages/Learn";
 import { SubscribePage } from "@/pages/Subscribe";
+import { SearchPage } from "@/pages/Search";
 import { ExploreRoute } from "@/pages/Explore";
 import { SavedPage } from "@/pages/Saved";
 import { SettingsPage } from "@/pages/Settings";
@@ -43,6 +44,7 @@ const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", vali
 const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
 
 /** The film is a static page (public/launch.html). The dev server and hosts without clean URLs reach it through this route. */
+const searchRoute = createRoute({ getParentRoute: () => root, path: "/search", component: SearchPage, validateSearch: (s: Record<string, unknown>): { q?: string; p?: string; s?: string; format?: string } => ({ q: str(s.q), p: str(s.p), s: str(s.s), format: str(s.format) }) });
 const explore = createRoute({ getParentRoute: () => root, path: "/explore/$facet/$value", component: ExploreRoute });
 const launch = createRoute({ getParentRoute: () => root, path: "/launch", component: function LaunchRoute() { window.location.replace("/launch.html"); return null; } });
 
@@ -59,6 +61,7 @@ const tree = root.addChildren([
 	r("/saved", SavedPage),
 	r("/learn", LearnPage),
 	r("/subscribe", SubscribePage),
+	searchRoute,
 	explore,
 	r("/films", FilmsPage),
 	r("/connect", ConnectPage),
