@@ -25,7 +25,7 @@ export function createApp() {
 	const app = new Hono();
 	app.use("*", cors({ origin: "*", allowHeaders: ["authorization", "content-type", "mcp-protocol-version", "mcp-session-id", "accept"], allowMethods: ["GET", "POST", "DELETE", "OPTIONS"] }));
 	const originOf = (c) => new URL(c.req.url).origin;
-	const ip = (c) => c.req.header("x-forwarded-for")?.split(",")[0].trim() || "local";
+	const ip = (c) => c.req.header("cf-connecting-ip") || c.req.header("x-forwarded-for")?.split(",")[0].trim() || "local";
 
 	app.use("*", async (c, next) => {
 		const who = await identify(c.req.raw.headers);

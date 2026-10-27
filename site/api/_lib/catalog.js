@@ -8,8 +8,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import Fuse from "fuse.js";
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const DIRS = [process.env.CATALOG_DIR, path.resolve(HERE, "../../public"), path.resolve(HERE, "../../dist")].filter(Boolean);
+// On a worker runtime (Cloudflare) there is no disk next to this file: every read goes to CATALOG_ORIGIN
+let HERE = "";
+try { HERE = path.dirname(fileURLToPath(import.meta.url)); } catch { /* no file url here */ }
+const DIRS = [process.env.CATALOG_DIR, ...(HERE ? [path.resolve(HERE, "../../public"), path.resolve(HERE, "../../dist")] : [])].filter(Boolean);
 export const SITE_URL = (process.env.SITE_URL || "https://cizle.dev").replace(/\/$/, "");
 /** Free for launch: every item whose text is public opens for everyone, no token. MCP_OPEN=0 brings the Premium checks back. */
 export const openAccess = () => process.env.MCP_OPEN !== "0";
@@ -19,7 +21,9 @@ const cache = new Map();
 export async function readJson(rel, origin) {
 	for (const d of DIRS) {
 		const f = path.join(d, rel);
-		if (fs.existsSync(f)) return JSON.parse(fs.readFileSync(f, "utf8"));
+		try {
+			if (fs.existsSync(f)) return JSON.parse(fs.readFileSync(f, "utf8"));
+		} catch { /* no usable disk: fall through to the network */ }
 	}
 	// CATALOG_ORIGIN: where a standalone deployment (Fly) reads the built site's static files from; otherwise the request's own origin
 	const base = (process.env.CATALOG_ORIGIN || origin || SITE_URL).replace(/\/$/, "");

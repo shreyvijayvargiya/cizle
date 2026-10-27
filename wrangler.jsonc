@@ -1,0 +1,24 @@
+// The cizle MCP server and library API on Cloudflare Workers.
+//   Local:   npm --prefix site install --omit=dev && npx wrangler dev
+//   Deploy:  npx wrangler deploy
+// Workers bundles the code itself: there is no separate build step for this API.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cizle-mcp",
+	"main": "site/mcp-api/worker.mjs",
+	"compatibility_date": "2025-09-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": true,
+	"observability": { "enabled": true },
+	"vars": {
+		"CATALOG_ORIGIN": "https://cizle.dev",
+		"SITE_URL": "https://cizle.dev",
+		// everything is free for launch; "0" brings Premium checks back (and needs a database, which a Worker build does not include)
+		"MCP_OPEN": "1"
+	},
+	// firebase-admin is a Node library that does not run on Workers; the launch API does not use it
+	"alias": {
+		"firebase-admin/app": "./site/mcp-api/firebase-stub.mjs",
+		"firebase-admin/firestore": "./site/mcp-api/firebase-stub.mjs"
+	}
+}

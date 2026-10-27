@@ -24,3 +24,12 @@ Then point the website at it. Set **`VITE_MCP_URL=https://<app>.fly.dev/mcp`** i
 ## Later: bring tokens and Premium back
 
 Set `MCP_OPEN=0` and add the secrets `MCP_JWT_SECRET` (32+ random characters), `FIREBASE_SERVICE_ACCOUNT` and `FIREBASE_PROJECT_ID`. Items then follow their access level again and a Bearer token from the site's MCP page unlocks Premium. Set `PREMIUM`-related site switches (`premiumLaunched` in `content/site.json`) at the same time.
+
+## Cloudflare Workers instead of Fly
+
+`wrangler.jsonc` at the repo root deploys the same API as a Worker (`site/mcp-api/worker.mjs`). Wrangler bundles the code itself, so there is no build step for the API.
+
+- **Git-connected (Workers Builds):** root directory `/`, build command `npm --prefix site install --omit=dev --legacy-peer-deps`, deploy command `npx wrangler deploy`.
+- **By hand:** `npm --prefix site install --omit=dev --legacy-peer-deps && npx wrangler deploy`.
+- Then set `VITE_MCP_URL=https://cizle-mcp.<your-subdomain>.workers.dev/mcp` (or your custom domain) in `site/.env` and Vercel.
+- Building the search index (about 7,600 prompts) takes real CPU on a cold start, more than the free plan's 10 ms limit, so use the **Workers Paid** plan. A warm isolate answers from memory.
