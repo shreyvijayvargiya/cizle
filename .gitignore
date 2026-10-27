@@ -71,3 +71,6 @@ site/content/learn.json
 *.env
 *.env.example
 .env.example
+
+# wrangler local dev state
+.wrangler/
