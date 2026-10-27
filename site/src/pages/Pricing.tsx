@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/misc";
@@ -7,6 +7,7 @@ import { checkoutUrl, defaultCurrency, fromLabel, planPerMonthLabel, planTotalLa
 import { SITE } from "@/lib/config";
 import { useFaq, useSkills } from "@/lib/data";
 import { useGallery } from "@/lib/gallery";
+import { track } from "@/lib/funnel";
 import { useHead } from "@/lib/head";
 import { faqJsonLd } from "@/lib/seo";
 
@@ -21,6 +22,7 @@ export function PricingPage() {
 	const [busy, setBusy] = useState<PlanId | null>(null);
 	const premium = skills.data?.skills.filter((s) => s.tier === "premium") ?? [];
 	const count = (cat: string) => premium.filter((s) => s.category === cat).length;
+	useEffect(() => track("pricing_views", { once: true }), []);
 	const topFaq = (faq.data || []).filter((f) => /billing|refund|paid but/i.test(f.q)).slice(0, 3);
 
 	useHead({
@@ -36,6 +38,7 @@ export function PricingPage() {
 	// Until the Dodo products are set, the plans take early-access requests by email instead of failing at checkout.
 	const payReady = (plan: PlanId) => Boolean(checkoutUrl({ uid: "x", email: "x", currency, plan }));
 	const subscribe = (plan: PlanId) => {
+		track("checkout_clicks");
 		if (!payReady(plan)) {
 			window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(`Premium early access (${plan}, ${currency})`)}&body=${encodeURIComponent("Hi, I would like early access to cizle Premium. My email is ")}`;
 			return;

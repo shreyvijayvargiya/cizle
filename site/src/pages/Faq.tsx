@@ -7,7 +7,7 @@ import { faqJsonLd } from "@/lib/seo";
 
 export function FaqPage() {
 	const faq = useFaq();
-	useHead({ title: "FAQ: cizle skills, pricing and how it works", description: "Answers about cizle video skills for Claude Code: what is free, what Premium includes, how billing works, how to install a skill and who owns the videos.", path: "/faq", jsonLd: faq.data ? faqJsonLd(faq.data) : undefined });
+	useHead({ title: "FAQ: cizle prompts, skills and how it works", description: "Answers about cizle: what is free, why you sign in, how to install a skill, how to use the library inside Claude and who owns the videos.", path: "/faq", jsonLd: faq.data ? faqJsonLd(faq.data) : undefined });
 	return (
 		<div className="board pt-6 pb-4">
 			<div className="board-w grid gap-8 md:grid-cols-12">
@@ -16,7 +16,7 @@ export function FaqPage() {
 						Questions, answered
 					</h1>
 					<p className="reveal mt-6 max-w-[34ch] text-lg" style={{ ["--i" as string]: 1 }}>
-						Everything about cizle skills, Premium and billing. Something missing? <Link to="/contact" className="underline decoration-field-1 decoration-2 underline-offset-4">Ask us</Link>.
+						Everything about cizle prompts, skills and the MCP. Something missing? <Link to="/contact" className="underline decoration-field-1 decoration-2 underline-offset-4">Ask us</Link>.
 					</p>
 					<Link to="/contact" className="press reveal mt-6 inline-flex h-12 items-center rounded-lg bg-primary px-6 text-base font-medium text-primary-foreground hover:bg-primary/85" style={{ ["--i" as string]: 2 }}>
 						Ask a question

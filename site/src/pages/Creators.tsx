@@ -51,9 +51,9 @@ export function CreatorsPage() {
 	}, [all, text, platform, lang, sort]);
 
 	useHead({
-		title: `Creators: ${q.data ? q.data.total.toLocaleString() : "1,000+"} people behind the prompts and skills | cizle`,
+		title: `Sources: ${q.data ? q.data.total.toLocaleString() : "1,000+"} people behind the prompts and skills | cizle`,
 		description: "Every creator in the cizle library with a link to follow them: the people who wrote the video prompts and the Claude skills, and how much each one shared.",
-		path: "/creators",
+		path: "/sources",
 	});
 
 	return (
@@ -61,7 +61,7 @@ export function CreatorsPage() {
 			<div className="board-w">
 				<div className="reveal flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
 					<h1 className="display" style={{ fontSize: "clamp(2.75rem, 8vw, 7.5rem)" }}>
-						Creators
+						Sources
 					</h1>
 					<p className="max-w-[46ch] pb-2 text-lg leading-snug">
 						{q.data ? `${q.data.total.toLocaleString()} people` : "The people"} behind the prompts and skills here. Follow them, and use them as your own sources.

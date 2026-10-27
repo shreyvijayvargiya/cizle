@@ -1,0 +1,32 @@
+# The cizle MCP server and library API on Fly.io.   cd site && fly launch --copy-config --no-deploy && fly deploy
+# Rename the app, pick your nearest region, then put https://<app>.fly.dev/mcp in VITE_MCP_URL (site .env and Vercel).
+app = "cizle-mcp"
+primary_region = "bom"
+
+[build]
+  dockerfile = "mcp-api/Dockerfile"
+
+[env]
+  PORT = "8080"
+  CATALOG_ORIGIN = "https://cizle.dev"
+  SITE_URL = "https://cizle.dev"
+  # Everything is free for launch. Set to "0" (and add MCP_JWT_SECRET, FIREBASE_SERVICE_ACCOUNT as secrets) to bring tokens and Premium back.
+  MCP_OPEN = "1"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "10s"
+    interval = "30s"
+    timeout = "5s"
+    method = "GET"
+    path = "/healthz"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

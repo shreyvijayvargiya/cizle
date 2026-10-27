@@ -1,23 +1,23 @@
 [
 	{
 		"q": "What is cizle?",
-		"a": "cizle is a library of video skills and prompts for Claude Code. Each skill is a tested, scene-by-scene guide for one kind of video: a product launch, a feature tour, an FAQ, a Meta or TikTok ad, a film-style explainer. You give Claude Code your product link and the skill; cizle renders the animated MP4 on your own machine."
+		"a": "cizle is a library of video prompts, image prompts and Claude Code skills. Each skill is a tested, scene-by-scene guide for one kind of video: a product launch, a feature tour, an FAQ, a Meta or TikTok ad. Each prompt shows the demo it made and credits the person who wrote it. Copy one, make it yours."
 	},
 	{
 		"q": "Is it free?",
-		"a": "Yes, 20 skills are free forever: the basic video types for product, launch, explainer and social proof videos. The premium library (ad formats for Meta, TikTok and Google, engineering and technical formats, and 20 film styles) is from from $10 a month. The prompt gallery is free to browse: every prompt shows its creator, a preview and a link to the original post, and about one in ten is readable in full."
+		"a": "Yes. Everything is free to browse, read and copy while we launch. Make a free account to see the whole library. There is nothing to pay and no card to enter."
 	},
 	{
-		"q": "What do I get with Premium?",
-		"a": "Every premium skill in full: the complete prompt, the SKILL.md for Claude Code, and the install command. New premium skills are added to your plan as they are published, at no extra cost. It also unlocks the full text of every prompt in the community prompt gallery, with a copy button."
+		"q": "Why do I need to sign in?",
+		"a": "Without an account you see a random sample of 24 video prompts. A free account (Google or email, a few seconds) opens search, filters, every prompt and every skill. It also lets you like and save prompts, and it is how we know the library is useful to real people."
 	},
 	{
 		"q": "What is the prompt gallery?",
-		"a": "A searchable collection of 1,000+ real video prompts that people wrote for Claude Opus 5.5: motion graphics, explainers, product videos, 3D scenes and more. Each card shows who made it, a preview, tags and links to the original post and video. Free samples open in full. Premium opens the full text of all the others and lets you copy it into Claude Code."
+		"a": "A searchable collection of real prompts that people wrote for video, image and motion work: motion graphics, explainers, product videos, 3D scenes and more. Each card shows who made it, a preview, tags and a link to the original post."
 	},
 	{
 		"q": "Whose prompts are in the gallery, and can I use them?",
-		"a": "The prompts belong to the people who wrote them. We collect them from public posts and community libraries, credit the creator on every card and link to the original. Use them to learn and as a starting point for your own videos. Do not republish or resell them. Quoted prompts stay with their authors."
+		"a": "The prompts belong to the people who wrote them. We collect them from public posts and community libraries, credit the creator on every card and link to the original. Use them to learn and as a starting point for your own work. Do not republish or resell them. The Sources page lists every person credited."
 	},
 	{
 		"q": "How do I get a prompt removed or corrected?",
@@ -28,27 +28,15 @@
 		"a": "Open a skill, press Copy prompt or run its install command. The command saves a SKILL.md into .claude/skills in your project. Connect the cizle MCP server to Claude Code once, then ask Claude to make the video for your link. The docs page walks through it in five steps."
 	},
 	{
+		"q": "How do I use cizle inside Claude?",
+		"a": "Sign in, open the MCP page and copy the one command it shows. Run it once in your terminal. After that Claude can search the whole library from the chat, show you a table and open any prompt or skill. There is no API key or token to manage."
+	},
+	{
 		"q": "Do I need an API key or a paid AI plan?",
 		"a": "The skills are plain markdown, so they work with any coding agent that reads them. Rendering with the cizle MCP server runs locally with no model call and no API key: your agent writes the storyboard, cizle turns it into an MP4. You need Claude Code (or a compatible agent) for the agent part."
 	},
 	{
-		"q": "How does billing work?",
-		"a": "Premium is a subscription in US dollars or Indian rupees through Dodo Payments, which acts as the merchant of record. There are three plans: 1 month at $20 (₹1,599), 6 months at $15 a month (25% off, billed $90 every 6 months, ₹7,194) and 12 months at $10 a month (50% off, billed $120 once a year, ₹9,588). It renews at the end of the period you chose and you can cancel any time from Settings; access continues until the end of the period you paid for."
-	},
-	{
-		"q": "Can I get a refund?",
-		"a": "Yes. If Premium is not for you, email us within 7 days of your first payment and we will refund it. See the refund policy for details."
-	},
-	{
 		"q": "Who owns the videos I make?",
 		"a": "You do. Videos and images you create with a skill are yours to use commercially. The skills and prompts themselves remain the property of cizle and their authors."
-	},
-	{
-		"q": "Where do the film styles come from?",
-		"a": "The 20 film styles are art-direction prompts from the open-source lemo-opuscar project by LemoLab (MIT licensed), included with their licence and credited on each skill page."
-	},
-	{
-		"q": "I paid but Premium is not unlocked. What now?",
-		"a": "Activation normally takes a few seconds after the payment page closes. Open Settings: the page updates on its own once the payment is confirmed. If it still shows Free after a minute, email us from the address you paid with and we will fix it straight away."
 	}
 ]

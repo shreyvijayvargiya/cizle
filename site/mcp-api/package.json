@@ -1,0 +1,18 @@
+{
+	"name": "cizle-mcp-api",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"description": "The cizle MCP server and library API as a standalone Node server (deploy to Fly.io)",
+	"scripts": { "start": "node mcp-api/server.mjs" },
+	"engines": { "node": ">=20.12" },
+	"dependencies": {
+		"@hono/node-server": "^2.1.5",
+		"@modelcontextprotocol/sdk": "^1.32.1",
+		"firebase-admin": "^13.4.0",
+		"fuse.js": "^7.1.0",
+		"hono": "^4.13.13",
+		"jose": "^6.2.13",
+		"zod": "^4.6.7"
+	}
+}

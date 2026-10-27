@@ -11,7 +11,7 @@ export function MenuContent({ className, align = "start", ...p }: React.Componen
 			<M.Content
 				align={align}
 				sideOffset={6}
-				className={cn("menu-pop z-50 min-w-44 overflow-hidden rounded-lg bg-surface p-1 text-[13px] shadow-2xl shadow-black/20", className)}
+				className={cn("menu-pop z-50 min-w-44 overflow-hidden rounded-lg border border-input bg-background p-1 text-[13px] shadow-2xl shadow-black/20", className)}
 				{...p}
 			/>
 		</M.Portal>

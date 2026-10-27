@@ -57,7 +57,7 @@ const tree = root.addChildren([
 	gallery,
 	prompt,
 	launch,
-	r("/creators", CreatorsPage),
+	r("/sources", CreatorsPage),
 	r("/saved", SavedPage),
 	r("/learn", LearnPage),
 	r("/subscribe", SubscribePage),

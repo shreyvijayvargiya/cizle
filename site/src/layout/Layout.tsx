@@ -5,6 +5,8 @@ import { Toaster } from "sonner";
 import { CommandMenu } from "@/layout/CommandMenu";
 import { Footer } from "@/layout/Footer";
 import { Navbar } from "@/layout/Navbar";
+import { track } from "@/lib/funnel";
+import { GateProvider } from "@/lib/gate";
 import { useReveal } from "@/lib/reveal";
 import { VideoProvider } from "@/lib/videos";
 import { useTheme } from "@/lib/theme";
@@ -14,6 +16,7 @@ export function Layout() {
 	const [searchOpen, setSearchOpen] = useState(false);
 	const { resolved } = useTheme();
 	useReveal();
+	useEffect(() => track("visits", { once: true }), []);
 	useEffect(() => {
 		const onKey = (e: KeyboardEvent) => {
 			if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -30,6 +33,7 @@ export function Layout() {
 	}, []);
 	return (
 		<VideoProvider>
+		<GateProvider>
 		<Tooltip.Provider delayDuration={250}>
 			<a href="#main" className="sr-only z-[60] rounded-lg bg-primary px-4 py-3 text-base text-primary-foreground focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
 				Skip to content
@@ -44,6 +48,7 @@ export function Layout() {
 			<CommandMenu open={searchOpen} onOpenChange={setSearchOpen} />
 			<Toaster theme={resolved} position="bottom-right" richColors closeButton  />
 		</Tooltip.Provider>
+		</GateProvider>
 		</VideoProvider>
 	);
 }

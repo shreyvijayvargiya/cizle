@@ -2,18 +2,19 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { CopyButton } from "@/components/CopyButton";
+import { AuthForm } from "@/components/AuthForm";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/lib/auth";
-import { SITE } from "@/lib/config";
+import { MCP_URL, PREMIUM, SITE } from "@/lib/config";
 import { firebaseConfigured, loadFirebase } from "@/lib/firebase";
 import { useHead } from "@/lib/head";
 
-const MCP = `${SITE.url}/mcp`;
+const MCP = MCP_URL;
 const TOOLS = [
 	["search", "Find skills and prompts by what you want to make. Leave the query empty to browse. Pages of up to 50, with a cursor for the next page."],
 	["get", "Open one item in full: the prompt, the SKILL.md and the install command."],
-	["categories", "Every category, with how many free and premium items it holds."],
-	["whoami", "Whether you are connected and whether Premium is active."],
+	["categories", "Every category, with how many items it holds."],
+	["whoami", "Checks the connection."],
 ] as const;
 const ASKS = [
 	"Find a free launch video skill and show me the top five prompts for it.",
@@ -32,16 +33,16 @@ function Code({ children, label }: { children: string; label: string }) {
 	);
 }
 
-/** Connect cizle to Claude: the MCP address, a token for Premium, and the CLI. The free library needs no sign-in. */
+/** Connect cizle to Claude: the MCP address and the command. A free account is needed to see it; there is no token while everything is free (the token section returns with Premium). */
 export function ConnectPage() {
-	const { user, isPro, ready } = useAuth();
+	const { user, isPro, ready, configured } = useAuth();
 	const [token, setToken] = useState("");
 	const [busy, setBusy] = useState(false);
 	const [tab, setTab] = useState<"code" | "desktop" | "cli">("code");
 
 	useHead({
 		title: "Use cizle inside Claude: the MCP server | cizle",
-		description: "Connect cizle to Claude with one command. Search every video skill and prompt from the chat, open the free ones, and unlock Premium with a token. Also a CLI for Claude Code.",
+		description: "Connect cizle to Claude with one command. Search every video skill and prompt from the chat and open any of them. Also a CLI for Claude Code.",
 		path: "/connect",
 	});
 
@@ -82,6 +83,7 @@ export function ConnectPage() {
 
 	const t = token || "YOUR_TOKEN";
 	const free = `claude mcp add --transport http cizle ${MCP}`;
+	const locked = configured && !user;
 	const paid = `claude mcp add --transport http cizle ${MCP} --header "Authorization: Bearer ${t}"`;
 	const desktop = JSON.stringify({ mcpServers: { cizle: { command: "npx", args: ["-y", "mcp-remote", MCP, ...(token || isPro ? ["--header", `Authorization: Bearer ${t}`] : [])] } } }, null, 2);
 	const cli = `git clone ${SITE.github}\ncd cizle && npm install\nnode server/cli/cizle.js search "launch video"${token ? `\nnode server/cli/cizle.js login ${t}` : ""}`;
@@ -95,12 +97,31 @@ export function ConnectPage() {
 					inside Claude
 				</h1>
 				<p className="reveal mt-6 max-w-[48ch] text-lg" style={{ ["--i" as string]: 1 }}>
-					One command, and Claude can search every skill and prompt in the library, show you a table, and open the one you pick. Free items need no sign-in. Premium opens with a token.
+					One command, and Claude can search every skill and prompt in the library, show you a table, and open the one you pick. Free with a free account, and there is no token to manage.
 				</p>
 
+				{locked ? (
+					<div className="mt-8 grid gap-2 md:grid-cols-12">
+						<section className="tile reveal p-6 sm:p-8 md:col-span-7" aria-labelledby="c0">
+							<h2 id="c0" className="statement">Sign in to get the command</h2>
+							<p className="mt-3 max-w-[44ch] text-base">A free account, no card. You get the one command to paste into Claude, and the whole library in the gallery.</p>
+							<div className="mt-5 max-w-sm">{ready ? <AuthForm onDone={() => {}} /> : null}</div>
+						</section>
+						<section className="tile reveal p-6 sm:p-8 md:col-span-5" style={{ ["--i" as string]: 1 }} aria-labelledby="c3">
+							<h2 id="c3" className="statement">What Claude can do</h2>
+							<dl className="mt-4 grid gap-3 text-base">
+								{TOOLS.map(([n, d]) => (
+									<div key={n}><dt className="font-medium"><code>{n}</code></dt><dd>{d}</dd></div>
+								))}
+							</dl>
+						</section>
+					</div>
+				) : null}
+
+				{!locked ? <>
 				<div className="mt-8 grid gap-2 md:grid-cols-12">
 					<section className="tile reveal p-6 sm:p-8 md:col-span-7" aria-labelledby="c1">
-						<h2 id="c1" className="statement">1. Connect, free</h2>
+						<h2 id="c1" className="statement">1. Connect</h2>
 						<div role="tablist" aria-label="Where you use Claude" className="mt-4 flex flex-wrap gap-2">
 							{([["code", "Claude Code"], ["desktop", "Claude Desktop"], ["cli", "Terminal CLI"]] as const).map(([k, l]) => (
 								<button key={k} type="button" role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={`press h-11 rounded-lg px-5 text-base font-medium ${tab === k ? "bg-primary text-primary-foreground" : "bg-tile-2 hover:bg-muted"}`}>{l}</button>
@@ -125,6 +146,7 @@ export function ConnectPage() {
 						)}
 					</section>
 
+					{PREMIUM ? (
 					<section className="tile-accent reveal p-6 sm:p-8 md:col-span-5" style={{ ["--i" as string]: 1 }} aria-labelledby="c2">
 						<h2 id="c2" className="statement">2. Premium, with a token</h2>
 						{!ready ? null : !user ? (
@@ -151,6 +173,12 @@ export function ConnectPage() {
 						)}
 						<p className="mt-4 text-base">Your plan is checked on every request, so if Premium lapses the token goes back to the free library by itself.</p>
 					</section>
+					) : (
+						<section className="tile-accent reveal p-6 sm:p-8 md:col-span-5" style={{ ["--i" as string]: 1 }} aria-labelledby="c2">
+							<h2 id="c2" className="statement">2. Ask Claude</h2>
+							<p className="mt-4 text-base">That is it. Everything is free for launch, so there is no token to make. Open Claude Code, and ask for a skill or a prompt.</p>
+						</section>
+					)}
 				</div>
 
 				<div className="mt-2 grid gap-2 md:grid-cols-12">
@@ -175,6 +203,7 @@ export function ConnectPage() {
 						<p className="mt-4 text-base">Full steps and troubleshooting are in the <Link to="/docs" className="underline decoration-2 underline-offset-4">docs</Link>.</p>
 					</section>
 				</div>
+				</> : null}
 			</div>
 		</div>
 	);

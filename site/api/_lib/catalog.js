@@ -11,6 +11,8 @@ import Fuse from "fuse.js";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const DIRS = [process.env.CATALOG_DIR, path.resolve(HERE, "../../public"), path.resolve(HERE, "../../dist")].filter(Boolean);
 export const SITE_URL = (process.env.SITE_URL || "https://cizle.dev").replace(/\/$/, "");
+/** Free for launch: every item whose text is public opens for everyone, no token. MCP_OPEN=0 brings the Premium checks back. */
+export const openAccess = () => process.env.MCP_OPEN !== "0";
 const TTL = 10 * 60_000;
 const cache = new Map();
 
@@ -19,7 +21,8 @@ export async function readJson(rel, origin) {
 		const f = path.join(d, rel);
 		if (fs.existsSync(f)) return JSON.parse(fs.readFileSync(f, "utf8"));
 	}
-	const base = origin || SITE_URL;
+	// CATALOG_ORIGIN: where a standalone deployment (Fly) reads the built site's static files from; otherwise the request's own origin
+	const base = (process.env.CATALOG_ORIGIN || origin || SITE_URL).replace(/\/$/, "");
 	const res = await fetch(`${base}/${rel}`);
 	if (!res.ok) throw new Error(`Could not load ${rel} (${res.status})`);
 	return res.json();
@@ -36,13 +39,22 @@ export const clearCatalogCache = () => cache.clear();
 /** One row per skill and per prompt, in the same shape, so search, tables and paging treat them alike. */
 export async function loadIndex(origin) {
 	return cached("index", async () => {
-		const [skills, gallery] = await Promise.all([readJson("skills.json", origin), readJson("gallery.json", origin).catch(() => ({ items: [], categories: [] }))]);
+		const [skills, gallery, versions] = await Promise.all([readJson("skills.json", origin), readJson("gallery.json", origin).catch(() => ({ items: [], categories: [] })), readJson("versions.json", origin).catch(() => [])]);
+		// every harvest version published next to the classic gallery (public/versions.json), each in its own file
+		const extra = await Promise.all(versions.map((v) => readJson(String(v.gallery).replace(/^\//, ""), origin).then((g) => g.items.map((x) => ({ ...x, version: x.version || v.version }))).catch(() => [])));
 		const rows = [];
 		for (const s of skills.skills) {
 			rows.push({ kind: "skill", id: `skill:${s.slug}`, ref: s.slug, title: s.name, summary: s.summary, category: s.category, tier: s.tier, format: s.format, aspect: s.aspect, platform: s.platform, duration: s.duration, tags: s.tags || [], by: s.credit?.author || "cizle", url: `${SITE_URL}/skills/${s.slug}`, video: s.video || null, rank: s.order ?? 0 });
 		}
 		gallery.items.forEach((g, i) => {
-			rows.push({ kind: "prompt", id: `prompt:${g.slug}`, ref: g.slug, title: g.title, summary: g.preview, category: g.category || "", tier: g.tier, format: "Video", aspect: "", platform: "Any", duration: null, tags: g.tags || [], by: g.handle ? `@${g.handle}` : g.author || "the creator", url: `${SITE_URL}/prompts/${g.slug}`, video: g.video || null, rank: 1000 + i, galleryId: g.id, postUrl: g.postUrl || null, model: g.model || null, chars: g.chars, text: g.text });
+			rows.push({ kind: "prompt", id: `prompt:${g.slug}`, ref: g.slug, title: g.title, summary: g.preview, category: g.category || "", tier: g.tier, format: "Video", aspect: "", platform: "Any", duration: null, tags: g.tags || [], by: g.handle ? `@${g.handle}` : g.author || "the creator", url: `${SITE_URL}/prompts/${g.slug}`, video: g.video || null, rank: 1000 + i, galleryId: g.id, postUrl: g.postUrl || null, sourceUrl: g.sourceUrl || null, model: g.model || null, chars: g.chars, text: g.text, lang: g.lang || "en", restricted: Boolean(g.restricted) });
+		});
+		const seen = new Set(rows.map((r) => r.id));
+		extra.flat().forEach((g, i) => {
+			const id = `prompt:${g.slug}`;
+			if (seen.has(id)) return;
+			seen.add(id);
+			rows.push({ kind: "prompt", id, ref: g.slug, title: g.title, summary: g.preview, category: g.category || "", tier: g.tier, format: g.kind === "image-prompt" ? "Image" : "Video", aspect: "", platform: "Any", duration: null, tags: g.tags || [], by: g.handle ? `@${g.handle}` : g.author || g.source || "the creator", url: `${SITE_URL}/prompts/${g.slug}`, video: g.video || null, rank: 100000 + i, galleryId: g.id, postUrl: g.postUrl || null, sourceUrl: g.sourceUrl || null, model: g.model || null, chars: g.chars, version: g.version, lang: g.lang || null, restricted: Boolean(g.restricted) });
 		});
 		const fuse = new Fuse(rows, { keys: [{ name: "title", weight: 3 }, { name: "summary", weight: 1.5 }, { name: "tags", weight: 1.5 }, { name: "category", weight: 1 }, { name: "by", weight: 0.8 }], threshold: 0.32, ignoreLocation: true, minMatchCharLength: 2 });
 		const counts = {};

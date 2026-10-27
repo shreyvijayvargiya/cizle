@@ -92,6 +92,11 @@
 	],
 	"redirects": [
 		{
+			"source": "/creators",
+			"destination": "/sources",
+			"permanent": true
+		},
+		{
 			"source": "/search",
 			"has": [
 				{

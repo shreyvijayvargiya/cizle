@@ -26,7 +26,7 @@ export function LanguageSelect({ value, onChange, counts, className }: { value: 
 		<P.Root open={open} onOpenChange={(o) => (setOpen(o), !o && setQ(""))}>
 			<P.Trigger
 				aria-label="Language"
-				className={cn("flex h-8 items-center justify-between gap-2 rounded-md border border-input bg-surface px-2.5 text-[13px] outline-none transition-colors hover:bg-accent focus-visible:border-ring/60", className)}
+				className={cn("flex h-8 items-center justify-between gap-2 rounded-md border border-input bg-background px-2.5 text-[13px] outline-none transition-colors hover:bg-tile-2 focus-visible:border-ring/60", className)}
 			>
 				<span className="flex min-w-0 items-center gap-2 truncate">
 					{current ? <span aria-hidden className="text-base leading-none">{current.flag}</span> : <Icon icon={Globe02Icon} size={16} className="text-muted-foreground" />}
@@ -35,7 +35,7 @@ export function LanguageSelect({ value, onChange, counts, className }: { value: 
 				<Icon icon={ArrowDown01Icon} size={14} className="text-muted-foreground" />
 			</P.Trigger>
 			<P.Portal>
-				<P.Content align="start" sideOffset={6} className="menu-pop z-50 w-[19rem] overflow-hidden rounded-lg bg-surface text-[13px] shadow-2xl shadow-black/20" style={{ transformOrigin: "var(--radix-popover-content-transform-origin)" }}>
+				<P.Content align="start" sideOffset={6} className="menu-pop z-50 w-[19rem] overflow-hidden rounded-lg border border-input bg-background text-[13px] shadow-2xl shadow-black/20" style={{ transformOrigin: "var(--radix-popover-content-transform-origin)" }}>
 					<Command shouldFilter={false} loop>
 						<CommandInput value={q} onValueChange={setQ} placeholder={`Search ${rows.length} languages…`} autoFocus />
 						<CommandList className="max-h-72">

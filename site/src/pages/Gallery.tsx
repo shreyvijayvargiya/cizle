@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { Cancel01Icon, Globe02Icon, Layers01Icon, Search01Icon, ShuffleIcon, SortByDown01Icon, Video01Icon } from "@hugeicons/core-free-icons";
 import { CategoryChips, categoryLabel } from "@/components/CategoryChips";
@@ -14,7 +14,8 @@ import { Skeleton } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
-import { CLASSIC, canonCategory, filterGallery, findPrompt, useGallery, useGalleryFuse, useShuffle, type GalleryFilters } from "@/lib/gallery";
+import { CLASSIC, canonCategory, filterGallery, findPrompt, shuffled, useGallery, useGalleryFuse, useShuffle, type GalleryFilters } from "@/lib/gallery";
+import { GUEST_LIMIT, useGate } from "@/lib/gate";
 import { ACCESS_ICON, SORT_ICON, categoryIcon } from "@/lib/filterIcons";
 import { PREMIUM } from "@/lib/config";
 import { useHead } from "@/lib/head";
@@ -33,7 +34,7 @@ function Collections() {
 			<div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 				{q.data.map((c) => (
 					<div key={c.family}>
-						<h3 className="mb-2 text-lg font-semibold"><a href={c.family === "creators" ? "/creators" : `/${c.family}`} className="hover:underline">{c.name}</a> <span className="text-muted-foreground">({c.total})</span></h3>
+						<h3 className="mb-2 text-lg font-semibold"><a href={c.family === "creators" ? "/sources" : `/${c.family}`} className="hover:underline">{c.name}</a> <span className="text-muted-foreground">({c.total})</span></h3>
 						<ul className="flex flex-wrap gap-1.5">
 							{c.pages.map((x) => <li key={x.route}><a href={x.route} className="press inline-flex rounded-full bg-surface px-3 py-1.5 text-sm text-foreground hover:bg-tile-2">{x.name}</a></li>)}
 						</ul>
@@ -55,25 +56,40 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 	const fuse = useGalleryFuse(items);
 	const [q, setQ] = useState(search.q || "");
 	const [shown, setShown] = useState(PAGE);
-	const { seed, reshuffle } = useShuffle();
+	const { seed, reshuffle: reshuffleList } = useShuffle();
+	const { locked, ready, openGate } = useGate();
+	// A visitor without an account sees a fixed random sample of video prompts; searching, filtering, shuffling, paging and opening one asks them to sign in.
+	const reshuffle = () => (locked ? openGate("shuffle the gallery") : reshuffleList());
 
 	const setFilter = (patch: Partial<GalleryFilters>) => {
+		if (locked) return openGate("search and filter the gallery");
 		const next = { ...search, ...patch };
 		for (const k of [...KEYS, "p" as const]) if (!next[k]) delete next[k];
 		setShown(PAGE);
 		navigate({ to: "/gallery", search: next, replace: true, resetScroll: false });
 	};
 	useEffect(() => {
-		if ((search.q || "") === q.trim()) return;
+		if (locked || (search.q || "") === q.trim()) return;
 		const t = setTimeout(() => setFilter({ q: q.trim() || undefined }), 220);
 		return () => clearTimeout(t);
 	});
 	useEffect(() => setQ(search.q || ""), [search.q]);
 
-	const list = useMemo(() => (items ? filterGallery(items, fuse, search, seed) : []), [items, fuse, search, seed]);
-	const active = KEYS.some((k) => k !== "sort" && search[k]);
+	const list = useMemo(() => {
+		if (!items) return [];
+		if (locked) return shuffled(items.filter((g) => g.hasVideo && g.video), seed).slice(0, GUEST_LIMIT);
+		return filterGallery(items, fuse, search, seed);
+	}, [items, fuse, search, seed, locked]);
+	const active = !locked && KEYS.some((k) => k !== "sort" && search[k]);
 	const total = gallery.data?.total ?? 0;
-	const open = slug ? findPrompt(items, slug) : undefined;
+	const open = slug && !locked ? findPrompt(items, slug) : undefined;
+	// the sign-in wall opens with the page, once (also when a guest lands on a prompt's own address)
+	const asked = useRef(false);
+	useEffect(() => {
+		if (!locked || !ready || asked.current) return;
+		asked.current = true;
+		openGate(slug ? "open this prompt" : "see every prompt");
+	}, [locked, ready, slug]); // eslint-disable-line react-hooks/exhaustive-deps
 	const legacy = search.p ? items?.find((g) => g.id === search.p) : undefined;
 	useEffect(() => {
 		// old ?p=<id> links move to the readable address
@@ -112,7 +128,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 					<form role="search" aria-label="Filter prompts" className="flex flex-wrap items-center gap-2 rounded-lg bg-surface p-2" onSubmit={(e) => e.preventDefault()}>
 						<div className="relative w-full sm:w-80">
 							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
-							<Input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
+							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the gallery") : setQ(e.target.value))} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
 						</div>
 						<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={gallery.data?.languages ?? {}} className="w-[12.5rem]" />
 						{gallery.data?.versions.length ? (
@@ -135,7 +151,8 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 				{gallery.data ? <CategoryChips categories={[...allCategories].sort((a, b) => (counts[b] ?? 0) - (counts[a] ?? 0)).slice(0, 24)} counts={counts} value={search.category || ""} onChange={(c) => setFilter({ category: c || undefined })} total={total} /> : null}
 
 				<p className="px-1 py-3 text-lg" aria-live="polite">
-					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? "prompt" : "prompts"}${active ? ` of ${total.toLocaleString()}` : ""}. `}
+					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? "prompt" : "prompts"}${active || locked ? ` of ${total.toLocaleString()}` : ""}. `}
+					{locked && gallery.data ? <button type="button" onClick={() => openGate("see every prompt")} className="underline decoration-field-1 decoration-2 underline-offset-4">Sign in free to browse them all.</button> : null}
 					{PREMIUM && !isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : PREMIUM && isPro ? "Premium is unlocked." : null}
 				</p>
 
@@ -162,7 +179,11 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 								</li>
 							))}
 						</ul>
-						{shown < list.length ? (
+						{locked ? (
+							<button type="button" onClick={() => openGate("see every prompt")} className="press tile mt-2 flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
+								Sign in free to see the other {(total - list.length).toLocaleString()} prompts
+							</button>
+						) : shown < list.length ? (
 							<button type="button" onClick={() => setShown((n) => n + PAGE)} className="press tile mt-2 flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
 								Show {Math.min(PAGE, list.length - shown)} more <span className="text-muted-foreground">· {(list.length - shown).toLocaleString()} left</span>
 							</button>

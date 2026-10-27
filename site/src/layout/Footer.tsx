@@ -1,6 +1,12 @@
-import { BLOG, PREMIUM } from "@/lib/config";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { SITE } from "@/lib/config";
+import { BLOG, PREMIUM, SITE } from "@/lib/config";
+
+type Collection = { family: string; name: string; total: number };
+/** The families of pages that were really written at build time (/collections.json), so the footer never links to a page that does not exist. */
+function useCollections() {
+	return useQuery({ queryKey: ["collections"], queryFn: async () => { const r = await fetch("/collections.json"); if (!r.ok) throw new Error("none"); return (await r.json()) as Collection[]; }, staleTime: 30 * 60_000, retry: false });
+}
 
 const LINK = "press block py-1 text-base text-foreground transition-opacity hover:opacity-70";
 /** The mark returns at full width, each letter knocked out of its own block; heights differ, bottoms share one line. */
@@ -13,6 +19,7 @@ const BLOCKS: { letter: string; h: string; field: string }[] = [
 ];
 
 export function Footer() {
+	const collections = (useCollections().data ?? []).filter((c) => c.family !== "creators" && c.family !== "languages" && c.total > 0);
 	return (
 		<footer className="board mt-40 pb-3">
 			<div className="board-w">
@@ -34,21 +41,24 @@ export function Footer() {
 						<Link to="/" className={LINK}>Skills and prompts</Link>
 						<Link to="/gallery" className={LINK}>Prompt gallery</Link>
 						<Link to="/connect" className={LINK}>Use in Claude (MCP)</Link>
-						<Link to="/films" className={LINK}>Launch films</Link>
-						{PREMIUM ? <Link to="/pricing" className={LINK}>Pricing</Link> : null}
 						<Link to="/docs" className={LINK}>Docs</Link>
 						<Link to="/learn" className={LINK}>Learn</Link>
-						<a href="/for" className={LINK}>Use cases</a>
-						<a href="/styles" className={LINK}>Styles</a>
-						<a href="/best" className={LINK}>Best-of lists</a>
-						<a href="/how-to" className={LINK}>How-to guides</a>
-						<a href="/glossary" className={LINK}>Glossary</a>
-						<a href="/templates" className={LINK}>Templates</a>
+						{PREMIUM ? <Link to="/films" className={LINK}>Launch films</Link> : null}
+						{PREMIUM ? <Link to="/pricing" className={LINK}>Pricing</Link> : null}
 						{BLOG ? <Link to="/blog" className={LINK}>Blog</Link> : null}
 					</nav>
+					{collections.length ? (
+						<nav aria-label="Browse the gallery" className="reveal md:col-span-4 lg:col-span-2" style={{ ["--i" as string]: 2 }}>
+							<p className="mb-2 text-lg font-semibold">Browse</p>
+							{collections.map((c) => (
+								<a key={c.family} href={`/${c.family}`} className={LINK}>{c.name}</a>
+							))}
+						</nav>
+					) : null}
 					<nav aria-label="Company" className="reveal md:col-span-4 lg:col-span-2" style={{ ["--i" as string]: 2 }}>
 						<p className="mb-2 text-lg font-semibold">Company</p>
 						<Link to="/faq" className={LINK}>FAQ</Link>
+						<Link to="/sources" className={LINK}>Sources</Link>
 						<Link to="/contact" className={LINK}>Contact</Link>
 						<a href={SITE.github} target="_blank" rel="noreferrer" className={LINK}>GitHub</a>
 						{SITE.x ? <a href={SITE.x} target="_blank" rel="noreferrer" className={LINK}>X</a> : null}
@@ -57,13 +67,13 @@ export function Footer() {
 						<p className="mb-2 text-lg font-semibold">Legal</p>
 						<Link to="/terms" className={LINK}>Terms</Link>
 						<Link to="/privacy" className={LINK}>Privacy</Link>
-						<Link to="/refund" className={LINK}>Refunds</Link>
+						{PREMIUM ? <Link to="/refund" className={LINK}>Refunds</Link> : null}
 						<Link to="/rights" className={LINK}>Credits and removal</Link>
 					</nav>
 				</div>
 
 				<div className="flex flex-wrap items-center justify-between gap-3 px-1 pb-2 text-base">
-					<p>© {new Date().getFullYear()} cizle. Payments by Dodo Payments. Prompts belong to their creators and are credited on every card.</p>
+					<p>© {new Date().getFullYear()} cizle. Prompts belong to their creators and are credited on every card.</p>
 					<a href="#main" className="press rounded-lg bg-primary px-4 py-2 text-base text-primary-foreground hover:bg-primary/85">
 						Back to top
 					</a>

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+process.env.MCP_OPEN = "0"; // these tests are about the Premium checks, which a launch deployment (MCP_OPEN unset) skips
 process.env.MCP_JWT_SECRET = "test-secret-test-secret-test-secret-1234";
 const { createApp } = await import("../api/_lib/app.js");
 const { setStore } = await import("../api/_lib/store.js");

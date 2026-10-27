@@ -6,7 +6,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { identify, issueToken, verifyFirebaseIdToken } from "./auth.js";
-import { find, loadIndex, publicRow, search, table, SITE_URL } from "./catalog.js";
+import { find, loadIndex, openAccess, publicRow, search, table, SITE_URL } from "./catalog.js";
 import { detailMarkdown, getDetail } from "./items.js";
 import { buildMcpServer } from "./mcp.js";
 import { bumpTokenVersion, getUser, isPro } from "./store.js";
@@ -72,7 +72,7 @@ export function createApp() {
 	v1.get("/categories", async (c) => c.json({ categories: (await loadIndex(originOf(c))).counts }));
 	v1.get("/me", (c) => {
 		const w = c.get("who");
-		return c.json({ signedIn: Boolean(w.uid), premium: Boolean(w.pro), problem: w.problem || null });
+		return c.json({ signedIn: Boolean(w.uid), premium: Boolean(w.pro) || openAccess(), open: openAccess(), problem: w.problem || null });
 	});
 	app.route("/api/v1", v1);
 

@@ -52,6 +52,18 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Conversion funnel counters, one document per day ("YYYY-MM-DD"): visits, gate_views, logins, signups, premium_views, pricing_views, checkout_clicks.
+    // Anyone may raise a counter by ONE per write (never lower it, never add another field); nobody can read them from the app. `npm run funnel` reads them with the Admin SDK.
+    function funnelOk(f) { return newCount(f) is int && newCount(f) >= oldCount(f) && newCount(f) - oldCount(f) <= 1; }
+    match /funnel/{day} {
+      allow read: if false;
+      allow create, update: if day.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.keys().hasOnly(['visits', 'gate_views', 'logins', 'signups', 'premium_views', 'pricing_views', 'checkout_clicks', 'updatedAt'])
+        && funnelOk('visits') && funnelOk('gate_views') && funnelOk('logins') && funnelOk('signups')
+        && funnelOk('premium_views') && funnelOk('pricing_views') && funnelOk('checkout_clicks');
+      allow delete: if false;
+    }
+
     // Webhook bookkeeping: never visible to clients.
     match /webhooks/{id} {
       allow read, write: if false;

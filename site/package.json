@@ -15,6 +15,7 @@
 		"seed:gallery:dry": "node scripts/seed-gallery.mjs --dry",
 		"enrich:x": "node scripts/enrich-x-videos.mjs",
 		"test": "node tests/webhook.test.mjs && node tests/mcp.test.mjs",
+		"funnel": "node scripts/funnel-report.mjs",
 		"seed:premium:dry": "node scripts/seed-premium.mjs --dry",
 		"export:free": "node scripts/export-free.mjs --out ../library",
 		"private:split": "node scripts/private-split.mjs split",

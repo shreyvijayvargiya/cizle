@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { DEV_UNLOCK } from "./config";
 import { firebaseConfigured, loadFirebase } from "./firebase";
+import { track } from "./funnel";
 
 export type Member = { uid: string; email: string; name: string; photo: string | null };
 export type Subscription = { loaded: boolean; plan: "free" | "pro"; status: string | null; proUntil: Date | null; cancelAtPeriodEnd: boolean };
@@ -101,17 +102,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 			isPro: DEV_UNLOCK || active,
 			signInGoogle: async () => {
 				const { auth, authMod } = await withFb();
-				await authMod.signInWithPopup(auth, new authMod.GoogleAuthProvider());
+				const res = await authMod.signInWithPopup(auth, new authMod.GoogleAuthProvider());
+				track(authMod.getAdditionalUserInfo(res)?.isNewUser ? "signups" : "logins");
 			},
 			signInEmail: async (email, password) => {
 				const { auth, authMod } = await withFb();
 				await authMod.signInWithEmailAndPassword(auth, email, password);
+				track("logins");
 			},
 			signUpEmail: async (email, password, name) => {
 				const { auth, authMod } = await withFb();
 				const cred = await authMod.createUserWithEmailAndPassword(auth, email, password);
 				if (name) await authMod.updateProfile(cred.user, { displayName: name });
 				setUser({ uid: cred.user.uid, email, name: name || email.split("@")[0], photo: null });
+				track("signups");
 			},
 			resetPassword: async (email) => {
 				const { auth, authMod } = await withFb();

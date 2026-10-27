@@ -1,7 +1,7 @@
 /** The cizle MCP server: search and open the whole library from Claude. Stateless, so it runs as a serverless function. */
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { find, loadIndex, publicRow, search, table, SITE_URL } from "./catalog.js";
+import { find, loadIndex, openAccess, publicRow, search, table, SITE_URL } from "./catalog.js";
 import { detailMarkdown, getDetail } from "./items.js";
 
 const NAME = "cizle";
@@ -10,7 +10,7 @@ const fail = (t) => ({ content: [{ type: "text", text: t }], isError: true });
 
 export function buildMcpServer({ who, origin }) {
 	const server = new McpServer({ name: NAME, version: "1.0.0" }, {
-		instructions: `cizle is a library of video skills and community prompts for Claude Code. Use \`search\` to find the right one (it also browses: leave the query empty), then \`get\` to open it. Free items open in full. Premium items open for subscribers who connected with a token (${SITE_URL}/connect). When the user wants a list, show the table from \`search\` as it is. To list everything, call \`search\` again with the \`nextCursor\` it returns until it is null.`,
+		instructions: `cizle is a library of video skills and community prompts for Claude Code. Use \`search\` to find the right one (it also browses: leave the query empty), then \`get\` to open it. ${openAccess() ? "Everything is free and opens without a token." : `Free items open in full. Premium items open for subscribers who connected with a token (${SITE_URL}/connect).`} When the user wants a list, show the table from \`search\` as it is. To list everything, call \`search\` again with the \`nextCursor\` it returns until it is null.`,
 	});
 
 	server.registerTool(
@@ -36,7 +36,7 @@ export function buildMcpServer({ who, origin }) {
 				const from = r.count ? r.offset + 1 : 0;
 				const head = `${r.total} match${r.total === 1 ? "" : "es"}${args.query ? ` for "${args.query}"` : ""}. Showing ${from}-${r.offset + r.count}.`;
 				const foot = r.nextCursor ? `\n\nMore: call \`search\` again with cursor \`${r.nextCursor}\`.` : r.total ? "\n\nThat is the last page." : "";
-				const locked = !who.pro && r.items.some((i) => i.tier === "premium") ? `\n\nPremium rows open with a subscription: ${SITE_URL}/pricing` : "";
+				const locked = !openAccess() && !who.pro && r.items.some((i) => i.tier === "premium") ? `\n\nPremium rows open with a subscription: ${SITE_URL}/pricing` : "";
 				return text(`${head}\n\n${table(r.items)}${foot}${locked}`, { total: r.total, offset: r.offset, limit: r.limit, nextCursor: r.nextCursor, items: r.items.map(publicRow).map(({ summary, tags, ...x }) => ({ ...x, summary: summary.slice(0, 160) })) });
 			} catch (e) {
 				return fail(`Search failed: ${e.message}`);
@@ -94,6 +94,7 @@ export function buildMcpServer({ who, origin }) {
 			annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
 		},
 		async () => {
+			if (openAccess()) return text("Connected. Everything in the library is free and opens without a token.", { signedIn: Boolean(who.uid), premium: true, open: true, problem: null });
 			const s = who.uid ? (who.pro ? `Signed in. Premium is active${who.proUntil ? ` until ${new Date(who.proUntil).toISOString().slice(0, 10)}` : ""}. Every skill and prompt opens in full.` : "Signed in, but Premium is not active. Free items open in full; subscribe at " + SITE_URL + "/pricing to open the rest.") : `Not signed in. The free library opens in full. ${who.problem || `For Premium, make a token at ${SITE_URL}/connect.`}`;
 			return text(s, { signedIn: Boolean(who.uid), premium: Boolean(who.pro), problem: who.problem || null });
 		},

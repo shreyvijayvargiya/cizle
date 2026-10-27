@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { useAuth } from "@/lib/auth";
+import { track } from "@/lib/funnel";
 import { statsKey, useRecordView } from "@/lib/stats";
 import { useSuspendVideos } from "@/lib/videos";
 import { fromLabel } from "@/lib/billing";
@@ -72,6 +73,10 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 	const tweetId = /^x-(\d+)$/.exec(item.id)?.[1] || /status\/(\d+)/.exec(item.postUrl || "")?.[1] || null;
 	const versioned = Boolean(item.version) && item.version !== "classic";
 	const locked = !text && !isPro && item.tier === "premium" && !versioned;
+	// a signed-in free member who reaches a locked premium prompt is a buyer-in-waiting: count it once per prompt per visit
+	useEffect(() => {
+		if (locked && user) track("premium_views", { once: true, key: item.id });
+	}, [locked, user, item.id]);
 	const at = list.findIndex((g) => g.id === item.id);
 	const prev = at > 0 ? list[at - 1] : undefined;
 	const next = at >= 0 ? list[at + 1] : undefined;

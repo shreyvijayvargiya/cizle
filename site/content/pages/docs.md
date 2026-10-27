@@ -1,59 +1,38 @@
-# How to use cizle skills
+# How to use cizle
 
-cizle skills are markdown guides that teach Claude Code how to plan one kind of video: the scenes, the timing, the on-screen text, the rules that keep it truthful. This page takes you from zero to your first rendered video.
+cizle is a free library of video prompts, image prompts and Claude Code skills. A skill is a markdown guide that teaches Claude Code how to plan one kind of video: the scenes, the timing, the on-screen text, the rules that keep it truthful. This page takes you from zero to your first rendered video.
 
 ## Quick start
 
 > Fastest: [connect cizle to Claude](/connect) with one command, then ask Claude to find a skill for you.
 
-1. **Pick a skill.** Open the [skills library](/) and search or filter. Start with a free one such as *Product showcase* or *Launch announcement*.
-2. **Copy the prompt or install the skill.** Every skill page has a **Copy prompt** button and an install command. The command saves a `SKILL.md` into your project so Claude Code finds it automatically.
-3. **Connect cizle to Claude Code (once).** The MCP server renders storyboards into MP4 files on your machine.
-4. **Ask Claude Code for the video.** Give it your product link.
-5. **Open the MP4.** cizle saves it locally and tells Claude where it is.
+1. **Make a free account.** [Sign in](/login) with Google or email to open the whole library. Without an account you see a sample of 24 prompts.
+2. **Pick a skill or a prompt.** Open the [library](/) or the [gallery](/gallery) and search or filter. Start with a skill such as *Product showcase* or *Launch announcement*.
+3. **Copy the prompt or install the skill.** Every skill page has a **Copy prompt** button and an install command. The command saves a `SKILL.md` into your project so Claude Code finds it automatically.
+4. **Connect cizle to Claude Code (once).** The MCP server renders storyboards into MP4 files on your machine.
+5. **Ask Claude Code for the video.** Give it your product link, and open the MP4 when it is done.
 
 ## Install a skill
 
-Free skills install with one command from your project folder:
+Skills install with one command from your project folder:
 
 ```bash
 curl -fsSL --create-dirs -o .claude/skills/cizle-faq/SKILL.md https://cizle.dev/skills/faq/SKILL.md
 ```
 
-Claude Code loads skills from `.claude/skills/<name>/SKILL.md` in the project (or `~/.claude/skills` for every project). Premium skills show the same command once you are subscribed, plus a **Copy SKILL.md** button.
-
-## Connect the cizle MCP server
-
-You need Node.js 20.12 or newer.
-
-```bash
-git clone https://github.com/shreyvijayvargiya/cizle
-cd cizle
-npm install
-npm run mcp:install
-```
-
-`mcp:install` registers the server with Claude Code for every project. It gives Claude these tools: `guide`, `list_prompts`, `read_prompt`, `create_video`, `get_video`, `create_banners`, and a few more for products and status.
+Claude Code loads skills from `.claude/skills/<name>/SKILL.md` in the project (or `~/.claude/skills` for every project).
 
 ## Use cizle inside Claude (MCP)
 
-The fastest way to use the library is to connect it to Claude. Claude can then search every skill and prompt, show you a table, and open the one you choose, without you leaving the chat. Open the [Connect page](/connect) for the copy-ready commands.
+The fastest way to use the library is to connect it to Claude. Claude can then search every skill and prompt, show you a table, and open the one you choose, without you leaving the chat. [Sign in](/login) and open the [MCP page](/connect) for copy-ready commands. There is no token or API key to manage.
 
-**Free, no sign-in.** In Claude Code, run this once:
-
-```bash
-claude mcp add --transport http cizle https://cizle.dev/mcp
-```
-
-For Claude Desktop, add `cizle` to your config with `npx -y mcp-remote https://cizle.dev/mcp` (the [Connect page](/connect) has the exact JSON).
-
-**Premium, with a token.** [Sign in](/login), open [Connect](/connect), choose **Make my token**, and run the command it shows:
+In Claude Code, run this once:
 
 ```bash
-claude mcp add --transport http cizle https://cizle.dev/mcp --header "Authorization: Bearer YOUR_TOKEN"
+claude mcp add --transport http cizle {{MCP_URL}}
 ```
 
-Your plan is checked on every request. Free items open in full for everyone. Premium items open in full while your subscription is active, and go back to a summary if it lapses. The token lasts 180 days, and **Revoke all** on the Connect page cancels every token you made.
+For Claude Desktop, add `cizle` to your config with `npx -y mcp-remote {{MCP_URL}}` (the [MCP page](/connect) has the exact JSON).
 
 ### What Claude can do with it
 
@@ -61,14 +40,14 @@ Your plan is checked on every request. Free items open in full for everyone. Pre
 |---|---|
 | `search` | Find skills and prompts. With no query it browses. Returns a table and up to 50 rows per page, with a cursor for the next page. |
 | `get` | Open one item in full: the prompt, the SKILL.md and the install command. |
-| `categories` | Every category with its free and premium counts. |
-| `whoami` | Shows whether you are connected and whether Premium is active. |
+| `categories` | Every category with its counts. |
+| `whoami` | Shows the connection status. |
 
 Try asking Claude:
 
-> Find a free launch video skill and show me the top five prompts for it.
+> Find a launch video skill and show me the top five prompts for it.
 
-> List every free prompt about product demos in a table, page by page.
+> List every prompt about product demos in a table, page by page.
 
 > Open the glass product render skill and use it for my product page.
 
@@ -79,17 +58,27 @@ To list everything, Claude calls `search` again with the cursor it was given unt
 Claude Code can also use the library from a terminal, and so can you. In the cizle folder:
 
 ```bash
-node server/cli/cizle.js search "launch video" --tier free
+node server/cli/cizle.js search "launch video"
 node server/cli/cizle.js search --kind prompt --all
 node server/cli/cizle.js get skill:showcase
-node server/cli/cizle.js login YOUR_TOKEN
 ```
 
-`search` prints a table. Add `--all` to follow every page, or `--json` for data. Without a token you get the free library; after `login` (or with `CIZLE_TOKEN` set) Premium opens too.
+`search` prints a table. Add `--all` to follow every page, or `--json` for data.
 
-## Ask for a video
+## Render videos on your machine
 
-Open Claude Code in any folder and say:
+You need Node.js 20.12 or newer.
+
+```bash
+git clone https://github.com/shreyvijayvargiya/cizle
+cd cizle
+npm install
+npm run mcp:install
+```
+
+`mcp:install` registers the local server with Claude Code for every project. It gives Claude these tools: `guide`, `list_prompts`, `read_prompt`, `create_video`, `get_video`, `create_banners`, and a few more for products and status.
+
+Then open Claude Code in any folder and say:
 
 > Use the product FAQ skill to make a video for https://your-product.com
 
@@ -101,17 +90,11 @@ The prompt on each skill page works on its own. Paste it into any coding agent o
 
 ## Search the library
 
-Press <kbd>⌘</kbd> + <kbd>K</kbd> (or <kbd>Ctrl</kbd> + <kbd>K</kbd>) anywhere on the site to search every skill and jump to any page. On the home page, use the filters for category, platform, format, aspect ratio and access.
-
-## Free and premium
-
-- **Free:** 20 skills, forever, with the full prompt, the SKILL.md and the install command.
-- **Premium (from $10/month, three plans):** ad formats for Meta, TikTok and Google, engineering and technical formats, and 20 film styles. Locked skills show their summary and scene list so you can see what you are getting.
-
-To upgrade, [sign in](/login) and open [pricing](/pricing). After payment you return to Settings and Premium unlocks automatically.
+Press <kbd>⌘</kbd> + <kbd>K</kbd> (or <kbd>Ctrl</kbd> + <kbd>K</kbd>) anywhere on the site to search every skill and jump to any page. On the home page, use the filters for category, platform, format, aspect ratio and language.
 
 ## Troubleshooting
 
+- **I only see 24 prompts.** Sign in. The full library, search and filters open with a free account.
 - **Claude does not see the skill.** Check the file is at `.claude/skills/cizle-<name>/SKILL.md` and restart Claude Code.
 - **`create_video` is missing.** Run `npm run mcp:install` again and restart Claude Code.
-- **Paid but still locked.** Open Settings. The page updates on its own when the payment is confirmed, usually within seconds. If not, [contact us](/contact).
+- **The MCP command fails.** Check that the address ends in `/mcp` and that you can open it from your network. [Contact us](/contact) if it still does not connect.
