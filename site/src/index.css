@@ -104,8 +104,11 @@
 	--text-3xl: 2.5rem;
 }
 
-* {
-	border-color: var(--border);
+/* In the base layer, so a utility like border-input (fields, selects, outline buttons) wins; unlayered, this rule hid every field border. */
+@layer base {
+	* {
+		border-color: var(--border);
+	}
 }
 
 

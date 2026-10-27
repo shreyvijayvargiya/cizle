@@ -53,11 +53,11 @@ export function SubscribeForm({ source = "landing", className, stacked = false, 
 				<Input type="email" inputMode="email" autoComplete="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" aria-label="Email address" className={stacked ? "" : "sm:max-w-xs"} />
 				{/* bots fill every field; people never see this one */}
 				<input type="text" tabIndex={-1} autoComplete="off" aria-hidden value={trap} onChange={(e) => setTrap(e.target.value)} className="absolute -left-[9999px] size-0 opacity-0" />
-				<Button type="submit" size="lg" disabled={busy}>
+				<Button type="submit" variant="outline" size="lg" disabled={busy}>
 					{busy ? "Adding…" : cta}
 				</Button>
 			</div>
-			<p className="mt-2 text-sm text-muted-foreground">One email when new prompts land. No spam, leave any time.</p>
+			<p className="mt-2 text-sm opacity-75">One email when new prompts land. No spam, leave any time.</p>
 		</form>
 	);
 }
