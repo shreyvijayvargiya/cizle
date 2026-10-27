@@ -99,7 +99,7 @@ console.log(`gallery text: ${textMode !== "public" ? "kept out of public/ (Fires
 
 /* pages */
 for (const name of ["docs", "terms", "privacy", "refund", "rights"]) {
-	const raw = fs.readFileSync(path.join(SITE_DIR, "content", "pages", `${name}.md`), "utf8").replaceAll("{{MCP_URL}}", (process.env.VITE_MCP_URL || "").trim().replace(/\/$/, "") || `${SITE_URL}/mcp`).replaceAll("https://cizle.dev", SITE_URL);
+	const raw = fs.readFileSync(path.join(SITE_DIR, "content", "pages", `${name}.md`), "utf8").replaceAll("{{MCP_URL}}", (process.env.CIZLE_MCP_URL || "").trim().replace(/\/$/, "") || `${SITE_URL}/mcp`).replaceAll("https://cizle.dev", SITE_URL);
 	const title = (/^# (.+)$/m.exec(raw) || [])[1] || name;
 	const body = raw.replace(/^# .+\n+/, "");
 	const { html, toc } = withIds(finish(md(body)));

@@ -19,7 +19,7 @@ curl https://<app>.fly.dev/healthz
 curl "https://<app>.fly.dev/api/v1/search?q=launch&limit=2"
 ```
 
-Then point the website at it. Set **`VITE_MCP_URL=https://<app>.fly.dev/mcp`** in `site/.env` and in the Vercel project's environment variables, and redeploy the site. The MCP page and the docs then show `claude mcp add --transport http cizle https://<app>.fly.dev/mcp`. Without `VITE_MCP_URL` they show the site's own `https://cizle.dev/mcp`, which keeps working.
+Then point the website at it. Set **`CIZLE_MCP_URL=https://<app>.fly.dev/mcp`** in `site/.env` and in the Vercel project's environment variables, and redeploy the site. The MCP page and the docs then show `claude mcp add --transport http cizle https://<app>.fly.dev/mcp`. Without `CIZLE_MCP_URL` they show the site's own `https://cizle.dev/mcp`, which keeps working.
 
 ## Later: bring tokens and Premium back
 
@@ -31,5 +31,5 @@ Set `MCP_OPEN=0` and add the secrets `MCP_JWT_SECRET` (32+ random characters), `
 
 - **Git-connected (Workers Builds):** root directory `/`, build command `npm --prefix site install --omit=dev --legacy-peer-deps`, deploy command `npx wrangler deploy`.
 - **By hand:** `npm --prefix site install --omit=dev --legacy-peer-deps && npx wrangler deploy`.
-- Then set `VITE_MCP_URL=https://cizle-mcp.<your-subdomain>.workers.dev/mcp` (or your custom domain) in `site/.env` and Vercel.
+- Then set `CIZLE_MCP_URL=https://cizle-mcp.<your-subdomain>.workers.dev/mcp` (or your custom domain) in `site/.env` and Vercel.
 - Building the search index (about 7,600 prompts) takes real CPU on a cold start, more than the free plan's 10 ms limit, so use the **Workers Paid** plan. A warm isolate answers from memory.

@@ -9,7 +9,15 @@
 	"compatibility_date": "2025-09-01",
 	"compatibility_flags": ["nodejs_compat"],
 	"workers_dev": true,
-	"observability": { "enabled": true },
+	"observability": {
+		"logs": {
+		"enabled": true,
+		"invocation_logs": true
+		},
+		"traces": {
+		"enabled": false
+		}
+	},
 	"vars": {
 		"CATALOG_ORIGIN": "https://cizle.dev",
 		"SITE_URL": "https://cizle.dev",

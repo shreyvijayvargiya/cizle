@@ -1,5 +1,5 @@
 # The cizle MCP server and library API on Fly.io.   cd site && fly launch --copy-config --no-deploy && fly deploy
-# Rename the app, pick your nearest region, then put https://<app>.fly.dev/mcp in VITE_MCP_URL (site .env and Vercel).
+# Rename the app, pick your nearest region, then put https://<app>.fly.dev/mcp in CIZLE_MCP_URL (site .env and Vercel).
 app = "cizle-mcp"
 primary_region = "bom"
 

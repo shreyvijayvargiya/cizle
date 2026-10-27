@@ -12,8 +12,8 @@ export const SITE = {
 export const DEV_UNLOCK = import.meta.env.DEV && import.meta.env.VITE_DEV_UNLOCK === "1";
 
 export const env = (k: string) => ((import.meta.env as Record<string, string | undefined>)[k] || "").trim();
-/** The MCP server address people add to Claude. VITE_MCP_URL points it at the standalone API (Fly); without it the site's own /mcp is used. */
-export const MCP_URL = (env("VITE_MCP_URL") || `${SITE.url}/mcp`).replace(/\/+$/, "");
+/** The MCP server address people add to Claude. CIZLE_MCP_URL points it at the standalone API (Fly); without it the site's own /mcp is used. */
+export const MCP_URL = (env("CIZLE_MCP_URL") || `${SITE.url}/mcp`).replace(/\/+$/, "");
 
 /** Premium (paid skills, film styles, pricing) is not on sale yet: everything shown is free, and the call to action is to sign in and subscribe. Flip "premiumLaunched" in content/site.json to bring it back. */
 export const PREMIUM = Boolean((site as { premiumLaunched?: boolean }).premiumLaunched);
