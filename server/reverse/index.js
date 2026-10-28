@@ -13,14 +13,19 @@ import fsp from "fs/promises";
 import path from "path";
 import { execFile } from "node:child_process";
 import { randomUUID } from "node:crypto";
+import dns from "node:dns/promises";
+import net from "node:net";
 import { DATA_DIR } from "../paths.js";
 import { ensureFfmpeg, ffmpeg, probeDurationSec } from "../pipeline/media.js";
 import { openRouterChat } from "../pipeline/openrouter.js";
 import { tierModels } from "../models.js";
 import { runWithSignal } from "../pipeline/cancel.js";
+import { fetchPageVideo, isPageUrl } from "./fetch.js";
 
 export const REVERSE_DIR = path.join(DATA_DIR, "reverse");
-export const MAX_VIDEO_SEC = 120;
+export const MAX_VIDEO_SEC = 240; // longer videos are cut to their first TRIM_SEC seconds instead of being refused
+export const TRIM_SEC = 60;
+const MAX_CONCURRENT = Math.max(1, Number(process.env.REVERSE_MAX_CONCURRENT) || 2);
 export const MAX_VIDEO_BYTES = 200 * 1024 * 1024;
 const MAX_SCENES = 12;
 const MIN_SCENE_SEC = 0.8;
@@ -98,11 +103,32 @@ export async function newSource(ext) {
 	return { id, file: path.join(dirOf(id), `source${safeExt}`) };
 }
 
+const PRIVATE_V4 = [/^0\./, /^10\./, /^127\./, /^169\.254\./, /^172\.(1[6-9]|2\d|3[01])\./, /^192\.168\./, /^100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./];
+const isPrivateIp = (ip) => (net.isIPv4(ip) ? PRIVATE_V4.some((re) => re.test(ip)) : /^(::1?$|f[cd]|fe[89ab]|::ffff:)/i.test(ip));
+
+/** A hosted deployment must not fetch internal addresses (cloud metadata, localhost, private networks) for a pasted link. */
+async function assertPublicUrl(u) {
+	if (!/^https?:$/.test(u.protocol)) throw badInput("Video URL must start with http:// or https://");
+	if (process.env.REVERSE_ALLOW_PRIVATE === "1") return;
+	const host = u.hostname.replace(/^\[|\]$/g, "");
+	const addrs = net.isIP(host) ? [host] : (await dns.lookup(host, { all: true }).catch(() => [])).map((a) => a.address);
+	if (!addrs.length || addrs.some(isPrivateIp)) throw badInput("That video URL is not reachable from this server.");
+}
+
 /** Download a direct video URL to disk with a size cap. */
 export async function downloadVideo(url, file) {
-	const u = new URL(url);
-	if (!/^https?:$/.test(u.protocol)) throw badInput("Video URL must start with http:// or https://");
-	const res = await fetch(u, { signal: AbortSignal.timeout(120_000) });
+	let u = new URL(url);
+	let res;
+	for (let hop = 0; hop < 4; hop++) {
+		await assertPublicUrl(u);
+		res = await fetch(u, { signal: AbortSignal.timeout(120_000), redirect: "manual" });
+		if (res.status >= 300 && res.status < 400 && res.headers.get("location")) {
+			u = new URL(res.headers.get("location"), u);
+			await res.body?.cancel();
+			continue;
+		}
+		break;
+	}
 	if (!res.ok || !res.body) throw badInput(`Could not download the video (HTTP ${res.status})`);
 	const type = res.headers.get("content-type") || "";
 	if (type && !/video|octet-stream|mp4|webm|quicktime/i.test(type)) throw badInput("That URL is not a direct video file. Upload the file instead (page URLs such as YouTube are not supported).");
@@ -125,14 +151,25 @@ function badInput(message) {
 	return e;
 }
 
-/** Start the analysis of a video already on disk. Returns the queued job immediately. */
-export async function startReverse({ id, file, source_name, model_tier = "paid", notes = "" }) {
+export { isPageUrl };
+
+/**
+ * Start the analysis of a video already on disk, or of a YouTube/X/Instagram/TikTok page URL (`page_url`, downloaded
+ * inside the job so the request returns at once). Returns the queued job immediately.
+ */
+export async function startReverse({ id, file = null, page_url = "", source_name, model_tier = "paid", notes = "" }) {
+	if ([...live.values()].filter((j) => j.status === "pending" || j.status === "running").length >= MAX_CONCURRENT) {
+		const e = new Error("The server is busy with other videos. Try again in a minute.");
+		e.code = "RATE_LIMIT";
+		throw e;
+	}
 	const job = {
 		id,
 		status: "pending",
 		step: "Queued",
 		progress: 0,
-		source_name: String(source_name || "video").slice(0, 200),
+		source_name: String(source_name || page_url || "video").slice(0, 200),
+		source_url: page_url || null,
 		model_tier: model_tier === "free" ? "free" : "paid",
 		notes: String(notes || "").slice(0, 1000),
 		created_at: new Date().toISOString(),
@@ -152,7 +189,8 @@ export async function startReverse({ id, file, source_name, model_tier = "paid",
 			await update(job, { status: cancelled ? "cancelled" : "failed", step: cancelled ? "Stopped" : "Failed", error: cancelled ? null : e?.message || String(e) });
 		})
 		.finally(() => {
-			fsp.rm(file, { force: true }).catch(() => {}); // the prompts and keyframes are the product; don't keep a 100 MB source
+			// the prompts, keyframes and audio are the product; don't keep a 100 MB source or its trimmed copy
+			fsp.readdir(dirOf(id)).then((fs_) => Promise.all(fs_.filter((f) => /^(source|trimmed)\./.test(f)).map((f) => fsp.rm(path.join(dirOf(id), f), { force: true })))).catch(() => {});
 			controllers.delete(id);
 			live.delete(id);
 		});
@@ -161,10 +199,33 @@ export async function startReverse({ id, file, source_name, model_tier = "paid",
 
 async function run(job, file) {
 	const dir = dirOf(job.id);
-	await update(job, { status: "running", step: "Reading the video", progress: 5 });
-	const duration = await probeDurationSec(file);
+	await update(job, { status: "running", step: "Reading the video", progress: 3 });
+	let source = null;
+	if (!file) {
+		source = await fetchPageVideo(job.source_url, dir, { maxFullSec: MAX_VIDEO_SEC, trimSec: TRIM_SEC, onStep: (step) => update(job, { step }) });
+		file = source.file;
+		await update(job, { source_name: source.title || job.source_name, creator: source.creator, platform: source.platform, progress: 8 });
+	}
+	let duration = await probeDurationSec(file);
 	if (!duration) throw new Error("Could not read this file as a video.");
-	if (duration > MAX_VIDEO_SEC) throw badInput(`Video is ${Math.round(duration)}s; the limit is ${MAX_VIDEO_SEC}s. Trim it and try again.`);
+	const originalDuration = source?.duration_sec || duration;
+
+	// The whole track is kept for later use (transcripts, music); the model only gets the first minute of a long video.
+	await update(job, { step: "Saving the audio track", progress: 10 });
+	const fullAudio = await extractAudio(file, dir, "audio.mp3");
+	let analysed = file;
+	let audioFile = fullAudio;
+	const trimmed = duration > MAX_VIDEO_SEC;
+	if (trimmed) {
+		await update(job, { step: `Video is ${Math.round(originalDuration)}s; using the first ${TRIM_SEC}s`, progress: 11 });
+		analysed = path.join(dir, "trimmed.mp4");
+		await ffmpeg(["-i", file, "-t", String(TRIM_SEC), "-c:v", "libx264", "-preset", "veryfast", "-crf", "26", "-c:a", "aac", "-b:a", "96k", analysed], "ffmpeg trim");
+		duration = (await probeDurationSec(analysed)) || TRIM_SEC;
+		audioFile = fullAudio ? await extractAudio(analysed, dir, "audio_clip.mp3") : null;
+	}
+	file = analysed;
+	const wasPartial = Boolean(source?.partial); // only the first minute was downloaded, so that is all the audio there is
+	const wasCut = trimmed || wasPartial;
 
 	await update(job, { step: "Finding scene cuts", progress: 12 });
 	const scenes = await detectScenes(file, duration);
@@ -181,11 +242,10 @@ async function run(job, file) {
 			s.frames.push(name);
 		}
 	}
-	const audioFile = await extractAudio(file, dir);
-
 	await update(job, { step: "Describing every scene", progress: 45 });
 	const models = tierModels(job.model_tier);
-	const analysis = await describe({ job, scenes, duration, audioFile, model: models.vision_model });
+	const model = process.env.REVERSE_MODEL?.trim() || models.vision_model;
+	const analysis = await describe({ job, scenes, duration, audioFile, model, wasCut, originalDuration });
 
 	const byIndex = new Map((analysis.scenes || []).map((s) => [Number(s.index), s]));
 	const result = {
@@ -202,7 +262,13 @@ async function run(job, file) {
 			sfx: Array.isArray(analysis.audio?.sfx) ? analysis.audio.sfx.map(String) : [],
 		},
 		duration_sec: Number(duration.toFixed(2)),
-		model: models.vision_model,
+		model,
+		source: { url: job.source_url, platform: job.platform || null, creator: job.creator || null },
+		trimmed: wasCut,
+		original_duration_sec: Number(originalDuration.toFixed(2)),
+		has_full_audio: Boolean(fullAudio) && !wasPartial,
+		claude_code_prompt: str(analysis.claude_code_prompt),
+		skill_markdown: str(analysis.skill_markdown),
 		scenes: scenes.map((s) => {
 			const a = byIndex.get(s.index) || {};
 			return {
@@ -248,8 +314,8 @@ async function detectScenes(file, duration) {
 }
 
 /** Mono 16 kHz mp3, or null when the video has no audio stream. */
-async function extractAudio(file, dir) {
-	const out = path.join(dir, "audio.mp3");
+async function extractAudio(file, dir, name = "audio.mp3") {
+	const out = path.join(dir, name);
 	try {
 		await ffmpeg(["-i", file, "-vn", "-ac", "1", "-ar", "16000", "-b:a", "32k", out], "ffmpeg audio");
 		const stat = await fsp.stat(out);
@@ -275,6 +341,8 @@ Return ONLY valid JSON, no markdown fences, in this exact shape:
     "voiceover_style": "voice gender-neutral description: pace, tone, accent, energy; empty if none",
     "sfx": ["short sound effect cues tied to on-screen events"]
   },
+  "claude_code_prompt": "ONE complete prompt a person can paste into Claude Code to remake this video in their own format (their brand, their text, their footage), e.g. as an HTML/CSS/JS animation rendered with ffmpeg or a Remotion project. State the goal, the aspect ratio and duration, the art direction, a numbered scene list with timings, text, motion and easing, the audio plan, and the placeholders to fill in as [square brackets]. Self-contained: no references to the original video",
+  "skill_markdown": "a reusable Claude Code skill as a full SKILL.md: YAML frontmatter with name (kebab-case) and a description that says when to use it, then the steps, the style rules, the scene template and what to ask the user for. It captures the technique so it can be reused for other videos, not just this one",
   "scenes": [
     {
       "index": 1,
@@ -292,8 +360,9 @@ Return ONLY valid JSON, no markdown fences, in this exact shape:
 }
 Include exactly one entry in "scenes" for every scene given, with the same index. Prompts must be usable on their own: never write "same as before" or refer to other scenes.`;
 
-async function describe({ job, scenes, duration, audioFile, model }) {
-	const content = [{ type: "text", text: `Video: ${job.source_name}, ${duration.toFixed(1)}s, ${scenes.length} scenes.${job.notes ? `\nUser notes: ${job.notes}` : ""}` }];
+async function describe({ job, scenes, duration, audioFile, model, wasCut, originalDuration }) {
+	const cut = wasCut ? ` This is only the first ${duration.toFixed(0)}s of a ${Math.round(originalDuration)}s video: describe the excerpt and say in the summary that the rest was not analysed.` : "";
+	const content = [{ type: "text", text: `Video: ${job.source_name}${job.creator ? ` by ${job.creator}` : ""}, ${duration.toFixed(1)}s, ${scenes.length} scenes.${cut}${job.notes ? `\nUser notes: ${job.notes}` : ""}` }];
 	for (const s of scenes) {
 		content.push({ type: "text", text: `SCENE ${s.index}: ${s.start.toFixed(1)}s to ${s.end.toFixed(1)}s (${(s.end - s.start).toFixed(1)}s). Keyframes in order:` });
 		for (const f of s.frames) {
@@ -310,7 +379,7 @@ async function describe({ job, scenes, duration, audioFile, model }) {
 				{ role: "user", content: withAudio && audio ? [...content, { type: "text", text: "The audio track of the whole video follows." }, audio] : content },
 			],
 			temperature: 0.3,
-			maxTokens: 12_000,
+			maxTokens: 16_000,
 			jsonMode: true,
 			timeoutMs: 240_000,
 		});

@@ -89,7 +89,14 @@ api.put("/prompts/:id", async (c) => {
 api.delete("/prompts/:id", async (c) => ((await deletePrompt(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Only custom prompts can be deleted" }, 400)));
 
 /* reverse-engineer a video into per-scene image, video and audio prompts */
-api.get("/reverse", async (c) => c.json({ items: await reverse.listReverse(), max_seconds: reverse.MAX_VIDEO_SEC, max_mb: reverse.MAX_VIDEO_BYTES / 1024 / 1024 }));
+/* optional shared secret for a hosted deployment: set REVERSE_API_TOKEN and send "Authorization: Bearer <token>" (or ?token=) */
+api.use("/reverse/*", async (c, next) => {
+	const want = process.env.REVERSE_API_TOKEN?.trim();
+	if (!want) return next();
+	const got = c.req.header("authorization")?.replace(/^Bearer\s+/i, "") || c.req.query("token") || "";
+	return got === want ? next() : c.json({ error: "Missing or wrong API token." }, 401);
+});
+api.get("/reverse", async (c) => c.json({ items: await reverse.listReverse(), max_seconds: reverse.MAX_VIDEO_SEC, trim_seconds: reverse.TRIM_SEC, max_mb: reverse.MAX_VIDEO_BYTES / 1024 / 1024 }));
 api.post("/reverse", async (c) => {
 	await warmModels();
 	const ct = c.req.header("content-type") || "";
@@ -110,19 +117,28 @@ api.post("/reverse", async (c) => {
 			src = await reverse.newSource(path.extname(file.name || ""));
 			await fs.promises.writeFile(src.file, Buffer.from(await file.arrayBuffer()));
 			src.name = file.name || "video";
+		} else if (url && reverse.isPageUrl(url)) {
+			// YouTube / X / Instagram / TikTok page: downloaded with yt-dlp inside the job
+			src = { ...(await reverse.newSource(".mp4")), file: null, page_url: url, name: url };
 		} else if (url) {
 			src = await reverse.newSource(path.extname(new URL(url).pathname));
 			await reverse.downloadVideo(url, src.file);
 			src.name = decodeURIComponent(path.basename(new URL(url).pathname)) || url;
 		} else {
-			return c.json({ error: "Upload a video file or paste a direct video URL." }, 400);
+			return c.json({ error: "Upload a video file or paste a video URL (YouTube, X, Instagram, TikTok or a direct .mp4 link)." }, 400);
 		}
 	} catch (e) {
 		if (src) await reverse.deleteReverse(src.id);
 		if (e?.code === "BAD_INPUT" || e instanceof TypeError) return c.json({ error: e.code === "BAD_INPUT" ? e.message : "That is not a valid video URL." }, 400);
 		throw e;
 	}
-	const job = await reverse.startReverse({ id: src.id, file: src.file, source_name: src.name, model_tier: tier, notes: form.notes });
+	let job;
+	try {
+		job = await reverse.startReverse({ id: src.id, file: src.file, page_url: src.page_url, source_name: src.name, model_tier: tier, notes: form.notes });
+	} catch (e) {
+		await reverse.deleteReverse(src.id);
+		throw e;
+	}
 	return c.json(job, 202);
 });
 api.get("/reverse/:id", async (c) => {

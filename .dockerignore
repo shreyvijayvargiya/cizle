@@ -1,0 +1,15 @@
+node_modules
+data
+.git
+site
+!site/api
+!site/package.json
+site/api/node_modules
+marketing
+gallery
+docs
+library
+harvest
+tests
+private
+products

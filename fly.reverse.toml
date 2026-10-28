@@ -1,0 +1,38 @@
+# Reverse-engineer API on Fly.io. Run from the repo root:
+#   fly launch --copy-config -c fly.reverse.toml --no-deploy      (pick a name, region; say no to Postgres/Redis)
+#   fly volumes create cizle_data --size 3 -c fly.reverse.toml
+#   fly secrets set -c fly.reverse.toml OPENROUTER_API_KEY=... REVERSE_API_TOKEN=... REVERSE_PROXIES="http://user:pass@host:port,http://..."
+#   fly deploy -c fly.reverse.toml
+# Then: curl -X POST https://<app>.fly.dev/api/reverse -H "Authorization: Bearer $TOKEN" -H "content-type: application/json" -d '{"url":"https://www.youtube.com/watch?v=..."}'
+app = "cizle-reverse"
+primary_region = "bom"
+
+[build]
+  dockerfile = "Dockerfile.reverse"
+
+[env]
+  PORT = "8080"
+  CIZLE_DATA_DIR = "/data"
+  REVERSE_MAX_CONCURRENT = "2"
+
+[mounts]
+  source = "cizle_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "15s"
+    interval = "30s"
+    timeout = "5s"
+    method = "GET"
+    path = "/api/health"
+
+[[vm]]
+  size = "shared-cpu-2x"
+  memory = "1gb"
