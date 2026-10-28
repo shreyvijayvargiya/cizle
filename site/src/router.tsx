@@ -19,6 +19,7 @@ import { SearchPage } from "@/pages/Search";
 import { ExploreRoute } from "@/pages/Explore";
 import { SavedPage } from "@/pages/Saved";
 import { SettingsPage } from "@/pages/Settings";
+import { ReversePage } from "@/pages/Reverse";
 import type { Filters } from "@/lib/data";
 import type { GalleryFilters } from "@/lib/gallery";
 
@@ -59,6 +60,7 @@ const tree = root.addChildren([
 	launch,
 	r("/sources", CreatorsPage),
 	r("/saved", SavedPage),
+	r("/reverse", ReversePage), // not launched: no navbar, footer or sitemap link
 	r("/learn", LearnPage),
 	r("/subscribe", SubscribePage),
 	searchRoute,
