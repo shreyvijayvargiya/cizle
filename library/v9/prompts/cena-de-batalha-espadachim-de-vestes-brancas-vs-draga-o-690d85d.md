@@ -1,0 +1,32 @@
+# Cena de Batalha: Espadachim de Vestes Brancas vs. Dragão
+
+By @liluocheng13 · Seedance 2.0 · video
+Language: pt · Domains: general · Source: R01
+
+Source page: https://x.com/liluocheng13/status/2110225020278743421
+
+Picture: https://pbs.twimg.com/amplify_video_thumb/2110224806838947841/img/HEhGP4a5I8PkfJHX.jpg
+
+```
+Espadachim de Vestes Brancas: Confronto no Abismo do Dragão
+[Ato 1 | Invocação 0-10s]
+0-3s: Um guerreiro de vestes brancas está parado nas águas rasas da margem de um rio em um cânion escuro, cercado por penhascos negros, com bancos de areia pálidos ao fundo. A luz fria da lua cai através das fendas no topo; a superfície da água está úmida, permeada por névoa. O guerreiro segura uma espada longa desembainhada em posição de prontidão, com relâmpagos azul-branco fluindo ao longo da lâmina. Plano médio, dolly lento para dentro. Partículas de relâmpago, qi da espada, névoa da cachoeira.
+3-5s: O guerreiro gira rapidamente e balança a espada, arcos de relâmpago se esticando, então avança carregando, explosões de relâmpago. Órbita de acompanhamento transformando-se em vista distante angular ampla. Rastros de relâmpago, imagens residuais, respingos de água explodindo, ondas de choque de estrondo sônico.
+5-7.5s: Um gigante dragão aquático emerge da superfície, esqueleto se formando, corpo de água tomando forma. Dolly plano médio. Efeitos fluidos, bigodes do dragão tremulando, arcos elétricos envolvendo-o.
+7.5-10s: O dragão aquático circula o guerreiro em alta velocidade, avança em direção à câmera, depois retorna para o lado. Olhos do dragão brilham, respingos de água voam. Acompanhamento lateral transformando-se em plano baixo ascendente. Vórtice do dragão aquático, névoa, partículas de fluxo de água.
+[Ato 2 | Batalha Final 10-27s]
+10-11.5s | Mergulho da Cabeça do Dragão: A cabeça do dragão mergulha para baixo, o guerreiro explode para cima de meio ajoelhado, onda de choque levantando as vestes brancas e a superfície da água, espada nua irrompendo com relâmpagos, contra-golpeando para cima. Plano ultra-baixo ascendente, subindo dos pés perto da superfície da água, câmera passando pela luz da espada. Explosão radial da superfície da água, relâmpago superexposto, rastros de luz branca.
+11.5-13s | Colisão Frontal: Ponta da espada colide com a cabeça do dragão, onda de choque anelar levanta a água rasa. Guerreiro vira no ar, corta três vezes raspando a cabeça do dragão, comprimido em três momentos de flash. Plano extremo baixo ascendente, girando 180° com o personagem, cortando para plano vertical superior de 90°. Corpo do dragão e relâmpagos formam uma enorme espiral na superfície da água.
+13-15s | Perseguição pelo Corpo do Dragão: Guerreiro corre ao longo do corpo do dragão, teletransporte estilo relâmpago, pontas dos dedos tocam a água causando respingos. Cauda do dragão varre horizontalmente, guerreiro dobra a cintura para desviar, inverte o giro e corta lateralmente. Seguimento lateral rápido ultra-ampla de 24mm, cauda do dragão bloqueia a lente, câmera rola. Imagens residuais, respingos de água, rastros de relâmpago.
+15-17s | Mergulho Extremo: Guerreiro salta para terreno alto no cânion, encolhe para um ponto branco na escuridão, então cai verticalmente de cabeça para baixo como um raio branco mirando a cabeça do dragão. Plano vertical superior de 90° caindo na mesma velocidade, últimos 0.2s cortam para plano ultra-baixo perto da superfície da água. Chão, superfície da água, corpo do dragão aumentando rapidamente.
+17-19s | Combate Próximo: Cabeça do dragão vira para morder, presas raspam a lente. Guerreiro teletransporta-se, corte de costas atravessando o pescoço do dragão, corpo do dragão explode em fluxo de água então se remonta. Ângulo extremo amplo de 14-18mm, forte perspectiva, câmera passa pela boca do dragão, velocidade em tempo real durante todo o trecho. Explosão de fluxo de água, gotas dispersas.
+19-21.5s | Duelo Circundante: Dragão aquático espirala ao redor do guerreiro formando um enorme vórtice de dragão aquático. Guerreiro no centro da tempestade, pisca para quatro posições cortando uma espada cada vez, quatro luzes frias de espada branca se cruzam como padrões de relâmpago. Órbita 360° de alta velocidade, altura muda continuamente, subida súbita da superfície da água então mergulho vertical. Vórtice do dragão aquático, padrões de relâmpago, imagens residuais.
+21.5-23.5s | Investida Direta: Dragão gigante investe ao longo de todo o comprimento do cânion, tamanho preenche a tela. Guerreiro investe explosivamente de volta, distância zero, desaparece pouco antes da colisão. Composição frontal de ângulo ultra-baixo, guerreiro como pequena sombra branca no centro. Linhas de velocidade, ondas de choque na superfície da água.
+23.5-25.5s | Corte Reverso na Cabeça do Dragão: Guerreiro teletransporta-se acima da cabeça do dragão, vira no ar, segura a espada com ambas as mãos e golpeia para baixo, relâmpago penetra todo o corpo de água. Plano extremo ascendente diretamente abaixo da cabeça do dragão em direção ao céu, câmera bate verticalmente em direção à superfície da água seguindo a ponta da espada. Penetração de relâmpago, silhueta contraluz.
+25.5-27s | Explosão Aquática Definitiva: Luz da espada toca a água, águas rasas explodem em enorme explosão circular de água. Corpo do dragão cortado em incontáveis gotas de água flutuantes, brevemente congeladas então todas se dispersam. Corte instantâneo para vista aérea extrema de 90° de grande altitude, contraste de escala. Gotas flutuantes, explosão de água anelar.
+[Ato 3 | Retorno ao Silêncio 27-30s]
+Gotas de água caem de volta na superfície do rio, dragão divino dissipa-se em névoa fina. Guerreiro fica parado no centro da água rasa, de costas para a câmera, mão direita naturalmente abaixada, relâmpago residual na lâmina da espada gradualmente extingue-se, veste branca e cabelo balançam suavemente no vento. Recuo lento de trás do personagem, revelando águas vazias do cânion escuro, apenas a última ondulação permanece. Névoa fina, ondulações, relâmpago desvanecendo.
+[Travamento Forçado] Durante todo o vídeo, mantenha apenas uma espada longa desembainhada, sem bainha, sem ações de sacar/guardar na bainha. Mantenha consistência do estilo do guerreiro de vestes brancas e ambiente do cânion escuro. Sem diálogo, sem personagens extras, sem novas armas.
+```
+
+Prompt from YouMind-OpenLab/awesome-seedance-2-prompts (README_pt-BR.md), credited to its author with a link to the original post. Check the repository's licence before reusing it.

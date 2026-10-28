@@ -16,7 +16,7 @@ import { AutoVideo } from "@/lib/videos";
 
 const TAGS = ["AI video prompts", "image prompts", "Claude Code skills", "Remotion", "HyperFrames", "education animation", "whiteboard videos", "small business prompts", "motion graphics prompts", "film styles"];
 /** the countries shown as quick links, when the library has prompts from them */
-const HERO_COUNTRIES = ["USA", "UK", "France", "Germany", "India", "China", "Japan"];
+const HERO_COUNTRIES = ["USA", "China", "Japan", "Brazil", "Spain", "Mexico", "Turkey", "Vietnam", "Russia", "Indonesia", "India", "Germany", "France", "UK"];
 const LINES = ["Never start from a blank prompt.", "Copy a prompt that already worked.", "Inspiration for creators and builders.", "Every prompt credits its creator."];
 
 /** One line that changes every few seconds; the first is in the page from the start, and motion-sensitive visitors keep it. */
@@ -79,7 +79,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 						The prompt library for creators and builders
 					</h1>
 					<p className="mt-4 max-w-[60ch] text-lg leading-snug">
-						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: motion graphics with Remotion and HyperFrames, classroom and education animations, entertainment and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
+						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: video prompts by country, motion graphics with Remotion and HyperFrames, classroom and education animations, entertainment and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
 					</p>
 					<ul aria-label="Popular searches" className="mt-4 flex flex-wrap gap-1.5">
 						{TAGS.map((t) => (

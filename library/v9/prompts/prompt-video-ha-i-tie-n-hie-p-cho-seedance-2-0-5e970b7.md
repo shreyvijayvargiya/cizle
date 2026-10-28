@@ -1,0 +1,33 @@
+# Prompt Video Hài Tiên Hiệp Cho Seedance 2.0
+
+By @superfang119 · Seedance 2.0 · video
+Language: vi · Domains: general · Source: R01
+
+Source page: https://x.com/superfang119/status/2108921025098584072
+
+Picture: https://pbs.twimg.com/amplify_video_thumb/2108920849994821632/img/FVH4RLpzE6YKZlgi.jpg
+
+```
+Video 10 giây. [Phong cách] Hài kịch tiên hiệp thơ mộng với cú twist bất ngờ kiểu mặt lạnh (deadpan), kết cấu điện ảnh chân thực độ phân giải cao, bố cục không gian kiến trúc cổ điển Trung Hoa, biểu diễn tiết chế, sương núi mát mẻ, ánh sáng viền buổi chiều ấm áp, tông màu ngọc bích và ngà voi bão hòa thấp, hạt phim mịn; hoàn thiện cú twist qua tường thuật âm thanh "thiết lập-lừa dối-bất ngờ ngoài khung hình". Được thiết kế cho tính năng khóa ảnh tham chiếu, tạo liên tục đa cảnh và đồng bộ hóa âm thanh không gian của Seedance 2.0. Chỉ có hai nhân vật xuất hiện trong suốt video, xây dựng một thế giới cổ đại Trung Hoa thuần túy không có yếu tố hiện đại.
+
+[Nhân vật]
+Nhân vật A được khóa chặt bằng @Image 1: Cùng một sư tỷ kiếm tiên Đông Á tuổi 25-30, khuôn mặt trái xoan, da trắng, mắt hạnh đen, tóc đen nửa buộc cố định bằng trâm ngọc trắng, dáng người cao gầy, mặc Hán phục lụa thêu trắng, tay áo rộng nhiều lớp bán trong suốt, thắt lưng bạc, ngọc bội và giày vải trắng.
+Nhân vật B được khóa chặt bằng @Image 2: Cùng một sư muội Đông Á tuổi 20-25, khuôn mặt tròn sống động, tóc đen tết bím, dáng người nhỏ nhắn, mặc Hán phục vải lanh xanh lục nhạt, thắt lưng vải tối màu, trâm gỗ và giày vải đen.
+
+[Cảnh 1 | 0-3s | Góc quay thấp toàn cảnh di chuyển ngang]
+Một đài đá tĩnh lặng của môn phái trên biển mây. Lan can đá, bức tường vang vọng cổ, chín chuông đồng treo, thông cổ cuộn xoắn, dải cầu nguyện bay phấp phới trong gió và mái ngói xa xăm thiết lập mối quan hệ không gian ổn định rõ ràng. Sư tỷ kiếm tiên mặc Hán phục lụa thêu trắng đứng cạnh sư muội áo xanh, thận trọng nhìn quanh với vẻ tự tin sẵn sàng chia sẻ bí mật; gió núi nhẹ nhàng lay động tóc, tay áo, dải cầu nguyện và sương mù.
+
+[Cảnh 2 | 3-6s | Cận cảnh trung hai người]
+Sư tỷ giơ hai ngón tay, tạo ấn truyền âm nhỏ tại miệng và thì thầm: "Ta kể ngươi nghe một bí mật, đêm qua sư phụ đã ăn ba miếng bánh hoa quế." Một sóng âm thanh mỏng màu xanh nhạt bay chính xác đến tai sư muội; cô ấy ngay lập tức mở to mắt, lấy tay che miệng, cố gắng kìm nén tiếng cười.
+
+[Cảnh 3 | 6-10s | Cận cảnh theo dõi tiết lộ đến cận cảnh cực gần]
+Cùng một sóng âm đó không dừng lại kịp lúc, vượt qua sư muội và va vào bức tường vang vọng cổ, sau đó bật lần lượt qua chín chuông đồng, lan tỏa những lời thì thầm thành tiếng vang lớn khắp thung lũng: "Đêm qua sư phụ đã ăn ba miếng bánh hoa quế—" Chín chuông đồng rung lên lần lượt, chim trên mái ngói xa giật mình bay tán loạn. Từ hướng chính đường vang lên tiếng ho nhẹ của một trưởng lão vô hình, tiếp theo là câu hỏi bình thản: "Ai đã ăn miếng thứ tư?" Sư tỷ và sư muội cùng lúc đông cứng. Cận cảnh cực gần: Hai ngón tay giơ lên của sư tỷ từ từ co lại, một bên lông mày khẽ giật, cô ấy lặng lẽ nhìn sư muội; má sư muội phồng lên rõ rệt. Kết thúc bằng một tiếng nuốt nước bọt rất nhẹ đầy tội lỗi.
+
+[Yêu cầu kỹ thuật]
+Tổng thời lượng nghiêm ngặt 10 giây, khung hình ngang 16:9, ba cảnh rõ ràng, hội thoại tiếng Quan Thoại bản địa, khớp môi chính xác, lời thì thầm có hướng di chuyển rõ ràng, các lớp tiếng vang chuông đồng tách biệt, khuôn mặt và trang phục nhân vật ổn định, hướng chuyển động mạch lạc. Sương núi, lụa, tóc, chuông đồng, dải cầu nguyện và sóng âm thanh di chuyển tự nhiên. Không tạo phụ đề, không thêm nhân vật hiển thị bổ sung.
+
+[Từ tiêu cực]
+blurry, bad quality, low quality, low resolution, noisy, jpeg artifacts, watermark, text, error; deformed, mutated, bad anatomy, poorly drawn hands, bad composition, out of frame, disfigured; inconsistent character, changing clothes, face morphing, background glitching cuts, disappearing props
+```
+
+Prompt from YouMind-OpenLab/awesome-seedance-2-prompts (README_vi-VN.md), credited to its author with a link to the original post. Check the repository's licence before reusing it.

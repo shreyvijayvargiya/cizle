@@ -11,13 +11,13 @@ const COUNTRY: Record<string, string> = {
 	zh: "China", ja: "Japan", ko: "South Korea", ru: "Russia", hi: "India", bn: "Bangladesh", ur: "Pakistan", fa: "Iran", he: "Israel", ar: "Arab world", tr: "Turkey",
 	vi: "Vietnam", th: "Thailand", id: "Indonesia", ms: "Malaysia", fil: "Philippines", nl: "Netherlands", pl: "Poland", uk: "Ukraine", cs: "Czechia", sk: "Slovakia",
 	hu: "Hungary", ro: "Romania", bg: "Bulgaria", sr: "Serbia", hr: "Croatia", el: "Greece", sv: "Sweden", da: "Denmark", no: "Norway", fi: "Finland", de: "Germany",
-	fr: "France", es: "Spain", pt: "Brazil & Portugal", it: "Italy", ta: "India", te: "India", mr: "India", gu: "India", kn: "India", ml: "India", pa: "India", sw: "Kenya & Tanzania",
+	fr: "France", es: "Spain", pt: "Brazil", it: "Italy", ta: "India", te: "India", mr: "India", gu: "India", kn: "India", ml: "India", pa: "India", sw: "Kenya & Tanzania",
 	en: "English-speaking",
 };
-const TAG_COUNTRIES = ["USA", "UK", "France", "Germany", "India"];
+const TAG_COUNTRIES = ["USA", "UK", "France", "Germany", "India", "Brazil", "Spain", "Mexico", "Turkey", "Vietnam", "Russia", "Indonesia"];
 /** the country a harvest source stamped on the record as a tag (USA, UK, France, Germany, India), else the main country of its language */
 export const countryOf = (lang?: string, tags?: string[]) => TAG_COUNTRIES.find((c) => tags?.includes(c)) ?? COUNTRY[lang || "en"];
-const FLAGS: Record<string, string> = { USA: "🇺🇸", UK: "🇬🇧", France: "🇫🇷", Germany: "🇩🇪", India: "🇮🇳" };
+const FLAGS: Record<string, string> = { USA: "🇺🇸", UK: "🇬🇧", France: "🇫🇷", Germany: "🇩🇪", India: "🇮🇳", Brazil: "🇧🇷", Spain: "🇪🇸", Mexico: "🇲🇽", Turkey: "🇹🇷", Vietnam: "🇻🇳", Russia: "🇷🇺", Indonesia: "🇮🇩", China: "🇨🇳", Japan: "🇯🇵", "South Korea": "🇰🇷" };
 export const countryFlag = (name: string) => {
 	if (FLAGS[name]) return FLAGS[name];
 	const code = Object.keys(COUNTRY).find((c) => COUNTRY[c] === name);
