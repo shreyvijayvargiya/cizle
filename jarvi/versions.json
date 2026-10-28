@@ -1,0 +1,84 @@
+{
+ "updated_at": "2026-10-28T16:05:30.393Z",
+ "note": "Every harvest version, its sources and its library folder. Rewritten by `node server/harvest/cli.js --export-vN`.",
+ "versions": {
+  "jarvi-v1": {
+   "graph": "harvest/sources.v1.graph.json",
+   "note": "Website and landing-page prompts and skills",
+   "sources": [
+    {
+     "id": "J01",
+     "name": "Brand design systems as DESIGN.md (VoltAgent, Japanese and Chinese collections)",
+     "adapter": "github-prompt-files",
+     "url": "https://github.com/VoltAgent/awesome-design-md",
+     "enabled": true,
+     "verified": true,
+     "expected": 750,
+     "status": "done",
+     "records": 754,
+     "finished_at": "2026-10-28T16:05:29.466Z"
+    },
+    {
+     "id": "J02",
+     "name": "Website build prompts (landing pages, business sites, anti-slop briefs)",
+     "adapter": "github-prompt-files",
+     "url": "https://github.com/KingLeoJr/awesome-vibe-coding-prompt-code-templates",
+     "enabled": true,
+     "verified": true,
+     "expected": 50,
+     "status": "done",
+     "records": 49,
+     "finished_at": "2026-10-28T16:04:03.169Z"
+    },
+    {
+     "id": "J03",
+     "name": "Website design and landing-page skills",
+     "adapter": "github-skills",
+     "url": "https://github.com/bergside/awesome-design-skills",
+     "enabled": true,
+     "verified": true,
+     "expected": 85,
+     "status": "done",
+     "records": 81,
+     "finished_at": "2026-10-28T16:04:38.493Z"
+    }
+   ],
+   "excluded": [
+    {
+     "id": "Z01",
+     "name": "x1xhlol/system-prompts-and-models-of-ai-tools, elder-plinius/CL4R1T4S",
+     "reason": "GPL-3.0 and AGPL-3.0; leaked system prompts of commercial tools."
+    },
+    {
+     "id": "Z02",
+     "name": "HU-UH/awesome-design-md",
+     "reason": "Translation of VoltAgent's set (mirror)."
+    },
+    {
+     "id": "Z03",
+     "name": "felipemenezes098/ui-flx",
+     "reason": "AGPL-3.0."
+    },
+    {
+     "id": "Z04",
+     "name": "dontriskit/awesome-ai-system-prompts, VoltAgent/awesome-claude-design",
+     "reason": "System prompts of AI tools and a link list; not website prompts. A candidate for a later 'agents' collection."
+    },
+    {
+     "id": "Z05",
+     "name": "v0, Lovable, Bolt, Framer and Webflow galleries",
+     "reason": "Commercial galleries: terms or robots files do not allow harvesting."
+    }
+   ],
+   "records": 884,
+   "library": {
+    "dir": "library/jarvi/v1",
+    "total": 868,
+    "prompts": 787,
+    "image_prompts": 0,
+    "skills": 81,
+    "updated_at": "2026-10-28T16:05:30.392Z"
+   }
+  }
+ }
+}

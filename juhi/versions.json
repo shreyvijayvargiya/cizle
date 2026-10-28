@@ -1,0 +1,91 @@
+{
+ "updated_at": "2026-10-28T16:04:47.083Z",
+ "note": "Every harvest version, its sources and its library folder. Rewritten by `node server/harvest/cli.js --export-vN`.",
+ "versions": {
+  "juhi-v1": {
+   "graph": "harvest/sources.v1.graph.json",
+   "note": "Mobile-app prompts and skills",
+   "sources": [
+    {
+     "id": "U01",
+     "name": "iOS app design systems as DESIGN.md (200 apps)",
+     "adapter": "github-prompt-files",
+     "url": "https://github.com/Meliwat/awesome-ios-design-md",
+     "enabled": true,
+     "verified": true,
+     "expected": 200,
+     "status": "done",
+     "records": 200,
+     "finished_at": "2026-10-28T16:04:03.618Z"
+    },
+    {
+     "id": "U02",
+     "name": "Apple platform skills (SwiftUI, iOS, App Store)",
+     "adapter": "github-skills",
+     "url": "https://github.com/twostraws/SwiftUI-Agent-Skill",
+     "enabled": true,
+     "verified": true,
+     "expected": 240,
+     "status": "done",
+     "records": 357,
+     "finished_at": "2026-10-28T16:04:34.726Z"
+    },
+    {
+     "id": "U03",
+     "name": "Android, React Native, Flutter and mobile design skills",
+     "adapter": "github-skills",
+     "url": "https://github.com/zakariaf/ReactNative-Skills",
+     "enabled": true,
+     "verified": true,
+     "expected": 235,
+     "status": "done",
+     "records": 169,
+     "finished_at": "2026-10-28T16:04:46.101Z"
+    },
+    {
+     "id": "U04",
+     "name": "Build Apps with AI: the book's prompts",
+     "adapter": "github-prompt-files",
+     "url": "https://github.com/llm-books/build-apps-with-ai",
+     "enabled": true,
+     "verified": true,
+     "expected": 85,
+     "status": "done",
+     "records": 89,
+     "finished_at": "2026-10-28T16:04:41.400Z"
+    }
+   ],
+   "excluded": [
+    {
+     "id": "Z01",
+     "name": "maikotrindade/awesome-react-native-skills",
+     "reason": "GPL-3.0."
+    },
+    {
+     "id": "Z02",
+     "name": "salmanashraf/mobile-ai-agents",
+     "reason": "249 markdown files of agent workflows without SKILL.md structure; revisit in v2."
+    },
+    {
+     "id": "Z03",
+     "name": "Mobile apps that merely use prompts (chatbots, generators, remote runners)",
+     "reason": "Apps, not prompt or skill collections."
+    },
+    {
+     "id": "Z04",
+     "name": "Mobbin, Dribbble, Behance, App Store galleries",
+     "reason": "Commercial galleries; not harvestable."
+    }
+   ],
+   "records": 815,
+   "library": {
+    "dir": "library/juhi/v1",
+    "total": 807,
+    "prompts": 289,
+    "image_prompts": 0,
+    "skills": 518,
+    "updated_at": "2026-10-28T16:04:47.081Z"
+   }
+  }
+ }
+}
