@@ -1,0 +1,16 @@
+{
+ "title": "joy-delight",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/06-by-emotional-outcome/joy-delight/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/06-by-emotional-outcome/joy-delight/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating animations that evoke happiness, surprise, or delightful moments in the user experience.",
+ "domains": [
+  "edtech",
+  "music",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.118Z"
+}

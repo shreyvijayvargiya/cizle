@@ -1,0 +1,16 @@
+{
+ "title": "talking-head-recut",
+ "source": "M02",
+ "lang": "en",
+ "repo": "Jakeschincariol/video-production-skills",
+ "path": "talking-head-recut/SKILL.md",
+ "url": "https://github.com/Jakeschincariol/video-production-skills/blob/HEAD/talking-head-recut/SKILL.md",
+ "license": null,
+ "description": "Package an existing talking-head / interview / podcast video with timed, designed GRAPHIC OVERLAY cards — kinetic titles, lower-thirds, data callouts, quotes, side panels, picture-in-picture — synced to the transcript, on a 16:9 / 9:16 / 4:5 canvas of your choice; the clip plays untouched underneath. Trigger on \"graphic overlays\", \"on-screen graphics\", \"package / dress up my video\". Not plain subtitles (/embedded-captions). Unclear → /hyperframes.",
+ "domains": [
+  "education",
+  "gaming",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.633Z"
+}

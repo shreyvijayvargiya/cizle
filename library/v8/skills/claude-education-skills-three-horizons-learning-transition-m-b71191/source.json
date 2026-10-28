@@ -1,0 +1,16 @@
+{
+ "title": "three-horizons-learning-transition-mapper",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/three-horizons-learning-transition-mapper/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/three-horizons-learning-transition-mapper/SKILL.md",
+ "license": "MIT",
+ "description": "Map a scoped topic across three coexisting horizons — current system under strain (H1), preferred future (H3), and transition innovations sorted as H2+ or H2- — to understand change dynamics and identify responsible next actions.",
+ "domains": [
+  "education",
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.023Z"
+}

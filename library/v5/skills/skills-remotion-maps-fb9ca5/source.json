@@ -1,0 +1,14 @@
+{
+ "title": "remotion-maps",
+ "source": "L01",
+ "lang": "en",
+ "repo": "remotion-dev/skills",
+ "path": "skills/remotion-maps/SKILL.md",
+ "url": "https://github.com/remotion-dev/skills/blob/HEAD/skills/remotion-maps/SKILL.md",
+ "license": "Remotion company licence",
+ "description": "Remotion Map animation knowledge",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.178Z"
+}

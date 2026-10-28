@@ -1,0 +1,12 @@
+{
+ "title": "short-form-video",
+ "source": "M02",
+ "lang": "en",
+ "repo": "halicotampa-crypto/motion-pack",
+ "path": "community-templates/student-kit/.claude/skills/short-form-video/SKILL.md",
+ "url": "https://github.com/halicotampa-crypto/motion-pack/blob/HEAD/community-templates/student-kit/.claude/skills/short-form-video/SKILL.md",
+ "license": null,
+ "description": "Build and iterate short-form vertical (9:16) videos in Hyperframes — TikTok/Reels/Shorts style. Use when Nate says \"short-form video\", \"vertical video\", \"TikTok/Reels/Shorts\", \"make a short\", \"talking-head + motion graphics\", or when the target is a 1080x1920 composition with face video + synced scene overlays + karaoke captions. Encodes the full May Shorts 19 playbook: face-mode choreography, audio-synced scene timing, karaoke captions, and the 10-rule quality checklist.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:40:19.582Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "adaptive-hint-sequence-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/adaptive-hint-sequence-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/adaptive-hint-sequence-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Generate a cascading hint sequence for a problem type, revealing progressively without giving answers. Use when designing tutoring dialogues or scaffolded worksheets.",
+ "domains": [
+  "edtech",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.907Z"
+}

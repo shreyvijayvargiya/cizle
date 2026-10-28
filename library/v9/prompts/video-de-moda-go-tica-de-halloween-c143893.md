@@ -1,0 +1,14 @@
+# Video de Moda Gótica de Halloween
+
+By @LettyVesper · Seedance 2.0 · video
+Language: es · Domains: general · Source: R01
+
+Source page: https://x.com/LettyVesper/status/2109923048434348416
+
+Picture: https://pbs.twimg.com/amplify_video_thumb/2109922320395423744/img/VBXgQbfrVo5AiCQY.jpg
+
+```
+Crea un video de moda fantasmagórica de Halloween ultra realista y cinematográfico en formato vertical 9:16, que presente a una hermosa mujer adulta con cabello castaño rojizo largo y ondulado, adornado con una elaborada corona de rosas rojas, caléndulas naranjas, mini calabazas, encaje negro y ornamentos góticos colgantes. Viste un extravagante vestido de alta costura gótica en negro y naranja con encajes intrincados, bordados florales, detalles de calabazas y joyería delicada, sentada elegantemente en un jardín mágico de Halloween rodeado de velas brillantes, calabazas talladas tipo jack-o’-lantern, flores otoñales y una gran luna llena luminosa al fondo. Una cesta rebosante de pequeñas calabazas, dulces de Halloween y adorables decoraciones de fantasmas descansa sobre su regazo. Apoya suavemente la mejilla en la mano, sonríe cálidamente a la cámara, inclina la cabeza e interactúa con gracia con las decoraciones manteniendo expresiones faciales naturales y movimientos fluidos. Mariposas doradas brillantes y luciérnagas mágicas revolotean a su alrededor, creando estelas de luz resplandecientes, mientras un pequeño gato negro se sienta a su lado. Utiliza la cálida luz ámbar de las velas, tonos ricos en naranja quemado y carmesí, iluminación cinematográfica suave, profundidad de campo reducida, texturas de piel altamente detalladas, movimiento realista de la tela, transiciones de cámara suaves, efectos sutiles de cámara lenta y fotografía editorial de lujo estilo fantasía. La atmósfera debe sentirse encantadora, romántica, misteriosa y caprichosa, con un detalle excepcional, calidad fotorealista 4K y una estética pulida de película de moda de Halloween.
+```
+
+Prompt from YouMind-OpenLab/awesome-seedance-2-prompts (README_es-419.md), credited to its author with a link to the original post. Check the repository's licence before reusing it.

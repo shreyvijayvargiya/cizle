@@ -1,0 +1,12 @@
+{
+ "title": "universal-elements",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/07-by-ui-element/universal-elements/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/07-by-ui-element/universal-elements/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating any UI element not covered by specific skills, or when applying general animation principles across multiple element types",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.125Z"
+}

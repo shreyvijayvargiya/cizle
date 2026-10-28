@@ -1,0 +1,15 @@
+{
+ "title": "animated-infographic",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/data-animation-skills",
+ "path": "skills/animated-infographic/SKILL.md",
+ "url": "https://github.com/iart-ai/data-animation-skills/blob/HEAD/skills/animated-infographic/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an animated infographic\", \"create an infographic video\", \"build an infographic animation\", \"animate an explainer infographic\", \"do a sequenced reveal of icons and stats\", \"animate icons with key numbers and connectors\", or \"lay out a designed infographic that animates in sequence\". Covers infographic layout & visual hierarchy, staggered element reveals, animating icons/pictograms, key-number counters, connectors/flow, and section pacing. For heavy charting (bar chart race, charts from a CSV) use the chart-animation skill instead.",
+ "domains": [
+  "data",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.207Z"
+}

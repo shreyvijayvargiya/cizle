@@ -1,0 +1,16 @@
+{
+ "title": "deliberate-1200-2000ms",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/deliberate-1200-2000ms/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/deliberate-1200-2000ms/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building slow intentional animations between 1200-2000ms - app intros, loading sequences, storytelling moments that create emotional resonance",
+ "domains": [
+  "product",
+  "education",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.136Z"
+}

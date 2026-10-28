@@ -1,0 +1,16 @@
+{
+ "title": "place-based-inquiry-anchor",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/global-cross-cultural-pedagogies/place-based-inquiry-anchor/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/global-cross-cultural-pedagogies/place-based-inquiry-anchor/SKILL.md",
+ "license": "MIT",
+ "description": "Anchor curriculum learning in a specific local place with connections to community, culture, and identity. Use when connecting academic content to students' local environment and heritage.",
+ "domains": [
+  "education",
+  "history",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.973Z"
+}

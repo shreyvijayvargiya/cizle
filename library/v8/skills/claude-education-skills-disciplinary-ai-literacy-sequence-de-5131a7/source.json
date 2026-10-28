@@ -1,0 +1,16 @@
+{
+ "title": "disciplinary-ai-literacy-sequence-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-literacy/disciplinary-ai-literacy-sequence-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-literacy/disciplinary-ai-literacy-sequence-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a sequence where students compare AI's handling of the same question across disciplines, developing a mental model of where AI is reliable vs. distorting based on knowledge type.",
+ "domains": [
+  "education",
+  "history",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.930Z"
+}

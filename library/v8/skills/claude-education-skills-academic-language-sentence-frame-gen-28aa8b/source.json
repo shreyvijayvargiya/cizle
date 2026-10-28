@@ -1,0 +1,15 @@
+{
+ "title": "academic-language-sentence-frame-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/eal-language-development/academic-language-sentence-frame-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/eal-language-development/academic-language-sentence-frame-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate tiered sentence frames for academic tasks that scaffold language production across proficiency levels. Use when EAL students need structured language support for classroom discourse.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.954Z"
+}

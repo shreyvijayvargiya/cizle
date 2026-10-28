@@ -1,0 +1,14 @@
+{
+ "title": "whiteboard-video",
+ "source": "Q01",
+ "lang": "zh",
+ "repo": "techdou/whiteboard-video",
+ "path": "SKILL.md",
+ "url": "https://github.com/techdou/whiteboard-video/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "白板手绘视频生成工具。支持三种模式：从 SRT 字幕文件一键生成完整白板动画视频（分镜→文生图→动画→合并）、批量将多张图片转为白板动画、单张图片转白板动画。当用户说\"白板动画\"、\"白板视频\"、\"把图片做成白板动画\"、\"从字幕生成白板视频\"、\"批量白板动画\"、\"手绘动画视频\"、\"whiteboard animation\"、\"whiteboard video\"时触发。",
+ "domains": [
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.084Z"
+}

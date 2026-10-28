@@ -1,0 +1,14 @@
+{
+ "title": "responsive-adaptive",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/responsive-adaptive/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/responsive-adaptive/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building context-dependent animations - duration that changes based on device, distance, user preference, or interaction context",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.141Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "webui-design",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/webui-design/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/webui-design/SKILL.md",
+ "license": "MIT",
+ "description": "Design system for the AI Edit Video web dashboard (noti.vn) - the three-step type scale, light/dark color tokens, the component primitives every page must use, Inter font, SVG icons, Shopify Admin style layout. MUST read before writing or modifying any UI in apps/web.",
+ "domains": [
+  "product",
+  "data",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.623Z"
+}

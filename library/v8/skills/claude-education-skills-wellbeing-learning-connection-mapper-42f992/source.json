@@ -1,0 +1,16 @@
+{
+ "title": "wellbeing-learning-connection-mapper",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/wellbeing-learning-connection-mapper/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/wellbeing-learning-connection-mapper/SKILL.md",
+ "license": "MIT",
+ "description": "Map evidence-based connections between a wellbeing initiative and specific academic learning outcomes. Use when justifying wellbeing programmes, integrating SEL, or linking pastoral and academic work.",
+ "domains": [
+  "education",
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.077Z"
+}

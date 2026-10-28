@@ -1,0 +1,12 @@
+{
+ "title": "cards-containers",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/07-by-ui-element/cards-containers/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/07-by-ui-element/cards-containers/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating cards, panels, tiles, or container elements to create depth and interactivity",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.121Z"
+}

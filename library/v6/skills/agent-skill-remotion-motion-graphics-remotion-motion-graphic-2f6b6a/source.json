@@ -1,0 +1,16 @@
+{
+ "title": "remotion-motion-graphics",
+ "source": "M01",
+ "lang": "th",
+ "repo": "Boriwatopal/agent-skill-remotion-motion-graphics",
+ "path": "skills/remotion-motion-graphics/SKILL.md",
+ "url": "https://github.com/Boriwatopal/agent-skill-remotion-motion-graphics/blob/HEAD/skills/remotion-motion-graphics/SKILL.md",
+ "license": "MIT",
+ "description": "Build kinetic-typography / logo / brand promo motion graphics as code with Remotion (React) and ship an MP4. Covers analysing a reference clip and the brand SVG logo, build a scene-per-beat project with reusable animation helpers, verify by contact sheet, output 9:16 and 16:9, tweak in Remotion Studio. Use this whenever the user wants a \"motion\", \"motion graphics\", \"animated logo\", \"logo reveal\", \"kinetic text\", \"promo clip\", \"intro/outro\", \"Reels/TikTok/YouTube video\" made from a brand, a website, an SVG, or \"like this video\" — including Thai asks such as \"ทำ motion\", \"ทำโมชั่นโลโก้\", \"ทำคลิปโปรโมท\", \"อนิเมทโลโก้\", \"ทำวิดีโอแบบนี้\" — and whenever Remotion code needs writing or fixing. Trigger even if they never say Remotion; if they hand over an .svg logo and a sample .mp4 and say \"make one like this\", this is the skill. (For a 6-scene product-demo built from a website's screenshots, product-demo-video is the narrower fit; for captioning talking-head clips use hyperframes-captioned-video.)",
+ "domains": [
+  "product",
+  "music",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.736Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "launch-motion",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-motion/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-motion/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (the motion language for launch films built in HyperFrames). Ease tokens, camera doctrine, continuity at every cut, type and cursor craft, and brand-neutral signature moves (logo build, world pass, branch and pulse, waterfall fill, identity morph, macro pull-back, rise) that replace HyperFrames' stock look. Says which HyperFrames blueprints and transitions to keep, transform or avoid. Use whenever a launch film's picture is designed or animated, for \"animation\", \"motion design\", \"transitions\", \"camera move\", \"make it feel like Apple\", \"less template\".",
+ "domains": [
+  "product",
+  "entertainment",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.585Z"
+}

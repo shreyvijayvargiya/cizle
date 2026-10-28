@@ -1,0 +1,16 @@
+{
+ "title": "slow-in-out-mastery",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/11-by-principle-focus/slow-in-out-mastery/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/11-by-principle-focus/slow-in-out-mastery/SKILL.md",
+ "license": "MIT",
+ "description": "Use when designing easing curves, controlling motion pacing, creating natural acceleration/deceleration, or making movements feel physically grounded.",
+ "domains": [
+  "science",
+  "gaming",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.145Z"
+}

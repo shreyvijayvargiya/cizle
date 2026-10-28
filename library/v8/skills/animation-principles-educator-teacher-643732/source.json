@@ -1,0 +1,16 @@
+{
+ "title": "educator-teacher",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/educator-teacher/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/educator-teacher/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating educational content, explaining concepts through animation, or when teaching animation principles to students.",
+ "domains": [
+  "education",
+  "science",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.099Z"
+}

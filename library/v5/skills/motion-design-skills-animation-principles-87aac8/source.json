@@ -1,0 +1,16 @@
+{
+ "title": "animation-principles",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/motion-design-skills",
+ "path": "skills/animation-principles/SKILL.md",
+ "url": "https://github.com/iart-ai/motion-design-skills/blob/HEAD/skills/animation-principles/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make this animation feel natural\", \"fix motion that feels stiff/floaty/cheap\", \"my animation looks robotic\", \"choose an easing curve\", \"how do I use the Graph Editor\", \"add overshoot or bounce\", \"Easy Ease isn't enough\", \"make snappy motion\", \"pick a duration for this transition\", \"stagger a list animation\", \"sync animation to a beat\", or \"review motion for good timing\". It is the tech-agnostic foundation for deciding how something should move.",
+ "domains": [
+  "music",
+  "science",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.227Z"
+}

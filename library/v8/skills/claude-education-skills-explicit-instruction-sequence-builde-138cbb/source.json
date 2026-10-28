@@ -1,0 +1,15 @@
+{
+ "title": "explicit-instruction-sequence-builder",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/explicit-instruction/explicit-instruction-sequence-builder/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/explicit-instruction/explicit-instruction-sequence-builder/SKILL.md",
+ "license": "MIT",
+ "description": "Build a complete explicit instruction sequence from teacher modelling through guided practice to independent work. Use when teaching new skills, procedures, or concepts through direct instruction.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.967Z"
+}

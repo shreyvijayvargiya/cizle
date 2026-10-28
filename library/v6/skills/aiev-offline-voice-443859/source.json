@@ -1,0 +1,14 @@
+{
+ "title": "offline-voice",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/offline-voice/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/offline-voice/SKILL.md",
+ "license": "MIT",
+ "description": "How the on-device narration engine (VieNeu-TTS) and voice cloning work in this system - install tiers, the worker protocol, and the verified traps around torchaudio, voice metadata parsing and duration. Read when working on Text to video narration, the Voices page, the /api/voices or /api/tts endpoints, or when a user reports that offline voices or voice cloning fail to install or sound wrong.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.608Z"
+}

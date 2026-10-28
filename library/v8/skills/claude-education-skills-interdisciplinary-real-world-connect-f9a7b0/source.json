@@ -1,0 +1,16 @@
+{
+ "title": "interdisciplinary-real-world-connection-mapper",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/environmental-experiential-learning/interdisciplinary-real-world-connection-mapper/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/environmental-experiential-learning/interdisciplinary-real-world-connection-mapper/SKILL.md",
+ "license": "MIT",
+ "description": "Map curriculum connections across multiple subjects for a real-world problem or authentic context. Use when planning cross-curricular projects or connecting content to real issues.",
+ "domains": [
+  "education",
+  "math",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.964Z"
+}

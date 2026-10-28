@@ -1,0 +1,15 @@
+{
+ "title": "emotional-disconnect",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/12-by-problem-type/emotional-disconnect/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/12-by-problem-type/emotional-disconnect/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation feels wrong, creates unintended emotional response, or mismatches context",
+ "domains": [
+  "science",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.153Z"
+}

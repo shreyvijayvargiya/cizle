@@ -1,0 +1,16 @@
+{
+ "title": "saas-productivity",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/08-by-industry/saas-productivity/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/08-by-industry/saas-productivity/SKILL.md",
+ "license": "MIT",
+ "description": "Use when designing animations for business tools, project management, collaboration software, or productivity apps",
+ "domains": [
+  "product",
+  "data",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.128Z"
+}

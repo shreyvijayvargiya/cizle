@@ -1,0 +1,15 @@
+{
+ "title": "language-demand-analyser",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/eal-language-development/language-demand-analyser/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/eal-language-development/language-demand-analyser/SKILL.md",
+ "license": "MIT",
+ "description": "Analyse the language demands of a classroom task to identify barriers for EAL and multilingual learners. Use when adapting tasks, planning support, or assessing linguistic accessibility.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.955Z"
+}

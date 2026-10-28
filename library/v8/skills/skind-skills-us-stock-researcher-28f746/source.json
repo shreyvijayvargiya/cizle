@@ -1,0 +1,14 @@
+{
+ "title": "us-stock-researcher",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "skindhu/skind-skills",
+ "path": "skills/us-stock-researcher/SKILL.md",
+ "url": "https://github.com/skindhu/skind-skills/blob/HEAD/skills/us-stock-researcher/SKILL.md",
+ "license": "MIT",
+ "description": "US Stock Investment Research Assistant. Supports Gemini Deep Research or Claude Native Deep Research (7-Phase + GoT). Use when analyzing 10-K/10-Q reports or generating investment research reports.",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.081Z"
+}

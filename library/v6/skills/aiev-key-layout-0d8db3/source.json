@@ -1,0 +1,14 @@
+{
+ "title": "key-layout",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/key-layout/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/key-layout/SKILL.md",
+ "license": "MIT",
+ "description": "Main key / related key layout on the video - the MAIN KEY (topic/hook) sits in a band at the TOP of the video, the RELATED KEYS in a band at the BOTTOM (above the caption area), timed to whatever is being said. Read this when the brief enables \"Bố cục Key\" (keyLayoutEnabled) or the edit prompt contains the section \"Bố cục Key: BẬT\".",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.602Z"
+}

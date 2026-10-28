@@ -1,0 +1,16 @@
+{
+ "title": "facecammaxxing",
+ "source": "M01",
+ "lang": "en",
+ "repo": "aaksa/facecammaxxing",
+ "path": "SKILL.md",
+ "url": "https://github.com/aaksa/facecammaxxing/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "Facecam maxxing - add pro motion-graphics effects to a real talking-head clip (a facecam / selfie / phone video of the user talking), rendered with Remotion + GSAP + Three.js (and headless Blender for modelled 3D props) over a clean cut-out of the person, directed with an award-level reel director's workflow (brief, one idea per sentence, a beat plan where every effect says what it makes the viewer believe, hardest beat first, measured self-review). It is a library of 22 effects, all equal, grouped by the job they do: proof and numbers - over-the-shoulder (camera pushes over each shoulder to Before / After proof cards behind the head, with motion blur), kallaway-split (the clip drops into a card on grid paper and the creator's numbers rise out of its top edge as a skyline that peaks behind their head), glass-graph, glass-widgets, tier-list (S-D tier list builds under the chin); type and captions - text-behind (a huge word rises from behind the head), backdrop-word, kinetic-caption (word-by-word captions in two type faces, editorial or podcast style, top words tucked behind the head); camera, light and look - lean-in (punch-in with motion blur and depth of field), slow-push, spotlight, color-grade (flat LOG look wiped into a cinematic grade with Before / After), grade, locked-on; 3D and depth - prop-3d (a Blender-modelled trophy, a clock whose hands sweep the hours, a coin, a phone showing the real screen, a check, an X, or any GLB, lit like the room), carousel-spin and orbit of reels; people, openers and framing - freeze-frame (shot freezes, room greys, white sticker outline + name tag), name-tag (lower third), silhouette-intro, window-cards (retro desktop windows of your reels that a cursor clicks), bottom-fade. Effects track the face, sit behind or in front of the person, never cover the face, keep out of the Reels UI zones and follow measured motion rules. Use when the user says facecam maxxing / facecammaxxing, gives a talking-head clip and asks for an effect, names one of the effects, asks for \"text behind my head\", \"cards behind me\", kinetic / word-by-word captions, a lower-third name tag, retro window cards, a silhouette intro, a Kallaway split / split-screen chart, a freeze frame, a tier list, a before/after grade, a 3D object / prop / trophy / Blender model next to them, or wants the Claude-edit style effects on their own footage.",
+ "domains": [
+  "entertainment",
+  "math",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.757Z"
+}

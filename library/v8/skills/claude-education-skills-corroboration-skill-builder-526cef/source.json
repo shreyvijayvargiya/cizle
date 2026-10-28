@@ -1,0 +1,16 @@
+{
+ "title": "corroboration-skill-builder",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/corroboration-skill-builder/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/corroboration-skill-builder/SKILL.md",
+ "license": "MIT",
+ "description": "Build students' capacity to compare accounts across multiple historical sources — identifying agreements, contradictions, and gaps. Use when students treat individual documents as complete answers rather than partial perspectives.",
+ "domains": [
+  "history",
+  "education",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.983Z"
+}

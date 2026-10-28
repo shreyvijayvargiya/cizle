@@ -1,0 +1,15 @@
+{
+ "title": "frame-data-rollup",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-data-rollup/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-data-rollup/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "A native Remotion data frame — bars grow from zero by real data via spring physics while the figures roll 0→target in sync. The numbers come alive in a way a static HTML chart can't.",
+ "domains": [
+  "data",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.494Z"
+}

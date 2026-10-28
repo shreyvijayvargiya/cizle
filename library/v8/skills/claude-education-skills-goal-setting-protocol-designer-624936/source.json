@@ -1,0 +1,16 @@
+{
+ "title": "goal-setting-protocol-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/self-regulated-learning/goal-setting-protocol-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/self-regulated-learning/goal-setting-protocol-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a structured goal-setting protocol using SMART or implementation-intention frameworks for students. Use when launching units, projects, or developing student self-direction habits.",
+ "domains": [
+  "education",
+  "engineering",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.039Z"
+}

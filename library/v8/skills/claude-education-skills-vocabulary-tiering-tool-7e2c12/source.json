@@ -1,0 +1,15 @@
+{
+ "title": "vocabulary-tiering-tool",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/eal-language-development/vocabulary-tiering-tool/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/eal-language-development/vocabulary-tiering-tool/SKILL.md",
+ "license": "MIT",
+ "description": "Tier vocabulary from a text or topic into everyday, academic, and technical categories with teaching priorities. Use when pre-teaching vocabulary or identifying language barriers in a text.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.961Z"
+}

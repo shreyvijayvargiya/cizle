@@ -1,0 +1,14 @@
+{
+ "title": "camera-3d-captions",
+ "source": "M02",
+ "lang": "en",
+ "repo": "heygen-com/hyperframes-community-skills",
+ "path": "skills/camera-3d-captions/SKILL.md",
+ "url": "https://github.com/heygen-com/hyperframes-community-skills/blob/HEAD/skills/camera-3d-captions/SKILL.md",
+ "license": "Apache-2.0",
+ "description": ">",
+ "domains": [
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.547Z"
+}

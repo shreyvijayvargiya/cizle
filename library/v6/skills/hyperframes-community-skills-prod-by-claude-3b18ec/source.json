@@ -1,0 +1,14 @@
+{
+ "title": "prod-by-claude",
+ "source": "M02",
+ "lang": "en",
+ "repo": "heygen-com/hyperframes-community-skills",
+ "path": "skills/prod-by-claude/SKILL.md",
+ "url": "https://github.com/heygen-com/hyperframes-community-skills/blob/HEAD/skills/prod-by-claude/SKILL.md",
+ "license": "Apache-2.0",
+ "description": ">",
+ "domains": [
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.552Z"
+}

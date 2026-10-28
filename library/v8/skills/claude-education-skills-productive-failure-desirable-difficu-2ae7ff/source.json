@@ -1,0 +1,14 @@
+{
+ "title": "productive-failure-desirable-difficulty-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/productive-failure-desirable-difficulty-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/productive-failure-desirable-difficulty-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Redesign a direct instruction sequence to include productive struggle before the explanation phase. Use when teaching concepts that benefit from failure-first approaches.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.920Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "moviepy",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/moviepy/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/moviepy/SKILL.md",
+ "license": "MIT",
+ "description": "Python video composition with moviepy 2.x — overlaying deterministic text on AI-generated video (LTX-2, SadTalker), compositing clips, single-file build.py video projects. Use when adding labels/captions/lower-thirds to LTX-2 or SadTalker outputs, building short ad-style spots in pure Python without Remotion, or doing programmatic video composition. Triggers include text overlay on video, label LTX-2 clip, caption SadTalker output, lower third, build.py video, moviepy, Python video composition, sub-30s ad spot.",
+ "domains": [
+  "data",
+  "music",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.205Z"
+}

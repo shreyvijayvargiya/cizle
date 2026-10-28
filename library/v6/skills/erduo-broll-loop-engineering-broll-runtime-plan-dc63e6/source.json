@@ -1,0 +1,14 @@
+{
+ "title": "broll-runtime-plan",
+ "source": "M02",
+ "lang": "en",
+ "repo": "erduo1998-cell/erduo-broll-loop-engineering",
+ "path": "erduo-broll-loop-engineering/stages/broll-runtime-plan/SKILL.md",
+ "url": "https://github.com/erduo1998-cell/erduo-broll-loop-engineering/blob/HEAD/erduo-broll-loop-engineering/stages/broll-runtime-plan/SKILL.md",
+ "license": "MIT",
+ "description": "Read and verify legacy Runtime Planner handoffs from production records created before v0.9. Do not use or dispatch this stage in the normal v1 workflow; the Parent runs deterministic planning and assignment gates directly.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.620Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "technological-pedagogical-content-knowledge-developer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/technological-pedagogical-content-knowledge-developer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/technological-pedagogical-content-knowledge-developer/SKILL.md",
+ "license": "MIT",
+ "description": "Develop TPACK for integrating a specific technology or AI tool into subject teaching with pedagogical alignment. Use when adopting new ed-tech, reviewing AI tools, or planning technology integration.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.036Z"
+}

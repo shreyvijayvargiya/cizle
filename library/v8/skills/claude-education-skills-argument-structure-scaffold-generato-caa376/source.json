@@ -1,0 +1,16 @@
+{
+ "title": "argument-structure-scaffold-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/literacy-critical-thinking/argument-structure-scaffold-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/literacy-critical-thinking/argument-structure-scaffold-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate argument structure scaffolds using Toulmin, PEEL, or CER frameworks for a specific claim or question. Use when teaching argumentative or analytical writing across any subject.",
+ "domains": [
+  "education",
+  "history",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.990Z"
+}

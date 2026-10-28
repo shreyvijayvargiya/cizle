@@ -1,0 +1,15 @@
+{
+ "title": "ai-illustrations",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/ai-illustrations/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/ai-illustrations/SKILL.md",
+ "license": "MIT",
+ "description": "Generate illustrations with Gemini and composite them into the video being edited - how to pick the moments that need an image, write the prompt, call the /api/illustrations endpoint (images MUST match the selected Style Design), and composite into the composition. Read when the brief enables \"Ảnh minh họa AI\" (AI illustrations) or the user asks for generated illustrations for a video.",
+ "domains": [
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.599Z"
+}

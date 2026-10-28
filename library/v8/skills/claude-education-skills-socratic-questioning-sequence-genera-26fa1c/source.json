@@ -1,0 +1,15 @@
+{
+ "title": "socratic-questioning-sequence-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/questioning-discussion/socratic-questioning-sequence-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/questioning-discussion/socratic-questioning-sequence-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate a Socratic questioning sequence that develops conceptual understanding through guided inquiry. Use when facilitating philosophical discussions, concept exploration, or critical examination.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.038Z"
+}

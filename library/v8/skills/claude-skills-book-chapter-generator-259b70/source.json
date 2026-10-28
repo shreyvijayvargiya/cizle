@@ -1,0 +1,16 @@
+{
+ "title": "book-chapter-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dmccreary/claude-skills",
+ "path": "skills/book-chapter-generator/SKILL.md",
+ "url": "https://github.com/dmccreary/claude-skills/blob/HEAD/skills/book-chapter-generator/SKILL.md",
+ "license": null,
+ "description": "Designs the chapter structure for an intelligent textbook by analyzing the learning graph and concept dependencies. Use after the learning graph is complete and before generating chapter content.",
+ "domains": [
+  "education",
+  "data",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.171Z"
+}

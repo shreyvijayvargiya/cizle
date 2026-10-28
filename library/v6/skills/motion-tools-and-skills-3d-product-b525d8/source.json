@@ -1,0 +1,16 @@
+{
+ "title": "3d-product",
+ "source": "M01",
+ "lang": "en",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/3d-product/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/3d-product/SKILL.md",
+ "license": "MIT",
+ "description": "A one-shot pipeline for hardware product films in Blender, from a prompt and a reference (a design patent, photos, a video, CAD) to finished, graded sequences - a setup probe that picks the best hardware and engine, research first, the film's intention, modelling from drawings and photos, materials as designed, lived-in or studio environments, grey-box lighting, compositions with a measured compositional analysis, shot list and script together, FIRST/KEY/LAST frames, motion and the animatic, production readiness, an Octane or a Cycles production path run unattended by a plain-shell supervisor, sound design and music, DaVinci Resolve finishing and film emulation, and review on FigJam and a synced folder; every stage measured and gated, and the scene kept light from the first build against a budget. Use it whenever the user wants to concept, model, render, light, compose, storyboard, animate, film or finish a physical product (devices, audio gear, lamps, lenses, appliances) - product shots, packshots, CAD-to-render, patents or drawings, launch films, teasers, camera moves, renders that look CG, lived-in or studio sets, kit assets, scene weight, VRAM and render-time budgets, Cycles or Octane settings, render nodes, overnight renders, labels and printed graphics, sound design, music and the mix, grading, grain, film emulation and delivery - even if they don't say \"3d-product\".",
+ "domains": [
+  "entertainment",
+  "music",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.760Z"
+}

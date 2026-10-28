@@ -1,0 +1,16 @@
+{
+ "title": "remotion-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/motion-design-skills",
+ "path": "skills/remotion-video/SKILL.md",
+ "url": "https://github.com/iart-ai/motion-design-skills/blob/HEAD/skills/remotion-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a video with Remotion\", \"create a programmatic/data-driven video in React\", \"render an MP4/GIF from code\", \"animate with useCurrentFrame/interpolate/spring\", \"sync video to audio/beats\", or \"render a templated video per record headlessly\". Covers building React compositions and rendering them via CLI or @remotion/renderer.",
+ "domains": [
+  "gaming",
+  "data",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.236Z"
+}

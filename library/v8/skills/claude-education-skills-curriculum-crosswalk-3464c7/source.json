@@ -1,0 +1,15 @@
+{
+ "title": "curriculum-crosswalk",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-alignment/curriculum-crosswalk/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-alignment/curriculum-crosswalk/SKILL.md",
+ "license": "MIT",
+ "description": "Compares two or more band-tagged frameworks and produces a framework-neutral topic matrix showing coverage and gaps across all inputs, plus an optional reference-centric PLC crosswalk document when a reference framework is supplied.",
+ "domains": [
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.939Z"
+}

@@ -10,10 +10,13 @@ import { PREMIUM } from "@/lib/config";
 import { useSkills } from "@/lib/data";
 import { languageOf } from "@/lib/languages";
 import { shuffled, useGallery, usePromptText, useShuffle, type GalleryItem } from "@/lib/gallery";
+import { countBy, countryFlag } from "@/lib/facets";
 import { plain } from "@/lib/utils";
 import { AutoVideo } from "@/lib/videos";
 
-const TAGS = ["AI video prompts", "image prompts", "Claude Code skills", "Opus 5.5 prompts", "prompt library", "film styles", "motion graphics prompts", "creator inspiration"];
+const TAGS = ["AI video prompts", "image prompts", "Claude Code skills", "Remotion", "HyperFrames", "education animation", "whiteboard videos", "small business prompts", "motion graphics prompts", "film styles"];
+/** the countries shown as quick links, when the library has prompts from them */
+const HERO_COUNTRIES = ["USA", "China", "Japan", "Brazil", "Spain", "Mexico", "Turkey", "Vietnam", "Russia", "Indonesia", "India", "Germany", "France", "UK"];
 const LINES = ["Never start from a blank prompt.", "Copy a prompt that already worked.", "Inspiration for creators and builders.", "Every prompt credits its creator."];
 
 /** One line that changes every few seconds; the first is in the page from the start, and motion-sensitive visitors keep it. */
@@ -41,6 +44,9 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 		for (const sk of skillsQ.data?.skills ?? []) m[sk.lang || "en"] = (m[sk.lang || "en"] || 0) + 1;
 		return Object.entries(m).sort((a, b) => b[1] - a[1]);
 	}, [gallery.data, skillsQ.data]);
+
+	const countries = useMemo(() => countBy([...(gallery.data?.items ?? []), ...(skillsQ.data?.skills ?? [])], (g) => g.country), [gallery.data, skillsQ.data]);
+	const heroCountries = HERO_COUNTRIES.map((c) => countries.find(([n]) => n === c)).filter((x): x is [string, number] => Boolean(x));
 
 	const picks = useMemo(() => {
 		// a different set of demos on every visit: the library is shuffled, then one of each category comes first
@@ -73,13 +79,20 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 						The prompt library for creators and builders
 					</h1>
 					<p className="mt-4 max-w-[60ch] text-lg leading-snug">
-						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages. Every prompt plays its demo and credits its creator. Copy one, make it yours.
+						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: video prompts by country, motion graphics with Remotion and HyperFrames, classroom and education animations, entertainment and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
 					</p>
 					<ul aria-label="Popular searches" className="mt-4 flex flex-wrap gap-1.5">
 						{TAGS.map((t) => (
 							<li key={t}><Link to="/" search={{ q: t }} hash="library" className="press inline-flex rounded-full bg-tile-2 px-3 py-1 text-sm text-foreground hover:bg-muted">{t}</Link></li>
 						))}
 					</ul>
+					{heroCountries.length ? (
+						<ul aria-label="Browse by country" className="mt-2 flex flex-wrap gap-1.5">
+							{heroCountries.map(([c, n]) => (
+								<li key={c}><Link to="/" search={{ country: c }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-tile-2 px-3 py-1 text-sm text-foreground hover:bg-muted"><span aria-hidden>{countryFlag(c)}</span>{c} <span className="text-muted-foreground tabular-nums">{n.toLocaleString()}</span></Link></li>
+							))}
+						</ul>
+					) : null}
 				</div>
 
 				<div className="shutter relative min-h-[300px] overflow-hidden rounded-lg bg-field-2 lg:col-span-6 lg:col-start-7 lg:row-start-1" style={{ animationDelay: ".1s" }}>

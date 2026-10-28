@@ -1,0 +1,14 @@
+{
+ "title": "small-200-300ms",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/small-200-300ms/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/small-200-300ms/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building small transitions between 200-300ms - modal appearances, card expansions, navigation transitions that users consciously perceive",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.141Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "animated-chart",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/animated-chart/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/animated-chart/SKILL.md",
+ "license": "MIT",
+ "description": "Make a looping animated chart for LinkedIn or a newsletter in code with Claude Code. Bars that become a line, a number that counts up, a before and after. Every value stays exactly as given. Use when someone says \"animate my chart\", \"animated graph\", \"make my results move\", \"stat animation\" or wants a data graphic that loops.",
+ "domains": [
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.556Z"
+}

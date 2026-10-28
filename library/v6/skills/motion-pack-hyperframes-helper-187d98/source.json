@@ -1,0 +1,15 @@
+{
+ "title": "hyperframes-helper",
+ "source": "M02",
+ "lang": "en",
+ "repo": "halicotampa-crypto/motion-pack",
+ "path": "community-templates/helper-kit/.claude/skills/hyperframes-helper/SKILL.md",
+ "url": "https://github.com/halicotampa-crypto/motion-pack/blob/HEAD/community-templates/helper-kit/.claude/skills/hyperframes-helper/SKILL.md",
+ "license": null,
+ "description": "Build agent-friendly motion-graphics videos with Hyperframes (HTML-to-MP4). Three levels of effort — Level 1 website-to-video for quick conversions, Level 2 storyboards for guided design iteration, Level 3 fully custom guided-video productions with cut/storyboard/motion-graphics workflow. Triggers on \"hyperframes\", \"html to mp4\", \"render with hyperframes\", \"motion graphics for [recording]\", \"storyboard a video\", \"/hyperframes-helper\".",
+ "domains": [
+  "gaming",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.576Z"
+}

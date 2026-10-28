@@ -1,0 +1,16 @@
+{
+ "title": "historical-document-set-curator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/historical-document-set-curator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/historical-document-set-curator/SKILL.md",
+ "license": "MIT",
+ "description": "Design a document set for a document-based lesson — selecting and sequencing sources for analytical tension around a central question. Use when assembling sources for a new lesson or when an existing set produces flat responses.",
+ "domains": [
+  "history",
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.984Z"
+}

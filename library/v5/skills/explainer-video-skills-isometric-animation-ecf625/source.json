@@ -1,0 +1,16 @@
+{
+ "title": "isometric-animation",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/explainer-video-skills",
+ "path": "skills/isometric-animation/SKILL.md",
+ "url": "https://github.com/iart-ai/explainer-video-skills/blob/HEAD/skills/isometric-animation/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an isometric animation\", \"build a 2.5D isometric scene\", \"create an isometric infographic\", \"animate an exploded diagram\", \"do an isometric city/stack build\", \"show stacked layers in iso\", \"extrude blocks with depth\", or \"add a gentle camera drift to an iso scene\". Covers CSS 3D transforms, SVG iso planes, and Three.js OrthographicCamera for true 3D iso — no build step.",
+ "domains": [
+  "math",
+  "education",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.234Z"
+}

@@ -1,0 +1,12 @@
+# Cinematic Close-Up of Craftsman with Paper Figures
+
+By @haiderkamboh114 · general
+Language: en · Domains: entertainment · Source: P01
+
+Source page: https://prompts.chat
+
+```
+A cinematic, warm-toned close-up photograph of a craftsman working at a wooden desk in the evening. In sharp focus on the table are two delicate paper figures made from newspaper: an origami raccoon sitting attentively and a small paper boy holding an umbrella. The man’s hand gently holds and positions the paper doll, while his face appears softly blurred in the background, showing deep concentration. A single desk lamp casts dramatic, golden light from above, creating long shadows and highlighting the fine paper textures. Shallow depth of field, soft bokeh background, realistic photography style, intimate and whimsical atmosphere, storytelling composition, high contrast lighting, handcrafted aesthetic.
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

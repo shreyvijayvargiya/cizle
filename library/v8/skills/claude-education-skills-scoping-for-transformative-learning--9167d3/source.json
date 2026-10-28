@@ -1,0 +1,15 @@
+{
+ "title": "scoping-for-transformative-learning-inquiry",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/scoping-for-transformative-learning-inquiry/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/scoping-for-transformative-learning-inquiry/SKILL.md",
+ "license": "MIT",
+ "description": "Define the scope and purpose of a complex inquiry before mapping or futures work begins. Use when a class or group needs to agree what they are investigating, who it matters to, and at what scale.",
+ "domains": [
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.019Z"
+}

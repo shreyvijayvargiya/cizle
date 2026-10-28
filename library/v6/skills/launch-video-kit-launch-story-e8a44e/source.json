@@ -1,0 +1,16 @@
+{
+ "title": "launch-story",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-story/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-story/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (the brief, the story spine, the script, the beat sheet and reference studies). Turn a launch brief into a launch film's story in your own brand, with the one message, the narrative spine, the voice-over script at the right length, a beat sheet on the music's bar grid and a STORYBOARD.md where every shot names its continuity in and out, its signature move and its sound. Includes the reference study and the logo-swap differentiation test. Use first, before voice, score or motion, for \"launch video script\", \"storyboard\", \"brief\", \"what should the launch film say\", \"study this reference video\".",
+ "domains": [
+  "product",
+  "entertainment",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.588Z"
+}

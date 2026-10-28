@@ -1,0 +1,15 @@
+{
+ "title": "broll-remotion-integrate",
+ "source": "M02",
+ "lang": "en",
+ "repo": "erduo1998-cell/erduo-broll-loop-engineering",
+ "path": "erduo-broll-loop-engineering/stages/broll-remotion-integrate/SKILL.md",
+ "url": "https://github.com/erduo1998-cell/erduo-broll-loop-engineering/blob/HEAD/erduo-broll-loop-engineering/stages/broll-remotion-integrate/SKILL.md",
+ "license": "MIT",
+ "description": "Read and verify legacy Remotion Integrator records for a pre-v0.9 task. Never dispatch this stage in a new v1 production; the Parent assembles verified Builder media directly.",
+ "domains": [
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.619Z"
+}

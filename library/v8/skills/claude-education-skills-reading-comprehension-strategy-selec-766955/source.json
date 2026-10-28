@@ -1,0 +1,15 @@
+{
+ "title": "reading-comprehension-strategy-selector",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/literacy-critical-thinking/reading-comprehension-strategy-selector/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/literacy-critical-thinking/reading-comprehension-strategy-selector/SKILL.md",
+ "license": "MIT",
+ "description": "Select and sequence reading comprehension strategies matched to a specific text's challenges and demands. Use when students struggle with a text or need targeted reading support.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.998Z"
+}

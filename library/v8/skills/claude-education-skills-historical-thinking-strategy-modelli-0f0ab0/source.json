@@ -1,0 +1,16 @@
+{
+ "title": "historical-thinking-strategy-modelling-guide",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/historical-thinking-strategy-modelling-guide/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/historical-thinking-strategy-modelling-guide/SKILL.md",
+ "license": "MIT",
+ "description": "Design a teacher think-aloud that models historical thinking strategies with a specific document. Use when planning explicit strategy instruction or when students follow a protocol without understanding the underlying reasoning.",
+ "domains": [
+  "history",
+  "education",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.986Z"
+}

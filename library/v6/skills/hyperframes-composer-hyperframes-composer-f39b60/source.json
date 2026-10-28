@@ -1,0 +1,16 @@
+{
+ "title": "hyperframes-composer",
+ "source": "M02",
+ "lang": "en",
+ "repo": "georgeantonopoulos/hyperframes-composer",
+ "path": "SKILL.md",
+ "url": "https://github.com/georgeantonopoulos/hyperframes-composer/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"create a hyperframes video\", \"build a hyperframes composition\", \"make a video with hyperframes\", \"render HTML to MP4\", \"author a kinetic title sequence\", \"use heygen-com/hyperframes\", or scaffolds/edits any project containing hyperframes.json, index.html with data-composition-id, or a compositions/ folder. Encodes the framework's non-obvious rules (class=\"clip\" requirement, paused GSAP timelines on window.__timelines, deterministic-only logic, the example-vs-block registry split, draft-then-final render workflow) and ships a proven teaser template plus a render-and-verify script.",
+ "domains": [
+  "entertainment",
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.595Z"
+}

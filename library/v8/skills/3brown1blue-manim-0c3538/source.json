@@ -1,0 +1,16 @@
+{
+ "title": "manim",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "AmitSubhash/3brown1blue",
+ "path": "src/three_b1b/skill/SKILL.md",
+ "url": "https://github.com/AmitSubhash/3brown1blue/blob/HEAD/src/three_b1b/skill/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to create mathematical animations, research paper explainer videos, equation derivations, 3D visualizations, or any programmatic animation with Manim. Also trigger when the user mentions \"3Blue1Brown style\", \"animate this equation\", \"explain this paper visually\", or wants to render LaTeX equations as video.",
+ "domains": [
+  "math",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.093Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "noti-youtube-edit",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/noti-youtube-edit/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/noti-youtube-edit/SKILL.md",
+ "license": "MIT",
+ "description": "Build a Vietnamese landscape 16:9 YouTube video (1920×1080) with HyperFrames (HTML/CSS/GSAP → MP4), keeping the Noti.vn/GĐT branding inherited from noti-tiktok-vn. Supports 2 modes - A) talking-head + motion graphics (full-frame face, camera move to PiP, karaoke captions) and B) full-text explainer (text scenes + slides/charts, no face on screen). Includes the \"camera move\" technique (animate the wrapper, never the video), the fix for Vietnamese text losing diacritics, and picking sound effects itself by content + timestamp from the `assets/sound-effects/` library (tag `hay-dung`) and wiring them into the video (mandatory on every video). Use when the user brings a Vietnamese clip/transcript and wants a landscape YouTube video that keeps the dark fintech blue branding.",
+ "domains": [
+  "finance",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.607Z"
+}

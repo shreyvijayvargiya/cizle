@@ -1,0 +1,14 @@
+{
+ "title": "gsap-greensock",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/09-by-tool-framework/gsap-greensock/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/09-by-tool-framework/gsap-greensock/SKILL.md",
+ "license": "MIT",
+ "description": "Use when implementing Disney's 12 animation principles with GSAP (GreenSock Animation Platform)",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.133Z"
+}

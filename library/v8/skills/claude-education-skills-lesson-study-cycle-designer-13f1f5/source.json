@@ -1,0 +1,15 @@
+{
+ "title": "lesson-study-cycle-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/lesson-study-cycle-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/lesson-study-cycle-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a complete lesson study cycle from research question through collaborative planning to research lesson. Use when planning jugyou kenkyuu or collaborative teacher inquiry into practice.",
+ "domains": [
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.027Z"
+}

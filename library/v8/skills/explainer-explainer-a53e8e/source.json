@@ -1,0 +1,16 @@
+{
+ "title": "explainer",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "irfanalimd/explainer",
+ "path": "SKILL.md",
+ "url": "https://github.com/irfanalimd/explainer/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Build cinematic, interactive explainers of computer-science concepts (invoked as /explainer <concept>) as real running simulations in a lit 3D world. A deterministic model of the concept (Raft really elects a leader, MapReduce really counts words, quicksort really sorts, the MMU really walks page tables) is narrated step by step, with a chapter scrubber that rewinds, captions, meters, failure scenarios, knobs, an inspector, a code panel and predict-the-next-step questions. Output: one self-contained HTML file, plus optional WebM/MP4 video and PNG stills. Use it whenever someone wants to explain, visualize, animate or teach how a CS concept works: distributed systems, consensus, operating systems, memory, caches, CPUs, databases, storage engines, networking, algorithms and data structures, compilers, concurrency, ML systems or security protocols, even if they only say \"diagram\", \"figure\", \"animation\" or \"interactive\". Not for concepts outside computing.",
+ "domains": [
+  "education",
+  "entertainment",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.087Z"
+}

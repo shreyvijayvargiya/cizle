@@ -1,0 +1,16 @@
+{
+ "title": "recursive-maths-animator",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "Science-Prof-Robot/recursive-math-animator",
+ "path": "recursive-maths-animator/SKILL.md",
+ "url": "https://github.com/Science-Prof-Robot/recursive-math-animator/blob/HEAD/recursive-maths-animator/SKILL.md",
+ "license": "MIT",
+ "description": "Recursive maths animator — Manim-based technical and physics animations with optional voiceover, pinned requirements, responsive layout rules, frame verification, and final MP4 delivery. Includes mechanics, optics, fields, waves, and deterministic custom physics models.",
+ "domains": [
+  "math",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.090Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "remotion-motion-graphics",
+ "source": "M01",
+ "lang": "en",
+ "repo": "fernandokaraka/remotion-motion-graphics-skill",
+ "path": "skills/remotion-motion-graphics/SKILL.md",
+ "url": "https://github.com/fernandokaraka/remotion-motion-graphics-skill/blob/HEAD/skills/remotion-motion-graphics/SKILL.md",
+ "license": "MIT",
+ "description": "Build animated motion graphics as real video with Remotion (React-based programmatic video) — title cards, lower thirds, logo stings, badges, stat reveals, countdowns, end screens, captions, animated charts, social reels — and export them as MP4 or as transparent ProRes/PNG sequences for Premiere, Final Cut, CapCut, DaVinci or After Effects. Use this skill whenever the user wants to create, animate, restyle, polish or render any video graphic, overlay, intro, reel or animation from code, or mentions Remotion, motion graphics, video overlays, alpha/transparency export, or asks to make an existing graphic feel smoother, less flat, less robotic or more premium — even when they never say \"Remotion\" out loud.",
+ "domains": [
+  "math",
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.733Z"
+}

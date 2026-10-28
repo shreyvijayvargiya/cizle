@@ -1,0 +1,14 @@
+{
+ "title": "learning-target-authoring-guide",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/learning-target-authoring-guide/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/learning-target-authoring-guide/SKILL.md",
+ "license": "MIT",
+ "description": "Author learning targets for a competency across developmental bands with precise, observable progression language. Use when writing 'I can' statements for competency-based programmes.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.020Z"
+}

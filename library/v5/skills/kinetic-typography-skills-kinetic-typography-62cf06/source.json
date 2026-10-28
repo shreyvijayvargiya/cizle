@@ -1,0 +1,12 @@
+{
+ "title": "kinetic-typography",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/kinetic-typography-skills",
+ "path": "skills/kinetic-typography/SKILL.md",
+ "url": "https://github.com/iart-ai/kinetic-typography-skills/blob/HEAD/skills/kinetic-typography/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"animate a headline\", \"make a kinetic typography video\", \"do a split-text reveal\", \"stagger text by character/word/line\", \"make a lyric or caption video\", \"animate a variable font weight\", \"put text on a path\", or \"create an animated title card\". Covers reveal techniques in CSS, GSAP SplitText, Framer Motion, and Remotion.",
+ "domains": [],
+ "fetched_at": "2026-10-28T13:32:14.223Z"
+}

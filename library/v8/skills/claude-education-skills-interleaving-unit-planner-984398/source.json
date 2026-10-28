@@ -1,0 +1,16 @@
+{
+ "title": "interleaving-unit-planner",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/memory-learning-science/interleaving-unit-planner/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/memory-learning-science/interleaving-unit-planner/SKILL.md",
+ "license": "MIT",
+ "description": "Redesign a blocked topic sequence into an interleaved plan with mixed practice across related topics. Use when planning units, homework schedules, or revision programmes.",
+ "domains": [
+  "education",
+  "engineering",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.002Z"
+}

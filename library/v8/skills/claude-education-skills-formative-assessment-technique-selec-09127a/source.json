@@ -1,0 +1,15 @@
+{
+ "title": "formative-assessment-technique-selector",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/formative-assessment-technique-selector/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/formative-assessment-technique-selector/SKILL.md",
+ "license": "MIT",
+ "description": "Select the right formative assessment technique for a specific learning moment, purpose, and age group. Use when choosing how to check understanding during, between, or after lessons.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.947Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "solid-drawing-mastery",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/11-by-principle-focus/solid-drawing-mastery/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/11-by-principle-focus/solid-drawing-mastery/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating motion that needs dimensional grounding, designing transforms that maintain object integrity, or ensuring animations feel structurally sound.",
+ "domains": [
+  "scifi",
+  "science",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.146Z"
+}

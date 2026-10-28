@@ -1,0 +1,14 @@
+{
+ "title": "universal-industry",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/08-by-industry/universal-industry/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/08-by-industry/universal-industry/SKILL.md",
+ "license": "MIT",
+ "description": "Use when designing animations for any industry or when industry-specific guidelines do not apply",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.132Z"
+}

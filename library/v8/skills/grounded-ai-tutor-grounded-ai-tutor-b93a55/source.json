@@ -1,0 +1,16 @@
+{
+ "title": "grounded-ai-tutor",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "weike-zhang/grounded-ai-tutor",
+ "path": "skills/grounded-ai-tutor/SKILL.md",
+ "url": "https://github.com/weike-zhang/grounded-ai-tutor/blob/HEAD/skills/grounded-ai-tutor/SKILL.md",
+ "license": "MIT",
+ "description": "Teach computer science, software engineering, web systems, data, cloud, and AI from zero assumptions, using a learner's authorized project materials only when they improve the lesson. Use when a user wants concepts explained from first principles, wants to understand code or architecture, asks for a learning or career route, says an explanation is too advanced, or wants durable learning progress recorded with consent. Distinguish explanation, diagnosis, and implementation; do not use for ordinary coding tasks that do not ask for teaching.",
+ "domains": [
+  "education",
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.089Z"
+}

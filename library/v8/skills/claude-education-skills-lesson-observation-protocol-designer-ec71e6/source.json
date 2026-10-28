@@ -1,0 +1,14 @@
+{
+ "title": "lesson-observation-protocol-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/lesson-observation-protocol-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/lesson-observation-protocol-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a focused lesson observation protocol with specific look-fors and evidence collection methods. Use when planning peer observations, coaching visits, or developmental classroom visits.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.024Z"
+}

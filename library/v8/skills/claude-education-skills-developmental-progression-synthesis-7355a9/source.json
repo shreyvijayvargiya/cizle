@@ -1,0 +1,16 @@
+{
+ "title": "developmental-progression-synthesis",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/developmental-progression-synthesis/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/developmental-progression-synthesis/SKILL.md",
+ "license": "MIT",
+ "description": "Synthesise completed KUD charts into a developmental progression matrix and per-competency narrative sections. Use when you need a programme-level view of how knowledge, understanding, and performance develop across bands.",
+ "domains": [
+  "math",
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.010Z"
+}

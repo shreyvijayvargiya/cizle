@@ -1,0 +1,12 @@
+{
+ "title": "loading-states",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/loading-states/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/loading-states/SKILL.md",
+ "license": "MIT",
+ "description": "Use when indicating progress or waiting - spinners, progress bars, skeleton screens, shimmer effects, or any animation showing the system is working.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.114Z"
+}

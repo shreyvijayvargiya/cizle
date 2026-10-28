@@ -24,7 +24,7 @@ import type { Filters } from "@/lib/data";
 import type { GalleryFilters } from "@/lib/gallery";
 
 const str = (v: unknown) => (typeof v === "string" && v ? v : undefined);
-const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p), lang: str(s.lang), version: str(s.version) });
+const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic) });
 
 const root = createRootRoute({ component: Layout, notFoundComponent: NotFound });
 function r<const P extends string>(path: P, component: () => React.ReactNode) {
@@ -39,7 +39,7 @@ function SkillRoute() {
 }
 const post = createRoute({ getParentRoute: () => root, path: "/blog/$slug", component: function PostRoute() { const { slug } = useParams({ from: "/blog/$slug" }); return <BlogPostPage slug={slug} />; } });
 
-const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version) });
+const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic) });
 const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", validateSearch: galleryFilters, component: GalleryPage });
 
 const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });

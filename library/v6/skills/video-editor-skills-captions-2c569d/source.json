@@ -1,0 +1,15 @@
+{
+ "title": "captions",
+ "source": "M01",
+ "lang": "en",
+ "repo": "appariciojunior/video-editor-skills",
+ "path": "skills/captions/SKILL.md",
+ "url": "https://github.com/appariciojunior/video-editor-skills/blob/HEAD/skills/captions/SKILL.md",
+ "license": null,
+ "description": "Clean, readable burned-in style subtitles from the verbatim transcript - stutters and fillers removed, spoken slang written correctly, one short line at a time, names checked, every line read by Claude before import into DaVinci Resolve. Use for \"subtitles\", \"captions\", \"legendas\", or when the creator reports wrong words in the captions.",
+ "domains": [
+  "data",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.745Z"
+}

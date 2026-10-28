@@ -1,0 +1,16 @@
+{
+ "title": "hyperframes-cli",
+ "source": "M02",
+ "lang": "en",
+ "repo": "halicotampa-crypto/motion-pack",
+ "path": "community-templates/student-kit/.claude/skills/hyperframes-cli/SKILL.md",
+ "url": "https://github.com/halicotampa-crypto/motion-pack/blob/HEAD/community-templates/student-kit/.claude/skills/hyperframes-cli/SKILL.md",
+ "license": null,
+ "description": "HyperFrames CLI tool — hyperframes init, lint, preview, render, transcribe, tts, doctor, browser, info, upgrade, compositions, docs, benchmark. Use when scaffolding a project, linting or validating compositions, previewing in the studio, rendering to video, transcribing audio, generating TTS, or troubleshooting the HyperFrames environment.",
+ "domains": [
+  "gaming",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.576Z"
+}

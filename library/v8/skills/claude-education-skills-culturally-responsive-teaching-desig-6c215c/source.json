@@ -1,0 +1,14 @@
+{
+ "title": "culturally-responsive-teaching-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/global-cross-cultural-pedagogies/culturally-responsive-teaching-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/global-cross-cultural-pedagogies/culturally-responsive-teaching-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Redesign a lesson to centre students' cultural backgrounds, community knowledge, and lived experience. Use when making curriculum relevant and inclusive for diverse student populations.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.971Z"
+}

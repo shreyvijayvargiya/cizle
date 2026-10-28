@@ -1,0 +1,16 @@
+{
+ "title": "interactive-infographic-overlay",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dmccreary/claude-skills",
+ "path": "skills/archived/interactive-infographic-overlay/SKILL.md",
+ "url": "https://github.com/dmccreary/claude-skills/blob/HEAD/skills/archived/interactive-infographic-overlay/SKILL.md",
+ "license": null,
+ "description": "Generates an interactive diagram MicroSim with numbered callout markers or rectangular zones over a scientific illustration, supporting explore, quiz, and edit modes. Use for anatomy diagrams, labeled components, or comparison posters needing interactive annotations.",
+ "domains": [
+  "data",
+  "education",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.159Z"
+}

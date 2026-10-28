@@ -1,0 +1,16 @@
+{
+ "title": "curriculum-knowledge-architecture-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/curriculum-knowledge-architecture-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/curriculum-knowledge-architecture-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Map the epistemic structure of a subject to determine knowledge types and inform curriculum sequencing. Use when designing courses, restructuring programmes, or analysing knowledge architecture.",
+ "domains": [
+  "education",
+  "engineering",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.945Z"
+}

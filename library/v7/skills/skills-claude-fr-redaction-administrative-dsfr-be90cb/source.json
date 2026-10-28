@@ -1,0 +1,15 @@
+{
+ "title": "redaction-administrative-dsfr",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "fredericdol83-dot/skills-claude-fr",
+ "path": "skills/redaction-administrative-dsfr/SKILL.md",
+ "url": "https://github.com/fredericdol83-dot/skills-claude-fr/blob/HEAD/skills/redaction-administrative-dsfr/SKILL.md",
+ "license": "MIT",
+ "description": "Rédiger notes, synthèses, comptes rendus, éléments de langage et mails pour le secteur public, et produire des pages ou maquettes conformes au DSFR (Design System de l'État). À utiliser pour tout écrit ou interface destiné à une administration.",
+ "domains": [
+  "music",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T14:52:35.346Z"
+}

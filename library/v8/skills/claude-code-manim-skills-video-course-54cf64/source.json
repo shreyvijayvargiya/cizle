@@ -1,0 +1,14 @@
+{
+ "title": "video-course",
+ "source": "Q01",
+ "lang": "fr",
+ "repo": "AureClai/claude-code-manim-skills",
+ "path": "video-course/SKILL.md",
+ "url": "https://github.com/AureClai/claude-code-manim-skills/blob/HEAD/video-course/SKILL.md",
+ "license": "MIT",
+ "description": "Créer des vidéos éducatives longues combinant plusieurs animations Manim. Génère un script YAML validé par l'utilisateur, puis produit chaque scène et assemble la vidéo finale avec ffmpeg.",
+ "domains": [
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.100Z"
+}

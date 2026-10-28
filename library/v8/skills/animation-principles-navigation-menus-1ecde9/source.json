@@ -1,0 +1,14 @@
+{
+ "title": "navigation-menus",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/07-by-ui-element/navigation-menus/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/07-by-ui-element/navigation-menus/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating navigation bars, menus, sidebars, or wayfinding elements to create smooth, intuitive transitions",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.125Z"
+}

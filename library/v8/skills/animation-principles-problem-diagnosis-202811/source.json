@@ -1,0 +1,15 @@
+{
+ "title": "problem-diagnosis",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/02-by-thinking-style/problem-diagnosis/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/02-by-thinking-style/problem-diagnosis/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation \"feels wrong\" but you can't pinpoint why—debugging floaty movement, stiff characters, unclear action, or any motion that isn't working and needs systematic troubleshooting.",
+ "domains": [
+  "science",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.092Z"
+}

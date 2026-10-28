@@ -1,0 +1,127 @@
+{
+	"version": 9,
+	"description": "Harvest v9: video prompts for five more countries. Brazil, Spain, Mexico, Turkey and Vietnam come from the localized READMEs of YouMind-OpenLab/awesome-seedance-2-prompts (the same Seedance 2.0 video prompts, translated per country, many with a preview mp4); Russia, Indonesia, Turkey, Spain and Brazil also come from YouTube videos turned into prompts locally (yt-dlp download through the reverse API's downloader, keyframes, Claude Code analysis). 50 more Chinese video prompts (Veo 3, Jimeng, Kling) come from songguoxs/awesome-video-prompts. Found 2026-10-28; every repo checked against the v1-v8 graphs and every X post against all stored records. Ids start at R01. Run `node server/harvest/cli.js --v9`.",
+	"defaults": {
+		"min_records": 3,
+		"batch_size": 20,
+		"batch_pause_ms": 4000,
+		"source_pause_ms": 6000,
+		"max_parallel": 1
+	},
+	"start": "R01",
+	"nodes": [
+		{
+			"id": "R01",
+			"name": "Seedance 2.0 video prompts by country (Brazil, Spain, Mexico, Turkey, Vietnam)",
+			"adapter": "localized-readme",
+			"url": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts",
+			"license": "CC-BY-4.0",
+			"expect": 500,
+			"min_records": 300,
+			"verified": true,
+			"config": {
+				"repo": "YouMind-OpenLab/awesome-seedance-2-prompts",
+				"locales": [
+					{
+						"file": "README_pt-BR.md",
+						"country": "Brazil",
+						"lang": "pt"
+					},
+					{
+						"file": "README_es-ES.md",
+						"country": "Spain",
+						"lang": "es"
+					},
+					{
+						"file": "README_es-419.md",
+						"country": "Mexico",
+						"lang": "es"
+					},
+					{
+						"file": "README_tr-TR.md",
+						"country": "Turkey",
+						"lang": "tr"
+					},
+					{
+						"file": "README_vi-VN.md",
+						"country": "Vietnam",
+						"lang": "vi"
+					}
+				],
+				"video_urls": "video-urls.json",
+				"model_claim": "Seedance 2.0",
+				"license": "CC-BY-4.0",
+				"skip_known_x": true
+			},
+			"notes": "Cloned and counted: 15 README locales, each with 107 numbered video-prompt sections (prompt in a fenced block, author, X post link, thumbnail, some with an mp4 on the repo's releases; video-urls.json maps 1,000 more). CC BY 4.0. Only the English README is not used (no country). 10 of the 106 posts are already stored by v1-v8 and are skipped. Same videos in five translations: each translation is its own record, tagged with the country."
+		},
+		{
+			"id": "R02",
+			"name": "songguoxs/awesome-video-prompts (Veo 3, Jimeng, Kling video prompts)",
+			"adapter": "markdown-prompts",
+			"url": "https://github.com/songguoxs/awesome-video-prompts",
+			"license": null,
+			"expect": 45,
+			"min_records": 30,
+			"verified": true,
+			"config": {
+				"urls": [
+					"https://raw.githubusercontent.com/songguoxs/awesome-video-prompts/master/README.md"
+				],
+				"heading": "##",
+				"model_claim": "Veo 3 / Jimeng / Kling",
+				"min_chars": 150
+			},
+			"notes": "Cloned and counted: 50 numbered cases with JSON or text prompts and their X post link; none of the 50 X posts is in any earlier version. No licence file: preview plus link. Chinese README, English prompts."
+		},
+		{
+			"id": "R03",
+			"name": "YouTube videos turned into prompts (Turkey, Indonesia, Russia, Spain, Brazil)",
+			"adapter": "youtube-analysis",
+			"url": "https://www.youtube.com/",
+			"license": null,
+			"expect": 7,
+			"min_records": 5,
+			"verified": true,
+			"config": {},
+			"notes": "yt-dlp (through server/reverse/fetch.js) downloaded the first 60 s of 7 AI-generated short videos from channels in those countries (Kaan Alper, Pendekringkas, Studio Paprika, an AI-prompts channel, Cheems, Fábrica de Anúncios IA); ffmpeg made an 8-frame contact sheet of each and Claude Code wrote the scene prompts from the frames (the reverse API's own vision step needs OPENROUTER_API_KEY, which is not set). Three more Indonesian videos were refused by YouTube (403) and are not included. Prompts describe only what is visible and audible; the videos stay on this machine, the site uses YouTube's thumbnail and links to the original."
+		}
+	],
+	"edges": [
+		{
+			"from": "R01",
+			"to": "R02"
+		},
+		{
+			"from": "R02",
+			"to": "R03"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "geekjourneyx/awesome-ai-video-prompts",
+			"reason": "Prompt files are empty stubs ('content to be added')."
+		},
+		{
+			"id": "Z02",
+			"name": "Native-language GitHub video-prompt repos for Brazil, Spain, Russia, Turkey, Indonesia",
+			"reason": "Searched GitHub and the web in Portuguese, Spanish, Russian, Turkish and Indonesian: none exists; the localized YouMind READMEs and YouTube videos are the sources."
+		},
+		{
+			"id": "Z03",
+			"name": "YouMind README.md and the 10 other locales (de, fr, it, ja, ko, hi, th, zh, pt-PT)",
+			"reason": "English has no country; de, fr, hi are covered by v7; ja, ko, zh by v4; the rest are later countries. Kept for a later version."
+		},
+		{
+			"id": "Z04",
+			"name": "ulazai.com prompt directory, vivideo.ai examples",
+			"reason": "Websites that answered the harvester with an empty page; no confirmed licence. Leads only."
+		},
+		{
+			"id": "Z05",
+			"name": "YouTube tutorial videos (talking-head and screen-recording how-tos in pt, es, tr, vi)",
+			"reason": "They teach tools; reversing them gives screen recordings, not video prompts. Only AI-generated showcase videos were used."
+		}
+	]
+}

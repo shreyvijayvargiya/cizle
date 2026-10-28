@@ -1,0 +1,14 @@
+{
+ "title": "micro-100-200ms",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/micro-100-200ms/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/micro-100-200ms/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building micro-interactions between 100-200ms - tooltips appearing, dropdown opens, small feedback animations that feel quick but perceptible",
+ "domains": [
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.137Z"
+}

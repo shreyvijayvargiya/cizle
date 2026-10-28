@@ -1,0 +1,15 @@
+{
+ "title": "docker-python-lab",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dmccreary/claude-skills",
+ "path": "skills/archived/docker-python-lab/SKILL.md",
+ "url": "https://github.com/dmccreary/claude-skills/blob/HEAD/skills/archived/docker-python-lab/SKILL.md",
+ "license": null,
+ "description": "Generates an interactive Docker Python lab block for MkDocs textbook pages, where students write and run real Python code inside an isolated Docker container. Use this skill whenever someone asks to add a Python lab, code runner, interactive Python exercise, or runnable code block to a textbook page that uses Docker (not Skulpt). Also use it when adding multiple labs to a single page, setting up the shared CSS/JS infrastructure, or creating a timing/benchmark lab that shows students how long each phase takes. Always invoke this skill instead of writing docker lab HTML by hand.",
+ "domains": [
+  "science",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.160Z"
+}

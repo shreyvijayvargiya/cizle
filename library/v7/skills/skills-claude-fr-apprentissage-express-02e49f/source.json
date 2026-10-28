@@ -1,0 +1,15 @@
+{
+ "title": "apprentissage-express",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/apprentissage-express/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/apprentissage-express/SKILL.md",
+ "license": "MIT",
+ "description": "Enseigne n'importe quel sujet en combinant carte 80/20, analogies avec un domaine déjà maîtrisé, boucle de reformulation active et mise en pratique par scénarios réalistes. À utiliser dès que l'utilisateur veut apprendre un sujet, dit \\\"apprends-moi\\\", \\\"forme-moi sur\\\", \\\"j'ai X heures pour apprendre Y\\\", \\\"explique-moi comme si j'étais débutant\\\", ou demande un plan d'apprentissage, une fiche de révision, un quiz, un mode entraînement ou une montée en compétence rapide sur un sujet précis. Déclenche aussi sur \\\"coach-moi sur\\\" ou \\\"je veux maîtriser\\\".",
+ "domains": [
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:52:35.342Z"
+}

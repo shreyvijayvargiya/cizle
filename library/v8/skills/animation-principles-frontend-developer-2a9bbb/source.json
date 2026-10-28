@@ -1,0 +1,14 @@
+{
+ "title": "frontend-developer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/frontend-developer/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/frontend-developer/SKILL.md",
+ "license": "MIT",
+ "description": "Use when implementing animations in code, building UI transitions, or when a developer needs practical animation guidance for web/mobile applications.",
+ "domains": [
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.100Z"
+}

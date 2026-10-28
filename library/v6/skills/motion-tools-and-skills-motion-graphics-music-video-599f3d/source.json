@@ -1,0 +1,15 @@
+{
+ "title": "motion-graphics-music-video",
+ "source": "M01",
+ "lang": "en",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/motion-graphics-music-video/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/motion-graphics-music-video/SKILL.md",
+ "license": "MIT",
+ "description": "Create and revise animated character music videos from a supplied song and creative prompt, with researched storyboards, Fal character and video generation, p5 motion graphics, audio editing, and Swift VFX. Use for full music videos or revisions to their characters, scenes, animation, sound, and effects.",
+ "domains": [
+  "music",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.769Z"
+}

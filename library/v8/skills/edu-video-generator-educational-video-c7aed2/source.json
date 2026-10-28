@@ -1,0 +1,16 @@
+{
+ "title": "educational-video",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "jabezpauls/edu-video-generator",
+ "path": "skills/educational-video/SKILL.md",
+ "url": "https://github.com/jabezpauls/edu-video-generator/blob/HEAD/skills/educational-video/SKILL.md",
+ "license": null,
+ "description": ">-",
+ "domains": [
+  "education",
+  "math",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.085Z"
+}

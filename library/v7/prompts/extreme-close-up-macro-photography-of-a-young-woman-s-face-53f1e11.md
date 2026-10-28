@@ -1,0 +1,12 @@
+# Extreme Close-up Macro Photography of a Young Woman's Face
+
+By @senoldak · general
+Language: en · Domains: entertainment · Source: P01
+
+Source page: https://prompts.chat
+
+```
+Extreme close-up macro photograph of a young woman’s face during golden hour. Warm natural sunlight coming from the side creates glowing highlights on dewy, freckled skin. The right hazel eye is in sharp focus, reflecting light with high clarity. Shallow depth of field isolates the eye, skin texture, nose and lips while the background completely melts away. Skin texture is highly detailed and realistic, pores and freckles visible, no heavy retouching. Color palette dominated by warm bronze, tan, gold and soft brown tones. Calm, intimate, sun-kissed mood. Cinematic beauty photography, hyperrealistic, natural look, high detail.
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

@@ -1,0 +1,16 @@
+{
+ "title": "photo-slideshow",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/ecommerce-video-skills",
+ "path": "skills/photo-slideshow/SKILL.md",
+ "url": "https://github.com/iart-ai/ecommerce-video-skills/blob/HEAD/skills/photo-slideshow/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a photo slideshow\", \"turn photos into a video\", \"create a photo montage video\", \"make a picture slideshow with music\", \"build a memories/recap video from photos\", \"add Ken Burns pan/zoom to photos\", \"sync slide changes to the music beat\", or \"render a video from a folder of images\". Covers per-photo Ken Burns motion, transitions, beat-synced timing, mixed aspect-ratio handling, captions/dates, intro/outro cards, and templating a photo folder into a finished video.",
+ "domains": [
+  "music",
+  "math",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.211Z"
+}

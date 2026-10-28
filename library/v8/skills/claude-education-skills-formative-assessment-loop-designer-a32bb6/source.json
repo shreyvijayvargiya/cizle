@@ -1,0 +1,16 @@
+{
+ "title": "formative-assessment-loop-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/formative-assessment-loop-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/formative-assessment-loop-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design an adaptive assessment loop where each student response triggers the next instructional move. Use when building technology-enhanced formative assessment cycles.",
+ "domains": [
+  "education",
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.916Z"
+}

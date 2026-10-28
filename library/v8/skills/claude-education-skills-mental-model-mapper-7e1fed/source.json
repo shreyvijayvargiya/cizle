@@ -1,0 +1,16 @@
+{
+ "title": "mental-model-mapper",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/systems-thinking/mental-model-mapper/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/systems-thinking/mental-model-mapper/SKILL.md",
+ "license": "MIT",
+ "description": "Surface beliefs, assumptions, stories, and values shaping a system. Use when deeper mental models need examining with care and evidence.",
+ "domains": [
+  "health",
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.059Z"
+}

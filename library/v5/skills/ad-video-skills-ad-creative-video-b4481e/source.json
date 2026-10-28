@@ -1,0 +1,16 @@
+{
+ "title": "ad-creative-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/ad-video-skills",
+ "path": "skills/ad-creative-video/SKILL.md",
+ "url": "https://github.com/iart-ai/ad-video-skills/blob/HEAD/skills/ad-creative-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a video ad\", \"create an animated ad\", \"build a performance/UGC-style ad\", \"batch-produce ad creative variations\", \"generate ad variants for A/B testing\", \"swap headline/offer/CTA across many ad versions\", or \"export one ad in multiple aspect ratios for Meta/TikTok/Reels\". Covers ad hook structures, hook→CTA message-match, data-driven variant generation (1 template × CSV = N ads), multi-aspect export, and platform specs.",
+ "domains": [
+  "math",
+  "music",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.204Z"
+}

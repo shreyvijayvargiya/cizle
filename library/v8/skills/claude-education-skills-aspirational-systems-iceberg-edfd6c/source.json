@@ -1,0 +1,15 @@
+{
+ "title": "aspirational-systems-iceberg",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/systems-thinking/aspirational-systems-iceberg/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/systems-thinking/aspirational-systems-iceberg/SKILL.md",
+ "license": "MIT",
+ "description": "Design the deeper patterns, structures, artefacts, and mental models needed to grow a desired event. Use when a class imagines a better future.",
+ "domains": [
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.056Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "universal-practitioner",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/universal-practitioner/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/universal-practitioner/SKILL.md",
+ "license": "MIT",
+ "description": "Use when applying animation principles in any context, for any role, or when a general understanding of Disney's 12 principles is needed.",
+ "domains": [
+  "education",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.100Z"
+}

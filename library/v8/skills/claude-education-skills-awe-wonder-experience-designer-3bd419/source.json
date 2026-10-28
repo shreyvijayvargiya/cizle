@@ -1,0 +1,16 @@
+{
+ "title": "awe-wonder-experience-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/awe-wonder-experience-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/awe-wonder-experience-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a moment of awe or wonder that hooks curiosity and deepens emotional engagement with content. Use when opening units, introducing surprising material, or reigniting student interest.",
+ "domains": [
+  "education",
+  "nature",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.065Z"
+}

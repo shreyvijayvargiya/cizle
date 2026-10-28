@@ -1,0 +1,15 @@
+{
+ "title": "timing-calibration",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/12-by-problem-type/timing-calibration/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/12-by-problem-type/timing-calibration/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation speed feels wrong—too fast, too slow, or inconsistent",
+ "domains": [
+  "edtech",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.154Z"
+}

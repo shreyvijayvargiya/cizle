@@ -1,0 +1,16 @@
+{
+ "title": "biophilic-learning-environment-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/environmental-experiential-learning/biophilic-learning-environment-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/environmental-experiential-learning/biophilic-learning-environment-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Redesign a learning space using biophilic design principles to improve focus, calm, and wellbeing. Use when classroom environment contributes to restlessness, poor attention, or stress.",
+ "domains": [
+  "education",
+  "nature",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.962Z"
+}

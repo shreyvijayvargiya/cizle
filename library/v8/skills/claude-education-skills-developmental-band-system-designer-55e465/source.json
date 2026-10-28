@@ -1,0 +1,15 @@
+{
+ "title": "developmental-band-system-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/developmental-band-system-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/developmental-band-system-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a developmental band system mapping student growth from early childhood through upper secondary. Use when building competency-based curriculum architecture for a school or programme.",
+ "domains": [
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.008Z"
+}

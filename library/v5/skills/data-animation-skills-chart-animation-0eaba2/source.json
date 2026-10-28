@@ -1,0 +1,15 @@
+{
+ "title": "chart-animation",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/data-animation-skills",
+ "path": "skills/chart-animation/SKILL.md",
+ "url": "https://github.com/iart-ai/data-animation-skills/blob/HEAD/skills/chart-animation/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a bar chart race\", \"turn a CSV into a video\", \"build an animated data visualization\", \"create an animated statistics video\", \"animate a chart/graph\", \"make a number counter/ticker\", \"animate a ranking over time\", or \"batch-render one chart template across many datasets\". Covers data-driven keyframing, value interpolation, rank transitions, counters, pacing, annotation, and template×data batch output.",
+ "domains": [
+  "data",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.207Z"
+}

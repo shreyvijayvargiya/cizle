@@ -1,0 +1,12 @@
+{
+ "title": "audit-anti-vibe-coding",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/audit-anti-vibe-coding/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/audit-anti-vibe-coding/SKILL.md",
+ "license": "MIT",
+ "description": "Audite et corrige les tics visuels génériques de code généré par IA (dégradés criards, ombres partout, emojis en icônes, verre dépoli décoratif, cartes symétriques, etc.) sur un projet WEB EXISTANT, quel que soit le stack (HTML statique, React, Tailwind, WordPress...). À utiliser dès que l'utilisateur dit \\\"audit anti vibe-coding\\\", \\\"ça sent l'IA\\\", \\\"corrige les tics IA\\\", \\\"nettoie ce site généré\\\", ou demande de revoir/professionnaliser un site déjà codé. Différent de brief-artisan : ce skill corrige du code EXISTANT, il n'en génère pas de nouveau. Déclenche aussi quand l'utilisateur partage un site ou un composant déjà produit (par lui, par une autre IA, ou par une session précédente) et veut qu'on le rende moins générique.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:52:35.348Z"
+}

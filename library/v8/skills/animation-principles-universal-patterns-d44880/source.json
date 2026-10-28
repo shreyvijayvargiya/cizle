@@ -1,0 +1,12 @@
+{
+ "title": "universal-patterns",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/universal-patterns/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/universal-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating any animation type - provides foundational timing, easing, and principle application that applies to all motion in interfaces.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.115Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "Animation Principles - Troubleshooting",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/04-by-skill-level/troubleshooting/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/04-by-skill-level/troubleshooting/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation feels wrong and you need to diagnose which principle is failing or being misapplied",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.107Z"
+}

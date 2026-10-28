@@ -1,0 +1,16 @@
+{
+ "title": "reference-to-motion",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/reference-to-motion/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/reference-to-motion/SKILL.md",
+ "license": "MIT",
+ "description": "Turn references you admire into a scene-by-scene Claude Motion prompt for your own topic and brand. Takes a video for the moves (screenshots, frames or a contact sheet of a reel or ad) and, optionally, a look reference for the style (a website, a brand, a moodboard). Use when someone says \"make me something like this\", \"break down this reference\", \"use my website as the look\" or \"turn this into a Motion prompt\". Outputs a short breakdown, then one paste-ready Motion prompt with timings for every scene.",
+ "domains": [
+  "product",
+  "entertainment",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.573Z"
+}

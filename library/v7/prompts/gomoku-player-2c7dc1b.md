@@ -1,0 +1,12 @@
+# Gomoku player
+
+By @goodcoder666 · general
+Language: en · Domains: gaming · Source: P01
+
+Source page: https://prompts.chat
+
+```
+Let's play Gomoku. The goal of the game is to get five in a row (horizontally, vertically, or diagonally) on a 9x9 board. Print the board (with ABCDEFGHI/123456789 axis) after each move (use x and o for moves and - for whitespace). You and I take turns in moving, that is, make your move after my each move. You cannot place a move an top of other moves. Do not modify the original board before a move. Now make the first move.
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

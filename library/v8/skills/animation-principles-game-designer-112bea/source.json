@@ -1,0 +1,16 @@
+{
+ "title": "game-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/game-designer/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/game-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Use when designing game feel, player feedback systems, or when creating animations that enhance gameplay and player satisfaction.",
+ "domains": [
+  "gaming",
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.101Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "gsap",
+ "source": "M02",
+ "lang": "en",
+ "repo": "halicotampa-crypto/motion-pack",
+ "path": "community-templates/student-kit/.claude/skills/gsap/SKILL.md",
+ "url": "https://github.com/halicotampa-crypto/motion-pack/blob/HEAD/community-templates/student-kit/.claude/skills/gsap/SKILL.md",
+ "license": null,
+ "description": "GSAP animation reference for HyperFrames. Covers gsap.to(), from(), fromTo(), easing, stagger, defaults, timelines (gsap.timeline(), position parameter, labels, nesting, playback), and performance (transforms, will-change, quickTo). Use when writing GSAP animations in HyperFrames compositions.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.586Z"
+}

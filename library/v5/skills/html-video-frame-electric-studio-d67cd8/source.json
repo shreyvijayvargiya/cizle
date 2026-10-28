@@ -1,0 +1,14 @@
+{
+ "title": "frame-electric-studio",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-electric-studio/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-electric-studio/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Two-panel split with quote as hero — white/blue panels open from center, accent bar grows, quote reveals line by line.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.493Z"
+}

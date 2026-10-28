@@ -1,0 +1,1 @@
+{"v6-M03-cindyxu1030-motion-graphics-prompt-bank-data-01-countup-dashboard-md":"Create a 1080x1920 vertical HyperFrames composition — a 6.5-second animated stat\ndashboard.\n\nReport title: {TITLE e.g. \"近30天数据战报\"} + period: {PERIOD e.g. \"06.01–06.30\"}.\nHERO metric: {HERO_LABEL e.g. \"播放量\"} = {HERO_VALUE e.g. 186500}.\n4 secondary metrics: {LABEL: VALUE, ×4 —…"}

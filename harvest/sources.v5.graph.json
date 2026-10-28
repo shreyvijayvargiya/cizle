@@ -1,0 +1,181 @@
+{
+	"version": 5,
+	"description": "Harvest v5: Remotion and HyperFrames skills and prompts for motion designers, found 2026-10-28 (GitHub search by keyword, then every candidate shallow-cloned and counted). Ids start at L01 so they never clash with v1 (G*, W*), v2 (N*), v3 (V*) or v4 (K*). Run with `node server/harvest/cli.js --v5`. Output: harvest/data/L*/records.jsonl, then library/v5/skills.",
+	"defaults": {
+		"min_records": 10,
+		"batch_size": 20,
+		"batch_pause_ms": 4000,
+		"source_pause_ms": 6000,
+		"max_parallel": 2
+	},
+	"start": "L01",
+	"nodes": [
+		{
+			"id": "L01",
+			"name": "Remotion skills (official + community + iart-ai motion packs)",
+			"adapter": "github-skills",
+			"url": "https://github.com/remotion-dev/skills",
+			"expect": 65,
+			"min_records": 40,
+			"verified": true,
+			"model_claim": null,
+			"config": {
+				"repos": [
+					{
+						"repo": "remotion-dev/skills",
+						"license": "Remotion company licence"
+					},
+					{
+						"repo": "haidrrrry/claude-remotion-skill",
+						"license": "MIT"
+					},
+					{
+						"repo": "wshuyi/remotion-video-skill"
+					},
+					{
+						"repo": "Vincentwei1021/video-shotcraft",
+						"license": "Apache-2.0"
+					},
+					{
+						"repo": "Vincentwei1021/video-talkcraft"
+					},
+					{
+						"repo": "Vincentwei1021/anything2explainer"
+					},
+					{
+						"repo": "digitalsamba/claude-code-video-toolkit",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/ad-video-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/data-animation-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/ecommerce-video-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/explainer-video-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/kinetic-typography-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/map-animation-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/motion-design-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/text-message-video-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/tiktok-video-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "iart-ai/youtube-video-skills",
+						"license": "MIT"
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: remotion-dev/skills 12, haidrrrry 1, wshuyi 1, Vincentwei1021 x3 (1 each), digitalsamba toolkit 14 (mixed video toolkit, 2 remotion skills), iart-ai packs: ad 3, data-animation 3, ecommerce 3, explainer 5, kinetic 1, map 1, motion-design 9, text-message 1, tiktok 4, youtube 2. Licences: Remotion skills follow Remotion's company licence (credit and link, preview only); wshuyi and Vincentwei1021 repos (except video-shotcraft, Apache-2.0) have no clear licence: preview plus link."
+		},
+		{
+			"id": "L02",
+			"name": "HyperFrames skills and templates",
+			"adapter": "github-skills",
+			"url": "https://github.com/heygen-com/hyperframes",
+			"expect": 30,
+			"min_records": 20,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "heygen-com/hyperframes",
+						"license": "Apache-2.0"
+					},
+					{
+						"repo": "nexu-io/html-video",
+						"license": "Apache-2.0"
+					},
+					{
+						"repo": "howseen-ai/claude-motion-design",
+						"license": "MIT"
+					},
+					{
+						"repo": "Tejashmakwana/motionmaxxing",
+						"license": "Apache-2.0"
+					},
+					{
+						"repo": "feicaiclub/video-spec-builder",
+						"license": "MIT"
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: heygen-com/hyperframes 7 (hyperframes, hyperframes-cli, hyperframes-registry, remotion-to-hyperframes, figma, media-use, slideshow), nexu-io/html-video 14 HyperFrames templates, howseen-ai 1, Tejashmakwana/motionmaxxing 1, feicaiclub/video-spec-builder 1 (Chinese)."
+		}
+	],
+	"edges": [
+		{
+			"from": "L01",
+			"to": "L02"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "heygen-com/hyperframes-launches",
+			"reason": "Example compositions and storyboards, no SKILL.md; not prompts or skills."
+		},
+		{
+			"id": "Z02",
+			"name": "joeseesun/opus-video-prompts",
+			"reason": "General Opus 5.5 video prompts (18 files, 54 cases) with no licence; its X posts are the same ones already harvested in v1-v3, only 2 are Remotion. Mirror. (Also judged too small in v4 as Y02.)"
+		},
+		{
+			"id": "Z03",
+			"name": "op7418/guizang-product-video-skill",
+			"reason": "AGPL-3.0 with a separate commercial licence."
+		},
+		{
+			"id": "Z04",
+			"name": "calesthio/OpenMontage",
+			"reason": "AGPL-3.0, a production system, not a prompt or skill collection."
+		},
+		{
+			"id": "Z05",
+			"name": "zhuyansen/awesome-claude-video-skills",
+			"reason": "A list of 362 repo links, no skills of its own; same author as v2's N03. Used for leads only."
+		},
+		{
+			"id": "Z06",
+			"name": "blixvip/MotionClone",
+			"reason": "No SKILL.md, a tool."
+		},
+		{
+			"id": "Z07",
+			"name": "iart-ai/motion-skills",
+			"reason": "Index README of the 19 packs; the packs themselves are L01."
+		},
+		{
+			"id": "Z08",
+			"name": "iart-ai packs without Remotion/HyperFrames (freelance, web-animation, webgl, javascript, lower-thirds, b-roll, talking-head, generative, manim)",
+			"reason": "Not Remotion or HyperFrames based."
+		},
+		{
+			"id": "Z09",
+			"name": "nexu-io/html-anything, latent-spaces/brag, pireel/pireel",
+			"reason": "Apps, not skill/prompt collections."
+		}
+	]
+}

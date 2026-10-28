@@ -1,0 +1,15 @@
+{
+ "title": "object-separation",
+ "source": "M01",
+ "lang": "en",
+ "repo": "Barty-Bart/motion-graphics",
+ "path": "skills/object-separation/SKILL.md",
+ "url": "https://github.com/Barty-Bart/motion-graphics/blob/HEAD/skills/object-separation/SKILL.md",
+ "license": null,
+ "description": "Separate a person, product or hand from the background in a video, on the user's own computer with SAM 2. Scans the machine first to pick the right model size, then outputs the same video with the separated subject highlighted in green, plus frame-by-frame masks. Use when someone wants to separate, isolate, cut out or rotoscope something in a video.",
+ "domains": [
+  "engineering",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.785Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "broll-onboarding",
+ "source": "M02",
+ "lang": "en",
+ "repo": "erduo1998-cell/erduo-broll-loop-engineering",
+ "path": "erduo-broll-loop-engineering/stages/broll-onboarding/SKILL.md",
+ "url": "https://github.com/erduo1998-cell/erduo-broll-loop-engineering/blob/HEAD/erduo-broll-loop-engineering/stages/broll-onboarding/SKILL.md",
+ "license": "MIT",
+ "description": "Diagnose and repair installation readiness only when the cached first-run evidence is missing or a real machine/tool fact changed.",
+ "domains": [
+  "edtech",
+  "engineering",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.618Z"
+}

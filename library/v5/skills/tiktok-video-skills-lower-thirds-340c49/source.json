@@ -1,0 +1,15 @@
+{
+ "title": "lower-thirds",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/tiktok-video-skills",
+ "path": "skills/lower-thirds/SKILL.md",
+ "url": "https://github.com/iart-ai/tiktok-video-skills/blob/HEAD/skills/lower-thirds/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an animated lower third\", \"add lower thirds\", \"create a name tag/name lower third\", \"build broadcast titles\", \"animate a title/name/role caption\", \"do a speaker name overlay\", or \"template lower thirds across a list of names\". Covers enter/exit animation (slide/wipe/mask reveal), in/out timing & dwell, safe-area & broadcast conventions, name-vs-role type hierarchy, brand styling, and rendering one design across many names.",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.239Z"
+}

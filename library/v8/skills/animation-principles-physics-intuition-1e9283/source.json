@@ -1,0 +1,16 @@
+{
+ "title": "physics-intuition",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/02-by-thinking-style/physics-intuition/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/02-by-thinking-style/physics-intuition/SKILL.md",
+ "license": "MIT",
+ "description": "Use when motion needs to feel physically grounded—objects falling, characters jumping, things colliding, or any element that should obey believable weight and momentum.",
+ "domains": [
+  "science",
+  "entertainment",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.097Z"
+}

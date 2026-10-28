@@ -1,0 +1,15 @@
+{
+ "title": "x-posting-license",
+ "source": "M02",
+ "lang": "en",
+ "repo": "heygen-com/hyperframes-community-skills",
+ "path": "skills/x-posting-license/SKILL.md",
+ "url": "https://github.com/heygen-com/hyperframes-community-skills/blob/HEAD/skills/x-posting-license/SKILL.md",
+ "license": "Apache-2.0",
+ "description": ">",
+ "domains": [
+  "math",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.553Z"
+}

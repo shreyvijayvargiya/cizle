@@ -1,0 +1,14 @@
+{
+ "title": "manim-skill",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "Yusuke710/manim-skill",
+ "path": "skills/manim-skill/SKILL.md",
+ "url": "https://github.com/Yusuke710/manim-skill/blob/HEAD/skills/manim-skill/SKILL.md",
+ "license": "MIT",
+ "description": "Create mathematical animations with Manim Community Edition(manimce), with optional TTS voiceover and synced subtitles. Generates distinctive, production-grade animations that avoid generic \"AI slop\" aesthetics. Use when user wants to animate concepts, equations, illustrate proofs, visualize algorithms, create math explainers, or produce 3Blue1Brown-style videos.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.099Z"
+}

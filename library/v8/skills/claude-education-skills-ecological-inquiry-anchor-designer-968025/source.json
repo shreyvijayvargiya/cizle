@@ -1,0 +1,16 @@
+{
+ "title": "ecological-inquiry-anchor-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/environmental-experiential-learning/ecological-inquiry-anchor-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/environmental-experiential-learning/ecological-inquiry-anchor-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design an inquiry sequence anchored in a local ecosystem that embeds science or geography curriculum content. Use when teaching through local living systems like gardens, ponds, or hedgerows.",
+ "domains": [
+  "education",
+  "science",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.962Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "teacher",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "irfanalimd/explainer",
+ "path": "skills/teacher/SKILL.md",
+ "url": "https://github.com/irfanalimd/explainer/blob/HEAD/skills/teacher/SKILL.md",
+ "license": "MIT",
+ "description": "The words pass of an Explainer figure. Writes or revises lesson.mjs beside a figure.mjs (layered steps, chapter enter cards, a picture map, asks with per-option feedback) against the real run, then can run the review rounds. Use as /explainer:teacher <figure.mjs> to re-teach an existing figure, or when the explainer teacher agent loads it.",
+ "domains": [
+  "education",
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.087Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "auto-cut",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/auto-cut/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/auto-cut/SKILL.md",
+ "license": "MIT",
+ "description": "Cut silences and dead weight (fillers, repeated takes, false starts) out of a talking-head video BEFORE building the edit - call the measured /auto-trim API instead of hand-rolling ffmpeg, review the dead-weight candidates it returns, and do the one job only a human/AI can do (spotting repeated POINTS). Read this when the brief enables \"Tự động cắt ngắn video\" (autoCut) or the user complains that the video still has dead weight/silences.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.596Z"
+}

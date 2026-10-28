@@ -1,0 +1,16 @@
+{
+ "title": "shot-composition",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/motion-design-skills",
+ "path": "skills/shot-composition/SKILL.md",
+ "url": "https://github.com/iart-ai/motion-design-skills/blob/HEAD/skills/shot-composition/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"compose a frame\", \"set up a grid\", \"plan shot composition\", \"place the focal point\", \"decide where elements enter and exit\", \"add a parallax/camera move\", \"adapt a layout for 16:9 / 9:16 / 1:1\", or \"keep content inside safe areas\". Covers grids, safe areas, focal hierarchy, and 2D/3D camera framing.",
+ "domains": [
+  "music",
+  "agriculture",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.240Z"
+}

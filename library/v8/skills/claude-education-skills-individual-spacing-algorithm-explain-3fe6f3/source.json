@@ -1,0 +1,14 @@
+{
+ "title": "individual-spacing-algorithm-explainer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/individual-spacing-algorithm-explainer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/individual-spacing-algorithm-explainer/SKILL.md",
+ "license": "MIT",
+ "description": "Explain and configure individual spacing algorithms using student performance data and forgetting curves. Use when personalising retention schedules in adaptive learning platforms.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.918Z"
+}

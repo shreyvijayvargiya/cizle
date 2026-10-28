@@ -1,0 +1,15 @@
+{
+ "title": "excitement-energy",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/06-by-emotional-outcome/excitement-energy/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/06-by-emotional-outcome/excitement-energy/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating animations that generate enthusiasm, build anticipation, or create high-energy experiences.",
+ "domains": [
+  "music",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.118Z"
+}

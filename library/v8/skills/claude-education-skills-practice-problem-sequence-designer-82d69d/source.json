@@ -1,0 +1,16 @@
+{
+ "title": "practice-problem-sequence-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/explicit-instruction/practice-problem-sequence-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/explicit-instruction/practice-problem-sequence-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Generate a scaffolded sequence of practice problems with graduated difficulty and strategic variability. Use when creating worksheets, homework sets, or independent practice materials.",
+ "domains": [
+  "education",
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.969Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "dip-pen-sketch-animation",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "Reblis/dip-pen-sketch-animation-skill",
+ "path": "SKILL.md",
+ "url": "https://github.com/Reblis/dip-pen-sketch-animation-skill/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Turn a photo into a rough dip-pen sketch DRAWING-PROCESS VIDEO — outputs three files; the black-ink outline, the marker-colored version (same matched linework as dip-pen-sketch-combo), AND an MP4 animation of the process; pen strokes draw the ink first, then marker strokes sweep the color in. Use when the user says \"dip-pen-sketch-animation\", \"dip pen animation\", \"animate the sketch\", \"drawing process video\", \"sketch timelapse\", \"philly sketch video\", \"sketch reveal video\", or asks for a video/animation of a photo being drawn, inked, or colored in. By Reblis.com.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:54:27.086Z"
+}

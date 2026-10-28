@@ -1,0 +1,16 @@
+{
+ "title": "contextualisation-skill-builder",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/contextualisation-skill-builder/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/contextualisation-skill-builder/SKILL.md",
+ "license": "MIT",
+ "description": "Build students' capacity to place historical documents in their temporal and social context. Use when students read sources without considering what was happening at the time, or know the context but don't deploy it.",
+ "domains": [
+  "history",
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.982Z"
+}

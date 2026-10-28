@@ -1,0 +1,15 @@
+{
+ "title": "color-grading",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/color-grading/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/color-grading/SKILL.md",
+ "license": "MIT",
+ "description": "Color grading video in the AI Edit Video system - delog/tonemap HDR-HLG-log footage, apply the color preset the user approved in the UI, and the visual verification workflow. Read when the edit prompt has a \"Chỉnh màu\" (color grading) section, when the source footage is HDR/log, or when the user asks for grading/delog.",
+ "domains": [
+  "entertainment",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.598Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "comfort-safety",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/06-by-emotional-outcome/comfort-safety/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/06-by-emotional-outcome/comfort-safety/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating animations that reassure users, reduce anxiety, or communicate protection and security.",
+ "domains": [
+  "science",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.117Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "frame-pentagram-stat",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-pentagram-stat/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-pentagram-stat/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Swiss-grid statistic anchor — giant number, red accent, growing bars, black data bar. Rational and editorial.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.496Z"
+}

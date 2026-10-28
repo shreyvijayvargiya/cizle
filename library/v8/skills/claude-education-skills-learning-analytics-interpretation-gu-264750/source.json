@@ -1,0 +1,16 @@
+{
+ "title": "learning-analytics-interpretation-guide",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/learning-analytics-interpretation-guide/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/learning-analytics-interpretation-guide/SKILL.md",
+ "license": "MIT",
+ "description": "Interpret learning analytics data and translate dashboard findings into actionable teaching decisions. Use when reviewing LMS data, quiz patterns, or engagement metrics.",
+ "domains": [
+  "education",
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.922Z"
+}

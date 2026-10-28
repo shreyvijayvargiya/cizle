@@ -1,0 +1,16 @@
+{
+ "title": "self-determined-project-design-protocol",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/self-determined-project-design-protocol/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/self-determined-project-design-protocol/SKILL.md",
+ "license": "MIT",
+ "description": "Structure a student's self-determined project with mentoring checkpoints, competency alignment, and reflection. Use when guiding student-led projects within a competency-based framework.",
+ "domains": [
+  "education",
+  "music",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.021Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "state-changes",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/state-changes/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/state-changes/SKILL.md",
+ "license": "MIT",
+ "description": "Use when elements transform in place - toggle switches, expanding accordions, checkbox animations, button states, or any transformation without entering/exiting.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.116Z"
+}

@@ -1,0 +1,216 @@
+{
+	"version": 6,
+	"description": "Harvest v6: more Remotion and HyperFrames skills and prompts, found 2026-10-28 (a second GitHub search round with new keywords, every candidate shallow-cloned and counted, repos already in v1-v5 left out). Ids start at M01 so they never clash with v1 (G*, W*), v2 (N*), v3 (V*), v4 (K*) or v5 (L*). Run with `node server/harvest/cli.js --v6`. Output: harvest/data/M*/records.jsonl, then library/v6.",
+	"defaults": {
+		"min_records": 10,
+		"batch_size": 20,
+		"batch_pause_ms": 4000,
+		"source_pause_ms": 6000,
+		"max_parallel": 2
+	},
+	"start": "M01",
+	"nodes": [
+		{
+			"id": "M01",
+			"name": "Remotion skills (community, round 2)",
+			"adapter": "github-skills",
+			"url": "https://github.com/Boriwatopal/agent-skill-remotion-motion-graphics",
+			"expect": 45,
+			"min_records": 20,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "Boriwatopal/agent-skill-remotion-motion-graphics",
+						"license": "MIT"
+					},
+					{
+						"repo": "fernandokaraka/remotion-motion-graphics-skill",
+						"license": "MIT"
+					},
+					{
+						"repo": "t3knobox/klik-anim-skill-creation"
+					},
+					{
+						"repo": "appariciojunior/video-editor-skills"
+					},
+					{
+						"repo": "Hainrixz/motion-architect",
+						"license": "MIT"
+					},
+					{
+						"repo": "aaksa/facecammaxxing"
+					},
+					{
+						"repo": "VisualxIntelligence/motion-tools-and-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "Barty-Bart/motion-graphics"
+					},
+					{
+						"repo": "apenasdouglas/ai-motion-library",
+						"license": "MIT"
+					},
+					{
+						"repo": "bestagentkits/motion-video-skill",
+						"license": "MIT"
+					},
+					{
+						"repo": "Kianzzz/xilo-opus-video",
+						"license": "MIT"
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: Boriwatopal 1, fernandokaraka 1, t3knobox 3, appariciojunior 12, Hainrixz 1, aaksa 1, VisualxIntelligence 17, Barty-Bart 6, apenasdouglas 1, bestagentkits 1, Kianzzz 1. Repos with no licence file or NOASSERTION: preview plus link."
+		},
+		{
+			"id": "M02",
+			"name": "HyperFrames skills (community, round 2)",
+			"adapter": "github-skills",
+			"url": "https://github.com/heygen-com/hyperframes-community-skills",
+			"expect": 90,
+			"min_records": 40,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "heygen-com/hyperframes-community-skills",
+						"license": "Apache-2.0"
+					},
+					{
+						"repo": "charlie947/motion-graphics-skills",
+						"license": "MIT"
+					},
+					{
+						"repo": "halicotampa-crypto/motion-pack"
+					},
+					{
+						"repo": "timscheuerai/launch-video-kit",
+						"license": "MIT"
+					},
+					{
+						"repo": "csalamida/apple-video-kit",
+						"license": "MIT"
+					},
+					{
+						"repo": "ItsssssJack/claude-video-2",
+						"license": "MIT"
+					},
+					{
+						"repo": "Sunwood-ai-labs/hyperframes-motion-reel-skill",
+						"license": "MIT"
+					},
+					{
+						"repo": "georgeantonopoulos/hyperframes-composer",
+						"license": "MIT"
+					},
+					{
+						"repo": "notivn/AIEV",
+						"license": "MIT"
+					},
+					{
+						"repo": "erduo1998-cell/erduo-broll-loop-engineering",
+						"license": "MIT"
+					},
+					{
+						"repo": "Jakeschincariol/video-production-skills"
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: heygen-com/hyperframes-community-skills 8, charlie947 15, halicotampa-crypto/motion-pack 8, timscheuerai 10, csalamida 1, ItsssssJack 1, Sunwood-ai-labs 1, georgeantonopoulos 1, notivn/AIEV 20, erduo1998-cell 14, Jakeschincariol 13 (no licence file: preview plus link)."
+		},
+		{
+			"id": "M03",
+			"name": "HyperFrames prompt libraries",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/Markjinli/awesome-hyperframes-prompt",
+			"expect": 105,
+			"min_records": 60,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "Markjinli/awesome-hyperframes-prompt",
+						"include": [
+							"^templates/.+/prompt\\.md$"
+						],
+						"lang": "en"
+					},
+					{
+						"repo": "tonbistudio/hyperframes-prompts",
+						"include": [
+							"^prompts/\\d+.*\\.md$"
+						]
+					},
+					{
+						"repo": "TenexTony/tenex-hyperframes",
+						"include": [
+							"^prompts/\\d+.*\\.md$"
+						]
+					},
+					{
+						"repo": "cindyxu1030/motion-graphics-prompt-bank",
+						"license": "NOASSERTION",
+						"include": [
+							"^(captions|data|logo|product-ads|trailer|transitions|vfx)/\\d+.*\\.md$"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted prompt files: Markjinli/awesome-hyperframes-prompt 28 templates/**/prompt.md (no licence file), tonbistudio 4 and TenexTony 17 (no licence file), cindyxu1030/motion-graphics-prompt-bank 58 entries each with a rendered GIF (kept as the preview picture; Chinese README, English or Chinese prompts). New adapter github-prompt-files: one record per markdown file."
+		}
+	],
+	"edges": [
+		{
+			"from": "M01",
+			"to": "M02"
+		},
+		{
+			"from": "M02",
+			"to": "M03"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "vivmagarwal/remotion-effects-library",
+			"reason": "79 Remotion effects as code, not prompts or skills (no SKILL.md)."
+		},
+		{
+			"id": "Z02",
+			"name": "actionow-ai/vvv",
+			"reason": "331 MB clone for one SKILL.md; a template runtime, not a prompt collection."
+		},
+		{
+			"id": "Z03",
+			"name": "geekjourneyx/hyperframes-motion-director, op7418/guizang-product-video-skill",
+			"reason": "AGPL-3.0 (op7418 also has a separate commercial licence)."
+		},
+		{
+			"id": "Z04",
+			"name": "Moessif/code-video-showcase, bangtutorial/bang-motion, farhan-syah/motion-video-skill, liyupi/ai-promo-video-maker, smwbev/framewright",
+			"reason": "Cloned and read: no Remotion or HyperFrames in their SKILL.md; off topic."
+		},
+		{
+			"id": "Z05",
+			"name": "tavily-api/awesome-hyperframes, TokenTempoAI/awesome-hyperframes, dev-gowtham08/awesome-hyperframes",
+			"reason": "Link lists or asset dumps without prompts or skills of their own."
+		},
+		{
+			"id": "Z06",
+			"name": "remotion-dev/template-tiktok, template-audiogram, reactvideoeditor/remotion-templates, nyanko3141592/remotion-voicevox-template",
+			"reason": "Code templates, no prompts or SKILL.md."
+		},
+		{
+			"id": "Z07",
+			"name": "calesthio/OpenMontage, 0xsline/OpenChatCut, nexu-io/html-anything",
+			"reason": "AGPL or apps, not collections."
+		},
+		{
+			"id": "Z08",
+			"name": "zhuyansen/awesome-claude-video-skills",
+			"reason": "Link list; used for leads only (also v5 Z05)."
+		}
+	]
+}

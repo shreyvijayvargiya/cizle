@@ -1,0 +1,12 @@
+{
+ "title": "gesture-responses",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/gesture-responses/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/gesture-responses/SKILL.md",
+ "license": "MIT",
+ "description": "Use when responding to touch or click interactions - button presses, drag feedback, swipe responses, tap ripples, or any direct manipulation animation.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.111Z"
+}

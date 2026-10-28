@@ -1,0 +1,15 @@
+{
+ "title": "metacognitive-prompt-library",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/self-regulated-learning/metacognitive-prompt-library/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/self-regulated-learning/metacognitive-prompt-library/SKILL.md",
+ "license": "MIT",
+ "description": "Build a library of metacognitive prompts targeting planning, monitoring, or evaluation for a specific task. Use when developing students' thinking-about-thinking during independent work.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.040Z"
+}

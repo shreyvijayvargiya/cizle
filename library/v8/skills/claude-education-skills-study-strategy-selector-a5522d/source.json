@@ -1,0 +1,15 @@
+{
+ "title": "study-strategy-selector",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/self-regulated-learning/study-strategy-selector/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/self-regulated-learning/study-strategy-selector/SKILL.md",
+ "license": "MIT",
+ "description": "Select evidence-based study strategies matched to material type, learning goal, and student habits. Use when advising students on revision techniques, homework, or independent study approaches.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.041Z"
+}

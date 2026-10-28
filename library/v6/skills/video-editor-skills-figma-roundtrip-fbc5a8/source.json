@@ -1,0 +1,14 @@
+{
+ "title": "figma-roundtrip",
+ "source": "M01",
+ "lang": "en",
+ "repo": "appariciojunior/video-editor-skills",
+ "path": "skills/figma-roundtrip/SKILL.md",
+ "url": "https://github.com/appariciojunior/video-editor-skills/blob/HEAD/skills/figma-roundtrip/SKILL.md",
+ "license": null,
+ "description": "Keeps a video motion-graphics kit and its editable Figma boards in sync - the creator designs and tweaks in Figma, Claude ports the changes into the Remotion components and brand tokens, and mirrors code changes back. Use when the creator says they changed the boards, wants a new graphic designed, or wants the kit visible in Figma.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.747Z"
+}

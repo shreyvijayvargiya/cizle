@@ -1,0 +1,15 @@
+{
+ "title": "ai-claim-checker",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/ai-claim-checker/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/ai-claim-checker/SKILL.md",
+ "license": "MIT",
+ "description": "After any AI-generated explanation, require the learner to identify one place it could be wrong, one thing to check, and one source to consult. Builds epistemic vigilance — treats AI output as a claim to evaluate, not truth to absorb.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.042Z"
+}

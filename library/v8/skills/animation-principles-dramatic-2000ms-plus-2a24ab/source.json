@@ -1,0 +1,16 @@
+{
+ "title": "dramatic-2000ms-plus",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/dramatic-2000ms-plus/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/dramatic-2000ms-plus/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building extended animation sequences over 2000ms - cinematic intros, story sequences, premium experiences where animation IS the product",
+ "domains": [
+  "science",
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.137Z"
+}

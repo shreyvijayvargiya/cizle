@@ -1,0 +1,15 @@
+{
+ "title": "self-regulation-scaffold-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/self-regulated-learning/self-regulation-scaffold-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/self-regulated-learning/self-regulation-scaffold-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate scaffolds supporting student self-regulation across planning, monitoring, and evaluation phases. Use when students struggle to manage their own learning during extended or independent tasks.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.041Z"
+}

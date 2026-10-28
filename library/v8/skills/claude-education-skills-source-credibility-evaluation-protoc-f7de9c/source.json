@@ -1,0 +1,16 @@
+{
+ "title": "source-credibility-evaluation-protocol",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/literacy-critical-thinking/source-credibility-evaluation-protocol/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/literacy-critical-thinking/source-credibility-evaluation-protocol/SKILL.md",
+ "license": "MIT",
+ "description": "Design a source evaluation protocol using lateral reading and credibility checks for digital information. Use when students need to evaluate websites, online sources, or social media claims.",
+ "domains": [
+  "education",
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.997Z"
+}

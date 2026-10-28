@@ -1,0 +1,16 @@
+{
+ "title": "hyperframes-creative",
+ "source": "M02",
+ "lang": "en",
+ "repo": "Jakeschincariol/video-production-skills",
+ "path": "hyperframes-creative/SKILL.md",
+ "url": "https://github.com/Jakeschincariol/video-production-skills/blob/HEAD/hyperframes-creative/SKILL.md",
+ "license": null,
+ "description": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.",
+ "domains": [
+  "music",
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.628Z"
+}

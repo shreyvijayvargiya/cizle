@@ -1,0 +1,14 @@
+{
+ "title": "animator-traditional",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/animator-traditional/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/animator-traditional/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating hand-drawn or classical animation, working with frame-by-frame techniques, or applying Disney principles in their original artistic context.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.095Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "attention-grabbers",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/attention-grabbers/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/attention-grabbers/SKILL.md",
+ "license": "MIT",
+ "description": "Use when drawing user focus - notification badges, new feature highlights, error callouts, promotional banners, or any animation meant to attract attention.",
+ "domains": [
+  "product",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.110Z"
+}

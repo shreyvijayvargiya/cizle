@@ -1,0 +1,16 @@
+{
+ "title": "countdown-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/tiktok-video-skills",
+ "path": "skills/countdown-video/SKILL.md",
+ "url": "https://github.com/iart-ai/tiktok-video-skills/blob/HEAD/skills/countdown-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a countdown timer video\", \"create a countdown animation\", \"build a stream starting soon countdown\", \"do an event/launch/sale countdown\", \"animate a mm:ss or dd:hh:mm:ss timer\", \"add digit roll/flip transitions to a counter\", or \"loop a countdown background\". Covers frame-accurate (drift-free) timers, digit flip/roll motion, time formatting, and a configurable duration prop.",
+ "domains": [
+  "gaming",
+  "product",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.238Z"
+}

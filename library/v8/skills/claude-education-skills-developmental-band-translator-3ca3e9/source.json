@@ -1,0 +1,15 @@
+{
+ "title": "developmental-band-translator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-alignment/developmental-band-translator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-alignment/developmental-band-translator/SKILL.md",
+ "license": "MIT",
+ "description": "Tags harness-decomposed curriculum items (KUDs, LTs, criteria) with a school's developmental band metadata while preserving source voice and labels. Supply the band schema; the skill derives mapping rules from it.",
+ "domains": [
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.940Z"
+}

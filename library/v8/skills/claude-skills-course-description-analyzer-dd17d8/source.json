@@ -1,0 +1,16 @@
+{
+ "title": "course-description-analyzer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dmccreary/claude-skills",
+ "path": "skills/course-description-analyzer/SKILL.md",
+ "url": "https://github.com/dmccreary/claude-skills/blob/HEAD/skills/course-description-analyzer/SKILL.md",
+ "license": null,
+ "description": "Validates or creates a course description for an intelligent textbook, scoring completeness against required elements (title, audience, prerequisites, topics, Bloom's Taxonomy outcomes). Use before running the learning-graph-generator.",
+ "domains": [
+  "edtech",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.177Z"
+}

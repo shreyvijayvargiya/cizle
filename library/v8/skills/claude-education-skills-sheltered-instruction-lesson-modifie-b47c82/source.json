@@ -1,0 +1,15 @@
+{
+ "title": "sheltered-instruction-lesson-modifier",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/eal-language-development/sheltered-instruction-lesson-modifier/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/eal-language-development/sheltered-instruction-lesson-modifier/SKILL.md",
+ "license": "MIT",
+ "description": "Modify a lesson plan using SIOP sheltered instruction principles to support language learners across all four skills. Use when planning lessons for classes that include EAL students.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.967Z"
+}

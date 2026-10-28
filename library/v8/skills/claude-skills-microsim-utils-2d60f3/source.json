@@ -1,0 +1,12 @@
+{
+ "title": "microsim-utils",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dmccreary/claude-skills",
+ "path": "skills/microsim-utils/SKILL.md",
+ "url": "https://github.com/dmccreary/claude-skills/blob/HEAD/skills/microsim-utils/SKILL.md",
+ "license": null,
+ "description": "Utility tools for MicroSim management including quality validation, screenshot capture, icon management, index page generation, iframe height synchronization, iframe control-visibility testing, visual layout review, and diagram/MicroSim coverage reports across chapters. Routes to the appropriate utility based on the task needed.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.184Z"
+}

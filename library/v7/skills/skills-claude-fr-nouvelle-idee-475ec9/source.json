@@ -1,0 +1,12 @@
+{
+ "title": "nouvelle-idee",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "fredericdol83-dot/skills-claude-fr",
+ "path": "skills/nouvelle-idee/SKILL.md",
+ "url": "https://github.com/fredericdol83-dot/skills-claude-fr/blob/HEAD/skills/nouvelle-idee/SKILL.md",
+ "license": "MIT",
+ "description": "À utiliser dès que l'utilisateur dit « j'ai une idée », arrive avec un projet à creuser, ou reprend un projet en cours dont l'UX ou le design ne le satisfait pas. Cadre, challenge, choisit les outils et mène à un MVP testable.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:52:35.345Z"
+}

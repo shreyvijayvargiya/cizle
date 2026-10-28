@@ -1,0 +1,16 @@
+{
+ "title": "ai-feedback-design-principles",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/ai-feedback-design-principles/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/ai-feedback-design-principles/SKILL.md",
+ "license": "MIT",
+ "description": "Audit and redesign AI-generated feedback for pedagogical quality, timing, and learning impact. Use when building or reviewing automated feedback in digital learning tools.",
+ "domains": [
+  "education",
+  "edtech",
+  "history"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.910Z"
+}

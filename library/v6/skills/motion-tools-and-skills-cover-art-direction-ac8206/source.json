@@ -1,0 +1,15 @@
+{
+ "title": "cover-art-direction",
+ "source": "M01",
+ "lang": "zh",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/video-production-skills/skills/cover-art-direction/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/video-production-skills/skills/cover-art-direction/SKILL.md",
+ "license": "MIT",
+ "description": "Design standalone publication covers from stable content and brand references, including complete headlines, visual relationships and recomposed aspect ratios.",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.770Z"
+}

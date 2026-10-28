@@ -1,0 +1,15 @@
+{
+ "title": "hinge-question-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/questioning-discussion/hinge-question-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/questioning-discussion/hinge-question-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a diagnostic hinge question that reveals whether students understand enough to move on. Use when planning key checkpoints mid-lesson during explicit or direct instruction.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.037Z"
+}

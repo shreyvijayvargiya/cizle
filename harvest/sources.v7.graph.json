@@ -1,0 +1,324 @@
+{
+	"version": 7,
+	"description": "Harvest v7: prompt libraries by country (USA, France, Germany, India; the UK has no public prompt repo yet) across entertainment, education and non-SaaS business domains, found 2026-10-28 (GitHub and web search, every candidate cloned and counted, every repo checked against the v1-v6 graphs). Ids start at P01. Run with `node server/harvest/cli.js --v7`. Each record carries its country as a tag (USA, France, Germany, India) so the dashboard can filter by country.",
+	"defaults": {
+		"min_records": 5,
+		"batch_size": 20,
+		"batch_pause_ms": 4000,
+		"source_pause_ms": 6000,
+		"max_parallel": 2
+	},
+	"start": "P01",
+	"nodes": [
+		{
+			"id": "P01",
+			"name": "prompts.chat (USA): the open prompt library",
+			"adapter": "json-dataset",
+			"url": "https://github.com/f/prompts.chat",
+			"license": "CC0-1.0",
+			"expect": 2700,
+			"min_records": 2000,
+			"verified": true,
+			"config": {
+				"url": "https://raw.githubusercontent.com/f/prompts.chat/main/prompts.csv",
+				"format": "csv",
+				"mapper": "promptsChat",
+				"tags": [
+					"USA"
+				],
+				"license": "CC0-1.0"
+			},
+			"notes": "Cloned and counted: prompts.csv has 2,710 rows (2,337 text, 352 structured, 21 image), each with a title (act), contributor and developer flag. CC0. Characters, writing, business, education and entertainment roles. Not in any earlier graph."
+		},
+		{
+			"id": "P02",
+			"name": "USA education prompts (Microsoft prompts-for-edu, System-Prompt-Library)",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/microsoft/prompts-for-edu",
+			"expect": 45,
+			"min_records": 25,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "microsoft/prompts-for-edu",
+						"license": "MIT",
+						"tags": [
+							"USA",
+							"Education"
+						],
+						"include": [
+							"^(Students|Educators|Administration|Staff)/.+\\.md$"
+						],
+						"exclude": [
+							"README",
+							"CODE_OF",
+							"SECURITY",
+							"SUPPORT"
+						]
+					},
+					{
+						"repo": "ncwilson78/System-Prompt-Library",
+						"license": "MIT",
+						"tags": [
+							"USA",
+							"Education"
+						],
+						"include": [
+							"^Prompts/.+\\.md$"
+						]
+					}
+				],
+				"min_chars": 150
+			},
+			"notes": "Cloned and counted: microsoft/prompts-for-edu prompt files for students, educators, administration and staff (MIT); ncwilson78 System-Prompt-Library 41 system prompts for teaching, learning and administrative activities."
+		},
+		{
+			"id": "P03",
+			"name": "USA small-business prompts (non-SaaS: sales, marketing, operations)",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/pro-how-ai/ai-prompts-for-small-business",
+			"expect": 60,
+			"min_records": 20,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "pro-how-ai/ai-prompts-for-small-business",
+						"tags": [
+							"USA",
+							"Business"
+						],
+						"include": [
+							"^(sales|marketing-and-seo|operations-and-sops|proposals-and-quotes|client-communication|social-media)/.+\\.md$"
+						]
+					},
+					{
+						"repo": "codewithbernard/chat-gpt-prompts-for-small-business",
+						"tags": [
+							"USA",
+							"Business"
+						],
+						"include": [
+							"README\\.md$"
+						],
+						"split": "## "
+					},
+					{
+						"repo": "Steffd415/awesome-claude-prompts-for-smb",
+						"license": "MIT",
+						"tags": [
+							"USA",
+							"Business"
+						],
+						"include": [
+							"^README\\.md$"
+						],
+						"split": "## "
+					}
+				],
+				"min_chars": 120
+			},
+			"notes": "Cloned and counted: pro-how-ai 6 category folders, codewithbernard 3 READMEs (12 sections each), Steffd415 README (8 sections). No licence file on the first two: preview plus link."
+		},
+		{
+			"id": "P04",
+			"name": "Germany: German business and writing prompts",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/Alish123456/kmu-automation-pack",
+			"expect": 40,
+			"min_records": 15,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "Alish123456/kmu-automation-pack",
+						"license": "MIT",
+						"tags": [
+							"Germany",
+							"Business"
+						],
+						"lang": "de",
+						"include": [
+							"^prompts/.+\\.md$"
+						],
+						"split": "## "
+					},
+					{
+						"repo": "kontor7-agent/zahlungserinnerung-prompts-de",
+						"license": "MIT",
+						"tags": [
+							"Germany",
+							"Business"
+						],
+						"lang": "de",
+						"include": [
+							"^prompts/.+\\.md$"
+						],
+						"split": "## "
+					},
+					{
+						"repo": "echtlabs/Awesome-Prompts-deutsch",
+						"tags": [
+							"Germany",
+							"Education"
+						],
+						"lang": "de",
+						"include": [
+							"^(Meta-Prompts|Nuetzliche-Werkzeuge|Schreibhilfen)/.+\\.md$"
+						]
+					}
+				],
+				"min_chars": 100
+			},
+			"notes": "Cloned and counted: Alish123456 prompt pack 20 prompts for KMU (small and medium businesses), kontor7 payment-reminder prompts (3), echtlabs German translation of Awesome-Prompts (3 step files). German."
+		},
+		{
+			"id": "P05",
+			"name": "France: skills et prompts en français",
+			"adapter": "github-skills",
+			"url": "https://github.com/NicolasW83/skills-claude-fr",
+			"expect": 10,
+			"min_records": 8,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "NicolasW83/skills-claude-fr",
+						"license": "MIT",
+						"tags": [
+							"France",
+							"Business"
+						]
+					},
+					{
+						"repo": "fredericdol83-dot/skills-claude-fr",
+						"license": "MIT",
+						"tags": [
+							"France",
+							"Education"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: NicolasW83 7 (apprentissage-express, brief-artisan, site-haut-de-gamme, audit-seo ...), fredericdol83-dot 3 (nouvelle-idee, studio-ebook-kdp, redaction-administrative-dsfr). French."
+		},
+		{
+			"id": "P06",
+			"name": "India: legal, MBA and study prompts",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/suhaliyaqureshi2-spec/indian-legal-ai-toolkit",
+			"expect": 8,
+			"min_records": 3,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "suhaliyaqureshi2-spec/indian-legal-ai-toolkit",
+						"license": "MIT",
+						"tags": [
+							"India",
+							"Education"
+						],
+						"include": [
+							"^README\\.md$"
+						],
+						"split": "## "
+					},
+					{
+						"repo": "mohitbhagat33-bit/claude-mba-india",
+						"license": "MIT",
+						"tags": [
+							"India",
+							"Business"
+						],
+						"include": [
+							"^README\\.md$"
+						],
+						"split": "### "
+					}
+				],
+				"min_chars": 100
+			},
+			"notes": "Cloned and counted: indian-legal-ai-toolkit README (8 sections with prompts), claude-mba-india README (2). Few prompts: Indian public prompt repos are small. English."
+		},
+		{
+			"id": "P07",
+			"name": "awesome-claude-prompts (English, general)",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/langgptai/awesome-claude-prompts",
+			"expect": 150,
+			"min_records": 80,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "langgptai/awesome-claude-prompts",
+						"include": [
+							"^README\\.md$"
+						],
+						"split": "## ",
+						"tags": [
+							"Entertainment"
+						]
+					}
+				],
+				"min_chars": 120
+			},
+			"notes": "Cloned and counted: README has 155 sections with fenced prompts (roles, writing, storytelling, games, education); no licence file: preview plus link. No country (curated by a Chinese team, written in English); tagged Entertainment as many are characters, stories and games."
+		}
+	],
+	"edges": [
+		{
+			"from": "P01",
+			"to": "P02"
+		},
+		{
+			"from": "P02",
+			"to": "P03"
+		},
+		{
+			"from": "P03",
+			"to": "P04"
+		},
+		{
+			"from": "P04",
+			"to": "P05"
+		},
+		{
+			"from": "P05",
+			"to": "P06"
+		},
+		{
+			"from": "P06",
+			"to": "P07"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "semassawollo/Base-de-prompts-Claude-AI",
+			"reason": "502 French prompts but only as an .xlsx file; no adapter for it yet. Kept as a lead."
+		},
+		{
+			"id": "Z02",
+			"name": "Carpe1328/chatgpt-skills-deutsch, valorisa/Lyra-Optimiseur-Prompt, ITISH7/PromptDe",
+			"reason": "A one-line README or a tool, no prompt collection."
+		},
+		{
+			"id": "Z03",
+			"name": "UK",
+			"reason": "Searched GitHub for British prompt libraries (UK small business, NHS, teachers): only tools and apps came back. No source added."
+		},
+		{
+			"id": "Z04",
+			"name": "Bollywood_Script_AI, bollywood-video-generator, indian-legal and student apps",
+			"reason": "Apps and chatbots, not prompt collections."
+		},
+		{
+			"id": "Z05",
+			"name": "danielrosehill/Prompt-Libraries-Index, nexu and other index lists",
+			"reason": "Link lists, no prompts of their own."
+		}
+	]
+}

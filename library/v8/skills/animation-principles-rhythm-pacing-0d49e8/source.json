@@ -1,0 +1,15 @@
+{
+ "title": "rhythm-pacing",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/02-by-thinking-style/rhythm-pacing/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/02-by-thinking-style/rhythm-pacing/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation needs musical flow—dance sequences, action choreography, comedic timing, scene pacing, or any motion that should feel rhythmic and well-composed over time.",
+ "domains": [
+  "music",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.092Z"
+}

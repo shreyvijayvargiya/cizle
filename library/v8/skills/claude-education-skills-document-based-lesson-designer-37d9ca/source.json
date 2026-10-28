@@ -1,0 +1,16 @@
+{
+ "title": "document-based-lesson-designer",
+ "source": "Q02",
+ "lang": "el",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/document-based-lesson-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/document-based-lesson-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a complete document-based history lesson using the Reading Like a Historian four-part structure. Use when planning a primary source inquiry lesson or converting a textbook lesson into document-based investigation.",
+ "domains": [
+  "education",
+  "history",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.983Z"
+}

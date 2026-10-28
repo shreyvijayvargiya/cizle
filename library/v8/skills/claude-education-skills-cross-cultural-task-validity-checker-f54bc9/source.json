@@ -1,0 +1,14 @@
+{
+ "title": "cross-cultural-task-validity-checker",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/global-cross-cultural-pedagogies/cross-cultural-task-validity-checker/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/global-cross-cultural-pedagogies/cross-cultural-task-validity-checker/SKILL.md",
+ "license": "MIT",
+ "description": "Check an educational practice or task for cultural bias, WEIRD assumptions, and cross-cultural validity. Use when adapting resources for diverse contexts or questioning universal claims.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.971Z"
+}

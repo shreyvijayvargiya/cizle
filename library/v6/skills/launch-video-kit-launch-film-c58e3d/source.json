@@ -1,0 +1,16 @@
+{
+ "title": "launch-film",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-film/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-film/SKILL.md",
+ "license": "MIT",
+ "description": "Make or change a product launch film in your own brand. A film is a hook (the story before the cut) on a shared body (the name punching in, hero words cut on the voice, your product at close range, the logo lockup in near silence), built in HyperFrames from brand/brand.json and film/film.json. Holds the core, the template workflow (build, render and mix 1 hook or all of them), the generation recipes, the checks and the lessons. Use for \"launch video\", \"launch film\", \"product video\", \"promo\", \"reveal\", \"announcement video\", \"new hook\", \"change the body\", \"render all launch videos\".",
+ "domains": [
+  "product",
+  "entertainment",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.581Z"
+}

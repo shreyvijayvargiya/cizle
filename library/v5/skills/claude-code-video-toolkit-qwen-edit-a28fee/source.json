@@ -1,0 +1,14 @@
+{
+ "title": "qwen-edit",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/qwen-edit/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/qwen-edit/SKILL.md",
+ "license": "MIT",
+ "description": "AI image editing prompting patterns for Qwen-Image (Qwen-Image-Edit-2511 by default, Qwen-Image-2.1 as a non-commercial Modal opt-in). Use when editing photos while preserving identity, reframing cropped images, changing clothing or accessories, adjusting poses, applying style transfers, or character transformations. Provides prompt patterns, parameter tuning, and examples.",
+ "domains": [
+  "science"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.202Z"
+}

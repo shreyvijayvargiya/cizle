@@ -1,0 +1,14 @@
+# Orta Çağ Kadın Okçusu Orman Yolculuğu
+
+By @aiwithaayat · Seedance 2.0 · video
+Language: tr · Domains: entertainment, gaming · Source: R01
+
+Source page: https://x.com/aiwithaayat/status/2109123171408560343
+
+Picture: https://pbs.twimg.com/amplify_video_thumb/2109123010812870656/img/EHX4CdPkZ_XLXU_e.jpg
+
+```
+Uzun, gevşek kahverengi saçlı; tarihsel olarak ilham veren koyu kahverengi deri zırh, kürk yakalı omuzluklar, sert orta çağ kıyafeti, deri kemer ve sırtına asılı ok dolu sadak taşıyan güzel ve azimli bir kadın okçuyu konu alan 15 saniyelik ultra gerçekçi, yüksek bütçeli bir orta çağ fantastik filmi oluşturun. Kaslı siyah bir ata binerek yoğun sis, yosun tutmuş zemin, dağınık kayalar ve ulu ağaçlarla dolu sık, eski bir çam ormanından geçer. Savaşçıyı, dar bir orman patikasında at sürerken gösteren geniş açılı sinematik bir arka çekimle hemen başlayın; sıcak altın rengi güneş ışığı ağaçların arasından süzülerek dramatik hacimsel ışık huzmeleri ve gizemli bir atmosfer yaratır. Kamera, atın doğal hareketlerle engebeli zeminde ilerlemesini, küçük yaprakları, toprağı ve yosunu dağıtmasını takip ederek atın arkasından yumuşakça ilerler. Ardından, geleneksel eğri siyah yayı tutan, tek bir okla yayı geriye doğru geren ve yoğun bir konsantrasyonla nişan alan kadın savaşçının dramatik düşük açıdan yakın plan yan çekimine geçiş yapın. Kol kasları doğal olarak gerilir, yay gerçekçi bir gerginlikle büklülür ve saçları ile kürk yakalı kıyafeti serin orman esintisine tepki verir. Kararlı yüz ifadesini, gerçekçi cilt dokusunu, detaylı deri zırhını ve sadağındaki tek tek okları yakalayın. Son saniyelerde, ulu iğne yapraklı ağaçlar, rustik çadırlar, ahşap yapılar ve otantik orta çağ kıyafetleri ve zırhları giyen savaşçı gruplarıyla çevrili gizli bir orta çağ kampına doğru ilerlerken geniş açılı bir takip çekimine geçiş yapın. Savaşçılar onun gelişine döner ve efsanevi bir şefin halkına dönüşü atmosferini yaratır. Her çekimde karakter kimliğini, kıyafetini, atın görünümünü ve gerçekçi vücut oranlarını tutarlı şekilde koruyun. Sinematik kamera geçişleri, doğal at hareketleri, doğru eküstri anatomisi, gerçekçi yerçekimi, eylemsizlik, kas hareketi, kumaş simülasyonu ve fiziksel olarak inandırıcı aydınlatma kullanın. Premium Hollywood orta çağ fantastik sinematografisi, fotogerçekçi dokular, atmosferik sis, soluk toprak tonları, dramatik doğal aydınlatma, ince film greni, sığ alan derinliği, 4K kalite, 24 FPS; at nalı sesleri, deri hareketleri, çam ağaçları arasındaki rüzgar ve uzaktaki kamp ambiyansı gibi sürükleyici çevresel ses efektleri. Modern nesneler yok, çizgi film efektleri yok, altyazı yok, metin yok, logo yok ve filigran yok.
+```
+
+Prompt from YouMind-OpenLab/awesome-seedance-2-prompts (README_tr-TR.md), credited to its author with a link to the original post. Check the repository's licence before reusing it.

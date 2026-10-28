@@ -1,0 +1,12 @@
+{
+ "title": "documentation-client",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/documentation-client/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/documentation-client/SKILL.md",
+ "license": "MIT",
+ "description": "Génère les documents professionnels remis au client après livraison d'un site vitrine artisan — cahier des charges, notice d'utilisation ou contrat de maintenance, checklist de mise en ligne, fiche technique, quick start, et en option analyse SEO initiale et roadmap de maintenance sur 3 mois. Se déclenche automatiquement en fin de brief-artisan si le client accepte la documentation, ou directement quand l'utilisateur demande \"la doc client\", \"les documents pour le client\", \"le cahier des charges\", ou veut documenter un site déjà livré.",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:52:35.345Z"
+}

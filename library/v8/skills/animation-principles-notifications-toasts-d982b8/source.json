@@ -1,0 +1,12 @@
+{
+ "title": "notifications-toasts",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/07-by-ui-element/notifications-toasts/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/07-by-ui-element/notifications-toasts/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating notifications, toasts, alerts, snackbars, or system messages to grab attention appropriately",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.126Z"
+}

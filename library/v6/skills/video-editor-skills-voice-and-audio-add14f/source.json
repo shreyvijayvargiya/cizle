@@ -1,0 +1,15 @@
+{
+ "title": "voice-and-audio",
+ "source": "M01",
+ "lang": "en",
+ "repo": "appariciojunior/video-editor-skills",
+ "path": "skills/voice-and-audio/SKILL.md",
+ "url": "https://github.com/appariciojunior/video-editor-skills/blob/HEAD/skills/voice-and-audio/SKILL.md",
+ "license": null,
+ "description": "Voice treatment for creator videos in DaVinci Resolve - loudness normalization, diagnosing a muffled or \"underwater\" voice from the spectrum, Voice Isolation, an EQ recipe, and fixing clips that normalization made worse. Use when building the timeline's audio step or when the creator says their voice sounds bad.",
+ "domains": [
+  "music",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.754Z"
+}

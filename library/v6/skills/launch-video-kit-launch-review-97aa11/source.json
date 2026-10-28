@@ -1,0 +1,16 @@
+{
+ "title": "launch-review",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-review/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-review/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (measuring a render and studying a reference film). Review a rendered launch film like a demanding creative director, then drive the v1 to v2 loop. Measures rhythm, static runs, cuts against the beat grid, loudness, true peak and voice pace with a script, then applies an eye checklist for continuity at every cut, legibility, brand, real UI, claims and differentiation. Writes a gap list and a scorecard; nothing ships on numbers alone. Use on every render, and on a reference film to learn from it, for \"review the video\", \"check the film\", \"what is wrong with this cut\", \"study this reference\".",
+ "domains": [
+  "product",
+  "entertainment",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.584Z"
+}

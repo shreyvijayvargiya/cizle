@@ -1,0 +1,15 @@
+{
+ "title": "vfx-text-cursor",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/vfx-text-cursor/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/vfx-text-cursor/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Cursor light trail, chromatic rays, and directional flares for word-by-word quote reveals in video intros.",
+ "domains": [
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.497Z"
+}

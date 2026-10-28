@@ -1,0 +1,16 @@
+{
+ "title": "newsletter-promo",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/newsletter-promo/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/newsletter-promo/SKILL.md",
+ "license": "MIT",
+ "description": "Turn a newsletter edition into a 12-20 second promo clip for LinkedIn, Instagram or X that drives people to read and subscribe. Hook question, three proof frames from the edition, then the newsletter name and where to read it. Use when someone says \"promo for my newsletter\", \"trailer for this edition\", \"get people to my Substack\", \"teaser video\" or \"promote this issue\".",
+ "domains": [
+  "product",
+  "math",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.565Z"
+}

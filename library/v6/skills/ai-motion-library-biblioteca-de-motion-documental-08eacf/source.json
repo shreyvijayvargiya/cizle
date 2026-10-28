@@ -1,0 +1,14 @@
+{
+ "title": "biblioteca-de-motion-documental",
+ "source": "M01",
+ "lang": "en",
+ "repo": "apenasdouglas/ai-motion-library",
+ "path": "versoes/documental/biblioteca-de-motion-documental/SKILL.md",
+ "url": "https://github.com/apenasdouglas/ai-motion-library/blob/HEAD/versoes/documental/biblioteca-de-motion-documental/SKILL.md",
+ "license": "MIT",
+ "description": "Traduz pedidos de animação em português (\"faz o número quicar\", \"entra um depois do outro\", \"dá um tranco no zoom\") para o efeito de motion graphics certo, com o termo técnico, a duração e a aceleração. Use sempre que o usuário pedir animação, motion, transição ou efeito em vídeo, HTML, CSS, GSAP, Remotion, HyperFrames ou After Effects, principalmente quando o pedido for vago (\"faz uma animação bonita\") ou o vídeo for de canal dark (faceless) de curiosidades, história ou documentário. Also triggers on English requests for motion graphics, easing and animation effects in documentary or faceless YouTube videos.",
+ "domains": [
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.783Z"
+}

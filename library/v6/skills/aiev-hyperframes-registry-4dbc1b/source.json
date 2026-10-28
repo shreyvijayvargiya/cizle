@@ -1,0 +1,15 @@
+{
+ "title": "hyperframes-registry",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/hyperframes-registry/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/hyperframes-registry/SKILL.md",
+ "license": "MIT",
+ "description": "Install and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add, installing a block or component, wiring an installed item into index.html, or working with hyperframes.json. Covers the add command, install locations, block sub-composition wiring, component snippet merging, and registry discovery.",
+ "domains": [
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.601Z"
+}

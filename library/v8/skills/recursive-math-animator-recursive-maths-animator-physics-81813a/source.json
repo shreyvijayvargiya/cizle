@@ -1,0 +1,16 @@
+{
+ "title": "recursive-maths-animator-physics",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "Science-Prof-Robot/recursive-math-animator",
+ "path": "recursive-maths-animator-physics/SKILL.md",
+ "url": "https://github.com/Science-Prof-Robot/recursive-math-animator/blob/HEAD/recursive-maths-animator-physics/SKILL.md",
+ "license": "MIT",
+ "description": "Create verified Manim physics animations using manim-physics for rigid mechanics, pendulums, electromagnetism, optics, waves, and custom deterministic physics models.",
+ "domains": [
+  "science",
+  "math",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.091Z"
+}
