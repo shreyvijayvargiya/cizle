@@ -1,0 +1,16 @@
+{
+ "title": "music-and-sound",
+ "source": "M01",
+ "lang": "en",
+ "repo": "appariciojunior/video-editor-skills",
+ "path": "skills/music-and-sound/SKILL.md",
+ "url": "https://github.com/appariciojunior/video-editor-skills/blob/HEAD/skills/music-and-sound/SKILL.md",
+ "license": null,
+ "description": "Scores a vlog with Epidemic Sound - one music cue per section edited to exact length, a ducking envelope baked into one bed (quiet under speech, up on B-roll), and tasteful transition sound instead of cheesy literal foley. Use for \"add music\", \"background music\", \"sound effects\", \"SFX\", or when the creator says the music or SFX feel wrong.",
+ "domains": [
+  "music",
+  "data",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.749Z"
+}

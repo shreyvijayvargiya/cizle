@@ -1,0 +1,16 @@
+{
+ "title": "disciplinary-writing-scaffold",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/literacy-critical-thinking/disciplinary-writing-scaffold/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/literacy-critical-thinking/disciplinary-writing-scaffold/SKILL.md",
+ "license": "MIT",
+ "description": "Create a writing scaffold teaching the genre conventions specific to an academic discipline. Use when students write lab reports, historical essays, or other discipline-specific text types.",
+ "domains": [
+  "education",
+  "history",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.992Z"
+}

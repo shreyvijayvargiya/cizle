@@ -1,0 +1,14 @@
+{
+ "title": "professional-development-session-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/professional-development-session-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/professional-development-session-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a professional development session using adult learning principles with active teacher engagement. Use when planning INSET days, CPD workshops, or staff training sessions.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.027Z"
+}

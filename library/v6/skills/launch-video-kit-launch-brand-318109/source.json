@@ -1,0 +1,15 @@
+{
+ "title": "launch-brand",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-brand/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-brand/SKILL.md",
+ "license": "MIT",
+ "description": "Build the brand kit a launch film uses from a website. Runs tools/brand-from-url.mjs on the reader's site to extract branding (colours, fonts, logo, name, tagline, copy, product images), then reviews the preview sheet with the reader and fixes any wrong role by hand. Use for \"brand from website\", \"brand kit\", \"extract branding\", \"get our colours and fonts\", \"use our logo\", or before the first launch film for a new brand.",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.579Z"
+}

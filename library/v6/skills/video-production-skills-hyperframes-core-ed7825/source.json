@@ -1,0 +1,14 @@
+{
+ "title": "hyperframes-core",
+ "source": "M02",
+ "lang": "en",
+ "repo": "Jakeschincariol/video-production-skills",
+ "path": "hyperframes-core/SKILL.md",
+ "url": "https://github.com/Jakeschincariol/video-production-skills/blob/HEAD/hyperframes-core/SKILL.md",
+ "license": null,
+ "description": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Also covers Tailwind projects and the STORYBOARD.md / SCRIPT.md plan formats. Read before writing composition HTML.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.629Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "self-explanation-prompt-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/self-explanation-prompt-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/self-explanation-prompt-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Create self-explanation prompts that deepen understanding of worked examples, texts, or diagrams. Use when students read material passively without engaging with underlying principles.",
+ "domains": [
+  "education",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.923Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "explainer-engaging",
+ "source": "M01",
+ "lang": "en",
+ "repo": "Barty-Bart/motion-graphics",
+ "path": "skills/explainer-engaging/SKILL.md",
+ "url": "https://github.com/Barty-Bart/motion-graphics/blob/HEAD/skills/explainer-engaging/SKILL.md",
+ "license": null,
+ "description": "Make a 10–30 second continuous-shot explainer for any product, rendered from code to MP4 with sound. One hero element (a ball, a cursor, a file, a message) travels through the product's workflow laid out as stations on one big canvas; the camera follows it, each station reacts as it passes, then the camera pulls out to reveal the whole journey. Use when someone wants an engaging, story-driven, one-take explainer or a loopable product animation.",
+ "domains": [
+  "education",
+  "edtech",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.777Z"
+}

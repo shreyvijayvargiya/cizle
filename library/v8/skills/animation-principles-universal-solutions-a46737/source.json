@@ -1,0 +1,14 @@
+{
+ "title": "universal-solutions",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/12-by-problem-type/universal-solutions/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/12-by-problem-type/universal-solutions/SKILL.md",
+ "license": "MIT",
+ "description": "Use when facing any animation problem as a comprehensive diagnostic framework",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.157Z"
+}

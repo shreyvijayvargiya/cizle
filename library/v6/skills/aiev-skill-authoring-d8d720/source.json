@@ -1,0 +1,16 @@
+{
+ "title": "skill-authoring",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/skill-authoring/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/skill-authoring/SKILL.md",
+ "license": "MIT",
+ "description": "The standard for writing new skills for the AI Edit Video system - file structure, frontmatter, tone of voice, and how to accumulate production lessons into skills. Read when the user asks to create a new skill (via chat or from the Skills page in the web UI) or when updating a skill after finishing a video.",
+ "domains": [
+  "education",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.623Z"
+}

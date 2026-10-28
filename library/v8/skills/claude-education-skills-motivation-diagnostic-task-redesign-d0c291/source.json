@@ -1,0 +1,15 @@
+{
+ "title": "motivation-diagnostic-task-redesign",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/motivation-diagnostic-task-redesign/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/motivation-diagnostic-task-redesign/SKILL.md",
+ "license": "MIT",
+ "description": "Diagnose motivation problems in a task using self-determination theory and redesign for autonomy, competence, and relatedness. Use when students are disengaged, resistant, or going through the motions.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.068Z"
+}

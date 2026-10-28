@@ -1,0 +1,16 @@
+{
+ "title": "cognitive-tutoring-architecture-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/cognitive-tutoring-architecture-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/cognitive-tutoring-architecture-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Map knowledge components and skill hierarchies for a cognitive tutoring system or adaptive learning platform. Use when designing intelligent tutoring software or skill-based mastery systems.",
+ "domains": [
+  "edtech",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.912Z"
+}

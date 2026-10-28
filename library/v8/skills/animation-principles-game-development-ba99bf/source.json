@@ -1,0 +1,16 @@
+{
+ "title": "game-development",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/01-by-domain/game-development/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/01-by-domain/game-development/SKILL.md",
+ "license": "MIT",
+ "description": "Use when implementing game animations, player feedback, character movement, or interactive entertainment in Unity, Unreal, or other game engines.",
+ "domains": [
+  "gaming",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.080Z"
+}

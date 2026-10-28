@@ -1,0 +1,16 @@
+{
+ "title": "video-pipeline",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/video-pipeline/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/video-pipeline/SKILL.md",
+ "license": "MIT",
+ "description": "End-to-end video production workflow for the AI Edit Video system - from the user request to the MP4 in outputs/, coordinating HyperFrames (scenes) and Remotion (assembly). Read this when starting any video or when building the backend render queue.",
+ "domains": [
+  "engineering",
+  "product",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.621Z"
+}

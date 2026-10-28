@@ -1,0 +1,12 @@
+{
+ "title": "audit-seo-firecrawl",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/audit-seo-firecrawl/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/audit-seo-firecrawl/SKILL.md",
+ "license": "MIT",
+ "description": "Audit SEO paramétrable d'un site web via le connecteur Firecrawl (rendu JavaScript inclus, donc fiable sur WordPress avec Yoast ou RankMath). Pose d'abord les questions de paramétrage (page unique, échantillon, crawl complet, options concurrence / visibilité IA / indexation, format du livrable), annonce un devis en crédits Firecrawl et attend la validation avant de dépenser quoi que ce soit. À utiliser dès que l'utilisateur dit \"audit SEO\", \"audite ce site\", \"analyse SEO de…\", \"crawl complet\", \"pourquoi ce site ne ressort pas sur Google\", \"diagnostic SEO\", ou colle l'URL d'un site vitrine, d'une commune, d'une association ou d'un artisan à diagnostiquer, même sans prononcer le mot \"audit\".",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:52:35.342Z"
+}

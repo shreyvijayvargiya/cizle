@@ -1,0 +1,14 @@
+{
+ "title": "regenerative-project-design-orchestrator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/regenerative-project-design-orchestrator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/regenerative-project-design-orchestrator/SKILL.md",
+ "license": "MIT",
+ "description": "Present project-design pathway options and orchestrate regenerative projects using backwards design, PBL, SEEDS, compassionate systems action, or civic/service pathways.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.022Z"
+}

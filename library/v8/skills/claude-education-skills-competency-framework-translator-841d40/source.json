@@ -1,0 +1,14 @@
+{
+ "title": "competency-framework-translator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/competency-framework-translator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/competency-framework-translator/SKILL.md",
+ "license": "MIT",
+ "description": "Translate an external competency framework like DigComp, GreenComp, or ISTE into classroom-ready activities. Use when implementing framework standards in specific teaching contexts.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.024Z"
+}

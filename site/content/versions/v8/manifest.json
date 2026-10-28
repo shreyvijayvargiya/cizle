@@ -1,0 +1,35 @@
+{
+ "version": "v8",
+ "folder": "library/v8",
+ "store": "site/content/versions/v8",
+ "built_at": "2026-10-28T14:54:40.196Z",
+ "fetched_at": {
+  "first": "2026-10-28T14:53:16.907Z",
+  "last": "2026-10-28T14:54:27.100Z"
+ },
+ "sources": {
+  "Q01": 24,
+  "Q02": 344
+ },
+ "languages": {
+  "en": 364,
+  "zh": 2,
+  "fr": 1,
+  "el": 1
+ },
+ "counts": {
+  "gallery": 0,
+  "skills": 368,
+  "with_video": 0,
+  "with_picture": 0
+ },
+ "restricted": 36,
+ "skipped": {
+  "removed": 0,
+  "duplicates": 0,
+  "too_short": 0,
+  "skill_index_only": 0,
+  "image_prompt_without_picture": 0
+ },
+ "graph": "harvest/sources.v8.graph.json"
+}

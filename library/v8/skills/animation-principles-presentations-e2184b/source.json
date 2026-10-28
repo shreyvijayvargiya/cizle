@@ -1,0 +1,15 @@
+{
+ "title": "presentations",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/01-by-domain/presentations/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/01-by-domain/presentations/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating Keynote, PowerPoint, Google Slides animations, or any presentation motion design work.",
+ "domains": [
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.081Z"
+}

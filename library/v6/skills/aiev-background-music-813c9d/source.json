@@ -1,0 +1,16 @@
+{
+ "title": "background-music",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/background-music/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/background-music/SKILL.md",
+ "license": "MIT",
+ "description": "Pick background music from the assets/music/ library and configure auto-ducking (music dips automatically under speech) via meta.json audio.music for the Remotion assembly layer. Read when the brief/edit prompt has a \"Nhạc nền\" (background music) section set to auto, or when the user asks to add/adjust background music on a video.",
+ "domains": [
+  "music",
+  "engineering",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.597Z"
+}

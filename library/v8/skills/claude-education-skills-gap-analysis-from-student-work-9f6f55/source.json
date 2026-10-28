@@ -1,0 +1,15 @@
+{
+ "title": "gap-analysis-from-student-work",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/gap-analysis-from-student-work/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/gap-analysis-from-student-work/SKILL.md",
+ "license": "MIT",
+ "description": "Analyse student work against criteria to identify specific gaps between current performance and learning objectives. Use when reviewing submissions, planning feedback, or diagnosing learning needs.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.949Z"
+}

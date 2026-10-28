@@ -1,3 +1,4 @@
+import { facetsOf, type Facets } from "@/lib/facets";
 import { useQuery } from "@tanstack/react-query";
 import Fuse from "fuse.js";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -37,6 +38,10 @@ export type GalleryItem = {
 	fetchedAt?: string | null;
 	license?: string;
 	hasEnglish?: boolean;
+	/** country (from the language), tools and topic, worked out when the library loads */
+	country?: string;
+	tools?: string[];
+	topic?: string;
 	/** no open licence: only a preview is published, the full text stays at the source */
 	restricted?: boolean;
 };
@@ -57,7 +62,7 @@ export function findPrompt(items: GalleryItem[] | undefined, slug: string) {
 	const code = slug.slice(slug.lastIndexOf("-") + 1);
 	return items?.find((g) => g.slug === slug) ?? (code ? items?.find((g) => g.slug.endsWith(`-${code}`)) : undefined);
 }
-export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string; lang?: string; version?: string };
+export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string };
 
 /**
  * The classic gallery (/gallery.json, v1 to v3) plus every harvest version published next to it (/versions/<v>/gallery.json). Each version is its own file and
@@ -72,7 +77,7 @@ export const useGallery = () =>
 			const base = (await res.json()) as Omit<GalleryIndex, "languages" | "versions">;
 			const extra = await Promise.all(versions.map(async (v) => ((await fetch(v.gallery)).json() as Promise<{ items: GalleryItem[]; categories: string[] }>).catch(() => ({ items: [], categories: [] }))));
 			const classic = base.items.map((g) => ({ ...g, lang: g.lang || "en", version: g.version || CLASSIC }));
-			const items = [...classic, ...extra.flatMap((e) => e.items)];
+			const items = [...classic, ...extra.flatMap((e) => e.items)].map((g) => ({ ...g, ...facetsOf(g.lang, g.tags, g.title, g.category, g.preview, g.source) }));
 			const languages: Record<string, number> = {};
 			for (const g of items) languages[g.lang || "en"] = (languages[g.lang || "en"] || 0) + 1;
 			return { ...base, total: items.length, free: items.filter((g) => g.tier === "free").length, categories: [...new Set([...base.categories, ...extra.flatMap((e) => e.categories)])], languages, versions, items };
@@ -197,6 +202,9 @@ export function filterGallery(items: GalleryItem[], fuse: Fuse<GalleryItem>, f: 
 	if (f.access) list = list.filter((g) => g.tier === f.access);
 	if (f.lang) list = list.filter((g) => (g.lang || "en") === f.lang);
 	if (f.version) list = list.filter((g) => (g.version || CLASSIC) === f.version);
+	if (f.country) list = list.filter((g) => g.country === f.country);
+	if (f.tool) list = list.filter((g) => g.tools?.includes(f.tool!));
+	if (f.topic) list = list.filter((g) => g.topic === f.topic);
 	if (!f.q?.trim()) {
 		if (f.sort === "az") list.sort((a, b) => a.title.localeCompare(b.title));
 		else if (f.sort === "long") list.sort((a, b) => b.chars - a.chars);

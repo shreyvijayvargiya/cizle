@@ -1,0 +1,16 @@
+{
+ "title": "broll-director",
+ "source": "M02",
+ "lang": "en",
+ "repo": "erduo1998-cell/erduo-broll-loop-engineering",
+ "path": "erduo-broll-loop-engineering/stages/broll-director/SKILL.md",
+ "url": "https://github.com/erduo1998-cell/erduo-broll-loop-engineering/blob/HEAD/erduo-broll-loop-engineering/stages/broll-director/SKILL.md",
+ "license": "MIT",
+ "description": "Turn a complete original SRT and design into immutable shot truth, revisable creative proposals, semantic chapters, a shared visual world, a compact motion map, and three representative-scene choices.",
+ "domains": [
+  "entertainment",
+  "data",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.617Z"
+}

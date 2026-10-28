@@ -1,0 +1,15 @@
+{
+ "title": "web-motion-design",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/01-by-domain/web-motion-design/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/01-by-domain/web-motion-design/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building CSS animations, JavaScript transitions, React/Vue motion, or any browser-based animation work.",
+ "domains": [
+  "science",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.083Z"
+}

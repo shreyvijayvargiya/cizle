@@ -1,0 +1,16 @@
+{
+ "title": "launch-mix",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-mix/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-mix/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (mixdown.py for buses, ducking, loudness and the brickwall). Mix and master the audio of a launch film. Music, SFX and voice-over on separate buses, the bed ducked by the voice's real envelope with a presence carve, the music dropped out for the logo, glue compression, a true-peak-safe limiter, -14 LUFS and -1 dBTP, then laid onto the rendered picture. Use after the score, the sound effects and the voice exist, for \"mix\", \"master\", \"loudness\", \"LUFS\", \"ducking\", \"mux the audio\".",
+ "domains": [
+  "product",
+  "music",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.584Z"
+}

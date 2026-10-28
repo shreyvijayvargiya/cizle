@@ -1,0 +1,14 @@
+{
+ "title": "weekly-agency-review",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/weekly-agency-review/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/weekly-agency-review/SKILL.md",
+ "license": "MIT",
+ "description": "Review the week using accumulated session evidence — retrieval rates, hint depths, calibration accuracy, transfer and unassisted results. The learner identifies patterns and sets a strategy goal. Use weekly or after a multi-session period.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.058Z"
+}

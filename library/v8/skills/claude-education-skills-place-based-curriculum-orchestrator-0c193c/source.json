@@ -1,0 +1,16 @@
+{
+ "title": "place-based-curriculum-orchestrator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/place-based-curriculum-orchestrator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/place-based-curriculum-orchestrator/SKILL.md",
+ "license": "MIT",
+ "description": "Present pathway options and orchestrate place-based curriculum design from a local place, curriculum requirement, or community issue. Use when place should become a primary text for learning.",
+ "domains": [
+  "education",
+  "health",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.017Z"
+}

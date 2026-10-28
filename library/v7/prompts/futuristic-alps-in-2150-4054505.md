@@ -1,0 +1,12 @@
+# Futuristic Alps in 2150
+
+By @nguyenphonglc2004@gmail.com · general
+Language: en · Domains: scifi, entertainment · Source: P01
+
+Source page: https://prompts.chat
+
+```
+Create a cinematic wide shot of the Alps in the year 2150. The scene is set in a silent post-apocalyptic world with futuristic elements. Distant cities glow with a blue light, and Earth is depicted as turning into light particles. The atmosphere is vast and empty, with a cold color palette and soft fog. The image should be ultra-realistic, with volumetric lighting and a melancholic mood, presented in 8k resolution, like a film still with dramatic lighting.
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

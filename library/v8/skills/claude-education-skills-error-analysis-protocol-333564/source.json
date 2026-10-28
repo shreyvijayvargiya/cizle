@@ -1,0 +1,16 @@
+{
+ "title": "error-analysis-protocol",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/self-regulated-learning/error-analysis-protocol/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/self-regulated-learning/error-analysis-protocol/SKILL.md",
+ "license": "MIT",
+ "description": "Design an error analysis protocol to diagnose the root cause of student mistakes and misconceptions. Use when error patterns appear in student work and targeted feedback is needed.",
+ "domains": [
+  "education",
+  "engineering",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.039Z"
+}

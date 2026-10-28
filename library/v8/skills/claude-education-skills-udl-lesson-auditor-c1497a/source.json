@@ -1,0 +1,14 @@
+{
+ "title": "udl-lesson-auditor",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/inclusive-design/udl-lesson-auditor/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/inclusive-design/udl-lesson-auditor/SKILL.md",
+ "license": "MIT",
+ "description": "Audits an existing lesson against UDL's three principles — engagement, representation, and action/expression. Identifies specific access barriers and suggests concrete modifications ranked by impact.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.989Z"
+}

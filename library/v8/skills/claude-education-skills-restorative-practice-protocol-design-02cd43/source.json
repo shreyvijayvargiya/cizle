@@ -1,0 +1,14 @@
+{
+ "title": "restorative-practice-protocol-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/restorative-practice-protocol-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/restorative-practice-protocol-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a restorative practice protocol for addressing harm, rebuilding trust, and restoring relationships. Use when managing conflict, behavioural incidents, or relationship breakdown between students.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.076Z"
+}

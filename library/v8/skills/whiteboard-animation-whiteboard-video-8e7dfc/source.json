@@ -1,0 +1,12 @@
+{
+ "title": "whiteboard-video",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "dongphuongman/whiteboard-animation",
+ "path": ".claude/skills/whiteboard-video/SKILL.md",
+ "url": "https://github.com/dongphuongman/whiteboard-animation/blob/HEAD/.claude/skills/whiteboard-video/SKILL.md",
+ "license": "MIT",
+ "description": "Làm video vẽ tay bảng trắng (whiteboard animation) trên nền giấy màu kem từ một URL bài viết, chủ đề, kịch bản lời dẫn hoặc file phụ đề SRT, ra thành phẩm hoàn chỉnh có giọng đọc và phụ đề. Quy trình - URL/chủ đề → viết kịch bản → tạo giọng đọc sinh SRT theo giọng thật (Vbee/Edge/VietNeu offline), hoặc đọc SRT → phân cảnh → tự sinh ảnh nét vẽ cùng phong cách (Agnes/Gemini/OpenAI) → chia vùng theo mạch truyện (annotation.json / sequence / startMs / protectedRegions) → chỉnh trên trang xem trước → render MP4 bằng nét bút liền mạch (đi nét ink → tô màu color) → ghép cảnh, gắn phụ đề, ghép giọng đọc. Dùng khi người dùng đưa URL, chủ đề, kịch bản/lời dẫn hoặc file SRT và muốn \"làm video vẽ tay\", \"video whiteboard\", \"video bảng trắng\", \"biến phụ đề thành video vẽ tay\", \"từ chủ đề/kịch bản/URL làm video hoàn chỉnh\".",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:54:27.084Z"
+}

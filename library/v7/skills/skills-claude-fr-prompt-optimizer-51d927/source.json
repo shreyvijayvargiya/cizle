@@ -1,0 +1,14 @@
+{
+ "title": "prompt-optimizer",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/prompt-optimizer/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/prompt-optimizer/SKILL.md",
+ "license": "MIT",
+ "description": "Optimise des prompts en meta-prompts experts avec XML, few-shot et structure contractuelle. Utilise-le quand tu dis \"optimise ce prompt\", \"crée un meta-prompt\", ou fournis un prompt brut à améliorer.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:52:35.344Z"
+}

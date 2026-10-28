@@ -1,0 +1,15 @@
+{
+ "title": "pedagogical-content-knowledge-developer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/pedagogical-content-knowledge-developer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/pedagogical-content-knowledge-developer/SKILL.md",
+ "license": "MIT",
+ "description": "Develop pedagogical content knowledge for a topic by surfacing common misconceptions and effective representations. Use when preparing to teach unfamiliar content or improving teaching of hard topics.",
+ "domains": [
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.025Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "manim",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "awesome-skills/manim-skill",
+ "path": "SKILL.md",
+ "url": "https://github.com/awesome-skills/manim-skill/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Create and edit programmatic explanatory animations, videos, and GIFs with Manim Community Edition. Use for mathematical animation, algorithm animation, animated technical diagrams, or an explicit Manim request. Static diagrams, ordinary charts, and interactive web UI do not need this skill unless the user chooses Manim.",
+ "domains": [
+  "math",
+  "engineering",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.098Z"
+}

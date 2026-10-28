@@ -1,0 +1,16 @@
+{
+ "title": "lesson-library",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "michael-L-i/gen-learning-vids",
+ "path": "plugins/lesson-library/skills/lesson-library/SKILL.md",
+ "url": "https://github.com/michael-L-i/gen-learning-vids/blob/HEAD/plugins/lesson-library/skills/lesson-library/SKILL.md",
+ "license": "MIT",
+ "description": "Create personalized narrated video lessons in the local Lesson Library app, browse its catalog, import selected learning notes, or ask questions about a saved lesson. Use when the user wants a lesson added to their video library from this conversation.",
+ "domains": [
+  "education",
+  "entertainment",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.084Z"
+}

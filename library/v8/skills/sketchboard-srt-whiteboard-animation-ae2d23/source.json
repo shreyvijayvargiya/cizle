@@ -1,0 +1,16 @@
+{
+ "title": "srt-whiteboard-animation",
+ "source": "Q01",
+ "lang": "zh",
+ "repo": "neulketing/sketchboard",
+ "path": "SKILL.md",
+ "url": "https://github.com/neulketing/sketchboard/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "将 SRT 字幕做成暖米黄纸张底的白板手绘动画：读字幕→输出配图策略→确认后生成统一风格线稿→按叙事语义标注分区→预览台调整→渲染 MP4。编排沿用分区遮罩揭示（annotation.json / sequence / startMs / protectedRegions），但每个区域内的落墨换成 stream 的连续笔迹（骨架/网格 ink→color）。当用户提供 SRT 字幕并要求\"字幕做成白板手绘/流式笔迹视频\"\"SRT 生成白板动画\"\"按字幕分镜画手绘\"时触发。",
+ "domains": [
+  "entertainment",
+  "gaming",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.082Z"
+}

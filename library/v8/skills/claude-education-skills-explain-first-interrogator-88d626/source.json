@@ -1,0 +1,16 @@
+{
+ "title": "explain-first-interrogator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/explain-first-interrogator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/explain-first-interrogator/SKILL.md",
+ "license": "MIT",
+ "description": "Require the learner to explain a concept in their own words before the AI evaluates or extends it. Ensures the AI works from the learner's understanding rather than providing an explanation from scratch.",
+ "domains": [
+  "education",
+  "edtech",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.045Z"
+}

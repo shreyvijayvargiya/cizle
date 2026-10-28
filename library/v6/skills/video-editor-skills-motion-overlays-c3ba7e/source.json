@@ -1,0 +1,16 @@
+{
+ "title": "motion-overlays",
+ "source": "M01",
+ "lang": "en",
+ "repo": "appariciojunior/video-editor-skills",
+ "path": "skills/motion-overlays/SKILL.md",
+ "url": "https://github.com/appariciojunior/video-editor-skills/blob/HEAD/skills/motion-overlays/SKILL.md",
+ "license": null,
+ "description": "Brand motion graphics for creator videos - a Remotion component kit (key phrases, lists, lower thirds, journeys, big words…) timed to the creator's words from a beats sheet, rendered as transparent ProRes and placed on V2+ in DaVinci Resolve, with face-safe and caption-safe layouts. Use for \"overlays\", \"motion graphics\", \"make it interesting\", \"graphics\", or when overlays cover the face or fight the captions.",
+ "domains": [
+  "data",
+  "product",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.747Z"
+}

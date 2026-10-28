@@ -1,0 +1,14 @@
+{
+ "title": "udl-barrier-anticipator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/inclusive-design/udl-barrier-anticipator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/inclusive-design/udl-barrier-anticipator/SKILL.md",
+ "license": "MIT",
+ "description": "Predicts access barriers in a learning task before delivery, given a learner variability profile. Distinguishes between barriers addressable through design and those requiring specialist support.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.988Z"
+}

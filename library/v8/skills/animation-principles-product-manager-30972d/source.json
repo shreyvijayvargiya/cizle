@@ -1,0 +1,16 @@
+{
+ "title": "product-manager",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/product-manager/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/product-manager/SKILL.md",
+ "license": "MIT",
+ "description": "Use when prioritizing animation features, building motion roadmaps, or when a PM needs to understand the business value of animation principles.",
+ "domains": [
+  "product",
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.101Z"
+}

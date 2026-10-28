@@ -1,0 +1,16 @@
+{
+ "title": "video-source-index",
+ "source": "M01",
+ "lang": "zh",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/video-production-skills/skills/video-source-index/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/video-production-skills/skills/video-source-index/SKILL.md",
+ "license": "MIT",
+ "description": "Index local interviews, recordings or video sources with hashes, observed timecoded content, reusable intervals, provenance and rights status.",
+ "domains": [
+  "data",
+  "music",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.770Z"
+}

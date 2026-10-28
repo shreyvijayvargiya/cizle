@@ -1,0 +1,16 @@
+{
+ "title": "central-historical-question-evaluator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/central-historical-question-evaluator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/central-historical-question-evaluator/SKILL.md",
+ "license": "MIT",
+ "description": "Evaluate a teacher-drafted central historical question for its capacity to drive genuine historical inquiry. Use when assessing whether a question will generate real evidence-weighing or produce shallow responses.",
+ "domains": [
+  "history",
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.981Z"
+}

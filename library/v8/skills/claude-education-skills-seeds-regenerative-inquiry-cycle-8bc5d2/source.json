@@ -1,0 +1,16 @@
+{
+ "title": "seeds-regenerative-inquiry-cycle",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/seeds-regenerative-inquiry-cycle/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/seeds-regenerative-inquiry-cycle/SKILL.md",
+ "license": "MIT",
+ "description": "Design a SEEDS regenerative inquiry cycle connecting place-based learning to ecological awareness for young learners. Use when building early childhood or primary inquiry around ecosystems and community.",
+ "domains": [
+  "education",
+  "science",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.019Z"
+}

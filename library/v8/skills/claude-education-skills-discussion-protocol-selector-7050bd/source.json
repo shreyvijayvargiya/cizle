@@ -1,0 +1,15 @@
+{
+ "title": "discussion-protocol-selector",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/questioning-discussion/discussion-protocol-selector/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/questioning-discussion/discussion-protocol-selector/SKILL.md",
+ "license": "MIT",
+ "description": "Select and configure a structured discussion protocol matched to the purpose, topic, and group readiness. Use when planning classroom discussions, Socratic seminars, or structured debate.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.044Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "trauma-informed-practice-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/trauma-informed-practice-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/trauma-informed-practice-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design trauma-informed classroom practices that prioritise safety, predictability, connection, and regulation. Use when student behaviour may be trauma-related or the class needs a sensitive approach.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.079Z"
+}

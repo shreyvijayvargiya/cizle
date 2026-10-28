@@ -1,0 +1,16 @@
+{
+ "title": "dual-coding-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/memory-learning-science/dual-coding-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/memory-learning-science/dual-coding-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a visual complement to verbal content using dual coding principles for stronger encoding. Use when creating slides, diagrams, posters, or visual explanations of complex concepts.",
+ "domains": [
+  "education",
+  "health",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.001Z"
+}

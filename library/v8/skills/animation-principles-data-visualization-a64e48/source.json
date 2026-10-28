@@ -1,0 +1,16 @@
+{
+ "title": "data-visualization",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/01-by-domain/data-visualization/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/01-by-domain/data-visualization/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating charts, graphs, dashboards, data transitions, or any information visualization work.",
+ "domains": [
+  "data",
+  "product",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.079Z"
+}

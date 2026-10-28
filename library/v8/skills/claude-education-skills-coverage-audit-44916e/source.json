@@ -1,0 +1,15 @@
+{
+ "title": "coverage-audit",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-alignment/coverage-audit/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-alignment/coverage-audit/SKILL.md",
+ "license": "MIT",
+ "description": "Takes a curriculum framework and a statutory or accreditation requirement list; produces a coverage table, gap summary, and CSV showing which framework content covers each requirement and where gaps exist.",
+ "domains": [
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.938Z"
+}

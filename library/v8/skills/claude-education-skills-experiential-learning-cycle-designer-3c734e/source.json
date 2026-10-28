@@ -1,0 +1,15 @@
+{
+ "title": "experiential-learning-cycle-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/environmental-experiential-learning/experiential-learning-cycle-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/environmental-experiential-learning/experiential-learning-cycle-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Structure a direct experience into a full learning cycle with concrete experience, reflection, and conceptual transfer. Use when planning field trips, simulations, or practical tasks.",
+ "domains": [
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.963Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "launch-sound",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-sound/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-sound/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (the sound palette, the event map, the cue sheet and generated sound kits). Design the sound effects of a launch film. Builds an event map from the storyboard, the voice-over word timings and the rendered timeline, voices every event from 1 consistent palette (the free synthesised, key-locked forge, or real glass, felt, wood, marimba, clicks and air generated on Higgsfield and pitched into the film's key), and renders 1 SFX stem in a shared acoustic space. Use once picture timing and the score are fixed, for \"sound effects\", \"SFX\", \"sound design\", \"UI sounds\", \"sonic logo\".",
+ "domains": [
+  "product",
+  "entertainment",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.587Z"
+}

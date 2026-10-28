@@ -1,0 +1,14 @@
+{
+ "title": "follow-through-overlapping",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/11-by-principle-focus/follow-through-overlapping/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/11-by-principle-focus/follow-through-overlapping/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating multi-part objects, character appendages, fabric, hair, or any motion requiring realistic drag, momentum, and settling behavior.",
+ "domains": [
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.143Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "filmmaker",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/03-by-role-persona/filmmaker/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/03-by-role-persona/filmmaker/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating cinematic sequences, narrative animations, or when applying animation principles to video storytelling and visual narrative.",
+ "domains": [
+  "entertainment",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.098Z"
+}

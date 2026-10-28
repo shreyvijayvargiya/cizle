@@ -1,0 +1,16 @@
+{
+ "title": "make-a-video",
+ "source": "M02",
+ "lang": "en",
+ "repo": "halicotampa-crypto/motion-pack",
+ "path": "community-templates/student-kit/.claude/skills/make-a-video/SKILL.md",
+ "url": "https://github.com/halicotampa-crypto/motion-pack/blob/HEAD/community-templates/student-kit/.claude/skills/make-a-video/SKILL.md",
+ "license": null,
+ "description": "Beginner-friendly end-to-end video creator for HyperFrames. Use when the user says \"make a video\", \"create a video\", \"new video\", \"build a video\", \"video from scratch\", \"I want to make a video\", \"help me create a video\", or when someone who's never used HyperFrames before arrives with a concept, script, or rough idea and wants a finished MP4. Interviews the user in one pass, then builds the full video with mandatory preview and visual-verification gates.",
+ "domains": [
+  "education",
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.580Z"
+}

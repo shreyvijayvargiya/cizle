@@ -1,0 +1,16 @@
+{
+ "title": "claude-animation",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "buildwithhanif/claude-animation-skill",
+ "path": "plugins/claude-animation/skills/claude-animation/SKILL.md",
+ "url": "https://github.com/buildwithhanif/claude-animation-skill/blob/HEAD/plugins/claude-animation/skills/claude-animation/SKILL.md",
+ "license": "MIT",
+ "description": "Make short hand-drawn 2D animations entirely in JavaScript — storybook / textured-editorial illustration (paper grain, hatching, blue construction guides, glossy insect characters, nest cross-sections) and brush-ink + watercolour explainers — rendered frame-exact with node canvas and ffmpeg, with synthesised sound. Use for \"bikin animasi\", \"animate this story\", \"hand-drawn animation\", \"storybook animation\", \"JS animation\", \"line drawing animation\", \"animasi semut\", kids' story or science explainer animations. Not for UI micro-interactions, slide decks, or talking-head video editing.",
+ "domains": [
+  "entertainment",
+  "gaming",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.082Z"
+}

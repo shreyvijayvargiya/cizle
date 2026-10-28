@@ -1,0 +1,15 @@
+{
+ "title": "differentiation-adapter",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/differentiation-adapter/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/differentiation-adapter/SKILL.md",
+ "license": "MIT",
+ "description": "Adapt a classroom task for specific learner needs while preserving the core learning objective intact. Use when differentiating for SEND, EAL, gifted, ADHD, dyslexia, or anxiety.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.946Z"
+}

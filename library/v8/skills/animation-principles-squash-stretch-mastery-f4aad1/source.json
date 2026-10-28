@@ -1,0 +1,16 @@
+{
+ "title": "squash-stretch-mastery",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/11-by-principle-focus/squash-stretch-mastery/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/11-by-principle-focus/squash-stretch-mastery/SKILL.md",
+ "license": "MIT",
+ "description": "Use when implementing deformation effects, bounce animations, impact responses, or any motion requiring organic elasticity and weight expression.",
+ "domains": [
+  "entertainment",
+  "gaming",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.147Z"
+}

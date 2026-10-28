@@ -1,0 +1,16 @@
+{
+ "title": "think-aloud-script-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/explicit-instruction/think-aloud-script-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/explicit-instruction/think-aloud-script-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Script a teacher think-aloud demonstrating expert reasoning processes for a specific task. Use when modelling problem-solving, writing, reading comprehension, or analytical processes.",
+ "domains": [
+  "education",
+  "math",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.968Z"
+}

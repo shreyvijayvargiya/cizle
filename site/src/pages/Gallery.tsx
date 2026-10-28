@@ -19,6 +19,7 @@ import { GUEST_LIMIT, useGate } from "@/lib/gate";
 import { ACCESS_ICON, SORT_ICON, categoryIcon } from "@/lib/filterIcons";
 import { PREMIUM } from "@/lib/config";
 import { useHead } from "@/lib/head";
+import { countBy, countryFlag } from "@/lib/facets";
 import { isLatinLabel } from "@/lib/utils";
 
 const PAGE = 48;
@@ -44,7 +45,7 @@ function Collections() {
 		</section>
 	);
 }
-const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort", "lang", "version"];
+const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort", "lang", "country", "tool", "topic"];
 
 /** Community video prompts, each credited and linked to the original. A free sample in full; the rest open to subscribers. */
 export function GalleryPage({ slug }: { slug?: string } = {}) {
@@ -106,6 +107,9 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 	// only English (Latin-script) categories are listed for now; prompts in other languages stay visible, they just do not add their own category labels
 	const allCategories = useMemo(() => [...new Set((gallery.data?.categories || []).map(canonCategory))].filter(isLatinLabel), [gallery.data?.categories]);
 	const categories = allCategories;
+	const countryCounts = useMemo(() => countBy(items || [], (g) => g.country), [items]);
+	const toolCounts = useMemo(() => countBy(items || [], (g) => g.tools), [items]);
+	const topicCounts = useMemo(() => countBy(items || [], (g) => g.topic), [items]);
 	const counts = useMemo(() => {
 		const m: Record<string, number> = {};
 		for (const g of items || []) if (g.category) m[canonCategory(g.category)] = (m[canonCategory(g.category)] || 0) + 1;
@@ -131,9 +135,9 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the gallery") : setQ(e.target.value))} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
 						</div>
 						<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={gallery.data?.languages ?? {}} className="w-[12.5rem]" />
-						{gallery.data?.versions.length ? (
-							<OptionSelect aria-label="Collection" value={search.version || ""} onValueChange={(v) => setFilter({ version: v })} emptyLabel="All collections" emptyIcon={Layers01Icon} options={[{ value: CLASSIC, label: "Classic (v1 to v3)", icon: Video01Icon }, ...gallery.data.versions.map((v) => ({ value: v.version, label: `${v.version} · ${Object.keys(v.languages).length} languages`, icon: Globe02Icon }))]} className="w-[13rem]" />
-						) : null}
+						<OptionSelect icon={Globe02Icon} aria-label="Country" value={search.country || ""} onValueChange={(v) => setFilter({ country: v })} emptyLabel="All countries" emptyIcon={Globe02Icon} options={countryCounts.map(([c, n]) => ({ value: c, label: `${countryFlag(c)} ${c} · ${n.toLocaleString()}` }))} className="w-[13rem]" />
+						<OptionSelect icon={Layers01Icon} aria-label="Tool" value={search.tool || ""} onValueChange={(v) => setFilter({ tool: v })} emptyLabel="All tools" emptyIcon={Layers01Icon} options={toolCounts.map(([c, n]) => ({ value: c, label: `${c} · ${n.toLocaleString()}` }))} className="w-[12.5rem]" />
+						<OptionSelect icon={Layers01Icon} aria-label="Topic" value={search.topic || ""} onValueChange={(v) => setFilter({ topic: v })} emptyLabel="All topics" emptyIcon={Layers01Icon} options={topicCounts.map(([c, n]) => ({ value: c, label: `${c} · ${n.toLocaleString()}` }))} className="w-[13rem]" />
 						<OptionSelect icon={Layers01Icon} aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: categoryLabel(c), icon: categoryIcon(c) }))} className="w-[12.5rem]" />
 						{PREMIUM ? <OptionSelect icon={Layers01Icon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples", icon: ACCESS_ICON.free }, { value: "premium", label: "Premium", icon: ACCESS_ICON.premium }]} className="w-[12rem]" /> : null}
 						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Random" emptyIcon={SORT_ICON.random} options={[{ value: "new", label: "Newest", icon: SORT_ICON.new }, { value: "az", label: "A to Z", icon: SORT_ICON.az }, { value: "long", label: "Longest first", icon: SORT_ICON.long }]} className="w-[12rem]" />

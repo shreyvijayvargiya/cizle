@@ -1,0 +1,16 @@
+{
+ "title": "noti-tiktok-full-text",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/noti-tiktok-full-text/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/noti-tiktok-full-text/SKILL.md",
+ "license": "MIT",
+ "description": "Build a Vietnamese vertical TikTok explainer in the \"MỔ XẺ PAPER AI\" (AI paper dissection) format with HyperFrames (HTML/CSS/GSAP → MP4), Noti.vn style. N text scenes + PDF paper-page scenes, every piece of text a real HTML element (reveal/count-up/red highlight), animated captions, stat callouts, comparison tables, pull-quotes. Picks sound effects itself by content + timestamp from the `assets/sound-effects/` library (tag `hay-dung`) and wires them into the video. The fix for Vietnamese text losing diacritics is built in. Use when the user brings a transcript + paper page images + figures and wants a paper dissection/explainer video.",
+ "domains": [
+  "education",
+  "music",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.605Z"
+}

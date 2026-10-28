@@ -1,0 +1,16 @@
+{
+ "title": "orchestrated-sequences",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/orchestrated-sequences/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/orchestrated-sequences/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building multi-part animation sequences - staggered reveals, choreographed UI, coordinated motion where multiple elements work together",
+ "domains": [
+  "product",
+  "data",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.140Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "user-feedback-clarity",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/12-by-problem-type/user-feedback-clarity/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/12-by-problem-type/user-feedback-clarity/SKILL.md",
+ "license": "MIT",
+ "description": "Use when users don't notice feedback, miss state changes, or can't tell if their action worked",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.154Z"
+}

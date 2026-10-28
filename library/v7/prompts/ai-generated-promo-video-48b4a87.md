@@ -1,0 +1,16 @@
+# AI-Generated Promo Video
+
+By @ddosa300-arch · general
+Language: en · Domains: entertainment, product · Source: P01
+
+Source page: https://prompts.chat
+
+```
+Create a 10-second ultra-cinematic promotional video for the launch of the "Media Presence Excellence Camp".
+
+The video opens with a black background and dramatic lighting. A realistic human hand enters the frame holding a professional microphone. Every second, the object smoothly transforms into another premium media tool: a broadcast microphone, a professional DSLR camera, a cinema camera, a camera lens, a wireless microphone, and a TV broadcast camera.
+
+Use seamless morph transitions, dynamic close-up shots, slow-motion details, and cinematic lighting. Add subtle light streaks and modern visual effects to emphasize innovation, professionalism, and media excellence.
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

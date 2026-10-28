@@ -1,0 +1,15 @@
+{
+ "title": "universal-emotion",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/06-by-emotional-outcome/universal-emotion/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/06-by-emotional-outcome/universal-emotion/SKILL.md",
+ "license": "MIT",
+ "description": "Use when you need to achieve any emotional outcome through animation—provides a framework for mapping Disney principles to any target emotion.",
+ "domains": [
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.120Z"
+}

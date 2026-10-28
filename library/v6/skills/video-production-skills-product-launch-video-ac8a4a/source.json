@@ -1,0 +1,15 @@
+{
+ "title": "product-launch-video",
+ "source": "M02",
+ "lang": "en",
+ "repo": "Jakeschincariol/video-production-skills",
+ "path": "product-launch-video/SKILL.md",
+ "url": "https://github.com/Jakeschincariol/video-production-skills/blob/HEAD/product-launch-video/SKILL.md",
+ "license": null,
+ "description": "Turn a product or marketing URL, pasted script, or brief into a product launch / promo video — SaaS promos, feature reveals, product demos, app and company launches. Use when the user wants to market, launch, promote, or reveal a product; the default for any commercial URL. Site tours / showcases of a website route here too — the brief carries the show-it-as-is intent. Unclear → /hyperframes.",
+ "domains": [
+  "product",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.632Z"
+}

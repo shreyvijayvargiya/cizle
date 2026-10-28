@@ -1,0 +1,16 @@
+{
+ "title": "e-commerce-retail",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/08-by-industry/e-commerce-retail/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/08-by-industry/e-commerce-retail/SKILL.md",
+ "license": "MIT",
+ "description": "Use when designing animations for shopping apps, product catalogs, checkout flows, or retail experiences",
+ "domains": [
+  "product",
+  "health",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.128Z"
+}

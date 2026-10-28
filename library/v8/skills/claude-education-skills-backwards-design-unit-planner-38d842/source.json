@@ -1,0 +1,15 @@
+{
+ "title": "backwards-design-unit-planner",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/backwards-design-unit-planner/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/backwards-design-unit-planner/SKILL.md",
+ "license": "MIT",
+ "description": "Plan a unit using backwards design from desired outcomes through assessment evidence to learning activities. Use when starting a new unit or redesigning an existing one from standards.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.943Z"
+}

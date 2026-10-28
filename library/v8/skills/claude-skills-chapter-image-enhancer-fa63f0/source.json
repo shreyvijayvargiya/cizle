@@ -1,0 +1,16 @@
+{
+ "title": "chapter-image-enhancer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dmccreary/claude-skills",
+ "path": "skills/archived/chapter-image-enhancer/SKILL.md",
+ "url": "https://github.com/dmccreary/claude-skills/blob/HEAD/skills/archived/chapter-image-enhancer/SKILL.md",
+ "license": null,
+ "description": "Adds freely-licensed maps and photos to textbook chapters by sourcing from Wikimedia Commons and US government archives, then inserting them with captions and proper attribution.",
+ "domains": [
+  "nature",
+  "science",
+  "history"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.155Z"
+}

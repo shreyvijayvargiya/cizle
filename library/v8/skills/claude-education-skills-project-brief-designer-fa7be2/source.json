@@ -1,0 +1,15 @@
+{
+ "title": "project-brief-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/project-brief-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/project-brief-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a project-based learning brief with a driving question, milestones, and assessment criteria. Use when planning PBL units, inquiry projects, or extended investigations.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.951Z"
+}

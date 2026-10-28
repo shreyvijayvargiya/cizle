@@ -1,0 +1,16 @@
+{
+ "title": "discipline-specific-critical-thinking-task-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/discipline-specific-critical-thinking-task-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/discipline-specific-critical-thinking-task-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design discipline-specific critical thinking tasks grounded in knowledge-contingent reasoning rather than generic skills. Use when embedding higher-order thinking into subject content.",
+ "domains": [
+  "education",
+  "science",
+  "history"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.948Z"
+}

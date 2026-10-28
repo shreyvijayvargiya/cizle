@@ -1,0 +1,16 @@
+{
+ "title": "page-transitions",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/01-by-domain/page-transitions/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/01-by-domain/page-transitions/SKILL.md",
+ "license": "MIT",
+ "description": "Use when implementing route changes, view transitions, modal opens/closes, or navigation animation in web and mobile applications.",
+ "domains": [
+  "edtech",
+  "health",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.085Z"
+}

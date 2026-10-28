@@ -1,0 +1,16 @@
+{
+ "title": "launch-score",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-score/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-score/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (music fitted to the edit with Higgsfield Sonilo, ACE-Step locally, or the free scratch bed). Score a launch film with music whose sections are the film's acts. Each take is measured for tempo and section energy, stretched onto the film's BPM and offset so its drop lands on the cut. Use after the storyboard's beat sheet exists, for \"music\", \"score\", \"soundtrack\", \"background track\", \"the drop\", \"beat grid\".",
+ "domains": [
+  "entertainment",
+  "product",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.586Z"
+}

@@ -1,0 +1,12 @@
+# Cyberpunk Portrait of an Iranian Woman with “همین؟” Glitch Frame
+
+By @omidzamani2@gmail.com · general
+Language: en · Domains: scifi · Source: P01
+
+Source page: https://prompts.chat
+
+```
+Cyberpunk portrait, Iranian woman 2026, neon magenta and cyan rim light, wet reflective skin, subtle holographic eyeliner. Expression lives in the eyes only: one brow flattened, the other slightly cocked, eyes narrowed with a cold amused squint — mockery without a smile. Below, a clean glitchy sketch-frame box with hurried handwritten marker text: "همین؟".
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

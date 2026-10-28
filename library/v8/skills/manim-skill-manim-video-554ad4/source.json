@@ -1,0 +1,16 @@
+{
+ "title": "manim-video",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "vumichien/manim-skill",
+ "path": "skills/manim-video/SKILL.md",
+ "url": "https://github.com/vumichien/manim-skill/blob/HEAD/skills/manim-video/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Generate Manim animations from ideas, research papers, or math topics. Use when user asks to \"make a video about X\", \"animate X\", \"explain X with Manim\", or invokes /manim-video. Orchestrates a 4-role pipeline (researcher + planner + implementer + main) to produce out/<run-id>/video.mp4 with chrome (header bar + captions) and cross-fade transitions, plus storyboard, scenes, narration script, and captions.srt.",
+ "domains": [
+  "math",
+  "education",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.099Z"
+}

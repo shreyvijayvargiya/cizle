@@ -1,0 +1,15 @@
+{
+ "title": "spatial-thinking",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/02-by-thinking-style/spatial-thinking/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/02-by-thinking-style/spatial-thinking/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation involves depth, perspective, volume, or three-dimensional awareness—camera moves, character positioning, environmental interaction, or maintaining consistent spatial relationships.",
+ "domains": [
+  "science",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.093Z"
+}

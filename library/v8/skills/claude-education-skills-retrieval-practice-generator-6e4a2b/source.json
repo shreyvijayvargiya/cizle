@@ -1,0 +1,15 @@
+{
+ "title": "retrieval-practice-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/memory-learning-science/retrieval-practice-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/memory-learning-science/retrieval-practice-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate retrieval practice questions at varied difficulty levels for a topic or concept. Use when creating quiz starters, revision activities, or low-stakes testing materials.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.002Z"
+}

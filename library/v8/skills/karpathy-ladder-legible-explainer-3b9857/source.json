@@ -1,0 +1,16 @@
+{
+ "title": "legible-explainer",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "FutureAtoms/karpathy-ladder",
+ "path": "skills/legible-explainer/SKILL.md",
+ "url": "https://github.com/FutureAtoms/karpathy-ladder/blob/HEAD/skills/legible-explainer/SKILL.md",
+ "license": "MIT",
+ "description": "Explain a subject in the format that is easiest to understand, following Karpathy's output-format ladder: ASD-STE100 Simplified Technical English prose, then a diagram, then a self-contained HTML spec sheet drawn like an engineering drawing, then a narrated explainer video. Use it when the user asks for an explanation as the deliverable: explain a concept, protocol, system, codebase, spec, plan, diff or a long agent-written output; help them understand text they cannot follow or have no time to read; or asks for STE, ASD-STE100, Simplified Technical English, controlled language, 'explain it 80% STE', a diagram to keep open while they work, an explainer page or one-page overview, a cheat sheet or spec sheet, an explanation 'in HTML', or a 3Blue1Brown-style explainer video. Not for production UI, landing pages, dashboards, slide decks, promo videos or diagrams the user wants to edit.",
+ "domains": [
+  "education",
+  "engineering",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.092Z"
+}

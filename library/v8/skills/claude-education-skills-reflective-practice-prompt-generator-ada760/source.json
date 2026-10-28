@@ -1,0 +1,14 @@
+{
+ "title": "reflective-practice-prompt-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/professional-learning/reflective-practice-prompt-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/professional-learning/reflective-practice-prompt-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate structured reflection prompts for a specific teaching experience or professional learning challenge. Use when debriefing lessons, journaling, or preparing for coaching conversations.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.028Z"
+}

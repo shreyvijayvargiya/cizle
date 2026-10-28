@@ -1,0 +1,16 @@
+{
+ "title": "staging-mastery",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/11-by-principle-focus/staging-mastery/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/11-by-principle-focus/staging-mastery/SKILL.md",
+ "license": "MIT",
+ "description": "Use when composing scenes, designing layouts, directing user attention, or ensuring a single clear idea is communicated at any given moment.",
+ "domains": [
+  "data",
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.147Z"
+}

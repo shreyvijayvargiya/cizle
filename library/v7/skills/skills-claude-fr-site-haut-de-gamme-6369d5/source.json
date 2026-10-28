@@ -1,0 +1,12 @@
+{
+ "title": "site-haut-de-gamme",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/site-haut-de-gamme/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/site-haut-de-gamme/SKILL.md",
+ "license": "MIT",
+ "description": "Enchaîne la création complète d'un site web haut de gamme en 9 phases validées une par une — stratégie, système de design, contenu, code, actifs visuels, raffinement, recette, préparation au lancement, mise en ligne. À utiliser quand l'utilisateur veut créer un site premium de bout en bout, dit \"la chaîne des 9 prompts\", \"phase 1 du site\", \"on passe à la phase suivante\", \"refais-moi un site complet pour X\", ou reprend un chantier de site déjà commencé avec cette méthode. Convient aussi bien à un site vitrine qu'à une boutique. Ne pas utiliser pour une simple page unique (voir brief-artisan) ni pour corriger un site existant (voir audit-anti-vibe-coding).",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:52:35.348Z"
+}

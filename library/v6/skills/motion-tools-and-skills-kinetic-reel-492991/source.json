@@ -1,0 +1,16 @@
+{
+ "title": "kinetic-reel",
+ "source": "M01",
+ "lang": "en",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/kinetic-reel/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/kinetic-reel/SKILL.md",
+ "license": "MIT",
+ "description": "Make kinetic-typography motion reels (MP4) in code: showreels, portfolio or work reels, product promos, intro films, \"motion design\"-style videos with bold condensed type, HUD micro-type, black/cream/lime palette, three.js generative layers (particle terrain, liquid marble, chrome knot, particle clouds), shape-continuity transitions and a synthesized, beat-locked score. Canvas 2D + WebGL rendered frame by frame in headless Chrome, encoded with ffmpeg. Use when the user asks for a reel, showreel, motion-graphics / kinetic-type video, a \"Work Reel\" in this style, or to extend/re-cut the Work Reel ’26.",
+ "domains": [
+  "entertainment",
+  "music",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.770Z"
+}

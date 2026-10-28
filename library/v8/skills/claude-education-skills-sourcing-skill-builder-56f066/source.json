@@ -1,0 +1,16 @@
+{
+ "title": "sourcing-skill-builder",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/sourcing-skill-builder/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/sourcing-skill-builder/SKILL.md",
+ "license": "MIT",
+ "description": "Build students' capacity to interrogate a historical source before reading — asking who authored it, when, why, and what this means for reliability. Use when students read documents without attending to authorship.",
+ "domains": [
+  "history",
+  "education",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.987Z"
+}

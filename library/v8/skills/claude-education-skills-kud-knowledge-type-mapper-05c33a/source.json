@@ -1,0 +1,16 @@
+{
+ "title": "kud-knowledge-type-mapper",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/kud-knowledge-type-mapper/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/kud-knowledge-type-mapper/SKILL.md",
+ "license": "MIT",
+ "description": "Classify curriculum content into Know, Understand, and Do categories to align teaching and assessment approaches. Use when planning units, writing objectives, or selecting assessment methods.",
+ "domains": [
+  "education",
+  "engineering",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.950Z"
+}

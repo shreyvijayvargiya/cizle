@@ -1,0 +1,15 @@
+{
+ "title": "cpa-sequence-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/global-cross-cultural-pedagogies/cpa-sequence-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/global-cross-cultural-pedagogies/cpa-sequence-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a Concrete-Pictorial-Abstract learning sequence for a mathematical concept using manipulatives. Use when teaching maths through Singapore method or when students struggle with abstraction.",
+ "domains": [
+  "math",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.970Z"
+}

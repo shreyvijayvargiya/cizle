@@ -1,0 +1,16 @@
+{
+ "title": "retrieve-first-gate",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/retrieve-first-gate/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/retrieve-first-gate/SKILL.md",
+ "license": "MIT",
+ "description": "Before any explanation or answer, require the learner to produce a free-recall attempt and confidence rating. Use when a student wants help understanding or reviewing a topic — this skill ensures the AI works from what the learner already knows.",
+ "domains": [
+  "education",
+  "engineering",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.047Z"
+}

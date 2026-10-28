@@ -1,0 +1,15 @@
+{
+ "title": "confidence-calibration-check",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/confidence-calibration-check/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/confidence-calibration-check/SKILL.md",
+ "license": "MIT",
+ "description": "Capture confidence ratings before and after a learning attempt to identify overconfidence and underconfidence patterns. Use when a student wants to understand how well they actually know something versus how well they think they know it.",
+ "domains": [
+  "education",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.043Z"
+}

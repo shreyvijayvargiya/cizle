@@ -1,0 +1,14 @@
+{
+ "title": "manim",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "AureClai/claude-code-manim-skills",
+ "path": "manim/SKILL.md",
+ "url": "https://github.com/AureClai/claude-code-manim-skills/blob/HEAD/manim/SKILL.md",
+ "license": "MIT",
+ "description": "Generate Manim animations from natural language descriptions of mathematical concepts. Use this when users want to create educational math animations, visualize calculus, linear algebra, geometry, or any mathematical concept in the style of 3Blue1Brown.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.093Z"
+}

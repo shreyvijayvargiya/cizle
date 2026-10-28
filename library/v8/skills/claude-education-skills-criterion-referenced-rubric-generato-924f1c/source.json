@@ -1,0 +1,14 @@
+{
+ "title": "criterion-referenced-rubric-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/criterion-referenced-rubric-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/criterion-referenced-rubric-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate a criterion-referenced rubric with descriptive performance levels for a task or objective. Use for marking guides and general curriculum contexts. For Manning programmes where Competent = success, use coherent-rubric-logic-builder instead.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.945Z"
+}

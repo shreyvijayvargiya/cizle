@@ -1,0 +1,16 @@
+{
+ "title": "motion-prompt-writer",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/motion-prompt-writer/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/motion-prompt-writer/SKILL.md",
+ "license": "MIT",
+ "description": "Write a complete 8-part Claude Motion prompt (The bar, Format, The one rule, Look, Motion, Never, Before you finish, The scene) for one short looping motion graphic, in your own brand. Takes your brand (a website screenshot, a logo, hex codes, or nothing for the Apple-style default) and one moment you want to show, in plain words. Use when someone says \"write me a Motion prompt\", \"turn this idea into a motion graphic\", \"fill in the 8 parts\" or \"make my motion brief\". Outputs parts 1 to 7 as a reusable brief and part 8 as the scene, in one paste-ready code block.",
+ "domains": [
+  "product",
+  "science",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.565Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "dispositional-knowledge-assessment-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/dispositional-knowledge-assessment-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/dispositional-knowledge-assessment-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design multi-informant assessment approaches for dispositional competencies like curiosity or resilience. Use when assessing character strengths or competencies that written tests cannot capture.",
+ "domains": [
+  "education",
+  "health",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.018Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "transition-sequences",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/transition-sequences/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/transition-sequences/SKILL.md",
+ "license": "MIT",
+ "description": "Use when orchestrating multi-step animations - page transitions, onboarding flows, wizard steps, complex reveals, or any choreographed animation sequence.",
+ "domains": [
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.116Z"
+}

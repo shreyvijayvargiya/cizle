@@ -1,0 +1,16 @@
+{
+ "title": "explainer-motion",
+ "source": "M01",
+ "lang": "zh",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/video-production-skills/skills/explainer-motion/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/video-production-skills/skills/explainer-motion/SKILL.md",
+ "license": "MIT",
+ "description": "Design or implement explanatory motion with observable state changes, optional 2D and 3D, deterministic timing and actual preview checks.",
+ "domains": [
+  "data",
+  "education",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.770Z"
+}

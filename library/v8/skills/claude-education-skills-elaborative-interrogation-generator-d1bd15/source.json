@@ -1,0 +1,15 @@
+{
+ "title": "elaborative-interrogation-generator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/memory-learning-science/elaborative-interrogation-generator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/memory-learning-science/elaborative-interrogation-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate elaborative interrogation prompts that deepen encoding through targeted why and how questions. Use when students memorise without understanding or need deeper processing of content.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.999Z"
+}

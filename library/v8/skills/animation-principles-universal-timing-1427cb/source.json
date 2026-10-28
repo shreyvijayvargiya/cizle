@@ -1,0 +1,16 @@
+{
+ "title": "universal-timing",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/universal-timing/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/universal-timing/SKILL.md",
+ "license": "MIT",
+ "description": "Use when learning animation timing fundamentals - principles that apply regardless of duration, the foundational rules that scale across all time ranges",
+ "domains": [
+  "education",
+  "science",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.141Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "model-showdown",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/model-showdown/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/model-showdown/SKILL.md",
+ "license": "MIT",
+ "description": "Give the same motion brief to three AI models, keep each first try, render all three the same way and stack them into one comparison video with model names and logos. Makes a 16:9 side-by-side for a newsletter and a 1080 x 1920 stacked reel for Instagram and TikTok. Use when someone says \"compare three models\", \"same prompt three AIs\", \"model showdown\", \"which AI is the best motion designer\", \"side by side comparison video\" or wants a fair head-to-head of AI outputs.",
+ "domains": [
+  "product",
+  "gaming",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.562Z"
+}

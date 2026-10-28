@@ -1,0 +1,14 @@
+{
+ "title": "scroll-animations",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/05-by-animation-type/scroll-animations/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/05-by-animation-type/scroll-animations/SKILL.md",
+ "license": "MIT",
+ "description": "Use when triggering animations on scroll - reveal effects, parallax, sticky headers, progress indicators, or any scroll-linked motion.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.116Z"
+}

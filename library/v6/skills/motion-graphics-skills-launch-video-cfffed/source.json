@@ -1,0 +1,16 @@
+{
+ "title": "launch-video",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/launch-video/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/launch-video/SKILL.md",
+ "license": "MIT",
+ "description": "Make a 30-45 second product launch video in code with Claude Code, the kind SaaS companies post on launch day. One sentence split across scenes, real product screens with slow camera moves, a typed prompt, a proof beat and a clear call to action. Use when someone says \"launch video\", \"promo video for my product\", \"announce my course/cohort/offer\", \"make a launch reel\" or \"trailer for my product\".",
+ "domains": [
+  "product",
+  "math",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.560Z"
+}

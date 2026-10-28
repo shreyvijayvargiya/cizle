@@ -1,0 +1,16 @@
+{
+ "title": "ai-hallucination-fact-check-protocol",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-literacy/ai-hallucination-fact-check-protocol/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-literacy/ai-hallucination-fact-check-protocol/SKILL.md",
+ "license": "MIT",
+ "description": "Design a fact-checking protocol for AI-generated text, extending SIFT with AI-specific adaptations for hallucination detection. Use when students need to verify AI claims and citations.",
+ "domains": [
+  "education",
+  "math",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.926Z"
+}

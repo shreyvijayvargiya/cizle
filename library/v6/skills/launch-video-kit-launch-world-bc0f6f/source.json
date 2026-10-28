@@ -1,0 +1,16 @@
+{
+ "title": "launch-world",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-world/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-world/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (backgrounds, plates, Blender glass and 3D shots, shader layers). Build the world a launch film lives in, in your own brand, with generated background plates (cost-gated), Blender for real 3D glass objects and camera moves rendered as alpha layers, WebGL shader layers for atmosphere, and the layer order, depth of field and grade that keep UI legible over living backgrounds. Use when a storyboard needs backgrounds, 3D or atmosphere, for \"background\", \"plate\", \"3D object\", \"glass\", \"Blender\", \"shader\", \"atmosphere\"; motion of the UI itself is launch-motion.",
+ "domains": [
+  "product",
+  "entertainment",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.593Z"
+}

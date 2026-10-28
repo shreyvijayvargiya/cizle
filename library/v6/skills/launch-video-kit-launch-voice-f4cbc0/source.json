@@ -1,0 +1,16 @@
+{
+ "title": "launch-voice",
+ "source": "M02",
+ "lang": "en",
+ "repo": "timscheuerai/launch-video-kit",
+ "path": "skills/launch-voice/SKILL.md",
+ "url": "https://github.com/timscheuerai/launch-video-kit/blob/HEAD/skills/launch-voice/SKILL.md",
+ "license": "MIT",
+ "description": "Tool manual under launch-film (voice casting, one take per line, fitting lines, stitching, forced alignment, the vintage chain, the local clone and the free scratch voice). Produce the voice-over of a launch film. Casting across every Higgsfield preset voice, one file per script line fitted into its frame, pace and length rules, word-level timestamps by forced alignment so every key word lands on its visual, and fixes for lines that run long. Use after launch-story has an approved script and before picture timing is locked, for \"voice-over\", \"narrator\", \"cast a voice\", \"record the lines\", \"align the words\", \"scratch voice\".",
+ "domains": [
+  "product",
+  "entertainment",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.588Z"
+}

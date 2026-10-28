@@ -1,0 +1,15 @@
+{
+ "title": "motion-effects",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/motion-effects/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/motion-effects/SKILL.md",
+ "license": "MIT",
+ "description": "Build any of 16 premium motion effects from scratch in your own brand, as one 8-second looping HTML file with window.seek(seconds) so it exports frame-exact to MP4 or GIF. Interfaces (button to player, search to results, card to workspace, tabs to panels), data (chart morph, dashboard zoom, spring stack, magnetic dock), type (masked type, elastic type, text to layout, image reveal) and systems (perspective shift, glass focus, flowing paths, particle logo). Use when someone says \"build the chart morph\", \"make a button that turns into a video player\", \"animate my logo with particles\", \"motion effect\", \"UI animation\", \"product animation\", \"animated dashboard\", \"kinetic type\" or names any of the 16 effects.",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.567Z"
+}

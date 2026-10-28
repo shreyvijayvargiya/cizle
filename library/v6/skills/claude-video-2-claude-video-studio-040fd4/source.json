@@ -1,0 +1,14 @@
+{
+ "title": "claude-video-studio",
+ "source": "M02",
+ "lang": "en",
+ "repo": "ItsssssJack/claude-video-2",
+ "path": "SKILL.md",
+ "url": "https://github.com/ItsssssJack/claude-video-2/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Claude Video 2.0. Make studio-quality motion graphics with Claude Code, free. It opens a gallery of 21 looks playing as real videos so the person picks one, asks 5 short questions, then builds the piece in code (HTML + GSAP, rendered to MP4 with HyperFrames). Pure graphics, or with the person's own photos and clips, or with AI clips from Higgsfield behind a storyboard and credit check that waits for \"yes\". Every piece is checked from real frames: 3 stills to approve, a pacing check, and a pixel loop check. Use when someone says \"make me a motion graphic\", \"make a video intro\", \"animate this\", \"make a loop\", \"make a title card\", \"motion graphics with my photos\", \"turn my photo into a clip\", \"Claude Video\", or \"/claude-video-studio\".",
+ "domains": [
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.594Z"
+}

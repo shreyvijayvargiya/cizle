@@ -1,0 +1,237 @@
+{
+	"version": 8,
+	"description": "Harvest v8: educational cartoon, whiteboard, sketch, science and anatomy-style explainer skills for students and universities (biology, chemistry, anatomy, maths), found 2026-10-28 (GitHub search and web search; every candidate cloned and counted, every repo checked against the v1-v7 graphs; liangdabiao/math-concept-film left out because v4 has it). Ids start at Q01. Run with `node server/harvest/cli.js --v8`.",
+	"defaults": {
+		"min_records": 5,
+		"batch_size": 20,
+		"batch_pause_ms": 4000,
+		"source_pause_ms": 6000,
+		"max_parallel": 2
+	},
+	"start": "Q01",
+	"nodes": [
+		{
+			"id": "Q01",
+			"name": "Educational animation and explainer-video skills (2D, whiteboard, sketch, Kurzgesagt, Manim)",
+			"adapter": "github-skills",
+			"url": "https://github.com/buildwithhanif/claude-animation-skill",
+			"expect": 25,
+			"min_records": 15,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "buildwithhanif/claude-animation-skill",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "skindhu/skind-skills",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "tugrulz/kurzgesagt-style",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "Drmedkit/explainer-studio",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "techdou/whiteboard-video",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "neulketing/sketchboard",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "dongphuongman/whiteboard-animation",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "Reblis/dip-pen-sketch-animation-skill",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "michael-L-i/gen-learning-vids",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "jabezpauls/edu-video-generator",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "irfanalimd/explainer",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "weike-zhang/grounded-ai-tutor",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "Science-Prof-Robot/recursive-math-animator",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "FutureAtoms/karpathy-ladder",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "AmitSubhash/3brown1blue",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "AureClai/claude-code-manim-skills",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "Yusuke710/manim-skill",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "awesome-skills/manim-skill",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "vumichien/manim-skill",
+						"license": "Apache-2.0",
+						"tags": [
+							"Education"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: buildwithhanif 1 (2D animation graphics), skindhu 2 (Kurzgesagt-style science explainers with Remotion), tugrulz 1, Drmedkit 1 (directed science explainers), techdou 1 / neulketing 1 / dongphuongman 2 (whiteboard hand-drawn videos), Reblis 1 (dip-pen sketch drawing video), michael-L-i 1 (educational and scientific animation engine), jabezpauls 1, irfanalimd 2, weike-zhang 1, Science-Prof-Robot 2, FutureAtoms 1, Manim packs: AmitSubhash 1, AureClai 2, Yusuke710 1, awesome-skills 1, vumichien 1. jabezpauls has no licence file: preview plus link."
+		},
+		{
+			"id": "Q02",
+			"name": "Education skill libraries and animation-principles for learning",
+			"adapter": "github-skills",
+			"url": "https://github.com/GarethManning/claude-education-skills",
+			"expect": 340,
+			"min_records": 200,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "GarethManning/claude-education-skills",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "dylantarre/animation-principles",
+						"license": "MIT",
+						"tags": [
+							"Education"
+						]
+					},
+					{
+						"repo": "dmccreary/claude-skills",
+						"tags": [
+							"Education"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: GarethManning/claude-education-skills 165 (evidence-based teaching and learning skills), dylantarre/animation-principles 144 (Disney's 12 principles applied per audience, including educator skills), dmccreary/claude-skills 34 (intelligent textbooks, MicroSims; no licence file: preview plus link)."
+		}
+	],
+	"edges": [
+		{
+			"from": "Q01",
+			"to": "Q02"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "liangdabiao/math-concept-film",
+			"reason": "Already harvested in v4 (K*)."
+		},
+		{
+			"id": "Z02",
+			"name": "DozenTwelve/Papermorph",
+			"reason": "Clone failed (very large repository); revisit later."
+		},
+		{
+			"id": "Z03",
+			"name": "HoltzTomas/claiss, tomiholtz/claiss",
+			"reason": "No SKILL.md; a duplicate pair of an app."
+		},
+		{
+			"id": "Z04",
+			"name": "Tutanka01/PromptLoom",
+			"reason": "GPL-3.0."
+		},
+		{
+			"id": "Z05",
+			"name": "khatunrina53a26/kurzgesagt-animation-studio, Jellypod-Inc/school-skills-for-claude-code",
+			"reason": "Repository no longer exists."
+		},
+		{
+			"id": "Z06",
+			"name": "yanyuchao586-png/remotion-science-video, edwardyen724-g/paper2video",
+			"reason": "No SKILL.md (workflow notes or an app)."
+		},
+		{
+			"id": "Z07",
+			"name": "anatomy, chemistry-lab and body-shape specific skills",
+			"reason": "Searched GitHub and the web: no dedicated repository found; the anatomy diagram skill reported in the press could not be confirmed. Those topics are covered by the general science and whiteboard skills above."
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+ "title": "historical-source-adapter",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/historical-thinking/historical-source-adapter/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/historical-thinking/historical-source-adapter/SKILL.md",
+ "license": "MIT",
+ "description": "Adapt a historical primary source for classroom use — modifying complexity and length while preserving features for sourcing, close reading, and corroboration. Use when a primary source is too complex for the target age group.",
+ "domains": [
+  "history",
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.985Z"
+}

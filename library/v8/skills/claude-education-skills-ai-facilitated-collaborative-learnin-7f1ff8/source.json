@@ -1,0 +1,15 @@
+{
+ "title": "ai-facilitated-collaborative-learning-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/ai-facilitated-collaborative-learning-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/ai-facilitated-collaborative-learning-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design AI-supported collaborative tasks that structure group interaction and address participation problems. Use when students struggle to collaborate effectively on group tasks.",
+ "domains": [
+  "education",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.909Z"
+}

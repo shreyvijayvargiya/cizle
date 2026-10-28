@@ -1,0 +1,15 @@
+{
+ "title": "outdoor-learning-sequence-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/environmental-experiential-learning/outdoor-learning-sequence-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/environmental-experiential-learning/outdoor-learning-sequence-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a structured outdoor learning sequence embedding curriculum objectives in an available outdoor space. Use when planning lessons in school grounds, parks, or local natural environments.",
+ "domains": [
+  "education",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.965Z"
+}

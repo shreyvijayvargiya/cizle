@@ -1,0 +1,16 @@
+{
+ "title": "large-500-800ms",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/10-by-time-scale/large-500-800ms/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/10-by-time-scale/large-500-800ms/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building larger movement animations between 500-800ms - hero transitions, complex reveals, animations that tell a story and deserve attention",
+ "domains": [
+  "entertainment",
+  "product",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.137Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "explainer-studio",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "Drmedkit/explainer-studio",
+ "path": "skill/SKILL.md",
+ "url": "https://github.com/Drmedkit/explainer-studio/blob/HEAD/skill/SKILL.md",
+ "license": "MIT",
+ "description": "Build a complete science explainer for one topic - a real quantitative model with self-checks, a crafted isometric anatomy-skill figure of a real object whose moving parts ARE the concept, a 6-8 step explainer that opens on catalog misconceptions, an open lab with real knobs, slow motion, live instruments and 3 challenges, and a directed full-bleed 16:9 explainer film (narration, camera moves, slow motion, events posed on the spoken word), shipped as one page + Cloudflare site + claude.ai artifact. Use it whenever the user wants an explainer video, an interactive explainer, an open lab or a simulation page for any physics, chemistry, biology or earth-space topic, a concept card for such a topic, a topic from the curriculum explained, or wants to scaffold, render, gate or ship an explainer-studio topic - even if they only name the topic.",
+ "domains": [
+  "education",
+  "science",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.082Z"
+}

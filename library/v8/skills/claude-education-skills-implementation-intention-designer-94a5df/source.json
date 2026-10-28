@@ -1,0 +1,16 @@
+{
+ "title": "implementation-intention-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/implementation-intention-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/implementation-intention-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Create if-then implementation intentions and WOOP plans for specific student behaviour change goals. Use when students know what to do but struggle to follow through on habits or routines.",
+ "domains": [
+  "education",
+  "health",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.068Z"
+}

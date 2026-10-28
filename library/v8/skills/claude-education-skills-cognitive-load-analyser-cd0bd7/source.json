@@ -1,0 +1,15 @@
+{
+ "title": "cognitive-load-analyser",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/memory-learning-science/cognitive-load-analyser/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/memory-learning-science/cognitive-load-analyser/SKILL.md",
+ "license": "MIT",
+ "description": "Analyse a learning task for cognitive load problems and recommend specific design improvements. Use when tasks overwhelm students, instructions feel complex, or materials need simplifying.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.998Z"
+}

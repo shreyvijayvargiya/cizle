@@ -1,0 +1,15 @@
+{
+ "title": "scaffolded-task-modifier",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/eal-language-development/scaffolded-task-modifier/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/eal-language-development/scaffolded-task-modifier/SKILL.md",
+ "license": "MIT",
+ "description": "Modify a classroom task with language scaffolds that preserve cognitive demand for EAL learners. Use when adapting existing tasks for students at different English proficiency levels.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.960Z"
+}

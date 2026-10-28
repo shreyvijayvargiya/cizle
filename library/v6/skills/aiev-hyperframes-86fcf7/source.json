@@ -1,0 +1,16 @@
+{
+ "title": "hyperframes",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/hyperframes/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/hyperframes/SKILL.md",
+ "license": "MIT",
+ "description": "Create video compositions, animations, title cards, overlays, captions, voiceovers, audio-reactive visuals, and scene transitions in HyperFrames HTML. Use when asked to build any HTML-based video content, add captions or subtitles synced to audio, generate text-to-speech narration, create audio-reactive animation (beat sync, glow, pulse driven by music), add animated text highlighting (marker sweeps, hand-drawn circles, burst lines, scribble, sketchout), or add transitions between scenes (crossfades, wipes, reveals, shader transitions). Covers composition authoring, timing, media, and the full video production workflow. For CLI commands (init, lint, preview, render, transcribe, tts) see the hyperframes-cli skill.",
+ "domains": [
+  "music",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.600Z"
+}

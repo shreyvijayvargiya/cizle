@@ -1,0 +1,15 @@
+{
+ "title": "apple-launch-film",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/apple-launch-film/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/apple-launch-film/SKILL.md",
+ "license": "MIT",
+ "description": "Rebuild an Apple-style Mac launch film entirely in code with Claude Code. A thin menu bar, the black notch growing into widgets one scene at a time, full-screen gradient wallpapers and one short caption per scene. No screen recording, no After Effects. Use when someone says \"Apple-style launch\", \"Mac launch video\", \"notch animation\", \"make it look like an Apple keynote\", \"macOS UI launch film\" or wants a product launch that looks like native Mac interface.",
+ "domains": [
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.557Z"
+}

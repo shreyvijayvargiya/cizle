@@ -1,0 +1,16 @@
+{
+ "title": "milestone-reveal",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/milestone-reveal/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/milestone-reveal/SKILL.md",
+ "license": "MIT",
+ "description": "Make a 12-second looping milestone clip in code with Claude Code. Thousands of tiny points drift like a night sky, pull together into your real number (followers, subscribers, revenue, customers), a line draws underneath and the label settles in. Premium, not a party. Use when someone says \"milestone video\", \"celebrate 10k followers\", \"animate my subscriber count\", \"number reveal\", \"particle number animation\" or wants to mark a result on LinkedIn or Instagram.",
+ "domains": [
+  "product",
+  "science",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.559Z"
+}

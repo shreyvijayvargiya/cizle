@@ -1,0 +1,16 @@
+{
+ "title": "reel-export",
+ "source": "M02",
+ "lang": "en",
+ "repo": "charlie947/motion-graphics-skills",
+ "path": "skills/reel-export/SKILL.md",
+ "url": "https://github.com/charlie947/motion-graphics-skills/blob/HEAD/skills/reel-export/SKILL.md",
+ "license": "MIT",
+ "description": "Turn any horizontal or square motion video into a 1080 x 1920 Instagram Reel or TikTok that uploads cleanly. Headline and logos inside the safe zone, H.264, yuv420p, limited colour range, bt709, a silent audio track when there is no sound, and an ffprobe check before upload. Use when someone says \"make this a reel\", \"vertical version\", \"export for Instagram\", \"TikTok version\", \"9:16 cut\", \"reel export\" or has a 16:9 or 4:5 video that needs to go on a vertical feed.",
+ "domains": [
+  "data",
+  "product",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.566Z"
+}

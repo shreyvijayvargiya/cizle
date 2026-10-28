@@ -1,0 +1,16 @@
+{
+ "title": "calm-relaxation",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/06-by-emotional-outcome/calm-relaxation/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/06-by-emotional-outcome/calm-relaxation/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating animations that soothe users, reduce anxiety, or create peaceful, meditative experiences.",
+ "domains": [
+  "edtech",
+  "music",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.115Z"
+}

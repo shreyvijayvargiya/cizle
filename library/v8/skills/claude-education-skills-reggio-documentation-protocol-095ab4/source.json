@@ -1,0 +1,14 @@
+{
+ "title": "reggio-documentation-protocol",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/global-cross-cultural-pedagogies/reggio-documentation-protocol/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/global-cross-cultural-pedagogies/reggio-documentation-protocol/SKILL.md",
+ "license": "MIT",
+ "description": "Design a pedagogical documentation protocol for making children's learning processes visible and shareable. Use when documenting learning, communicating with families, or planning next steps.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.979Z"
+}

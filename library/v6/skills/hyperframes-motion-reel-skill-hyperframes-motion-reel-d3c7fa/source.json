@@ -1,0 +1,15 @@
+{
+ "title": "hyperframes-motion-reel",
+ "source": "M02",
+ "lang": "ja",
+ "repo": "Sunwood-ai-labs/hyperframes-motion-reel-skill",
+ "path": "SKILL.md",
+ "url": "https://github.com/Sunwood-ai-labs/hyperframes-motion-reel-skill/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "ショーリール品質（Behance / OFFF / Awwwards級）のモーショングラフィックス動画を HyperFrames（HTML + GSAP + SVG + Canvas、Apache-2.0）で制作する。remotion-motion-reel の HyperFrames 版で、Remotion の Company License が不要な構成。テーマ・素材（キャラクター画像、音声など）から世界観・コピー・デザインシステム・タイムライン・サウンドを補完し、120BPM/60fps で拍同期した映像を実装・レンダリングまで行う。「HyperFramesでかっこいい動画」「ライセンスフリーでモーショングラフィックス」「ショーリールをHTMLで」などの依頼時に使用。",
+ "domains": [
+  "data",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.609Z"
+}

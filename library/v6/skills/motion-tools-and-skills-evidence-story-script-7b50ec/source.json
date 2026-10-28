@@ -1,0 +1,16 @@
+{
+ "title": "evidence-story-script",
+ "source": "M01",
+ "lang": "zh",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/video-production-skills/skills/evidence-story-script/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/video-production-skills/skills/evidence-story-script/SKILL.md",
+ "license": "MIT",
+ "description": "Write or revise a video voiceover from verified material, linking character or mechanism decisions, hooks and payoff to source certainty.",
+ "domains": [
+  "engineering",
+  "product",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.770Z"
+}

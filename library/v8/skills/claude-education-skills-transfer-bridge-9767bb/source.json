@@ -1,0 +1,15 @@
+{
+ "title": "transfer-bridge",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/transfer-bridge/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/transfer-bridge/SKILL.md",
+ "license": "MIT",
+ "description": "After the learner demonstrates understanding of a concept, present near-transfer and far-transfer challenges. Use to test whether learning is portable or task-specific — this is what separates understanding from familiarity.",
+ "domains": [
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.061Z"
+}

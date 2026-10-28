@@ -1,0 +1,16 @@
+{
+ "title": "worked-example-fading-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/memory-learning-science/worked-example-fading-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/memory-learning-science/worked-example-fading-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design a worked example fading sequence from fully worked examples through to independent practice. Use when teaching procedures, algorithms, or multi-step processes to novice learners.",
+ "domains": [
+  "education",
+  "math",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.004Z"
+}

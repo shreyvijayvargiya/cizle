@@ -1,0 +1,16 @@
+{
+ "title": "remotion-assemble",
+ "source": "M02",
+ "lang": "en",
+ "repo": "notivn/AIEV",
+ "path": ".claude/skills/remotion-assemble/SKILL.md",
+ "url": "https://github.com/notivn/AIEV/blob/HEAD/.claude/skills/remotion-assemble/SKILL.md",
+ "license": "MIT",
+ "description": "How to use Remotion as the assembly layer - read the project's meta.json and stitch the rendered HyperFrames scenes + footage + voice + sound effects into the finished video. Read this when writing/editing code in engines/remotion or when assembling the timeline for a video.",
+ "domains": [
+  "music",
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.608Z"
+}

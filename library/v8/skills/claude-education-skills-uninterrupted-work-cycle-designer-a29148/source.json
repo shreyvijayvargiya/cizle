@@ -1,0 +1,14 @@
+{
+ "title": "uninterrupted-work-cycle-designer",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/montessori-alternative-approaches/uninterrupted-work-cycle-designer/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/montessori-alternative-approaches/uninterrupted-work-cycle-designer/SKILL.md",
+ "license": "MIT",
+ "description": "Design an uninterrupted work cycle with choice-based activities structured within a realistic time block. Use when planning Montessori-style independent work periods or extended choice time.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.007Z"
+}

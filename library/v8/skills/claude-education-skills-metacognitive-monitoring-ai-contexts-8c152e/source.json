@@ -1,0 +1,15 @@
+{
+ "title": "metacognitive-monitoring-ai-contexts",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/ai-learning-science/metacognitive-monitoring-ai-contexts/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/ai-learning-science/metacognitive-monitoring-ai-contexts/SKILL.md",
+ "license": "MIT",
+ "description": "Design metacognitive checkpoints that prevent AI-assisted learning from bypassing genuine understanding. Use when students use AI tools and may overestimate their own comprehension.",
+ "domains": [
+  "education",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.919Z"
+}

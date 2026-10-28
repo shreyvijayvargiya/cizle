@@ -1,0 +1,16 @@
+{
+ "title": "unassisted-evidence-checkpoint",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/unassisted-evidence-checkpoint/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/unassisted-evidence-checkpoint/SKILL.md",
+ "license": "MIT",
+ "description": "After scaffolded practice, run an unassisted check with no AI help. Use to distinguish supported performance from what the learner can currently do independently.",
+ "domains": [
+  "education",
+  "nature",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.064Z"
+}

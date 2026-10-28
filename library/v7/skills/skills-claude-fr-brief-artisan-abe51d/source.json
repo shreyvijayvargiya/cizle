@@ -1,0 +1,15 @@
+{
+ "title": "brief-artisan",
+ "source": "P05",
+ "lang": "fr",
+ "repo": "NicolasW83/skills-claude-fr",
+ "path": "skills/brief-artisan/SKILL.md",
+ "url": "https://github.com/NicolasW83/skills-claude-fr/blob/HEAD/skills/brief-artisan/SKILL.md",
+ "license": "MIT",
+ "description": "Crée un site vitrine one-page pour un artisan, un commerçant, une association ou une petite entreprise locale. À utiliser dès que l'utilisateur veut un site vitrine, une landing page ou une maquette pour un client local (ébéniste, plombier, coiffeur, traiteur, paysagiste, électricien, esthéticienne, association, commune…), ou quand il dit \"brief artisan\", \"nouveau site client\", \"maquette vitrine\", \"site pour un client\". Déclenche aussi sur toute demande de site vitrine local même sans ces mots-clés exacts — dès qu'un métier ou une structure locale est mentionné avec un besoin de présence web.",
+ "domains": [
+  "product",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T14:52:35.343Z"
+}

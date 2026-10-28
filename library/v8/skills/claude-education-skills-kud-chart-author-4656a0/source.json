@@ -1,0 +1,16 @@
+{
+ "title": "kud-chart-author",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-alignment/kud-chart-author/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-alignment/kud-chart-author/SKILL.md",
+ "license": "MIT",
+ "description": "Authors or reviews Know/Understand/Do charts for competency-based learning targets across developmental bands. Handles seven input types from raw curriculum documents to existing LT sets. Routes to upstream skills when stronger inputs are available.",
+ "domains": [
+  "education",
+  "data",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.942Z"
+}

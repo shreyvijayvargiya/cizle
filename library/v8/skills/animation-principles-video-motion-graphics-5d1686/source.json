@@ -1,0 +1,16 @@
+{
+ "title": "video-motion-graphics",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/01-by-domain/video-motion-graphics/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/01-by-domain/video-motion-graphics/SKILL.md",
+ "license": "MIT",
+ "description": "Use when creating After Effects compositions, Premiere Pro motion, video titles, explainer videos, or broadcast motion graphics.",
+ "domains": [
+  "data",
+  "education",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.082Z"
+}

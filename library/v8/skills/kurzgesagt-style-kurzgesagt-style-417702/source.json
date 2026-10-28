@@ -1,0 +1,16 @@
+{
+ "title": "kurzgesagt-style",
+ "source": "Q01",
+ "lang": "en",
+ "repo": "tugrulz/kurzgesagt-style",
+ "path": "SKILL.md",
+ "url": "https://github.com/tugrulz/kurzgesagt-style/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Creative direction for flat-vector animated \"science explainer\" videos in the style popularised by Kurzgesagt – In a Nutshell - saturated gradient palettes, outline-free rounded shapes, tiny dot-eyed characters, snappy eased motion, scale-jump zooms, and curious, dry-humoured narration. Make sure to use this skill whenever the user wants an animated explainer video, a science / space / biology / economics / tech / history explainer, a \"Kurzgesagt-style\" or \"In a Nutshell-style\" video, a flat or vector motion-graphics explainer, or asks for a script, storyboard, scene design or Remotion composition in that look - even if they never say \"Kurzgesagt\". It pairs with the remotion-* skills, which handle code mechanics; this skill decides what the video should look, move, sound and read like.",
+ "domains": [
+  "education",
+  "science",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:54:27.080Z"
+}

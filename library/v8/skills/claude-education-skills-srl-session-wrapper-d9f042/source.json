@@ -1,0 +1,14 @@
+{
+ "title": "srl-session-wrapper",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/srl-session-wrapper/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/srl-session-wrapper/SKILL.md",
+ "license": "MIT",
+ "description": "Wrap a learning session in a plan → monitor → reflect cycle. Use at the start of any substantial study session to set goals, mid-session to check strategy, and at session end to consolidate what changed. Builds self-regulated learning as a habit.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.049Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "self-efficacy-builder-sequence",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/wellbeing-motivation-agency/self-efficacy-builder-sequence/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/wellbeing-motivation-agency/self-efficacy-builder-sequence/SKILL.md",
+ "license": "MIT",
+ "description": "Design a mastery experience sequence that systematically builds student confidence in a skill they avoid. Use when students say 'I can't do this', avoid tasks, or show learned helplessness.",
+ "domains": [
+  "education",
+  "history",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.086Z"
+}

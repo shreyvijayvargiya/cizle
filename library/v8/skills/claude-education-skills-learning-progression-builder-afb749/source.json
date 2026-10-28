@@ -1,0 +1,16 @@
+{
+ "title": "learning-progression-builder",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/curriculum-assessment/learning-progression-builder/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/curriculum-assessment/learning-progression-builder/SKILL.md",
+ "license": "MIT",
+ "description": "Build a learning progression showing prerequisite-to-mastery steps for a target skill or understanding. Use when sequencing content, designing diagnostics, or mapping prerequisite gaps.",
+ "domains": [
+  "education",
+  "engineering",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.951Z"
+}

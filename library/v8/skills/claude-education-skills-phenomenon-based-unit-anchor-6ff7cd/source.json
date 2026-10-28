@@ -1,0 +1,14 @@
+{
+ "title": "phenomenon-based-unit-anchor",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/global-cross-cultural-pedagogies/phenomenon-based-unit-anchor/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/global-cross-cultural-pedagogies/phenomenon-based-unit-anchor/SKILL.md",
+ "license": "MIT",
+ "description": "Anchor a multidisciplinary unit in a real-world phenomenon that requires multiple subject lenses to understand. Use when designing integrated or phenomenon-based units across disciplines.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T14:53:16.973Z"
+}

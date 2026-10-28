@@ -1,0 +1,16 @@
+{
+ "title": "hyperframes-animation",
+ "source": "M02",
+ "lang": "en",
+ "repo": "Jakeschincariol/video-production-skills",
+ "path": "hyperframes-animation/SKILL.md",
+ "url": "https://github.com/Jakeschincariol/video-production-skills/blob/HEAD/hyperframes-animation/SKILL.md",
+ "license": null,
+ "description": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.",
+ "domains": [
+  "data",
+  "math",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T14:40:19.626Z"
+}

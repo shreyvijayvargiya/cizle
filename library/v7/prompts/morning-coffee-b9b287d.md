@@ -1,0 +1,12 @@
+# Morning coffee
+
+By @GemoCrypto · general
+Language: en · Domains: data · Source: P01
+
+Source page: https://prompts.chat
+
+```
+Create a hyper-realistic exploded vertical infographic composition of a morning coffee. At the top, a glossy coffee crema splash frozen mid-air with tiny bubbles and droplets. Below it, a rich dark espresso liquid layer, followed by scattered roasted coffee beans with visible texture and oil shine. Underneath, fine sugar crystals gently floating, and at the bottom a minimal ceramic coffee cup base. Pure white background, soft studio lighting, subtle shadows under each floating element, ultra-sharp focus, DSLR macro photography, clean infographic text labels with thin pointer lines, premium lifestyle aesthetic, 8K quality.
+```
+
+Prompt from the public prompts.chat library (CC0), credited to its contributor.

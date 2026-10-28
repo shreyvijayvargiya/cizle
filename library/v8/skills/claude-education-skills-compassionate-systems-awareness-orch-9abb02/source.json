@@ -1,0 +1,15 @@
+{
+ "title": "compassionate-systems-awareness-orchestrator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/original-frameworks/compassionate-systems-awareness-orchestrator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/original-frameworks/compassionate-systems-awareness-orchestrator/SKILL.md",
+ "license": "MIT",
+ "description": "Orchestrate compassionate systems tools from issue or aspiration to wise action. Use when a class needs a complete inquiry workflow.",
+ "domains": [
+  "education",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.007Z"
+}

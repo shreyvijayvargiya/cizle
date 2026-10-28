@@ -1,0 +1,14 @@
+{
+ "title": "implementation-debugging",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/12-by-problem-type/implementation-debugging/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/12-by-problem-type/implementation-debugging/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animation doesn't work as expected, has bugs, or behaves inconsistently",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.153Z"
+}

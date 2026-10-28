@@ -1,0 +1,12 @@
+{
+ "title": "accordions-dropdowns",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "dylantarre/animation-principles",
+ "path": "skills/07-by-ui-element/accordions-dropdowns/SKILL.md",
+ "url": "https://github.com/dylantarre/animation-principles/blob/HEAD/skills/07-by-ui-element/accordions-dropdowns/SKILL.md",
+ "license": "MIT",
+ "description": "Use when animating accordions, collapsibles, dropdowns, or expand/collapse elements for smooth reveal transitions",
+ "domains": [],
+ "fetched_at": "2026-10-28T14:53:17.120Z"
+}

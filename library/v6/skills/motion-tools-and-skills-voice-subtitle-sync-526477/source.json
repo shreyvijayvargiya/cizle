@@ -1,0 +1,16 @@
+{
+ "title": "voice-subtitle-sync",
+ "source": "M01",
+ "lang": "zh",
+ "repo": "VisualxIntelligence/motion-tools-and-skills",
+ "path": "skills/video-production-skills/skills/voice-subtitle-sync/SKILL.md",
+ "url": "https://github.com/VisualxIntelligence/motion-tools-and-skills/blob/HEAD/skills/video-production-skills/skills/voice-subtitle-sync/SKILL.md",
+ "license": "MIT",
+ "description": "Prepare or repair voice and subtitles using authorized recordings or configured TTS, measured audio timing, transcript checks and SRT validation.",
+ "domains": [
+  "music",
+  "entertainment",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:40:02.771Z"
+}

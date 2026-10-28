@@ -1,0 +1,16 @@
+{
+ "title": "teach-back-evaluator",
+ "source": "Q02",
+ "lang": "en",
+ "repo": "GarethManning/claude-education-skills",
+ "path": "skills/student-learning/teach-back-evaluator/SKILL.md",
+ "url": "https://github.com/GarethManning/claude-education-skills/blob/HEAD/skills/student-learning/teach-back-evaluator/SKILL.md",
+ "license": "MIT",
+ "description": "The learner teaches the concept to the AI, which plays a curious novice peer and identifies gaps through authentic questions. Use when the learner wants to test their understanding — teaching forces a different kind of organisation than studying.",
+ "domains": [
+  "education",
+  "edtech",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T14:53:17.054Z"
+}
