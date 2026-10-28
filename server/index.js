@@ -90,11 +90,16 @@ api.put("/prompts/:id", async (c) => {
 api.delete("/prompts/:id", async (c) => ((await deletePrompt(c.req.param("id"))) ? c.json({ ok: true }) : c.json({ error: "Only custom prompts can be deleted" }, 400)));
 
 /* reverse-engineer a video into per-scene image, video and audio prompts */
-/* browser pages on another origin (the website) may call the reverse API only when listed in REVERSE_ALLOWED_ORIGINS (comma separated) */
-api.use("/reverse/*", async (c, next) => {
-	const allowed = (process.env.REVERSE_ALLOWED_ORIGINS || "").split(",").map((s) => s.trim()).filter(Boolean);
-	return allowed.length ? cors({ origin: allowed, allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "DELETE", "OPTIONS"] })(c, next) : next();
+/* browser pages on another origin may call the reverse API: any localhost page (the dashboard on :5174), plus the origins in REVERSE_ALLOWED_ORIGINS (comma separated) */
+const reverseOrigins = (process.env.REVERSE_ALLOWED_ORIGINS || "").split(",").map((o) => o.trim().replace(/\/+$/, "")).filter(Boolean);
+const reverseCors = cors({
+	origin: (origin) => (origin && (reverseOrigins.includes(origin) || /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(origin)) ? origin : null),
+	allowHeaders: ["Authorization", "Content-Type"],
+	allowMethods: ["GET", "POST", "DELETE", "OPTIONS"],
+	maxAge: 600,
 });
+api.use("/reverse", reverseCors);
+api.use("/reverse/*", reverseCors);
 /* optional shared secret for a hosted deployment: set REVERSE_API_TOKEN and send "Authorization: Bearer <token>" (or ?token=) */
 api.use("/reverse/*", async (c, next) => {
 	const want = process.env.REVERSE_API_TOKEN?.trim();
