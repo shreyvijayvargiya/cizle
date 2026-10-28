@@ -1,0 +1,14 @@
+{
+ "title": "ideogram4",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/ideogram4/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/ideogram4/SKILL.md",
+ "license": "MIT",
+ "description": "Prompting patterns for Ideogram 4 text-to-image — best-in-class in-image text rendering and exact color/layout control via structured JSON captions. Use when generating images that need legible on-image text (title cards, thumbnails, logos, signage, CTAs), precise brand colors, or controlled spatial layout. Triggers include title slide image, thumbnail with text, on-image text, legible text in image, brand color palette image, bounding-box layout, Ideogram.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.199Z"
+}

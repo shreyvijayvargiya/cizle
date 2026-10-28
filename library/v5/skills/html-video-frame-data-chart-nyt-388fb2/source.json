@@ -1,0 +1,14 @@
+{
+ "title": "frame-data-chart-nyt",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-data-chart-nyt/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-data-chart-nyt/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "NYT-newsroom typography, staggered reveal animation, and editorial-grade charts (line, bar, or range band).",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.493Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "runpod",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/runpod/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/runpod/SKILL.md",
+ "license": "MIT",
+ "description": "Cloud GPU processing via RunPod serverless. Use when setting up RunPod endpoints, deploying Docker images, managing GPU resources, troubleshooting endpoint issues, or understanding costs. Covers all 5 toolkit images (qwen-edit, realesrgan, propainter, sadtalker, qwen3-tts).",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.203Z"
+}

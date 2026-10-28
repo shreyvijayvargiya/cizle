@@ -1,0 +1,16 @@
+{
+ "title": "presentation-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/data-animation-skills",
+ "path": "skills/presentation-video/SKILL.md",
+ "url": "https://github.com/iart-ai/data-animation-skills/blob/HEAD/skills/presentation-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an animated presentation\", \"turn a pitch deck into a video\", \"convert slides/a deck to video\", \"make a presentation video\", \"build a deck video\", \"narrate a slide deck as a video\", or \"auto-advance slides synced to a voiceover\". Covers rebuilding slides as motion graphics with staggered build reveals, slide-to-slide transitions, and timing locked to per-slide narration.",
+ "domains": [
+  "product",
+  "edtech",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.209Z"
+}

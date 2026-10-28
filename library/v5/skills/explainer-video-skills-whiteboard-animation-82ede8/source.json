@@ -1,0 +1,15 @@
+{
+ "title": "whiteboard-animation",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/explainer-video-skills",
+ "path": "skills/whiteboard-animation/SKILL.md",
+ "url": "https://github.com/iart-ai/explainer-video-skills/blob/HEAD/skills/whiteboard-animation/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a whiteboard animation\", \"draw-on explainer\", \"VideoScribe style\", \"hand-drawn explainer video\", \"animate a sketch being drawn\", \"do a doodle/scribe video\", \"show a hand drawing the illustration\", or \"animate handwriting appearing on a whiteboard\". Covers SVG stroke draw-on, a marker hand that follows the path tip, staggered reveal, erase/wipe transitions, and narrated export.",
+ "domains": [
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.224Z"
+}

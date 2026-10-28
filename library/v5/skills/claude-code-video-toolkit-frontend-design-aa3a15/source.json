@@ -1,0 +1,14 @@
+{
+ "title": "frontend-design",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/frontend-design/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/frontend-design/SKILL.md",
+ "license": "MIT",
+ "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, or applications. Generates creative, polished code that avoids generic AI aesthetics.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.200Z"
+}

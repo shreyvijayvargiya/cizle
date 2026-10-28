@@ -1,0 +1,15 @@
+{
+ "title": "audiogram",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/youtube-video-skills",
+ "path": "skills/audiogram/SKILL.md",
+ "url": "https://github.com/iart-ai/youtube-video-skills/blob/HEAD/skills/audiogram/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an audiogram\", \"turn a podcast into a video\", \"create a waveform video\", \"make a podcast clip video\", \"convert audio to video\", \"animate a waveform/audio bars\", \"add a moving waveform to my voiceover\", or \"make a square/vertical clip for a podcast quote\". Covers amplitude-driven waveforms, frequency bars, synced captions, cover-art layout, a progress bar, and 1:1 / 9:16 social framing.",
+ "domains": [
+  "music",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.248Z"
+}

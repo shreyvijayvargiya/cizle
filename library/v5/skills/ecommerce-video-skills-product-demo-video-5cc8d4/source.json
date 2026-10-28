@@ -1,0 +1,16 @@
+{
+ "title": "product-demo-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/ecommerce-video-skills",
+ "path": "skills/product-demo-video/SKILL.md",
+ "url": "https://github.com/iart-ai/ecommerce-video-skills/blob/HEAD/skills/product-demo-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a product demo video\", \"create an app demo video\", \"build a feature announcement video\", \"do a SaaS demo\", \"make a UI walkthrough video\", \"animate product screenshots into a demo\", \"add an animated cursor/click to a screenshot\", or \"zoom into part of a UI\". Covers turning static screenshots/designs (not screen recordings) into a clean animated demo: device/browser frames, animated cursor + click ripple, zoom/pan to focal UI, callout annotations, step pacing, screen-to-screen transitions, and feature captions.",
+ "domains": [
+  "product",
+  "edtech",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.210Z"
+}

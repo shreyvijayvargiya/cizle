@@ -1,0 +1,16 @@
+{
+ "title": "motion-art-direction",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/motion-design-skills",
+ "path": "skills/motion-art-direction/SKILL.md",
+ "url": "https://github.com/iart-ai/motion-design-skills/blob/HEAD/skills/motion-art-direction/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"direct a motion graphics video\", \"do creative/art direction for a video\", \"define a motion language\", \"set the tone and pacing\", \"make the animation feel consistent\", \"decide what to animate (and what not to)\", \"turn a brief/brand into motion choices\", or needs the senior creative judgment that sits above specific techniques (gsap/lottie/shader). Covers motion language, tone & energy, pacing/rhythm, motion hierarchy, restraint, and cross-shot consistency.",
+ "domains": [
+  "product",
+  "science",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.236Z"
+}

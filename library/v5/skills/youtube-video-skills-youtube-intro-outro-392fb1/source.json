@@ -1,0 +1,16 @@
+{
+ "title": "youtube-intro-outro",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/youtube-video-skills",
+ "path": "skills/youtube-intro-outro/SKILL.md",
+ "url": "https://github.com/iart-ai/youtube-video-skills/blob/HEAD/skills/youtube-intro-outro/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a YouTube intro\", \"create a channel intro\", \"build a logo sting/bumper\", \"design an outro / end screen / end card\", \"add subscribe and next-video cards\", \"make an intro animation\", \"build a reusable intro template\", or \"sync the logo reveal to an audio sting\". Covers the 3-5s branded intro, the last-20s end-screen outro inside YouTube's element safe zones, timing conventions, audio-sting sync, and a swap-the-brand template.",
+ "domains": [
+  "entertainment",
+  "product",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.247Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "explainer-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/explainer-video-skills",
+ "path": "skills/explainer-video/SKILL.md",
+ "url": "https://github.com/iart-ai/explainer-video-skills/blob/HEAD/skills/explainer-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an explainer video\", \"turn this into a short explainer\", \"write a script and storyboard for a product video\", \"produce a how-it-works/onboarding video\", \"sync narration and captions\", or \"build a 30–90s animated explainer\". Covers script→storyboard→scene build→narration/caption sync→edit→polish.",
+ "domains": [
+  "education",
+  "engineering",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.222Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "frame-glitch-title",
+ "source": "L02",
+ "lang": "en",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-glitch-title/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-glitch-title/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Digital glitch, chromatic offset, and data-corruption title frame for video transitions or cyberpunk heroes.",
+ "domains": [
+  "scifi",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.494Z"
+}

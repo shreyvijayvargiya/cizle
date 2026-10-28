@@ -1,0 +1,16 @@
+{
+ "title": "map-animation",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/map-animation-skills",
+ "path": "skills/map-animation/SKILL.md",
+ "url": "https://github.com/iart-ai/map-animation-skills/blob/HEAD/skills/map-animation/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a Vox-style map animation\", \"animate a map zoom\", \"draw a route on a map\", \"highlight a country/region\", \"use Google Earth Studio\", \"drop pins on a map and animate them\", \"pan/orbit a camera over a map\", or \"add map graphics to an explainer video\". Covers Earth Studio→After Effects camera import, GeoJSON/SVG vector map motion, pins/routes/highlights/labels, the 12fps stutter cadence, and data-driven Remotion renders.",
+ "domains": [
+  "data",
+  "math",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.226Z"
+}

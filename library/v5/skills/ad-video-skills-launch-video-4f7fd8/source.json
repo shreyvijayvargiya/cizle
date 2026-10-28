@@ -1,0 +1,16 @@
+{
+ "title": "launch-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/ad-video-skills",
+ "path": "skills/launch-video/SKILL.md",
+ "url": "https://github.com/iart-ai/ad-video-skills/blob/HEAD/skills/launch-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a launch video\", \"create a product hype/sizzle film\", \"build a teaser/trailer for a drop\", \"do a reveal montage with an end-card CTA\", \"cut a hero video to the beat\", or \"export a launch film in 16:9/9:16/1:1\". Covers the hook→tease→reveal→feature-montage→end-card arc and multi-aspect export.",
+ "domains": [
+  "product",
+  "music",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.208Z"
+}

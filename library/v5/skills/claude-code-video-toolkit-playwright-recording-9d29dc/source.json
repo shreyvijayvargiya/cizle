@@ -1,0 +1,15 @@
+{
+ "title": "playwright-recording",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/playwright-recording/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/playwright-recording/SKILL.md",
+ "license": "MIT",
+ "description": "Record browser interactions as video using Playwright. Use for capturing demo videos, app walkthroughs, and UI flows for Remotion videos. Triggers include recording a demo, capturing browser video, screen recording a website, or creating walkthrough footage.",
+ "domains": [
+  "product",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.200Z"
+}

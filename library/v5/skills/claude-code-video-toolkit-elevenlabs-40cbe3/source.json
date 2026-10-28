@@ -1,0 +1,14 @@
+{
+ "title": "elevenlabs",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/elevenlabs/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/elevenlabs/SKILL.md",
+ "license": "MIT",
+ "description": "Generate AI voiceovers, sound effects, and music using ElevenLabs APIs. Use when creating audio content for videos, podcasts, or games. Triggers include generating voiceovers, narration, dialogue, sound effects from descriptions, background music, soundtrack generation, voice cloning, or any audio synthesis task.",
+ "domains": [
+  "music"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.190Z"
+}

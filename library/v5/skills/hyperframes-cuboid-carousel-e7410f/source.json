@@ -1,0 +1,15 @@
+{
+ "title": "cuboid-carousel",
+ "source": "L02",
+ "lang": "en",
+ "repo": "heygen-com/hyperframes",
+ "path": "registry/blocks/cuboid-carousel/SKILL.md",
+ "url": "https://github.com/heygen-com/hyperframes/blob/HEAD/registry/blocks/cuboid-carousel/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "A chain of bevelled cuboids rides a travelling wave as a content carousel. HyperFrames block, 1920×1080, 6.666666666666667s, 40 variables.",
+ "domains": [
+  "math",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.474Z"
+}

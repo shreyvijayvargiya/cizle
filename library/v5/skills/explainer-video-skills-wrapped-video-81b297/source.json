@@ -1,0 +1,16 @@
+{
+ "title": "wrapped-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/explainer-video-skills",
+ "path": "skills/wrapped-video/SKILL.md",
+ "url": "https://github.com/iart-ai/explainer-video-skills/blob/HEAD/skills/wrapped-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a Spotify Wrapped style video\", \"build a year in review / year-in-review video\", \"create a personalized data video\", \"generate a recap video\", \"build a wrapped video generator\", \"turn a data table into shareable videos\", or \"make per-user stat videos\". Covers the data row → one shareable video pattern, the Wrapped scene grammar (big-number reveals, top-X lists, superlatives), animated data counters, vertical 9:16 framing, and batch-rendering many personalized videos from one template.",
+ "domains": [
+  "entertainment",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.225Z"
+}

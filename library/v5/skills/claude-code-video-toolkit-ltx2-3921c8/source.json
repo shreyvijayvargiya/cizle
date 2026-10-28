@@ -1,0 +1,16 @@
+{
+ "title": "ltx2",
+ "source": "L01",
+ "lang": "en",
+ "repo": "digitalsamba/claude-code-video-toolkit",
+ "path": ".claude/skills/ltx2/SKILL.md",
+ "url": "https://github.com/digitalsamba/claude-code-video-toolkit/blob/HEAD/.claude/skills/ltx2/SKILL.md",
+ "license": "MIT",
+ "description": "AI video generation with LTX-2.3 22B — text-to-video, image-to-video clips for video production. Use when generating video clips, animating images, creating b-roll, animated backgrounds, or motion content. Triggers include video generation, animate image, b-roll, motion, video clip, text-to-video, image-to-video.",
+ "domains": [
+  "agriculture",
+  "science",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.201Z"
+}

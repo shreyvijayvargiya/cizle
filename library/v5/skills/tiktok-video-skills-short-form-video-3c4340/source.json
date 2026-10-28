@@ -1,0 +1,16 @@
+{
+ "title": "short-form-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/tiktok-video-skills",
+ "path": "skills/short-form-video/SKILL.md",
+ "url": "https://github.com/iart-ai/tiktok-video-skills/blob/HEAD/skills/short-form-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make a Reels/TikTok/YouTube Shorts video\", \"build a short-form video template\", \"write a hook for a short\", \"edit for retention\", \"add pattern interrupts\", \"make a video loop\", \"fix the first 3 seconds\", \"pace cuts for a vertical video\", or \"set up 9:16 safe areas\". Covers the hook→retention→loop grammar of vertical short-form (distinct from a launch hype film).",
+ "domains": [
+  "entertainment",
+  "product",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.249Z"
+}

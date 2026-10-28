@@ -1,0 +1,14 @@
+{
+ "title": "frame-build-minimal",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-build-minimal/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-build-minimal/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Luxury-minimal whitespace hero — single word reveals letter by letter, warm-gold hairline, breathing indicators.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.493Z"
+}

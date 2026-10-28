@@ -1,0 +1,16 @@
+{
+ "title": "logo-animation",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/motion-design-skills",
+ "path": "skills/logo-animation/SKILL.md",
+ "url": "https://github.com/iart-ai/motion-design-skills/blob/HEAD/skills/logo-animation/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"animate our logo\", \"make a logo intro/stinger\", \"build a brand reveal\", \"create an app splash animation\", \"loop a loader logo\", \"draw on our SVG mark\", \"morph an icon into the wordmark\", or \"sync the logo to a sound-logo\". Covers web (SVG/Lottie), video, and app-splash delivery.",
+ "domains": [
+  "product",
+  "math",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.235Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "frame-takram-organic",
+ "source": "L02",
+ "lang": "zh",
+ "repo": "nexu-io/html-video",
+ "path": "templates/frame-takram-organic/SKILL.md",
+ "url": "https://github.com/nexu-io/html-video/blob/HEAD/templates/frame-takram-organic/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Soft-tech radial node graph as art — frosted rounded card, curved links drawing in, nodes popping outward, gentle float.",
+ "domains": [
+  "data",
+  "nature",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T13:30:33.496Z"
+}

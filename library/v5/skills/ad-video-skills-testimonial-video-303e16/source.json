@@ -1,0 +1,15 @@
+{
+ "title": "testimonial-video",
+ "source": "L01",
+ "lang": "en",
+ "repo": "iart-ai/ad-video-skills",
+ "path": "skills/testimonial-video/SKILL.md",
+ "url": "https://github.com/iart-ai/ad-video-skills/blob/HEAD/skills/testimonial-video/SKILL.md",
+ "license": "MIT",
+ "description": "This skill should be used when the user asks to \"make an animated testimonial\", \"create a quote video\", \"build a review video\", \"turn a customer testimonial into a graphic\", \"animate a customer review\", \"make a social proof video\", \"add an animated star rating\", or \"turn a list of reviews into videos\". Covers quote typography, staggered line reveals, kinetic emphasis on key phrases, animated star ratings, the author block (name/role/avatar/company), and templating one card across many quotes.",
+ "domains": [
+  "math",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T13:32:14.210Z"
+}
