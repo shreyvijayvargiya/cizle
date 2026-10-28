@@ -1,0 +1,15 @@
+{
+ "title": "privacy-manifests",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/security/privacy-manifests/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/security/privacy-manifests/SKILL.md",
+ "license": "MIT",
+ "description": "Privacy manifest (PrivacyInfo.xcprivacy) implementation including required reason APIs, tracking domains, third-party SDK declarations, and App Tracking Transparency. Use when preparing apps for App Store privacy requirements.",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.505Z"
+}

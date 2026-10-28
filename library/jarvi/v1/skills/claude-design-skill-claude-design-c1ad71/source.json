@@ -1,0 +1,15 @@
+{
+ "title": "claude-design",
+ "source": "J03",
+ "lang": "en",
+ "repo": "jiji262/claude-design-skill",
+ "path": "SKILL.md",
+ "url": "https://github.com/jiji262/claude-design-skill/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": ">-",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.483Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "troubleshooting-playbook",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/troubleshooting-playbook/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/troubleshooting-playbook/SKILL.md",
+ "license": "MIT",
+ "description": "Diagnoses React Native/Expo errors, red boxes, crashes, hangs and failed builds from known failures. Use when something errors, crashes, hangs or renders wrong, or a log needs explaining. Not for gate setup (quality-gates).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.069Z"
+}

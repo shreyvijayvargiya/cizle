@@ -1,0 +1,12 @@
+{
+ "title": "networking-layer",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/networking-layer/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/networking-layer/SKILL.md",
+ "license": "MIT",
+ "description": "Generates a protocol-based networking layer with async/await, error handling, and swappable implementations. Use when user wants to add API client, networking, or HTTP layer.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.419Z"
+}

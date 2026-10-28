@@ -1,0 +1,14 @@
+{
+ "title": "android-release-play",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/android-release-play/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/android-release-play/SKILL.md",
+ "license": "MIT",
+ "description": "Ships Android App Bundles to Google Play: upload key, Play App Signing, AAB gate, versionCode, tracks, rollout. Use when releasing or signing for Play, or an upload, rollout or version code fails. Not for eas.json (eas-build-and-submit).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.004Z"
+}

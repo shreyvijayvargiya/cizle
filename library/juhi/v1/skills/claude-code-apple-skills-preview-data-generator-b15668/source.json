@@ -1,0 +1,15 @@
+{
+ "title": "preview-data-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/preview-data-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/preview-data-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate sample data and a multi-variant #Preview matrix for SwiftUI views — empty/loading/error/loaded states, light/dark, Dynamic Type, locales/RTL, and devices. Use when the user says \"add previews\", \"sample data for previews\", \"preview my view in different states\", \"preview data\", \"prototype this UI\", or wants realistic Xcode canvas data without hand-rolling it.",
+ "domains": [
+  "math",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.424Z"
+}

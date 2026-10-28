@@ -1,0 +1,12 @@
+{
+ "title": "error-monitoring",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/error-monitoring/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/error-monitoring/SKILL.md",
+ "license": "MIT",
+ "description": "Generates protocol-based error/crash monitoring with swappable providers (Sentry, Crashlytics). Use when user wants to add crash reporting, error tracking, or production monitoring.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.404Z"
+}

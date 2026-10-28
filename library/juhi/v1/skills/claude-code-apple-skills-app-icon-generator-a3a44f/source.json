@@ -1,0 +1,14 @@
+{
+ "title": "app-icon-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/app-icon-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/app-icon-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generates an app icon for macOS or iOS — a fast CoreGraphics placeholder and/or flat layered source art to finish in Icon Composer (the Liquid Glass / iOS 26+ standard). Produces appearance variants (light/dark/tinted) and installs into the asset catalog. Use when the user wants to create, generate, iterate, or update an app icon.",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.390Z"
+}

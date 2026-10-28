@@ -1,0 +1,16 @@
+{
+ "title": "skeumorphism",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/skeumorphism/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/skeumorphism/SKILL.md",
+ "license": "MIT",
+ "description": "Real-world mimicry with textured surfaces, 3D effects, and familiar physical metaphors for intuitive digital interfaces.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.472Z"
+}

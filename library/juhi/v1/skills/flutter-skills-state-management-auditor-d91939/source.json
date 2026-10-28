@@ -1,0 +1,14 @@
+{
+ "title": "state-management-auditor",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "state-management-auditor/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/state-management-auditor/SKILL.md",
+ "license": null,
+ "description": "Flutter Staff Engineer skill for auditing state management architecture in Flutter projects. Analyzes how state is created, scoped, mutated, and consumed across widgets, blocs, cubits, providers, and streams to detect rebuild inefficiencies, architectural coupling, and long-term scalability risks. Use for requests like \"review Flutter state management\", \"audit BLoC usage\", \"analyze Riverpod architecture\", \"detect rebuild problems\", \"identify state coupling\", or \"evaluate scalability of state management in this Flutter app\".",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.079Z"
+}

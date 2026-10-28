@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-icloud",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-icloud/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-icloud/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions iCloud sync issues, CloudKit errors, ubiquitous container problems, or asks to audit cloud sync.",
+ "domains": [
+  "data",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.609Z"
+}

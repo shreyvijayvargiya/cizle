@@ -1,0 +1,12 @@
+{
+ "title": "mobile-redesign-app",
+ "source": "U03",
+ "lang": "en",
+ "repo": "draftbit/mobile-taste-skill",
+ "path": "skills/mobile-redesign-app/SKILL.md",
+ "url": "https://github.com/draftbit/mobile-taste-skill/blob/HEAD/skills/mobile-redesign-app/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Whole-app redesign of an existing React Native / Expo app - full audit (tokens, navigation vs the Nav Read rules, screen archetypes, dial reading), preserve-vs-overhaul decision, then a phased modernization plan executed lever by lever across screens with checkpoints and a risk governor. The only skill in this suite allowed to propose navigation restructuring (approval-gated). Use when asked to redesign, overhaul, rebrand, or modernize an entire app. For one screen use mobile-redesign-screen; for an audit without changes use mobile-design-review.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:46.068Z"
+}

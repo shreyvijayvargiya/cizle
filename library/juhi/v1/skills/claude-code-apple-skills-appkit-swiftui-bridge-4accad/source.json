@@ -1,0 +1,15 @@
+{
+ "title": "appkit-swiftui-bridge",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/macos/appkit-swiftui-bridge/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/macos/appkit-swiftui-bridge/SKILL.md",
+ "license": "MIT",
+ "description": "Expert guidance for hybrid AppKit-SwiftUI development. Covers NSViewRepresentable, hosting controllers, and state management between frameworks. Use when bridging AppKit and SwiftUI.",
+ "domains": [
+  "engineering",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.472Z"
+}

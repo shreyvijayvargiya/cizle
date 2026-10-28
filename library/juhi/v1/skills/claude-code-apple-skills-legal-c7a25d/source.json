@@ -1,0 +1,15 @@
+{
+ "title": "legal",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/legal/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/legal/SKILL.md",
+ "license": "MIT",
+ "description": "Legal document generation and compliance guidance for indie Apple developers. Covers privacy policies, terms of service, EULAs, GDPR/CCPA/DPDP compliance, and Apple App Store legal requirements. Use when user needs legal documents or compliance guidance.",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.470Z"
+}

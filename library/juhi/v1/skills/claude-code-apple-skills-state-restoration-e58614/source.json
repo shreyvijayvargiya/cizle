@@ -1,0 +1,14 @@
+{
+ "title": "state-restoration",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/state-restoration/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/state-restoration/SKILL.md",
+ "license": "MIT",
+ "description": "Generates state preservation and restoration infrastructure for navigation paths, tab selection, scroll positions, and form data across app launches and background termination. Use when user wants to save/restore app state, remember where the user left off, or persist UI state.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.440Z"
+}

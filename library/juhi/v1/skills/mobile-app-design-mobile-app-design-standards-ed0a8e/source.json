@@ -1,0 +1,15 @@
+{
+ "title": "Mobile App Design Standards",
+ "source": "U03",
+ "lang": "en",
+ "repo": "awesome-skills/mobile-app-design",
+ "path": "SKILL.md",
+ "url": "https://github.com/awesome-skills/mobile-app-design/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "This skill should be used when the user asks to \"design mobile UI\", \"review app design\", \"check UI guidelines\", \"improve app UX\", \"design React Native interface\", \"create app screens\", \"follow design standards\", or mentions iOS/Android design patterns, accessibility, or mobile user experience. Provides comprehensive mobile app UI/UX design guidance.",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.097Z"
+}

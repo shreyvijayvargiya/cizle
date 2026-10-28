@@ -1,0 +1,12 @@
+{
+ "title": "characterization-test-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/testing/characterization-test-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/testing/characterization-test-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generates tests that capture current behavior of existing code before refactoring. Use when you need a safety net before AI-assisted refactoring or modifying legacy code.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.524Z"
+}

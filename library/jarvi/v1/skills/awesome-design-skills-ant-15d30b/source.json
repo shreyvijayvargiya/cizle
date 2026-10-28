@@ -1,0 +1,16 @@
+{
+ "title": "ant",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/ant/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/ant/SKILL.md",
+ "license": "MIT",
+ "description": "Structured, enterprise-focused design system emphasizing clarity, consistency, and efficiency for data-dense web applications.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.444Z"
+}

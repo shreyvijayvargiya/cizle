@@ -1,0 +1,16 @@
+{
+ "title": "e2e-maestro",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/e2e-maestro/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/e2e-maestro/SKILL.md",
+ "license": "MIT",
+ "description": "Writes and runs Maestro E2E flows on iOS simulators and Android emulators - testID steps, debug-link setup, screenshot baselines. Use when adding a flow or an e2e or screenshots run fails. Not for Jest (unit-and-component-tests).",
+ "domains": [
+  "scifi",
+  "math",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.019Z"
+}

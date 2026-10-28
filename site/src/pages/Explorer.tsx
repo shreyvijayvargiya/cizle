@@ -15,7 +15,7 @@ import { Skeleton } from "@/components/ui/misc";
 import { Hero } from "@/components/Hero";
 import { VideoToggle } from "@/components/VideoToggle";
 import { PromptCard } from "@/components/PromptCard";
-import { CLASSIC, filterGallery, shuffled, useGallery, useGalleryFuse, useShuffle, type GalleryItem } from "@/lib/gallery";
+import { CLASSIC, COLLECTION_TABS, filterGallery, shuffled, useGallery, useGalleryFuse, useShuffle, type GalleryItem } from "@/lib/gallery";
 import { ACCESS_ICON, ASPECT_ICON, FORMAT_ICON, KIND_ICON, SORT_ICON, categoryIcon, platformIcon } from "@/lib/filterIcons";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
@@ -26,7 +26,7 @@ import { useHead } from "@/lib/head";
 import { isLatinLabel } from "@/lib/utils";
 import { orgJsonLd, siteJsonLd } from "@/lib/seo";
 
-const KEYS: (keyof Filters)[] = ["q", "category", "platform", "format", "aspect", "access", "sort", "kind", "lang", "country", "tool", "topic"];
+const KEYS: (keyof Filters)[] = ["q", "category", "platform", "format", "aspect", "access", "sort", "kind", "lang", "country", "tool", "topic", "collection"];
 const PAGE = 48;
 type Entry = { type: "skill"; skill: SkillMeta } | { type: "prompt"; prompt: GalleryItem };
 
@@ -85,7 +85,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 		return !search.sort && !search.q ? shuffled(l.map((s) => ({ ...s, id: s.slug })), seed) : l;
 	}, [skills.data, fuse, search, seed, locked]);
 	const promptList = useMemo(
-		() => (locked ? shuffled((gallery.data?.items ?? []).filter((g) => g.hasVideo && g.video), seed).slice(0, GUEST_LIMIT) : gallery.data && search.kind !== "skills" && !skillOnly ? filterGallery(gallery.data.items, gfuse, { q: search.q, category: search.category, access: search.access, lang: search.lang, country: search.country, tool: search.tool, topic: search.topic, sort: search.sort === "az" || search.sort === "new" ? search.sort : undefined }, seed) : []),
+		() => (locked ? shuffled((gallery.data?.items ?? []).filter((g) => g.hasVideo && g.video), seed).slice(0, GUEST_LIMIT) : gallery.data && search.kind !== "skills" && !skillOnly ? filterGallery(gallery.data.items, gfuse, { q: search.q, category: search.category, access: search.access, lang: search.lang, collection: search.collection, country: search.country, tool: search.tool, topic: search.topic, sort: search.sort === "az" || search.sort === "new" ? search.sort : undefined }, seed) : []),
 		[gallery.data, gfuse, search, skillOnly, seed, locked],
 	);
 	const mixed = useMemo(() => interleave(skillList, promptList), [skillList, promptList]);
@@ -142,6 +142,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 		() => [
 			{ key: "kind", label: "Show", icon: Layers01Icon, options: [{ value: "skills", label: "Skills only", icon: KIND_ICON.skills, count: skills.data?.skills.length }, { value: "prompts", label: "Community prompts", icon: KIND_ICON.prompts, count: gallery.data?.total }] },
 			{ key: "lang", label: "Language", icon: Globe02Icon, limit: 6, options: Object.entries(langCounts).sort((a, b) => b[1] - a[1]).map(([code, n]) => ({ value: code, label: languageOf(code).native, flag: languageOf(code).flag, count: n })) },
+			{ key: "collection", label: "Type", icon: Layers01Icon, options: COLLECTION_TABS.map((c) => ({ value: c.id, label: c.label, count: (gallery.data?.items ?? []).filter((g) => g.collection === c.id).length + (skills.data?.skills ?? []).filter((x) => x.collection === c.id).length })).filter((o) => o.count) },
 			{ key: "country", label: "Country (by language)", icon: Globe02Icon, limit: 6, options: countBy(gallery.data?.items ?? [], (g) => g.country).map(([c, n]) => ({ value: c, label: c, flag: countryFlag(c), count: n })) },
 			{ key: "tool", label: "Tool", icon: Layers01Icon, limit: 6, options: countBy([...(gallery.data?.items ?? []), ...(skills.data?.skills ?? [])], (g) => g.tools).map(([c, n]) => ({ value: c, label: c, count: n })) },
 			{ key: "topic", label: "Topic", icon: Layers01Icon, limit: 6, options: countBy([...(gallery.data?.items ?? []), ...(skills.data?.skills ?? [])], (g) => g.topic).map(([c, n]) => ({ value: c, label: c, count: n })) },

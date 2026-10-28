@@ -1,0 +1,12 @@
+{
+ "title": "test-spec",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/product/test-spec/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/product/test-spec/SKILL.md",
+ "license": "MIT",
+ "description": "Generates comprehensive test specification with unit tests, UI tests, accessibility testing, and beta testing plan. Creates TEST_SPEC.md from PRD and implementation specs. Use when creating QA strategy.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.497Z"
+}

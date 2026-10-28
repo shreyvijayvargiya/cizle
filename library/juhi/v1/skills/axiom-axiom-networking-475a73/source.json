@@ -1,0 +1,14 @@
+{
+ "title": "axiom-networking",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-networking/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-networking/SKILL.md",
+ "license": "MIT",
+ "description": "Use when implementing or debugging ANY network connection, API call, or socket in an Apple app. Covers URLSession, Network.framework, NetworkConnection, connection diagnostics.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.584Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "terracotta",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/terracotta/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/terracotta/SKILL.md",
+ "license": "MIT",
+ "description": "A sun-baked, clay-toned editorial interface built on warm cream surfaces, ink-brown headlines set in a display serif, and a single terracotta accent.",
+ "domains": [
+  "music",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.477Z"
+}

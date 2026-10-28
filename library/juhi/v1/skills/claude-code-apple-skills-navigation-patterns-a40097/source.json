@@ -1,0 +1,12 @@
+{
+ "title": "navigation-patterns",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/ios/navigation-patterns/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/ios/navigation-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftUI navigation architecture patterns including NavigationStack, NavigationSplitView, TabView, programmatic navigation, and custom transitions. Use when reviewing or building navigation, fixing navigation bugs, or architecting app flow.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.468Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "sega",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/sega/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/sega/SKILL.md",
+ "license": "MIT",
+ "description": "A playful, arcade-inspired interface for games — built on the VT323 pixel typeface, hard-edged 0px corners, chunky pill buttons that physically press into solid offset blocks",
+ "domains": [
+  "gaming",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.470Z"
+}

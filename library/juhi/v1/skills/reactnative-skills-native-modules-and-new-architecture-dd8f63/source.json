@@ -1,0 +1,15 @@
+{
+ "title": "native-modules-and-new-architecture",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/native-modules-and-new-architecture/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/native-modules-and-new-architecture/SKILL.md",
+ "license": "MIT",
+ "description": "Writes New Architecture native code in typed local Expo modules. Use when adding Swift or Kotlin, a local or Turbo module, codegen, or checking a library for New Architecture. Not for config plugins (expo-prebuild-and-config-plugins).",
+ "domains": [
+  "scifi",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.038Z"
+}

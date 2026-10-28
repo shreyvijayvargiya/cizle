@@ -1,0 +1,16 @@
+{
+ "title": "friendly",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/friendly/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/friendly/SKILL.md",
+ "license": "MIT",
+ "description": "Approachable, intuitive design with rounded elements, ample whitespace, and soft pastel color palettes.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.456Z"
+}

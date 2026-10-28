@@ -1,0 +1,16 @@
+{
+ "title": "permissions-and-system-prompts",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/permissions-and-system-prompts/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/permissions-and-system-prompts/SKILL.md",
+ "license": "MIT",
+ "description": "Builds OS permission asks - on the press, pre-prompt, denied vs blocked, Settings link, purpose strings, Android rules. Use when adding a camera, photo, location or contacts ask, or a dialog misbehaves. Not for ATT (admob-ads-and-consent).",
+ "domains": [
+  "education",
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.051Z"
+}

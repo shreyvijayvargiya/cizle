@@ -1,0 +1,16 @@
+{
+ "title": "navigation-and-routing",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/navigation-and-routing/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/navigation-and-routing/SKILL.md",
+ "license": "MIT",
+ "description": "Builds and checks Expo Router routes and layouts against a contract: typed hrefs, params, protected flows, modals, back guards. Use when adding a route, link or guard, or Back acts up. Not for deep links (deep-links-and-universal-links).",
+ "domains": [
+  "history",
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.038Z"
+}

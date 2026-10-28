@@ -1,0 +1,15 @@
+{
+ "title": "hig",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/hig/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/hig/SKILL.md",
+ "license": "MIT",
+ "description": "Fact lookup: Apple Human Interface Guidelines corpus (greppable markdown). Query on demand for accessibility and ergonomic minimums (hit-target sizes, Dynamic Type), platform terminology, system component capabilities, and App-Review-relevant conventions. Not design direction.",
+ "domains": [
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.552Z"
+}

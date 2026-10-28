@@ -1,0 +1,12 @@
+{
+ "title": "atomic-design-system-auditor",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "atomic-design-system-auditor/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/atomic-design-system-auditor/SKILL.md",
+ "license": null,
+ "description": "Flutter Staff Engineer skill for auditing and enforcing a Design System based on Atomic Design principles (Atoms, Molecules, Organisms, Templates, Pages). Detects violations of atomic hierarchy, duplicated UI primitives, improper component composition, and inconsistent use of design tokens. Use for requests like \"audit Flutter design system\", \"enforce atomic design architecture\", \"detect UI component duplication\", \"review Flutter UI structure\", or \"validate atomic design hierarchy\".",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:46.072Z"
+}

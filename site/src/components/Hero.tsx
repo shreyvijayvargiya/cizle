@@ -9,7 +9,7 @@ import { fromLabel } from "@/lib/billing";
 import { PREMIUM } from "@/lib/config";
 import { useSkills } from "@/lib/data";
 import { languageOf } from "@/lib/languages";
-import { shuffled, useGallery, usePromptText, useShuffle, type GalleryItem } from "@/lib/gallery";
+import { COLLECTION_TABS, shuffled, useGallery, usePromptText, useShuffle, type GalleryItem } from "@/lib/gallery";
 import { countBy, countryFlag } from "@/lib/facets";
 import { plain } from "@/lib/utils";
 import { AutoVideo } from "@/lib/videos";
@@ -48,6 +48,8 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 	const countries = useMemo(() => countBy([...(gallery.data?.items ?? []), ...(skillsQ.data?.skills ?? [])], (g) => g.country), [gallery.data, skillsQ.data]);
 	const heroCountries = HERO_COUNTRIES.map((c) => countries.find(([n]) => n === c)).filter((x): x is [string, number] => Boolean(x));
 
+	const kinds = useMemo(() => COLLECTION_TABS.map((c) => ({ ...c, n: (gallery.data?.items ?? []).filter((g) => g.collection === c.id).length })).filter((c) => c.n), [gallery.data]);
+
 	const picks = useMemo(() => {
 		// a different set of demos on every visit: the library is shuffled, then one of each category comes first
 		const free = shuffled((gallery.data?.items || []).filter((g) => g.tier === "free" && g.video && g.preview && g.chars >= 200 && g.chars <= 1400), seed);
@@ -79,9 +81,16 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 						The prompt library for creators and builders
 					</h1>
 					<p className="mt-4 max-w-[60ch] text-lg leading-snug">
-						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: video prompts by country, motion graphics with Remotion and HyperFrames, classroom and education animations, entertainment and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
+						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library for AI agents: video, image, website and mobile-app prompts, design systems and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: landing-page and app design systems, motion graphics with Remotion and HyperFrames, classroom animations and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
 					</p>
-					<ul aria-label="Popular searches" className="mt-4 flex flex-wrap gap-1.5">
+					{kinds.length ? (
+						<ul aria-label="Browse by type" className="mt-4 flex flex-wrap gap-1.5">
+							{kinds.map((c) => (
+								<li key={c.id}><Link to={c.path as "/gallery"} search={{}} className="press inline-flex items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-medium text-background hover:opacity-85">{c.label} <span className="tabular-nums opacity-70">{c.n.toLocaleString()}</span></Link></li>
+							))}
+						</ul>
+					) : null}
+					<ul aria-label="Popular searches" className="mt-3 flex flex-wrap gap-1.5">
 						{TAGS.map((t) => (
 							<li key={t}><Link to="/" search={{ q: t }} hash="library" className="press inline-flex rounded-full bg-tile-2 px-3 py-1 text-sm text-foreground hover:bg-muted">{t}</Link></li>
 						))}

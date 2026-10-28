@@ -1,0 +1,16 @@
+{
+ "title": "mobile-app-ui-design",
+ "source": "U03",
+ "lang": "en",
+ "repo": "ceorkm/mobile-app-ui-design",
+ "path": "SKILL.md",
+ "url": "https://github.com/ceorkm/mobile-app-ui-design/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "Design high-quality mobile app UI/UX screens, flows, and components. Use this skill whenever the user asks to design a mobile app screen, create app mockups, build mobile UI components, improve an existing mobile app design, create onboarding flows, design mobile navigation, or requests any mobile-first interface work. Also trigger when the user mentions app design, mobile UI, mobile UX, screen design, app mockups, wireframes, or wants to build React Native / Flutter / SwiftUI style interfaces as visual prototypes. Even if the user just says \"design an app\" or \"make this screen look better\", use this skill.",
+ "domains": [
+  "health",
+  "finance",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.098Z"
+}

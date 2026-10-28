@@ -1,0 +1,16 @@
+{
+ "title": "state-management-zustand",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/state-management-zustand/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/state-management-zustand/SKILL.md",
+ "license": "MIT",
+ "description": "Builds Zustand 5 stores - pure reducers. Use when adding a store, action or selector, deciding where state lives, leaving Redux or persist+AsyncStorage, or on Maximum update depth. Not for server data (networking-and-server-state).",
+ "domains": [
+  "engineering",
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.061Z"
+}

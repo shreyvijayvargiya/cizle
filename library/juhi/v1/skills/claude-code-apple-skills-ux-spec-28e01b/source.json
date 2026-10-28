@@ -1,0 +1,15 @@
+{
+ "title": "ux-spec",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/product/ux-spec/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/product/ux-spec/SKILL.md",
+ "license": "MIT",
+ "description": "Generates UI/UX specifications with wireframes and design system. Creates UX_SPEC.md and DESIGN_SYSTEM.md from PRD and Architecture specs. Use when designing app interface and creating design system.",
+ "domains": [
+  "product",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.502Z"
+}

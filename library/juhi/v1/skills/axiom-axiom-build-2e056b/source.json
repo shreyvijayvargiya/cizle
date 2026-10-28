@@ -1,0 +1,14 @@
+{
+ "title": "axiom-build",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-build/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-build/SKILL.md",
+ "license": "MIT",
+ "description": "Use when ANY iOS or macOS build fails, a crash log needs diagnosing, a test run crashes, Xcode misbehaves, or an environment issue blocks work before code is the suspect. Covers build failures, dependency conflicts, simulator diagnostics.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.572Z"
+}

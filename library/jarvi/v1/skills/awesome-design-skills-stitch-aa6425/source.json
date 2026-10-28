@@ -1,0 +1,16 @@
+{
+ "title": "stitch",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/stitch/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/stitch/SKILL.md",
+ "license": "MIT",
+ "description": "Clean, high-contrast enterprise design for data-driven workflows with intuitive drag-and-drop patterns and structured layouts.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.476Z"
+}

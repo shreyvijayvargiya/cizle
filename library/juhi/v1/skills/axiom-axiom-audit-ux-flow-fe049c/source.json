@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-ux-flow",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-ux-flow/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-ux-flow/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions UX flow issues, dead-end views, dismiss traps, missing empty states, broken user journeys, or wants a UX audit of their iOS app.",
+ "domains": [
+  "data",
+  "edtech",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.624Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "compose-performance-audit",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/performance/compose-performance-audit/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/performance/compose-performance-audit/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Audit and improve Jetpack Compose runtime performance from code review and architecture. Use when asked to diagnose slow rendering, janky scrolling, excessive recompositions, or performance issues in Compose UI.",
+ "domains": [
+  "education",
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.953Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "ios-dev",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/ios-dev/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/ios-dev/SKILL.md",
+ "license": "MIT",
+ "description": "Start here for any iOS or SwiftUI task. Coordinates best-practice guides, correctness checks, and full Apple API references. Use before navigating to other Apple skills — for building, reviewing, refactoring, or debugging iOS apps.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.554Z"
+}

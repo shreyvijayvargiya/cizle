@@ -1,0 +1,14 @@
+{
+ "title": "tipkit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/tipkit/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/tipkit/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: TipKit. Tip protocol, TipView, PopoverTipView, Tips.configure, inline and popover tips.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.553Z"
+}

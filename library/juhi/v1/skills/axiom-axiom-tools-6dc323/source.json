@@ -1,0 +1,16 @@
+{
+ "title": "axiom-tools",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-tools/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-tools/SKILL.md",
+ "license": "MIT",
+ "description": "Use when asking about Axiom skills or axbuild build/test capture, xclog console, xcsym .ips/MetricKit/.crash symbolication, xcui simulator UI/accessibility, or xcprof xctrace/CPU profiles.",
+ "domains": [
+  "education",
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.705Z"
+}

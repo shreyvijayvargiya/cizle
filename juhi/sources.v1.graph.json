@@ -1,0 +1,285 @@
+{
+	"version": 1,
+	"description": "juhi v1: mobile-app prompts, design systems and skills (iOS, Android, React Native, Flutter) for AI agents, found 2026-10-28 by GitHub and web search; every repo shallow-cloned and counted, none is in the harvest graphs v1-v9. Ids start at U01. Run `node server/juhi/cli.js --v1`; data in juhi/data, library in library/juhi/v1, site store site/content/versions/juhi-v1.",
+	"defaults": {
+		"min_records": 5,
+		"batch_size": 20,
+		"batch_pause_ms": 3000,
+		"source_pause_ms": 4000,
+		"max_parallel": 2
+	},
+	"start": "U01",
+	"nodes": [
+		{
+			"id": "U01",
+			"name": "iOS app design systems as DESIGN.md (200 apps)",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/Meliwat/awesome-ios-design-md",
+			"expect": 200,
+			"min_records": 120,
+			"verified": true,
+			"config": {
+				"min_chars": 300,
+				"repos": [
+					{
+						"repo": "Meliwat/awesome-ios-design-md",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS",
+							"Design system"
+						],
+						"include": [
+							"^design-md/.+/DESIGN\\.md$"
+						],
+						"whole": true,
+						"category": "design-system"
+					}
+				]
+			},
+			"notes": "Cloned and counted: 200 DESIGN.md files for well-known iOS apps (design-md/<group>/<app>/DESIGN.md), MIT."
+		},
+		{
+			"id": "U02",
+			"name": "Apple platform skills (SwiftUI, iOS, App Store)",
+			"adapter": "github-skills",
+			"url": "https://github.com/twostraws/SwiftUI-Agent-Skill",
+			"expect": 240,
+			"min_records": 150,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "twostraws/SwiftUI-Agent-Skill",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					},
+					{
+						"repo": "rshankras/claude-code-apple-skills",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					},
+					{
+						"repo": "Prisma-Labs-Dev/apple-skills",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					},
+					{
+						"repo": "mirzaaghazadeh/iphone-duo-skills",
+						"license": "NOASSERTION",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					},
+					{
+						"repo": "devsemih/appstore-review-skill",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					},
+					{
+						"repo": "surugawan-ebi/skill-store-image-maker",
+						"license": "MIT",
+						"tags": [
+							"App"
+						]
+					},
+					{
+						"repo": "CharlesWiltgen/Axiom",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					},
+					{
+						"repo": "Wholiver/swiftui-design-skill",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"iOS"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: twostraws 1, rshankras 183, Prisma-Labs 34, mirzaaghazadeh 11, devsemih 2, surugawan 2, Axiom 123, Wholiver 1."
+		},
+		{
+			"id": "U03",
+			"name": "Android, React Native, Flutter and mobile design skills",
+			"adapter": "github-skills",
+			"url": "https://github.com/zakariaf/ReactNative-Skills",
+			"expect": 235,
+			"min_records": 150,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "new-silvermoon/awesome-android-agent-skills",
+						"license": "Apache-2.0",
+						"tags": [
+							"App",
+							"Android"
+						]
+					},
+					{
+						"repo": "skydoves/compose-performance-skills",
+						"license": "Apache-2.0",
+						"tags": [
+							"App",
+							"Android"
+						]
+					},
+					{
+						"repo": "Meet-Miyani/compose-skill",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"Android"
+						]
+					},
+					{
+						"repo": "Drjacky/claude-android-ninja",
+						"license": "Apache-2.0",
+						"tags": [
+							"App",
+							"Android"
+						]
+					},
+					{
+						"repo": "zakariaf/ReactNative-Skills",
+						"license": "MIT",
+						"tags": [
+							"App",
+							"React Native"
+						]
+					},
+					{
+						"repo": "draftbit/mobile-taste-skill",
+						"license": "NOASSERTION",
+						"tags": [
+							"App",
+							"React Native"
+						]
+					},
+					{
+						"repo": "art9mid/arc-skill",
+						"tags": [
+							"App",
+							"React Native"
+						]
+					},
+					{
+						"repo": "RobertAlvv/flutter-skills",
+						"tags": [
+							"App",
+							"Flutter"
+						]
+					},
+					{
+						"repo": "mobbin/skills",
+						"license": "MIT",
+						"tags": [
+							"App"
+						]
+					},
+					{
+						"repo": "parhamb/design-skills",
+						"license": "MIT",
+						"tags": [
+							"App"
+						]
+					},
+					{
+						"repo": "ceorkm/mobile-app-ui-design",
+						"tags": [
+							"App"
+						]
+					},
+					{
+						"repo": "awesome-skills/mobile-app-design",
+						"tags": [
+							"App"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: awesome-android-agent-skills 17, compose-performance 26, Meet-Miyani 7, claude-android-ninja 1, ReactNative-Skills 146, mobile-taste 6, arc-skill 1, flutter-skills 8, mobbin 4, parhamb 18, ceorkm 1, awesome-skills 1. Repos with no licence file: preview plus link. maikotrindade/awesome-react-native-skills is GPL-3.0 and left out."
+		},
+		{
+			"id": "U04",
+			"name": "Build Apps with AI: the book's prompts",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/llm-books/build-apps-with-ai",
+			"expect": 85,
+			"min_records": 50,
+			"verified": true,
+			"config": {
+				"min_chars": 60,
+				"repos": [
+					{
+						"repo": "llm-books/build-apps-with-ai",
+						"license": "MIT",
+						"tags": [
+							"App"
+						],
+						"include": [
+							"^prompts/chapter-\\d+/.+\\.md$"
+						],
+						"whole": true,
+						"category": "app-building"
+					}
+				]
+			},
+			"notes": "Cloned and counted: 89 prompts from the book, grouped by chapter (idea validation, project set-up, features, release). MIT."
+		}
+	],
+	"edges": [
+		{
+			"from": "U01",
+			"to": "U02"
+		},
+		{
+			"from": "U02",
+			"to": "U03"
+		},
+		{
+			"from": "U03",
+			"to": "U04"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "maikotrindade/awesome-react-native-skills",
+			"reason": "GPL-3.0."
+		},
+		{
+			"id": "Z02",
+			"name": "salmanashraf/mobile-ai-agents",
+			"reason": "249 markdown files of agent workflows without SKILL.md structure; revisit in v2."
+		},
+		{
+			"id": "Z03",
+			"name": "Mobile apps that merely use prompts (chatbots, generators, remote runners)",
+			"reason": "Apps, not prompt or skill collections."
+		},
+		{
+			"id": "Z04",
+			"name": "Mobbin, Dribbble, Behance, App Store galleries",
+			"reason": "Commercial galleries; not harvestable."
+		}
+	]
+}

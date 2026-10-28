@@ -1,0 +1,12 @@
+{
+ "title": "image-loading",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/image-loading/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/image-loading/SKILL.md",
+ "license": "MIT",
+ "description": "Generates an image loading pipeline with memory/disk caching, deduplication, and a CachedAsyncImage SwiftUI view. Use when user wants image caching, lazy image loading, or a replacement for AsyncImage.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.409Z"
+}

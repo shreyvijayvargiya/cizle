@@ -1,0 +1,16 @@
+{
+ "title": "power",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/power/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/power/SKILL.md",
+ "license": "MIT",
+ "description": "High-end dark aesthetic with bold headings, monochromatic palette, and premium feel for premium brand experiences.",
+ "domains": [
+  "product",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.466Z"
+}

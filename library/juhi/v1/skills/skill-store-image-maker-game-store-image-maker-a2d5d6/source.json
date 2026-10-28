@@ -1,0 +1,15 @@
+{
+ "title": "game-store-image-maker",
+ "source": "U02",
+ "lang": "en",
+ "repo": "surugawan-ebi/skill-store-image-maker",
+ "path": "game-store-image-maker/SKILL.md",
+ "url": "https://github.com/surugawan-ebi/skill-store-image-maker/blob/HEAD/game-store-image-maker/SKILL.md",
+ "license": "MIT",
+ "description": "Create App Store, Google Play, and Instagram promotional images for mobile games, including store screenshot sets, feature graphics, social feed posts, Stories/Reels creatives, creative direction, Japanese/English taglines, ASO/social shot plans, and image-generation prompts from gameplay captures, app icons, brand assets, and game briefs. Use when Codex or Claude needs to plan, critique, generate, localize, or QA mobile game promo visuals while respecting platform asset requirements and avoiding misleading or competitor-copying designs.",
+ "domains": [
+  "gaming",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.568Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "website-generator",
+ "source": "J03",
+ "lang": "en",
+ "repo": "JoshPearre/claude-website-generator",
+ "path": "SKILL.md",
+ "url": "https://github.com/JoshPearre/claude-website-generator/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Generate a complete multi-file website project scaffold by composing UI prompts from a curated, design-intensity-tiered prompt library. Use this skill whenever the user wants to build, generate, scaffold, redesign, or create a website, web app, landing page, or marketing site — including phrases like \"build me a website\", \"generate a site\", \"create a landing page\", \"make a site for my [business/niche]\", or any request to produce a website for a specific niche or audience. The skill matches design intensity (minimal utility to experimental/maximalist) to the site's purpose and produces a real Vite + React project folder. Also trigger **Tier C — Cinematic Story Experience** when the user asks for a \"cinematic experience\", \"cinematic website\", \"story site\", \"film website\", \"tell the business's story as you scroll\", or wants a Higgsfield-generated background film whose chapters follow the business's facets as the visitor scrolls. Also use this skill whenever the user wants to create 3D / scroll-driven / Apple-style scroll animations — scroll-scrubbed product or video heroes (e.g. \"create 3D scroll animations\", \"scroll animation\", \"scrollytelling hero\", or \"turn this MP4/product into a scroll-driven frame animation\"). Also trigger **Demo Mode** — the fast outreach path — when the user says \"demo mode\", passes `--demo`, or hands you a `lead.json` lead record (e.g. an AgenticOS export): intake questions are skipped and the skill builds + deploys a noindexed demo site for that business.",
+ "domains": [
+  "entertainment",
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.486Z"
+}

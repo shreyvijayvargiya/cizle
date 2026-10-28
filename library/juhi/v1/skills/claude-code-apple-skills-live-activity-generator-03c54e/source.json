@@ -1,0 +1,14 @@
+{
+ "title": "live-activity-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/live-activity-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/live-activity-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate ActivityKit Live Activity infrastructure with Dynamic Island layouts, Lock Screen presentation, and push-to-update support. Use when adding Live Activities to an iOS app.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.412Z"
+}

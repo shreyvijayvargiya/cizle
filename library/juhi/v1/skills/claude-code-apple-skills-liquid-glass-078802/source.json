@@ -1,0 +1,14 @@
+{
+ "title": "liquid-glass",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/liquid-glass/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/liquid-glass/SKILL.md",
+ "license": "MIT",
+ "description": "Implement Liquid Glass design using .glassEffect() API for iOS/macOS 26+. Covers SwiftUI, AppKit, UIKit, and WidgetKit. Use when creating modern glass-based UI effects.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.377Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "bento",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/bento/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/bento/SKILL.md",
+ "license": "MIT",
+ "description": "Modular grid layout with card-like blocks, clear hierarchy, soft spacing, and subtle visual contrast for organized, scannable interfaces.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.450Z"
+}

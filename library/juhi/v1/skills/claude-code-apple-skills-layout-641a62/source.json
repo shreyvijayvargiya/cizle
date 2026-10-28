@@ -1,0 +1,15 @@
+{
+ "title": "layout",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftui/layout/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftui/layout/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftUI layout beyond stacks — the Layout protocol (when custom layout beats GeometryReader), Grid vs lazy grids, custom containers with sections and container values, and lazy-stack/ScrollView performance rules (what breaks laziness, prefetch discipline, scroll APIs). Use when building custom layouts or containers, fixing lazy-stack jank or memory growth, or wiring programmatic/snapping scrolling.",
+ "domains": [
+  "data",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.520Z"
+}

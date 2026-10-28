@@ -1,0 +1,16 @@
+{
+ "title": "win-back-offers",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/win-back-offers/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/win-back-offers/SKILL.md",
+ "license": "MIT",
+ "description": "Generates the complete win-back offer flow for churned subscribers — StoreKit Message API handling, eligibility verification, offer sheet presentation, and analytics. Use when implementing win-back campaigns or re-engagement for lapsed subscribers.",
+ "domains": [
+  "product",
+  "edtech",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.454Z"
+}

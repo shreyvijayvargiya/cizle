@@ -1,0 +1,12 @@
+{
+ "title": "visual-intelligence",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/apple-intelligence/visual-intelligence/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/apple-intelligence/visual-intelligence/SKILL.md",
+ "license": "MIT",
+ "description": "Integrate your app with iOS Visual Intelligence for camera-based search and object recognition. Use when adding visual search capabilities.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.363Z"
+}

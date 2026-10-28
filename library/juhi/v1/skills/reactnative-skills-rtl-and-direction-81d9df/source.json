@@ -1,0 +1,15 @@
+{
+ "title": "rtl-and-direction",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/rtl-and-direction/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/rtl-and-direction/SKILL.md",
+ "license": "MIT",
+ "description": "Makes Expo apps right-to-left correct - logical styles, guarded direction restart, mirroring, digits, bidi. Use when adding Arabic or Hebrew, a row, icon, number, language switch or RTL test. Not for translation (i18n-strings-and-catalogs).",
+ "domains": [
+  "product",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.048Z"
+}

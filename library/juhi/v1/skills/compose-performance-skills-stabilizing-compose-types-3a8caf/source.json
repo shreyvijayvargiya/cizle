@@ -1,0 +1,16 @@
+{
+ "title": "stabilizing-compose-types",
+ "source": "U03",
+ "lang": "en",
+ "repo": "skydoves/compose-performance-skills",
+ "path": "stability/stabilizing-compose-types/SKILL.md",
+ "url": "https://github.com/skydoves/compose-performance-skills/blob/HEAD/stability/stabilizing-compose-types/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Use this skill to fix unstable Jetpack Compose types once a stability diagnosis has identified them. Covers the three-tier strategy — make the type truly stable with val plus immutable fields, mark with @Immutable or @Stable when the source is owned, and use stabilityConfigurationFiles for third-party or Java types. Explains the compiler-level difference between @Immutable and @Stable (static expression promotion), kotlinx.collections.immutable for List/Set/Map parameters, and the StableHolder wrapper escape hatch. Use when the developer asks how to stabilize a User class, a List parameter, java.time.LocalDateTime, a Flow parameter, or when the compiler report shows unstable params and the developer wants the fix. The diagnostic step lives in a sibling skill.",
+ "domains": [
+  "education",
+  "data",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.985Z"
+}

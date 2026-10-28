@@ -1,0 +1,16 @@
+{
+ "title": "sketch",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/sketch/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/sketch/SKILL.md",
+ "license": "MIT",
+ "description": "A friendly, hand-drawn sketch interface inspired by pencil illustrations on warm cream paper. Soft teal brand accents, hand-written display headings, rounded pill controls.",
+ "domains": [
+  "product",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.471Z"
+}

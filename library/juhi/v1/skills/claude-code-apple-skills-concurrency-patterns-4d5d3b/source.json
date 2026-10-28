@@ -1,0 +1,14 @@
+{
+ "title": "concurrency-patterns",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swift/concurrency-patterns/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swift/concurrency-patterns/SKILL.md",
+ "license": "MIT",
+ "description": "Swift concurrency patterns including Swift 6.2 approachable concurrency, structured concurrency, actors, continuations, and migration. Use when reviewing or building async code, fixing data race errors, or migrating to Swift 6.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.511Z"
+}

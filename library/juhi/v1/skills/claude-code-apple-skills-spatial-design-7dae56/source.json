@@ -1,0 +1,15 @@
+{
+ "title": "spatial-design",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/visionos/spatial-design/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/visionos/spatial-design/SKILL.md",
+ "license": "MIT",
+ "description": "Designing for visionOS — spatial layout and ergonomics (60pt eye targets, field-of-view placement, dynamic scale), eyes-and-hands input with hover rules, motion and visual comfort (the 0.2 Hz rule, vection, depth-cue agreement), immersion strategy, spatial sound, and the video-format decision guide. Use when designing or reviewing any visionOS app, window, volume, or immersive experience.",
+ "domains": [
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.538Z"
+}

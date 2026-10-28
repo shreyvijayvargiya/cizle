@@ -1,0 +1,14 @@
+{
+ "title": "redesign-screen",
+ "source": "U03",
+ "lang": "en",
+ "repo": "mobbin/skills",
+ "path": "skills/redesign-screen/SKILL.md",
+ "url": "https://github.com/mobbin/skills/blob/HEAD/skills/redesign-screen/SKILL.md",
+ "license": "MIT",
+ "description": "Redesign any screen from patterns real apps ship. Share a screenshot, your code or a design file, and the skill finds how apps on Mobbin handle the same screen. Explore a few directions or fix specific problems, and see the evidence behind each change. You get a before and after image and a short report. The redesign stays in your own design system, and anything that already works is kept. Use whenever the user points at a screen, section, or component they have, or at a reference, a Mobbin result, one or more Mobbin collections or the screens they saved, and asks to redesign, improve, restyle, or rebuild it, or to see a few directions for it.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.082Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "pacman",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/pacman/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/pacman/SKILL.md",
+ "license": "MIT",
+ "description": "Retro arcade-inspired design with pixel fonts, dotted borders, playful high-contrast colors, and 8-bit game aesthetics.",
+ "domains": [
+  "gaming",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.468Z"
+}

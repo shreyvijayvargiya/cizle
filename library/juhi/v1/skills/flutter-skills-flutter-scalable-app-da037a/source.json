@@ -1,0 +1,15 @@
+{
+ "title": "flutter-scalable-app",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "flutter-scalable-app/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/flutter-scalable-app/SKILL.md",
+ "license": null,
+ "description": "Senior Flutter engineer skill for building production-grade apps with clean architecture, flutter_bloc state management, auto_route navigation, get_it + injectable dependency injection, and Firebase integration. Use for requests like \"build a Flutter screen\", \"set up BLoC\", \"translate Stitch designs to Flutter code\", \"configure Firebase\", \"scaffold a Flutter project\", \"Flutter clean architecture\", or \"optimize Flutter performance\".",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.079Z"
+}

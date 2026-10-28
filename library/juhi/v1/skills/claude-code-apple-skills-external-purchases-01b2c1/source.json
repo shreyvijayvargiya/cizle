@@ -1,0 +1,16 @@
+{
+ "title": "external-purchases",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/monetization/external-purchases/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/monetization/external-purchases/SKILL.md",
+ "license": "MIT",
+ "description": "US web checkout via the StoreKit External Purchase Link entitlement — currently 0% Apple commission (litigation ongoing), how to ship it safely, and how to architect for a commission flip so a future ruling is a config change, not a rewrite. Use when adding external purchase links, weighing web checkout vs IAP, or planning US-storefront pricing strategy.",
+ "domains": [
+  "product",
+  "finance",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.482Z"
+}

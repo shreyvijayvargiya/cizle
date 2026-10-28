@@ -1,0 +1,16 @@
+{
+ "title": "dates-streaks-and-statistics",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/dates-streaks-and-statistics/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/dates-streaks-and-statistics/SKILL.md",
+ "license": "MIT",
+ "description": "Builds calendar-day logic: local date keys, an injected clock, midnight, DST, streaks, stats. Use when code reads today, counts days, shows a streak or stats, or a date is a day off. Not for seeds (seeded-determinism-and-golden-vectors).",
+ "domains": [
+  "math",
+  "scifi",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.015Z"
+}

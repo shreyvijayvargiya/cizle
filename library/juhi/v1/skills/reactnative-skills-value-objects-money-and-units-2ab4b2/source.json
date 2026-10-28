@@ -1,0 +1,15 @@
+{
+ "title": "value-objects-money-and-units",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/value-objects-money-and-units/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/value-objects-money-and-units/SKILL.md",
+ "license": "MIT",
+ "description": "Stores money as ISO 4217 minor units, quantities in canonical units, instants as epoch ms. Use when adding a price, currency, tax, split, unit or timestamp, or a total is a cent off. Not for calendar days (dates-streaks-and-statistics).",
+ "domains": [
+  "math",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.063Z"
+}

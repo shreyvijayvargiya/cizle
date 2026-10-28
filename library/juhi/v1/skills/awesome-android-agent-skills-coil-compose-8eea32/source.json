@@ -1,0 +1,14 @@
+{
+ "title": "coil-compose",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/ui/coil-compose/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/ui/coil-compose/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Expert guidance on using Coil for image loading in Jetpack Compose. Use this when asked about loading images from URLs, handling image states, or optimizing image performance in Compose.",
+ "domains": [
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.959Z"
+}

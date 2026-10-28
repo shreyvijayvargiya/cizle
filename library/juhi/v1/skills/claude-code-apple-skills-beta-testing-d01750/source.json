@@ -1,0 +1,15 @@
+{
+ "title": "beta-testing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/product/beta-testing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/product/beta-testing/SKILL.md",
+ "license": "MIT",
+ "description": "Beta testing strategy for iOS/macOS apps. Covers TestFlight program setup, beta tester recruitment, feedback collection methodology, user interviews, signal-vs-noise interpretation, and go/no-go launch readiness decisions. Use when planning a beta, setting up TestFlight, collecting user feedback, or deciding if ready to launch.",
+ "domains": [
+  "product",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.485Z"
+}

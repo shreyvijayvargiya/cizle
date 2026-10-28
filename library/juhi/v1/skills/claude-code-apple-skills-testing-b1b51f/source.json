@@ -1,0 +1,16 @@
+{
+ "title": "testing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/testing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/testing/SKILL.md",
+ "license": "MIT",
+ "description": "TDD and testing skills for iOS/macOS apps. Covers characterization tests, TDD workflows, test contracts, snapshot tests, test infrastructure, and deterministic quality gates (fitness functions, coverage ratchet, mutation testing). Use for test-driven development, adding tests to existing code, or building test infrastructure.",
+ "domains": [
+  "health",
+  "engineering",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.521Z"
+}

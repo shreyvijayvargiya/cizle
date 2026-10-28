@@ -1,0 +1,16 @@
+{
+ "title": "search",
+ "source": "U03",
+ "lang": "en",
+ "repo": "mobbin/skills",
+ "path": "skills/search/SKILL.md",
+ "url": "https://github.com/mobbin/skills/blob/HEAD/skills/search/SKILL.md",
+ "license": "MIT",
+ "description": "Gets better results from every Mobbin search, so the references match what you're working on. Use before every call to search_screens, search_flows or search_sections. Covers the tool, writing an effective query, the mode, pulling more results, and what to do when a search falls short.",
+ "domains": [
+  "product",
+  "scifi",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.083Z"
+}

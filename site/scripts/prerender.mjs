@@ -55,7 +55,7 @@ const skillLd = (s) => [
 
 /* ------------------------------------------------------------------ page shell */
 const STYLE = `<style>.ssr{max-width:62rem;margin:0 auto;padding:1rem 1.25rem 3rem;font:15px/1.65 Inter,ui-sans-serif,system-ui,sans-serif;color:#0a0a0a}.ssr a{color:inherit}.ssr nav ul{display:flex;gap:1rem;list-style:none;padding:0;flex-wrap:wrap}.ssr pre{white-space:pre-wrap;word-break:break-word;background:#f4f4f5;border:1px solid #e4e4e7;border-radius:8px;padding:.8rem;font-size:12.5px}.ssr code{font-family:ui-monospace,Menlo,monospace}.ssr ul.cards{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:.75rem}.ssr ul.cards li{border:1px solid #e4e4e7;border-radius:10px;padding:.75rem}@media (prefers-color-scheme:dark){.ssr{color:#fafafa}.ssr pre{background:#1c1c1f;border-color:#27272a}.ssr ul.cards li{border-color:#27272a}}</style>`;
-const NAV = [["Skills", "/"], ["Gallery", "/gallery"], ["Pricing", "/pricing"], ["Docs", "/docs"], ["Learn", "/learn"], ["Use cases", "/for"], ["Styles", "/styles"], ["Best-of", "/best"], ["How-to", "/how-to"], ["Glossary", "/glossary"], ["Templates", "/templates"], ...(BLOG ? [["Blog", "/blog"]] : []), ["FAQ", "/faq"], ["Contact", "/contact"]];
+const NAV = [["Skills", "/"], ["Gallery", "/gallery"], ["Video", "/video-prompts"], ["Website", "/website-prompts"], ["Apps", "/app-prompts"], ["Pricing", "/pricing"], ["Docs", "/docs"], ["Learn", "/learn"], ["Use cases", "/for"], ["Styles", "/styles"], ["Best-of", "/best"], ["How-to", "/how-to"], ["Glossary", "/glossary"], ["Templates", "/templates"], ...(BLOG ? [["Blog", "/blog"]] : []), ["FAQ", "/faq"], ["Contact", "/contact"]];
 const header = `<header><nav aria-label="Main"><ul><li><a href="/"><strong>cizle</strong></a></li>${NAV.map(([n, p]) => `<li><a href="${p}">${n}</a></li>`).join("")}<li><a href="/login">Sign in</a></li></ul></nav></header>`;
 const footer = `<footer><nav aria-label="Legal"><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li><li><a href="/refund">Refunds</a></li><li><a href="${esc(siteConfig.github)}">GitHub</a></li></ul></nav><p>© ${new Date().getFullYear()} cizle. Payments by Dodo Payments.</p></footer>`;
 
@@ -254,6 +254,30 @@ const facetPages = [];
 	}
 }
 
+/* One page per kind of prompt (video, image, website, mobile app, text): a short intro and the titles of the first prompts, as plain links. The app opens the same address. */
+const KINDS = [["video", "Video prompts", "/video-prompts", "Prompts for AI video models, each with the clip it made."], ["image", "Image prompts", "/image-prompts", "Prompts for AI image models, with the picture they produced."], ["website", "Website prompts", "/website-prompts", "Prompts and design systems that make AI agents build landing pages and websites."], ["app", "Mobile app prompts", "/app-prompts", "Prompts and design systems that make AI agents build iOS, Android and cross-platform apps."], ["text", "Text prompts", "/text-prompts", "General prompts for chat models: roles, writing, business and education."]];
+const versionItems = [];
+try {
+	const vdir = path.join(DIST, "versions");
+	for (const v of fs.readdirSync(vdir)) {
+		const f = path.join(vdir, v, "gallery.json");
+		if (fs.existsSync(f)) versionItems.push(...JSON.parse(fs.readFileSync(f, "utf8")).items.map((g) => ({ ...g, version: v })));
+	}
+} catch { /* no versions published */ }
+const kindOf = (g) => g.collection || (g.kind === "image-prompt" ? "image" : g.version === "v7" ? "text" : "video");
+for (const [id, title, route, blurb] of KINDS) {
+	const list = versionItems.filter((g) => kindOf(g) === id);
+	if (!list.length) continue;
+	const top = [...list].sort((a, b) => Number(Boolean(b.poster)) - Number(Boolean(a.poster))).slice(0, 60);
+	out(route, document({
+		title: `${title} for AI agents: ${list.length.toLocaleString()} prompts with previews | cizle`,
+		description: `${blurb} ${list.length.toLocaleString()} prompts, each credited to its creator with a link to the original.`,
+		path: route,
+		ld: [crumbs([["Skills", "/"], [title, route]]), { "@context": "https://schema.org", "@type": "CollectionPage", name: `cizle ${title.toLowerCase()}`, url: abs(route), description: blurb, mainEntity: { "@type": "ItemList", numberOfItems: list.length, itemListElement: top.slice(0, 20).map((g, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "CreativeWork", name: g.title, ...(g.sourceUrl ? { sameAs: g.sourceUrl } : {}) } })) } }],
+		body: `<nav aria-label="Breadcrumb"><a href="/">Skills</a> / ${esc(title)}</nav><h1>${esc(title)}</h1><p>${esc(blurb)} ${list.length.toLocaleString()} prompts.</p><ul>${top.map((g) => `<li><a href="/prompts/${esc(g.slug)}">${esc(g.title)}</a></li>`).join("")}</ul><p><a href="/gallery">All prompts</a> · ${KINDS.filter((k) => k[0] !== id).map((k) => `<a href="${k[2]}">${esc(k[1])}</a>`).join(" · ")}</p>`,
+	}));
+}
+
 out("/search", document({ title: "Search the cizle prompt library | cizle", description: "Search thousands of AI video prompts, image prompts and Claude Code skills. Add ?q=your+words to the address to search from a link.", path: "/search", noindex: true, body: `<h1>Search the library</h1><p>Open <code>/search?q=your+words</code> to search in the browser, or add <code>&amp;format=md</code> or <code>&amp;format=json</code> for plain text that a script or an AI agent can read. Example: <a href="/search?q=product+launch&amp;format=md">/search?q=product+launch&amp;format=md</a>.</p><p><a href="/for">Use cases</a> · <a href="/styles">Styles</a> · <a href="/best">Best-of lists</a></p>` }));
 out("/sources", document({ title: "Sources: the people behind the prompts and skills | cizle", description: "Every creator credited in the cizle library, with a link to follow them.", path: "/sources", body: `<h1>Sources</h1><p>Every creator credited in the cizle library, with a link to follow them.</p>` }));
 out("/contact", document({ title: "Contact cizle: questions, billing and refunds", description: `Email ${siteConfig.email} for questions about cizle skills, Premium access, billing or refunds. We reply within one working day.`, path: "/contact", ld: [{ "@context": "https://schema.org", "@type": "ContactPage", name: "Contact cizle", url: abs("/contact"), mainEntity: { "@type": "Organization", name: siteConfig.name, email: siteConfig.email } }], body: `<h1>Contact us</h1><p>A real person reads every message, usually within one working day. Email <a href="mailto:${esc(siteConfig.email)}">${esc(siteConfig.email)}</a>. For payment issues include the email you paid with.</p>` }));
@@ -267,7 +291,7 @@ for (const [route, title] of [["/login", "Sign in | cizle"], ["/settings", "Sett
 out("/404", document({ title: "Page not found | cizle", description: "That page does not exist.", path: "/404", noindex: true, body: `<h1>Page not found</h1><p><a href="/">Back to all skills</a></p>` }));
 
 /* ------------------------------------------------------------------ machine-readable files */
-const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/learn", 0.7], ["/subscribe", 0.4], ["/sources", 0.5], ...facetPages.map((r) => [r, 0.5]), ...(BLOG ? [["/blog", 0.7]] : []), ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2], ["/rights", 0.3]];
+const urls = [["/", 1.0], ...(gallery ? [["/gallery", 0.8]] : []), ...KINDS.map((k) => [k[2], 0.8]), ["/pricing", 0.9], ["/films", 0.7], ["/connect", 0.8], ["/docs", 0.8], ["/learn", 0.7], ["/subscribe", 0.4], ["/sources", 0.5], ...facetPages.map((r) => [r, 0.5]), ...(BLOG ? [["/blog", 0.7]] : []), ["/faq", 0.6], ["/contact", 0.3], ...skills.map((s) => [`/skills/${s.slug}`, s.tier === "free" ? 0.8 : 0.6]), ...posts.map((p) => [`/blog/${p.slug}`, 0.7]), ...promptPages.map((g) => [`/prompts/${g.slug}`, g.tier === "free" ? 0.5 : 0.4]), ["/terms", 0.2], ["/privacy", 0.2], ["/refund", 0.2], ["/rights", 0.3]];
 fs.writeFileSync(path.join(DIST, "sitemap-pages.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([p, pr]) => `<url><loc>${abs(p)}</loc><lastmod>${today}</lastmod><priority>${pr}</priority></url>`).join("\n")}\n</urlset>\n`);
 fs.writeFileSync(path.join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${["sitemap-pages.xml", ...prog.files].map((f) => `<sitemap><loc>${abs(`/${f}`)}</loc><lastmod>${today}</lastmod></sitemap>`).join("\n")}\n</sitemapindex>\n`);
 fs.writeFileSync(path.join(DIST, "robots.txt"), `# Everyone is welcome, including AI search and answer engines. Premium prompts are never in the public HTML.\nUser-agent: *\nAllow: /\nDisallow: /settings\nDisallow: /reverse\nDisallow: /login\n\nSitemap: ${SITE_URL}/sitemap.xml\n# Feed: ${SITE_URL}/feed.xml\n# LLM-friendly summary: ${SITE_URL}/llms.txt\n`);

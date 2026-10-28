@@ -1,0 +1,12 @@
+{
+ "title": "localization-setup",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/localization-setup/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/localization-setup/SKILL.md",
+ "license": "MIT",
+ "description": "Generate internationalization (i18n) infrastructure for multi-language support in iOS/macOS apps. Use when localizing for multiple languages, adopting String Catalogs (xcstrings), or supporting RTL languages.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.409Z"
+}

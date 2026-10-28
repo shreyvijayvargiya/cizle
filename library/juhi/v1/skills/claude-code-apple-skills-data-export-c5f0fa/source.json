@@ -1,0 +1,14 @@
+{
+ "title": "data-export",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/data-export/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/data-export/SKILL.md",
+ "license": "MIT",
+ "description": "Generates data export/import infrastructure for JSON, CSV, PDF formats with GDPR data portability, share sheet integration, and file import. Use when user wants data export functionality, CSV/JSON/PDF export, GDPR compliance data portability, import from files, or share sheet for data.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.402Z"
+}

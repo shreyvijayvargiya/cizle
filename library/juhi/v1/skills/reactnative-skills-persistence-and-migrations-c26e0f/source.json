@@ -1,0 +1,16 @@
+{
+ "title": "persistence-and-migrations",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/persistence-and-migrations/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/persistence-and-migrations/SKILL.md",
+ "license": "MIT",
+ "description": "Builds the expo-sqlite database: tables, repositories, migrations. Use when adding a table, column or saved data, leaving AsyncStorage, or data is lost after an update. Not for stores (state-management-zustand).",
+ "domains": [
+  "product",
+  "education",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.044Z"
+}

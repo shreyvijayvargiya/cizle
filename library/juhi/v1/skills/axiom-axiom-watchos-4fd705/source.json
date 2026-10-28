@@ -1,0 +1,15 @@
+{
+ "title": "axiom-watchos",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-watchos/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-watchos/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building ANY watchOS app — app structure, independent apps, Watch Connectivity, Smart Stack widgets, complications, controls, RelevanceKit, background tasks, ClockKit migration.",
+ "domains": [
+  "health",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.709Z"
+}

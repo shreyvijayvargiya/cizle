@@ -1,0 +1,16 @@
+{
+ "title": "onboarding-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/onboarding-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/onboarding-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generates value-moment-first onboarding flows for iOS/macOS apps — the default architecture races a new user to the first felt experience of the app's promised outcome, branching on whether they can experience it right now or need to plan for later. The classic paged welcome-carousel tour is an explicit fallback for genuinely explain-first apps. Use when user wants to add onboarding, welcome screens, first-launch experience, or improve activation/trial conversion.",
+ "domains": [
+  "edtech",
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.425Z"
+}

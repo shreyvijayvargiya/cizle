@@ -1,0 +1,16 @@
+{
+ "title": "claude",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/claude/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/claude/SKILL.md",
+ "license": "MIT",
+ "description": "A research-journal aesthetic printed on warm stone — authoritative, editorial, almost achromatic. Pages live on warm ivory parchment (never pure white), with near-black slate as the dominant ink.",
+ "domains": [
+  "music",
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.446Z"
+}

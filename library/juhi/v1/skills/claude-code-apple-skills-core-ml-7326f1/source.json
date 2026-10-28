@@ -1,0 +1,16 @@
+{
+ "title": "core-ml",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/core-ml/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/core-ml/SKILL.md",
+ "license": "MIT",
+ "description": "Core ML, Create ML, Vision framework, Natural Language framework, on-device ML integration. Use when user wants image classification, text analysis, object detection, sound classification, model optimization, or custom model integration. Covers Core ML vs Foundation Models decision.",
+ "domains": [
+  "engineering",
+  "education",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.364Z"
+}

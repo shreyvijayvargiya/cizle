@@ -1,0 +1,15 @@
+{
+ "title": "push-notifications",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/push-notifications/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/push-notifications/SKILL.md",
+ "license": "MIT",
+ "description": "Builds remote push on expo-notifications: in-context permission, token sync, server contract, channels, tap routing. Use when adding push, push tokens, FCM/APNs setup or notification taps. Not for local reminders (local-notifications).",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.045Z"
+}

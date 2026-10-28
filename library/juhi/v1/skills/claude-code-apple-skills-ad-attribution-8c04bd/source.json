@@ -1,0 +1,16 @@
+{
+ "title": "ad-attribution",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/ad-attribution/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/ad-attribution/SKILL.md",
+ "license": "MIT",
+ "description": "Privacy-preserving ad measurement with AdAttributionKit (SKAdNetwork's successor) — install and re-engagement attribution, conversion-value strategy under crowd anonymity, and end-to-end postback testing. Use when running paid acquisition beyond Apple Ads, measuring re-engagement campaigns, designing conversion values, or migrating from SKAdNetwork.",
+ "domains": [
+  "education",
+  "edtech",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.353Z"
+}

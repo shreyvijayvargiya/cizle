@@ -1,0 +1,15 @@
+{
+ "title": "force-update",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/force-update/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/force-update/SKILL.md",
+ "license": "MIT",
+ "description": "Generates a minimum version enforcement system with hard-block and soft-prompt update flows, App Store redirect, and remote config or App Store lookup for version checks. Use when user wants force update, mandatory update, or minimum version check.",
+ "domains": [
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.406Z"
+}

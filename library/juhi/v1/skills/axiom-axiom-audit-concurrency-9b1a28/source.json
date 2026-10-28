@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-concurrency",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-concurrency/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-concurrency/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions concurrency checking, Swift 6 compliance, data race prevention, or async code review.",
+ "domains": [
+  "data",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.606Z"
+}

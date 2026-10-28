@@ -1,0 +1,16 @@
+{
+ "title": "modern",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/modern/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/modern/SKILL.md",
+ "license": "MIT",
+ "description": "Contemporary editorial style with serif typography, minimal palettes, and clean layouts for polished digital products.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.462Z"
+}

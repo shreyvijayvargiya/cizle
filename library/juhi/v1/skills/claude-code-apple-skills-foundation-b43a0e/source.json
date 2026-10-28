@@ -1,0 +1,12 @@
+{
+ "title": "foundation",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/foundation/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/foundation/SKILL.md",
+ "license": "MIT",
+ "description": "Foundation framework skills — AttributedString patterns for rich text formatting, alignment, selection, and SwiftUI integration. Use when working with styled text or AttributedString APIs.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.383Z"
+}

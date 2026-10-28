@@ -1,0 +1,16 @@
+{
+ "title": "app-description-writer",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/app-description-writer/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/app-description-writer/SKILL.md",
+ "license": "MIT",
+ "description": "Generate compelling App Store descriptions that convert browsers into users. Use when writing initial descriptions, improving existing copy, or drafting promotional text and What's New for a major update.",
+ "domains": [
+  "product",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.354Z"
+}

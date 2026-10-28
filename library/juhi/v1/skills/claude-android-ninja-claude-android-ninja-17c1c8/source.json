@@ -1,0 +1,14 @@
+{
+ "title": "claude-android-ninja",
+ "source": "U03",
+ "lang": "en",
+ "repo": "Drjacky/claude-android-ninja",
+ "path": "SKILL.md",
+ "url": "https://github.com/Drjacky/claude-android-ninja/blob/HEAD/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Build and migrate Android apps with Kotlin, Jetpack Compose, MVVM, Hilt, Room 3 (KSP, SQLiteDriver, Flow/suspend DAOs), Navigation3, and multi-module Gradle. Use for new projects or modules, Compose screens and ViewModels, Room 3 and RemoteMediator, API 37 / targetSdk migration, Play Integrity client wiring, offline-first sync, and version-catalog alignment. Not for iOS, Flutter, React Native, KMP-only shared code without an Android app module, or backend-only APIs with no Android client.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.997Z"
+}

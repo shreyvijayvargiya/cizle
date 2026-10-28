@@ -1,0 +1,16 @@
+{
+ "title": "vibrant",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/vibrant/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/vibrant/SKILL.md",
+ "license": "MIT",
+ "description": "Lively, colorful design with bold playful typography, warm accents, and dynamic visual energy.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.478Z"
+}

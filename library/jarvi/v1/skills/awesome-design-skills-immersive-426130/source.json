@@ -1,0 +1,16 @@
+{
+ "title": "immersive",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/immersive/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/immersive/SKILL.md",
+ "license": "MIT",
+ "description": "An immersive, interactive, exhibit-style interface that blends storytelling, animation, and gamified elements to create a playful, experience-driven journey. The entire app sits on a single continuous brand-colored canvas (deep green)",
+ "domains": [
+  "product",
+  "education",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.461Z"
+}

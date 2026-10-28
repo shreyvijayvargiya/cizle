@@ -1,0 +1,14 @@
+{
+ "title": "iphone-duo-capacitor",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-capacitor/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-capacitor/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Adapt a Capacitor or Ionic app to iPhone Duo, Apple's first foldable iPhone — why the standard Device Posture and Viewport Segments CSS does not reach a web view, what CSS gives you today, and how to get fold state, hinge angle and bar placement from the native side. Use when a Capacitor, Ionic, Angular, React or Vue app needs foldable iPhone support.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.562Z"
+}

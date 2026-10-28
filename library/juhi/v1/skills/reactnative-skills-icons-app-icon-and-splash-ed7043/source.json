@@ -1,0 +1,15 @@
+{
+ "title": "icons-app-icon-and-splash",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/icons-app-icon-and-splash/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/icons-app-icon-and-splash/SKILL.md",
+ "license": "MIT",
+ "description": "Draws icons and app art in code - a Skia-path icon set, a brand mark, adaptive icons, splash, store art. Use when adding an icon, logo, app icon or splash, or an image or emoji appears. Not for photos (media-images-and-files).",
+ "domains": [
+  "product",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.031Z"
+}

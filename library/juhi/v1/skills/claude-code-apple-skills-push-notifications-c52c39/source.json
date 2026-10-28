@@ -1,0 +1,12 @@
+{
+ "title": "push-notifications",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/push-notifications/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/push-notifications/SKILL.md",
+ "license": "MIT",
+ "description": "Generate push notification infrastructure with APNs registration, handling, and rich notifications. Use when adding push notifications, configuring APNs, notification categories/actions, or rich notifications with images and custom UI.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.426Z"
+}

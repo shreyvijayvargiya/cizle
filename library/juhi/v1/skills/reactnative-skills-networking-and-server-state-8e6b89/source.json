@@ -1,0 +1,14 @@
+{
+ "title": "networking-and-server-state",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/networking-and-server-state/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/networking-and-server-state/SKILL.md",
+ "license": "MIT",
+ "description": "Builds TanStack Query server state over an ApiClient - validated responses, keys, retries, optimistic writes, offline. Use when calling an API, adding a query or mutation, or data is stale. Not for local data (persistence-and-migrations).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.039Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "swiftui",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftui/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftui/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftUI framework skills — data flow (identity, Observation, state ownership), layout & containers (Layout protocol, lazy-stack performance), AlarmKit, 3D charts, rich text editing, customizable toolbars, and WebKit embedding. Use for SwiftUI state/rendering bugs, custom layouts, scroll performance, or these feature areas.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.513Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "adaptive-layout",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/adaptive-layout/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/adaptive-layout/SKILL.md",
+ "license": "MIT",
+ "description": "Lays screens out by window, not device: breakpoints, master-detail panes, readable widths, grids. Use when making screens responsive or for tablets, iPad, foldables, rotation, split screen, orientation lock. Not for tab bars (navigation-and-routing).",
+ "domains": [
+  "scifi",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.004Z"
+}

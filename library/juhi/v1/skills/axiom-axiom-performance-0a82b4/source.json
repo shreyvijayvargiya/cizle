@@ -1,0 +1,15 @@
+{
+ "title": "axiom-performance",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-performance/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-performance/SKILL.md",
+ "license": "MIT",
+ "description": "Use when an Apple-platform app feels slow, memory grows, battery drains, or ANY performance issue needs diagnosing. Covers memory leaks, profiling, Instruments workflows, retain cycles, optimization.",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.586Z"
+}

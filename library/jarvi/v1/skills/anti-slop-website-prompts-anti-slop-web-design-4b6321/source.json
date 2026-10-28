@@ -1,0 +1,16 @@
+{
+ "title": "anti-slop-web-design",
+ "source": "J03",
+ "lang": "en",
+ "repo": "mah-claude/anti-slop-website-prompts",
+ "path": "SKILL.md",
+ "url": "https://github.com/mah-claude/anti-slop-website-prompts/blob/HEAD/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building or restyling a website, landing page, or UI with an AI coding tool — forces concrete art direction (named typefaces, token-based color, structural layout, specified motion, real assets) so the output looks designed instead of like every other AI-built site.",
+ "domains": [
+  "product",
+  "agriculture",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.485Z"
+}

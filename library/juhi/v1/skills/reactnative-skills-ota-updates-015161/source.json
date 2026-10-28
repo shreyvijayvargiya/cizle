@@ -1,0 +1,15 @@
+{
+ "title": "ota-updates",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/ota-updates/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/ota-updates/SKILL.md",
+ "license": "MIT",
+ "description": "Ships EAS Update over-the-air updates - fingerprint runtimes, a channel per variant, rollout, rollback. Use when running eas update, setting runtimeVersion or channels, or an update never arrives. Not for store builds (eas-build-and-submit).",
+ "domains": [
+  "product",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.043Z"
+}

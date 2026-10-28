@@ -1,0 +1,14 @@
+{
+ "title": "local-notifications",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/local-notifications/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/local-notifications/SKILL.md",
+ "license": "MIT",
+ "description": "Schedules on-device reminders with expo-notifications: rows as truth, one idempotent sync, DST-safe triggers, Android channels. Use when adding a reminder, snooze or local notification. Not for remote push (push-notifications).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.033Z"
+}

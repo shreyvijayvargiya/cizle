@@ -1,0 +1,14 @@
+{
+ "title": "announcement-banner",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/announcement-banner/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/announcement-banner/SKILL.md",
+ "license": "MIT",
+ "description": "Generates an in-app announcement banner system with remote configuration, scheduling, deep link actions, and dismiss tracking. Use when user wants in-app banners, promotional notices, maintenance alerts, or contextual announcements.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.387Z"
+}

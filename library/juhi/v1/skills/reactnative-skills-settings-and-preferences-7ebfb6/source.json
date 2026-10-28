@@ -1,0 +1,15 @@
+{
+ "title": "settings-and-preferences",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/settings-and-preferences/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/settings-and-preferences/SKILL.md",
+ "license": "MIT",
+ "description": "Builds app settings - saved fields, defaults, rows, each setting's effect, resets that keep them. Use when adding a setting or toggle, or a setting is ignored or lost on restart. Not for theme tokens (design-system-structure).",
+ "domains": [
+  "product",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.052Z"
+}

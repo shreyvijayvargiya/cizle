@@ -1,0 +1,14 @@
+{
+ "title": "android-data-layer",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/architecture/android-data-layer/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/architecture/android-data-layer/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Guidance on implementing the Data Layer using Repository pattern, Room (Local), and Retrofit (Remote) with offline-first synchronization.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.957Z"
+}

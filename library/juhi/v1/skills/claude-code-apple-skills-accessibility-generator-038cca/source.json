@@ -1,0 +1,14 @@
+{
+ "title": "accessibility-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/accessibility-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/accessibility-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate accessibility infrastructure for VoiceOver, Dynamic Type, and accessibility features. Use when improving app accessibility, adding accessibility labels and hints, or auditing compliance.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.385Z"
+}

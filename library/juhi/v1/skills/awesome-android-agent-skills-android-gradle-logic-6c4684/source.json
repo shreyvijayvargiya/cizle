@@ -1,0 +1,14 @@
+{
+ "title": "android-gradle-logic",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/build_and_tooling/android-gradle-logic/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/build_and_tooling/android-gradle-logic/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Expert guidance on setting up scalable Gradle build logic using Convention Plugins and Version Catalogs.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.951Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "frontend-from-generated-image",
+ "source": "J03",
+ "lang": "en",
+ "repo": "adamholter/hive-mind-landing-page",
+ "path": "skills/frontend-from-generated-image/SKILL.md",
+ "url": "https://github.com/adamholter/hive-mind-landing-page/blob/HEAD/skills/frontend-from-generated-image/SKILL.md",
+ "license": "MIT",
+ "description": "Use for frontend/UI builds, redesigns, polish, or extensions. Before coding, generate a UI reference image, then closely match it instead of inventing a new direction.",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.485Z"
+}

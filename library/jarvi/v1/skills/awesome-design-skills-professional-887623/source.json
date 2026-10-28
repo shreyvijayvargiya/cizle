@@ -1,0 +1,16 @@
+{
+ "title": "professional",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/professional/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/professional/SKILL.md",
+ "license": "MIT",
+ "description": "Polished, business-ready design with modern typography, structured layouts, and a trustworthy visual identity.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.467Z"
+}

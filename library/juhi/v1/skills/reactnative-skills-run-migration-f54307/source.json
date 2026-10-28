@@ -1,0 +1,14 @@
+{
+ "title": "run-migration",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/run-migration/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/run-migration/SKILL.md",
+ "license": "MIT",
+ "description": "Runs the release ritual for a SQLite schema version - snapshot proven, one pending step, shipped steps frozen in a ledger, every from-to path, a forced-failure drill. Use when shipping a migration. Not for writing steps (persistence-and-migrations).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.049Z"
+}

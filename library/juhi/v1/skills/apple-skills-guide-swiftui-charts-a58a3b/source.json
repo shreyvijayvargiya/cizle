@@ -1,0 +1,14 @@
+{
+ "title": "guide-swiftui-charts",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/guide-swiftui-charts/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/guide-swiftui-charts/SKILL.md",
+ "license": "MIT",
+ "description": "Swift Charts patterns — marks, axes, selection, styling, composition, Chart3D, accessibility, and Audio Graph. Use when building or improving charts in SwiftUI.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.550Z"
+}

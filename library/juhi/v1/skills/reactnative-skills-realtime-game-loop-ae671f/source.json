@@ -1,0 +1,16 @@
+{
+ "title": "realtime-game-loop",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/realtime-game-loop/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/realtime-game-loop/SKILL.md",
+ "license": "MIT",
+ "description": "Runs real-time play: a fixed-step UI-thread loop, typed-array sims, (tick, command) replays, replayable physics. Use when adding live motion, bouncing balls, a physics shot or a replay test. Not for turn animations (skia-canvas-rendering).",
+ "domains": [
+  "gaming",
+  "math",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.049Z"
+}

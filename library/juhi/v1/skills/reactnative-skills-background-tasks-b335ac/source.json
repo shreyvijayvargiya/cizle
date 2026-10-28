@@ -1,0 +1,16 @@
+{
+ "title": "background-tasks",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/background-tasks/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/background-tasks/SKILL.md",
+ "license": "MIT",
+ "description": "Builds expo-background-task jobs: idempotent, budgeted runs. Use when adding periodic sync, TaskManager.defineTask, leaving expo-background-fetch, or a background task never runs. Not for reminders (local-notifications).",
+ "domains": [
+  "scifi",
+  "finance",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.011Z"
+}

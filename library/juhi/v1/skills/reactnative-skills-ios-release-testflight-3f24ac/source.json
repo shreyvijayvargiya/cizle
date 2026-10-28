@@ -1,0 +1,16 @@
+{
+ "title": "ios-release-testflight",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/ios-release-testflight/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/ios-release-testflight/SKILL.md",
+ "license": "MIT",
+ "description": "Ships iOS builds to TestFlight: API-key signing, archive, export, store gate on the .ipa, upload, VALID wait, build numbers. Use when releasing, signing or uploading an iOS build, or an upload fails. Not for eas.json (eas-build-and-submit).",
+ "domains": [
+  "product",
+  "scifi",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.031Z"
+}

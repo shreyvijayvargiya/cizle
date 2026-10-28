@@ -1,0 +1,16 @@
+{
+ "title": "watchOS",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/watchos/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/watchos/SKILL.md",
+ "license": "MIT",
+ "description": "watchOS development guidance including SwiftUI for Watch, Watch Connectivity, complications, and watch-specific UI patterns. Use for watchOS code review, best practices, or Watch app development.",
+ "domains": [
+  "health",
+  "data",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.540Z"
+}

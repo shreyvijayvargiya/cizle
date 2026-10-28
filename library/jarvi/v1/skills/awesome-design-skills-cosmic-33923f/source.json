@@ -1,0 +1,16 @@
+{
+ "title": "cosmic",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/cosmic/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/cosmic/SKILL.md",
+ "license": "MIT",
+ "description": "Futuristic sci-fi aesthetic with dark themes, vibrant neon accents, and immersive spatial elements.",
+ "domains": [
+  "scifi",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.452Z"
+}

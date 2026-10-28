@@ -1,0 +1,14 @@
+{
+ "title": "naming-conventions",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/naming-conventions/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/naming-conventions/SKILL.md",
+ "license": "MIT",
+ "description": "Names files, routes, exports, hooks, booleans, kinds, testIDs, message keys, app ids and env vars. Use when adding or renaming anything or on a naming lint error. Not for placement (architecture-and-boundaries).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.037Z"
+}

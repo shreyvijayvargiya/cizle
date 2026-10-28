@@ -1,0 +1,14 @@
+{
+ "title": "run-simulator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/ios/run-simulator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/ios/run-simulator/SKILL.md",
+ "license": "MIT",
+ "description": "Build, install, launch, and screenshot an iOS app in the Simulator to verify a change visually. Use when the user wants to run the app, see a change live, screenshot the running app, or confirm a UI fix actually works (not just that it compiles).",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.467Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "data-export-and-restore",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/data-export-and-restore/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/data-export-and-restore/SKILL.md",
+ "license": "MIT",
+ "description": "Builds data export and restore - a versioned, checksummed backup file, all-or-nothing restore, safe CSV. Use when adding backup, restore, import, export or CSV files. Not for the database (persistence-and-migrations).",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:46.020Z"
+}

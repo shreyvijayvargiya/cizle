@@ -1,0 +1,14 @@
+{
+ "title": "ci-cd-setup",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/ci-cd-setup/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/ci-cd-setup/SKILL.md",
+ "license": "MIT",
+ "description": "Generate CI/CD configuration for automated builds, tests, and distribution of iOS/macOS apps. Use when setting up GitHub Actions, Xcode Cloud, or fastlane for continuous integration, TestFlight, or App Store deployment.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.400Z"
+}

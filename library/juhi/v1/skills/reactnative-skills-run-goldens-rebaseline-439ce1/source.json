@@ -1,0 +1,14 @@
+{
+ "title": "run-goldens-rebaseline",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/run-goldens-rebaseline/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/run-goldens-rebaseline/SKILL.md",
+ "license": "MIT",
+ "description": "Runs the golden rebaseline ritual - assertions green first, triage, one-file jest -u runs, every diff inspected, recorded, orphans deleted, proof without -u. Use when many goldens must be re-accepted. Not for one golden (golden-and-snapshot-tests).",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.048Z"
+}

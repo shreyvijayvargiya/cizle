@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-foundation-models",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-foundation-models/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-foundation-models/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions Foundation Models review, on-device AI audit, LanguageModelSession issues, or @Generable/guardrail problems — including missing availability checks, manual JSON parsing, and guardrail handling.",
+ "domains": [
+  "data",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.607Z"
+}

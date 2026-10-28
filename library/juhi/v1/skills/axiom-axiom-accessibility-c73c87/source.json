@@ -1,0 +1,15 @@
+{
+ "title": "axiom-accessibility",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-accessibility/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-accessibility/SKILL.md",
+ "license": "MIT",
+ "description": "Use when fixing or auditing ANY accessibility issue — VoiceOver, Dynamic Type, color contrast, touch targets, WCAG compliance, App Store accessibility review.",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.599Z"
+}

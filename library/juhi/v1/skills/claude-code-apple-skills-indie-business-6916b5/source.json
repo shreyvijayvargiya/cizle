@@ -1,0 +1,16 @@
+{
+ "title": "indie-business",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/growth/indie-business/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/growth/indie-business/SKILL.md",
+ "license": "MIT",
+ "description": "Business fundamentals for indie app developers — LLC/entity setup, taxes, Apple Small Business Program, revenue tracking, hiring contractors, and financial planning for sustainability. Use when user asks about business setup, tax implications, hiring, or financial planning for their app business.",
+ "domains": [
+  "product",
+  "health",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.453Z"
+}

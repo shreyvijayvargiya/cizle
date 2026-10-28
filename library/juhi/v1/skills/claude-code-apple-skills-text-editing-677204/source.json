@@ -1,0 +1,14 @@
+{
+ "title": "text-editing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftui/text-editing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftui/text-editing/SKILL.md",
+ "license": "MIT",
+ "description": "Styled text display and rich text editing in SwiftUI using Text, AttributedString, and TextEditor with formatting controls. Use when implementing rich text editing or styled text display.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.521Z"
+}

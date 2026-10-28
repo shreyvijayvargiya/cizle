@@ -1,0 +1,14 @@
+{
+ "title": "motion-and-animation",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/motion-and-animation/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/motion-and-animation/SKILL.md",
+ "license": "MIT",
+ "description": "Catalogs each animation as a Reanimated 4 moment. Use when animating a transition, sheet, loop, drag, spring or celebration, or one ignores Reduce Motion or blocks taps. Not for canvases (skia-canvas-rendering).",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.036Z"
+}

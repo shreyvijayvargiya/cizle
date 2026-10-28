@@ -1,0 +1,14 @@
+{
+ "title": "iap-finalizer",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/iap-finalizer/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/iap-finalizer/SKILL.md",
+ "license": "MIT",
+ "description": "Take a one-time in-app purchase from MISSING_METADATA to READY_TO_SUBMIT in App Store Connect — set its price schedule and localized display name/description (and optional review screenshot) via the ASC REST API. Use at Phase 6 (Pre-Release), after the IAP is built in-app (Phase 4) and its ASC record exists. NOT for subscriptions, and NOT the same as promoted-iap (which displays IAPs in-app).",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.351Z"
+}

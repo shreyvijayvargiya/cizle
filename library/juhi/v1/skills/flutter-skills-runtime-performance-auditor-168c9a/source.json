@@ -1,0 +1,15 @@
+{
+ "title": "runtime-performance-auditor",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "runtime-performance-auditor/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/runtime-performance-auditor/SKILL.md",
+ "license": null,
+ "description": "Flutter Staff Engineer skill for auditing runtime CPU performance in Flutter applications. Detects heavy computation on the main isolate, inefficient async patterns, lack of compute/isolate usage, missing memoization, and suboptimal caching strategies. Use for requests like \"analyze Flutter runtime performance\", \"detect heavy computations\", \"audit async code\", \"optimize Flutter CPU usage\", \"review isolate usage\", or \"find performance bottlenecks in Flutter business logic\".",
+ "domains": [
+  "education",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.086Z"
+}

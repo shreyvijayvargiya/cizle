@@ -1,0 +1,14 @@
+{
+ "title": "guide-swiftdata",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/guide-swiftdata/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/guide-swiftdata/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftData patterns — autosave, relationships, dangerous predicates, CloudKit constraints, indexing, class inheritance. Use when writing, reviewing, or debugging SwiftData code.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.546Z"
+}

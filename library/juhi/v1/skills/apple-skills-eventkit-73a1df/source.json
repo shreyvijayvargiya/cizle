@@ -1,0 +1,12 @@
+{
+ "title": "eventkit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/eventkit/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/eventkit/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: EventKit. Query for EKEventStore, EKEvent, EKReminder, calendar access.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.544Z"
+}

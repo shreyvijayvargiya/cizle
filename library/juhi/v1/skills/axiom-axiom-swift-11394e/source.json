@@ -1,0 +1,14 @@
+{
+ "title": "axiom-swift",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-swift/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-swift/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the question is about Swift or its toolchain rather than a framework — modern idioms, noncopyable types, drag and drop, debug deep links, tvOS targets.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.702Z"
+}

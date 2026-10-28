@@ -1,0 +1,14 @@
+{
+ "title": "healthkit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/healthkit/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/healthkit/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: HealthKit. Query for HKHealthStore, HKQuantitySample, workouts, health data read/write.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.550Z"
+}

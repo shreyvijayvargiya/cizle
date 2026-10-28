@@ -1,0 +1,12 @@
+{
+ "title": "swiftdata",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftdata/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftdata/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftData skills — class inheritance patterns for hierarchical models, type-based querying, polymorphic relationships, and inheritance-vs-enum decisions. Use when designing SwiftData model hierarchies.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.511Z"
+}

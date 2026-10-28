@@ -1,0 +1,12 @@
+{
+ "title": "compose-ui",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/ui/compose-ui/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/ui/compose-ui/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Best practices for building UI with Jetpack Compose, focusing on state hoisting, detailed performance optimizations, and theming. Use this when writing or refactoring Composable functions.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:45.957Z"
+}

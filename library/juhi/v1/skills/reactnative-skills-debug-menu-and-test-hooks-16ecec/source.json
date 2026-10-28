@@ -1,0 +1,16 @@
+{
+ "title": "debug-menu-and-test-hooks",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/debug-menu-and-test-hooks/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/debug-menu-and-test-hooks/SKILL.md",
+ "license": "MIT",
+ "description": "Gates test-only code behind one literal TEST_ONLY switch: debug menu, debug link, simulated clock and offline. Use when adding a debug screen, a test hook, a debug link or a fake date for E2E or QA. Not for E2E flows (e2e-maestro).",
+ "domains": [
+  "product",
+  "math",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.016Z"
+}

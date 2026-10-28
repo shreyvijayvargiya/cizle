@@ -1,0 +1,16 @@
+{
+ "title": "neumorphism",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/neumorphism/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/neumorphism/SKILL.md",
+ "license": "MIT",
+ "description": "Soft, extruded UI elements with inner and outer shadows on monochromatic surfaces for a tactile, embedded look.",
+ "domains": [
+  "health",
+  "education",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.469Z"
+}

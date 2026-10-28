@@ -1,0 +1,15 @@
+{
+ "title": "apple-aso",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/apple-aso/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/apple-aso/SKILL.md",
+ "license": "MIT",
+ "description": "Optimize Apple App Store metadata in store.config.json for ASO (App Store Optimization). Use when working with store.config.json, App Store keywords, titles, subtitles, descriptions, or localizing app metadata. Helps maximize app visibility and downloads.",
+ "domains": [
+  "product",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.543Z"
+}

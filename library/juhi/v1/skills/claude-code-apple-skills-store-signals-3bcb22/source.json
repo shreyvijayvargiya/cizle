@@ -1,0 +1,14 @@
+{
+ "title": "store-signals",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/growth/store-signals/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/growth/store-signals/SKILL.md",
+ "license": "MIT",
+ "description": "Close the post-launch loop — turn a live app's App Store signals (reviews, analytics, sales, crashes, listing conversion) into a metric-tagged backlog for the next version, AND verify whether last cycle's changes moved the metric they promised to move. Read-only on App Store Connect; every change is surfaced and routed to another command, never auto-applied. Use before planning the next version, on a monthly cadence, or ~1-2 weeks after shipping to check if a change worked.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.454Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "quality-gates",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/quality-gates/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/quality-gates/SKILL.md",
+ "license": "MIT",
+ "description": "Installs and repairs quality gates (check:fast, verify, lefthook, Claude Code hooks, the guardrail) without weakening them. Use when a gate, hook or verify fails or a gate file changes. Not for a lint error (typescript-and-lint-rules).",
+ "domains": [
+  "entertainment",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.046Z"
+}

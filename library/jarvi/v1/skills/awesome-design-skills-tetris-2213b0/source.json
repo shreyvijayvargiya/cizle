@@ -1,0 +1,16 @@
+{
+ "title": "tetris",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/tetris/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/tetris/SKILL.md",
+ "license": "MIT",
+ "description": "Classic block-game inspired design with playful colors, bold display fonts, and compact, high-energy layouts.",
+ "domains": [
+  "gaming",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.478Z"
+}

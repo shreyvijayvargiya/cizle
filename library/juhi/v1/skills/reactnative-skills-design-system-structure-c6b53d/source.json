@@ -1,0 +1,14 @@
+{
+ "title": "design-system-structure",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/design-system-structure/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/design-system-structure/SKILL.md",
+ "license": "MIT",
+ "description": "Structures a design system: two-tier tokens, contrast-proven light/dark palettes, the theme provider, makeStyles, text roles, fonts. Use when touching colours, dark mode, fonts or theme files. Not for components (ui-component-library).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.018Z"
+}

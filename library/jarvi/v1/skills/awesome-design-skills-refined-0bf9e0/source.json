@@ -1,0 +1,16 @@
+{
+ "title": "refined",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/refined/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/refined/SKILL.md",
+ "license": "MIT",
+ "description": "Carefully curated, modern minimal style with elegant serif typography and understated, sophisticated palettes.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.469Z"
+}

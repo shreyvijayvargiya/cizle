@@ -1,0 +1,14 @@
+{
+ "title": "swift-concurrency-updates",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swift/concurrency/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swift/concurrency/SKILL.md",
+ "license": "MIT",
+ "description": "Swift 6.2 concurrency updates including default MainActor inference, @concurrent for background work, isolated conformances, and approachable concurrency migration. Use when adopting Swift 6.2 concurrency features or fixing data-race errors.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.509Z"
+}

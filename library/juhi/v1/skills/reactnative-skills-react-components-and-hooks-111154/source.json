@@ -1,0 +1,15 @@
+{
+ "title": "react-components-and-hooks",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/react-components-and-hooks/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/react-components-and-hooks/SKILL.md",
+ "license": "MIT",
+ "description": "Writes React components and hooks - model hooks, effects, React Compiler, lists, safe areas, error boundaries. Use when writing a component, hook, effect or list. Not for shared UI (ui-component-library).",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.046Z"
+}

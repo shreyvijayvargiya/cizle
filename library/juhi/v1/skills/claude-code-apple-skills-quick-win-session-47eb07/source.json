@@ -1,0 +1,15 @@
+{
+ "title": "quick-win-session",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/quick-win-session/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/quick-win-session/SKILL.md",
+ "license": "MIT",
+ "description": "Generates guided first-action flows that help users achieve a meaningful result within 60 seconds to boost retention. Use when user wants quick win onboarding, time-to-value optimization, or first success moments.",
+ "domains": [
+  "edtech",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.428Z"
+}

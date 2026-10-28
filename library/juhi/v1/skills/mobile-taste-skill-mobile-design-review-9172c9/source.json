@@ -1,0 +1,14 @@
+{
+ "title": "mobile-design-review",
+ "source": "U03",
+ "lang": "en",
+ "repo": "draftbit/mobile-taste-skill",
+ "path": "skills/mobile-design-review/SKILL.md",
+ "url": "https://github.com/draftbit/mobile-taste-skill/blob/HEAD/skills/mobile-design-review/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Audit an existing React Native / Expo app's design - run the AI-tells grep checklist, inspect screens against a ten-category rubric, Trunk Test each screen, and produce impact-rated findings with a Design Score and an AI Slop Score plus a regression baseline. Report-only by default; opt-in fix mode. Use when asked to review, audit, critique, or QA an app's design or UI quality. For building new screens use mobile-taste; for actually redesigning use mobile-redesign-screen or mobile-redesign-app.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.066Z"
+}

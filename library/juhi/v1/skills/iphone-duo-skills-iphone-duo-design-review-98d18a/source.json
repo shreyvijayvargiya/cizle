@@ -1,0 +1,12 @@
+{
+ "title": "iphone-duo-design-review",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-design-review/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-design-review/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Review or design an iOS interface for iPhone Duo's poses — closed, open, book-folded, tabletop and tent — covering side-mounted controls, asymmetric layouts, fold avoidance, sheets, and how to use the inner display well. Use for design critique, mockup review, or deciding what a screen should look like on a foldable iPhone rather than how to code it.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.563Z"
+}

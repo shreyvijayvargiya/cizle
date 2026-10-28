@@ -1,0 +1,14 @@
+{
+ "title": "configuring-lazy-prefetch",
+ "source": "U03",
+ "lang": "en",
+ "repo": "skydoves/compose-performance-skills",
+ "path": "lists/configuring-lazy-prefetch/SKILL.md",
+ "url": "https://github.com/skydoves/compose-performance-skills/blob/HEAD/lists/configuring-lazy-prefetch/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Use this skill to tune Jetpack Compose lazy-layout prefetch with LazyLayoutCacheWindow (Compose Foundation 1.9+, @ExperimentalFoundationApi) and pausable composition in prefetch (Compose Foundation 1.10+, default on). Covers configurable Dp-based ahead/behind cache windows plumbed through rememberLazyListState(cacheWindow = ...), NestedPrefetchScope for items containing inner lazy layouts (HorizontalPager inside a LazyColumn row), version requirements, and the trade-off between memory pressure and idle-frame work. Use when the developer mentions dropped frames at high scroll velocity, prefetch window, ahead/behind extents, LazyLayoutCacheWindow, NestedPrefetchScope, pausable composition for prefetch, or wants composition retained for items briefly scrolled past. Item-level fixes (keys, contentType) live in a sibling skill.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.969Z"
+}

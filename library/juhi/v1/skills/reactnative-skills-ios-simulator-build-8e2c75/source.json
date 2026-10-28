@@ -1,0 +1,16 @@
+{
+ "title": "ios-simulator-build",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/ios-simulator-build/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/ios-simulator-build/SKILL.md",
+ "license": "MIT",
+ "description": "Builds Release iOS simulator apps (clean prebuild, pinned Xcode, UDID-named simulator) and proves the .app. Use when smoke-testing on the iOS simulator, or xcodebuild, simctl or CocoaPods fails. Not for TestFlight (ios-release-testflight).",
+ "domains": [
+  "scifi",
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.034Z"
+}

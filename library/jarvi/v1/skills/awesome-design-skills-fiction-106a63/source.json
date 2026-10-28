@@ -1,0 +1,16 @@
+{
+ "title": "fiction",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/fiction/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/fiction/SKILL.md",
+ "license": "MIT",
+ "description": "A playful, energetic, cartoonesque interface inspired by friendly children's-book illustrations — warm cream backgrounds, big bold custom display typography, saturated brand color blocks, thick black outlines, generously rounded shapes",
+ "domains": [
+  "product",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.456Z"
+}

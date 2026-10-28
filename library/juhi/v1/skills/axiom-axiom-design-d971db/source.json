@@ -1,0 +1,14 @@
+{
+ "title": "axiom-design",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-design/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-design/SKILL.md",
+ "license": "MIT",
+ "description": "Use when making visual or interaction design decisions for an Apple app — HIG patterns, Liquid Glass, SF Symbols, typography, app entry-point and auth-flow structure.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.573Z"
+}

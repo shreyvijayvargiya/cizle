@@ -1,0 +1,16 @@
+{
+ "title": "iphone-duo-dual-pane-patterns",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-dual-pane-patterns/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-dual-pane-patterns/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Design and build two-pane experiences for iPhone Duo — the real pixel and point dimensions of each display and each half, the exact hinge callback types (onHingeChange / UIHingeInteraction), hinge-driven effects, pose-to-pattern mapping (companion pane, dual view, list-detail, tabletop controls), two-pane paywalls and fold-aware onboarding. Use when sizing a layout or asset for iPhone Duo, wiring a hinge callback, choosing what goes in each pane, or designing onboarding and purchase flows that span the fold.",
+ "domains": [
+  "edtech",
+  "education",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.561Z"
+}

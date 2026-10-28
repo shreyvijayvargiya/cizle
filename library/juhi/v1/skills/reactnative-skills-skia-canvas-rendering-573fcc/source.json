@@ -1,0 +1,16 @@
+{
+ "title": "skia-canvas-rendering",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/skia-canvas-rendering/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/skia-canvas-rendering/SKILL.md",
+ "license": "MIT",
+ "description": "Builds hand-drawn Skia canvases - pure worklet draw() in one Picture, scene clock, timelines, canvas text, goldens. Use when drawing a chart, grid or board, or canvas animation freezes. Not for touch (canvas-gestures-and-hit-testing).",
+ "domains": [
+  "data",
+  "scifi",
+  "gaming"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.053Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "coding-best-practices",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/macos/coding-best-practices/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/macos/coding-best-practices/SKILL.md",
+ "license": "MIT",
+ "description": "Reviews macOS Swift 6+ code for modern idioms, SOLID principles, SwiftData patterns, and concurrency best practices. Use when reviewing macOS code quality or asking about best practices.",
+ "domains": [
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.472Z"
+}

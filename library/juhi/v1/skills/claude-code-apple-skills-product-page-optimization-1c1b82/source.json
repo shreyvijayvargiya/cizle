@@ -1,0 +1,15 @@
+{
+ "title": "product-page-optimization",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/product-page-optimization/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/product-page-optimization/SKILL.md",
+ "license": "MIT",
+ "description": "Generates A/B test plans and optimization checklists for your App Store product page — icon, screenshots, and app previews. Use when running Product Page Optimization tests or improving conversion rates.",
+ "domains": [
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.424Z"
+}

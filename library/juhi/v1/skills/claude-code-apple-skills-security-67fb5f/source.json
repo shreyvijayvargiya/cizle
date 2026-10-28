@@ -1,0 +1,14 @@
+{
+ "title": "security",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/security/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/security/SKILL.md",
+ "license": "MIT",
+ "description": "Security category index for Apple platforms. Routes to the privacy-manifests skill. General secure-storage/biometrics/ATS guidance was retired in the 2026 blind-test audit — current models cover it natively.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.506Z"
+}

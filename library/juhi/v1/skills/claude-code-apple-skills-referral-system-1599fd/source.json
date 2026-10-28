@@ -1,0 +1,12 @@
+{
+ "title": "referral-system",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/referral-system/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/referral-system/SKILL.md",
+ "license": "MIT",
+ "description": "Generates referral/invite infrastructure with unique codes, deep link sharing, reward tracking, and fraud prevention. Use when user wants referral codes, invite friends flow, or viral growth mechanics.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.427Z"
+}

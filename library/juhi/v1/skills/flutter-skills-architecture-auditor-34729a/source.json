@@ -1,0 +1,14 @@
+{
+ "title": "architecture-auditor",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "architecture-auditor/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/architecture-auditor/SKILL.md",
+ "license": null,
+ "description": "Flutter Staff Engineer skill for auditing the architecture of Flutter projects. Analyzes project structure, layer separation, feature modularization, state management strategy, and dependency boundaries to detect architectural risks and technical debt. Use for requests like \"review Flutter architecture\", \"analyze project structure\", \"audit Flutter codebase\", \"detect architectural issues\", \"evaluate scalability of this Flutter app\", or \"identify technical debt in Flutter project\".",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.070Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "new-game-scaffold",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/new-game-scaffold/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/new-game-scaffold/SKILL.md",
+ "license": "MIT",
+ "description": "Starts a new game by script - contracts/games.json entry, catalog keys, a white-label app when multi-package - and proves it complete. Use when adding or starting a new game or checking one is complete. Not for rules (game-rules-engine).",
+ "domains": [
+  "gaming",
+  "scifi",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.043Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "swift-development",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swift/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swift/SKILL.md",
+ "license": "MIT",
+ "description": "Swift language patterns and best practices including concurrency, performance, and modern idioms. Use for Swift language-level code review or architecture guidance.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.512Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "axiom-graphics",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-graphics/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-graphics/SKILL.md",
+ "license": "MIT",
+ "description": "Use when working with ANY GPU rendering, Metal, OpenGL migration, shaders, 3D content, RealityKit, AR, USD/USDZ files, or display performance. Covers Metal migration, shader conversion, RealityKit ECS, RealityView, USDKit, ProMotion.",
+ "domains": [
+  "gaming",
+  "math",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.677Z"
+}

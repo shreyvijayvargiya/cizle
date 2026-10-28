@@ -1,0 +1,16 @@
+{
+ "title": "screenshot-planner",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/screenshot-planner/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/screenshot-planner/SKILL.md",
+ "license": "MIT",
+ "description": "Plan compelling App Store screenshot sequences that showcase your app's value. Use when preparing App Store assets, improving screenshot conversion, or drafting screenshot captions for a launch or major update.",
+ "domains": [
+  "product",
+  "health",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.359Z"
+}

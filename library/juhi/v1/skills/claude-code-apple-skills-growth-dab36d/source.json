@@ -1,0 +1,15 @@
+{
+ "title": "growth",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/growth/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/growth/SKILL.md",
+ "license": "MIT",
+ "description": "Growth skills for indie Apple developers — user acquisition, analytics interpretation, press/media outreach, community building, and indie business operations. Also covers the stage-by-stage store-growth audit and the post-launch store-signals loop. Use when user asks about growing their app, auditing growth levers, understanding metrics, getting press coverage, or running an indie dev business.",
+ "domains": [
+  "product",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.451Z"
+}

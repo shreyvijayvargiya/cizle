@@ -1,0 +1,16 @@
+{
+ "title": "axiom-media",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-media/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-media/SKILL.md",
+ "license": "MIT",
+ "description": "Use when working with camera, photos, audio, haptics, ShazamKit, on-device music analysis, face grouping and video highlights, screen recording, casting to non-AirPlay routes, SharePlay playback, the user's Apple Music library, lock-screen metadata, or CarPlay app design, templates, and navigation. Covers AVCaptureSession, AVFoundation, Core Haptics, MediaPlayer, MusicKit, NowPlaying, ScreenCaptureKit, DockKit.",
+ "domains": [
+  "music",
+  "product",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.583Z"
+}

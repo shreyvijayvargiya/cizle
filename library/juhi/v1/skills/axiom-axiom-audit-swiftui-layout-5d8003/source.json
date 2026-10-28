@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-swiftui-layout",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-swiftui-layout/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-swiftui-layout/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions SwiftUI layout review, adaptive layout issues, GeometryReader problems, or multi-device layout checking.",
+ "domains": [
+  "data",
+  "math",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.622Z"
+}

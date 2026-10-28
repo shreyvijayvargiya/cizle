@@ -21,10 +21,10 @@ import { SavedPage } from "@/pages/Saved";
 import { SettingsPage } from "@/pages/Settings";
 import { ReversePage } from "@/pages/Reverse";
 import type { Filters } from "@/lib/data";
-import type { GalleryFilters } from "@/lib/gallery";
+import { COLLECTION_TABS, type GalleryFilters } from "@/lib/gallery";
 
 const str = (v: unknown) => (typeof v === "string" && v ? v : undefined);
-const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic) });
+const filters = (s: Record<string, unknown>): Filters => ({ q: str(s.q), category: str(s.category), platform: str(s.platform), format: str(s.format), aspect: str(s.aspect), access: str(s.access), sort: str(s.sort), kind: str(s.kind), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic), collection: str(s.collection) });
 
 const root = createRootRoute({ component: Layout, notFoundComponent: NotFound });
 function r<const P extends string>(path: P, component: () => React.ReactNode) {
@@ -39,13 +39,15 @@ function SkillRoute() {
 }
 const post = createRoute({ getParentRoute: () => root, path: "/blog/$slug", component: function PostRoute() { const { slug } = useParams({ from: "/blog/$slug" }); return <BlogPostPage slug={slug} />; } });
 
-const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic) });
-const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", validateSearch: galleryFilters, component: GalleryPage });
+const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic), collection: str(s.collection) });
+const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", validateSearch: galleryFilters, component: () => <GalleryPage /> });
+/** one page per kind of prompt: same gallery, the tab is fixed by the address (/website-prompts, /app-prompts ...) */
+const kindRoutes = COLLECTION_TABS.map((c) => createRoute({ getParentRoute: () => root, path: c.path, validateSearch: galleryFilters, component: () => <GalleryPage collection={c.id} /> }));
 
 const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
 
 /** The film is a static page (public/launch.html). The dev server and hosts without clean URLs reach it through this route. */
-const searchRoute = createRoute({ getParentRoute: () => root, path: "/search", component: SearchPage, validateSearch: (s: Record<string, unknown>): { q?: string; p?: string; s?: string; format?: string } => ({ q: str(s.q), p: str(s.p), s: str(s.s), format: str(s.format) }) });
+const searchRoute = createRoute({ getParentRoute: () => root, path: "/search", component: SearchPage, validateSearch: (s: Record<string, unknown>): { q?: string; p?: string; s?: string; format?: string; t?: string } => ({ q: str(s.q), p: str(s.p), s: str(s.s), format: str(s.format), t: str(s.t) }) });
 const explore = createRoute({ getParentRoute: () => root, path: "/explore/$facet/$value", component: ExploreRoute });
 const launch = createRoute({ getParentRoute: () => root, path: "/launch", component: function LaunchRoute() { window.location.replace("/launch.html"); return null; } });
 
@@ -56,6 +58,7 @@ const tree = root.addChildren([
 	home,
 	skill,
 	gallery,
+	...kindRoutes,
 	prompt,
 	launch,
 	r("/sources", CreatorsPage),

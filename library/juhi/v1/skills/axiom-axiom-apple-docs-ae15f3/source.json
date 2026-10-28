@@ -1,0 +1,16 @@
+{
+ "title": "axiom-apple-docs",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-apple-docs/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-apple-docs/SKILL.md",
+ "license": "MIT",
+ "description": "Use when you need Apple's own documentation or a Swift compiler diagnostic explained rather than recalled.",
+ "domains": [
+  "education",
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.574Z"
+}

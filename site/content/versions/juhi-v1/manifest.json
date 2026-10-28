@@ -1,0 +1,36 @@
+{
+ "version": "juhi-v1",
+ "collection": "app",
+ "folder": "library/juhi/v1",
+ "store": "site/content/versions/juhi-v1",
+ "built_at": "2026-10-28T16:05:20.656Z",
+ "fetched_at": {
+  "first": "2026-10-28T16:04:03.392Z",
+  "last": "2026-10-28T16:04:46.099Z"
+ },
+ "sources": {
+  "U01": 200,
+  "U02": 349,
+  "U03": 169,
+  "U04": 89
+ },
+ "languages": {
+  "en": 806,
+  "ko": 1
+ },
+ "counts": {
+  "gallery": 289,
+  "skills": 518,
+  "with_video": 0,
+  "with_picture": 0
+ },
+ "restricted": 28,
+ "skipped": {
+  "removed": 0,
+  "duplicates": 8,
+  "too_short": 0,
+  "skill_index_only": 0,
+  "image_prompt_without_picture": 0
+ },
+ "graph": "harvest/sources.v1.graph.json"
+}

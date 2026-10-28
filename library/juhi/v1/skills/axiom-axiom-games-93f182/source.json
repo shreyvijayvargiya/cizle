@@ -1,0 +1,15 @@
+{
+ "title": "axiom-games",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-games/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-games/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building ANY 2D or 3D game with SpriteKit, SceneKit, or RealityKit, or adding touch controls or game controller support. Covers scene graphs, ECS, physics, actions, game loops, rendering, TouchController, GCController.",
+ "domains": [
+  "gaming",
+  "science"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.676Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "axiom-optimize-build",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-optimize-build/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-optimize-build/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions slow builds, build performance, or build time optimization.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.643Z"
+}

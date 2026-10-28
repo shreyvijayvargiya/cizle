@@ -1,0 +1,16 @@
+{
+ "title": "stitch-design-taste",
+ "source": "J03",
+ "lang": "en",
+ "repo": "LiamClarke1/website-builder-skills",
+ "path": "stitch-skill/SKILL.md",
+ "url": "https://github.com/LiamClarke1/website-builder-skills/blob/HEAD/stitch-skill/SKILL.md",
+ "license": null,
+ "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
+ "domains": [
+  "engineering",
+  "science",
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.482Z"
+}

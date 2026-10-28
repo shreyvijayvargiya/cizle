@@ -1,0 +1,14 @@
+{
+ "title": "uncodixify",
+ "source": "J03",
+ "lang": "en",
+ "repo": "adamholter/hive-mind-landing-page",
+ "path": "skills/uncodixify/SKILL.md",
+ "url": "https://github.com/adamholter/hive-mind-landing-page/blob/HEAD/skills/uncodixify/SKILL.md",
+ "license": "MIT",
+ "description": "Avoid stereotypical AI-generated UI and produce cleaner, grounded frontend design. Use for frontend generation, redesign, and polish.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.483Z"
+}

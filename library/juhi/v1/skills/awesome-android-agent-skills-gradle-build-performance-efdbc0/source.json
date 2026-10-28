@@ -1,0 +1,15 @@
+{
+ "title": "gradle-build-performance",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/performance/gradle-build-performance/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/performance/gradle-build-performance/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Debug and optimize Android/Gradle build performance. Use when builds are slow, investigating CI/CD performance, analyzing build scans, or identifying compilation bottlenecks.",
+ "domains": [
+  "scifi",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.954Z"
+}

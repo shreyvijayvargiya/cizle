@@ -1,0 +1,16 @@
+{
+ "title": "matrix",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/matrix/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/matrix/SKILL.md",
+ "license": "MIT",
+ "description": "A cyber-slick, dark-only Matrix-inspired interface defined by minimalist fashion, high-tech digital elements",
+ "domains": [
+  "math",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.460Z"
+}

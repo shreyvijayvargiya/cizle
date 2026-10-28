@@ -1,0 +1,14 @@
+{
+ "title": "mutation-testing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/testing/mutation-testing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/testing/mutation-testing/SKILL.md",
+ "license": "MIT",
+ "description": "EXPERIMENTAL — mutation testing with muter to measure whether tests actually assert anything: mutants that survive reveal assertion-free coverage. Advisory report only, never a merge gate. Use on engine/logic targets when coverage numbers look good but bugs still slip through.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.525Z"
+}

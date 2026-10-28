@@ -193,6 +193,7 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 								</Button>
 							</div>
 						) : null}
+						{item.previewBy ? <p className="mt-3 rounded-lg bg-surface p-3 text-sm text-muted-foreground">The picture or video above is an illustration {item.previewBy} made from this prompt. It is not the output of the model the prompt was written for. The prompt itself is credited to {by}.</p> : null}
 						{item.restricted ? (
 							<p className="mt-3 rounded-lg bg-surface p-3 text-sm text-muted-foreground">
 								Preview only. This work is not published under an open licence, so the full prompt stays with its creator

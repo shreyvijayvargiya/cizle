@@ -1,0 +1,15 @@
+{
+ "title": "accessibility-audit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/ios/accessibility-audit/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/ios/accessibility-audit/SKILL.md",
+ "license": "MIT",
+ "description": "Run a structured accessibility audit on an iOS/macOS app — automated XCUITest audits, Accessibility Inspector, manual VoiceOver/Dynamic Type passes, and App Store Accessibility Nutrition Label evaluation. Use before release, when preparing Nutrition Label declarations, or for EU Accessibility Act compliance.",
+ "domains": [
+  "health",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.462Z"
+}

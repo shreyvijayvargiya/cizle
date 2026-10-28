@@ -1,0 +1,16 @@
+{
+ "title": "seeded-determinism-and-golden-vectors",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/seeded-determinism-and-golden-vectors/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/seeded-determinism-and-golden-vectors/SKILL.md",
+ "license": "MIT",
+ "description": "Makes seeded output identical on every device: one PRNG, date keys, cutovers, golden vectors. Use when code shuffles, replaces Math.random, picks daily content or replays a seed or share code. Not for streaks (dates-streaks-and-statistics).",
+ "domains": [
+  "math",
+  "agriculture",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.054Z"
+}

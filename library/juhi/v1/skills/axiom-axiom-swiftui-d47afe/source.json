@@ -1,0 +1,16 @@
+{
+ "title": "axiom-swiftui",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-swiftui/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-swiftui/SKILL.md",
+ "license": "MIT",
+ "description": "Use when building, fixing, or improving ANY SwiftUI UI — views, navigation, layout, animations, gestures, debugging, iOS 26 features, iPhone Duo, view-level performance, feature architecture.",
+ "domains": [
+  "product",
+  "math",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.704Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "industrial-brutalist-ui",
+ "source": "J03",
+ "lang": "en",
+ "repo": "LiamClarke1/website-builder-skills",
+ "path": "brutalist-skill/SKILL.md",
+ "url": "https://github.com/LiamClarke1/website-builder-skills/blob/HEAD/brutalist-skill/SKILL.md",
+ "license": null,
+ "description": "Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints.",
+ "domains": [
+  "scifi",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.480Z"
+}

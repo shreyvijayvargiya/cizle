@@ -1,0 +1,12 @@
+{
+ "title": "persistence-setup",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/persistence-setup/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/persistence-setup/SKILL.md",
+ "license": "MIT",
+ "description": "Generates SwiftData or CoreData persistence layer with optional iCloud sync. Use when user wants to add local storage, data persistence, or cloud sync.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.423Z"
+}

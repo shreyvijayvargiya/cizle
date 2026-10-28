@@ -1,0 +1,15 @@
+{
+ "title": "mobile-design-system",
+ "source": "U03",
+ "lang": "en",
+ "repo": "draftbit/mobile-taste-skill",
+ "path": "skills/mobile-design-system/SKILL.md",
+ "url": "https://github.com/draftbit/mobile-taste-skill/blob/HEAD/skills/mobile-design-system/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Propose and generate a React Native app's design system - semantic color tokens (light + dark), type scale with Dynamic Type bounds, radius/elevation/spacing scales, haptics and motion posture - as a SAFE/RISK proposal, then write the actual theme files (NativeWind config or StyleSheet tokens) and MOBILE-DESIGN.md. Use when starting an app's visual identity, when asked for a theme/palette/design tokens, or when an app has inline styles and needs a token system. For building screens with the system use mobile-taste; for auditing an existing app use mobile-design-review.",
+ "domains": [
+  "scifi",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.067Z"
+}

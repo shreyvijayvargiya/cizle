@@ -1,0 +1,16 @@
+{
+ "title": "marketing-strategy",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/marketing-strategy/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/marketing-strategy/SKILL.md",
+ "license": "MIT",
+ "description": "App Store marketing strategy advisor that analyzes your app and recommends the best promotional features. Orchestrates sub-skills for implementation. Use when planning app promotion, launch strategy, user acquisition, or re-engagement campaigns.",
+ "domains": [
+  "product",
+  "math",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.355Z"
+}

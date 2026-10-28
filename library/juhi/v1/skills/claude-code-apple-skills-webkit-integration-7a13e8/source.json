@@ -1,0 +1,12 @@
+{
+ "title": "webkit-integration",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftui/webkit/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftui/webkit/SKILL.md",
+ "license": "MIT",
+ "description": "WebKit integration in SwiftUI using WebView and WebPage for embedding web content, navigation, JavaScript interop, and customization. Use when embedding web content in SwiftUI apps.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.526Z"
+}

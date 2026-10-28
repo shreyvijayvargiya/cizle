@@ -1,0 +1,15 @@
+{
+ "title": "android-accessibility",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/ui/android-accessibility/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/ui/android-accessibility/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Expert checklist and prompts for auditing and fixing Android accessibility issues, especially in Jetpack Compose.",
+ "domains": [
+  "scifi",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.956Z"
+}

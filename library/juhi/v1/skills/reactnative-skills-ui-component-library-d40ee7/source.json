@@ -1,0 +1,14 @@
+{
+ "title": "ui-component-library",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/ui-component-library/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/ui-component-library/SKILL.md",
+ "license": "MIT",
+ "description": "Builds shared src/ui components (buttons, rows, dialogs, toasts, cards): token sizes, every state, a required testID, a test each. Use when adding or changing a shared component. Not for tokens (design-system-structure).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.062Z"
+}

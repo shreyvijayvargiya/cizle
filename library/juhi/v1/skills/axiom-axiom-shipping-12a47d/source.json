@@ -1,0 +1,16 @@
+{
+ "title": "axiom-shipping",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-shipping/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-shipping/SKILL.md",
+ "license": "MIT",
+ "description": "Use when preparing an app for App Store submission, handling rejections or appeals, managing App Store Connect and Xcode Cloud, or triaging TestFlight/Sentry crash corpora. Covers checklists, metadata, privacy manifests, age ratings, export compliance.",
+ "domains": [
+  "product",
+  "health",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.703Z"
+}

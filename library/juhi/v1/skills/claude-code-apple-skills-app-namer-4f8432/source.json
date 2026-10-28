@@ -1,0 +1,14 @@
+{
+ "title": "app-namer",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/product/app-namer/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/product/app-namer/SKILL.md",
+ "license": "MIT",
+ "description": "Turn an app idea into validated, App-Store-ready name candidates. Use when the user says \"name my app\", \"what should I call it\", \"app name ideas\", \"help me name this app\", \"is this name available\", or needs to pick a brandable, ownable name before reserving it in App Store Connect.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.483Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "performance-budgets",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/performance-budgets/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/performance-budgets/SKILL.md",
+ "license": "MIT",
+ "description": "Measures cold start, hitches, draw calls, storage writes, bundle and memory against budgets on iOS and Android. Use when adding animation, Skia, lists, packages, startup work, or the app lags. Not for re-renders (react-components-and-hooks).",
+ "domains": [
+  "finance",
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.051Z"
+}

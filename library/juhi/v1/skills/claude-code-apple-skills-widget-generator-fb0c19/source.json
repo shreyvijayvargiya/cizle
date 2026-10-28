@@ -1,0 +1,15 @@
+{
+ "title": "widget-generator",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/widget-generator/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/widget-generator/SKILL.md",
+ "license": "MIT",
+ "description": "Generate WidgetKit widgets for iOS/macOS home screen and lock screen with timeline providers, interactive elements, and App Intent configuration. Use when adding widgets to an app.",
+ "domains": [
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.449Z"
+}

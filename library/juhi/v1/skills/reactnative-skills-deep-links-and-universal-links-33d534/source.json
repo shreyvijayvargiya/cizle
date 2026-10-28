@@ -1,0 +1,15 @@
+{
+ "title": "deep-links-and-universal-links",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/deep-links-and-universal-links/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/deep-links-and-universal-links/SKILL.md",
+ "license": "MIT",
+ "description": "Gates every incoming link: custom schemes, universal links (AASA), App Links (assetlinks), a route allow-list. Use when adding a deep link, scheme, associated domain or share link. Not for routes (navigation-and-routing).",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.017Z"
+}

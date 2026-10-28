@@ -1,0 +1,15 @@
+{
+ "title": "axiom-resolve-spm",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-resolve-spm/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-resolve-spm/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions SPM resolution failures, \"no such module\" errors, duplicate symbol linker errors, version conflicts between packages, or Swift 6 package compatibility issues.",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.646Z"
+}

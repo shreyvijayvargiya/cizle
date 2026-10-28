@@ -1,0 +1,15 @@
+{
+ "title": "in-app-purchases",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/in-app-purchases/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/in-app-purchases/SKILL.md",
+ "license": "MIT",
+ "description": "Sells a Premium unlock with expo-iap behind a PurchasePort - saved entitlement, paywall states, restore, refunds, store testing. Use when touching IAP, buy, restore, paywall or Premium state. Not for ads (admob-ads-and-consent).",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.035Z"
+}

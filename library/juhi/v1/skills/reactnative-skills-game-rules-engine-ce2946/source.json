@@ -1,0 +1,16 @@
+{
+ "title": "game-rules-engine",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/game-rules-engine/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/game-rules-engine/SKILL.md",
+ "license": "MIT",
+ "description": "Builds game rules as a pure seeded engine: create, listMoves, applyMove, outcome, events, property tests. Use when writing game rules, moves, scoring or in-game randomness. Not for levels (level-generation-and-solvers).",
+ "domains": [
+  "gaming",
+  "engineering",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.037Z"
+}

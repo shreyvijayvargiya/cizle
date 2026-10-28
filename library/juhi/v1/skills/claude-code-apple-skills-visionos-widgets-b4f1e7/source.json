@@ -1,0 +1,12 @@
+{
+ "title": "visionos-widgets",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/visionos/widgets/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/visionos/widgets/SKILL.md",
+ "license": "MIT",
+ "description": "visionOS widget patterns including mounting styles, glass/paper textures, proximity-aware layouts, and spatial widget families. Use when creating or adapting widgets for visionOS.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.539Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "arc-skill",
+ "source": "U03",
+ "lang": "en",
+ "repo": "art9mid/arc-skill",
+ "path": "SKILL.md",
+ "url": "https://github.com/art9mid/arc-skill/blob/HEAD/SKILL.md",
+ "license": null,
+ "description": "Scaffold production-ready React Native Expo projects with battle-tested architecture including navigation, theme system, API layer, storage, state management, i18n, linting, and mobile UX design system. Use when creating a new React Native app, setting up Expo project architecture, or when the user mentions React Native project scaffolding, mobile app boilerplate, or Expo starter template. Also trigger when the user wants to build a mobile app, asks about React Native best practices, needs help structuring an Expo project, or says things like \"I want to make an app\" or \"set up a mobile project\".",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.070Z"
+}

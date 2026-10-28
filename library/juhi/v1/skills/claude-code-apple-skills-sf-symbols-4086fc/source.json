@@ -1,0 +1,12 @@
+{
+ "title": "sf-symbols",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/sf-symbols/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/sf-symbols/SKILL.md",
+ "license": "MIT",
+ "description": "SF Symbols end-to-end — choosing and configuring the 7,000+ system symbols (rendering modes, variable color/draw, gradients), authoring custom symbols that interpolate across weights, and the animation preset vocabulary. Use when picking iconography, building custom symbols, animating symbol state changes, or rendering values as symbols.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.382Z"
+}

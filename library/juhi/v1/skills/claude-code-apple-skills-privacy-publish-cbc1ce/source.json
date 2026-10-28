@@ -1,0 +1,15 @@
+{
+ "title": "privacy-publish",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/legal/privacy-publish/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/legal/privacy-publish/SKILL.md",
+ "license": "MIT",
+ "description": "Turn drafted legal docs (privacy policy, terms) into hosted pages and set the App Store Connect Privacy Policy / Support / Marketing URLs via the ASC REST API. Use at Phase 6 / submission, after legal drafts exist. The App Privacy \"nutrition label\" stays manual (Apple exposes no API) — this prints the exact answers to click.",
+ "domains": [
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.470Z"
+}

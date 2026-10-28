@@ -1,0 +1,15 @@
+{
+ "title": "axiom-uikit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-uikit/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-uikit/SKILL.md",
+ "license": "MIT",
+ "description": "Use when bridging UIKit and SwiftUI, modernizing UIKit apps (scene lifecycle, resizability), debugging Auto Layout, Combine, TextKit, PencilKit, or UIKit animations.",
+ "domains": [
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.592Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "web-support",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/web-support/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/web-support/SKILL.md",
+ "license": "MIT",
+ "description": "Ships the web build of an Expo app: platform files, APIs missing in react-native-web, expo-sqlite headers. Use when adding web, a .web.tsx file or expo export --platform web. Not for responsive layout (adaptive-layout).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.066Z"
+}

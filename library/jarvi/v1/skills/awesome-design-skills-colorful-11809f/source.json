@@ -1,0 +1,16 @@
+{
+ "title": "colorful",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/colorful/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/colorful/SKILL.md",
+ "license": "MIT",
+ "description": "Vibrant, high-contrast palettes and gradients for engaging, memorable, and modern user experiences.",
+ "domains": [
+  "health",
+  "education",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.450Z"
+}

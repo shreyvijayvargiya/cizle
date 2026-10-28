@@ -1,0 +1,16 @@
+{
+ "title": "foundation-models",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/apple-intelligence/foundation-models/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/apple-intelligence/foundation-models/SKILL.md",
+ "license": "MIT",
+ "description": "On-device LLM integration using Apple's Foundation Models framework. Use when implementing AI text generation, structured output, or tool calling.",
+ "domains": [
+  "math",
+  "history",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.362Z"
+}

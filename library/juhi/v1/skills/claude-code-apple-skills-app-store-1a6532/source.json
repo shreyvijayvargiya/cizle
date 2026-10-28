@@ -1,0 +1,16 @@
+{
+ "title": "app-store",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/SKILL.md",
+ "license": "MIT",
+ "description": "App Store optimization and marketing skills for descriptions, screenshots, keywords, review responses, and comprehensive promotional strategy. Use when user needs help with App Store presence, ASO, marketing, or customer communication.",
+ "domains": [
+  "product",
+  "gaming",
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.354Z"
+}

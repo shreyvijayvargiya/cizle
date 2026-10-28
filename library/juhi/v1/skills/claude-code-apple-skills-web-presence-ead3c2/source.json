@@ -1,0 +1,16 @@
+{
+ "title": "web-presence",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/web-presence/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/web-presence/SKILL.md",
+ "license": "MIT",
+ "description": "The discovery surfaces outside the App Store app — your apps.apple.com product page ranking on Google, an owned landing page with a Smart App Banner, and the deal-site ecosystem that auto-amplifies price drops. Use when building a landing page, improving Google visibility for an app, planning a price-drop promotion, or auditing off-store discovery.",
+ "domains": [
+  "product",
+  "science",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.366Z"
+}

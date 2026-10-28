@@ -1,0 +1,15 @@
+{
+ "title": "in-app-events",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/in-app-events/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/in-app-events/SKILL.md",
+ "license": "MIT",
+ "description": "Generates In-App Event metadata templates for App Store Connect — event names, descriptions, badge types, image specs, and deep link configuration. Use when creating events for App Store visibility, engagement campaigns, or seasonal promotions.",
+ "domains": [
+  "product",
+  "nature"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.410Z"
+}

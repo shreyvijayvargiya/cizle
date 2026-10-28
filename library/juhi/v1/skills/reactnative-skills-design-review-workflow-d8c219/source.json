@@ -1,0 +1,15 @@
+{
+ "title": "design-review-workflow",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/design-review-workflow/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/design-review-workflow/SKILL.md",
+ "license": "MIT",
+ "description": "Runs the end-of-build design review: every screen x theme x direction x text size x device, graded findings, a fix round, a sign-off. Use when a release nears or needs a QA sweep or sign-off. Not for parity (design-visual-parity).",
+ "domains": [
+  "science",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.017Z"
+}

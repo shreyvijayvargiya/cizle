@@ -1,0 +1,15 @@
+{
+ "title": "kotlin-concurrency-expert",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/concurrency_and_networking/kotlin-concurrency-expert/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/concurrency_and_networking/kotlin-concurrency-expert/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Kotlin Coroutines review and remediation for Android. Use when asked to review concurrency usage, fix coroutine-related bugs, improve thread safety, or resolve lifecycle issues in Kotlin/Android code.",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.952Z"
+}

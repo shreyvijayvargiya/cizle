@@ -1,0 +1,15 @@
+{
+ "title": "android-coroutines",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/concurrency_and_networking/android-coroutines/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/concurrency_and_networking/android-coroutines/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Authoritative rules and patterns for production-quality Kotlin Coroutines onto Android. Covers structured concurrency, lifecycle integration, and reactive streams.",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.953Z"
+}

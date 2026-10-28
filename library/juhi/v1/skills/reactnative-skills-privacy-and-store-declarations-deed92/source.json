@@ -1,0 +1,14 @@
+{
+ "title": "privacy-and-store-declarations",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/privacy-and-store-declarations/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/privacy-and-store-declarations/SKILL.md",
+ "license": "MIT",
+ "description": "Proves an app's privacy - network via the API port or offline-only, SDK inventory, privacy manifest, App Privacy and Data safety answers. Use when an SDK lands, a release nears or an audit fails. Not for installs (dependency-management).",
+ "domains": [
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.045Z"
+}

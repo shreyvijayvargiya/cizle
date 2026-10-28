@@ -1,0 +1,15 @@
+{
+ "title": "promoted-iap",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/promoted-iap/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/promoted-iap/SKILL.md",
+ "license": "MIT",
+ "description": "Generates Promoted In-App Purchase setup with StoreKit 2 product configuration, paywall integration, and App Store product page display. Use when setting up promoted purchases that appear on the App Store product page.",
+ "domains": [
+  "product",
+  "edtech"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.425Z"
+}

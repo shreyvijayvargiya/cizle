@@ -1,0 +1,16 @@
+{
+ "title": "iphone-duo-camera",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-camera/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-camera/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Build camera capture for iPhone Duo's two front cameras — the virtual front camera, the inner under-display and outer ultra-wide devices, AVCaptureDeviceDirectionCoordinator, preview mirroring and video gravity, and dual-display capture. Use when an app captures photo or video and must handle the device opening, closing or flipping.",
+ "domains": [
+  "gaming",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.555Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "gradient",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/gradient/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/gradient/SKILL.md",
+ "license": "MIT",
+ "description": "Smooth color transitions and gradient-rich surfaces for modern, playful interfaces with visual depth.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.458Z"
+}

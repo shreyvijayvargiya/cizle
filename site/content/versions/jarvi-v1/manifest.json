@@ -1,0 +1,35 @@
+{
+ "version": "jarvi-v1",
+ "collection": "website",
+ "folder": "library/jarvi/v1",
+ "store": "site/content/versions/jarvi-v1",
+ "built_at": "2026-10-28T16:07:03.758Z",
+ "fetched_at": {
+  "first": "2026-10-28T16:04:03.115Z",
+  "last": "2026-10-28T16:05:29.463Z"
+ },
+ "sources": {
+  "J01": 738,
+  "J02": 49,
+  "J03": 81
+ },
+ "languages": {
+  "ja": 595,
+  "en": 273
+ },
+ "counts": {
+  "gallery": 787,
+  "skills": 81,
+  "with_video": 0,
+  "with_picture": 0
+ },
+ "restricted": 66,
+ "skipped": {
+  "removed": 0,
+  "duplicates": 16,
+  "too_short": 0,
+  "skill_index_only": 0,
+  "image_prompt_without_picture": 0
+ },
+ "graph": "harvest/sources.v1.graph.json"
+}

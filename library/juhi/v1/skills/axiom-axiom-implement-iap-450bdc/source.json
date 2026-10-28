@@ -1,0 +1,12 @@
+{
+ "title": "axiom-implement-iap",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-implement-iap/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-implement-iap/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to add in-app purchases, implement StoreKit 2, or set up subscriptions.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.640Z"
+}

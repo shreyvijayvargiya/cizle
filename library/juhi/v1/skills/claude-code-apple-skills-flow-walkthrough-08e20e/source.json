@@ -1,0 +1,16 @@
+{
+ "title": "flow-walkthrough",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/testing/flow-walkthrough/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/testing/flow-walkthrough/SKILL.md",
+ "license": "MIT",
+ "description": "Verify UI *workflow* correctness that a task list, code review, and static screenshots miss. Drives end-to-end user flows in the Simulator via XCUITest with per-step screenshots, statically audits the navigation graph for dead-ends and missing edit paths, and emits a human discoverability checklist. Use after building any phase/slice that adds or changes UI, or when a user reports \"I could only figure out the flow by running it.",
+ "domains": [
+  "data",
+  "edtech",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.527Z"
+}

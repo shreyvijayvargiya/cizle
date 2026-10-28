@@ -1,0 +1,14 @@
+{
+ "title": "ui-prototyping",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/ui-prototyping/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/ui-prototyping/SKILL.md",
+ "license": "MIT",
+ "description": "Explore multiple *divergent* UI directions for a screen as named Swift #Previews, remix the strongest elements into hybrids, fill them with lived-in sample content and edge-case states, then tune signature animations with a generated tuning panel. Produces real native SwiftUI you carry forward, not throwaway mockups. Use early — after new-app or at the start of any UI-heavy phase, before /apple:plan commits to a single layout. Based on Apple's WWDC method for prototyping with coding agents in Xcode: go wide → remix → make lived-in → tune.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.384Z"
+}

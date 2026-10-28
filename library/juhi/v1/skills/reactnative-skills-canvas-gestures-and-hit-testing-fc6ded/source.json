@@ -1,0 +1,16 @@
+{
+ "title": "canvas-gestures-and-hit-testing",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/canvas-gestures-and-hit-testing/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/canvas-gestures-and-hit-testing/SKILL.md",
+ "license": "MIT",
+ "description": "Turns canvas taps, swipes, drags and aim into typed intents: one gesture module, hit-testing on the drawn layout. Use when a Skia canvas takes touch or a tap hits the wrong cell. Not for drawing (skia-canvas-rendering).",
+ "domains": [
+  "gaming",
+  "science",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.013Z"
+}

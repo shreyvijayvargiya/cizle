@@ -1,0 +1,14 @@
+{
+ "title": "macos-capabilities",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/macos/macos-capabilities/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/macos/macos-capabilities/SKILL.md",
+ "license": "MIT",
+ "description": "Expert guidance on macOS platform capabilities. Covers sandboxing, app extensions, menu bar apps, and background execution. Use when implementing system integration features.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.473Z"
+}

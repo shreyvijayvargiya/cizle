@@ -38,6 +38,9 @@ export type GalleryItem = {
 	fetchedAt?: string | null;
 	license?: string;
 	hasEnglish?: boolean;
+	collection?: string;
+	/** the picture or video is an illustration cizle made from the prompt (it is not the output of the model the prompt was written for) */
+	previewBy?: string;
 	/** country (from the language), tools and topic, worked out when the library loads */
 	country?: string;
 	tools?: string[];
@@ -49,6 +52,18 @@ export type GalleryIndex = { generatedAt: string; total: number; free: number; c
 /** One entry of public/versions.json: a harvest version published next to the classic gallery. */
 export type VersionInfo = { version: string; folder: string; store: string; built_at: string; fetched_at: { first: string | null; last: string | null }; gallery: string; skills: string; counts: { prompts: number; skills: number; with_video: number }; languages: Record<string, number> };
 export const CLASSIC = "classic";
+/** The kinds of prompt the library holds: one tab, one page and one filter each. */
+export const COLLECTION_TABS = [
+	{ id: "video", label: "Video", path: "/video-prompts", title: "Video prompts", blurb: "Prompts for AI video models, each with the clip it made." },
+	{ id: "image", label: "Image", path: "/image-prompts", title: "Image prompts", blurb: "Prompts for AI image models, with the picture they produced." },
+	{ id: "website", label: "Website", path: "/website-prompts", title: "Website prompts", blurb: "Prompts and design systems that make AI agents build landing pages and websites." },
+	{ id: "app", label: "Mobile app", path: "/app-prompts", title: "Mobile app prompts", blurb: "Prompts and design systems that make AI agents build iOS, Android and cross-platform apps." },
+	{ id: "text", label: "Text", path: "/text-prompts", title: "Text prompts", blurb: "General prompts for chat models: roles, writing, business and education." },
+] as const;
+export type CollectionId = (typeof COLLECTION_TABS)[number]["id"];
+export const collectionLabel = (id?: string) => COLLECTION_TABS.find((c) => c.id === id)?.label ?? id ?? "";
+/** a harvest version records its collection (website, app); older prompts are told apart by what they are */
+export const collectionOf = (g: { collection?: string; kind?: string; version?: string }): CollectionId => (g.collection as CollectionId) || (g.kind === "image-prompt" ? "image" : g.version === "v7" ? "text" : "video");
 export async function fetchVersions(): Promise<VersionInfo[]> {
 	try {
 		const res = await fetch("/versions.json");
@@ -62,7 +77,7 @@ export function findPrompt(items: GalleryItem[] | undefined, slug: string) {
 	const code = slug.slice(slug.lastIndexOf("-") + 1);
 	return items?.find((g) => g.slug === slug) ?? (code ? items?.find((g) => g.slug.endsWith(`-${code}`)) : undefined);
 }
-export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string };
+export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string; collection?: string };
 
 /**
  * The classic gallery (/gallery.json, v1 to v3) plus every harvest version published next to it (/versions/<v>/gallery.json). Each version is its own file and
@@ -77,7 +92,7 @@ export const useGallery = () =>
 			const base = (await res.json()) as Omit<GalleryIndex, "languages" | "versions">;
 			const extra = await Promise.all(versions.map(async (v) => ((await fetch(v.gallery)).json() as Promise<{ items: GalleryItem[]; categories: string[] }>).catch(() => ({ items: [], categories: [] }))));
 			const classic = base.items.map((g) => ({ ...g, lang: g.lang || "en", version: g.version || CLASSIC }));
-			const items = [...classic, ...extra.flatMap((e) => e.items)].map((g) => ({ ...g, ...facetsOf(g.lang, g.tags, g.title, g.category, g.preview, g.source) }));
+			const items = [...classic, ...extra.flatMap((e) => e.items)].map((g) => ({ ...g, collection: collectionOf(g), ...facetsOf(g.lang, g.tags, g.title, g.category, g.preview, g.source) }));
 			const languages: Record<string, number> = {};
 			for (const g of items) languages[g.lang || "en"] = (languages[g.lang || "en"] || 0) + 1;
 			return { ...base, total: items.length, free: items.filter((g) => g.tier === "free").length, categories: [...new Set([...base.categories, ...extra.flatMap((e) => e.categories)])], languages, versions, items };
@@ -202,6 +217,7 @@ export function filterGallery(items: GalleryItem[], fuse: Fuse<GalleryItem>, f: 
 	if (f.access) list = list.filter((g) => g.tier === f.access);
 	if (f.lang) list = list.filter((g) => (g.lang || "en") === f.lang);
 	if (f.version) list = list.filter((g) => (g.version || CLASSIC) === f.version);
+	if (f.collection) list = list.filter((g) => g.collection === f.collection);
 	if (f.country) list = list.filter((g) => g.country === f.country);
 	if (f.tool) list = list.filter((g) => g.tools?.includes(f.tool!));
 	if (f.topic) list = list.filter((g) => g.topic === f.topic);

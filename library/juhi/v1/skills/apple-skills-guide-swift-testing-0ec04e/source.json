@@ -1,0 +1,12 @@
+{
+ "title": "guide-swift-testing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/guide-swift-testing/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/guide-swift-testing/SKILL.md",
+ "license": "MIT",
+ "description": "Swift Testing patterns — structs over classes, async confirmations, parameterized tests, exit tests, attachments, common agent mistakes. Use when writing, reviewing, or migrating Swift Testing code.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.546Z"
+}

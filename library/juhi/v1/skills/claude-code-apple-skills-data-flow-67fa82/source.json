@@ -1,0 +1,14 @@
+{
+ "title": "data-flow",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftui/data-flow/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftui/data-flow/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftUI's actual mental model — view identity, lifetime, and dependencies (the Demystify canon), state ownership decision rules, Observation's per-property tracking, body-performance discipline, and the main-actor concurrency contract. Use when state resets mysteriously, views re-render too often, animations glitch between branches, choosing @State vs @Bindable vs plain property, or debugging \"why did body run.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.532Z"
+}

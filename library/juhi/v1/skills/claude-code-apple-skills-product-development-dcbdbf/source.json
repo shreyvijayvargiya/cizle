@@ -1,0 +1,15 @@
+{
+ "title": "product-development",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/product/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/product/SKILL.md",
+ "license": "MIT",
+ "description": "End-to-end product development for iOS/macOS apps. Covers market research, competitive analysis, PRD generation, architecture specs, UX design, implementation guides, testing, and App Store release. Use for product planning, validation, or generating specification documents.",
+ "domains": [
+  "finance",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.483Z"
+}

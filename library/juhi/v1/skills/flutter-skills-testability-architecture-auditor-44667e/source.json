@@ -1,0 +1,14 @@
+{
+ "title": "testability-architecture-auditor",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "testability-architecture-auditor/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/testability-architecture-auditor/SKILL.md",
+ "license": null,
+ "description": "Flutter Staff Engineer skill for auditing the architectural testability of Flutter applications. Evaluates whether the architecture enables effective unit, widget, and integration testing by analyzing dependency injection, separation of concerns, state management boundaries, and side-effect isolation. Detects architectural patterns that prevent scalable testing and generates a strategic plan to improve testability across the codebase.",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.080Z"
+}

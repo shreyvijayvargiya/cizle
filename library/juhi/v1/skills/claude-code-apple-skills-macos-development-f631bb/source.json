@@ -1,0 +1,14 @@
+{
+ "title": "macos-development",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/macos/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/macos/SKILL.md",
+ "license": "MIT",
+ "description": "Comprehensive macOS development guidance including Swift 6+, SwiftUI, SwiftData, architecture patterns, AppKit bridging, and macOS 26 Tahoe APIs. Use for macOS code review, best practices, UI review, or platform-specific features.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.470Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "navigation3",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/ui/compose-navigation/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/ui/compose-navigation/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Implement navigation in Jetpack Compose using Navigation 3. Use when asked to build state-driven navigation, manage back stacks, scope ViewModels, implement adaptive layouts, or migrate from Navigation Compose.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:45.955Z"
+}

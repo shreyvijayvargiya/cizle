@@ -1,0 +1,14 @@
+{
+ "title": "widget-performance-analyzer",
+ "source": "U03",
+ "lang": "en",
+ "repo": "RobertAlvv/flutter-skills",
+ "path": "widget-performance-analyzer/SKILL.md",
+ "url": "https://github.com/RobertAlvv/flutter-skills/blob/HEAD/widget-performance-analyzer/SKILL.md",
+ "license": null,
+ "description": "Flutter performance engineering skill for analyzing widget rebuild behavior, render tree efficiency, layout costs, and scroll performance. Detects unnecessary rebuilds, large widget trees, inefficient list implementations, and layout anti-patterns that cause jank or dropped frames. Use for requests like \"analyze Flutter UI performance\", \"detect rebuild issues\", \"optimize widget tree\", \"audit Flutter scrolling performance\", \"identify UI performance bottlenecks\", or \"find inefficient widgets\".",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.081Z"
+}

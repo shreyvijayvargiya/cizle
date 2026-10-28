@@ -1,0 +1,15 @@
+{
+ "title": "axiom-health",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-health/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-health/SKILL.md",
+ "license": "MIT",
+ "description": "Use when working with HealthKit, WorkoutKit, health data, workouts, or fitness features on iOS or watchOS. Covers permissions, queries, background delivery, custom workouts, multidevice coordination.",
+ "domains": [
+  "health",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.588Z"
+}

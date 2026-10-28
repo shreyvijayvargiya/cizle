@@ -35,11 +35,15 @@ export function Footer() {
 				<p className="sr-only">cizle</p>
 
 				<div className="grid gap-10 px-1 pt-14 pb-12 md:grid-cols-12">
-					<p className="statement reveal max-w-[24ch] md:col-span-12 lg:col-span-4">Video prompts and skills for Claude, each with the demo video it made.</p>
+					<p className="statement reveal max-w-[24ch] md:col-span-12 lg:col-span-4">Prompts and skills for AI agents: video, image, website and mobile app, each with a preview.</p>
 					<nav aria-label="Product" className="reveal md:col-span-4 lg:col-span-2 lg:col-start-6" style={{ ["--i" as string]: 1 }}>
 						<p className="mb-2 text-lg font-semibold">Product</p>
 						<Link to="/" className={LINK}>Skills and prompts</Link>
-						<Link to="/gallery" className={LINK}>Prompt gallery</Link>
+						<Link to="/gallery" className={LINK}>All prompts</Link>
+						<Link to="/video-prompts" className={LINK}>Video prompts</Link>
+						<Link to="/image-prompts" className={LINK}>Image prompts</Link>
+						<Link to="/website-prompts" className={LINK}>Website prompts</Link>
+						<Link to="/app-prompts" className={LINK}>Mobile app prompts</Link>
 						<Link to="/connect" className={LINK}>Use in Claude (MCP)</Link>
 						<Link to="/docs" className={LINK}>Docs</Link>
 						<Link to="/learn" className={LINK}>Learn</Link>

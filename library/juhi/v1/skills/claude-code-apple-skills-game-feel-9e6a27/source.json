@@ -1,0 +1,16 @@
+{
+ "title": "game-feel",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/game-feel/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/game-feel/SKILL.md",
+ "license": "MIT",
+ "description": "Game feel (\"juice\") for Apple apps — celebration choreography, haptic vocabulary design, sound-effect layers, and the event×channel feedback audit. Use when big moments fall flat, when designing haptics or SFX, or when auditing whether every meaningful event actually reaches the user.",
+ "domains": [
+  "gaming",
+  "engineering",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.380Z"
+}

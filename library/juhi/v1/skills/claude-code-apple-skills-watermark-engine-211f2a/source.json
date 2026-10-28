@@ -1,0 +1,15 @@
+{
+ "title": "watermark-engine",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/watermark-engine/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/watermark-engine/SKILL.md",
+ "license": "MIT",
+ "description": "Generates a watermark overlay system for images and video with configurable positioning, opacity, tiling, and paywall integration for automatic removal on subscription or purchase. Use when user wants to add branding, attribution, or free-tier watermarks to visual content.",
+ "domains": [
+  "engineering",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.448Z"
+}

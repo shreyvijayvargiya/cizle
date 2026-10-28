@@ -1,0 +1,16 @@
+{
+ "title": "level-generation-and-solvers",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/level-generation-and-solvers/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/level-generation-and-solvers/SKILL.md",
+ "license": "MIT",
+ "description": "Generates level tables proven winnable by a solver or witness bot: par, stars, pack unlocks, a daily level. Use when adding levels, a solver, par, stars, packs or daily levels. Not for game rules (game-rules-engine).",
+ "domains": [
+  "gaming",
+  "agriculture",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.035Z"
+}

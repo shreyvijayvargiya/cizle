@@ -1,0 +1,16 @@
+{
+ "title": "app-planner",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/ios/app-planner/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/ios/app-planner/SKILL.md",
+ "license": "MIT",
+ "description": "Guides you through comprehensive iOS/Swift app planning and analysis. Use for new apps (concept to architecture) or existing apps (audit current state, plan improvements, evaluate tech stack). Covers product planning, technical decisions, UI/UX design, and distribution strategy.",
+ "domains": [
+  "product",
+  "education",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.465Z"
+}

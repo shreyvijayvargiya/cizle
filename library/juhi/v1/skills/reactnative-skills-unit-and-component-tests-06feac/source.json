@@ -1,0 +1,14 @@
+{
+ "title": "unit-and-component-tests",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/unit-and-component-tests/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/unit-and-component-tests/SKILL.md",
+ "license": "MIT",
+ "description": "Sets up Jest, checks unit, component and route tests (RNTL 14, renderWithProviders, SDK mocks, fakes, fast-check, Stryker). Use when writing a test or mock, or Jest fails or flakes. Not for goldens (golden-and-snapshot-tests).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.064Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "http-cache",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/http-cache/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/http-cache/SKILL.md",
+ "license": "MIT",
+ "description": "Generates an HTTP caching layer with Cache-Control parsing, ETag/conditional requests, and offline fallback. Use when user wants to add response caching, offline support, or reduce API calls.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.407Z"
+}

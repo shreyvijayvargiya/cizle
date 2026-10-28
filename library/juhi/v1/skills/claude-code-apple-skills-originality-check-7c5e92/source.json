@@ -1,0 +1,14 @@
+{
+ "title": "originality-check",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/originality-check/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/originality-check/SKILL.md",
+ "license": "MIT",
+ "description": "Guideline-4.3 anti-spam / originality gate — score whether an app (and each portfolio addition) is meaningfully distinct in function, content, and metadata before you invest or submit. Use at validation/new-app time and again before submission. Protects the whole developer account from 4.3 (spam/duplicate) rejections. NOT rejection-handler (that works an existing rejection) and NOT competitive-analysis (that positions in the market).",
+ "domains": [
+  "finance"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.357Z"
+}

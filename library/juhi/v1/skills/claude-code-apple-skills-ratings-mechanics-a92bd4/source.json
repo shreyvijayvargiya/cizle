@@ -1,0 +1,16 @@
+{
+ "title": "ratings-mechanics",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/app-store/ratings-mechanics/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/app-store/ratings-mechanics/SKILL.md",
+ "license": "MIT",
+ "description": "How App Store ratings actually behave — per-storefront isolation (your US stars show nowhere else), the never-reset rule, phased release + manual release as rating protection, and where prompting/replying fit. Use when planning ratings strategy for new markets, considering a ratings reset, setting release options, or diagnosing \"why is my rating missing in country X.",
+ "domains": [
+  "finance",
+  "product",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.360Z"
+}

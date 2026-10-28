@@ -1,0 +1,16 @@
+{
+ "title": "ux-writing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/ux-writing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/ux-writing/SKILL.md",
+ "license": "MIT",
+ "description": "Interface copy that works — voice/tone, the PACE framework, alert anatomy, naming features, empty states, error messages, and the small-word edits that measurably improve UX. Distilled from Apple's writing sessions (2017–2026). Use when writing or reviewing any user-facing text — labels, alerts, onboarding, notifications, empty states, paywalls — or naming a feature.",
+ "domains": [
+  "edtech",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.389Z"
+}

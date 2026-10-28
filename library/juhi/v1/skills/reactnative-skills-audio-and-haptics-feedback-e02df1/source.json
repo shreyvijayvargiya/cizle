@@ -1,0 +1,16 @@
+{
+ "title": "audio-and-haptics-feedback",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/audio-and-haptics-feedback/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/audio-and-haptics-feedback/SKILL.md",
+ "license": "MIT",
+ "description": "Builds SFX and haptics behind ports. Use when adding or tuning sounds, SFX, music or haptics, or sound ignores the silent switch, stops the user's music or a pulse fails on Android. Not for settings (settings-and-preferences).",
+ "domains": [
+  "music",
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.012Z"
+}

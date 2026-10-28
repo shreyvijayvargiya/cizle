@@ -1,0 +1,14 @@
+{
+ "title": "android-testing",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/testing_and_automation/android-testing/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/testing_and_automation/android-testing/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Comprehensive testing strategy involving Unit, Integration, Hilt, and Screenshot tests.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.955Z"
+}

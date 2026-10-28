@@ -31,6 +31,7 @@ export type SkillMeta = {
 	/** language code of the skill ("en" for the classic skills), the harvest version it came from ("classic" for the first 25), where it was scraped from and when */
 	lang?: string;
 	version?: string;
+	collection?: string;
 	country?: string;
 	tools?: string[];
 	topic?: string;
@@ -112,7 +113,7 @@ export function usePremiumBody(slug: string | undefined, isPro: boolean) {
 	});
 }
 
-export type Filters = { q?: string; category?: string; platform?: string; format?: string; aspect?: string; access?: string; sort?: string; kind?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string };
+export type Filters = { q?: string; category?: string; platform?: string; format?: string; aspect?: string; access?: string; sort?: string; kind?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string; collection?: string };
 
 export function useFuse(skills: SkillMeta[] | undefined) {
 	return useMemo(() => new Fuse(skills || [], { keys: [{ name: "name", weight: 3 }, { name: "summary", weight: 1.5 }, { name: "tags", weight: 1.5 }, { name: "category", weight: 1 }, { name: "platform", weight: 1 }, { name: "scenes", weight: 0.7 }], threshold: 0.34, ignoreLocation: true, minMatchCharLength: 2 }), [skills]);
@@ -127,6 +128,7 @@ export function filterSkills(skills: SkillMeta[], fuse: Fuse<SkillMeta>, f: Filt
 	if (f.access) list = list.filter((s) => s.tier === f.access);
 	if (f.lang) list = list.filter((s) => (s.lang || "en") === f.lang);
 	if (f.version) list = list.filter((s) => (s.version || CLASSIC) === f.version);
+	if (f.collection) list = list.filter((s) => s.collection === f.collection);
 	if (f.country) list = list.filter((s) => s.country === f.country);
 	if (f.tool) list = list.filter((s) => s.tools?.includes(f.tool!));
 	if (f.topic) list = list.filter((s) => s.topic === f.topic);

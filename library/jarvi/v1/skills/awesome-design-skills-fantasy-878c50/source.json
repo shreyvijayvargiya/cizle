@@ -1,0 +1,16 @@
+{
+ "title": "fantasy",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/fantasy/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/fantasy/SKILL.md",
+ "license": "MIT",
+ "description": "Game-inspired fantasy aesthetic with bold, premium visuals, rich color palettes, and immersive thematic elements.",
+ "domains": [
+  "gaming",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.458Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "admob-ads-and-consent",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/admob-ads-and-consent/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/admob-ads-and-consent/SKILL.md",
+ "license": "MIT",
+ "description": "Builds AdMob ads behind a port - banners, interstitials, rewarded, UMP consent then ATT, pacing, ADS_MODE test IDs. Use when touching ads, consent, ATT, ad IDs or rewarded perks. Not for purchases (in-app-purchases).",
+ "domains": [
+  "edtech",
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.001Z"
+}

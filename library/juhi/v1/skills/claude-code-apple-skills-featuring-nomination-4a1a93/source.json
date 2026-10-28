@@ -1,0 +1,16 @@
+{
+ "title": "featuring-nomination",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/featuring-nomination/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/featuring-nomination/SKILL.md",
+ "license": "MIT",
+ "description": "Generates App Store featuring nomination pitches with all required fields, compelling narratives, and Apple editorial angles. Use when submitting your app for App Store editorial featuring or preparing a self-nomination.",
+ "domains": [
+  "product",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.405Z"
+}

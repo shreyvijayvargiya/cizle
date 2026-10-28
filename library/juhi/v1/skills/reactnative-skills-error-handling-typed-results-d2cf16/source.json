@@ -1,0 +1,12 @@
+{
+ "title": "error-handling-typed-results",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/error-handling-typed-results/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/error-handling-typed-results/SKILL.md",
+ "license": "MIT",
+ "description": "Builds a typed Result spine - failures converted at boundaries, exhaustive handling. Use when writing try/catch, .catch or a Result, or fixing swallowed errors or unhandled rejections. Not for error UI (ui-states-and-feedback).",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:46.021Z"
+}

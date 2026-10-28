@@ -1,0 +1,14 @@
+{
+ "title": "typography",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/typography/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/typography/SKILL.md",
+ "license": "MIT",
+ "description": "UI typography on Apple platforms — text styles and Dynamic Type, the San Francisco family (Pro/Rounded/Compact/Mono/New York + width axis), optical sizes, tracking vs kerning, leading adjustments, and custom-font scaling. Use when choosing fonts, building type hierarchy, fixing truncation/legibility, or making custom fonts respect Dynamic Type.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.381Z"
+}

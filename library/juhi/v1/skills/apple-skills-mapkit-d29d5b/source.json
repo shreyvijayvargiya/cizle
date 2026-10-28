@@ -1,0 +1,14 @@
+{
+ "title": "mapkit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/mapkit/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/mapkit/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: MapKit for SwiftUI. Map view, Marker, Annotation, camera positions, map features.",
+ "domains": [
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.551Z"
+}

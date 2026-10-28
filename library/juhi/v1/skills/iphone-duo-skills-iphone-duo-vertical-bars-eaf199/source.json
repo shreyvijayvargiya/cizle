@@ -1,0 +1,12 @@
+{
+ "title": "iphone-duo-vertical-bars",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-vertical-bars/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-vertical-bars/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Adapt toolbars, navigation bars and tab bars for the vertical axis on iPhone Duo — item ordering, symbol vs text representations, axis behavior, overflow menus, visibility priority, and when to opt out. Use when toolbar items look wrong, overflow too early, or need to move to the side on the outer display.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.567Z"
+}

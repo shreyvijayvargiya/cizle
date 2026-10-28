@@ -1,0 +1,16 @@
+{
+ "title": "creative",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/creative/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/creative/SKILL.md",
+ "license": "MIT",
+ "description": "Playful, character-driven design with expressive typography and bold graphics for landing pages and creative projects.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.450Z"
+}

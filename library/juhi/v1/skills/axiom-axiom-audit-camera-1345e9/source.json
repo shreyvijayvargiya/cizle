@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-camera",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-camera/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-camera/SKILL.md",
+ "license": "MIT",
+ "description": "Use this agent to scan Swift code for camera, video, and audio capture issues including deprecated APIs, missing interruption handlers, threading violations, and permission anti-patterns.",
+ "domains": [
+  "data",
+  "product",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.604Z"
+}

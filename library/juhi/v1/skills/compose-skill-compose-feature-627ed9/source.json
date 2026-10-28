@@ -1,0 +1,15 @@
+{
+ "title": "compose-feature",
+ "source": "U03",
+ "lang": "en",
+ "repo": "Meet-Miyani/compose-skill",
+ "path": "skills/compose-feature/SKILL.md",
+ "url": "https://github.com/Meet-Miyani/compose-skill/blob/HEAD/skills/compose-feature/SKILL.md",
+ "license": "MIT",
+ "description": "Adds, changes, or reviews a screen, sheet, dialog, or destination slice (endpoint to repository to ViewModel to UI to navigation to DI to tests) in a Compose or CMP project. Use when adding a screen, building a new feature, adding a ViewModel or destination, wiring list/detail or a form screen, scaffolding a slice, or reviewing a feature change. Covers Contract.kt, launchGuarded wiring, SavedStateHandle drafts, the state matrix, and new-feature.sh. Do NOT use for routing or architecture (compose-architecture), pure refactors, Gradle work (compose-project), recomposition or styling (compose-ui), repository or persistence work (compose-data), or expect/actual splits (compose-platform).",
+ "domains": [
+  "product",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.995Z"
+}

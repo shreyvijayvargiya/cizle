@@ -1,0 +1,15 @@
+{
+ "title": "apple-intelligence",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/apple-intelligence/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/apple-intelligence/SKILL.md",
+ "license": "MIT",
+ "description": "Apple Intelligence skills for on-device AI features including Foundation Models, Visual Intelligence, App Intents, and intelligent assistants. Use when implementing AI-powered features.",
+ "domains": [
+  "engineering",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.360Z"
+}

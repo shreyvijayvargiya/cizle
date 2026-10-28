@@ -1,0 +1,16 @@
+{
+ "title": "charts-3d",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swiftui/charts-3d/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swiftui/charts-3d/SKILL.md",
+ "license": "MIT",
+ "description": "3D chart visualization with Swift Charts using Chart3D, SurfacePlot, interactive pose control, and surface styling — plus a 2D Swift Charts construction reference (marks, axes, selection, SectorMark, scrollable charts). Use when creating data visualizations with Swift Charts.",
+ "domains": [
+  "data",
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.523Z"
+}

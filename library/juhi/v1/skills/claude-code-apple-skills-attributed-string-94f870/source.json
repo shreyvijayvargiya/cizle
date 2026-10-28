@@ -1,0 +1,12 @@
+{
+ "title": "attributed-string",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/foundation/attributed-string/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/foundation/attributed-string/SKILL.md",
+ "license": "MIT",
+ "description": "AttributedString patterns for rich text formatting, alignment, selection, and SwiftUI integration. Use when working with styled text, text editing, or AttributedString APIs.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.383Z"
+}

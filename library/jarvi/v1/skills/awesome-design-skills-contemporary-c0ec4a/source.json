@@ -1,0 +1,16 @@
+{
+ "title": "contemporary",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/contemporary/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/contemporary/SKILL.md",
+ "license": "MIT",
+ "description": "Current-era minimalist design with bento grids, dark mode support, and high-performance accessible layouts.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.449Z"
+}

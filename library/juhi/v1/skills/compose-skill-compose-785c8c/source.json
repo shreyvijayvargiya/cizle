@@ -1,0 +1,16 @@
+{
+ "title": "compose",
+ "source": "U03",
+ "lang": "en",
+ "repo": "Meet-Miyani/compose-skill",
+ "path": "skills/compose/SKILL.md",
+ "url": "https://github.com/Meet-Miyani/compose-skill/blob/HEAD/skills/compose/SKILL.md",
+ "license": "MIT",
+ "description": ">-",
+ "domains": [
+  "product",
+  "education",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.992Z"
+}

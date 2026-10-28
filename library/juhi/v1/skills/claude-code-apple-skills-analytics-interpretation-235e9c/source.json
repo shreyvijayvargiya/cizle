@@ -1,0 +1,14 @@
+{
+ "title": "analytics-interpretation",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/growth/analytics-interpretation/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/growth/analytics-interpretation/SKILL.md",
+ "license": "MIT",
+ "description": "Interpret app metrics and make data-driven decisions. Covers DAU/MAU, retention, LTV, ARPU, App Store Connect analytics, AARRR funnel analysis, cohort analysis, and diagnostic decision trees. Use when user wants to understand their metrics, diagnose problems, or build a data-driven growth plan.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.452Z"
+}

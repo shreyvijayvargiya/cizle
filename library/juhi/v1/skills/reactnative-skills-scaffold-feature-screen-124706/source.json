@@ -1,0 +1,15 @@
+{
+ "title": "scaffold-feature-screen",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/scaffold-feature-screen/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/scaffold-feature-screen/SKILL.md",
+ "license": "MIT",
+ "description": "Scaffolds one Expo Router feature - thin route, pure view, model hook, tests, message keys, typed params - and proves it. Use when adding a screen, page or feature folder, or checking one is done. Not for screen contents (screen-contracts).",
+ "domains": [
+  "product",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.050Z"
+}

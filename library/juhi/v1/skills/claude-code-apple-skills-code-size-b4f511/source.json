@@ -1,0 +1,14 @@
+{
+ "title": "code-size",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/swift/code-size/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/swift/code-size/SKILL.md",
+ "license": "MIT",
+ "description": "Enforce complexity and size limits on Swift code with SwiftLint threshold rules — cyclomatic complexity, function/type/file length, parameter count — adopted via a violations baseline so existing code never blocks. Use when agent-written code needs deterministic size constraints.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.510Z"
+}

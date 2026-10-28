@@ -1,0 +1,14 @@
+{
+ "title": "auth-flow",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/auth-flow/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/auth-flow/SKILL.md",
+ "license": "MIT",
+ "description": "Generates authentication infrastructure with Sign in with Apple, biometrics, and Keychain storage. Use when user wants to add authentication, login, or Sign in with Apple.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.389Z"
+}

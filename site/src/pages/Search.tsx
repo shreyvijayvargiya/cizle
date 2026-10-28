@@ -8,12 +8,12 @@ import { SkillCard } from "@/components/SkillCard";
 import { SkillDialog } from "@/components/SkillDialog";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/misc";
-import { filterGallery, useGallery, useGalleryFuse, useShuffle, type GalleryItem } from "@/lib/gallery";
+import { COLLECTION_TABS, filterGallery, useGallery, useGalleryFuse, useShuffle, type GalleryItem } from "@/lib/gallery";
 import { filterSkills, useFuse, useSkills, type SkillMeta } from "@/lib/data";
 import { useHead } from "@/lib/head";
 
 const PAGE = 48;
-const IDEAS = ["product launch video", "papercut", "logo reveal", "3d scene", "tiktok ad", "claude code skill", "cinematic", "explainer"];
+const IDEAS = ["product launch video", "landing page", "saas dashboard", "ios app design", "logo reveal", "3d scene", "claude code skill", "explainer"];
 type Entry = { type: "skill"; skill: SkillMeta } | { type: "prompt"; prompt: GalleryItem };
 
 /** Prompts with a demo video first, one skill after every four prompts: the same order the home page uses. */
@@ -36,7 +36,7 @@ function mix(skills: SkillMeta[], prompts: GalleryItem[]): Entry[] {
  */
 export function SearchPage() {
 	const navigate = useNavigate();
-	const search = useSearch({ strict: false }) as { q?: string; p?: string; s?: string; format?: string };
+	const search = useSearch({ strict: false }) as { q?: string; p?: string; s?: string; format?: string; t?: string };
 	const skills = useSkills();
 	const gallery = useGallery();
 	const fuse = useFuse(skills.data?.skills);
@@ -54,17 +54,29 @@ export function SearchPage() {
 	// typing writes the address (debounced); the address is the one source of truth
 	useEffect(() => {
 		if (text.trim() === q) return;
-		const t = setTimeout(() => (setShown(PAGE), navigate({ to: "/search", search: { q: text.trim() || undefined, p: search.p, s: search.s } as never, replace: true, resetScroll: false })), 200);
+		const t = setTimeout(() => (setShown(PAGE), navigate({ to: "/search", search: { q: text.trim() || undefined, p: search.p, s: search.s, t: search.t } as never, replace: true, resetScroll: false })), 200);
 		return () => clearTimeout(t);
 	});
 	useEffect(() => setText(search.q || ""), [search.q]);
 
+	// the tab (?t=website) narrows the results to one kind: video, image, website, app, text prompts, or skills
+	const tab = search.t || "";
+	const allPrompts = useMemo(() => (gallery.data ? filterGallery(gallery.data.items, gfuse, { q }, seed) : []), [gallery.data, gfuse, q, seed]);
+	const allSkills = useMemo(() => (q && skills.data ? filterSkills(skills.data.skills, fuse, { q }) : skills.data && tab ? skills.data.skills : []), [skills.data, fuse, q, tab]);
+	const tabs = useMemo(
+		() => [
+			{ id: "", label: "All", n: allPrompts.length + allSkills.length },
+			...COLLECTION_TABS.map((c) => ({ id: c.id as string, label: c.label, n: allPrompts.filter((g) => g.collection === c.id).length + allSkills.filter((x) => x.collection === c.id).length })),
+			{ id: "skills", label: "Skills", n: allSkills.length },
+		].filter((t) => !t.id || t.n || tab === t.id),
+		[allPrompts, allSkills, tab],
+	);
 	const promptList = useMemo(() => {
-		if (!gallery.data) return [];
-		const l = filterGallery(gallery.data.items, gfuse, { q }, seed);
-		return q ? l : l.filter((g) => g.video).slice(0, 24);
-	}, [gallery.data, gfuse, q, seed]);
-	const skillList = useMemo(() => (q && skills.data ? filterSkills(skills.data.skills, fuse, { q }) : []), [skills.data, fuse, q]);
+		if (tab === "skills") return [];
+		const l = tab ? allPrompts.filter((g) => g.collection === tab) : allPrompts;
+		return q || tab ? l : l.filter((g) => g.video).slice(0, 24);
+	}, [allPrompts, tab, q]);
+	const skillList = useMemo(() => (!tab || tab === "skills" ? allSkills : allSkills.filter((x) => x.collection === tab)), [allSkills, tab]);
 	const entries = useMemo(() => mix(skillList, promptList), [skillList, promptList]);
 	const open = search.p ? gallery.data?.items.find((g) => g.slug === search.p) : undefined;
 	const openSkill = search.s ? skills.data?.skills.find((s) => s.slug === search.s) : undefined;
@@ -73,12 +85,12 @@ export function SearchPage() {
 	useHead({
 		enabled: !open && !openSkill,
 		title: q ? `Search: ${q} | cizle` : "Search the cizle prompt library | cizle",
-		description: "Search thousands of AI video prompts, image prompts and Claude Code skills. Add ?q=your+words to the address to search from a link.",
+		description: "Search thousands of AI video, image, website and mobile-app prompts and Claude Code skills. Add ?q=your+words to the address to search from a link.",
 		path: "/search",
 		noindex: true,
 	});
 
-	const base = { q: q || undefined } as never;
+	const base = { q: q || undefined, t: tab || undefined } as never;
 	const close = () => navigate({ to: "/search", search: base, resetScroll: false });
 	return (
 		<div className="board pt-6 pb-4">
@@ -104,6 +116,13 @@ export function SearchPage() {
 				<p className="mt-3 text-center text-base text-muted-foreground" aria-live="polite">
 					{loading ? "Loading the library…" : q ? `${(skillList.length + promptList.length).toLocaleString()} results for "${q}"` : "Try one of these, or type your own:"}
 				</p>
+				<nav aria-label="Result types" className="mt-4 flex flex-wrap justify-center gap-1.5">
+					{tabs.map((t) => (
+						<Link key={t.id || "all"} to="/search" search={{ q: q || undefined, t: t.id || undefined } as never} replace resetScroll={false} aria-current={tab === t.id ? "page" : undefined} className={`press inline-flex items-center gap-2 rounded-full px-4 py-2 text-base ${tab === t.id ? "bg-foreground text-background" : "bg-surface text-foreground hover:bg-tile-2"}`}>
+							{t.label} <span className={`tabular-nums ${tab === t.id ? "opacity-70" : "text-muted-foreground"}`}>{t.n.toLocaleString()}</span>
+						</Link>
+					))}
+				</nav>
 				{!q ? (
 					<ul className="mt-3 flex flex-wrap justify-center gap-2">
 						{IDEAS.map((t) => (

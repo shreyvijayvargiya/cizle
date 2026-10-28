@@ -1,0 +1,12 @@
+{
+ "title": "photosui",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/photosui/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/photosui/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: PhotosUI. Query for PhotosPicker, PHLivePhotoView, photo selection.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.550Z"
+}

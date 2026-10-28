@@ -1,0 +1,14 @@
+{
+ "title": "analytics-and-consent",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/analytics-and-consent/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/analytics-and-consent/SKILL.md",
+ "license": "MIT",
+ "description": "Gates analytics on opt-in consent: no SDK before a yes, typed events without personal data, ATT. Use when adding analytics, events, screen views or a usage-data toggle. Not for crashes (crash-reporting-and-observability).",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.001Z"
+}

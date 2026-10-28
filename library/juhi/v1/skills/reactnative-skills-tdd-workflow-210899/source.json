@@ -1,0 +1,16 @@
+{
+ "title": "tdd-workflow",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/tdd-workflow/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/tdd-workflow/SKILL.md",
+ "license": "MIT",
+ "description": "Drives changes test-first (TDD, red-green-refactor) - one behaviour per commit, test names, layer order, no test edited to pass. Use when writing or changing product code or deciding what to test. Not for Jest setup (unit-and-component-tests).",
+ "domains": [
+  "entertainment",
+  "history",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.069Z"
+}

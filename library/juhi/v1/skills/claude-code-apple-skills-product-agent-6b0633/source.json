@@ -1,0 +1,16 @@
+{
+ "title": "product-agent",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/product/product-agent/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/product/product-agent/SKILL.md",
+ "license": "MIT",
+ "description": "Discover and validate product ideas, analyze markets, scope MVPs, and optimize app store presence for iOS/macOS apps. Use when user asks to discover, validate, assess, scope, or analyze product ideas, market opportunities, or when they mention \"product agent\", \"app idea validation\", \"should I build this\", \"MVP\", \"market analysis\", or \"ASO\".",
+ "domains": [
+  "finance",
+  "product",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.507Z"
+}

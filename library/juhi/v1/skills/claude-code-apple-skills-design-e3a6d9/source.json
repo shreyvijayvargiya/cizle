@@ -1,0 +1,16 @@
+{
+ "title": "design",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/design/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/design/SKILL.md",
+ "license": "MIT",
+ "description": "Design skills for Apple platform UI — Liquid Glass, animations, game feel (haptics, sound, celebrations), UI prototyping, UX writing, SF Symbols, and typography. Use when implementing design language features, adding juice/feedback, writing interface copy, or choosing type and iconography.",
+ "domains": [
+  "gaming",
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.366Z"
+}

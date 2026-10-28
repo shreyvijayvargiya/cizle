@@ -1,0 +1,12 @@
+{
+ "title": "background-processing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/background-processing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/background-processing/SKILL.md",
+ "license": "MIT",
+ "description": "Generates background processing infrastructure with BGTaskScheduler, background refresh, background downloads, and silent push handling. Use when user needs background tasks, periodic refresh, background URLSession downloads, or silent push notification processing.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.391Z"
+}

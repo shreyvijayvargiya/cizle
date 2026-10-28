@@ -1,0 +1,14 @@
+{
+ "title": "playstore-review",
+ "source": "U02",
+ "lang": "en",
+ "repo": "devsemih/appstore-review-skill",
+ "path": "skills/playstore-review/SKILL.md",
+ "url": "https://github.com/devsemih/appstore-review-skill/blob/HEAD/skills/playstore-review/SKILL.md",
+ "license": "MIT",
+ "description": "Checks an Android app project against Google Play's Developer Program Policies before submission. Works with native (Kotlin/Java), Flutter, React Native, Expo, Kotlin Multiplatform, .NET MAUI, Cordova, Ionic, Capacitor, and Unity projects. Use when the user wants to verify their app complies with Google Play rules, or when they mention 'play store review', 'google play policy', 'play console rejection', or 'app removal'.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.570Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "design-visual-parity",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/design-visual-parity/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/design-visual-parity/SKILL.md",
+ "license": "MIT",
+ "description": "Proves built screens match approved design references (iOS, Android, light/dark, RTL) per element. Use when a screen is built or changed, or for visual parity, design match, screenshot compare. Not for building screens (screen-contracts).",
+ "domains": [
+  "scifi",
+  "math",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.020Z"
+}

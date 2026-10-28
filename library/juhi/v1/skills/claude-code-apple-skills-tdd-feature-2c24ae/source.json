@@ -1,0 +1,14 @@
+{
+ "title": "tdd-feature",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/testing/tdd-feature/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/testing/tdd-feature/SKILL.md",
+ "license": "MIT",
+ "description": "Red-green-refactor scaffold for building new features with TDD. Write failing tests first, then implement to pass. Use when building new features test-first.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.528Z"
+}

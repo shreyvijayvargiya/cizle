@@ -1,0 +1,16 @@
+{
+ "title": "game-raster-asset-pipeline",
+ "source": "U02",
+ "lang": "en",
+ "repo": "surugawan-ebi/skill-store-image-maker",
+ "path": "game-raster-asset-pipeline/SKILL.md",
+ "url": "https://github.com/surugawan-ebi/skill-store-image-maker/blob/HEAD/game-raster-asset-pipeline/SKILL.md",
+ "license": "MIT",
+ "description": "Generate and quality-gate game raster assets with ImageGen, including faithful reference-to-sprite-sheet conversions, individual sprites or props, and app icons. Use when Codex must plan ImageGen jobs, preserve reference identity and cell order, place untouched outputs in a game project, verify PNG dimensions/transparency/palette/grid occupancy, visually inspect results, record provenance, or regenerate failed assets. Do not use for store/social promotional compositions, complete game-screen UI layouts, vector assets, or programmatic raster creation and editing.",
+ "domains": [
+  "gaming",
+  "science",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.569Z"
+}

@@ -1,0 +1,12 @@
+{
+ "title": "ui-states-and-feedback",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/ui-states-and-feedback/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/ui-states-and-feedback/SKILL.md",
+ "license": "MIT",
+ "description": "Builds loading, empty, failed and offline states, delayed skeletons, toasts, banners, confirms, Undo. Use when a screen loads data, shows a spinner, toast, retry or delete prompt. Not for failure values (error-handling-typed-results).",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:46.062Z"
+}

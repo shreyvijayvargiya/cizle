@@ -1,0 +1,12 @@
+{
+ "title": "geotoolbox",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/mapkit/geotoolbox/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/mapkit/geotoolbox/SKILL.md",
+ "license": "MIT",
+ "description": "GeoToolbox PlaceDescriptor patterns with MapKit integration for location representation, geocoding, and multi-service place identifiers. Use when working with place descriptors, geocoding, or cross-service location data.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.480Z"
+}

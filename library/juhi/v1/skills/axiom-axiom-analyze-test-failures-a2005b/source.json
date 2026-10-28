@@ -1,0 +1,12 @@
+{
+ "title": "axiom-analyze-test-failures",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-analyze-test-failures/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-analyze-test-failures/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions flaky tests, tests that pass locally but fail in CI, race conditions in tests, or needs to diagnose WHY a specific test fails.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.599Z"
+}

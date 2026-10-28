@@ -1,0 +1,15 @@
+{
+ "title": "iphone-duo-hinge-and-scenes",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-hinge-and-scenes/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-hinge-and-scenes/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Use the iPhone Duo hinge angle for interactions and effects, support Split View multitasking and multiple app scenes, and pair UI across both displays with scene accessories including CameraCaptureAccessory. Use when building fold-driven effects, multi-window support, or dual-display experiences.",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.565Z"
+}

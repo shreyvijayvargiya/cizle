@@ -1,0 +1,16 @@
+{
+ "title": "roku",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/roku/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/roku/SKILL.md",
+ "license": "MIT",
+ "description": "App dashboard with purple-themed aesthetic, top-bar navigation, card-based layouts, and developer-first workflows.",
+ "domains": [
+  "product",
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.471Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "press-media",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/growth/press-media/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/growth/press-media/SKILL.md",
+ "license": "MIT",
+ "description": "Get press coverage and media attention for your indie app. Covers press kit preparation, finding journalists/bloggers/YouTubers, pitch timing, embargo strategy, and story angles that get coverage. Use when user wants press coverage, is preparing for a launch, or wants to build a media kit.",
+ "domains": [
+  "product",
+  "finance",
+  "agriculture"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.451Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "react-native-conventions-index",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/react-native-conventions-index/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/react-native-conventions-index/SKILL.md",
+ "license": "MIT",
+ "description": "Routes any React Native or Expo task to its skills - house rules, a task table, build orders for an app, a feature, a release. Use when starting or planning a task, or unsure which skill applies. Not for editing skills (skill-maintenance).",
+ "domains": [
+  "scifi",
+  "gaming",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.047Z"
+}

@@ -1,0 +1,15 @@
+{
+ "title": "expo-project-bootstrap",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/expo-project-bootstrap/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/expo-project-bootstrap/SKILL.md",
+ "license": "MIT",
+ "description": "Creates a new Expo app from empty - SDK 57 stack, Expo Router, root configs, gates, variants, icons - proven by a checker. Use when bootstrapping, setting up or scaffolding an app or repo. Not for adding packages (dependency-management).",
+ "domains": [
+  "scifi",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.022Z"
+}

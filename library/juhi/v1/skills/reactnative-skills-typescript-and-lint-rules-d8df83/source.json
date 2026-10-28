@@ -1,0 +1,14 @@
+{
+ "title": "typescript-and-lint-rules",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/typescript-and-lint-rules/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/typescript-and-lint-rules/SKILL.md",
+ "license": "MIT",
+ "description": "Enforces strict tsconfig, ESLint flat config, size limits, forbidden patterns, TSDoc. Use when writing or splitting .ts/.tsx or fixing tsc, ESLint or Prettier errors. Not for import zones (architecture-and-boundaries).",
+ "domains": [
+  "entertainment"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.060Z"
+}

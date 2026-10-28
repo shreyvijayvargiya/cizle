@@ -1,0 +1,206 @@
+---
+name: axiom-media
+description: "Use when working with camera, photos, audio, haptics, ShazamKit, on-device music analysis, face grouping and video highlights, screen recording, casting to non-AirPlay routes, SharePlay playback, the user's Apple Music library, lock-screen metadata, or CarPlay app design, templates, and navigation. Covers AVCaptureSession, AVFoundation, Core Haptics, MediaPlayer, MusicKit, NowPlaying, ScreenCaptureKit, DockKit."
+---
+
+
+# Media
+
+**You MUST use this skill for ANY camera, photo, audio, haptic, or media playback work.**
+
+## Cursor Subagent Routing
+
+Delegate to the appropriate Cursor subagent when this router calls for a specialized auditor.
+
+## Quick Reference
+
+| Symptom / Task | Reference |
+|----------------|-----------|
+| Camera capture, AVCaptureSession | See `skills/camera-capture.md` |
+| Slow camera launch / deferred start (iOS 26+), ProRes recording via Pro Video Storage (`OS27`) | See `skills/camera-capture.md` Patterns 8-9 |
+| Camera API (RotationCoordinator, etc.) | See `skills/camera-capture-ref.md` |
+| Lens aperture / shutter / ISO priority modes, exposure signals, continuous autofocus tracking, low-light video noise reduction, cinematic video metadata capture (`OS27`) | See `skills/camera-capture-ref.md` |
+| Center Stage front camera (iPhone 17), dynamic aspect ratio, smart framing, 24/48 MP capture | See `skills/camera-capture-ref.md` |
+| iPhone Duo front cameras (virtual front camera, inner/outer ultra-wide), camera direction vs position | See `skills/camera-capture.md` Pattern 6 and `skills/camera-capture-ref.md` (iPhone Duo Front Cameras) |
+| Camera freezes, black preview, rotation | See `skills/camera-capture-diag.md` |
+| Photo pickers, library access | See `skills/photo-library.md` |
+| PHPicker, PhotosPicker, PhotoKit API reference: asset metadata editing (keywords, rating, caption), persistent change observer, background resource upload (`OS27`) | See `skills/photo-library-ref.md` |
+| PhotoKit + Swift 6 strict concurrency, `nonisolated` observer, `performChanges` isolation, `_dispatch_assert_queue_fail` | See axiom-concurrency (skills/isolation-inheritance-diag.md) |
+| Audio, AVFoundation, spatial audio, async session activation, throwing AVAudioEngine APIs (`OS27`) | See `skills/avfoundation-ref.md` |
+| Video write/export/playback, sample-buffer engine, resumable export, Apple Log 2, iOS 27 deprecations (`OS27`) | See `skills/avfoundation-video-ref.md` |
+| Audio recognition, ShazamKit | See `skills/shazamkit.md` |
+| ShazamKit API reference | See `skills/shazamkit-ref.md` |
+| On-device music analysis (key, tempo, structure, loudness), MusicUnderstanding (`OS27`) | See `skills/music-understanding.md` |
+| On-device face grouping (cluster faces into people across a library), video highlights/key frames, MediaIntelligence (`OS27`) | See `skills/media-intelligence.md` |
+| Haptic feedback, Core Haptics | See `skills/haptics.md` |
+| SharePlay coordinated playback, AVDelegatingPlaybackCoordinator, custom-engine sync | See `skills/shareplay-playback.md` |
+| SharePlay session lifecycle, activation, non-media state | Use axiom-integration (`skills/shareplay.md`) instead |
+| Now Playing metadata, remote commands | See `skills/now-playing.md` |
+| Siri playing content in your audio app ("play X in MyApp", like/add-to-playlist by voice) | **Use `axiom-integration` (`skills/siri-audio.md`)** — Audio schema domain + SiriKit media |
+| Animated lock-screen artwork (iOS 26+) | See `skills/now-playing.md` Pattern 8 |
+| NowPlaying framework (`import NowPlaying`, Swift-native `MediaSession`, `OS27`) | See `skills/now-playing.md` (NowPlaying Framework section) |
+| Cast / route media to non-AirPlay devices (Google Cast/Chromecast, DLNA) as system routes, AVSystemRouting (`iOS27`, likely EU-gated) | See `skills/system-media-routing.md` |
+| Screen capture / recording / streaming the screen or your own app, ScreenCaptureKit (`OS27` — new on iOS/iPadOS/tvOS/visionOS 27; macOS 12.3+) | See `skills/screen-capture.md` |
+| CarPlay HIG, app categories, design rules, entitlements | See `skills/carplay-hig.md` |
+| CarPlay templates reference (all 12 templates, availability matrix, depth limits) | See `skills/carplay-templates-ref.md` |
+| CarPlay navigation reference (base view, route guidance, cluster/HUD, multitouch, voice prompts, map panels + EV charging iOS 27) | See `skills/carplay-navigation-ref.md` |
+| CarPlay Now Playing template customization + sports mode | See `skills/now-playing-carplay.md` |
+| MusicKit Now Playing, ApplicationMusicPlayer playback, subscription/authorization | See `skills/now-playing-musickit.md` |
+| Enumerate the user's Apple Music **library** — MusicLibraryRequest vs MPMediaQuery, reconciling the two, playlist entries, sync, library identity, per-device `Song.id`, missing `PlayParameters`, MusicKit stops responding after a scan | See `skills/music-library.md` |
+| DockKit motorized stands / gimbals, subject tracking, custom motor control | See `skills/dockkit.md` |
+| Speech-to-text / transcription (SpeechAnalyzer, mic → transcript) | **Invoke axiom-ai** (`skills/speech.md`) |
+
+## Decision Tree
+
+```dot
+digraph media {
+    start [label="Media task" shape=ellipse];
+    what [label="Which media feature?" shape=diamond];
+    auditor [label="camera-auditor agent" shape=box];
+
+    start -> what;
+    what -> "skills/camera-capture.md" [label="camera capture"];
+    what -> "skills/photo-library.md" [label="photo pickers\n/ library"];
+    what -> "skills/avfoundation-ref.md" [label="audio / AVFoundation"];
+    what -> "skills/avfoundation-video-ref.md" [label="video write/export\n/ sample-buffer (OS27)"];
+    what -> "skills/shazamkit.md" [label="ShazamKit\n/ audio recognition"];
+    what -> "skills/music-understanding.md" [label="music analysis\n(key/tempo/structure)"];
+    what -> "skills/media-intelligence.md" [label="face grouping /\nvideo highlights (OS27)"];
+    what -> "skills/haptics.md" [label="haptic feedback"];
+    what -> "skills/now-playing.md" [label="Now Playing\n/ remote commands"];
+    what -> "skills/music-library.md" [label="enumerate Apple Music\nlibrary / identity"];
+    what -> "skills/system-media-routing.md" [label="cast to non-AirPlay\n(Chromecast/DLNA, iOS27)"];
+    what -> "skills/screen-capture.md" [label="screen capture /\nrecording (OS27)"];
+    what -> "skills/carplay-hig.md" [label="CarPlay app design\n/ categories / entitlements"];
+    what -> "skills/dockkit.md" [label="DockKit stands\n/ gimbals / tracking"];
+    what -> auditor [label="camera code audit"];
+}
+```
+
+1. Camera capture? → `skills/camera-capture.md` (patterns), `skills/camera-capture-ref.md` (API), `skills/camera-capture-diag.md` (debugging)
+2. Photo pickers / library? → `skills/photo-library.md`, `skills/photo-library-ref.md`
+3. Audio / AVFoundation (audio)? → `skills/avfoundation-ref.md`; video write/export/playback, sample-buffer engine, resumable export, iOS 27 deprecations? → `skills/avfoundation-video-ref.md` (`OS27`)
+4. ShazamKit / audio recognition? → `skills/shazamkit.md`, `skills/shazamkit-ref.md`
+5. On-device music analysis (key, tempo, structure, pace, instruments, loudness)? → `skills/music-understanding.md` (`OS27`)
+6. On-device face grouping (cluster faces into people across a library) or video highlights / key-frame detection? → `skills/media-intelligence.md` (`OS27`)
+7. Haptics? → `skills/haptics.md`
+8. Now Playing / remote commands? → `skills/now-playing.md`, `skills/now-playing-carplay.md`, `skills/now-playing-musickit.md`
+8a. Siri playback in your audio app ("play X in MyApp")? → **axiom-integration** (`skills/siri-audio.md`); Siri's "pause"/"next"/"what song is this?" stay here (remote commands + now-playing metadata)
+9. Reading the user's Apple Music **library** (enumerate songs/playlists, library identity, sync)? → `skills/music-library.md` — a different problem from playback; read it before any library walk
+10. Cast / route media to non-AirPlay devices (Google Cast/Chromecast, DLNA) as system routes? → `skills/system-media-routing.md` (`iOS27`, likely EU-gated)
+11. Screen capture / recording / streaming the screen or your own app (ScreenCaptureKit)? → `skills/screen-capture.md` (`OS27` — new on iOS/iPadOS/tvOS/visionOS 27)
+12. CarPlay app design, category selection, entitlement request? → `skills/carplay-hig.md` (start here for any CarPlay work)
+13. DockKit motorized stands / gimbals, subject tracking, custom motor control? → `skills/dockkit.md`
+14. Want camera code audit? → Delegate to the `camera-auditor` subagent (detects deprecated APIs and architectural gaps: missing interruption handlers, runtime-error recovery, audio session deactivation, permission-denied UX, RotationCoordinator on iOS 17+; scores RELIABLE / FRAGILE / BROKEN)
+
+## Cross-Domain Routing
+
+**Camera + permissions** (camera access denied, Info.plist missing):
+- Camera code → **stay here** (camera-capture)
+- Privacy manifest / Info.plist → **invoke axiom-integration** (privacy-ux reference)
+- Build/entitlement errors → **invoke axiom-build**
+
+**ShazamKit + microphone permissions**:
+- Microphone NSMicrophoneUsageDescription → **invoke axiom-integration** (privacy-ux reference)
+- ShazamKit API and matching → **stay here** (shazamkit)
+
+**Now Playing + background audio**:
+- Now Playing metadata/controls → **stay here** (now-playing)
+- Background audio mode / BGTaskScheduler → **invoke axiom-integration** (background-processing reference)
+
+**Speech-to-text + audio capture** (transcribing mic or asset audio):
+- `SpeechAnalyzer` / `SpeechTranscriber`, the `OS27` input providers, the ~2-analyzer cap on iOS/visionOS; none on macOS → **invoke axiom-ai** (`skills/speech.md`)
+- Audio session category/mode, `AVCaptureSession` wiring → **stay here** (avfoundation-ref, camera-capture)
+- **The trap**: `CaptureInputSequenceProvider.providerWithSession(...)` (`OS27`) automatically reconfigures your app's default `AVAudioSession`. If this suite's audio-session setup "randomly breaks" after transcription is added, that's the cause — join your own session via `provider(from:in:)`, or `init(session:analyzerFormat:priority:)` from the actor that owns it, and add its `captureAudioDataOutput`.
+
+**Apple Music library + playback + persistence**:
+- Enumerating the library, library identity, `PlayParameters` availability, Sync Library hazards → **stay here** (music-library)
+- Queuing and playing what you found, Now Playing publishing → **stay here** (now-playing-musickit)
+- Storing library rows in your own database (which column is the durable key, migrations for a re-key) → **invoke axiom-data** — but take the identity rules from music-library first; `persistentID` is not a durable key
+- `MusicAuthorization` prompt copy / privacy manifest → **invoke axiom-integration** (privacy-ux reference)
+
+**Photo library + privacy**:
+- Photo picker (PHPicker, PhotosPicker) → **stay here** (photo-library) — no permissions needed
+- Full PHPhotoLibrary access → **stay here** (photo-library-ref) — limited access model
+- Privacy manifest for photo usage → **invoke axiom-integration** (privacy-ux reference)
+
+**DockKit + camera / custom inference**:
+- DockKit stand control, framing, motor, tracking states → **stay here** (dockkit)
+- Underlying AVCaptureSession setup → **stay here** (camera-capture)
+- Custom Vision / Core ML inference feeding observations → **invoke axiom-vision**
+- Camera permission (NSCameraUsageDescription) → **invoke axiom-integration** (privacy-ux reference)
+
+**MediaIntelligence + Vision** (faces, image analysis):
+- Group faces into people across a library, video highlights / key frames → **stay here** (media-intelligence) — clustering identities + on-device video moment detection
+- Detect *where* a face is in one image (bounding box, landmarks), OCR, segmentation → **invoke axiom-vision** — per-image detection, a different problem
+- System Photos "People" album → that album is system-owned (PhotoKit); MediaIntelligence builds *your own* index over assets you manage → **stay here** (photo-library for the asset access)
+
+## Anti-Rationalization
+
+| Thought | Reality |
+|---------|---------|
+| "Camera capture is just AVCaptureSession setup" | Camera has interruption handlers, rotation, and threading requirements. |
+| "Camera launch is fast enough if I startRunning() early" | Output initialization dominates launch; iOS 26 deferred start halves time-to-preview. |
+| "I'll add haptics with a simple API call" | Haptic design has patterns for each interaction type matching HIG. |
+| "ShazamKit is just SHSession + a delegate" | iOS 17+ has SHManagedSession which eliminates all AVAudioEngine boilerplate. |
+| "Now Playing info is just setting metadata" | Remote commands, artwork handling, and state sync have 15+ gotchas. |
+| "I'll use UIImagePickerController for photos" | PHPicker/PhotosPicker are the modern API — no permissions required. |
+| "MediaPlayer reports fewer playlist members than MusicKit, so sync is incomplete" | The gap is structural, not a sync signal: it tracks the entries with no local representation — exact on all five playlists inspected, off by one library-wide. A shipped guard built on this premise silently skipped 9 of 15 playlists forever. Read `skills/music-library.md`. |
+| "Reading the music library is just a MusicLibraryRequest" | Reading one MusicKit property across a large library leaves every later MusicKit request unresumed for the rest of the run, with no error thrown. Pool starvation is a symptom, not the mechanism — a plain `Thread`, which never touches the pool, loses MusicKit identically. Batching the request is ~100x *slower*, not safer. |
+| "`Song.id` is a stable key I can store" | Its *format* differs per device for the same library (`i.…` on one, bare numeric on another). Never parse it, never use it as a cross-device key. |
+| "DockKit is just pairing a stand" | Custom control needs system tracking disabled, handles inverted dock states, and two different coordinate origins. |
+| "Grouping faces is just Vision face detection" | Vision detects faces in one image; MediaIntelligence clusters them into persistent people (entities) across a whole library, with its own working directory and state. |
+| "Casting to Chromecast means bundling the Google Cast SDK" | On iOS 27, AVSystemRouting exposes non-AirPlay routes as system routes — you adopt one Apple API (observe events, start a session, drive playbackControl) instead of a per-vendor SDK. Likely EU-gated — gate and keep a fallback. |
+| "I'll sync SharePlay playback by broadcasting the current time over the messenger" | The messenger has no clock. `AVDelegatingPlaybackCoordinatorPlayCommand.hostClockTime` gives you an absolute `CMClockGetHostTimeClock()` start time; hand-rolling reinvents startup barriers, seek ordering, stalls, and interruptions badly. |
+| "The playback coordinator handles interruptions for me" | Only `AVPlayerPlaybackCoordinator` does. `AVDelegatingPlaybackCoordinator` adds **no** automatic suspensions — a custom engine begins *and* ends every one, and a suspension never ended hangs the whole group. |
+| "ScreenCaptureKit on iPad works like the Mac (enumerate displays/windows)" | On iOS/iPadOS `SCShareableContent` and all `SCContentFilter` initializers are macOS-only — you get a filter ONLY from the system `SCContentSharingPicker`. New on iOS/iPadOS/tvOS/visionOS 27. Also not `ImageRenderer` (that snapshots your own SwiftUI view). |
+
+## Example Invocations
+
+User: "How do I set up a camera preview?"
+→ Read: `skills/camera-capture.md`
+
+User: "My camera app takes a second before preview appears"
+→ Read: `skills/camera-capture.md` (Pattern 8, deferred start)
+
+User: "Support the Center Stage front camera" / "Capture 48MP photos"
+→ Read: `skills/camera-capture-ref.md`
+
+User: "How do I switch cameras on iPhone Duo?" / "Choose a camera by direction instead of position"
+→ Read: `skills/camera-capture.md` (Pattern 6) and `skills/camera-capture-ref.md` (iPhone Duo Front Cameras)
+
+User: "Camera freezes when I get a phone call"
+→ Read: `skills/camera-capture-diag.md`
+
+User: "How do I let users pick photos in SwiftUI?"
+→ Read: `skills/photo-library.md`
+
+User: "Implement haptic feedback for button taps"
+→ Read: `skills/haptics.md`
+
+User: "Now Playing info doesn't appear on Lock Screen"
+→ Read: `skills/now-playing.md`
+
+User: "How do I identify songs with ShazamKit?"
+→ Read: `skills/shazamkit.md`
+
+User: "How do I detect a song's tempo / key / beat grid on-device?" / "Analyze audio loudness or structure"
+→ Read: `skills/music-understanding.md`
+
+User: "Group faces into people across my photo library" / "cluster faces on-device" / "find highlights or a thumbnail frame in a video"
+→ Read: `skills/media-intelligence.md`
+
+User: "Cast to Chromecast / Google Cast without the Cast SDK" / "support non-AirPlay casting" / "route media to a DLNA device as a system route"
+→ Read: `skills/system-media-routing.md`
+
+User: "Record / stream the iPad screen" / "ScreenCaptureKit on iOS" / "screen recording in my app" / "capture just my app's content"
+→ Read: `skills/screen-capture.md`
+
+User: "List every song in the user's Apple Music library" / "enumerate their playlists" / "MPMediaQuery vs MusicKit" / "sync Apple Music playlists" / "MediaPlayer and MusicKit report different playlist counts" / "my MusicKit requests stop responding after a library scan" / "store a stable id for each song across devices" / "playlists went empty after the user turned on Sync Library"
+→ Read: `skills/music-library.md`
+
+User: "Track a subject with a motorized stand" / "Control a DockKit gimbal"
+→ Read: `skills/dockkit.md`
+
+User: "Check my camera code for issues"
+→ Launch: `camera-auditor` agent

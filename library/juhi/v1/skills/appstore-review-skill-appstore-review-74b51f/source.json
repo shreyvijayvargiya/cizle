@@ -1,0 +1,14 @@
+{
+ "title": "appstore-review",
+ "source": "U02",
+ "lang": "en",
+ "repo": "devsemih/appstore-review-skill",
+ "path": "skills/appstore-review/SKILL.md",
+ "url": "https://github.com/devsemih/appstore-review-skill/blob/HEAD/skills/appstore-review/SKILL.md",
+ "license": "MIT",
+ "description": "Checks an iOS/iPadOS/macOS app project against Apple's App Store Review Guidelines before submission. Works with native (Swift/Obj-C), Flutter, React Native, Expo, Kotlin Multiplatform, .NET MAUI, Cordova, Ionic, and Unity projects. Use when the user wants to verify their app complies with App Store rules, or when they mention 'app review', 'app store guidelines', 'submission check', or 'review rejection'.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.568Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "dependency-management",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/dependency-management/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/dependency-management/SKILL.md",
+ "license": "MIT",
+ "description": "Adds, upgrades and removes npm packages in Expo apps under a written policy - expo install, exact pins, 7-day release age, script review, licences. Use when adding or bumping a package or on ETARGET. Not for SDK majors (expo-sdk-upgrade).",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.018Z"
+}

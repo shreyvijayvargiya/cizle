@@ -1,0 +1,16 @@
+{
+ "title": "bundles-and-licensing",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/monetization/bundles-and-licensing/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/monetization/bundles-and-licensing/SKILL.md",
+ "license": "MIT",
+ "description": "Revenue beyond the single-app price tag — own-app bundles, Family Sharing as a conversion lever, cross-developer bundles & suites, and institutional licensing via Group Purchases / Apple School & Business Manager. Use when a developer has multiple apps, a subscription worth sharing, complementary indie partners, or school/clinic/business buyers.",
+ "domains": [
+  "education",
+  "edtech",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.481Z"
+}

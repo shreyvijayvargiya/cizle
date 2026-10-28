@@ -1,0 +1,15 @@
+{
+ "title": "privacy-policy",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/legal/privacy-policy/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/legal/privacy-policy/SKILL.md",
+ "license": "MIT",
+ "description": "Generate privacy policies, terms of service, and EULAs for Apple platform apps. Detects data collection patterns, third-party SDKs, and generates region-specific legal documents with Apple Privacy Nutrition Label mapping. Use when user needs legal documents or data collection disclosure for App Store submission.",
+ "domains": [
+  "health",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.469Z"
+}

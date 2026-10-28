@@ -1,0 +1,15 @@
+{
+ "title": "ci-pipeline-and-gates",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/ci-pipeline-and-gates/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/ci-pipeline-and-gates/SKILL.md",
+ "license": "MIT",
+ "description": "Builds GitHub Actions CI for Expo apps - verify on every PR, SHA-pinned actions, pinned runners and Node, device lanes, manual EAS releases. Use when editing .github/workflows or CI fails. Not for local gates (quality-gates).",
+ "domains": [
+  "scifi",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.014Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "game-session-host",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/game-session-host/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/game-session-host/SKILL.md",
+ "license": "MIT",
+ "description": "Hosts a game module through one typed seam: game screen, pause, undo, hints, a rescue, saved runs, results. Use when assembling a game or wiring the Game screen or registry. Not for rules (game-rules-engine).",
+ "domains": [
+  "gaming",
+  "math",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.029Z"
+}

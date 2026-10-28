@@ -1,0 +1,16 @@
+{
+ "title": "levels",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/levels/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/levels/SKILL.md",
+ "license": "MIT",
+ "description": "Conversion-focused design that removes friction and guides users toward action through clarity, trust, and speed.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.459Z"
+}

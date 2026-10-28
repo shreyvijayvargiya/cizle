@@ -1,0 +1,15 @@
+{
+ "title": "performance-profiling",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/performance/profiling/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/performance/profiling/SKILL.md",
+ "license": "MIT",
+ "description": "Guide performance profiling with Instruments, diagnose hangs, memory issues, slow launches, and energy drain. Use when reviewing app performance or investigating specific bottlenecks.",
+ "domains": [
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.484Z"
+}

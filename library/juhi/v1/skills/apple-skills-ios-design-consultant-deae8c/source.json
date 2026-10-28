@@ -1,0 +1,15 @@
+{
+ "title": "ios-design-consultant",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "disabled-skills/ios-design-consultant/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/disabled-skills/ios-design-consultant/SKILL.md",
+ "license": "MIT",
+ "description": "UX and visual design consultant for iOS apps using Apple's Liquid Glass design system (iOS 26+). Use when asking about element positioning, layout decisions, visual hierarchy, or whether a design choice is \"Apple-approved.\" Provides design rationale and guidance—not code. Helps create Apple Design Award-worthy apps.",
+ "domains": [
+  "education",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.542Z"
+}

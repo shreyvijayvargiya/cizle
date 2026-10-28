@@ -1,0 +1,15 @@
+{
+ "title": "axiom-payments",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-payments/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-payments/SKILL.md",
+ "license": "MIT",
+ "description": "Use when accepting ANY real-world payment — Apple Pay, Wallet passes, Tap to Pay, Orders in Wallet. NOT in-app purchase / digital content (use axiom-integration). Covers entitlements, certs, signing, App Review payment rules.",
+ "domains": [
+  "finance",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.699Z"
+}

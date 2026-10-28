@@ -22,6 +22,7 @@ function Poster({ item }: { item: GalleryItem }) {
 				<p className="line-clamp-6 px-4 text-base leading-snug">{item.preview || item.category || "video prompt"}</p>
 			)}
 			{item.video && !videoBad ? <AutoVideo src={item.video} poster={item.poster} onFail={() => setVideoBad(true)} className="absolute inset-0 size-full object-cover" aria-label={`Demo video: ${item.title}`} /> : null}
+			{item.previewBy ? <span title="An illustration made by cizle from this prompt" className="absolute right-2.5 bottom-2.5 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">Preview by {item.previewBy}</span> : null}
 			{item.lang && item.lang !== "en" ? <span className="absolute top-2.5 left-2.5 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">{lang.flag} {lang.native}</span> : null}
 		</div>
 	);

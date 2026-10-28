@@ -1,0 +1,12 @@
+{
+ "title": "iphone-duo-readiness",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-readiness/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-readiness/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Audit and port an iOS app to iPhone Duo, Apple's first foldable iPhone. Use when asked to support, adapt, prepare, test, or review an app for iPhone Duo, foldable iPhone, the inner/outer display, device poses, or the fold. Entry point that routes to the layout, bars, hinge/scenes, camera, and design skills.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.566Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "mobile-redesign-screen",
+ "source": "U03",
+ "lang": "en",
+ "repo": "draftbit/mobile-taste-skill",
+ "path": "skills/mobile-redesign-screen/SKILL.md",
+ "url": "https://github.com/draftbit/mobile-taste-skill/blob/HEAD/skills/mobile-redesign-screen/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Audit-first redesign of ONE React Native screen (or one flow of 2-3 screens) - extract its current tokens and patterns, produce rated findings, then modernize it lever by lever with atomic commits and before/after screenshots. Preserves navigation, route names, and form semantics. Use when asked to redesign, refresh, modernize, or \"make nicer\" a specific existing screen. For whole-app redesigns use mobile-redesign-app; for a report without changes use mobile-design-review; for brand-new screens use mobile-taste.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.067Z"
+}

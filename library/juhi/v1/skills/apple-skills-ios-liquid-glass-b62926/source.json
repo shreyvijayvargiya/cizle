@@ -1,0 +1,12 @@
+{
+ "title": "ios-liquid-glass",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/ios-liquid-glass/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/ios-liquid-glass/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: Liquid Glass (iOS 26+). Query for glass effects, navigation patterns, GlassEffect modifiers, design principles.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.552Z"
+}

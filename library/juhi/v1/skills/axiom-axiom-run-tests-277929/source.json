@@ -1,0 +1,14 @@
+{
+ "title": "axiom-run-tests",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-run-tests/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-run-tests/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to run XCUITests, parse test results, view test failures, or export test attachments.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.649Z"
+}

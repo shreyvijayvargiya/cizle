@@ -1,0 +1,14 @@
+{
+ "title": "debug-menu",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/debug-menu/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/debug-menu/SKILL.md",
+ "license": "MIT",
+ "description": "Generates a developer debug menu with feature flag toggles, environment switching, network log viewer, cache clearing, crash trigger, and diagnostic info export. Only included in DEBUG builds. Use when user wants a debug panel, dev tools menu, or shake-to-debug functionality.",
+ "domains": [
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.403Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "axiom-audit-resize",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-audit-resize/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-audit-resize/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user mentions window resizing support, resizable-window readiness, iPhone Mirroring compatibility, iPhone Duo readiness, scene-lifecycle migration checking, or preparing an app for the 27-cycle resizing model.",
+ "domains": [
+  "math",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.627Z"
+}

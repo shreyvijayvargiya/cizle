@@ -1,0 +1,12 @@
+{
+ "title": "guide-swiftui-animations",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "disabled-skills/guide-swiftui-animations/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/disabled-skills/guide-swiftui-animations/SKILL.md",
+ "license": "MIT",
+ "description": "SwiftUI animation patterns — implicit/explicit animations, transitions, phase/keyframe animations, the Animatable protocol, and the @Animatable macro. Use when implementing animations, transitions, or motion in SwiftUI views.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.539Z"
+}

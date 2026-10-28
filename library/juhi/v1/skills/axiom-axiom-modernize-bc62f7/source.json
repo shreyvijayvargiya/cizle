@@ -1,0 +1,15 @@
+{
+ "title": "axiom-modernize",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-codex/skills/axiom-modernize/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-codex/skills/axiom-modernize/SKILL.md",
+ "license": "MIT",
+ "description": "Use when the user wants to modernize iOS code to iOS 17/18 patterns, migrate from ObservableObject to @Observable, update @StateObject to @State, or adopt modern SwiftUI APIs.",
+ "domains": [
+  "data",
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.644Z"
+}

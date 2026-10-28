@@ -1,0 +1,14 @@
+{
+ "title": "apple-docs-index",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/apple-docs-index/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/apple-docs-index/SKILL.md",
+ "license": "MIT",
+ "description": "Index of Apple developer documentation for iOS, macOS, and related frameworks. Use when looking up what APIs exist in a framework, browsing available documentation, or deciding what docs to fetch. Covers SwiftUI, UIKit, Core Animation (QuartzCore), XCTest, HealthKit, Combine, SwiftData, and more.",
+ "domains": [
+  "health"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.543Z"
+}

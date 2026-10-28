@@ -1,0 +1,14 @@
+{
+ "title": "uikit",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/uikit/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/uikit/SKILL.md",
+ "license": "MIT",
+ "description": "API reference: UIKit. Query for UIView, UIViewController, controls, table and collection views, navigation controllers, scenes, Auto Layout, images, colors, gestures, presentation, and SwiftUI hosting.",
+ "domains": [
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.553Z"
+}

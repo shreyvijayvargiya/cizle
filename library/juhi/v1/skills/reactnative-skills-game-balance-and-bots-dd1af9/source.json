@@ -1,0 +1,16 @@
+{
+ "title": "game-balance-and-bots",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/game-balance-and-bots/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/game-balance-and-bots/SKILL.md",
+ "license": "MIT",
+ "description": "Tunes game difficulty with seeded headless bots: sim reports, balance bands, tuning knobs, a fun-in-seconds test. Use when balancing, tuning pacing or adding bots or sims. Not for solvers or par (level-generation-and-solvers).",
+ "domains": [
+  "gaming",
+  "science",
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.033Z"
+}

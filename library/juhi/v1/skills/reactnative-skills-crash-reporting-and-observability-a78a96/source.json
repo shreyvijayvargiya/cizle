@@ -1,0 +1,15 @@
+{
+ "title": "crash-reporting-and-observability",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/crash-reporting-and-observability/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/crash-reporting-and-observability/SKILL.md",
+ "license": "MIT",
+ "description": "Wires Sentry crash reporting behind a port: start on consent, PII scrubbing, releases, source maps per build and update. Use when adding Sentry or a DSN, or stacks are minified. Not for analytics (analytics-and-consent).",
+ "domains": [
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.014Z"
+}

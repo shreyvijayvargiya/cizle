@@ -1,0 +1,15 @@
+{
+ "title": "guide-macos-spm-packaging",
+ "source": "U02",
+ "lang": "en",
+ "repo": "Prisma-Labs-Dev/apple-skills",
+ "path": "skills/guide-macos-spm-packaging/SKILL.md",
+ "url": "https://github.com/Prisma-Labs-Dev/apple-skills/blob/HEAD/skills/guide-macos-spm-packaging/SKILL.md",
+ "license": "MIT",
+ "description": "Scaffold, build, and package SwiftPM-based macOS apps without an Xcode project. Use when you need a from-scratch macOS app layout, SwiftPM targets/resources, a custom .app bundle assembly script, or signing/notarization/appcast steps outside Xcode.",
+ "domains": [
+  "product",
+  "engineering"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.545Z"
+}

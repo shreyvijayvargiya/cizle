@@ -1,0 +1,16 @@
+{
+ "title": "axiom-xcode-mcp",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": "axiom-cursor/skills/axiom-xcode-mcp/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/axiom-cursor/skills/axiom-xcode-mcp/SKILL.md",
+ "license": "MIT",
+ "description": "Use when connecting to Xcode via MCP, using xcrun mcpbridge or the headless mcp-server, or working with ANY Xcode MCP tool (XcodeRead, BuildProject, RunSomeTests, RenderPreview). Covers setup, tool reference, workflows, troubleshooting.",
+ "domains": [
+  "product",
+  "education",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.710Z"
+}

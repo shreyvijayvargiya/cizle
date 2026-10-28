@@ -1,0 +1,15 @@
+{
+ "title": "android-retrofit",
+ "source": "U03",
+ "lang": "en",
+ "repo": "new-silvermoon/awesome-android-agent-skills",
+ "path": ".github/skills/concurrency_and_networking/android-retrofit/SKILL.md",
+ "url": "https://github.com/new-silvermoon/awesome-android-agent-skills/blob/HEAD/.github/skills/concurrency_and_networking/android-retrofit/SKILL.md",
+ "license": "Apache-2.0",
+ "description": "Expert guidance on setting up and using Retrofit for type-safe HTTP networking in Android. Covers service definitions, coroutines, OkHttp configuration, and Hilt integration.",
+ "domains": [
+  "scifi",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:45.952Z"
+}

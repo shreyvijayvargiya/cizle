@@ -1,0 +1,14 @@
+{
+ "title": "iphone-duo-adaptive-layout",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-adaptive-layout/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-adaptive-layout/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Build layouts that adapt to the iPhone Duo fold using reserved regions, division and occlusion regions, displacement patterns, and the split and overlay ArrangementView containers. Use when content or controls land in the fold, when building a split-like or overlay layout, or when custom manually-positioned UI must avoid the hinge or the under-display camera.",
+ "domains": [
+  "science"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.556Z"
+}

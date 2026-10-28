@@ -1,0 +1,15 @@
+{
+ "title": "app-startup-and-bootstrap",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/app-startup-and-bootstrap/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/app-startup-and-bootstrap/SKILL.md",
+ "license": "MIT",
+ "description": "Orders an Expo app's cold start - polyfills, error net, splash hold, storage open, providers, splash release, background flush. Use when editing the root _layout.tsx or the app root, or the splash hangs or flashes. Not for routes (navigation-and-routing).",
+ "domains": [
+  "product",
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.005Z"
+}

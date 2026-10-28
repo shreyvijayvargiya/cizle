@@ -1,0 +1,14 @@
+{
+ "title": "forms-and-input",
+ "source": "U03",
+ "lang": "en",
+ "repo": "zakariaf/ReactNative-Skills",
+ "path": "skills/forms-and-input/SKILL.md",
+ "url": "https://github.com/zakariaf/ReactNative-Skills/blob/HEAD/skills/forms-and-input/SKILL.md",
+ "license": "MIT",
+ "description": "Builds react-hook-form + valibot forms: one schema, catalog-key errors, TextField kinds (keyboard, autofill), focus chain. Use when adding a form, text field or validation, or the keyboard hides a field. Not for sign-in (auth-and-secure-storage).",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.029Z"
+}

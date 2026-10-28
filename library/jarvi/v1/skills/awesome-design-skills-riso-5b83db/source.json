@@ -1,0 +1,16 @@
+{
+ "title": "riso",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/riso/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/riso/SKILL.md",
+ "license": "MIT",
+ "description": "A playful, joyful, two-color risograph print aesthetic built on a single warm off-white paper surface running through every section",
+ "domains": [
+  "product",
+  "health",
+  "education"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.470Z"
+}

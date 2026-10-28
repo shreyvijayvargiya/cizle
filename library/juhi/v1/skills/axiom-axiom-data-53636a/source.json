@@ -1,0 +1,15 @@
+{
+ "title": "axiom-data",
+ "source": "U02",
+ "lang": "en",
+ "repo": "CharlesWiltgen/Axiom",
+ "path": ".claude-plugin/plugins/axiom/skills/axiom-data/SKILL.md",
+ "url": "https://github.com/CharlesWiltgen/Axiom/blob/HEAD/.claude-plugin/plugins/axiom/skills/axiom-data/SKILL.md",
+ "license": "MIT",
+ "description": "Use when working with ANY data persistence, database, storage, CloudKit, migration, or serialization in an Apple app. Covers SwiftData, Core Data, GRDB, SQLite, Realm, CloudKit sync, file storage, Codable, migrations.",
+ "domains": [
+  "education",
+  "product"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.575Z"
+}

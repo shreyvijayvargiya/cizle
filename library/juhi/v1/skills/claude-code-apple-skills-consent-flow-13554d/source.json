@@ -1,0 +1,12 @@
+{
+ "title": "consent-flow",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/consent-flow/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/consent-flow/SKILL.md",
+ "license": "MIT",
+ "description": "Generates GDPR/CCPA/DPDP privacy consent flows with granular category preferences, consent state persistence, audit logging, and ATT (App Tracking Transparency) integration. Use when user needs privacy consent UI, cookie/tracking consent, or compliance management.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.401Z"
+}

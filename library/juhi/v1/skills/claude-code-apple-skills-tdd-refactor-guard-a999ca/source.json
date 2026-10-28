@@ -1,0 +1,12 @@
+{
+ "title": "tdd-refactor-guard",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/testing/tdd-refactor-guard/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/testing/tdd-refactor-guard/SKILL.md",
+ "license": "MIT",
+ "description": "Pre-refactor safety checklist. Verifies test coverage exists before AI modifies existing code. Use before asking AI to refactor anything.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.528Z"
+}

@@ -1,0 +1,14 @@
+{
+ "title": "iphone-duo-react-native",
+ "source": "U02",
+ "lang": "en",
+ "repo": "mirzaaghazadeh/iphone-duo-skills",
+ "path": "skills/iphone-duo-react-native/SKILL.md",
+ "url": "https://github.com/mirzaaghazadeh/iphone-duo-skills/blob/HEAD/skills/iphone-duo-react-native/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Adapt a React Native or Expo app to iPhone Duo, Apple's first foldable iPhone — asymmetric safe area insets, resize handling, and how to expose the iOS 27.1 reserved-region and hinge APIs through a native module. Use when a React Native, Expo or JS-based iOS app needs foldable iPhone support.",
+ "domains": [
+  "math"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.566Z"
+}

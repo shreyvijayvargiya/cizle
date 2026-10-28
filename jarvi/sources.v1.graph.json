@@ -1,0 +1,222 @@
+{
+	"version": 1,
+	"description": "jarvi v1: website and landing-page prompts, design systems and design skills for AI agents (Claude Code, Cursor, v0-style builders), found 2026-10-28 by GitHub and web search; every repo shallow-cloned and counted, none is in the harvest graphs v1-v9. Ids start at J01. Run `node server/jarvi/cli.js --v1`; data in jarvi/data, library in library/jarvi/v1, site store site/content/versions/jarvi-v1.",
+	"defaults": {
+		"min_records": 5,
+		"batch_size": 20,
+		"batch_pause_ms": 3000,
+		"source_pause_ms": 4000,
+		"max_parallel": 2
+	},
+	"start": "J01",
+	"nodes": [
+		{
+			"id": "J01",
+			"name": "Brand design systems as DESIGN.md (VoltAgent, Japanese and Chinese collections)",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/VoltAgent/awesome-design-md",
+			"expect": 750,
+			"min_records": 300,
+			"verified": true,
+			"config": {
+				"min_chars": 300,
+				"repos": [
+					{
+						"repo": "VoltAgent/awesome-design-md",
+						"license": "MIT",
+						"tags": [
+							"Website",
+							"Design system"
+						],
+						"include": [
+							"^design-md/[^/]+/DESIGN\\.md$"
+						],
+						"whole": true,
+						"category": "design-system"
+					},
+					{
+						"repo": "kzhrknt/awesome-design-md-jp",
+						"license": "MIT",
+						"tags": [
+							"Website",
+							"Design system"
+						],
+						"include": [
+							"^design-md/[^/]+/DESIGN\\.md$"
+						],
+						"whole": true,
+						"category": "design-system"
+					},
+					{
+						"repo": "fchangjun/awesome-design-md-cn",
+						"tags": [
+							"Website",
+							"Design system"
+						],
+						"include": [
+							"DESIGN\\.md$"
+						],
+						"exclude": [
+							"template"
+						],
+						"whole": true,
+						"category": "design-system"
+					}
+				]
+			},
+			"notes": "Cloned and counted DESIGN.md files: VoltAgent 83 (one per well-known brand, MIT), kzhrknt Japanese-site systems ~595 (MIT, Japanese), fchangjun ~75 (Chinese, no licence file: preview plus link). A DESIGN.md is the file an AI agent reads to build UI in a brand's design language: colours, type, spacing, components. HU-UH/awesome-design-md is a Chinese translation of VoltAgent's set and is left out."
+		},
+		{
+			"id": "J02",
+			"name": "Website build prompts (landing pages, business sites, anti-slop briefs)",
+			"adapter": "github-prompt-files",
+			"url": "https://github.com/KingLeoJr/awesome-vibe-coding-prompt-code-templates",
+			"expect": 50,
+			"min_records": 20,
+			"verified": true,
+			"config": {
+				"min_chars": 300,
+				"repos": [
+					{
+						"repo": "KingLeoJr/awesome-vibe-coding-prompt-code-templates",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						],
+						"include": [
+							"^templates/[^/]+/README\\.md$"
+						],
+						"whole": true,
+						"category": "website-template"
+					},
+					{
+						"repo": "mah-claude/anti-slop-website-prompts",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						],
+						"include": [
+							"^prompts/.+\\.md$"
+						],
+						"whole": true,
+						"category": "landing-page"
+					}
+				]
+			},
+			"notes": "Cloned and counted: KingLeoJr 'vibe coding' builder prompts per site type (templates/<type>/README.md, ~35), mah-claude 12 art-directed website build prompts. Both MIT."
+		},
+		{
+			"id": "J03",
+			"name": "Website design and landing-page skills",
+			"adapter": "github-skills",
+			"url": "https://github.com/bergside/awesome-design-skills",
+			"expect": 85,
+			"min_records": 50,
+			"verified": true,
+			"config": {
+				"repos": [
+					{
+						"repo": "bergside/awesome-design-skills",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "LiamClarke1/website-builder-skills",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "JoshPearre/claude-website-generator",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "jiji262/claude-design-skill",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "MADEVAL/MindFluence",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "nroadley/Creating-Oneshot-Hero-Landing-Pages",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "adamholter/hive-mind-landing-page",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "mah-claude/anti-slop-website-prompts",
+						"license": "MIT",
+						"tags": [
+							"Website"
+						]
+					},
+					{
+						"repo": "yzfly/awesome-design-html",
+						"license": "NOASSERTION",
+						"tags": [
+							"Website"
+						]
+					}
+				]
+			},
+			"notes": "Cloned and counted SKILL.md: bergside 67 design styles, LiamClarke1 6 (no licence file), JoshPearre 1, jiji262 1, MADEVAL 1, nroadley 1, adamholter 2, mah-claude 1, yzfly 1."
+		}
+	],
+	"edges": [
+		{
+			"from": "J01",
+			"to": "J02"
+		},
+		{
+			"from": "J02",
+			"to": "J03"
+		}
+	],
+	"excluded": [
+		{
+			"id": "Z01",
+			"name": "x1xhlol/system-prompts-and-models-of-ai-tools, elder-plinius/CL4R1T4S",
+			"reason": "GPL-3.0 and AGPL-3.0; leaked system prompts of commercial tools."
+		},
+		{
+			"id": "Z02",
+			"name": "HU-UH/awesome-design-md",
+			"reason": "Translation of VoltAgent's set (mirror)."
+		},
+		{
+			"id": "Z03",
+			"name": "felipemenezes098/ui-flx",
+			"reason": "AGPL-3.0."
+		},
+		{
+			"id": "Z04",
+			"name": "dontriskit/awesome-ai-system-prompts, VoltAgent/awesome-claude-design",
+			"reason": "System prompts of AI tools and a link list; not website prompts. A candidate for a later 'agents' collection."
+		},
+		{
+			"id": "Z05",
+			"name": "v0, Lovable, Bolt, Framer and Webflow galleries",
+			"reason": "Commercial galleries: terms or robots files do not allow harvesting."
+		}
+	]
+}

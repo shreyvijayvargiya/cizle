@@ -21,6 +21,12 @@ free-export/
 # and curation tools stay on the machine that collects the library.
 /private/
 /server/harvest/
+/jarvi/data/
+/jarvi/logs/
+/juhi/data/
+/juhi/logs/
+/server/jarvi/
+/server/juhi/
 /server/enrich/
 /server/library/
 /server/tools.js

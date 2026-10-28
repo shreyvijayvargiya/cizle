@@ -1,0 +1,16 @@
+{
+ "title": "premium",
+ "source": "J03",
+ "lang": "en",
+ "repo": "bergside/awesome-design-skills",
+ "path": "skills/premium/SKILL.md",
+ "url": "https://github.com/bergside/awesome-design-skills/blob/HEAD/skills/premium/SKILL.md",
+ "license": "MIT",
+ "description": "Apple-inspired premium aesthetic with precise spacing, modern typography, and a refined, polished visual language.",
+ "domains": [
+  "health",
+  "education",
+  "music"
+ ],
+ "fetched_at": "2026-10-28T16:04:38.467Z"
+}

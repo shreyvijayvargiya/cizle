@@ -1,0 +1,14 @@
+{
+ "title": "mobile-nav-plan",
+ "source": "U03",
+ "lang": "en",
+ "repo": "draftbit/mobile-taste-skill",
+ "path": "skills/mobile-nav-plan/SKILL.md",
+ "url": "https://github.com/draftbit/mobile-taste-skill/blob/HEAD/skills/mobile-nav-plan/SKILL.md",
+ "license": "NOASSERTION",
+ "description": "Turn an app idea or an existing React Native app into a Nav Read - tab structure, route tree, push/modal/sheet decisions, deep links, Android back plan - without building any screens. Use when planning navigation for a new app, restructuring an existing app's navigation, or deciding whether something is a tab, a push, a modal, or a bottom sheet. For building the screens afterward use mobile-taste; for full-app visual redesign use mobile-redesign-app.",
+ "domains": [
+  "scifi"
+ ],
+ "fetched_at": "2026-10-28T16:04:46.065Z"
+}

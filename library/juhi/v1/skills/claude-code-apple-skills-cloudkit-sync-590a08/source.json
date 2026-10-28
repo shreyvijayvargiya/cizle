@@ -1,0 +1,12 @@
+{
+ "title": "cloudkit-sync",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/cloudkit-sync/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/cloudkit-sync/SKILL.md",
+ "license": "MIT",
+ "description": "Generate CloudKit sync infrastructure using CKSyncEngine with conflict resolution, sharing, and account monitoring. Use when adding iCloud sync to an iOS/macOS app.",
+ "domains": [],
+ "fetched_at": "2026-10-28T16:04:34.404Z"
+}

@@ -1,0 +1,16 @@
+{
+ "title": "share-card",
+ "source": "U02",
+ "lang": "en",
+ "repo": "rshankras/claude-code-apple-skills",
+ "path": "skills/generators/share-card/SKILL.md",
+ "url": "https://github.com/rshankras/claude-code-apple-skills/blob/HEAD/skills/generators/share-card/SKILL.md",
+ "license": "MIT",
+ "description": "Generates shareable card images from app content (achievements, stats, quotes) for social media sharing. Use when user wants to create share images, social cards, shareable content cards, or export app content as images with ShareLink integration.",
+ "domains": [
+  "math",
+  "product",
+  "data"
+ ],
+ "fetched_at": "2026-10-28T16:04:34.430Z"
+}
