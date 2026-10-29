@@ -13,7 +13,7 @@ import { track } from "@/lib/funnel";
 import { statsKey, useRecordView } from "@/lib/stats";
 import { useSuspendVideos } from "@/lib/videos";
 import { fromLabel } from "@/lib/billing";
-import { PREMIUM, SITE } from "@/lib/config";
+import { MCP_URL, PREMIUM, SITE } from "@/lib/config";
 import { isRtl, languageOf } from "@/lib/languages";
 import { usePromptText, type GalleryFilters, type GalleryItem } from "@/lib/gallery";
 import { useHead } from "@/lib/head";
@@ -184,6 +184,15 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 						)}
 						{text && !expanded ? (
 							<button type="button" onClick={() => setExpanded(true)} className="mt-3 self-start text-base text-muted-foreground hover:text-foreground">Show all</button>
+						) : null}
+						{!item.restricted && !locked ? (
+							<div className="mt-4 rounded-lg border border-input p-4">
+								<p className="text-sm text-muted-foreground">Make this with your own link in Claude Code. Connect once, then paste the request.</p>
+								<div className="mt-3 flex flex-wrap gap-2">
+									<CopyButton text={`Use the cizle MCP: open prompt "prompt:${item.slug}", then make me a short video in that style from <paste your link here>, with narration and music.`} label="Copy for Claude Code" done="Copied. Paste it into Claude Code" variant="default" />
+									<CopyButton text={`claude mcp add --transport http cizle ${MCP_URL}`} label="Connect command" done="Copied the connect command" />
+								</div>
+							</div>
 						) : null}
 						{locked ? (
 							<div className="mt-4">
