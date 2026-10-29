@@ -106,9 +106,9 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
 			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45 data-[state=open]:animate-[fade-in_.15s_ease-out]" />
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim sheet-overlay" />
 				<D.Content
-					className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background outline-none lg:inset-auto lg:top-1/2 lg:left-1/2 lg:h-[min(878px,calc(100dvh-2rem))] lg:w-[min(1320px,calc(100vw-2rem))] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:flex-row lg:overflow-hidden lg:rounded-2xl lg:shadow-2xl lg:[animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)]"
+					className="fixed inset-0 z-50 flex flex-col overflow-y-auto overscroll-contain bg-background outline-none lg:inset-auto lg:top-1/2 lg:left-1/2 lg:h-[min(878px,calc(100dvh-2rem))] lg:w-[min(1320px,calc(100vw-2rem))] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:flex-row lg:overflow-hidden lg:rounded-3xl lg:shadow-e3 lg:[animation:pop-in-c_.2s_var(--ease-out)]"
 					aria-describedby="prompt-desc"
 					tabIndex={-1}
 				>
@@ -139,7 +139,7 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 
 					<div className="flex w-full min-w-0 shrink-0 flex-col p-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-6 lg:w-[400px] lg:overflow-y-auto lg:p-7">
 						<div className="flex items-center gap-3">
-							<span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full bg-field-2 text-sm font-semibold text-background">{by.replace("@", "").slice(0, 1).toUpperCase()}</span>
+							<span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full bg-field-2 text-sm font-semibold text-background">{Array.from(by.replace("@", ""))[0]?.toUpperCase() ?? "?"}</span>
 							<div className="min-w-0 flex-1 leading-tight">
 								{item.handle ? (
 									<a className="block truncate text-base font-medium hover:underline" href={`https://x.com/${item.handle}`} target="_blank" rel="noopener noreferrer">{item.author?.replace(/^@/, "") || item.handle}</a>
@@ -157,7 +157,7 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 						</div>
 
 						<D.Title asChild>
-							<h2 className="mt-6 text-xl leading-tight tracking-[-0.02em]">{item.title}</h2>
+							<h2 className="mt-6 text-xl leading-tight tracking-[-0.02em] [overflow-wrap:anywhere]">{item.title}</h2>
 						</D.Title>
 						<D.Description id="prompt-desc" className="sr-only">Video prompt by {by}</D.Description>
 
@@ -166,7 +166,7 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 							{item.lang && item.lang !== "en" ? <span className={pill}>{languageOf(item.lang).flag} {languageOf(item.lang).native}</span> : null}
 							{item.kind === "image-prompt" ? <span className={pill}>Image prompt</span> : null}
 							{PREMIUM ? <span className={pill}>{item.tier === "free" ? "Free sample" : "Premium"}</span> : null}
-							{item.translatedFrom ? <span className={pill}>Translated from {item.translatedFrom}</span> : null}
+							{item.translatedFrom ? <span className={`${pill} max-w-full [overflow-wrap:anywhere]`}>Translated from {item.translatedFrom}</span> : null}
 						</div>
 
 						<div className="mt-6 flex min-h-8 items-center justify-between text-sm">
@@ -175,7 +175,7 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 						</div>
 						{text || locked ? (
 							<div className={`mt-2 rounded-lg bg-surface p-4 ${expanded ? "max-h-[46dvh] overflow-y-auto" : "max-h-52 overflow-hidden [mask-image:linear-gradient(to_bottom,#000_65%,transparent)]"}`}>
-								<p dir={isRtl(item.lang) ? "rtl" : "auto"} className="text-base leading-relaxed whitespace-pre-wrap">{text || item.preview}</p>
+								<p dir={isRtl(item.lang) ? "rtl" : "auto"} className="text-base leading-relaxed whitespace-pre-wrap [overflow-wrap:anywhere]">{text || item.preview}</p>
 											</div>
 						) : full.isError ? (
 							<p className="mt-2 rounded-lg bg-surface p-4 text-base text-muted-foreground">{(full.error as Error).message}</p>

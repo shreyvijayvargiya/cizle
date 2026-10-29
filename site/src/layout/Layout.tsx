@@ -46,7 +46,7 @@ export function Layout() {
 				<Footer />
 			</div>
 			<CommandMenu open={searchOpen} onOpenChange={setSearchOpen} />
-			<Toaster theme={resolved} position="bottom-right" richColors closeButton  />
+			<Toaster theme={resolved} position="bottom-right" richColors closeButton mobileOffset={{ bottom: "max(16px, env(safe-area-inset-bottom))" }} />
 		</Tooltip.Provider>
 		</GateProvider>
 		</VideoProvider>

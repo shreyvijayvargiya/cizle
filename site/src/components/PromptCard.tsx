@@ -19,7 +19,7 @@ function Poster({ item }: { item: GalleryItem }) {
 				<img src={item.poster!} alt="" loading="lazy" referrerPolicy="no-referrer" onError={() => setBad(true)} className="absolute inset-0 size-full object-cover" />
 			) : (
 				// no picture and no video: the card is the start of the prompt itself
-				<p className="line-clamp-6 px-4 text-base leading-snug">{item.preview || item.category || "video prompt"}</p>
+				<p className="line-clamp-6 px-4 text-base leading-snug [overflow-wrap:anywhere]">{item.preview || item.category || "video prompt"}</p>
 			)}
 			{item.video && !videoBad ? <AutoVideo src={item.video} poster={item.poster} onFail={() => setVideoBad(true)} className="absolute inset-0 size-full object-cover" aria-label={`Demo video: ${item.title}`} /> : null}
 			{item.lang && item.lang !== "en" ? <span className="absolute top-2.5 left-2.5 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">{lang.flag} {lang.native}</span> : null}
