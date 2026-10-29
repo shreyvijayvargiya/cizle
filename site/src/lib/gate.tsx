@@ -45,7 +45,7 @@ export function GateProvider({ children }: { children: ReactNode }) {
 			<D.Root open={open && !user} onOpenChange={setOpen}>
 				<D.Portal>
 					<D.Overlay className="fixed inset-0 z-[70] bg-black/55 backdrop-blur-sm data-[state=open]:animate-[fade-in_.15s_ease-out]" />
-					<D.Content aria-describedby="gate-desc" className="fixed top-1/2 left-1/2 z-[70] max-h-[calc(100dvh-1.5rem)] w-[min(26rem,calc(100vw-1.5rem))] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-background p-6 shadow-2xl outline-none [animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)] sm:p-7">
+					<D.Content aria-describedby="gate-desc" className="fixed top-1/2 left-1/2 z-[70] max-h-[calc(100dvh-1.5rem)] w-[min(26rem,calc(100vw-1.5rem))] -translate-x-1/2 -translate-y-1/2 overflow-y-auto overscroll-contain rounded-2xl bg-background p-6 shadow-2xl outline-none [animation:pop-in-c_.2s_var(--ease-out)] sm:p-7">
 						<D.Close asChild>
 							<button type="button" aria-label="Close" className="absolute top-3 right-3 grid size-9 place-items-center rounded-full text-muted-foreground outline-none hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring">
 								<Icon icon={Cancel01Icon} size={17} />

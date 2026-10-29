@@ -56,9 +56,9 @@ export function SkillDialog({ slug, list, search, onClose, onGo }: { slug: strin
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
 			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45  data-[state=open]:animate-[fade-in_.15s_ease-out]" />
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim sheet-overlay" />
 				<D.Content
-					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col overflow-hidden rounded-t-2xl border border-border bg-background shadow-2xl outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-lg sm:[animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)]"
+					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col sheet-up overflow-hidden rounded-t-3xl border border-border bg-background shadow-e3 outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-2xl sm:[animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)]"
 					aria-describedby="skill-desc"
 					onOpenAutoFocus={(e) => {
 						// Land on the dialog itself, not on the first arrow (which would pop its tooltip open).
@@ -70,7 +70,7 @@ export function SkillDialog({ slug, list, search, onClose, onGo }: { slug: strin
 					<div className="flex items-center justify-between gap-3 border-b border-border bg-surface px-4 py-2.5">
 						<div className="min-w-0">
 							<D.Title asChild>
-								<h1 className="truncate text-base font-semibold tracking-tight sm:text-lg">{s?.name || "Loading skill…"}</h1>
+								<h1 title={s?.name} className="truncate text-base font-semibold tracking-tight sm:text-lg">{s?.name || "Loading skill…"}</h1>
 							</D.Title>
 							<D.Description id="skill-desc" className="sr-only">
 								{s?.summary || "Skill details"}
@@ -120,7 +120,7 @@ export function SkillDialog({ slug, list, search, onClose, onGo }: { slug: strin
 						)}
 					</div>
 					{s ? (
-						<div className="flex items-center justify-between gap-3 border-t border-border bg-surface px-4 py-3 sm:px-6">
+						<div className="flex items-center justify-between gap-3 border-t border-border bg-surface px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
 							<p className="hidden min-w-0 truncate text-sm text-muted-foreground sm:block">{s.name}</p>
 							<SkillActions skill={s} className="flex flex-wrap justify-end gap-2" />
 						</div>

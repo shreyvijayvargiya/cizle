@@ -12,7 +12,7 @@ export function SelectTrigger({ className, children, ...p }: React.ComponentProp
 	return (
 		<S.Trigger
 			className={cn(
-				"flex h-8 w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-2.5 text-[13px] outline-none transition-colors hover:bg-tile-2 focus-visible:border-ring/60 data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 data-[size=sm]:h-7 data-[size=sm]:text-xs",
+				"shadow-e1 flex h-9 w-full items-center justify-between gap-2 rounded-lg border border-input bg-background px-3 text-[13px] outline-none transition-colors hover:bg-tile-2 focus-visible:border-ring/60 data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 data-[size=sm]:h-8 data-[size=sm]:text-xs",
 				className,
 			)}
 			{...p}
@@ -32,12 +32,12 @@ export function SelectContent({ className, children, position = "popper", ...p }
 				position={position}
 				sideOffset={6}
 				className={cn(
-					"select-pop z-50 max-h-72 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-lg border border-input bg-background text-[13px] shadow-2xl shadow-black/20",
+					"select-pop z-50 max-h-72 min-w-[var(--radix-select-trigger-width)] glass glass-pop overflow-hidden rounded-xl border border-input/60 text-[13px]",
 					className,
 				)}
 				{...p}
 			>
-				<S.Viewport className="max-h-72 p-1">{children}</S.Viewport>
+				<S.Viewport className="max-h-72 p-1.5">{children}</S.Viewport>
 			</S.Content>
 		</S.Portal>
 	);
@@ -45,7 +45,7 @@ export function SelectContent({ className, children, position = "popper", ...p }
 
 export function SelectItem({ className, children, icon, ...p }: React.ComponentProps<typeof S.Item> & { icon?: IconSvgElement }) {
 	return (
-		<S.Item className={cn("relative flex cursor-default items-center gap-2 rounded-md py-1.5 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-tile-2 data-[disabled]:opacity-50", className)} {...p}>
+		<S.Item className={cn("relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-tile-2 data-[disabled]:opacity-50", className)} {...p}>
 			<S.ItemIndicator className="absolute left-2 flex size-3.5 items-center justify-center">
 				<Icon icon={Tick02Icon} size={13} />
 			</S.ItemIndicator>

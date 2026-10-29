@@ -29,12 +29,23 @@
 	--warning: #8a4b00;
 	--danger: #b3261e;
 	--info: #18181b;
-	--radius-tile: 8px;
+	--radius-tile: 14px;
 	--gap: 8px;
 	--margin: 16px;
+	/* depth: soft layered shadows, never a hard line */
+	--shadow-1: 0 1px 2px rgb(0 0 0 / .06), 0 1px 1px rgb(0 0 0 / .04);
+	--shadow-2: 0 2px 4px rgb(0 0 0 / .05), 0 8px 24px -6px rgb(0 0 0 / .16);
+	--shadow-3: 0 4px 8px rgb(0 0 0 / .06), 0 24px 64px -12px rgb(0 0 0 / .32);
+	--glass: color-mix(in srgb, var(--background) 76%, transparent);
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+	--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
+	--shadow-1: 0 1px 2px rgb(0 0 0 / .4);
+	--shadow-2: 0 2px 4px rgb(0 0 0 / .3), 0 8px 24px -6px rgb(0 0 0 / .6);
+	--shadow-3: 0 4px 8px rgb(0 0 0 / .35), 0 24px 64px -12px rgb(0 0 0 / .75);
 	--background: #0b0b0c;
 	--surface: #151516;
 	--tile-2: #212123;
@@ -63,6 +74,9 @@
 }
 
 @theme inline {
+	--shadow-e1: var(--shadow-1);
+	--shadow-e2: var(--shadow-2);
+	--shadow-e3: var(--shadow-3);
 	--color-background: var(--background);
 	--color-surface: var(--surface);
 	--color-tile-2: var(--tile-2);
@@ -205,3 +219,42 @@ html, body, #root { height: auto; min-height: 100%; }
 .select-pop[data-state="open"] { animation: pop-from-trigger .16s cubic-bezier(.23, 1, .32, 1); }
 .menu-pop { transform-origin: var(--radix-dropdown-menu-content-transform-origin); }
 .menu-pop[data-state="open"] { animation: pop-from-trigger .16s cubic-bezier(.23, 1, .32, 1); }
+
+/* Emil pass. Overlays: enter slow enough to read, leave fast (exit < enter). Only transform and opacity. */
+@keyframes fade-out { from { opacity: 1 } to { opacity: 0 } }
+@keyframes slide-out-r { from { transform: none } to { transform: translateX(100%) } }
+@keyframes slide-in-l { from { transform: translateX(-100%) } to { transform: none } }
+@keyframes slide-out-l { from { transform: none } to { transform: translateX(-100%) } }
+@keyframes sheet-up { from { transform: translateY(100%) } to { transform: none } }
+@keyframes pop-in-c { from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(.98) } to { opacity: 1; transform: translate(-50%, -50%) scale(1) } }
+@keyframes tip-in { from { opacity: 0; transform: scale(.96) } to { opacity: 1; transform: none } }
+.sheet-overlay[data-state="open"] { animation: fade-in .2s var(--ease-out); }
+.sheet-overlay[data-state="closed"] { animation: fade-out .15s var(--ease-out) forwards; }
+.sheet-r[data-state="open"] { animation: slide-in-r .28s var(--ease-drawer); }
+.sheet-r[data-state="closed"] { animation: slide-out-r .2s var(--ease-out) forwards; }
+.sheet-l[data-state="open"] { animation: slide-in-l .28s var(--ease-drawer); }
+.sheet-l[data-state="closed"] { animation: slide-out-l .2s var(--ease-out) forwards; }
+@media (max-width: 639px) { .sheet-up { animation: sheet-up .32s var(--ease-drawer); } } /* skill dialog is a bottom sheet on phones */
+/* Tooltips grow from their trigger; moving to the next one skips the animation (Radix sets data-state="instant-open"). */
+.tip-pop { transform-origin: var(--radix-tooltip-content-transform-origin); }
+.tip-pop[data-state="delayed-open"] { animation: tip-in .125s var(--ease-out); }
+/* Accordion and switch on the house curve; chevron/plus turns with it. */
+.acc-content[data-state="open"] { animation: acc-down .24s var(--ease-out); }
+.acc-content[data-state="closed"] { animation: acc-up .18s var(--ease-out); }
+.acc-plus { transition: transform .24s var(--ease-out); }
+.switch-thumb { transition: transform .2s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) { .sheet-up { animation: none; } .sheet-r, .sheet-l { animation-duration: .001ms !important; } }
+
+/* Mobile-native baseline: no tap flash or font inflation, instant taps, controls are not selectable text, scroll containers keep their bounce to themselves. */
+html { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; }
+button, a, [role="button"], [role="tab"], summary { touch-action: manipulation; }
+button, [role="button"], [role="tab"], [role="menuitem"], [role="option"] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.skill-pre, .prose-cizle { -webkit-touch-callout: default; }
+[cmdk-list], [data-radix-select-viewport] { overscroll-behavior: contain; }
+
+/* Apple pass: materials and depth. Colors untouched; only radius, shadow, blur and type. */
+.glass { background: var(--glass); -webkit-backdrop-filter: blur(16px) saturate(170%); backdrop-filter: blur(16px) saturate(170%); }
+.glass-pop { box-shadow: var(--shadow-2), inset 0 1px 0 color-mix(in srgb, white 35%, transparent); } /* bright top edge: light catching the material */
+.scrim { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+@media (prefers-reduced-transparency: reduce) { .glass { background: var(--background); -webkit-backdrop-filter: none; backdrop-filter: none; } .scrim { -webkit-backdrop-filter: none; backdrop-filter: none; } }
+@media (prefers-contrast: more) { .glass { background: var(--background); -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: 0 0 0 1px var(--input); } }

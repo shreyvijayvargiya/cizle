@@ -12,7 +12,7 @@ export function AccordionTrigger({ className, children, ...p }: React.ComponentP
 				{children}
 				<span aria-hidden className="relative block size-4 shrink-0">
 					<span className="absolute top-1/2 left-0 h-[3px] w-4 -translate-y-1/2 bg-current" />
-					<span className="absolute top-1/2 left-0 h-[3px] w-4 -translate-y-1/2 rotate-90 bg-current transition-transform group-data-[state=open]:rotate-0" />
+					<span className="absolute top-1/2 left-0 h-[3px] w-4 -translate-y-1/2 acc-plus rotate-90 bg-current group-data-[state=open]:rotate-0" />
 				</span>
 			</A.Trigger>
 		</A.Header>
@@ -20,7 +20,7 @@ export function AccordionTrigger({ className, children, ...p }: React.ComponentP
 }
 export function AccordionContent({ className, children, ...p }: React.ComponentProps<typeof A.Content>) {
 	return (
-		<A.Content className="overflow-hidden text-base data-[state=closed]:animate-[acc-up_.2s_ease-out] data-[state=open]:animate-[acc-down_.2s_ease-out]" {...p}>
+		<A.Content className="acc-content overflow-hidden text-base" {...p}>
 			<div className={cn("max-w-[52ch] px-6 pb-6 leading-relaxed", className)}>{children}</div>
 		</A.Content>
 	);

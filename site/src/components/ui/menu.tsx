@@ -11,18 +11,18 @@ export function MenuContent({ className, align = "start", ...p }: React.Componen
 			<M.Content
 				align={align}
 				sideOffset={6}
-				className={cn("menu-pop z-50 min-w-44 overflow-hidden rounded-lg border border-input bg-background p-1 text-[13px] shadow-2xl shadow-black/20", className)}
+				className={cn("menu-pop z-50 glass glass-pop min-w-44 overflow-hidden rounded-xl border border-input/60 p-1.5 text-[13px]", className)}
 				{...p}
 			/>
 		</M.Portal>
 	);
 }
 export function MenuItem({ className, ...p }: React.ComponentProps<typeof M.Item>) {
-	return <M.Item className={cn("flex cursor-default items-center gap-2 rounded-md px-2 py-1 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p} />;
+	return <M.Item className={cn("flex cursor-default items-center gap-2 rounded-lg px-2.5 py-1.5 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p} />;
 }
 export function MenuRadioItem({ className, children, icon, ...p }: React.ComponentProps<typeof M.RadioItem> & { icon?: IconSvgElement }) {
 	return (
-		<M.RadioItem className={cn("relative flex cursor-default items-center gap-2 rounded-md py-1 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p}>
+		<M.RadioItem className={cn("relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-2 pl-7 outline-none select-none data-[highlighted]:bg-tile-2", className)} {...p}>
 			<M.ItemIndicator className="absolute left-2 flex size-3.5 items-center justify-center">
 				<span className="size-1.5 rounded-full bg-foreground" />
 			</M.ItemIndicator>
@@ -40,9 +40,9 @@ export const DialogTrigger = D.Trigger;
 export function DialogContent({ className, children, title, ...p }: React.ComponentProps<typeof D.Content> & { title: string }) {
 	return (
 		<D.Portal>
-			<D.Overlay className="fixed inset-0 z-50 bg-black/50" />
+			<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim" />
 			<D.Content
-				className={cn("fixed top-[18%] left-1/2 z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-xl border border-border bg-surface shadow-2xl", className)}
+				className={cn("fixed top-[18%] left-1/2 z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface shadow-e3", className)}
 				{...p}
 			>
 				<D.Title className="sr-only">{title}</D.Title>

@@ -76,9 +76,9 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 	const { user, ready, isPro } = useAuth();
 	const path = useRouterState({ select: (s) => s.location.pathname });
 	const isActive = (to: string) => (to === "/" ? path === "/" || path.startsWith("/skills") : path === to || path.startsWith(`${to}/`));
-	// The top row is itself a row of tiles: the mark, the links, the tools, the one action. Solid, no blur, no line.
+	// The top row is itself a row of tiles: the mark, the links, the tools, the one action. Glass: content scrolls under, no line.
 	return (
-		<header className="board sticky top-0 z-40 bg-background pt-3 pb-2">
+		<header className="board glass sticky top-0 z-40 pt-3 pb-2">
 			<div className="board-w flex h-[60px] items-stretch gap-2">
 				<Link to="/" aria-label="cizle home: shuffle the videos" onClick={() => (requestShuffle(), window.scrollTo({ top: 0, behavior: "smooth" }))} className="press reveal flex shrink-0 items-center rounded-lg bg-surface px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:px-4">
 					<Logo className="[&_svg]:h-[28px]" />
