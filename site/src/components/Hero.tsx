@@ -120,7 +120,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 									{cur ? <Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-12 items-center rounded-full bg-white/20 px-6 text-sm font-semibold tracking-wide uppercase backdrop-blur-md hover:bg-white/30">See this prompt</Link> : null}
 								</div>
 								<p className="max-w-[34ch] text-xl leading-tight sm:text-2xl">
-									{items ? `${items.toLocaleString()} prompts and skills, ` : ""}each one credited to its creator. Copy one, make it yours.
+									Prompts that already worked, with the video to prove it. Copy one and change a line.
 								</p>
 							</div>
 						</div>
@@ -129,7 +129,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 
 				<div className="tile reveal flex flex-col justify-end p-5 sm:p-6 lg:col-span-6">
 					<p className="max-w-[60ch] text-lg leading-snug">
-						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: video prompts by country, motion graphics with Remotion and HyperFrames, classroom and education animations, entertainment and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
+						<strong className="font-semibold">Stop staring at a blank box.</strong> cizle keeps the prompts people really used to make AI videos, images and Claude Code skills, next to what they made: motion graphics with Remotion and HyperFrames, classroom animations, shop ads, film looks from every country. Copy one, change a line, and the credit stays with whoever wrote it.
 					</p>
 					<ul aria-label="Popular searches" className="mt-4 flex flex-wrap gap-1.5">
 						{TAGS.map((t) => (
@@ -139,7 +139,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 					{heroCountries.length ? (
 						<ul aria-label="Browse by country" className="mt-2 flex flex-wrap gap-1.5">
 							{heroCountries.map(([c, n]) => (
-								<li key={c}><Link to="/" search={{ country: c }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-tile-2 px-3 py-1 text-sm text-foreground hover:bg-muted"><span aria-hidden>{countryFlag(c)}</span>{c} <span className="text-muted-foreground tabular-nums">{n.toLocaleString()}</span></Link></li>
+								<li key={c}><Link to="/" search={{ country: c }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-tile-2 px-3 py-1 text-sm text-foreground hover:bg-muted"><span aria-hidden>{countryFlag(c)}</span>{c}</Link></li>
 							))}
 						</ul>
 					) : null}
@@ -170,18 +170,18 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 				</div>
 
 				<div id="subscribe" className="tile-ink reveal flex min-h-[220px] scroll-mt-24 flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 2 }}>
-					<p className="statement">{items ? `${items.toLocaleString()} video prompts, image prompts and skills` : "Video prompts, image prompts and skills"} from creators around the world. Every one is credited and free to copy.</p>
+					<p className="statement">New prompts land every week. Get the best ones in your inbox, each with its video and its creator.</p>
 					<SubscribeForm stacked cta="Subscribe" className="relative" />
 				</div>
 
 				<div className="tile-accent reveal flex min-h-[220px] flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 3 }}>
 					<div>
-						<p className="statement">{langs.length > 1 ? `In ${langs.length} languages, and growing.` : PREMIUM ? `Free samples open in full. Premium opens the rest, from ${fromLabel("USD")} a month.` : "Every prompt and skill here is free."}</p>
+						<p className="statement">{langs.length > 1 ? "Written in many languages, searchable in all of them." : PREMIUM ? `Free samples open in full. Premium opens the rest, from ${fromLabel("USD")} a month.` : "Every prompt and skill here is free."}</p>
 						{langs.length > 1 ? (
 							<ul aria-label="Languages" className="mt-3 flex flex-wrap gap-1.5">
 								{langs.slice(0, 8).map(([code, n]) => (
 									<li key={code}>
-										<Link to="/" search={{ lang: code }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-field-2 px-3 py-1 text-sm text-field-2-ink hover:opacity-90" title={`${n.toLocaleString()} prompts and skills`}>
+										<Link to="/" search={{ lang: code }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-field-2 px-3 py-1 text-sm text-field-2-ink hover:opacity-90">
 											<span aria-hidden>{languageOf(code).flag}</span> {languageOf(code).native}
 										</Link>
 									</li>

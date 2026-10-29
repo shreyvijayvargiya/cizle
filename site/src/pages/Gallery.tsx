@@ -123,7 +123,7 @@ export function GalleryPage({ slug, mode = "all" }: { slug?: string; mode?: Gall
 
 	useHead({
 		enabled: !open && !legacy,
-		title: `${page.h1}: ${total ? total.toLocaleString() : "1,000+"} ${page.nouns} in ${Object.keys(languages).length || 1} languages, with credit | cizle`,
+		title: `${page.h1}: ${page.nouns} with the video, the creator and the original link | cizle`,
 		description: "Browse real video prompts people made with Claude Opus 5.5: motion graphics, explainers, product videos and 3D. Each one credits its creator and links to the original post. Read a free sample, unlock the rest with Premium.",
 		path: page.path,
 	});
@@ -148,7 +148,7 @@ export function GalleryPage({ slug, mode = "all" }: { slug?: string; mode?: Gall
 						{page.h1}
 					</h1>
 					<p className="max-w-[46ch] pb-2 text-lg leading-snug">
-						{total ? `${total.toLocaleString()} real ${page.nouns}` : `Real ${page.nouns}`} in {Object.keys(languages).length || 1} languages: {page.blurb}. Every card credits its creator and links to the original. {PREMIUM ? `${gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.` : "All of them are free to read and copy."}
+						Every one of these made something you can watch. Open a card to read the prompt, copy it, and find the person who wrote it. {PREMIUM ? "Free samples read in full; Premium opens the rest." : "All free to read and copy."}
 					</p>
 				</div>
 
@@ -156,12 +156,12 @@ export function GalleryPage({ slug, mode = "all" }: { slug?: string; mode?: Gall
 					<form role="search" aria-label="Filter prompts" className="flex flex-wrap items-center gap-2 rounded-lg bg-surface p-2" onSubmit={(e) => e.preventDefault()}>
 						<div className="relative w-full sm:w-80">
 							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
-							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the gallery") : setQ(e.target.value))} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
+							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the gallery") : setQ(e.target.value))} placeholder="Search prompts" className="pl-10" aria-label="Search prompts" />
 						</div>
 						<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={languages} className="w-[12.5rem]" />
-						<OptionSelect icon={Globe02Icon} aria-label="Country" value={search.country || ""} onValueChange={(v) => setFilter({ country: v })} emptyLabel="All countries" emptyIcon={Globe02Icon} options={countryCounts.map(([c, n]) => ({ value: c, label: `${countryFlag(c)} ${c} · ${n.toLocaleString()}` }))} className="w-[13rem]" />
-						<OptionSelect icon={Layers01Icon} aria-label="Tool" value={search.tool || ""} onValueChange={(v) => setFilter({ tool: v })} emptyLabel="All tools" emptyIcon={Layers01Icon} options={toolCounts.map(([c, n]) => ({ value: c, label: `${c} · ${n.toLocaleString()}` }))} className="w-[12.5rem]" />
-						<OptionSelect icon={Layers01Icon} aria-label="Topic" value={search.topic || ""} onValueChange={(v) => setFilter({ topic: v })} emptyLabel="All topics" emptyIcon={Layers01Icon} options={topicCounts.map(([c, n]) => ({ value: c, label: `${c} · ${n.toLocaleString()}` }))} className="w-[13rem]" />
+						<OptionSelect icon={Globe02Icon} aria-label="Country" value={search.country || ""} onValueChange={(v) => setFilter({ country: v })} emptyLabel="All countries" emptyIcon={Globe02Icon} options={countryCounts.map(([c, n]) => ({ value: c, label: `${countryFlag(c)} ${c}` }))} className="w-[13rem]" />
+						<OptionSelect icon={Layers01Icon} aria-label="Tool" value={search.tool || ""} onValueChange={(v) => setFilter({ tool: v })} emptyLabel="All tools" emptyIcon={Layers01Icon} options={toolCounts.map(([c, n]) => ({ value: c, label: c }))} className="w-[12.5rem]" />
+						<OptionSelect icon={Layers01Icon} aria-label="Topic" value={search.topic || ""} onValueChange={(v) => setFilter({ topic: v })} emptyLabel="All topics" emptyIcon={Layers01Icon} options={topicCounts.map(([c, n]) => ({ value: c, label: c }))} className="w-[13rem]" />
 						<OptionSelect icon={Layers01Icon} aria-label="Category" value={search.category || ""} onValueChange={(v) => setFilter({ category: v })} emptyLabel="All categories" options={categories.map((c) => ({ value: c, label: categoryLabel(c), icon: categoryIcon(c) }))} className="w-[12.5rem]" />
 						{PREMIUM ? <OptionSelect icon={Layers01Icon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples", icon: ACCESS_ICON.free }, { value: "premium", label: "Premium", icon: ACCESS_ICON.premium }]} className="w-[12rem]" /> : null}
 						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Random" emptyIcon={SORT_ICON.random} options={[{ value: "new", label: "Newest", icon: SORT_ICON.new }, { value: "az", label: "A to Z", icon: SORT_ICON.az }, { value: "long", label: "Longest first", icon: SORT_ICON.long }]} className="w-[12rem]" />
@@ -179,9 +179,9 @@ export function GalleryPage({ slug, mode = "all" }: { slug?: string; mode?: Gall
 				{gallery.data ? <CategoryChips categories={[...allCategories].sort((a, b) => (counts[b] ?? 0) - (counts[a] ?? 0)).slice(0, 24)} counts={counts} value={search.category || ""} onChange={(c) => setFilter({ category: c || undefined })} total={total} /> : null}
 
 				<p className="px-1 py-3 text-lg" aria-live="polite">
-					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? page.noun : page.nouns}${active || locked ? ` of ${total.toLocaleString()}` : ""}. `}
+					{gallery.isLoading ? "Loading prompts…" : locked ? "A small sample. " : active && !list.length ? "" : ""}
 					{locked && gallery.data ? <button type="button" onClick={() => openGate("see every prompt")} className="underline decoration-field-1 decoration-2 underline-offset-4">Sign in free to browse them all.</button> : null}
-					{PREMIUM && !isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : PREMIUM && isPro ? "Premium is unlocked." : null}
+					{PREMIUM && !isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of every prompt from {fromLabel("USD")} a month.</Link> : PREMIUM && isPro ? "Premium is unlocked." : null}
 				</p>
 
 				{gallery.isLoading ? (
@@ -214,11 +214,11 @@ export function GalleryPage({ slug, mode = "all" }: { slug?: string; mode?: Gall
 						</div>
 						{locked ? (
 							<button type="button" onClick={() => openGate("see every prompt")} className="press tile mt-2 flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
-								Sign in free to see the other {(total - list.length).toLocaleString()} prompts
+								Sign in free to see every prompt
 							</button>
 						) : shown < list.length ? (
 							<button type="button" onClick={() => setShown((n) => n + PAGE)} className="press tile mt-2 flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
-								Show {Math.min(PAGE, list.length - shown)} more <span className="text-muted-foreground">· {(list.length - shown).toLocaleString()} left</span>
+								Show more
 							</button>
 						) : null}
 					</>

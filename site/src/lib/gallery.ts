@@ -62,7 +62,7 @@ export function findPrompt(items: GalleryItem[] | undefined, slug: string) {
 	const code = slug.slice(slug.lastIndexOf("-") + 1);
 	return items?.find((g) => g.slug === slug) ?? (code ? items?.find((g) => g.slug.endsWith(`-${code}`)) : undefined);
 }
-export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string };
+export type GalleryFilters = { q?: string; category?: string; access?: string; sort?: string; p?: string; lang?: string; version?: string; country?: string; tool?: string; topic?: string; /** the page a prompt dialog was opened from: "images" or "videos" (the list behind it stays that page) */ from?: string };
 
 /**
  * The classic gallery (/gallery.json, v1 to v3) plus every harvest version published next to it (/versions/<v>/gallery.json). Each version is its own file and

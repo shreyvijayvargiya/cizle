@@ -74,3 +74,8 @@ site/content/learn.json
 
 # wrangler local dev state
 .wrangler/
+
+# audio harvest: originals and previews stay local (rebuilt by audio/harvest.mjs)
+audio/v1/original/
+audio/v1/preview/
+audio/v1/*.log

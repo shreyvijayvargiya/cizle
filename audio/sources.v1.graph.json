@@ -1,0 +1,19 @@
+{
+ "version": "audio-v1",
+ "description": "Background music, sound effects and ambience for AI agents and video tools: openly licensed audio with a name and a file that plays.",
+ "defaults": { "target": 150, "batch": 25, "max_bytes": 20000000, "preview_seconds": 90 },
+ "start": "A01",
+ "nodes": [
+  { "id": "A01", "name": "Wikimedia Commons (audio files)", "adapter": "commons-audio", "url": "https://commons.wikimedia.org/", "verified": true, "license_policy": "CC0, public domain, CC BY, CC BY-SA only; credit kept per file",
+    "notes": "MediaWiki API, filetype:audio search per theme; checked: ~1,800 hits for 'ambient' alone, each file has extmetadata licence + author. robots.txt allows the API." },
+  { "id": "A02", "name": "ccMixter (CC BY music)", "adapter": "ccmixter", "url": "https://ccmixter.org/", "verified": true, "license_policy": "CC BY and CC0 only (no NonCommercial, no NoDerivs)",
+    "notes": "Public JSON query API; robots.txt disallows /Media/, /tags/ only. Files come from the api's download_url." }
+ ],
+ "edges": [["A01", "A02"]],
+ "excluded": [
+  { "name": "Openverse API", "reason": "did not answer from this machine (connection failed); revisit" },
+  { "name": "Freesound / Pixabay / Jamendo / FMA", "reason": "need an API key or login" },
+  { "name": "Internet Archive opensource_audio", "reason": "3M items, mostly speech and radio; licence field unreliable. Not worth the cleaning in v1" },
+  { "name": "YouTube Audio Library, Epidemic, Artlist", "reason": "terms forbid redistribution" }
+ ]
+}

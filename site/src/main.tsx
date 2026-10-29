@@ -7,6 +7,9 @@ import { ThemeProvider } from "@/lib/theme";
 import { router } from "@/router";
 import "./index.css";
 
+// browsers with View Transitions animate page, dialog and theme changes themselves (see index.css); the rest keep the plain CSS animations
+if ("startViewTransition" in document) document.documentElement.classList.add("vt");
+
 const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } } });
 
 // The prerendered HTML in #root is for crawlers and the first paint; React takes over from here.

@@ -5,7 +5,8 @@
 	"description": "cizle skills marketplace: a static-first library of video skills and prompts for Claude Code. Firebase auth, Dodo Payments, no server except one webhook.",
 	"type": "module",
 	"scripts": {
-		"content": "node scripts/build-content.mjs",
+		"content": "node scripts/build-content.mjs && node scripts/build-audio.mjs",
+		"audio": "node scripts/build-audio.mjs",
 		"dev": "npm run content && vite",
 		"build": "npm run content && tsc --noEmit && vite build && node scripts/prerender.mjs",
 		"preview": "vite preview --port 4173",
@@ -37,6 +38,7 @@
 		"fuse.js": "^7.1.0",
 		"hono": "^4.13.13",
 		"jose": "^6.2.13",
+		"motion": "^12.43.0",
 		"radix-ui": "^1.4.3",
 		"react": "^19.1.1",
 		"react-dom": "^19.1.1",

@@ -23,6 +23,9 @@ export const BLOG = Boolean((site as { blogLive?: boolean }).blogLive);
 const ALL_NAV = [
 	{ to: "/", label: "Skills" },
 	{ to: "/gallery", label: "Gallery" },
+	{ to: "/videos", label: "Videos" },
+	{ to: "/images", label: "Images" },
+	{ to: "/audio", label: "Audio" },
 	{ to: "/films", label: "Films" },
 	{ to: "/connect", label: "MCP" },
 	{ to: "/pricing", label: "Pricing" },

@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import { CommandMenu } from "@/layout/CommandMenu";
 import { Footer } from "@/layout/Footer";
 import { Navbar } from "@/layout/Navbar";
+import { MiniPlayer } from "@/components/MiniPlayer";
 import { track } from "@/lib/funnel";
 import { GateProvider } from "@/lib/gate";
 import { useReveal } from "@/lib/reveal";
@@ -45,6 +46,7 @@ export function Layout() {
 				</main>
 				<Footer />
 			</div>
+			<MiniPlayer />
 			<CommandMenu open={searchOpen} onOpenChange={setSearchOpen} />
 			<Toaster theme={resolved} position="bottom-right" richColors closeButton mobileOffset={{ bottom: "max(16px, env(safe-area-inset-bottom))" }} />
 		</Tooltip.Provider>

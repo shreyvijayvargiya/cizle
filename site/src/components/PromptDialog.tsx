@@ -1,8 +1,11 @@
 import { Link, useCanGoBack, useNavigate, useRouter } from "@tanstack/react-router";
 import { Dialog as D } from "radix-ui";
-import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
-import { useEffect, useState } from "react";
+import { ArrowLeft01Icon, ArrowRight01Icon, ArrowUpRight01Icon, Cancel01Icon, FullScreenIcon } from "@hugeicons/core-free-icons";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { CopyButton } from "@/components/CopyButton";
+import { dialogSize, FsControls, FsDrawer, GROW, MoreCue, RelatedSection, useViewport } from "@/components/DialogFullscreen";
+import { PromptCard } from "@/components/PromptCard";
 import { SaveButtons } from "@/components/SaveButtons";
 import { Icon } from "@/components/Icon";
 import { Button } from "@/components/ui/button";
@@ -20,7 +23,7 @@ import { useHead } from "@/lib/head";
 import { isLatinLabel } from "@/lib/utils";
 
 /** The preview of an image prompt: the picture, and a strip of thumbnails when it has several. A picture that does not load is skipped; if none loads, say so and link the source. */
-function ImagePreview({ images, title, sourceUrl }: { images: string[]; title: string; sourceUrl?: string | null }) {
+function ImagePreview({ images, title, sourceUrl, fill }: { images: string[]; title: string; sourceUrl?: string | null; fill?: boolean }) {
 	const [i, setI] = useState(0);
 	const [bad, setBad] = useState<Record<number, boolean>>({});
 	useEffect(() => (setI(0), setBad({})), [images[0]]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -35,7 +38,7 @@ function ImagePreview({ images, title, sourceUrl }: { images: string[]; title: s
 	const cur = bad[i] ? working[0] : i;
 	return (
 		<div className="flex h-full w-full min-w-0 flex-col items-center justify-center gap-3">
-			<img key={cur} src={images[cur]} alt={title} referrerPolicy="no-referrer" onError={() => setBad((b) => ({ ...b, [cur]: true }))} className="min-h-0 max-h-full max-w-full flex-1 rounded-xl object-contain" />
+			<img key={cur} src={images[cur]} alt={title} referrerPolicy="no-referrer" onError={() => setBad((b) => ({ ...b, [cur]: true }))} className={`min-h-0 max-h-full max-w-full flex-1 object-contain ${fill ? "" : "rounded-xl"}`} />
 			{working.length > 1 ? (
 				<div role="tablist" aria-label="Pictures" className="flex max-w-full shrink-0 gap-2 overflow-x-auto pb-1">
 					{working.map((k) => (
@@ -67,7 +70,8 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 	const [videoBad, setVideoBad] = useState(false);
 	const [posterBad, setPosterBad] = useState(false);
 	const [expanded, setExpanded] = useState(false);
-	useSuspendVideos(true);
+	const [fs, setFs] = useState(false);
+	useSuspendVideos(!fs);
 	const recordView = useRecordView();
 	useEffect(() => recordView(statsKey(`p:${item.id}`)), [item.id]); // eslint-disable-line react-hooks/exhaustive-deps
 	const tweetId = /^x-(\d+)$/.exec(item.id)?.[1] || /status\/(\d+)/.exec(item.postUrl || "")?.[1] || null;
@@ -85,7 +89,7 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 
 	useEffect(() => (setVideoBad(false), setPosterBad(false), setExpanded(false)), [item.id]);
 
-	const close = () => (onClose ? onClose() : canGoBack ? router.history.back() : navigate({ to: "/gallery", search: { ...search, p: undefined } as never, resetScroll: false }));
+	const close = () => (onClose ? onClose() : canGoBack ? router.history.back() : navigate({ to: (search.from === "images" ? "/images" : search.from === "videos" ? "/videos" : item.kind === "image-prompt" ? "/images" : "/gallery") as "/gallery", search: { ...search, p: undefined } as never, resetScroll: false }));
 	const go = (g?: GalleryItem) => g && (onGo ? onGo(g) : navigate({ to: "/prompts/$slug", params: { slug: g.slug }, search: search as never, replace: true, resetScroll: false }));
 	useEffect(() => {
 		const onKey = (e: KeyboardEvent) => {
@@ -103,40 +107,21 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 		path: `/prompts/${item.slug}`,
 	});
 
-	return (
-		<D.Root open onOpenChange={(o) => !o && close()}>
-			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim sheet-overlay" />
-				<D.Content
-					className="fixed inset-0 z-50 flex flex-col overflow-y-auto overscroll-contain bg-background outline-none lg:inset-auto lg:top-1/2 lg:left-1/2 lg:h-[min(878px,calc(100dvh-2rem))] lg:w-[min(1320px,calc(100vw-2rem))] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:flex-row lg:overflow-hidden lg:rounded-3xl lg:shadow-e3 lg:[animation:pop-in-c_.2s_var(--ease-out)]"
-					aria-describedby="prompt-desc"
-					tabIndex={-1}
-				>
-					<div className="sticky top-0 z-10 flex h-[44dvh] min-h-[240px] w-full shrink-0 items-center justify-center bg-surface p-3 sm:h-[52dvh] lg:static lg:h-auto lg:min-w-0 lg:flex-1 lg:p-8">
-						<D.Close asChild>
-							<button type="button" aria-label="Close and go back" className="absolute top-3 right-3 z-20 grid size-11 place-items-center rounded-full bg-background/90 text-foreground shadow-md outline-none backdrop-blur focus-visible:ring-2 focus-visible:ring-ring lg:hidden">
-								<Icon icon={Cancel01Icon} size={18} />
-							</button>
-						</D.Close>
-						{item.video && !videoBad ? (
-							<VideoPlayer src={item.video} postUrl={item.postUrl} poster={item.poster} label={`Video: ${item.title}`} onFail={() => setVideoBad(true)} />
-						) : tweetId && !posterBad ? (
-							// the file would not play here: show the post's own player instead (it streams the video the way X does)
-							<iframe title={`Post by ${by}`} src={`https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&dnt=true&hideThread=true&theme=dark`} sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerPolicy="no-referrer" loading="lazy" className="h-full w-full max-w-[560px] rounded-xl border-0 bg-surface" onError={() => setPosterBad(true)} />
-						) : item.images?.length || item.poster ? (
-							// an image prompt: its picture is the preview (all of its pictures when it has several)
-							<ImagePreview images={item.images?.length ? item.images : [item.poster!]} title={item.title} sourceUrl={item.sourceUrl} />
-						) : (
-							<p className="max-w-xs text-center text-lg text-muted-foreground">{versioned ? "This prompt has no picture or video yet." : "No video here yet. Use View post to watch the original."}</p>
-						)}
-						{item.video && videoBad ? (
-							<p className="absolute inset-x-6 bottom-3 flex items-center justify-center gap-3 text-center text-sm text-muted-foreground">
-								The file would not play here.
-								<button type="button" onClick={() => setVideoBad(false)} className="underline underline-offset-2">Try again</button>
-							</p>
-						) : null}
-					</div>
+	const vp = useViewport();
+	const [drawer, setDrawer] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+	const scroller = useRef<HTMLDivElement>(null);
+	// leaving full screen closes the drawer; a new prompt (from the cards below the picture) starts at the top
+	useEffect(() => { if (!fs) (setDrawer(false), setScrolled(false)); }, [fs]);
+	useEffect(() => { scroller.current?.scrollTo({ top: 0 }); setScrolled(false); }, [item.id]);
+	// up to 8 more of the same kind: the same category first, then the rest of the list, never the prompt itself
+	const related = useMemo(() => {
+		const rest = list.filter((g) => g.id !== item.id);
+		const same = rest.filter((g) => g.category && g.category === item.category);
+		return [...same, ...rest.filter((g) => !same.includes(g))].slice(0, 8);
+	}, [list, item.id, item.category]);
 
+	const renderDetails = (inDrawer: boolean) => (
 					<div className="flex w-full min-w-0 shrink-0 flex-col p-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-6 lg:w-[400px] lg:overflow-y-auto lg:p-7">
 						<div className="flex items-center gap-3">
 							<span aria-hidden className="grid size-8 shrink-0 place-items-center rounded-full bg-field-2 text-sm font-semibold text-background">{Array.from(by.replace("@", ""))[0]?.toUpperCase() ?? "?"}</span>
@@ -149,11 +134,15 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 								{item.handle ? <span className="block truncate text-sm text-muted-foreground">@{item.handle}</span> : null}
 							</div>
 							<SaveButtons id={`p:${item.id}`} />
+{inDrawer ? (
+<button type="button" aria-label="Close details" onClick={() => setDrawer(false)} className="grid size-8 place-items-center rounded-full outline-none hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring"><Icon icon={Cancel01Icon} size={16} /></button>
+) : (
 							<D.Close asChild>
 								<button type="button" aria-label="Close and go back" className="hidden size-8 place-items-center rounded-full outline-none hover:bg-tile-2 focus-visible:ring-2 focus-visible:ring-ring lg:grid">
 									<Icon icon={Cancel01Icon} size={16} />
 								</button>
 							</D.Close>
+)}
 						</div>
 
 						<D.Title asChild>
@@ -230,6 +219,69 @@ export function PromptDialog({ item, search, list = [], onClose, onGo }: { item:
 							</div>
 						</div>
 					</div>
+	);
+
+	return (
+		<D.Root open onOpenChange={(o) => !o && close()}>
+			<D.Portal>
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim sheet-overlay vt-overlay" />
+				<D.Content asChild aria-describedby="prompt-desc" tabIndex={-1} onEscapeKeyDown={(e) => { if (fs) (e.preventDefault(), drawer ? setDrawer(false) : setFs(false)); }}>
+					{/* the dialog is a motion.div: full screen grows its width and height from the card to the whole window (one ease), the details pane folds away */}
+					<motion.div
+						initial={false}
+						animate={vp.lg ? dialogSize(vp, fs, 1320, 878) : undefined}
+						transition={GROW}
+						className={`vt-modal fixed inset-0 z-50 flex flex-col overscroll-contain bg-background outline-none lg:inset-auto lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:overflow-hidden lg:shadow-e3 ${fs ? "overflow-hidden" : "overflow-y-auto lg:flex-row"}`}
+					>
+						<div ref={scroller} className={fs ? "relative z-0 h-full w-full overflow-y-auto overscroll-contain" : "contents"} onScroll={fs ? (e) => setScrolled(e.currentTarget.scrollTop > 40) : undefined}>
+							<div className={fs ? "relative flex h-dvh w-full shrink-0 items-center justify-center bg-black p-0" : "sticky top-0 z-10 flex h-[44dvh] min-h-[240px] w-full shrink-0 items-center justify-center bg-surface p-3 sm:h-[52dvh] lg:static lg:h-auto lg:min-w-0 lg:flex-1 lg:p-8"}>
+								{!fs ? (
+									<D.Close asChild>
+										<button type="button" aria-label="Close and go back" className="absolute top-3 right-3 z-20 grid size-11 place-items-center rounded-full bg-background/90 text-foreground shadow-md outline-none backdrop-blur focus-visible:ring-2 focus-visible:ring-ring lg:hidden">
+											<Icon icon={Cancel01Icon} size={18} />
+										</button>
+									</D.Close>
+								) : null}
+						{item.video && !videoBad ? (
+							<VideoPlayer src={item.video} postUrl={item.postUrl} poster={item.poster} label={`Video: ${item.title}`} onFail={() => setVideoBad(true)} mini={{ title: item.title, slug: item.slug, search }} fill={fs} fullscreen={fs} onFullscreen={() => setFs((f) => !f)} onDrawer={fs ? () => setDrawer((d) => !d) : undefined} drawerOpen={drawer} />
+						) : tweetId && !posterBad ? (
+							// the file would not play here: show the post's own player instead (it streams the video the way X does)
+							<iframe title={`Post by ${by}`} src={`https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&dnt=true&hideThread=true&theme=dark`} sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerPolicy="no-referrer" loading="lazy" className="h-full w-full max-w-[560px] rounded-xl border-0 bg-surface" onError={() => setPosterBad(true)} />
+						) : item.images?.length || item.poster ? (
+							// an image prompt: its picture is the preview (all of its pictures when it has several)
+							<ImagePreview images={item.images?.length ? item.images : [item.poster!]} title={item.title} sourceUrl={item.sourceUrl} fill={fs} />
+						) : (
+							<p className="max-w-xs text-center text-lg text-muted-foreground">{versioned ? "This prompt has no picture or video yet." : "No video here yet. Use View post to watch the original."}</p>
+						)}
+						{item.video && videoBad ? (
+							<p className="absolute inset-x-6 bottom-3 flex items-center justify-center gap-3 text-center text-sm text-muted-foreground">
+								The file would not play here.
+								<button type="button" onClick={() => setVideoBad(false)} className="underline underline-offset-2">Try again</button>
+							</p>
+						) : null}
+					
+								{!item.video || videoBad ? (
+									<button type="button" onClick={() => setFs((f) => !f)} aria-label={fs ? "Exit full screen" : "Full screen"} className="press absolute right-3 bottom-3 z-20 grid size-10 place-items-center rounded-full bg-background/90 text-foreground shadow-md outline-none backdrop-blur hover:bg-background focus-visible:ring-2 focus-visible:ring-ring"><Icon icon={FullScreenIcon} size={18} /></button>
+								) : null}
+								{fs && related.length && !scrolled ? <MoreCue label="More like this" /> : null}
+							</div>
+							{fs ? (
+								<RelatedSection title={item.kind === "image-prompt" ? "More image prompts" : "More video prompts"}>
+									{related.map((g) => <li key={g.id}><PromptCard item={g} search={search} /></li>)}
+								</RelatedSection>
+							) : null}
+							{/* the details card: the right side of the dialog; in full screen the same card lives in the drawer */}
+							<AnimatePresence initial={false}>
+								{!fs ? (
+									<motion.div key="details" initial={vp.lg ? { opacity: 0, width: 0 } : { opacity: 0 }} animate={vp.lg ? { opacity: 1, width: 400 } : { opacity: 1 }} exit={vp.lg ? { opacity: 0, width: 0 } : { opacity: 0 }} transition={GROW} className="flex w-full shrink-0 flex-col overflow-hidden lg:overflow-visible">
+										{renderDetails(false)}
+									</motion.div>
+								) : null}
+							</AnimatePresence>
+						</div>
+						{fs ? <FsControls onExit={() => setFs(false)} onDrawer={() => setDrawer((d) => !d)} drawerOpen={drawer} /> : null}
+						<FsDrawer open={fs && drawer} onClose={() => setDrawer(false)}>{renderDetails(true)}</FsDrawer>
+					</motion.div>
 				</D.Content>
 			</D.Portal>
 		</D.Root>

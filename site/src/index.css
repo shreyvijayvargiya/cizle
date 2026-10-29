@@ -258,3 +258,62 @@ button, [role="button"], [role="tab"], [role="menuitem"], [role="option"] { -web
 .scrim { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
 @media (prefers-reduced-transparency: reduce) { .glass { background: var(--background); -webkit-backdrop-filter: none; backdrop-filter: none; } .scrim { -webkit-backdrop-filter: none; backdrop-filter: none; } }
 @media (prefers-contrast: more) { .glass { background: var(--background); -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: 0 0 0 1px var(--input); } }
+
+/* Route change and card grids. Occasional (a page or a grid per visit): ease-out, transform and opacity only. `backwards` fill so the hover lift still works once it ends. */
+@keyframes card-in { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+.card-in { animation: card-in .32s var(--ease-out) backwards; animation-delay: calc(var(--ci, 0) * 40ms); }
+:nth-child(2) > .card-in { --ci: 1; } :nth-child(3) > .card-in { --ci: 2; } :nth-child(4) > .card-in { --ci: 3; } :nth-child(5) > .card-in { --ci: 4; } :nth-child(6) > .card-in { --ci: 5; } :nth-child(7) > .card-in { --ci: 6; } :nth-child(8) > .card-in { --ci: 7; } :nth-child(9) > .card-in { --ci: 8; } :nth-child(n+10) > .card-in { --ci: 0; }
+@media (prefers-reduced-motion: reduce) { .card-in { animation: fade-in .2s ease backwards; animation-delay: 0s; } }
+
+/* Audio: play/pause toggle and the seek bar. Press feedback on transform only; the thumb is a plain circle on the ink colour. */
+.play-btn { transition: transform .14s var(--ease-out), background-color .15s ease; }
+@media (hover: hover) and (pointer: fine) { .play-btn:hover { transform: scale(1.06); } .play-btn:active { transform: scale(.94); } }
+.seek { -webkit-appearance: none; appearance: none; height: 20px; background: transparent; cursor: pointer; }
+.seek::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: var(--tile-2); }
+.seek::-moz-range-track { height: 4px; border-radius: 2px; background: var(--tile-2); }
+.seek::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 50%; background: var(--field-1); }
+.seek::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: var(--field-1); }
+
+/* View transitions (Chrome, Edge, Safari). Three kinds, set by the router and the theme switch:
+   page   a new page: the old one fades out fast, the new one rises in (ease-out, 160ms out, 280ms in)
+   modal  a dialog opens or closes over its list: the page stays still; the dialog and its scrim move on their own (below)
+   theme  light/dark: the new theme grows as a circle from the control that was pressed (the circle itself is drawn in theme.tsx) */
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(12px); } }
+@keyframes vt-modal-in { from { opacity: 0; transform: translateY(18px) scale(.96); } }
+@keyframes vt-modal-out { to { opacity: 0; transform: translateY(10px) scale(.98); } }
+@keyframes vt-sheet-in { from { transform: translateY(100%); } }
+@keyframes vt-sheet-out { to { transform: translateY(100%); } }
+::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; animation-duration: .28s; animation-timing-function: var(--ease-out); }
+:root:active-view-transition-type(page)::view-transition-old(root) { animation: vt-out .16s var(--ease-out) both; }
+:root:active-view-transition-type(page)::view-transition-new(root) { animation: vt-in .28s var(--ease-out) .06s both; }
+:root:active-view-transition-type(modal)::view-transition-old(root), :root:active-view-transition-type(modal)::view-transition-new(root) { animation: none; }
+:root:active-view-transition-type(theme)::view-transition-old(root) { animation: none; z-index: 1; }
+:root:active-view-transition-type(theme)::view-transition-new(root) { animation: none; z-index: 2; }
+.vt-modal { view-transition-name: vt-modal; }
+.vt-overlay { view-transition-name: vt-overlay; }
+.vt .vt-modal, .vt .vt-overlay { animation: none !important; }
+::view-transition-group(vt-modal) { animation-duration: .3s; animation-timing-function: var(--ease-drawer); }
+::view-transition-new(vt-modal):only-child { animation: vt-modal-in .3s var(--ease-drawer) both; }
+::view-transition-old(vt-modal):only-child { animation: vt-modal-out .18s var(--ease-out) both; }
+::view-transition-new(vt-overlay):only-child { animation: fade-in .22s var(--ease-out) both; }
+::view-transition-old(vt-overlay):only-child { animation: vt-out .16s var(--ease-out) both; }
+@media (max-width: 639px) {
+	::view-transition-new(vt-modal):only-child { animation: vt-sheet-in .34s var(--ease-drawer) both; }
+	::view-transition-old(vt-modal):only-child { animation: vt-sheet-out .22s var(--ease-out) both; }
+}
+@media (prefers-reduced-motion: reduce) {
+	:root:active-view-transition-type(page)::view-transition-old(root) { animation: vt-out .12s ease both; }
+	:root:active-view-transition-type(page)::view-transition-new(root) { animation: fade-in .2s ease both; }
+	::view-transition-new(vt-modal):only-child { animation: fade-in .2s ease both; }
+	::view-transition-old(vt-modal):only-child { animation: vt-out .12s ease both; }
+}
+
+/* Mini player: rises from the bottom right corner it lives in (ease-drawer, 280ms); reduced motion just fades. */
+@keyframes mini-in { from { opacity: 0; transform: translateY(20px) scale(.96); } }
+.mini-in { animation: mini-in .28s var(--ease-drawer); transform-origin: bottom right; }
+@media (prefers-reduced-motion: reduce) { .mini-in { animation: fade-in .2s ease; } }
+
+/* video volume slider: a short bar with a round thumb, white on the dark toolbar */
+.vol::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+.vol::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #fff; }

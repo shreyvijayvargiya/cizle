@@ -8,7 +8,7 @@ export function SkillCard({ skill, search, inSearch }: { skill: SkillMeta; searc
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const lp: any = inSearch !== undefined ? { to: "/search", search: { q: inSearch || undefined, s: skill.slug } } : { to: "/skills/$slug", params: { slug: skill.slug }, search };
 	return (
-		<article className="lift group/card relative h-full">
+		<article className="lift card-in group/card relative h-full">
 			<Link {...lp} aria-label={skill.name} className="group block h-full overflow-hidden rounded-lg bg-surface outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring">
 				<SkillThumb skill={skill} />
 			</Link>

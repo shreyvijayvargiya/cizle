@@ -37,7 +37,7 @@ export function LanguageSelect({ value, onChange, counts, className }: { value: 
 			<P.Portal>
 				<P.Content align="start" sideOffset={6} className="menu-pop z-50 w-[19rem] overflow-hidden rounded-lg border border-input bg-background text-[13px] shadow-2xl shadow-black/20" style={{ transformOrigin: "var(--radix-popover-content-transform-origin)" }}>
 					<Command shouldFilter={false} loop>
-						<CommandInput value={q} onValueChange={setQ} placeholder={`Search ${rows.length} languages…`} autoFocus />
+						<CommandInput value={q} onValueChange={setQ} placeholder="Search languages…" autoFocus />
 						<CommandList className="max-h-72">
 							<CommandEmpty>No language matches “{q}”.</CommandEmpty>
 							<CommandGroup>
@@ -45,7 +45,6 @@ export function LanguageSelect({ value, onChange, counts, className }: { value: 
 									<CommandItem value="all" onSelect={() => pick("")} className="gap-2">
 										<Icon icon={Globe02Icon} size={16} className="text-muted-foreground" />
 										<span className="flex-1">All languages</span>
-										<span className="text-muted-foreground tabular-nums">{total.toLocaleString()}</span>
 										{!value ? <Icon icon={Tick02Icon} size={13} /> : null}
 									</CommandItem>
 								) : null}
@@ -56,7 +55,6 @@ export function LanguageSelect({ value, onChange, counts, className }: { value: 
 											<span className="truncate">{r.native}</span>
 											{r.native !== r.name ? <span className="truncate text-xs text-muted-foreground">{r.name}</span> : null}
 										</span>
-										<span className="text-muted-foreground tabular-nums">{r.n.toLocaleString()}</span>
 										{value === r.code ? <Icon icon={Tick02Icon} size={13} /> : null}
 									</CommandItem>
 								))}

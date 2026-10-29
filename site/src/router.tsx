@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute, createRoute, createRouter, useParams } from "@tanstack/react-router";
+import { Outlet, createRootRoute, createRoute, createRouter, useParams, useSearch } from "@tanstack/react-router";
 import { Layout } from "@/layout/Layout";
 import { BlogPage, BlogPostPage } from "@/pages/Blog";
 import { ConnectPage } from "@/pages/Connect";
@@ -18,6 +18,7 @@ import { SubscribePage } from "@/pages/Subscribe";
 import { SearchPage } from "@/pages/Search";
 import { ExploreRoute } from "@/pages/Explore";
 import { SavedPage } from "@/pages/Saved";
+import { AudioPage } from "@/pages/Audio";
 import { SettingsPage } from "@/pages/Settings";
 import { ReversePage } from "@/pages/Reverse";
 import type { Filters } from "@/lib/data";
@@ -39,10 +40,17 @@ function SkillRoute() {
 }
 const post = createRoute({ getParentRoute: () => root, path: "/blog/$slug", component: function PostRoute() { const { slug } = useParams({ from: "/blog/$slug" }); return <BlogPostPage slug={slug} />; } });
 
-const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic) });
+const galleryFilters = (s: Record<string, unknown>): GalleryFilters => ({ from: str(s.from), q: str(s.q), category: str(s.category), access: str(s.access), sort: str(s.sort), p: str(s.p), lang: str(s.lang), version: str(s.version), country: str(s.country), tool: str(s.tool), topic: str(s.topic) });
 const gallery = createRoute({ getParentRoute: () => root, path: "/gallery", validateSearch: galleryFilters, component: GalleryPage });
 
-const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} />; } });
+const audioFilters = (s: Record<string, unknown>) => ({ q: str(s.q), kind: str(s.kind), length: str(s.length), tag: str(s.tag), license: str(s.license), version: str(s.version), sort: str(s.sort) });
+const audio = createRoute({ getParentRoute: () => root, path: "/audio", validateSearch: audioFilters, component: () => <AudioPage /> });
+const audioClip = createRoute({ getParentRoute: () => root, path: "/audio/$slug", validateSearch: audioFilters, component: function AudioClipRoute() { const { slug } = useParams({ from: "/audio/$slug" }); return <AudioPage slug={slug} />; } });
+
+const images = createRoute({ getParentRoute: () => root, path: "/images", validateSearch: galleryFilters, component: () => <GalleryPage mode="images" /> });
+const videos = createRoute({ getParentRoute: () => root, path: "/videos", validateSearch: galleryFilters, component: () => <GalleryPage mode="videos" /> });
+
+const prompt = createRoute({ getParentRoute: () => root, path: "/prompts/$slug", validateSearch: galleryFilters, component: function PromptRoute() { const { slug } = useParams({ from: "/prompts/$slug" }); const { from } = useSearch({ from: "/prompts/$slug" }); return <GalleryPage slug={slug} mode={from === "images" || from === "videos" ? from : "all"} />; } });
 
 /** The film is a static page (public/launch.html). The dev server and hosts without clean URLs reach it through this route. */
 const searchRoute = createRoute({ getParentRoute: () => root, path: "/search", component: SearchPage, validateSearch: (s: Record<string, unknown>): { q?: string; p?: string; s?: string; format?: string } => ({ q: str(s.q), p: str(s.p), s: str(s.s), format: str(s.format) }) });
@@ -56,6 +64,10 @@ const tree = root.addChildren([
 	home,
 	skill,
 	gallery,
+	images,
+	videos,
+	audio,
+	audioClip,
 	prompt,
 	launch,
 	r("/sources", CreatorsPage),
@@ -80,7 +92,9 @@ const tree = root.addChildren([
 	settings,
 ]);
 
-export const router = createRouter({ routeTree: tree, defaultPreload: "intent", scrollRestoration: true, defaultNotFoundComponent: NotFound });
+/** a skill, prompt or clip opened over its list: the page stays, only the dialog moves */
+const isModalPath = (p: string) => /^\/(skills|prompts|audio)\/[^/]+\/?$/.test(p);
+export const router = createRouter({ routeTree: tree, defaultViewTransition: { types: ({ fromLocation, toLocation }) => (!fromLocation || fromLocation.pathname === toLocation.pathname ? false : [isModalPath(fromLocation.pathname) || isModalPath(toLocation.pathname) ? "modal" : "page"]) }, defaultPreload: "intent", scrollRestoration: true, defaultNotFoundComponent: NotFound });
 declare module "@tanstack/react-router" {
 	interface Register {
 		router: typeof router;

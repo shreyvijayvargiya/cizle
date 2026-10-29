@@ -47,7 +47,7 @@ function Group({ facet, value, onSelect }: { facet: Facet; value?: string; onSel
 									<Check on={on} />
 									{o.flag ? <span aria-hidden className="text-base leading-none">{o.flag}</span> : o.icon ? <Icon icon={o.icon} size={15} className="text-muted-foreground" /> : null}
 									<span className="min-w-0 flex-1 truncate">{o.label}</span>
-									{o.count != null ? <span className="text-sm text-muted-foreground tabular-nums">{o.count.toLocaleString()}</span> : null}
+									
 								</a>
 							</li>
 						);

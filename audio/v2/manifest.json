@@ -1,0 +1,37 @@
+{
+ "version": "audio-v2",
+ "label": "Indian",
+ "finished_at": "2026-10-29T19:32:02.208Z",
+ "records": 193,
+ "sources": {
+  "B01": 34,
+  "B02": 25,
+  "B03": 29,
+  "B04": 105
+ },
+ "kinds": {
+  "music": 193
+ },
+ "formats": {
+  "ogg": 138,
+  "wav": 26,
+  "oga": 3,
+  "mp3": 13,
+  "opus": 4,
+  "flac": 9
+ },
+ "licenses": {
+  "CC BY-SA 4.0": 49,
+  "CC BY-SA 3.0": 31,
+  "CC BY 4.0": 17,
+  "Public domain": 26,
+  "CC0": 9,
+  "CC BY 3.0": 60,
+  "CC BY-SA 2.5 in": 1
+ },
+ "first_fetched": "2026-10-29T19:22:19.718Z",
+ "last_fetched": "2026-10-29T19:31:49.260Z",
+ "folder": "audio/v2",
+ "site": "site/public/audio.json + site/public/audio/v2/",
+ "note": "Indian-theme music; B05 (ccMixter) and B06 (Internet Archive) gave 0 clips after the licence and relevance filters"
+}

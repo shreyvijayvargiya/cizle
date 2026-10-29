@@ -1,7 +1,7 @@
 /** The cizle MCP server: search and open the whole library from Claude. Stateless, so it runs as a serverless function. */
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { find, loadIndex, openAccess, publicRow, search, table, SITE_URL } from "./catalog.js";
+import { find, loadIndex, openAccess, publicRow, readJson, search, table, SITE_URL } from "./catalog.js";
 import { detailMarkdown, getDetail } from "./items.js";
 
 const NAME = "cizle";
@@ -61,6 +61,67 @@ export function buildMcpServer({ who, origin }) {
 				return text(detailMarkdown(d), d);
 			} catch (e) {
 				return fail(`Could not open it: ${e.message}`);
+			}
+		},
+	);
+
+	const audioIndex = async () => {
+		const d = await readJson("audio.json", origin);
+		return d.items.map((a) => ({ ...a, id: `audio:${a.slug}`, hay: `${a.title} ${a.tags.join(" ")} ${a.creator} ${a.kind} ${a.description}`.toLowerCase() }));
+	};
+	const audioRow = ({ hay, ...a }) => ({ ...a, url: `${SITE_URL}/audio/${a.slug}`, file: `${SITE_URL}${a.src}` });
+
+	server.registerTool(
+		"search_audio",
+		{
+			title: "Search background music, sound effects and ambience",
+			description: "Find audio clips for a video. Each row has a name, kind (music, sfx or ambience), length, tags, credit and licence. Returns a markdown table (show it to the user as it is). Open one with `get_audio` to get the prompt and the file link. With no query it browses.",
+			inputSchema: {
+				query: z.string().optional().describe("What the sound is or feels like, e.g. 'calm piano', 'door bell', 'rain', 'epic trailer'"),
+				kind: z.enum(["all", "music", "sfx", "ambience"]).optional().describe("music = tracks, sfx = short effects, ambience = places and weather. Default all."),
+				length: z.enum(["any", "short", "medium", "long"]).optional().describe("short under 10 s, medium 10-60 s, long over 60 s"),
+				limit: z.number().int().min(1).max(50).optional().describe("Rows per page, default 20"),
+				cursor: z.string().optional().describe("The `nextCursor` from the previous page"),
+			},
+			annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+		},
+		async (args) => {
+			try {
+				const words = (args.query || "").toLowerCase().split(/\s+/).filter(Boolean);
+				let rows = await audioIndex();
+				if (args.kind && args.kind !== "all") rows = rows.filter((r) => r.kind === args.kind);
+				if (args.length && args.length !== "any") rows = rows.filter((r) => r.length === args.length);
+				if (words.length) rows = rows.filter((r) => words.every((w) => r.hay.includes(w)));
+				const limit = Math.min(50, Math.max(1, args.limit || 20));
+				const offset = args.cursor ? Number(Buffer.from(String(args.cursor), "base64url").toString().replace(/^o:/, "")) || 0 : 0;
+				const page = rows.slice(offset, offset + limit);
+				const next = offset + limit < rows.length ? Buffer.from(`o:${offset + limit}`).toString("base64url") : null;
+				const md = page.length ? `| # | Kind | Name | Length | Tags | Id |\n|---|---|---|---|---|---|\n${page.map((r, i) => `| ${i + 1} | ${r.kind} | ${r.title.replace(/\|/g, "/").slice(0, 70)} | ${Math.round(r.duration)} s | ${r.tags.slice(0, 3).join(", ")} | \`${r.id}\` |`).join("\n")}` : "_No matches._";
+				return text(`${rows.length} clip${rows.length === 1 ? "" : "s"}${args.query ? ` for "${args.query}"` : ""}. Showing ${rows.length ? offset + 1 : 0}-${offset + page.length}.\n\n${md}${next ? `\n\nMore: call \`search_audio\` again with cursor \`${next}\`.` : ""}`, { total: rows.length, offset, nextCursor: next, items: page.map(audioRow).map(({ prompt, description, ...x }) => x) });
+			} catch (e) {
+				return fail(`Audio search failed: ${e.message}`);
+			}
+		},
+	);
+
+	server.registerTool(
+		"get_audio",
+		{
+			title: "Open one audio clip",
+			description: "One clip in full: its prompt (how to use it), credit, licence, the page where it can be played, and `file`, the link to the MP3 preview you can download and put into a video. Pass an Id from `search_audio`, like `audio:rise-of-legends-by-sascha-ende-cc-by`.",
+			inputSchema: { id: z.string().describe("An Id from the search_audio table") },
+			annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
+		},
+		async ({ id }) => {
+			try {
+				const slug = String(id).replace(/^audio:/, "");
+				const row = (await audioIndex()).find((r) => r.slug === slug);
+				if (!row) return fail(`No clip with the id "${id}". Use \`search_audio\` to find the right Id.`);
+				const a = audioRow(row);
+				const md = [`# ${a.title}`, "", `${a.kind} · ${Math.round(a.duration)} s · ${a.tags.join(", ")}`, "", "## Prompt", "", a.prompt, "", `Play it: ${a.url}`, `Audio file (MP3 preview, up to 90 s): ${a.file}`, `Original: ${a.sourceUrl}`, `Credit: ${a.creator}, ${a.license}. Keep the credit when you use it.`].join("\n");
+				return text(md, a);
+			} catch (e) {
+				return fail(`Could not open the clip: ${e.message}`);
 			}
 		},
 	);

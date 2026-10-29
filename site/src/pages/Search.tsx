@@ -91,7 +91,7 @@ export function SearchPage() {
 						autoFocus
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						placeholder={`Search ${((gallery.data?.total ?? 0) + (skills.data?.skills.length ?? 0) || 8000).toLocaleString()} prompts and skills`}
+						placeholder="Search prompts and skills"
 						aria-label="Search prompts and skills"
 						className="h-16 w-full rounded-full border border-neutral-300 bg-white pr-14 pl-14 text-xl text-neutral-950 shadow-sm outline-none placeholder:text-neutral-400 focus:border-neutral-500 focus:ring-4 focus:ring-neutral-300/60"
 					/>
@@ -102,7 +102,7 @@ export function SearchPage() {
 					) : null}
 				</form>
 				<p className="mt-3 text-center text-base text-muted-foreground" aria-live="polite">
-					{loading ? "Loading the library…" : q ? `${(skillList.length + promptList.length).toLocaleString()} results for "${q}"` : "Try one of these, or type your own:"}
+					{loading ? "Loading the library…" : q ? `Results for "${q}"` : "Try one of these, or type your own:"}
 				</p>
 				{!q ? (
 					<ul className="mt-3 flex flex-wrap justify-center gap-2">
@@ -126,7 +126,7 @@ export function SearchPage() {
 							</ul>
 							{shown < entries.length ? (
 								<button type="button" onClick={() => setShown((n) => n + PAGE)} className="press tile mt-2 flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
-									Show {Math.min(PAGE, entries.length - shown)} more <span className="text-muted-foreground">· {(entries.length - shown).toLocaleString()} left</span>
+									Show more
 								</button>
 							) : null}
 						</>

@@ -170,9 +170,9 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 							Skills and prompts
 						</h2>
 						<p className="max-w-[44ch] text-lg leading-snug" aria-live="polite">
-							{skills.isLoading ? "Loading…" : `${skillList.length} skills and ${promptList.length.toLocaleString()} prompts${active || locked ? ` ${locked ? "to start with, of" : "match, of"} ${total} and ${promptTotal.toLocaleString()}` : ""}.`}{" "}
+							{skills.isLoading ? "Loading…" : locked ? "A small sample to start with." : active ? "What matches." : ""}{" "}
 							{locked && skills.data ? <button type="button" onClick={() => openGate("see the whole library")} className="underline decoration-field-1 decoration-2 underline-offset-4">Sign in free to see them all.</button> : null}{" "}
-							{PREMIUM ? (!isPro ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock {lockedPrompts > 0 ? lockedPrompts.toLocaleString() : "all"} full prompts and {total - freeCount || 36} premium skills.</Link> : <span>Premium is unlocked.</span>) : <span>All free. <Link to="/subscribe" className="underline decoration-field-1 decoration-2 underline-offset-4">Subscribe</Link> for new ones.</span>}
+							{PREMIUM ? (!isPro ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock every full prompt and premium skill.</Link> : <span>Premium is unlocked.</span>) : <span>All free. <Link to="/subscribe" className="underline decoration-field-1 decoration-2 underline-offset-4">Subscribe</Link> for new ones.</span>}
 						</p>
 					</div>
 
@@ -193,7 +193,7 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 						</Sheet>
 						<form role="search" aria-label="Search skills and prompts" className="relative min-w-[12rem] flex-1 sm:max-w-md" onSubmit={(e) => e.preventDefault()}>
 							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
-							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the library") : setQ(e.target.value))} placeholder={`Search ${(total + promptTotal).toLocaleString()} skills and prompts`} className="pl-10" aria-label="Search skills and prompts" />
+							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the library") : setQ(e.target.value))} placeholder="Search skills and prompts" className="pl-10" aria-label="Search skills and prompts" />
 						</form>
 						<div className="ml-auto flex flex-wrap items-center gap-2">
 							{active ? (
@@ -245,13 +245,13 @@ export function ExplorerPage({ slug }: { slug?: string }) {
 							{locked ? (
 								<div className="mt-2">
 									<button type="button" onClick={() => openGate("see the whole library")} className="press tile flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
-										Sign in free to see the other {Math.max(0, promptTotal - promptList.length).toLocaleString()} prompts
+										Sign in free to see every prompt
 									</button>
 								</div>
 							) : shown < mixed.length ? (
 								<div className="mt-2">
 									<button type="button" onClick={() => setShown((n) => n + PAGE)} className="press tile flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
-										Show {Math.min(PAGE, mixed.length - shown)} more <span className="text-muted-foreground">· {(mixed.length - shown).toLocaleString()} left</span>
+										Show more
 									</button>
 								</div>
 							) : null}

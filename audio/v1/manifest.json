@@ -1,0 +1,36 @@
+{
+ "version": "audio-v1",
+ "finished_at": "2026-10-29T14:59:10.381Z",
+ "records": 180,
+ "sources": {
+  "A01": 179,
+  "A02": 1
+ },
+ "kinds": {
+  "music": 106,
+  "sfx": 23,
+  "ambience": 51
+ },
+ "lengths": {
+  "long": 125,
+  "short": 9,
+  "medium": 46
+ },
+ "licenses": {
+  "CC BY 3.0": 37,
+  "CC BY 4.0": 30,
+  "Public domain": 36,
+  "CC BY-SA 4.0": 38,
+  "CC BY 3.0 us": 4,
+  "CC0": 8,
+  "Attribution (3.0)": 1,
+  "CC BY-SA 3.0": 18,
+  "CC BY 2.5": 6,
+  "CC BY-SA 3.0 au": 2
+ },
+ "first_fetched": "2026-10-29T14:44:46.070Z",
+ "last_fetched": "2026-10-29T14:58:48.239Z",
+ "folder": "audio/v1",
+ "site": "site/public/audio.json + site/public/audio/v1/",
+ "note": "first audio harvest; 20 spoken or oversize tracks removed by audio/clean.mjs"
+}

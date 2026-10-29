@@ -54,11 +54,11 @@ export function CategoryChips({ categories, counts, value, onChange, total }: { 
 	return (
 		<div role="group" aria-label="Categories" className="mt-2 flex flex-wrap gap-2">
 			<button type="button" aria-pressed={!value} onClick={() => onChange("")} className={`${chip} ${!value ? "bg-primary text-primary-foreground" : "bg-surface hover:bg-tile-2"}`}>
-				<Icon icon={FilterHorizontalIcon} size={17} /> All <span className="opacity-70">{total.toLocaleString()}</span>
+				<Icon icon={FilterHorizontalIcon} size={17} /> All
 			</button>
 			{categories.map((c) => (
 				<button key={c} type="button" aria-pressed={value === c} onClick={() => onChange(value === c ? "" : c)} className={`${chip} ${value === c ? "bg-primary text-primary-foreground" : "bg-surface hover:bg-tile-2"}`}>
-					<Icon icon={categoryIcon(c)} size={17} /> {categoryLabel(c)} <span className="opacity-70">{counts[c] ?? 0}</span>
+					<Icon icon={categoryIcon(c)} size={17} /> {categoryLabel(c)}
 				</button>
 			))}
 		</div>

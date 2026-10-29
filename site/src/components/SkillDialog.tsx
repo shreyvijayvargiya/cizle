@@ -56,9 +56,9 @@ export function SkillDialog({ slug, list, search, onClose, onGo }: { slug: strin
 	return (
 		<D.Root open onOpenChange={(o) => !o && close()}>
 			<D.Portal>
-				<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim sheet-overlay" />
+				<D.Overlay className="fixed inset-0 z-50 bg-black/45 scrim sheet-overlay vt-overlay" />
 				<D.Content
-					className="fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col sheet-up overflow-hidden rounded-t-3xl border border-border bg-background shadow-e3 outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-2xl sm:[animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)]"
+					className="vt-modal fixed inset-x-0 bottom-0 z-50 flex max-h-[94dvh] flex-col sheet-up overflow-hidden rounded-t-3xl border border-border bg-background shadow-e3 outline-none sm:inset-x-auto sm:top-[4vh] sm:bottom-auto sm:left-1/2 sm:max-h-[92dvh] sm:w-[min(60rem,calc(100vw-2rem))] sm:-translate-x-1/2 sm:rounded-2xl sm:[animation:pop-in_.2s_cubic-bezier(0.23,1,0.32,1)]"
 					aria-describedby="skill-desc"
 					onOpenAutoFocus={(e) => {
 						// Land on the dialog itself, not on the first arrow (which would pop its tooltip open).

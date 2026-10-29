@@ -1,0 +1,38 @@
+{
+ "version": "audio-v2",
+ "label": "Indian",
+ "description": "Indian-theme music for AI video: classical (Hindustani, Carnatic), folk, devotional, instruments (sitar, tabla, bansuri, veena) and Indian-style background tracks. Openly licensed, each file with a name and a credit.",
+ "defaults": { "target": 200, "batch": 25, "max_bytes": 20000000, "preview_seconds": 90 },
+ "overlap_policy": "No node repeats a node of sources.v1.graph.json: every v2 node has its own query scope and its own url (checked by audio/check-graph.mjs). At clip level, nothing already stored in audio/v1 is stored again (same source key, same file hash, or same title).",
+ "start": "B01",
+ "nodes": [
+  { "id": "B01", "name": "Wikimedia Commons: category tree Music of India", "adapter": "commons-audio", "url": "https://commons.wikimedia.org/w/index.php?search=filetype%3Aaudio+deepcat%3A%22Music+of+India%22&ns6=1", "scope": "deepcat:\"Music of India\"", "verified": true, "expect": 700,
+    "config": { "queries": [{ "q": "deepcat:\"Music of India\"", "kind": "music", "tags": ["indian"] }] }, "license_policy": "CC0, public domain, CC BY, CC BY-SA", "notes": "702 audio files in the category tree (checked with the MediaWiki search API). v1 A01 searched 33 general themes, not categories." },
+  { "id": "B02", "name": "Wikimedia Commons: category tree Carnatic music", "adapter": "commons-audio", "url": "https://commons.wikimedia.org/w/index.php?search=filetype%3Aaudio+deepcat%3A%22Carnatic+music%22&ns6=1", "scope": "deepcat:\"Carnatic music\"", "verified": true, "expect": 148,
+    "config": { "queries": [{ "q": "deepcat:\"Carnatic music\"", "kind": "music", "tags": ["indian", "carnatic", "classical"] }] }, "notes": "148 audio files, several are WAV (kept as WAV originals)." },
+  { "id": "B03", "name": "Wikimedia Commons: category tree Musical instruments of India", "adapter": "commons-audio", "url": "https://commons.wikimedia.org/w/index.php?search=filetype%3Aaudio+deepcat%3A%22Musical+instruments+of+India%22&ns6=1", "scope": "deepcat:\"Musical instruments of India\"", "verified": true, "expect": 101,
+    "config": { "queries": [{ "q": "deepcat:\"Musical instruments of India\"", "kind": "music", "tags": ["indian", "instrument"] }] }, "notes": "101 audio files: drums, strings, wind instruments." },
+  { "id": "B04", "name": "Wikimedia Commons: Indian instrument and genre keywords", "adapter": "commons-audio", "url": "https://commons.wikimedia.org/w/index.php?search=filetype%3Aaudio+sitar+OR+tabla+OR+bansuri+OR+veena+OR+raga&ns6=1", "scope": "keywords", "verified": true, "expect": 400,
+    "config": { "require": "indian", "queries": [
+      { "q": "sitar", "kind": "music", "tags": ["indian", "sitar"] }, { "q": "tabla", "kind": "music", "tags": ["indian", "tabla", "percussion"] }, { "q": "raga", "kind": "music", "tags": ["indian", "raga", "classical"] },
+      { "q": "bansuri flute", "kind": "music", "tags": ["indian", "bansuri", "flute"] }, { "q": "veena", "kind": "music", "tags": ["indian", "veena"] }, { "q": "santoor", "kind": "music", "tags": ["indian", "santoor"] },
+      { "q": "sarod", "kind": "music", "tags": ["indian", "sarod"] }, { "q": "bhajan", "kind": "music", "tags": ["indian", "bhajan", "devotional"] }, { "q": "qawwali", "kind": "music", "tags": ["indian", "qawwali", "devotional"] },
+      { "q": "bollywood", "kind": "music", "tags": ["indian", "bollywood"] }, { "q": "kirtan", "kind": "music", "tags": ["indian", "kirtan", "devotional"] }, { "q": "dhol", "kind": "music", "tags": ["indian", "dhol", "percussion"] }
+    ] }, "notes": "Counts from the API: sitar 51, tabla 59, raga 148, bansuri 74, veena 250, santoor 9, sarod 4, bhajan 14, qawwali 3, bollywood 17. Overlap with B01-B03 is dropped at clip level." },
+  { "id": "B05", "name": "ccMixter: Indian instrument tags", "adapter": "ccmixter", "url": "https://ccmixter.org/api/query?f=json&tags=sitar,tabla,indian,bollywood&lic=by,zero", "scope": "tags sitar, tabla, indian, bollywood", "verified": true, "expect": 40,
+    "config": { "require": "indian", "queries": [{ "q": "sitar", "kind": "music", "tags": ["indian", "sitar"] }, { "q": "tabla", "kind": "music", "tags": ["indian", "tabla"] }, { "q": "indian", "kind": "music", "tags": ["indian"] }, { "q": "bollywood", "kind": "music", "tags": ["indian", "bollywood"] }] },
+    "license_policy": "CC BY and CC0 only", "notes": "Counts: sitar 22, tabla 12, indian 10, bollywood 1 (before the licence filter). v1 A02 used general mood tags." },
+  { "id": "B06", "name": "Internet Archive: Indian music with an open licence", "adapter": "archive-audio", "url": "https://archive.org/advancedsearch.php?q=mediatype%3Aaudio+AND+subject%3A%28sitar+OR+tabla+OR+raga%29", "scope": "subjects sitar, tabla, raga, indian classical", "verified": true, "expect": 60,
+    "config": { "require": "indian", "queries": [{ "q": "sitar", "kind": "music", "tags": ["indian", "sitar"] }, { "q": "tabla", "kind": "music", "tags": ["indian", "tabla"] }, { "q": "raga", "kind": "music", "tags": ["indian", "raga", "classical"] }, { "q": "\"indian classical\"", "kind": "music", "tags": ["indian", "classical"] }] },
+    "license_policy": "only items whose licenseurl is CC0, public domain mark, CC BY or CC BY-SA", "notes": "658 items match 'sitar' alone, most are NonCommercial or have no licence field: the licence filter keeps a small part. Each kept clip is the item's first MP3/Ogg file under 20 MB." }
+ ],
+ "edges": [["B01", "B02"], ["B02", "B03"], ["B03", "B04"], ["B04", "B05"], ["B05", "B06"]],
+ "excluded": [
+  { "name": "Openverse API", "reason": "did not answer from this machine in v1; still excluded" },
+  { "name": "Free Music Archive, Jamendo, Freesound, Pixabay", "reason": "need an API key or login" },
+  { "name": "Saregama, T-Series, Gaana, JioSaavn, Wynk", "reason": "commercial catalogues, no open licence" },
+  { "name": "YouTube 'no copyright' Indian music channels", "reason": "channel terms only, no per-file licence, not redistributable" },
+  { "name": "Internet Archive VintageSense Indian Music series", "reason": "CC BY-NC-ND: NonCommercial and NoDerivatives" },
+  { "name": "Wikipedia pronunciation files for Hindi, Tamil, Bengali words", "reason": "spoken words, not music (filtered by the spoken-word rule)" }
+ ]
+}
