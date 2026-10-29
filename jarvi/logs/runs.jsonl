@@ -1,0 +1,1 @@
+{"id":"20261028-160357Z-harvest","cmd":"harvest","started_at":"2026-10-28T16:03:57.618Z","ended_at":"2026-10-28T16:05:29.468Z","ms":91850,"args":{"sources":[]},"ok":true,"stopped":false,"sources":{"J01":"done","J02":"done","J03":"done"},"log":"logs/20261028-160357Z-harvest.log"}
