@@ -23,7 +23,7 @@
   "id": 1
  },
  "counts": {
-  "gallery": 530,
+  "gallery": 509,
   "skills": 0,
   "with_video": 23,
   "with_picture": 509
@@ -34,7 +34,8 @@
   "duplicates": 1,
   "too_short": 0,
   "skill_index_only": 0,
-  "image_prompt_without_picture": 0
+  "image_prompt_without_picture": 0,
+  "no_preview_removed": 21
  },
  "graph": "harvest/sources.v9.graph.json"
 }

@@ -20,7 +20,7 @@
   "ja": 1
  },
  "counts": {
-  "gallery": 105,
+  "gallery": 57,
   "skills": 137,
   "with_video": 0,
   "with_picture": 57
@@ -31,7 +31,8 @@
   "duplicates": 0,
   "too_short": 0,
   "skill_index_only": 0,
-  "image_prompt_without_picture": 0
+  "image_prompt_without_picture": 0,
+  "no_preview_removed": 48
  },
  "graph": "harvest/sources.v6.graph.json"
 }
