@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type SyntheticEvent } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight01Icon, Copy01Icon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { toast } from "sonner";
@@ -68,17 +68,67 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 	const total = gallery.data?.total ?? 0;
 	const items = total + (skillsQ.data?.skills.length ?? 0);
 	useEffect(() => setVideoBad(false), [cur?.id]);
+	// the stage is wide, so a vertical demo would be cropped to a strip: those are skipped (the rest of the library shows them in full)
+	const skipped = useRef(0);
+	useEffect(() => { skipped.current = 0; }, [seed]);
+	const onMeta = (e: SyntheticEvent<HTMLVideoElement>) => {
+		const v = e.currentTarget;
+		if (v.videoHeight > v.videoWidth && skipped.current < picks.length - 1) (skipped.current++, setI((n) => (n + 1) % picks.length));
+	};
 
+	const showVideo = cur && cur.video && !videoBad;
 	return (
 		<section aria-label="cizle" className="board pb-2">
-			{/* Desktop board: headline and video on the top row (video on the right), the subscribe and browse tiles on the bottom left, the prompt under the video. */}
-			<div className="board-w grid min-h-[calc(100dvh-84px)] grid-cols-1 gap-2 lg:grid-cols-12 lg:grid-rows-2">
-				<div className="tile reveal flex min-h-[260px] flex-col justify-end p-5 sm:p-6 lg:col-span-6 lg:col-start-1 lg:row-start-1">
-					<p className="text-lg font-medium text-muted-foreground" aria-live="off"><Tagline /></p>
-					<h1 className="display mt-3" style={{ fontSize: "clamp(2.25rem, 4.6vw, 5.25rem)" }}>
-						The prompt library for creators and builders
-					</h1>
-					<p className="mt-4 max-w-[60ch] text-lg leading-snug">
+			<div className="board-w grid grid-cols-1 gap-2 lg:grid-cols-12">
+				{/* The stage: one big demo video playing across the whole first screen, the headline set huge over it. */}
+				<div className="shutter relative isolate min-h-[max(560px,calc(100dvh-84px))] overflow-hidden rounded-lg bg-field-2 text-white lg:col-span-12">
+					{showVideo ? (
+						<AutoVideo key={cur.id} priority src={cur.video!} poster={cur.poster} onFail={() => setVideoBad(true)} onLoadedMetadata={onMeta} className="absolute inset-0 -z-20 size-full object-cover" aria-label={`Demo video: ${cur.title}`} />
+					) : cur?.poster ? (
+						<img src={cur.poster} alt={cur.title} className="absolute inset-0 -z-20 size-full object-cover" referrerPolicy="no-referrer" onError={() => setVideoBad(true)} />
+					) : (
+						// While the library loads, or if a demo cannot play: the product's own launch teaser, made with its Launch teaser skill.
+						<AutoVideo priority src="/videos/cizle-launch.mp4" poster="/videos/cizle-launch-poster.jpg" className="absolute inset-0 -z-20 size-full object-cover" aria-label="cizle launch teaser, made with the Launch teaser skill" />
+					)}
+					<div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(0_0_0/.72),rgb(0_0_0/.12)_55%,rgb(0_0_0/.28))]" />
+
+					<div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8">
+						<div className="flex flex-wrap items-start justify-between gap-3">
+							<p className="rounded-full bg-black/35 px-4 py-2 text-base font-medium backdrop-blur-md" aria-live="off"><Tagline /></p>
+							{cur ? (
+								<div className="flex items-center gap-2">
+									<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press hidden max-w-[28ch] truncate rounded-full bg-black/35 px-4 py-2 text-sm backdrop-blur-md hover:bg-black/50 sm:inline-flex">
+										{plain(cur.title)}
+									</Link>
+									<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next demo" className="press inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black hover:bg-white/90">
+										Next <Icon icon={ArrowRight01Icon} size={15} />
+									</button>
+								</div>
+							) : null}
+						</div>
+
+						<div>
+							<div className="flex flex-wrap justify-between gap-x-8 text-[clamp(1.1rem,2.6vw,2.6rem)] font-semibold tracking-tight uppercase" aria-hidden>
+								<span>Video prompts</span><span>Image prompts</span><span>Claude Code skills</span>
+							</div>
+							<h1 className="mt-1 font-semibold tracking-[-0.04em] uppercase [text-wrap:balance]" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 9.2vw, 10.5rem)", lineHeight: 0.92 }}>
+								The prompt library for creators
+							</h1>
+							<div className="mt-5 flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+								<div className="flex flex-wrap gap-2">
+									<a href="#library" className="press inline-flex h-12 items-center rounded-full bg-white px-6 text-sm font-semibold tracking-wide text-black uppercase hover:bg-white/90">Browse prompts</a>
+									{cur ? <Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-12 items-center rounded-full bg-white/20 px-6 text-sm font-semibold tracking-wide uppercase backdrop-blur-md hover:bg-white/30">See this prompt</Link> : null}
+								</div>
+								<p className="max-w-[34ch] text-xl leading-tight sm:text-2xl">
+									{items ? `${items.toLocaleString()} prompts and skills, ` : ""}each one credited to its creator. Copy one, make it yours.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="tile reveal flex flex-col justify-end p-5 sm:p-6 lg:col-span-6">
+					<p className="max-w-[60ch] text-lg leading-snug">
 						<strong className="font-semibold">{items ? `${items.toLocaleString()} prompts and skills.` : "Thousands of prompts and skills."}</strong> cizle is a free library of AI video prompts, image prompts and Claude Code skills in {langs.length > 1 ? langs.length : 12} languages and {countries.length > 1 ? `${countries.length} regions` : "many countries"}: video prompts by country, motion graphics with Remotion and HyperFrames, classroom and education animations, entertainment and small-business prompts. Every prompt credits its creator. Copy one, make it yours.
 					</p>
 					<ul aria-label="Popular searches" className="mt-4 flex flex-wrap gap-1.5">
@@ -95,29 +145,36 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 					) : null}
 				</div>
 
-				<div className="shutter relative min-h-[300px] overflow-hidden rounded-lg bg-field-2 lg:col-span-6 lg:col-start-7 lg:row-start-1" style={{ animationDelay: ".1s" }}>
-					{cur && !(videoBad && !cur.poster) ? (
+				<div className="tile reveal relative flex min-h-[260px] flex-col p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 1 }}>
+					{cur ? (
 						<>
-							{cur.video && !videoBad ? (
-								<AutoVideo key={cur.id} priority src={cur.video} poster={cur.poster} onFail={() => setVideoBad(true)} className="absolute inset-0 size-full object-cover" aria-label={`Demo video: ${cur.title}`} />
-							) : cur.poster ? (
-								<img src={cur.poster} alt={cur.title} className="absolute inset-0 size-full object-cover" referrerPolicy="no-referrer" onError={() => setVideoBad(true)} />
-							) : null}
+							<p className="max-w-[60ch] flex-1 overflow-hidden text-base leading-relaxed whitespace-pre-line [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:7]">{plain(curText)}</p>
+							<div className="mt-4 flex flex-wrap items-center gap-2">
+								<button
+									type="button"
+									onClick={async () => {
+										if (await copyText(curText)) (setCopied(true), toast.success("Prompt copied"), setTimeout(() => setCopied(false), 1800));
+									}}
+									className="press inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-base font-medium text-primary-foreground hover:bg-primary/85"
+								>
+									<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
+								</button>
+								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
+									Open it
+								</Link>
+							</div>
 						</>
 					) : (
-						<>
-							{/* While the library loads, or if a demo cannot play: the product's own launch teaser, made with its Launch teaser skill. */}
-							<AutoVideo priority src="/videos/cizle-launch.mp4" poster="/videos/cizle-launch-poster.jpg" className="absolute inset-0 size-full object-cover" aria-label="cizle launch teaser, made with the Launch teaser skill" />
-						</>
+						<p className="statement">The prompt that made the video shows here.</p>
 					)}
 				</div>
 
-				<div id="subscribe" className="tile-ink reveal flex min-h-[260px] scroll-mt-24 flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-3 lg:col-start-1 lg:row-start-2" style={{ ["--i" as string]: 2 }}>
+				<div id="subscribe" className="tile-ink reveal flex min-h-[220px] scroll-mt-24 flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 2 }}>
 					<p className="statement">{items ? `${items.toLocaleString()} video prompts, image prompts and skills` : "Video prompts, image prompts and skills"} from creators around the world. Every one is credited and free to copy.</p>
 					<SubscribeForm stacked cta="Subscribe" className="relative" />
 				</div>
 
-				<div className="tile-accent reveal flex min-h-[200px] flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-3 lg:col-start-4 lg:row-start-2" style={{ ["--i" as string]: 3 }}>
+				<div className="tile-accent reveal flex min-h-[220px] flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 3 }}>
 					<div>
 						<p className="statement">{langs.length > 1 ? `In ${langs.length} languages, and growing.` : PREMIUM ? `Free samples open in full. Premium opens the rest, from ${fromLabel("USD")} a month.` : "Every prompt and skill here is free."}</p>
 						{langs.length > 1 ? (
@@ -136,33 +193,6 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 					<a href="#library" className="press inline-flex h-12 w-fit items-center gap-2 rounded-lg bg-field-2 px-5 text-base font-medium text-field-2-ink hover:opacity-90">
 						Browse the library <Icon icon={ArrowRight01Icon} size={16} />
 					</a>
-				</div>
-
-				<div className="tile reveal relative flex min-h-[320px] flex-col p-5 sm:p-6 lg:col-span-6 lg:col-start-7 lg:row-start-2" style={{ ["--i" as string]: 1 }}>
-					{cur ? (
-						<>
-							<p className="max-w-[60ch] flex-1 overflow-hidden text-base leading-relaxed whitespace-pre-line [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:7]">{plain(curText)}</p>
-							<div className="mt-4 flex flex-wrap items-center gap-2">
-								<button
-									type="button"
-									onClick={async () => {
-										if (await copyText(curText)) (setCopied(true), toast.success("Prompt copied"), setTimeout(() => setCopied(false), 1800));
-									}}
-									className="press inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-base font-medium text-primary-foreground hover:bg-primary/85"
-								>
-									<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
-								</button>
-								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
-									Open it
-								</Link>
-								<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next prompt" className="press ml-auto inline-flex h-11 items-center gap-2 rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
-									Next <Icon icon={ArrowRight01Icon} size={16} />
-								</button>
-							</div>
-						</>
-					) : (
-						<p className="statement">The prompt that made the video shows here.</p>
-					)}
 				</div>
 			</div>
 		</section>

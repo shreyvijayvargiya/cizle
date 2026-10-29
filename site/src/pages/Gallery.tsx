@@ -14,7 +14,7 @@ import { Skeleton } from "@/components/ui/misc";
 import { OptionSelect } from "@/components/ui/select";
 import { useAuth } from "@/lib/auth";
 import { fromLabel } from "@/lib/billing";
-import { CLASSIC, canonCategory, filterGallery, findPrompt, shuffled, useGallery, useGalleryFuse, useShuffle, type GalleryFilters } from "@/lib/gallery";
+import { CLASSIC, canonCategory, filterGallery, findPrompt, shuffled, useGallery, useGalleryFuse, useShuffle, type GalleryFilters, type GalleryItem } from "@/lib/gallery";
 import { GUEST_LIMIT, useGate } from "@/lib/gate";
 import { ACCESS_ICON, SORT_ICON, categoryIcon } from "@/lib/filterIcons";
 import { PREMIUM } from "@/lib/config";
@@ -23,6 +23,17 @@ import { countBy, countryFlag } from "@/lib/facets";
 import { isLatinLabel } from "@/lib/utils";
 
 const PAGE = 48;
+/** how many masonry columns fit: the same breakpoints the old grid used (1, 2, 3, 4) */
+function useColumns() {
+	const count = () => (typeof window === "undefined" ? 4 : window.innerWidth >= 1280 ? 4 : window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1);
+	const [n, setN] = useState(count);
+	useEffect(() => {
+		const on = () => setN(count());
+		window.addEventListener("resize", on);
+		return () => window.removeEventListener("resize", on);
+	}, []);
+	return n;
+}
 type Collection = { family: string; name: string; total: number; pages: { route: string; name: string }[] };
 /** Every programmatic page (use cases, styles, best-of lists, how-tos, glossary, templates and more), as plain links. The list is written at build time. */
 function Collections() {
@@ -47,18 +58,30 @@ function Collections() {
 }
 const KEYS: (keyof GalleryFilters)[] = ["q", "category", "access", "sort", "lang", "country", "tool", "topic"];
 
-/** Community video prompts, each credited and linked to the original. A free sample in full; the rest open to subscribers. */
-export function GalleryPage({ slug }: { slug?: string } = {}) {
+/** one page per kind of prompt: the whole library, only the image prompts, or only the video prompts */
+export type GalleryMode = "all" | "images" | "videos";
+const PAGES = {
+	all: { path: "/gallery", h1: "Prompt gallery", noun: "prompt", nouns: "prompts", blurb: "video prompts, image prompts and skills from creators around the world" },
+	images: { path: "/images", h1: "Image prompts", noun: "image prompt", nouns: "image prompts", blurb: "image prompts from creators around the world, each with its picture" },
+	videos: { path: "/videos", h1: "Video prompts", noun: "video prompt", nouns: "video prompts", blurb: "video prompts from creators around the world, each with its demo video" },
+} as const;
+export const isImagePrompt = (g: GalleryItem) => g.kind === "image-prompt" || Boolean(g.images?.length && !g.video);
+const inMode = (g: GalleryItem, m: GalleryMode) => m === "all" || (m === "images" ? isImagePrompt(g) : !isImagePrompt(g) && (g.hasVideo || Boolean(g.video)));
+
+/** Community prompts, each credited and linked to the original. A free sample in full; the rest open to subscribers. */
+export function GalleryPage({ slug, mode = "all" }: { slug?: string; mode?: GalleryMode } = {}) {
+	const page = PAGES[mode];
 	const navigate = useNavigate();
 	const search = useSearch({ strict: false }) as GalleryFilters;
 	const { isPro } = useAuth();
 	const gallery = useGallery();
-	const items = gallery.data?.items;
+	const items = useMemo(() => (mode === "all" ? gallery.data?.items : gallery.data?.items.filter((g) => inMode(g, mode))), [gallery.data, mode]);
 	const fuse = useGalleryFuse(items);
 	const [q, setQ] = useState(search.q || "");
 	const [shown, setShown] = useState(PAGE);
 	const { seed, reshuffle: reshuffleList } = useShuffle();
 	const { locked, ready, openGate } = useGate();
+	const cols = useColumns();
 	// A visitor without an account sees a fixed random sample of video prompts; searching, filtering, shuffling, paging and opening one asks them to sign in.
 	const reshuffle = () => (locked ? openGate("shuffle the gallery") : reshuffleList());
 
@@ -67,7 +90,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 		const next = { ...search, ...patch };
 		for (const k of [...KEYS, "p" as const]) if (!next[k]) delete next[k];
 		setShown(PAGE);
-		navigate({ to: "/gallery", search: next, replace: true, resetScroll: false });
+		navigate({ to: page.path as "/gallery", search: next, replace: true, resetScroll: false });
 	};
 	useEffect(() => {
 		if (locked || (search.q || "") === q.trim()) return;
@@ -78,11 +101,12 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 
 	const list = useMemo(() => {
 		if (!items) return [];
-		if (locked) return shuffled(items.filter((g) => g.hasVideo && g.video), seed).slice(0, GUEST_LIMIT);
+		if (locked) return shuffled(items.filter((g) => (mode === "images" ? g.poster || g.images?.length : g.hasVideo && g.video)), seed).slice(0, GUEST_LIMIT);
 		return filterGallery(items, fuse, search, seed);
 	}, [items, fuse, search, seed, locked]);
 	const active = !locked && KEYS.some((k) => k !== "sort" && search[k]);
-	const total = gallery.data?.total ?? 0;
+	const total = items?.length ?? 0;
+	const languages = useMemo(() => { if (mode === "all") return gallery.data?.languages ?? {}; const m: Record<string, number> = {}; for (const g of items || []) m[g.lang || "en"] = (m[g.lang || "en"] || 0) + 1; return m; }, [items, mode, gallery.data?.languages]);
 	const open = slug && !locked ? findPrompt(items, slug) : undefined;
 	// the sign-in wall opens with the page, once (also when a guest lands on a prompt's own address)
 	const asked = useRef(false);
@@ -99,13 +123,13 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 
 	useHead({
 		enabled: !open && !legacy,
-		title: `Prompt gallery: ${total ? total.toLocaleString() : "1,000+"} prompts in ${Object.keys(gallery.data?.languages ?? {}).length || 1} languages, with credit | cizle`,
+		title: `${page.h1}: ${total ? total.toLocaleString() : "1,000+"} ${page.nouns} in ${Object.keys(languages).length || 1} languages, with credit | cizle`,
 		description: "Browse real video prompts people made with Claude Opus 5.5: motion graphics, explainers, product videos and 3D. Each one credits its creator and links to the original post. Read a free sample, unlock the rest with Premium.",
-		path: "/gallery",
+		path: page.path,
 	});
 
 	// only English (Latin-script) categories are listed for now; prompts in other languages stay visible, they just do not add their own category labels
-	const allCategories = useMemo(() => [...new Set((gallery.data?.categories || []).map(canonCategory))].filter(isLatinLabel), [gallery.data?.categories]);
+	const allCategories = useMemo(() => [...new Set((mode === "all" ? gallery.data?.categories || [] : (items || []).map((g) => g.category || "")).map(canonCategory))].filter((c) => c && isLatinLabel(c)), [gallery.data?.categories, items, mode]);
 	const categories = allCategories;
 	const countryCounts = useMemo(() => countBy(items || [], (g) => g.country), [items]);
 	const toolCounts = useMemo(() => countBy(items || [], (g) => g.tools), [items]);
@@ -121,10 +145,10 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 			<div className="board-w">
 				<div className="reveal flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
 					<h1 className="display" style={{ fontSize: "clamp(2.75rem, 8vw, 7.5rem)" }}>
-						Prompt gallery
+						{page.h1}
 					</h1>
 					<p className="max-w-[46ch] pb-2 text-lg leading-snug">
-						{total ? `${total.toLocaleString()} real prompts` : "Real prompts"} in {Object.keys(gallery.data?.languages ?? {}).length || 1} languages: video prompts, image prompts and skills from creators around the world. Every card credits its creator and links to the original. {PREMIUM ? `${gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.` : "All of them are free to read and copy."}
+						{total ? `${total.toLocaleString()} real ${page.nouns}` : `Real ${page.nouns}`} in {Object.keys(languages).length || 1} languages: {page.blurb}. Every card credits its creator and links to the original. {PREMIUM ? `${gallery.data?.free ?? "A few"} are free to read in full; Premium unlocks the rest.` : "All of them are free to read and copy."}
 					</p>
 				</div>
 
@@ -134,7 +158,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 							<Icon icon={Search01Icon} size={17} className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted-foreground" />
 							<Input type="search" value={q} onChange={(e) => (locked ? openGate("search the gallery") : setQ(e.target.value))} placeholder={`Search ${total ? total.toLocaleString() : ""} prompts`} className="pl-10" aria-label="Search prompts" />
 						</div>
-						<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={gallery.data?.languages ?? {}} className="w-[12.5rem]" />
+						<LanguageSelect value={search.lang || ""} onChange={(v) => setFilter({ lang: v })} counts={languages} className="w-[12.5rem]" />
 						<OptionSelect icon={Globe02Icon} aria-label="Country" value={search.country || ""} onValueChange={(v) => setFilter({ country: v })} emptyLabel="All countries" emptyIcon={Globe02Icon} options={countryCounts.map(([c, n]) => ({ value: c, label: `${countryFlag(c)} ${c} · ${n.toLocaleString()}` }))} className="w-[13rem]" />
 						<OptionSelect icon={Layers01Icon} aria-label="Tool" value={search.tool || ""} onValueChange={(v) => setFilter({ tool: v })} emptyLabel="All tools" emptyIcon={Layers01Icon} options={toolCounts.map(([c, n]) => ({ value: c, label: `${c} · ${n.toLocaleString()}` }))} className="w-[12.5rem]" />
 						<OptionSelect icon={Layers01Icon} aria-label="Topic" value={search.topic || ""} onValueChange={(v) => setFilter({ topic: v })} emptyLabel="All topics" emptyIcon={Layers01Icon} options={topicCounts.map(([c, n]) => ({ value: c, label: `${c} · ${n.toLocaleString()}` }))} className="w-[13rem]" />
@@ -142,7 +166,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 						{PREMIUM ? <OptionSelect icon={Layers01Icon} aria-label="Access" value={search.access || ""} onValueChange={(v) => setFilter({ access: v })} emptyLabel="Any access" options={[{ value: "free", label: "Free samples", icon: ACCESS_ICON.free }, { value: "premium", label: "Premium", icon: ACCESS_ICON.premium }]} className="w-[12rem]" /> : null}
 						<OptionSelect icon={SortByDown01Icon} aria-label="Sort" value={search.sort || ""} onValueChange={(v) => setFilter({ sort: v })} emptyLabel="Random" emptyIcon={SORT_ICON.random} options={[{ value: "new", label: "Newest", icon: SORT_ICON.new }, { value: "az", label: "A to Z", icon: SORT_ICON.az }, { value: "long", label: "Longest first", icon: SORT_ICON.long }]} className="w-[12rem]" />
 						{active ? (
-							<Button type="button" variant="secondary" onClick={() => (setQ(""), setShown(PAGE), navigate({ to: "/gallery", search: {}, replace: true }))}>
+							<Button type="button" variant="secondary" onClick={() => (setQ(""), setShown(PAGE), navigate({ to: page.path as "/gallery", search: {}, replace: true }))}>
 								<Icon icon={Cancel01Icon} size={15} /> Clear
 							</Button>
 						) : null}
@@ -155,7 +179,7 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 				{gallery.data ? <CategoryChips categories={[...allCategories].sort((a, b) => (counts[b] ?? 0) - (counts[a] ?? 0)).slice(0, 24)} counts={counts} value={search.category || ""} onChange={(c) => setFilter({ category: c || undefined })} total={total} /> : null}
 
 				<p className="px-1 py-3 text-lg" aria-live="polite">
-					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? "prompt" : "prompts"}${active || locked ? ` of ${total.toLocaleString()}` : ""}. `}
+					{gallery.isLoading ? "Loading prompts…" : `${list.length.toLocaleString()} ${list.length === 1 ? page.noun : page.nouns}${active || locked ? ` of ${total.toLocaleString()}` : ""}. `}
 					{locked && gallery.data ? <button type="button" onClick={() => openGate("see every prompt")} className="underline decoration-field-1 decoration-2 underline-offset-4">Sign in free to browse them all.</button> : null}
 					{PREMIUM && !isPro && gallery.data ? <Link to="/pricing" className="underline decoration-field-1 decoration-2 underline-offset-4">Unlock the full text of {(total - gallery.data.free).toLocaleString()} prompts from {fromLabel("USD")} a month.</Link> : PREMIUM && isPro ? "Premium is unlocked." : null}
 				</p>
@@ -176,13 +200,18 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 					</div>
 				) : list.length ? (
 					<>
-						<ul className="grid grid-cols-[minmax(0,1fr)] gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-							{list.slice(0, shown).map((g, k) => (
-								<li key={g.id} className="reveal" style={{ ["--i" as string]: k % 4 }}>
-									<PromptCard item={g} search={search} />
-								</li>
+						{/* masonry: each card keeps the shape of its own video, so vertical phone videos stand tall and wide ones lie flat. Cards go to columns in turn, so "show more" adds to the bottom without moving what is already there. */}
+						<div className="flex items-start gap-2">
+							{Array.from({ length: cols }, (_, c) => (
+								<ul key={c} className="flex min-w-0 flex-1 flex-col gap-2">
+									{list.slice(0, shown).map((g, k) => (k % cols === c ? (
+										<li key={g.id} className="reveal" style={{ ["--i" as string]: Math.floor(k / cols) % 4 }}>
+											<PromptCard natural item={g} search={mode === "all" ? search : { ...search, from: mode }} />
+										</li>
+									) : null))}
+								</ul>
 							))}
-						</ul>
+						</div>
 						{locked ? (
 							<button type="button" onClick={() => openGate("see every prompt")} className="press tile mt-2 flex h-16 w-full items-center justify-center gap-2 text-lg font-medium hover:bg-tile-2">
 								Sign in free to see the other {(total - list.length).toLocaleString()} prompts
@@ -196,13 +225,13 @@ export function GalleryPage({ slug }: { slug?: string } = {}) {
 				) : (
 					<div className="tile p-10 text-center">
 						<p className="statement">No prompts match those filters.</p>
-						<Button className="mt-4" variant="secondary" onClick={() => (setQ(""), navigate({ to: "/gallery", search: {}, replace: true }))}>
+						<Button className="mt-4" variant="secondary" onClick={() => (setQ(""), navigate({ to: page.path as "/gallery", search: {}, replace: true }))}>
 							Clear filters
 						</Button>
 					</div>
 				)}
 
-				<Collections />
+				{mode === "all" ? <Collections /> : null}
 
 				<p className="mx-auto mt-10 max-w-[60ch] px-1 text-center text-base">Prompts belong to the people who wrote them. We link to every original and remove a prompt on request. Email us from the contact page.</p>
 			</div>
