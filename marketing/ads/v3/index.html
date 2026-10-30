@@ -1,0 +1,71 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:540px;height:960px;overflow:hidden;background:#15110e;font-family:"Courier New",Courier,monospace;color:#1b1b1b}
+#desk{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,#2a221c,#100c0a 70%)}
+.paper{position:absolute;left:90px;width:360px;overflow:hidden;background:#f7f4ec;box-shadow:0 0 40px rgba(0,0,0,.6)}
+.paper .in{padding:26px 24px 8px}
+.paper.o{background:#ff5a1f}
+.ln{font-size:17px;font-weight:700;line-height:1.35;letter-spacing:.01em}
+.big{font:900 40px/1 "Arial Black",Arial;letter-spacing:-.04em;text-transform:uppercase}
+.row{display:flex;justify-content:space-between;gap:8px;white-space:nowrap}
+.row i{flex:1;border-bottom:3px dotted #1b1b1b;opacity:.45;margin:0 4px 5px;font-style:normal}
+.c{text-align:center}
+.gap{height:14px}
+.bar{height:50px;background:repeating-linear-gradient(90deg,#1b1b1b 0 3px,transparent 3px 5px,#1b1b1b 5px 6px,transparent 6px 10px,#1b1b1b 10px 14px,transparent 14px 16px)}
+.red{color:#d11}
+#printer{position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(#2c2c30,#17171a);border-top:2px solid #3b3b41;z-index:5}
+#slot{position:absolute;left:70px;right:70px;top:-6px;height:14px;background:#050505;border-radius:7px;box-shadow:0 3px 0 #444}
+#led{position:absolute;right:46px;top:46px;width:14px;height:14px;border-radius:50%}
+#stamp{position:absolute;left:50%;top:330px;font:900 78px/1 "Arial Black",Arial;color:#d11;border:10px solid #d11;padding:6px 18px;transform:translate(-50%,0);z-index:4;background:rgba(247,244,236,.92);white-space:nowrap}
+#fx{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.55))}
+#flash{position:absolute;inset:0;background:#ff5a1f;opacity:0;z-index:9}
+</style></head><body><div id="desk"></div>
+<div class="paper" id="rcpt"><div class="in" id="rin"></div></div>
+<div id="stamp">NO REFUNDS</div>
+<div class="paper o" id="slip"><div class="in" id="sin"></div></div>
+<div id="printer"><div id="slot"></div><div id="led"></div></div><div id="fx"></div><div id="flash"></div>
+<script src="../common.js"></script><script>
+const SLOT=818;
+function paper(box,inner,lines){let y=0;const out=[];lines.forEach(l=>{const e=$(l.h);inner.appendChild(e);out.push({t:l.t,d:l.d||.12,h:e.offsetHeight,y})});out.fixed=null;return out}
+function printed(arr,t){let h=0;arr.forEach(l=>{h+=l.h*prog(t,l.t,l.t+l.d)});return h}
+const row=(a,b)=>`<div class="ln row"><span>${a}</span><i></i><span>${b}</span></div>`;
+// receipt lines with their print times. the first ones are slow (the hook), then the rows speed up as the pain stacks
+const R=[];let tt=.2;const add=(h,d=.12,gap=.35)=>{R.push({h,t:tt,d});tt+=gap};
+add('<div class="big c">Your<br>Saturday,</div>',.5,.7);add('<div class="big c" style="color:#d11">itemised.</div>',.4,.9);
+add('<div class="gap"></div>',.1,.05);add('<div class="ln c">BLANK BOX CO.   Sat 09:02</div>',.15,.5);
+add('<div class="ln">==============================</div>',.1,.3);
+const items=['make it cinematic','make it MORE cinematic','slower. warmer. better.','same sunrise again','same sunrise again','hands (7 fingers)','“why is it like this”','same sunrise again','make it cinematic!!','same slow zoom','same sunrise again','“ok last try”','same sunrise again','“ok REALLY last try”','same sunrise again'];
+items.forEach((s,i)=>add(row(s,'$0.40'),.08,Math.max(.12,.5-i*.03)));
+add('<div class="ln">------------------------------</div>',.1,.35);
+add(row('YOUR SATURDAY','GONE'),.12,.55);add(row('CONFIDENCE','-100%'),.12,.55);add(row('CREATIVE SPARK','OUT OF STOCK'),.12,.7);
+add('<div class="gap"></div>',.1,.2);add('<div class="big" style="font-size:38px;display:flex;justify-content:space-between"><span>TOTAL</span><span>$38.40</span></div>',.3,1.0);
+add('<div class="ln c" style="font-weight:900">AND NOTHING TO POST.</div>',.3,.6);
+add('<div><div class="gap"></div><div class="bar"></div><div class="ln c">THANK YOU FOR NOT GETTING THE SHOT</div><div class="gap"></div></div>',.7,.3);
+const rcpt=document.getElementById('rcpt'),rin=document.getElementById('rin');
+const RL=R.map(l=>{const e=$(l.h);rin.appendChild(e);return {t:l.t,d:l.d,h:e.offsetHeight}});
+// the return slip
+const S=[];tt=14.9;const adds=(h,d=.12,gap=.4)=>{S.push({h,t:tt,d});tt+=gap};
+adds('<div class="big c" style="font-size:56px;color:#0b0b0c">WAIT.</div>',.3,.8);
+adds('<div class="ln c" style="font-size:19px;color:#0b0b0c">THERE IS A RETURN POLICY.</div>',.2,.6);
+adds('<div class="gap"></div>',.1,.05);
+adds('<div class="ln c" style="font-size:19px;color:#0b0b0c">Stop starting from zero.</div>',.2,.7);
+adds('<div class="ln c" style="font-size:22px;color:#0b0b0c">Take one that<br>already worked.</div>',.3,.9);
+adds('<div><div class="gap"></div><div class="big c" style="font-size:88px;text-transform:none;letter-spacing:-.06em;color:#0b0b0c">cizle</div></div>',.5,.6);
+adds('<div><div class="ln c" style="font-size:30px;font-weight:900;color:#0b0b0c">cizle.dev</div><div class="gap"></div><div class="bar" style="background:repeating-linear-gradient(90deg,#0b0b0c 0 3px,transparent 3px 5px,#0b0b0c 5px 6px,transparent 6px 10px,#0b0b0c 10px 14px,transparent 14px 16px)"></div><div class="gap"></div></div>',.5,1);
+const slip=document.getElementById('slip'),sin_=document.getElementById('sin');
+const SL=S.map(l=>{const e=$(l.h);sin_.appendChild(e);return {t:l.t,d:l.d,h:e.offsetHeight}});
+function place(box,arr,t,extra=0){const h=printed(arr,t)+(arr.length&&t>arr[0].t?54*prog(t,arr[0].t,arr[0].t+.3):0);box.style.height=h+'px';box.style.top=(SLOT-h+extra)+'px';box.style.display=h>1?'':'none';box.firstChild.style.position='absolute';box.firstChild.style.left=0;box.firstChild.style.right=0;box.firstChild.style.top='0';return h}
+function seek(t){
+ const st=document.getElementById('stamp');
+ const fall=E.inCubic(prog(t,14.0,14.7));
+ place(rcpt,RL,t,1500*fall);rcpt.style.transform=`rotate(${fall*14}deg)`;rcpt.style.transformOrigin='50% 100%';rcpt.style.display=t<14.8?rcpt.style.display:'none';
+ st.style.display=t>=13.4&&t<14.7?'':'none';st.style.transform=`translate(-50%,${1500*fall}px) rotate(${-8+fall*20}deg) scale(${lerp(2.6,1,E.outExpo(prog(t,13.4,13.6)))})`;
+ place(slip,SL,t);
+ document.getElementById('led').style.background=((printed(RL,t)<printed(RL,20)&&t<14)||(t>14.9&&t<18.8))&&Math.floor(t*14)%2?'#ff2a2a':'#401010';
+ // camera shake with the stamp, the total and the wait
+ let sh=0;[[11.0],[13.4],[14.9]].forEach(([a])=>{if(t>a&&t<a+.3)sh+=(1-(t-a)/.3)*6});
+ document.getElementById('desk').style.transform=`translate(${Math.sin(t*80)*sh}px,${Math.cos(t*60)*sh}px)`;
+ document.getElementById('flash').style.opacity=t>=14.7&&t<14.95?(1-(t-14.7)/.25)*.9:0;
+}
+window.seek=seek;seek(0);
+</script></body></html>

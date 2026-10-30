@@ -1,0 +1,100 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:540px;height:960px;overflow:hidden;background:#0b0b0c;font-family:"Helvetica Neue",Arial,sans-serif}
+#stage{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute;left:0;right:0;text-align:center;white-space:nowrap}
+.blk{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-weight:900;letter-spacing:-.04em;line-height:.9;text-transform:uppercase}
+.tile{position:absolute;width:150px;height:150px;border-radius:14px;overflow:hidden}
+.sun{position:absolute;left:50%;top:52%;width:46px;height:46px;margin:-23px;border-radius:50%}
+.ln{position:absolute;left:24px;font:600 12px Menlo,monospace;letter-spacing:.04em;color:#ff4d1a;white-space:nowrap}
+#grain{position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;pointer-events:none}
+</style></head><body><div id="stage">
+<div id="stack"></div>
+<div id="hook"><div class="abs blk" id="h0" style="top:300px;font-size:26px;letter-spacing:.34em;color:#ff4d1a">YOU'VE TYPED</div>
+<div class="abs blk" id="h1" style="top:350px;font-size:104px;color:#f3efe6">“MAKE IT</div>
+<div class="abs blk" id="h2" style="top:446px;font-size:92px;color:#f3efe6">CINEMATIC”</div></div>
+<div class="abs blk" id="cnt" style="top:640px;font-size:210px;color:#ff4d1a"></div>
+<div id="g1"></div>
+<div class="abs blk" id="and" style="top:90px;font-size:26px;letter-spacing:.3em;color:#9a958a">AND GOT</div>
+<div class="abs blk" id="this" style="top:128px;font-size:96px;color:#f3efe6">THIS.</div>
+<div class="abs blk" id="stamp" style="top:410px;left:50%;right:auto;transform:translate(-50%,0);font-size:84px;color:#ff2a2a;border:9px solid #ff2a2a;padding:10px 22px;background:rgba(11,11,12,.92)">GENERIC.</div>
+<div id="burn"><div class="abs blk" id="cl" style="top:250px;font-size:24px;letter-spacing:.34em;color:#9a958a">CREDITS LEFT</div>
+<div class="abs blk" id="money" style="top:300px;font-size:150px;color:#f3efe6"></div>
+<div style="position:absolute;left:40px;right:40px;top:500px;height:26px;border-radius:13px;background:#222"><div id="bar" style="height:100%;border-radius:13px;background:#ff4d1a"></div></div>
+<div class="abs blk" id="sat" style="top:610px;font-size:78px;color:#f3efe6">YOUR SATURDAY.</div>
+<div class="abs blk" id="gone" style="top:700px;font-size:130px;color:#ff4d1a">GONE.</div></div>
+<div id="flash" style="position:absolute;inset:0;background:#f3efe6;opacity:0"></div>
+<div id="cream" style="position:absolute;inset:0;background:#f3efe6"></div>
+<div class="abs blk" id="p1" style="top:150px;font-size:70px;color:#0b0b0c">THE PROBLEM<br>ISN'T YOU.</div>
+<div id="box" style="position:absolute;left:36px;right:36px;top:420px;height:150px;border:5px solid #0b0b0c;border-radius:22px;background:#fff"><div id="cur" style="position:absolute;left:26px;top:34px;width:5px;height:80px;background:#0b0b0c"></div></div>
+<div class="abs blk" id="p2" style="top:610px;font-size:62px;color:#ff4d1a">IT'S THE<br>BLANK BOX.</div>
+<div class="abs blk" id="s1" style="top:50px;font-size:62px;color:#0b0b0c">STEAL ONE</div>
+<div class="abs blk" id="s2" style="top:112px;font-size:62px;color:#0b0b0c">THAT ALREADY</div>
+<div class="abs blk" id="s3" style="top:174px;font-size:62px;color:#ff4d1a">WORKED.</div>
+<div id="g2"></div>
+<div id="orange" style="position:absolute;inset:0;background:#ff4d1a;clip-path:circle(0 at 50% 50%)"></div>
+<div class="abs blk" id="logo" style="top:330px;font-size:190px;color:#0b0b0c;text-transform:none;letter-spacing:-.06em">cizle</div>
+<div class="abs blk" id="tag" style="top:540px;font-size:30px;color:#0b0b0c;letter-spacing:-.01em;text-transform:none;font-weight:700">Prompts that already worked.</div>
+<div id="cta" style="position:absolute;left:50%;top:640px;transform:translateX(-50%);background:#0b0b0c;color:#f3efe6;border-radius:60px;padding:24px 54px;font:900 40px 'Arial Black',Arial;letter-spacing:-.02em;white-space:nowrap">cizle.dev →</div>
+<canvas id="grain" width="270" height="480" style="width:540px;height:960px"></canvas>
+</div><script src="../common.js"></script><script>
+const stack=document.getElementById('stack'),g1=document.getElementById('g1'),g2=document.getElementById('g2');
+const ids=n=>document.getElementById(n),R=rng(5);
+// repeated-prompt echo lines
+const lines=[];for(let k=0;k<64;k++){const l=$('<div class="ln">make it cinematic</div>');l.style.top=(k*15)+'px';l.style.left=(24+(k%3)*6)+'px';stack.appendChild(l);lines.push(l)}
+// tile grids: generic (same sunrise) and vivid (all different)
+const gen=[],viv=[];const hues=[[28,200],[300,40],[190,320],[120,20],[260,50],[340,200],[60,260],[10,180],[210,90],[150,330],[40,280],[100,350]];
+for(let i=0;i<12;i++){const x=35+(i%3)*160,y=250+Math.floor(i/3)*160;
+ const a=$(`<div class="tile" style="left:${x}px;top:${y}px;background:linear-gradient(#8a8f9c,#c9b79c 60%,#6b6f78 60%)"><div class="sun" style="background:#d9c7a3"></div></div>`);g1.appendChild(a);gen.push(a);
+ const [h1,h2]=hues[i];const sx=[18,50,78][i%3],sy=[30,55,40,65][i%4];
+ const b=$(`<div class="tile" style="left:${x}px;top:${300+Math.floor(i/3)*160}px;display:${i<9?"block":"none"};background:linear-gradient(${i*31}deg,hsl(${h1} 90% 55%),hsl(${h2} 85% 45%))"><div class="sun" style="left:${sx}%;top:${sy}%;background:hsl(${(h1+50)%360} 100% 75%);width:${30+i*5}px;height:${30+i*5}px;margin:${-(15+i*2.5)}px"></div></div>`);g2.appendChild(b);viv.push(b)}
+const grain=ids('grain').getContext('2d');
+function seek(t){
+ const S=ids('stage');
+ let sh=0;[[0.0],[0.5],[1.0],[5.0],[7.5],[10.5]].forEach(([a])=>{if(t>a&&t<a+.25)sh+=(1-(t-a)/.25)*7});
+ S.style.transform=`translate(${Math.sin(t*90)*sh}px,${Math.cos(t*77)*sh}px)`;
+ // background
+ const cream=t>=11&&t<16, org=t>=16;
+ ids('cream').style.display=cream?'':'none';
+ ids('stage').style.background=cream?'#f3efe6':'#0b0b0c';
+ // HOOK 0 - 5
+ const hk=t<2.4?1:Math.max(0,1-(t-2.4)/.4)*.35;
+ show(ids('hook'),t<5.0);
+ ['h0','h1','h2'].forEach((id,i)=>{const e=ids(id),a=i*.5,x=prog(t,a,a+.22);e.style.opacity=x>0?hk:0;const s=lerp(2.2,1,E.outExpo(x));e.style.transform=`scale(${s})`;});
+ // stack
+ show(ids('stack'),t>=2&&t<5.0);lines.forEach((l,k)=>{const x=t>=2+k*.045;l.style.opacity=x?(.35+.65*(k/64)):0;});
+ // counter
+ const cn=ids('cnt');show(cn,t>=2&&t<5.0);if(t>=2&&t<5){const x=prog(t,2,5);cn.textContent='×'+Math.floor(1+46*Math.pow(x,1.7));cn.style.transform=`scale(${1+.05*Math.sin(t*40)})`;}
+ // AND GOT THIS
+ const ag=t>=5&&t<8.0;show(ids('and'),ag);show(ids('this'),ag);
+ ids('this').style.transform=`scale(${lerp(1.8,1,E.outExpo(prog(t,5,5.25)))})`;
+ show(g1,t>=5.5&&t<8.0);gen.forEach((e,i)=>{const x=prog(t,5.5+i*.06,5.5+i*.06+.25);e.style.opacity=x;e.style.transform=`scale(${lerp(.6,1,E.outBack(x))})`;});
+ const st=ids('stamp');show(st,t>=7.5&&t<8.0);if(t>=7.5){st.style.transform=`translate(-50%,0) rotate(-9deg) scale(${lerp(2.6,1,E.outExpo(prog(t,7.5,7.7)))})`;}
+ // BURN 8 - 11
+ show(ids('burn'),t>=8&&t<11);if(t>=8&&t<11){const x=prog(t,8.1,10.4),v=38.4*(1-E.inOut(x));ids('money').textContent='$'+v.toFixed(2);
+  ids('bar').style.width=(100*(1-E.inOut(x)))+'%';ids('money').style.color=x>.7?'#ff2a2a':'#f3efe6';
+  show(ids('sat'),t>=10.0);ids('sat').style.transform=`scale(${lerp(1.5,1,E.outExpo(prog(t,10,10.2)))})`;
+  show(ids('gone'),t>=10.5);ids('gone').style.transform=`scale(${lerp(2.2,1,E.outExpo(prog(t,10.5,10.72)))})`;
+  show(ids('cl'),t<10);}
+ // flash at 11
+ ids('flash').style.opacity=t>=11&&t<11.25?1-(t-11)/.25:0;
+ // PIVOT 11 - 13
+ show(ids('p1'),cream&&t<14);ids('p1').style.opacity=t<13?1:0;
+ ids('p1').style.opacity=prog(t,11.05,11.2)*(t<13?1:0);
+ ids('p1').style.transform=`translateY(${lerp(30,0,E.outExpo(prog(t,11.05,11.5)))}px)`;
+ const bx=t>=12&&t<14;show(ids('box'),bx);show(ids('p2'),bx);
+ ids('cur').style.opacity=Math.floor(t*2.2)%2?0:1;ids('p2').style.opacity=prog(t,12.5,12.7);
+ // STEAL 13 - 16
+ show(ids('s1'),t>=13&&t<16);show(ids('s2'),t>=13&&t<16);show(ids('s3'),t>=13&&t<16);
+ [['s1',13],['s2',13.25],['s3',13.5]].forEach(([id,a])=>{const x=prog(t,a,a+.22);ids(id).style.opacity=x>0?1:0;ids(id).style.transform=`scale(${lerp(1.7,1,E.outExpo(x))})`;});
+ show(g2,t>=14&&t<16.0);viv.forEach((e,i)=>{if(i>=9)return;const x=prog(t,14+i*.07,14+i*.07+.3);e.style.opacity=x;e.style.transform=`translateY(${(1-E.outExpo(x))*60}px)`;});
+ // ORANGE + LOGO 16 - 20
+ const oc=E.inOut(prog(t,15.8,16.15));ids('orange').style.display=t>=15.8?'':'none';ids('orange').style.clipPath=`circle(${oc*80}% at 50% 50%)`;
+ const lg=ids('logo');show(lg,t>=16.1);lg.style.transform=`scale(${lerp(.4,1,E.outBack(prog(t,16.1,16.6)))})`;
+ show(ids('tag'),t>=16.9);ids('tag').style.opacity=prog(t,16.9,17.3);
+ const c=ids('cta');show(c,t>=17.5);c.style.transform=`translateX(-50%) scale(${lerp(.5,1,E.outBack(prog(t,17.5,17.9)))*(1+.035*Math.sin((t-17.9)*6))})`;
+ // film grain
+ grain.clearRect(0,0,270,480);const r=rng(Math.floor(t*30)+1);for(let i=0;i<900;i++){const v=r()*255|0;grain.fillStyle=`rgb(${v},${v},${v})`;grain.fillRect(r()*270,r()*480,2,2)}
+}
+window.seek=seek;seek(0);
+</script></body></html>

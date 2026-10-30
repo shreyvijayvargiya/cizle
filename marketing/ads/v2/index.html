@@ -1,0 +1,81 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:540px;height:960px;overflow:hidden;background:#000;font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;color:#fff}
+#top{position:absolute;left:0;right:0;top:0;height:128px;background:rgba(22,22,24,.96);border-bottom:1px solid #2a2a2d;z-index:5}
+#top .sb{position:absolute;top:14px;left:34px;font-weight:600;font-size:16px}
+#top .sb2{position:absolute;top:14px;right:30px;font-size:14px;letter-spacing:2px}
+#av{position:absolute;left:50%;top:40px;width:46px;height:46px;margin-left:-23px;border-radius:50%;background:linear-gradient(135deg,#ff9a3c,#ff4d6a);font-size:24px;text-align:center;line-height:46px}
+#nm{position:absolute;left:0;right:0;top:92px;text-align:center;font-size:13px;color:#d9d9de}
+#area{position:absolute;left:0;right:0;top:128px;bottom:96px;overflow:hidden}
+#list{position:absolute;left:0;right:0;top:0}
+.m{position:absolute;max-width:340px;padding:11px 16px;border-radius:22px;font-size:19px;line-height:1.28;opacity:0}
+.l{left:18px;background:#26262a}.r{right:18px;background:#0a84ff}
+.ts{position:absolute;left:0;right:0;text-align:center;font-size:12px;color:#8e8e93;opacity:0}
+#typing{position:absolute;left:18px;padding:15px 18px;border-radius:22px;background:#26262a;display:none}
+#typing i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#8e8e93;margin:0 3px}
+#input{position:absolute;left:0;right:0;bottom:0;height:96px;background:#000}
+#input div{position:absolute;left:16px;right:16px;top:14px;height:44px;border:1px solid #3a3a3e;border-radius:22px;color:#6a6a70;font-size:17px;padding:10px 18px}
+.vid{width:260px;height:170px;border-radius:14px;position:relative;overflow:hidden;margin-bottom:8px}
+.play{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px;border-radius:50%;background:rgba(255,255,255,.88)}
+.play:after{content:"";position:absolute;left:21px;top:15px;border-left:19px solid #111;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.card{width:270px;border-radius:16px;overflow:hidden;background:#1c1c1f}
+.card .hd{height:112px;background:#ff4d1a;color:#0b0b0c;font:900 70px "Arial Black",Arial;letter-spacing:-.06em;text-align:center;line-height:112px}
+.card .tx{padding:11px 14px 13px;font-size:15px;line-height:1.3}.card b{display:block;font-size:17px;color:#fff}.card span{color:#9a9aa1}
+#cap{position:absolute;left:0;right:0;bottom:0;height:150px;background:#ff4d1a;z-index:8;transform:translateY(150px);text-align:center;color:#0b0b0c;font:900 54px/150px "Arial Black",Arial;letter-spacing:-.04em}
+#tap{position:absolute;width:60px;height:60px;border-radius:50%;border:4px solid #fff;opacity:0;z-index:7;margin:-30px}
+</style></head><body>
+<div id="top"><div class="sb">11:48</div><div class="sb2">●●●● ▮</div><div id="av">🎬</div><div id="nm">Maya</div></div>
+<div id="area"><div id="list"></div><div id="typing"><i></i><i></i><i></i></div></div>
+<div id="input"><div>iMessage</div></div><div id="tap"></div><div id="cap">cizle.dev</div>
+<script src="../common.js"></script><script>
+// who: l = Maya, r = you. The story is only the pain, until the very last line.
+const MSG=[
+ {t:.5,w:'l',x:'bro'},
+ {t:1.4,w:'l',x:'your AI video looks exactly like everyone’s AI video'},
+ {t:3.2,w:'r',x:'…what'},
+ {t:4.2,w:'l',x:'same sunrise. same slow zoom. same “cinematic”'},
+ {t:6.0,w:'r',x:'i tried 40 prompts'},
+ {t:7.0,w:'l',x:'and got 40 of the same clip 💀'},
+ {t:8.6,w:'r',x:'i’ve been at this since 9am'},
+ {t:9.7,w:'r',x:'credits are gone'},
+ {t:11.0,w:'l',x:'ok but how did Dev get THIS'},
+ {t:11.8,w:'l',k:'vid'},
+ {t:13.4,w:'r',x:'WHAT. he can’t even edit'},
+ {t:14.6,w:'l',x:'he never starts from a blank box'},
+ {t:16.0,w:'r',x:'…then where does he start'},
+ {t:17.1,w:'l',k:'card'},
+ {t:18.6,w:'r',x:'why didn’t you tell me 9 hours ago'},
+];
+const list=document.getElementById('list'),area=document.getElementById('area'),typing=document.getElementById('typing');
+const els=[];let y=18;
+MSG.forEach((m,i)=>{const e=document.createElement('div');e.className='m '+m.w;
+ if(m.k==='vid')e.innerHTML='<div class="vid"><div class="play"></div></div>';
+ else if(m.k==='card')e.innerHTML='<div class="card"><div class="hd">cizle</div><div class="tx"><b>Prompts that already worked.</b><span>cizle.dev</span></div></div>';
+ else e.textContent=m.x;
+ if(m.k){e.style.padding='6px';e.style.background=m.w==='l'?'#26262a':'#0a84ff'}
+ list.appendChild(e);els.push(e);
+ if(m.t===8.6){}
+ e._y=y;e.style.top=y+'px';y+=e.offsetHeight+(MSG[i+1]&&MSG[i+1].w===m.w?5:14);m.bottom=y;m.h=e.offsetHeight});
+// timestamp
+const ts=document.createElement('div');ts.className='ts';ts.textContent='Today 11:48 PM';list.appendChild(ts);
+const AH=area.offsetHeight;
+function scrollAt(t){let off=0,prev=0;MSG.forEach(m=>{const target=Math.max(0,m.bottom+14-AH);if(t>=m.t){const x=E.outCubic(prog(t,m.t,m.t+.35));off=lerp(prev,target,x);} prev=Math.max(prev,target)});return off}
+function seek(t){
+ let lastL=-1;
+ MSG.forEach((m,i)=>{const e=els[i],x=prog(t,m.t,m.t+.28);e.style.opacity=x>0?1:0;e.style.transform=`scale(${lerp(.7,1,E.outBack(x))})`;e.style.transformOrigin=m.w==='l'?'0 100%':'100% 100%';
+  if(m.k==='vid'){const v=e.firstChild;v.style.background=`linear-gradient(${120+t*40}deg,hsl(${(300+t*50)%360} 90% 55%),hsl(${(30+t*40)%360} 95% 55%),hsl(${(200+t*30)%360} 90% 50%))`;}});
+ const off=scrollAt(t);list.style.transform=`translateY(${-off}px)`;
+ // Maya typing before each of her bubbles
+ let ty=null;MSG.forEach((m,i)=>{if(m.w==='l'&&t>m.t-.8&&t<m.t&&(i===0||MSG[i-1].t<m.t-.8||MSG[i-1].w==='r'||true)){ty=m}});
+ if(ty){typing.style.display='block';const idx=MSG.indexOf(ty);typing.style.top=(ty._top??ty.bottom-ty.h-0)+'px';typing.style.top=(els[idx]._y-off)+'px';
+  [...typing.children].forEach((d,k)=>d.style.transform=`translateY(${Math.sin(t*9+k*1.2)*-4}px)`)}else typing.style.display='none';
+ // timestamp between 8.6 and 9.7 pushes nothing; show as overlay chip
+ ts.style.opacity=0;
+ // tap on link card + banner
+ const card=els[MSG.findIndex(m=>m.k==='card')];const tp=document.getElementById('tap');
+ const tx=prog(t,18.1,18.5);tp.style.opacity=t>18.1&&t<18.8?1-Math.abs(.5-tx)*0:0;
+ tp.style.left=(18+135)+'px';tp.style.top=(128+card._y-off+70)+'px';tp.style.transform=`scale(${lerp(1.6,.8,tx)})`;tp.style.opacity=t>18.1&&t<18.7?(tx<1?.9:0):0;
+ document.getElementById('cap').style.transform=`translateY(${150*(1-E.outBack(prog(t,19.0,19.45)))}px)`;
+}
+window.seek=seek;seek(0);
+</script></body></html>

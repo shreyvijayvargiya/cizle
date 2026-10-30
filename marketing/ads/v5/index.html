@@ -1,0 +1,93 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:540px;height:960px;overflow:hidden;font-family:"Avenir Next","Trebuchet MS",Helvetica,Arial,sans-serif;color:#17324d;background:#cdeee0}
+#bg{position:absolute;inset:0;background:linear-gradient(#d6f3e6,#f9e3ee)}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.55}
+.abs{position:absolute;left:0;right:0;text-align:center}
+.h{font-weight:900;letter-spacing:-.03em;line-height:1}
+#mas{position:absolute;left:150px;top:330px;width:240px;height:170px;background:#fff;border-radius:34px;box-shadow:0 16px 0 rgba(23,50,77,.12),0 26px 40px rgba(23,50,77,.16)}
+#mas .e{position:absolute;top:62px;width:16px;height:16px;background:#17324d;border-radius:50%}
+#mas .m{position:absolute;left:92px;top:104px;width:56px;height:30px;border:7px solid #17324d;border-radius:0}
+#mas .c{position:absolute;left:34px;top:48px;width:6px;height:56px;background:#ff4d1a}
+#mas .t{position:absolute;left:0;right:0;top:14px;text-align:center;font:600 13px Menlo,monospace;color:#8a97a6}
+.sym{position:absolute;left:36px;right:36px;height:58px;background:#fff;border-radius:18px;box-shadow:0 8px 0 rgba(23,50,77,.1);font-weight:800;font-size:23px;line-height:58px;padding-left:66px;letter-spacing:-.02em}
+.sym:before{content:"";position:absolute;left:16px;top:13px;width:32px;height:32px;border-radius:9px;border:4px solid #17324d}
+.sym:after{content:"✓";position:absolute;left:21px;top:0;font-size:28px;color:#ff4d1a;transform:scale(var(--ck,0))}
+#fine{position:absolute;left:0;right:0;bottom:0;height:70px;background:#17324d;color:#e8f1f7;overflow:hidden;white-space:nowrap;font:600 15px/70px Menlo,monospace}
+#warn{position:absolute;left:0;right:0;top:300px;background:repeating-linear-gradient(135deg,#ffd23f 0 30px,#17324d 30px 60px);padding:16px 0}
+#warn div{background:#ffd23f;color:#17324d;margin:0 40px;padding:14px;font:900 40px/1 "Arial Black",Arial;text-align:center;letter-spacing:-.03em}
+#bot{position:absolute;left:190px;top:350px;width:160px;height:290px}
+#cap{position:absolute;left:12px;width:136px;top:0;height:60px;background:#fff;border-radius:14px 14px 6px 6px;box-shadow:inset 0 -8px 0 rgba(0,0,0,.08)}
+#body{position:absolute;left:0;top:52px;width:160px;height:238px;background:linear-gradient(90deg,#ff8a1f,#ff6a00 55%,#d95500);border-radius:12px 12px 24px 24px;box-shadow:0 20px 40px rgba(23,50,77,.3);overflow:hidden}
+#lab{position:absolute;left:10px;right:10px;top:44px;height:150px;background:#fff;border-radius:8px;text-align:center;padding-top:14px}
+#lab .rx{font:900 26px Georgia,serif;color:#17324d}#lab .nm{font:900 44px/1 "Arial Black",Arial;letter-spacing:-.07em;color:#0b0b0c;margin-top:8px;min-height:44px}#lab .dose{font:700 12px Menlo,monospace;color:#17324d;margin-top:10px;padding:0 6px;line-height:1.3}
+.pill{position:absolute;width:30px;height:16px;border-radius:9px;left:0;top:0}
+#cta{position:absolute;left:50%;top:790px;transform:translateX(-50%);background:#17324d;color:#fff;border-radius:60px;padding:22px 52px;font:900 40px "Arial Black",Arial;letter-spacing:-.03em;white-space:nowrap}
+</style></head><body><div id="bg"></div><div id="blobs"></div>
+<div class="abs h" id="a1" style="top:120px;font-size:34px;color:#4b6a88;font-weight:700;letter-spacing:-.01em">Do you suffer from</div>
+<div class="abs h" id="a2" style="top:170px;font-size:78px;color:#17324d">BLANK<br>BOX<br><span style="color:#ff4d1a">SYNDROME?</span></div>
+<div id="mas"><div class="t" id="mt"></div><div class="c" id="mc"></div><div class="e" style="left:92px"></div><div class="e" style="left:140px"></div><div class="m" id="mm"></div></div>
+<div class="abs h" id="b1" style="top:70px;font-size:40px">Symptoms may include:</div>
+<div id="syms"></div>
+<div id="warn"><div>MAY CAUSE 3 A.M.</div></div>
+<div class="abs h" id="c1" style="top:120px;font-size:56px">Until now.</div>
+<div class="abs h" id="c2" style="top:190px;font-size:36px;color:#4b6a88;font-weight:700">Introducing the only cure<br>for starting from zero.</div>
+<div id="bot"><div id="body"><div id="lab"><div class="rx">Rx</div><div class="nm" id="nm"></div><div class="dose" id="ds"></div></div></div><div id="cap"></div></div>
+<div id="pills"></div>
+<div class="abs h" id="d1" style="top:700px;font-size:34px">Prompts that already worked.</div>
+<div id="cta">cizle.dev →</div>
+<div id="fine"><span id="fp" style="position:absolute;white-space:nowrap"></span></div>
+<script src="../common.js"></script><script>
+const ids=n=>document.getElementById(n);
+const R=rng(11);
+const cols=['#ffb3c7','#9be7c4','#ffe29a','#b9c9ff'];
+for(let i=0;i<7;i++){const b=$(`<div class="blob" style="width:${160+i*30}px;height:${160+i*30}px;left:${(i*83)%460-60}px;top:${(i*191)%900-80}px;background:${cols[i%4]}"></div>`);ids('blobs').appendChild(b)}
+const SY=['Blank-box dread','Same-sunrise syndrome','Credit burn','Seven-finger hands','Lost Saturdays'];
+const sy=SY.map((s,i)=>{const e=$(`<div class="sym" style="top:${160+i*84}px">${s}</div>`);ids('syms').appendChild(e);return e});
+const FINE='SIDE EFFECTS OF STARTING FROM ZERO MAY INCLUDE: repetitive output • “make it more cinematic” x40 • mild to severe sunrise • hands • unexplained loss of confidence • wasted credits • posting nothing • talk to someone who ships • not recommended for creators with deadlines •  ';
+ids('fp').textContent=FINE+FINE;
+const pills=[];for(let i=0;i<46;i++){const e=$(`<div class="pill" style="background:linear-gradient(90deg,${cols[i%4]} 50%,#fff 50%)"></div>`);ids('pills').appendChild(e);pills.push({e,a:R()*6.283,v:260+R()*420,r:R()*360})}
+const blobs=[...document.querySelectorAll('.blob')];
+function mouth(sad){const m=ids('mm');m.style.borderBottom=sad?'0':'7px solid #17324d';m.style.borderTop=sad?'7px solid #17324d':'0';m.style.borderRadius=sad?'50% 50% 0 0':'0 0 50% 50%';m.style.top=sad?'110px':'100px'}
+function seek(t){
+ blobs.forEach((b,i)=>{b.style.transform=`translate(${Math.sin(t*.6+i)*40}px,${Math.cos(t*.5+i*2)*50}px)`});
+ const z=(id,a,b)=>{const e=ids(id);e.style.display=t>=a&&t<b?'':'none';return e};
+ // 0-2.6 hook
+ let e=z('a1',0,2.8);e.style.opacity=prog(t,.1,.35);
+ e=z('a2',0,2.8);e.style.transform=`scale(${lerp(1.5,1,E.outExpo(prog(t,.5,.8)))})`;e.style.opacity=t>.5?1:0;
+ // mascot: sad until the cure
+ const mas=ids('mas');mas.style.display=(t<7?'':'none');
+ const my=t<2.8?330+170:560;mas.style.top=(t<2.8?560:t<3?560:700)+'px';mas.style.transform=`translateY(${Math.sin(t*3)*5}px) scale(${t<2.8?1:.6})`;
+ mas.style.top=(t<2.8?600:t<7?770:600)+'px';
+ ids('mc').style.opacity=Math.floor(t*2)%2?0:1;mouth(true);
+ ids('mt').textContent=t<2.8?'make it cinematic_':'try again…';
+ // 2.8-7 symptoms
+ z('b1',2.8,7).style.opacity=prog(t,2.8,3.05);
+ sy.forEach((s,i)=>{const a=3.2+i*.8,x=prog(t,a,a+.3);s.style.display=t>=2.8&&t<7?'':'none';s.style.opacity=x>0?1:0;s.style.transform=`translateX(${(1-E.outBack(x))*-420}px)`;s.style.setProperty('--ck',E.outBack(prog(t,a+.35,a+.6)))});
+ // 7-10 warning and fine print
+ z('warn',7,10);ids('warn').style.transform=`translateY(${(1-E.outExpo(prog(t,7,7.3)))*-600}px) rotate(${-4+0*t}deg) scale(${1+.02*Math.sin(t*20)})`;
+ ids('fine').style.display=t>=7&&t<10.2?'':'none';ids('fp').style.left=(-((t-7)*900)%1300)+'px';
+ // 10.2-13 the turn
+ z('c1',10.2,13.2);ids('c1').style.transform=`scale(${lerp(1.6,1,E.outExpo(prog(t,10.2,10.45)))})`;
+ z('c2',10.8,13.2).style.opacity=prog(t,10.8,11.1);
+ // bottle 11.6 -> 20
+ const bt=ids('bot');bt.style.display=t>=11.6?'':'none';
+ const rise=E.outBack(prog(t,11.6,12.2));
+ let by=lerp(1100,330,rise),sc=1,rot=0;
+ if(t>=13&&t<15.5){rot=Math.sin(t*38)*(2+(t-13)*3)}
+ if(t>=15.5){const k=prog(t,15.5,16.2);sc=1+.35*Math.sin(k*Math.PI)*(1-k);by=330-30*E.outBack(prog(t,15.5,16.4))+(t>17?0:0)}
+ bt.style.transform=`translateY(${by-350}px) rotate(${rot}deg) scale(${t>=16.4?1.2:sc*1.0})`;
+ ids('bot').style.top=(t>=16.4?300:350)+'px';
+ // label
+ const typed='TAKE ONE';ids('nm').style.fontSize=t<15.5?'22px':'44px';ids('nm').style.whiteSpace='nowrap';
+ ids('nm').textContent=t<13.6?'':t<15.5?typed.slice(0,Math.floor((t-13.6)*5)):'cizle';
+ ids('ds').textContent=t<15.5?(t>14.6?'at the first sign of a blank box':''):'Prompts that already worked.';
+ // 13-15.5 buildup text
+ // pills burst
+ pills.forEach((p,i)=>{const x=t-15.5;p.e.style.display=x>0&&x<2.2?'':'none';if(x>0){const d=p.v*x,g=500*x*x;p.e.style.left=(270+Math.cos(p.a)*d)+'px';p.e.style.top=(520+Math.sin(p.a)*d+g*.5)+'px';p.e.style.transform=`rotate(${p.r+x*500}deg)`}});
+ z('d1',16.6,20).style.opacity=prog(t,16.6,17);ids('d1').style.top='700px';
+ const c=ids('cta');c.style.display=t>=17.4?'':'none';c.style.transform=`translateX(-50%) scale(${lerp(.5,1,E.outBack(prog(t,17.4,17.8)))*(1+.035*Math.sin((t-17.8)*6))})`;
+ ids('fine').style.display=t>=7&&t<10.2||t>=18.2?'':'none';if(t>=18.2){ids('fp').style.left='20px';ids('fp').textContent='Side effects of cizle may include: finished videos • a free Saturday • “how did you make that?”';}
+}
+window.seek=seek;seek(0);
+</script></body></html>
