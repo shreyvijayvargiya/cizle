@@ -15,8 +15,6 @@ import { plain } from "@/lib/utils";
 import { AutoVideo } from "@/lib/videos";
 
 const TAGS = ["AI video prompts", "image prompts", "Claude Code skills", "Remotion", "HyperFrames", "education animation", "whiteboard videos", "small business prompts", "motion graphics prompts", "film styles"];
-/** the countries shown as quick links, when the library has prompts from them */
-const HERO_COUNTRIES = ["USA", "China", "Japan", "Brazil", "Spain", "Mexico", "Turkey", "Vietnam", "Russia", "Indonesia", "India", "Germany", "France", "UK"];
 const LINES = ["Never start from a blank prompt.", "Copy a prompt that already worked.", "Inspiration for creators and builders.", "Every prompt credits its creator."];
 
 /** One line that changes every few seconds; the first is in the page from the start, and motion-sensitive visitors keep it. */
@@ -46,7 +44,7 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 	}, [gallery.data, skillsQ.data]);
 
 	const countries = useMemo(() => countBy([...(gallery.data?.items ?? []), ...(skillsQ.data?.skills ?? [])], (g) => g.country), [gallery.data, skillsQ.data]);
-	const heroCountries = HERO_COUNTRIES.map((c) => countries.find(([n]) => n === c)).filter((x): x is [string, number] => Boolean(x));
+	const heroCountries = countries; // every country in the library, most prompts first
 
 	const picks = useMemo(() => {
 		// a different set of demos on every visit: the library is shuffled, then one of each category comes first
@@ -90,39 +88,56 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 						// While the library loads, or if a demo cannot play: the product's own launch teaser, made with its Launch teaser skill.
 						<AutoVideo priority src="/videos/cizle-launch.mp4" poster="/videos/cizle-launch-poster.jpg" className="absolute inset-0 -z-20 size-full object-cover" aria-label="cizle launch teaser, made with the Launch teaser skill" />
 					)}
-					<div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(0_0_0/.72),rgb(0_0_0/.12)_55%,rgb(0_0_0/.28))]" />
+					<div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(0_0_0/.62),rgb(0_0_0/.18)_34%,transparent_52%),linear-gradient(to_bottom,rgb(0_0_0/.34),transparent_20%)]" />
 
-					<div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8">
+					<div className="absolute inset-0 flex flex-col justify-between gap-6 p-4 sm:p-8">
 						<div className="flex flex-wrap items-start justify-between gap-3">
-							<p className="rounded-full bg-black/35 px-4 py-2 text-base font-medium backdrop-blur-md" aria-live="off"><Tagline /></p>
+							<p className="rounded-full bg-black/40 px-4 py-2 text-sm font-medium backdrop-blur-md sm:text-base" aria-live="off"><Tagline /></p>
 							{cur ? (
-								<div className="flex items-center gap-2">
-									<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press hidden max-w-[28ch] truncate rounded-full bg-black/35 px-4 py-2 text-sm backdrop-blur-md hover:bg-black/50 sm:inline-flex">
-										{plain(cur.title)}
-									</Link>
-									<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next demo" className="press inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-black hover:bg-white/90">
-										Next <Icon icon={ArrowRight01Icon} size={15} />
-									</button>
-								</div>
+								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press hidden max-w-[34ch] truncate rounded-full bg-black/40 px-4 py-2 text-sm backdrop-blur-md hover:bg-black/55 sm:inline-flex">
+									{plain(cur.title)}
+								</Link>
 							) : null}
 						</div>
 
-						<div>
-							<div className="flex flex-wrap justify-between gap-x-8 text-[clamp(1.1rem,2.6vw,2.6rem)] font-semibold tracking-tight uppercase" aria-hidden>
-								<span>Video prompts</span><span>Image prompts</span><span>Claude Code skills</span>
-							</div>
-							<h1 className="mt-1 font-semibold tracking-[-0.04em] uppercase [text-wrap:balance]" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 9.2vw, 10.5rem)", lineHeight: 0.92 }}>
-								The prompt library for creators
-							</h1>
-							<div className="mt-5 flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
-								<div className="flex flex-wrap gap-2">
-									<a href="#library" className="press inline-flex h-12 items-center rounded-full bg-white px-6 text-sm font-semibold tracking-wide text-black uppercase hover:bg-white/90">Browse prompts</a>
-									{cur ? <Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-12 items-center rounded-full bg-white/20 px-6 text-sm font-semibold tracking-wide uppercase backdrop-blur-md hover:bg-white/30">See this prompt</Link> : null}
-								</div>
-								<p className="max-w-[34ch] text-xl leading-tight sm:text-2xl">
+						<div className="flex flex-col gap-5 [text-shadow:0_1px_20px_rgb(0_0_0/.45)] sm:gap-6">
+							<div className="max-w-[46rem]">
+								<h1 className="font-semibold tracking-[-0.035em] [text-wrap:balance]" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.25rem, 5.4vw, 5rem)", lineHeight: 1 }}>
+									The prompt library for creators
+								</h1>
+								<p className="mt-3 max-w-[40ch] text-base leading-snug text-white/90 sm:text-xl">
 									Prompts that already worked, with the video to prove it. Copy one and change a line.
 								</p>
+								<div className="mt-5 flex flex-wrap gap-2 [text-shadow:none]">
+									<a href="#library" className="press inline-flex h-12 items-center rounded-full bg-white px-6 text-sm font-semibold tracking-wide text-black hover:bg-white/90">Browse prompts</a>
+									<a href="#subscribe" className="press inline-flex h-12 items-center rounded-full bg-white/20 px-6 text-sm font-semibold tracking-wide backdrop-blur-md hover:bg-white/30">Get new prompts</a>
+								</div>
 							</div>
+
+							{/* the prompt behind this video, with copy, open and next: set into the bottom of the video instead of a card under it */}
+							{cur ? (
+								<div className="flex flex-col gap-3 rounded-2xl bg-black/45 p-3 [text-shadow:none] backdrop-blur-xl sm:flex-row sm:items-center sm:gap-5 sm:p-4">
+									<div className="min-w-0 flex-1">
+										<p className="text-xs font-medium tracking-wide text-white/65 uppercase">The prompt behind this video · {i % Math.max(1, picks.length) + 1} of {picks.length}</p>
+										<p className="mt-1 text-sm leading-snug whitespace-pre-line text-white/95 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden sm:text-base">{plain(curText)}</p>
+									</div>
+									<div className="flex shrink-0 flex-wrap items-center gap-2">
+										<button
+											type="button"
+											onClick={async () => {
+												if (await copyText(curText)) (setCopied(true), toast.success("Prompt copied"), setTimeout(() => setCopied(false), 1800));
+											}}
+											className="press inline-flex h-11 items-center gap-2 rounded-full bg-white px-4 text-sm font-semibold text-black hover:bg-white/90"
+										>
+											<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
+										</button>
+										<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-full bg-white/20 px-4 text-sm font-semibold backdrop-blur-md hover:bg-white/30">Open it</Link>
+										<button type="button" onClick={() => setI((n) => (n + 1) % picks.length)} aria-label="Next demo" className="press inline-flex h-11 items-center gap-2 rounded-full bg-white/20 px-4 text-sm font-semibold backdrop-blur-md hover:bg-white/30">
+											Next <Icon icon={ArrowRight01Icon} size={15} />
+										</button>
+									</div>
+								</div>
+							) : null}
 						</div>
 					</div>
 				</div>
@@ -145,48 +160,23 @@ export function Hero({ skillCount: _skillCount }: { skillCount: number }) {
 					) : null}
 				</div>
 
-				<div className="tile reveal relative flex min-h-[260px] flex-col p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 1 }}>
-					{cur ? (
-						<>
-							<p className="max-w-[60ch] flex-1 overflow-hidden text-base leading-relaxed whitespace-pre-line [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:7]">{plain(curText)}</p>
-							<div className="mt-4 flex flex-wrap items-center gap-2">
-								<button
-									type="button"
-									onClick={async () => {
-										if (await copyText(curText)) (setCopied(true), toast.success("Prompt copied"), setTimeout(() => setCopied(false), 1800));
-									}}
-									className="press inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 text-base font-medium text-primary-foreground hover:bg-primary/85"
-								>
-									<Icon icon={copied ? Tick02Icon : Copy01Icon} size={16} /> {copied ? "Copied" : "Copy prompt"}
-								</button>
-								<Link to="/prompts/$slug" params={{ slug: cur.slug }} className="press inline-flex h-11 items-center rounded-lg bg-tile-2 px-4 text-base text-foreground hover:bg-muted">
-									Open it
-								</Link>
-							</div>
-						</>
-					) : (
-						<p className="statement">The prompt that made the video shows here.</p>
-					)}
-				</div>
-
-				<div id="subscribe" className="tile-ink reveal flex min-h-[220px] scroll-mt-24 flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 2 }}>
+				<div id="subscribe" className="tile-ink reveal flex min-h-[220px] scroll-mt-24 flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 1 }}>
 					<p className="statement">New prompts land every week. Get the best ones in your inbox, each with its video and its creator.</p>
 					<SubscribeForm stacked cta="Subscribe" className="relative" />
 				</div>
 
-				<div className="tile-accent reveal flex min-h-[220px] flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-6" style={{ ["--i" as string]: 3 }}>
+				<div className="tile-accent reveal flex min-h-[220px] flex-col justify-between gap-5 p-5 sm:p-6 lg:col-span-12" style={{ ["--i" as string]: 2 }}>
 					<div>
 						<p className="statement">{langs.length > 1 ? "Written in many languages, searchable in all of them." : PREMIUM ? `Free samples open in full. Premium opens the rest, from ${fromLabel("USD")} a month.` : "Every prompt and skill here is free."}</p>
 						{langs.length > 1 ? (
 							<ul aria-label="Languages" className="mt-3 flex flex-wrap gap-1.5">
-								{langs.slice(0, 8).map(([code, n]) => (
+								{langs.map(([code]) => (
 									<li key={code}>
 										<Link to="/" search={{ lang: code }} hash="library" className="press inline-flex items-center gap-1.5 rounded-full bg-field-2 px-3 py-1 text-sm text-field-2-ink hover:opacity-90">
 											<span aria-hidden>{languageOf(code).flag}</span> {languageOf(code).native}
 										</Link>
 									</li>
 								))}
-								{langs.length > 8 ? <li className="inline-flex items-center px-1 text-sm opacity-80">+{langs.length - 8} more</li> : null}
 							</ul>
 						) : null}
 					</div>
